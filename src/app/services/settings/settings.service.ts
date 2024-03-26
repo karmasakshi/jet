@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Settings } from '@xxx/interfaces/settings.interface';

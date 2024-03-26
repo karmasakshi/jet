@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Translation, TranslocoLoader } from '@ngneat/transloco';
+import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { Observable } from 'rxjs';
 

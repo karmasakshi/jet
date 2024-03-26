@@ -16,7 +16,7 @@ import {
   RouterModule,
 } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Language } from '@xxx/interfaces/language.interface';
 import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';

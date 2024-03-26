@@ -3,7 +3,7 @@ import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
-import { provideTransloco } from '@ngneat/transloco';
+import { provideTransloco } from '@jsverse/transloco';
 import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
 import { LANGUAGES } from '@xxx/constants/languages.constant';
 import { Language } from '@xxx/interfaces/language.interface';

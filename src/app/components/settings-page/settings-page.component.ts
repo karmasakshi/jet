@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { SwUpdate } from '@angular/service-worker';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { LANGUAGES } from '@xxx/constants/languages.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Language } from '@xxx/interfaces/language.interface';

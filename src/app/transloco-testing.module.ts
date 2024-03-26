@@ -1,7 +1,7 @@
 import {
   TranslocoTestingModule,
   TranslocoTestingOptions,
-} from '@ngneat/transloco';
+} from '@jsverse/transloco';
 import ar from '../assets/i18n/ar.json';
 import en from '../assets/i18n/en.json';
 import { DEFAULT_LANGUAGE } from './constants/default-language.constant';
