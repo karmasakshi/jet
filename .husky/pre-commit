@@ -1,1 +1,1 @@
-npm run lint && npx --no -- lint-staged
+npm run commit-formalities
