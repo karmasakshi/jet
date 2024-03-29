@@ -1,4 +1,14 @@
 {
+  "alerts": {
+    "no-update-found": "You're on the latest version.",
+    "checking-for-update": "Checking for update...",
+    "downloading-update": "Downloading update...",
+    "something-went-wrong": "Something went wrong.",
+    "reload-to-apply": "Reload to apply.",
+    "reload-to-update": "Reload to update.",
+    "ok-cta": "OK",
+    "reload-cta": "RELOAD"
+  },
   "xxx-home-page": {},
   "xxx-main": {
     "app-name": "xxx",
@@ -16,15 +26,5 @@
     "reload-description": "Preserve settings and reload",
     "theme": "Theme",
     "unknown": "Unknown"
-  },
-  "alerts": {
-    "no-update-found": "You're on the latest version.",
-    "checking-for-update": "Checking for update...",
-    "downloading-update": "Downloading update...",
-    "something-went-wrong": "Something went wrong.",
-    "reload-to-apply": "Reload to apply.",
-    "reload-to-update": "Reload to update.",
-    "ok-cta": "OK",
-    "reload-cta": "RELOAD"
   }
 }
