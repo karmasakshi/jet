@@ -1,29 +1,29 @@
 {
   "alerts": {
-    "no-update-found": "You're on the latest version. AR",
     "checking-for-update": "Checking for update... AR",
     "downloading-update": "Downloading update... AR",
-    "something-went-wrong": "Something went wrong. AR",
+    "no-update-found": "You're on the latest version. AR",
+    "ok-cta": "OK AR",
+    "reload-cta": "RELOAD AR",
     "reload-to-apply": "Reload to apply. AR",
     "reload-to-update": "Reload to update. AR",
-    "ok-cta": "OK AR",
-    "reload-cta": "RELOAD AR"
+    "something-went-wrong": "Something went wrong. AR"
   },
   "xxx-home-page": {},
   "xxx-main": {
     "app-name": "xxx AR",
     "home": "Home AR",
-    "settings": "Settings AR",
-    "navigation-menu": "Navigation Menu AR"
+    "navigation-menu": "Navigation Menu AR",
+    "settings": "Settings AR"
   },
   "xxx-settings-page": {
     "check-for-update": "Check for update AR",
-    "reset": "Reset AR",
-    "last-checked": "Last checked: {{ value }} AR",
-    "reset-description": "Use default settings and reload AR",
     "language": "Language AR",
+    "last-checked": "Last checked: {{ value }} AR",
     "reload": "Reload AR",
     "reload-description": "Preserve settings and reload AR",
+    "reset": "Reset AR",
+    "reset-description": "Use default settings and reload AR",
     "theme": "Theme AR",
     "unknown": "Unknown AR"
   }
