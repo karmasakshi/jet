@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "commit-formalities": "npm run lint && npm run i18n:extract && npx --no -- lint-staged",
+    "commit-formalities": "npm run lint && npm run i18n:extract && npm run i18n:find && npx --no -- lint-staged",
     "commit": "git add . && npx --no -- commit",
     "deploy:ghp": "npx --no -- ng deploy --base-href=/xxx/",
     "i18n:extract": "npx --no -- transloco-keys-manager extract",

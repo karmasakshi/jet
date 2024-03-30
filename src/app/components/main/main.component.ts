@@ -80,6 +80,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this.loaderConfiguration$ = this._loaderService.loaderConfiguration$;
 
+    /**
+     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
+     *
+     * t(xxx-main.home)
+     * t(xxx-main.settings)
+     */
+
     this.pages = [
       {
         icon: 'home',
