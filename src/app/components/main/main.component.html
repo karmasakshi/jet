@@ -19,6 +19,7 @@
       <mat-nav-list [attr.aria-label]="t('navigation-menu')">
         @for (page of pages; track page.url) {
           <a
+            (click)="isSmallViewport && sidenav.close()"
             matListItemTitle
             [activated]="activeUrl === page.url"
             mat-list-item
