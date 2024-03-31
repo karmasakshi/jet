@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { getTranslocoModule } from 'src/app/transloco-testing.module';
 import { HomePageComponent } from './home-page.component';
+import { getTranslocoModule } from '@xxx/modules/transloco-testing.module';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;

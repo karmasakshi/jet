@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SettingsPageComponent } from './settings-page.component';
-import { getTranslocoModule } from 'src/app/transloco-testing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { getTranslocoModule } from '@xxx/modules/transloco-testing.module';
+import { SettingsPageComponent } from './settings-page.component';
 
 describe('SettingsPageComponent', () => {
   let component: SettingsPageComponent;
@@ -10,11 +10,11 @@ describe('SettingsPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        getTranslocoModule(),
-        SettingsPageComponent,
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: false,
         }),
+        getTranslocoModule(),
+        SettingsPageComponent,
       ],
     }).compileComponents();
 

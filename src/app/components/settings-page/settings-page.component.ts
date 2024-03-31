@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +19,6 @@ import packageJson from 'package.json';
 
 @Component({
   imports: [
-    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,

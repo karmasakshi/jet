@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MainComponent } from './main.component';
+import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { getTranslocoModule } from 'src/app/transloco-testing.module';
-import { RouterTestingModule } from '@angular/router/testing';
+import { getTranslocoModule } from '@xxx/modules/transloco-testing.module';
+import { MainComponent } from './main.component';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -12,13 +11,12 @@ describe('MainComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        getTranslocoModule(),
+        RouterModule.forRoot([]),
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: false,
         }),
+        getTranslocoModule(),
         MainComponent,
-        NoopAnimationsModule,
       ],
     }).compileComponents();
 
