@@ -13,9 +13,7 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar style="background: inherit" role="heading">{{
-        t('app-name')
-      }}</mat-toolbar>
+      <mat-toolbar role="heading">{{ t('app-name') }}</mat-toolbar>
       <mat-nav-list [attr.aria-label]="t('navigation-menu')">
         @for (page of pages; track page.url) {
           <a
