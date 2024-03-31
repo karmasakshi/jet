@@ -12,7 +12,6 @@ export function getTranslocoModule(
   translocoTestingOptions: TranslocoTestingOptions = {},
 ) {
   return TranslocoTestingModule.forRoot({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     langs: {
       ar,
       en,
