@@ -13,7 +13,9 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar role="heading">{{ t('app-name') }}</mat-toolbar>
+      <mat-toolbar color="primary" role="heading">{{
+        t('app-name')
+      }}</mat-toolbar>
       <mat-nav-list [attr.aria-label]="t('navigation-menu')">
         @for (page of pages; track page.url) {
           <a
@@ -33,7 +35,7 @@
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
           style="position: absolute; top: 0; left: 0; right: 0"
-          color="primary"
+          color="accent"
           aria-hidden="true"
           [ngStyle]="{
             visibility: loaderConfiguration.isVisible ? 'visible' : 'hidden'
@@ -45,6 +47,7 @@
         </mat-progress-bar>
       }
       <mat-toolbar
+        color="primary"
         style="
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0
             calc(env(safe-area-inset-left) + 16px);
