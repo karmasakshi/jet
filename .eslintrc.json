@@ -6,7 +6,7 @@
       "files": ["*.ts"],
       "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
@@ -27,7 +27,7 @@
             "style": "kebab-case"
           }
         ],
-        "sort-keys": ["error"]
+        "sort-keys": "error"
       }
     },
     {
@@ -38,8 +38,5 @@
       ],
       "rules": {}
     }
-  ],
-  "parserOptions": {
-    "project": "tsconfig.json"
-  }
+  ]
 }

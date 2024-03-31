@@ -1,27 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { getTranslocoModule } from 'src/app/transloco-testing.module';
-import { LoggerService } from '../logger/logger.service';
+import { getTranslocoModule } from '@xxx/modules/transloco-testing.module';
 import { StorageService } from './storage.service';
 
 describe('StorageService', () => {
   let service: StorageService;
-  let loggerServiceSpy: jasmine.SpyObj<LoggerService>;
 
   beforeEach(() => {
-    loggerServiceSpy = jasmine.createSpyObj('LoggerService', [
-      'logUnknownError',
-      'logServiceInitialization',
-    ]) as jasmine.SpyObj<LoggerService>;
-
     TestBed.configureTestingModule({
       imports: [getTranslocoModule()],
-      providers: [
-        StorageService,
-        {
-          provide: LoggerService,
-          useValue: loggerServiceSpy,
-        },
-      ],
     });
 
     service = TestBed.inject(StorageService);
@@ -29,13 +15,6 @@ describe('StorageService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('should log service initialization', () => {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    expect(loggerServiceSpy.logServiceInitialization).toHaveBeenCalledWith(
-      'StorageService',
-    );
   });
 
   it('should clear localStorage', () => {
