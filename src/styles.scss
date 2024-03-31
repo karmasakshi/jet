@@ -2,10 +2,6 @@ body {
   margin: 0;
   font-family: 'Noto Sans', sans-serif;
 
-  .mat-drawer-content {
-    height: unset;
-  }
-
   .mat-sidenav-container {
     &[dir='ltr'] {
       .mat-sidenav {

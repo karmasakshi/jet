@@ -17,8 +17,8 @@
     "test:coverage": "npx --no -- ng test --code-coverage",
     "install-dependencies": "npm install @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
     "uninstall-dependencies": "npm uninstall @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
-    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/schematics @angular-eslint/template-parser @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/jasmine @typescript-eslint/eslint-plugin @typescript-eslint/parser angular-cli-ghpages eslint eslint-config-prettier husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript",
-    "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/schematics @angular-eslint/template-parser @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/jasmine @typescript-eslint/eslint-plugin @typescript-eslint/parser angular-cli-ghpages eslint eslint-config-prettier husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript",
+    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/schematics @angular-eslint/template-parser @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/jasmine @typescript-eslint/eslint-plugin @typescript-eslint/parser angular-cli-ghpages eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript",
+    "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/schematics @angular-eslint/template-parser @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/jasmine @typescript-eslint/eslint-plugin @typescript-eslint/parser angular-cli-ghpages eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript",
     "reinstall-dependencies": "npm run uninstall-devDependencies && npm run uninstall-dependencies && npm run install-dependencies && npm run install-devDependencies && npm run build"
   },
   "private": true,
@@ -60,7 +60,6 @@
     "@typescript-eslint/parser": "^7.4.0",
     "angular-cli-ghpages": "^2.0.0-beta.2",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
     "husky": "^9.0.11",
     "jasmine-core": "^5.1.2",
     "karma": "^6.4.3",
