@@ -3,8 +3,17 @@ body {
   font-family: 'Open Sans', sans-serif;
 
   .mat-sidenav-container {
+    .mat-mdc-card {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+    }
+
     .mat-mdc-tab-link-container {
       padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .mat-sidenav {
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
     }
 
     &[dir='ltr'] {
