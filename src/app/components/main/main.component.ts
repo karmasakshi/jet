@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -21,12 +21,14 @@ import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Language } from '@xxx/interfaces/language.interface';
 import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
 import { Page } from '@xxx/interfaces/page.interface';
+import { Theme } from '@xxx/interfaces/theme.interface';
 import { AlertService } from '@xxx/services/alert/alert.service';
 import { LoaderService } from '@xxx/services/loader/loader.service';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { SettingsService } from '@xxx/services/settings/settings.service';
 import { StorageService } from '@xxx/services/storage/storage.service';
-import { Observable, Subscription, filter } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   imports: [
@@ -56,9 +58,11 @@ export class MainComponent implements OnInit, OnDestroy {
 
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
+  private _theme: Theme;
 
   public constructor(
     private readonly _breakpointObserver: BreakpointObserver,
+    private readonly _renderer2: Renderer2,
     private readonly _router: Router,
     private readonly _swUpdate: SwUpdate,
     private readonly _translocoService: TranslocoService,
@@ -90,12 +94,12 @@ export class MainComponent implements OnInit, OnDestroy {
     this.pages = [
       {
         icon: 'home',
-        titleKey: 'home',
+        nameKey: 'home',
         url: '/',
       },
       {
         icon: 'settings',
-        titleKey: 'settings',
+        nameKey: 'settings',
         url: '/settings',
       },
     ];
@@ -103,6 +107,8 @@ export class MainComponent implements OnInit, OnDestroy {
     this._routerSubscription = Subscription.EMPTY;
 
     this._swUpdateSubscription = Subscription.EMPTY;
+
+    this._theme = this._settingsService.settings.theme;
 
     this._loggerService.logComponentInitialization('MainComponent');
   }
@@ -146,6 +152,22 @@ export class MainComponent implements OnInit, OnDestroy {
           }
         },
       );
+    }
+
+    switch (this._theme.value) {
+      case 'automatic':
+        if (matchMedia('(prefers-color-scheme: dark)').matches) {
+          this._renderer2.addClass(document.body, 'dark');
+        } else {
+          this._renderer2.removeClass(document.body, 'dark');
+        }
+        break;
+      case 'dark':
+        this._renderer2.addClass(document.body, 'dark');
+        break;
+      case 'light':
+        this._renderer2.removeClass(document.body, 'dark');
+        break;
     }
   }
 

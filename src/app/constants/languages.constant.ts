@@ -3,12 +3,14 @@ import { Language } from '@xxx/interfaces/language.interface';
 export const LANGUAGES: Language[] = [
   {
     directionality: 'ltr',
-    name: 'English',
+    icon: 'translate',
+    nameKey: 'english',
     value: 'en',
   },
   {
     directionality: 'rtl',
-    name: 'Arabic',
+    icon: 'translate',
+    nameKey: 'arabic',
     value: 'ar',
   },
 ];

@@ -1,7 +1,6 @@
 {
   "name": "xxx",
   "short_name": "xxx",
-  "background_color": "white",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

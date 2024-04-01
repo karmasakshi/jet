@@ -17,9 +17,14 @@
     "settings": "Settings"
   },
   "xxx-settings-page": {
+    "arabic": "Arabic",
+    "automatic": "Automatic",
     "check-for-update": "Check for update",
+    "dark": "Dark",
+    "english": "English",
     "language": "Language",
     "last-checked": "Last checked: {{ value }}",
+    "light": "Light",
     "reload": "Reload",
     "reload-description": "Preserve settings and reload",
     "reset": "Reset",

@@ -7,13 +7,13 @@
         <button type="button" mat-list-item [matMenuTriggerFor]="languageMenu">
           <mat-icon aria-hidden="true" matListItemIcon>translate</mat-icon>
           <span matListItemTitle>{{ t('language') }}</span>
-          <span matListItemLine>{{ settings.language.name }}</span>
+          <span matListItemLine>{{ t(settings.language.nameKey) }}</span>
         </button>
 
-        <button type="button" mat-list-item>
+        <button type="button" mat-list-item [matMenuTriggerFor]="themeMenu">
           <mat-icon aria-hidden="true" matListItemIcon>palette</mat-icon>
           <span matListItemTitle>{{ t('theme') }}</span>
-          <span matListItemLine>Automatic</span>
+          <span matListItemLine>{{ t(settings.theme.nameKey) }}</span>
         </button>
 
         <button type="button" mat-list-item (click)="checkForUpdate()">
@@ -53,8 +53,22 @@
         type="button"
         mat-menu-item
       >
-        <mat-icon>translate</mat-icon>
-        <span>{{ language.name }}</span>
+        <mat-icon>{{ language.icon }}</mat-icon>
+        <span>{{ t(language.nameKey) }}</span>
+      </button>
+    }
+  </mat-menu>
+
+  <mat-menu xPosition="before" #themeMenu="matMenu">
+    @for (theme of themes; track theme.value) {
+      <button
+        [disabled]="settings.theme.value === theme.value"
+        (click)="setTheme(theme)"
+        type="button"
+        mat-menu-item
+      >
+        <mat-icon>{{ theme.icon }}</mat-icon>
+        <span>{{ t(theme.nameKey) }}</span>
       </button>
     }
   </mat-menu>

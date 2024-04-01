@@ -5,8 +5,8 @@
 $base: mat.define-light-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$indigo-palette),
-      accent: mat.define-palette(mat.$light-green-palette),
+      primary: mat.define-palette(mat.$brown-palette),
+      accent: mat.define-palette(mat.$yellow-palette),
       warn: mat.define-palette(mat.$red-palette),
     ),
     typography:
@@ -19,8 +19,8 @@ $base: mat.define-light-theme(
 $dark: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$light-green-palette),
-      accent: mat.define-palette(mat.$indigo-palette),
+      primary: mat.define-palette(mat.$yellow-palette),
+      accent: mat.define-palette(mat.$brown-palette),
     ),
   )
 );

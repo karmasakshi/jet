@@ -1,5 +1,6 @@
 export interface Language {
   directionality: 'ltr' | 'rtl';
-  name: string;
+  icon: string;
+  nameKey: string;
   value: string;
 }

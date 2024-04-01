@@ -13,7 +13,7 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar color="primary" role="heading">{{
+      <mat-toolbar style="background-color: inherit" role="heading">{{
         t('app-name')
       }}</mat-toolbar>
       <mat-nav-list [attr.aria-label]="t('navigation-menu')">
@@ -26,7 +26,7 @@
             [routerLink]="page.url"
           >
             <mat-icon matListItemIcon>{{ page.icon }}</mat-icon>
-            {{ t(page.titleKey) }}
+            {{ t(page.nameKey) }}
           </a>
         }
       </mat-nav-list>
@@ -47,8 +47,8 @@
         </mat-progress-bar>
       }
       <mat-toolbar
-        color="primary"
         style="
+          background-color: inherit;
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0
             calc(env(safe-area-inset-left) + 16px);
         "
@@ -84,13 +84,7 @@
           mat-tab-nav-bar
           backgroundColor="primary"
           [tabPanel]="tabNavPanel"
-          style="
-            bottom: 0;
-            position: fixed;
-            left: 0;
-            right: 0;
-            padding-bottom: env(safe-area-inset-bottom);
-          "
+          style="bottom: 0; position: fixed; left: 0; right: 0"
         >
           @for (page of pages; track page.url) {
             <a
@@ -99,7 +93,7 @@
               mat-tab-link
             >
               <mat-icon>{{ page.icon }}</mat-icon
-              >&nbsp;{{ t(page.titleKey) }}
+              >&nbsp;{{ t(page.nameKey) }}
             </a>
           }
         </nav>

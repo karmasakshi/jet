@@ -9,8 +9,10 @@ import { SwUpdate } from '@angular/service-worker';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { LANGUAGES } from '@xxx/constants/languages.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
+import { THEMES } from '@xxx/constants/themes.constant';
 import { Language } from '@xxx/interfaces/language.interface';
 import { Settings } from '@xxx/interfaces/settings.interface';
+import { Theme } from '@xxx/interfaces/theme.interface';
 import { AlertService } from '@xxx/services/alert/alert.service';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { SettingsService } from '@xxx/services/settings/settings.service';
@@ -36,6 +38,7 @@ export class SettingsPageComponent implements OnInit {
   public languages: Language[];
   public lastUpdateCheck: string;
   public settings: Settings;
+  public themes: Theme[];
   public version: string;
 
   public constructor(
@@ -47,6 +50,13 @@ export class SettingsPageComponent implements OnInit {
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
   ) {
+    /**
+     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
+     *
+     * t(xxx-settings-page.arabic)
+     * t(xxx-settings-page.english)
+     */
+
     this.languages = LANGUAGES;
 
     this.lastUpdateCheck = this._translocoService.translate(
@@ -54,6 +64,16 @@ export class SettingsPageComponent implements OnInit {
     );
 
     this.settings = this._settingsService.settings;
+
+    /**
+     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
+     *
+     * t(xxx-settings-page.automatic)
+     * t(xxx-settings-page.dark)
+     * t(xxx-settings-page.light)
+     */
+
+    this.themes = THEMES;
 
     this.version = packageJson.version;
 
@@ -107,6 +127,20 @@ export class SettingsPageComponent implements OnInit {
   public setLanguage(language: Language): void {
     this._settingsService.storeAndUpdateSettings({
       language,
+    });
+
+    this._alertService.showAlert(
+      this._translocoService.translate('alerts.reload-to-apply'),
+      this._translocoService.translate('alerts.reload-cta'),
+      (): void => {
+        this.reload();
+      },
+    );
+  }
+
+  public setTheme(theme: Theme): void {
+    this._settingsService.storeAndUpdateSettings({
+      theme,
     });
 
     this._alertService.showAlert(

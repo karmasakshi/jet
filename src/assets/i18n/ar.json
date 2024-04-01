@@ -17,9 +17,14 @@
     "settings": "Settings AR"
   },
   "xxx-settings-page": {
+    "arabic": "Arabic AR",
+    "automatic": "Automatic AR",
     "check-for-update": "Check for update AR",
+    "dark": "Dark AR",
+    "english": "English AR",
     "language": "Language AR",
-    "last-checked": "Last checked: {{ value }} AR",
+    "last-checked": "Last checked AR: {{ value }}",
+    "light": "Light AR",
     "reload": "Reload AR",
     "reload-description": "Preserve settings and reload AR",
     "reset": "Reset AR",

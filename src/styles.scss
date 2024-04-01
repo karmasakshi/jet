@@ -3,6 +3,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 
   .mat-sidenav-container {
+    .mat-mdc-tab-link-container {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
     &[dir='ltr'] {
       .mat-sidenav {
         .mat-mdc-list-item {
@@ -11,6 +15,16 @@ body {
 
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
+        }
+      }
+
+      .mat-mdc-tab-nav-bar {
+        .mat-mdc-tab-header-pagination-before {
+          padding-left: calc(env(safe-area-inset-left) + 4px);
+        }
+
+        .mat-mdc-tab-header-pagination-after {
+          padding-right: calc(env(safe-area-inset-right) + 4px);
         }
       }
     }
@@ -25,18 +39,8 @@ body {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
       }
-    }
 
-    .mat-mdc-tab-header {
-      .mat-mdc-tab-header-pagination-before {
-        padding-left: calc(env(safe-area-inset-left) + 4px);
-      }
-
-      .mat-mdc-tab-header-pagination-after {
-        padding-right: calc(env(safe-area-inset-right) + 4px);
-      }
-
-      &.mat-mdc-tab-header-rtl {
+      .mat-mdc-tab-nav-bar {
         .mat-mdc-tab-header-pagination-before {
           padding-right: calc(env(safe-area-inset-right) + 4px);
         }

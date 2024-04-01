@@ -6,30 +6,32 @@ import { Settings } from '@xxx/interfaces/settings.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
+import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SettingsService {
-  public settings$: Observable<Settings>;
-
-  private readonly _defaultSettings: Settings;
   private readonly _settingsSubject: BehaviorSubject<Settings>;
+
+  public settings$: Observable<Settings>;
 
   public constructor(
     private readonly _translocoService: TranslocoService,
     private readonly _loggerService: LoggerService,
     private readonly _storageService: StorageService,
   ) {
-    this._defaultSettings = {
+    const defaultSettings: Settings = {
       language: DEFAULT_LANGUAGE,
+      theme: DEFAULT_THEME,
     };
 
-    this._settingsSubject = new BehaviorSubject<Settings>(
-      this._storageService.getLocalStorageItem<Settings>(
+    this._settingsSubject = new BehaviorSubject<Settings>({
+      ...defaultSettings,
+      ...this._storageService.getLocalStorageItem<Settings>(
         STORAGE_KEYS.SETTINGS,
-      ) ?? this._defaultSettings,
-    );
+      ),
+    });
 
     this._translocoService.setActiveLang(this.settings.language.value);
 
