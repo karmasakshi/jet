@@ -9,7 +9,9 @@
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong."
   },
-  "xxx-home-page": {},
+  "xxx-home-page": {
+    "title": "Home"
+  },
   "xxx-main": {
     "app-name": "xxx",
     "home": "Home",
@@ -30,6 +32,7 @@
     "reset": "Reset",
     "reset-description": "Use default settings and reload",
     "theme": "Theme",
+    "title": "Settings",
     "unknown": "Unknown"
   }
 }

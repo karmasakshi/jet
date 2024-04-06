@@ -27,6 +27,7 @@ import { LoaderService } from '@xxx/services/loader/loader.service';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { SettingsService } from '@xxx/services/settings/settings.service';
 import { StorageService } from '@xxx/services/storage/storage.service';
+import { TitleService } from '@xxx/services/title/title.service';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -55,6 +56,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public isSmallViewport: boolean;
   public loaderConfiguration$: Observable<LoaderConfiguration>;
   public pages: Page[];
+  public title$: Observable<string>;
 
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
@@ -71,6 +73,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
+    private readonly _titleService: TitleService
   ) {
     this.activeUrl = undefined;
 
@@ -103,6 +106,8 @@ export class MainComponent implements OnInit, OnDestroy {
         url: '/settings',
       },
     ];
+
+    this.title$ = this._titleService.title$;
 
     this._routerSubscription = Subscription.EMPTY;
 

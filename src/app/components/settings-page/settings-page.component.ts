@@ -17,6 +17,7 @@ import { AlertService } from '@xxx/services/alert/alert.service';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { SettingsService } from '@xxx/services/settings/settings.service';
 import { StorageService } from '@xxx/services/storage/storage.service';
+import { TitleService } from '@xxx/services/title/title.service';
 import packageJson from 'package.json';
 
 @Component({
@@ -49,6 +50,7 @@ export class SettingsPageComponent implements OnInit {
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
+    public readonly _titleService: TitleService
   ) {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
@@ -76,6 +78,8 @@ export class SettingsPageComponent implements OnInit {
     this.themes = THEMES;
 
     this.version = packageJson.version;
+
+    this._titleService.title = this._translocoService.translate('xxx-settings-page.title');
 
     this._loggerService.logComponentInitialization('SettingsPageComponent');
   }

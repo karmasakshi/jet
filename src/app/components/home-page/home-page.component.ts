@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { LoggerService } from '@xxx/services/logger/logger.service';
+import { TitleService } from '@xxx/services/title/title.service';
 
 @Component({
   imports: [TranslocoModule],
@@ -10,7 +11,13 @@ import { LoggerService } from '@xxx/services/logger/logger.service';
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
-  public constructor(private readonly _loggerService: LoggerService) {
+  public constructor(
+    private readonly _translocoService: TranslocoService,
+    private readonly _loggerService: LoggerService,
+    private readonly _titleService: TitleService
+  ) {
+    this._titleService.title = this._translocoService.translate('xxx-home-page.title');
+
     this._loggerService.logComponentInitialization('HomePageComponent');
   }
 }
