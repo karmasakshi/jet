@@ -13,7 +13,7 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar role="heading">{{
+      <mat-toolbar style="background-color: inherit;" role="heading">{{
         t('app-name')
       }}</mat-toolbar>
       <mat-nav-list [attr.aria-label]="t('navigation-menu')">
@@ -48,6 +48,7 @@
       }
       <mat-toolbar
         style="
+          background-color: inherit;
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0
             calc(env(safe-area-inset-left) + 16px);
         "
@@ -64,15 +65,15 @@
             <mat-icon>menu</mat-icon>
           </button>
         }
-        <span style="margin: 0 16px;">{{ title$ | async }}</span>
+        <span>{{ title$ | async }}</span>
         <div style="flex: 1"></div>
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
         <main
           style="
-            padding: 0 calc(env(safe-area-inset-right) + 22.5px)
+            padding: 0 calc(env(safe-area-inset-right) + 16px)
               calc(env(safe-area-inset-bottom) + 120px)
-              calc(env(safe-area-inset-left) + 22.5px);
+              calc(env(safe-area-inset-left) + 16px);
           "
         >
           <router-outlet />
