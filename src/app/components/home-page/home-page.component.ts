@@ -16,7 +16,7 @@ export class HomePageComponent {
     private readonly _loggerService: LoggerService,
     private readonly _titleService: TitleService
   ) {
-    this._titleService.title = this._translocoService.translate('xxx-home-page.title');
+    this._titleService.setTitle(this._translocoService.translate('xxx-home-page.title'));
 
     this._loggerService.logComponentInitialization('HomePageComponent');
   }

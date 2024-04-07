@@ -79,7 +79,7 @@ export class SettingsPageComponent implements OnInit {
 
     this.version = packageJson.version;
 
-    this._titleService.title = this._translocoService.translate('xxx-settings-page.title');
+    this._titleService.setTitle(this._translocoService.translate('xxx-settings-page.title'));
 
     this._loggerService.logComponentInitialization('SettingsPageComponent');
   }

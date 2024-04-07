@@ -62,6 +62,10 @@ body {
   }
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .mat-mdc-button {
   letter-spacing: unset !important;
 }

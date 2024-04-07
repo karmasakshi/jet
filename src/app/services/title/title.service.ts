@@ -25,7 +25,7 @@ export class TitleService {
     this._loggerService.logServiceInitialization('TitleService');
   }
 
-  public set title(title: string) {
+  public setTitle(title: string) {
     this._title.setTitle(`${title} - ${this._appName}`);
     this._titleSubject.next(title);
   }

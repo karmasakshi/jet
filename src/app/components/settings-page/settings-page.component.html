@@ -1,6 +1,8 @@
 <ng-container *transloco="let t; read: 'xxx-settings-page'">
 
-  <mat-card role="region" style="margin-top: 16px;">
+  <hr class="invisible">
+
+  <mat-card role="region">
     <mat-card-content>
       <mat-action-list>
         <button type="button" mat-list-item [matMenuTriggerFor]="languageMenu">
@@ -38,7 +40,9 @@
     </mat-card-content>
   </mat-card>
 
-  <div style="margin-top: 16px; text-align: center">
+  <hr class="invisible">
+
+  <div style="text-align: center">
     <pre>v{{ version }}</pre>
   </div>
 
