@@ -73,7 +73,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
-    private readonly _titleService: TitleService
+    private readonly _titleService: TitleService,
   ) {
     this.activeUrl = undefined;
 

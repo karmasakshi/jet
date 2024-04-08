@@ -14,9 +14,11 @@ export class HomePageComponent {
   public constructor(
     private readonly _translocoService: TranslocoService,
     private readonly _loggerService: LoggerService,
-    private readonly _titleService: TitleService
+    private readonly _titleService: TitleService,
   ) {
-    this._titleService.setTitle(this._translocoService.translate('xxx-home-page.title'));
+    this._titleService.setTitle(
+      this._translocoService.translate('xxx-home-page.title'),
+    );
 
     this._loggerService.logComponentInitialization('HomePageComponent');
   }

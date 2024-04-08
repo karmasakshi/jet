@@ -50,7 +50,7 @@ export class SettingsPageComponent implements OnInit {
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
-    public readonly _titleService: TitleService
+    public readonly _titleService: TitleService,
   ) {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
@@ -79,7 +79,9 @@ export class SettingsPageComponent implements OnInit {
 
     this.version = packageJson.version;
 
-    this._titleService.setTitle(this._translocoService.translate('xxx-settings-page.title'));
+    this._titleService.setTitle(
+      this._translocoService.translate('xxx-settings-page.title'),
+    );
 
     this._loggerService.logComponentInitialization('SettingsPageComponent');
   }

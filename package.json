@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "prepare": "npx --no -- husky",
-    "pre-commit-formalities": "npm run i18n:find",
+    "pre-commit-formalities": "npx --no -- lint-staged",
     "commit": "git add . && npx --no -- commit",
     "deploy:ghp": "npx --no -- ng deploy --base-href=/xxx/",
     "i18n:extract": "npx --no -- transloco-keys-manager extract",

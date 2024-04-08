@@ -4,7 +4,7 @@ import { LoggerService } from '../logger/logger.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TitleService {
   private readonly _appName: string;
@@ -14,7 +14,7 @@ export class TitleService {
 
   public constructor(
     private readonly _title: Title,
-    private readonly _loggerService: LoggerService
+    private readonly _loggerService: LoggerService,
   ) {
     this._appName = 'xxx';
 
@@ -27,6 +27,7 @@ export class TitleService {
 
   public setTitle(title: string) {
     this._title.setTitle(`${title} - ${this._appName}`);
+
     this._titleSubject.next(title);
   }
 }
