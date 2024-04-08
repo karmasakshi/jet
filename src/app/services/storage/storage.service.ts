@@ -30,7 +30,7 @@ export class StorageService {
       try {
         value = JSON.parse(serializedValue) as T;
       } catch (error) {
-        this._loggerService.logUnknownError(error);
+        this._loggerService.logError(error);
       }
     }
 
@@ -46,7 +46,7 @@ export class StorageService {
       try {
         value = JSON.parse(serializedValue) as T;
       } catch (error) {
-        this._loggerService.logUnknownError(error);
+        this._loggerService.logError(error);
       }
     }
 
@@ -56,18 +56,20 @@ export class StorageService {
   public setLocalStorageItem(key: string, value: unknown): void {
     try {
       const serializedValue: string = JSON.stringify(value);
+
       localStorage.setItem(this._prefix + '-' + key, serializedValue);
     } catch (error) {
-      this._loggerService.logUnknownError(error);
+      this._loggerService.logError(error);
     }
   }
 
   public setSessionStorageItem(key: string, value: unknown): void {
     try {
       const serializedValue: string = JSON.stringify(value);
+
       sessionStorage.setItem(this._prefix + '-' + key, serializedValue);
     } catch (error) {
-      this._loggerService.logUnknownError(error);
+      this._loggerService.logError(error);
     }
   }
 

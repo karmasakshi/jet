@@ -15,15 +15,9 @@ export class LoggerService {
     }
   }
 
-  public logUnknownError(error: unknown): void {
+  public logError(error: unknown | Error): void {
     if (this._isLoggingEnabled) {
       console.error(error);
-    }
-  }
-
-  public logError(error: Error): void {
-    if (this._isLoggingEnabled) {
-      console.warn(error);
     }
   }
 
@@ -35,7 +29,7 @@ export class LoggerService {
 
   public logServiceInitialization(serviceName: string): void {
     if (this._isLoggingEnabled) {
-      console.info(`${serviceName} initialized.`);
+      console.warn(`${serviceName} initialized.`);
     }
   }
 
