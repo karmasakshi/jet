@@ -30,17 +30,25 @@ export class LoaderService {
   }
 
   public hideLoader(): void {
-    this._loaderConfigurationSubject.next({
-      ...this._defaultLoaderConfiguration,
-      isVisible: false,
-    });
+    Promise.resolve()
+      .then((): void => {
+        this._loaderConfigurationSubject.next({
+          ...this._defaultLoaderConfiguration,
+          isVisible: false,
+        });
+      })
+      .catch((): void => {});
   }
 
   public showLoader(): void {
-    this._loaderConfigurationSubject.next({
-      ...this._defaultLoaderConfiguration,
-      isVisible: true,
-      mode: 'indeterminate',
-    });
+    Promise.resolve()
+      .then((): void => {
+        this._loaderConfigurationSubject.next({
+          ...this._defaultLoaderConfiguration,
+          isVisible: true,
+          mode: 'indeterminate',
+        });
+      })
+      .catch((): void => {});
   }
 }

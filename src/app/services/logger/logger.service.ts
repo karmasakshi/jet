@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { isDevMode } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class LoggerService {
     }
   }
 
-  public logError(error: unknown | Error): void {
+  public logError(error: unknown): void {
     if (this._isLoggingEnabled) {
       console.error(error);
     }

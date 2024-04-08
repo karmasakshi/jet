@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
+import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Settings } from '@xxx/interfaces/settings.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
-import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +52,10 @@ export class SettingsService {
 
     this._storageService.setLocalStorageItem(STORAGE_KEYS.SETTINGS, settings);
 
-    this._settingsSubject.next(settings);
+    Promise.resolve()
+      .then((): void => {
+        this._settingsSubject.next(settings);
+      })
+      .catch((): void => {});
   }
 }

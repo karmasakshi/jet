@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { LoggerService } from '../logger/logger.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +28,10 @@ export class TitleService {
   public setTitle(title: string) {
     this._title.setTitle(`${title} - ${this._appName}`);
 
-    this._titleSubject.next(title);
+    Promise.resolve()
+      .then((): void => {
+        this._titleSubject.next(title);
+      })
+      .catch((): void => {});
   }
 }
