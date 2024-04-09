@@ -37,7 +37,9 @@ export class LoaderService {
           isVisible: false,
         });
       })
-      .catch((): void => {});
+      .catch((error: unknown): void => {
+        this._loggerService.logError(error);
+      });
   }
 
   public showLoader(): void {
@@ -49,6 +51,8 @@ export class LoaderService {
           mode: 'indeterminate',
         });
       })
-      .catch((): void => {});
+      .catch((error: unknown): void => {
+        this._loggerService.logError(error);
+      });
   }
 }

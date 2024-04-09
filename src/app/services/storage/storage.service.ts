@@ -29,7 +29,7 @@ export class StorageService {
     if (serializedValue) {
       try {
         value = JSON.parse(serializedValue) as T;
-      } catch (error) {
+      } catch (error: unknown) {
         this._loggerService.logError(error);
       }
     }
@@ -45,7 +45,7 @@ export class StorageService {
     if (serializedValue) {
       try {
         value = JSON.parse(serializedValue) as T;
-      } catch (error) {
+      } catch (error: unknown) {
         this._loggerService.logError(error);
       }
     }
@@ -58,7 +58,7 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       localStorage.setItem(this._prefix + '-' + key, serializedValue);
-    } catch (error) {
+    } catch (error: unknown) {
       this._loggerService.logError(error);
     }
   }
@@ -68,7 +68,7 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       sessionStorage.setItem(this._prefix + '-' + key, serializedValue);
-    } catch (error) {
+    } catch (error: unknown) {
       this._loggerService.logError(error);
     }
   }

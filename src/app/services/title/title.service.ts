@@ -32,6 +32,8 @@ export class TitleService {
       .then((): void => {
         this._titleSubject.next(title);
       })
-      .catch((): void => {});
+      .catch((error: unknown): void => {
+        this._loggerService.logError(error);
+      });
   }
 }

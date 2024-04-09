@@ -112,7 +112,9 @@ export class SettingsPageComponent implements OnInit {
           );
         }
       })
-      .catch((): void => {
+      .catch((error: unknown): void => {
+        this._loggerService.logError(error);
+
         this._alertService.showAlert(
           this._translocoService.translate('alerts.something-went-wrong'),
           this._translocoService.translate('alerts.ok-cta'),

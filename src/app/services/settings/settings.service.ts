@@ -56,6 +56,8 @@ export class SettingsService {
       .then((): void => {
         this._settingsSubject.next(settings);
       })
-      .catch((): void => {});
+      .catch((error: unknown): void => {
+        this._loggerService.logError(error);
+      });
   }
 }
