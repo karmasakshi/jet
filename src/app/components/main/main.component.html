@@ -37,7 +37,9 @@
           style="position: absolute; top: 0; left: 0; right: 0"
           color="accent"
           aria-hidden="true"
-          [ngClass]="{ invisible: !loaderConfiguration.isVisible }"
+          [ngClass]="{
+            invisible: !loaderConfiguration.isVisible
+          }"
           [mode]="loaderConfiguration.mode"
           [value]="loaderConfiguration.value"
           [bufferValue]="loaderConfiguration.bufferValue"

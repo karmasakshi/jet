@@ -12,7 +12,10 @@ export function getTranslocoModule(
   translocoTestingOptions: TranslocoTestingOptions = {},
 ) {
   return TranslocoTestingModule.forRoot({
-    langs: { ar, en },
+    langs: {
+      ar,
+      en,
+    },
     preloadLangs: true,
     translocoConfig: {
       availableLangs: LANGUAGES.map(
