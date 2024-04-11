@@ -2,7 +2,7 @@
 
 export class MockTitleService {
   // @ts-expect-error: noUnusedParameters
-  setTitle(title: string) {
+  public setTitle(title: string) {
     // Mock implementation, do nothing
   }
 }
