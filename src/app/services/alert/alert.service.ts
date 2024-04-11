@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { LoggerService } from '../logger/logger.service';
 import {
   MatSnackBar,
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
-import { SettingsService } from '../settings/settings.service';
 import { Language } from '@xxx/interfaces/language.interface';
+import { LoggerService } from '../logger/logger.service';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable({
   providedIn: 'root',
