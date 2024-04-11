@@ -14,6 +14,12 @@ export class LoggerService {
     }
   }
 
+  public logComponentInitialization(componentName: string): void {
+    if (this._isLoggingEnabled) {
+      console.info(`${componentName} initialized.`);
+    }
+  }
+
   public logError(error: unknown): void {
     if (this._isLoggingEnabled) {
       console.error(error);
@@ -29,12 +35,6 @@ export class LoggerService {
   public logServiceInitialization(serviceName: string): void {
     if (this._isLoggingEnabled) {
       console.warn(`${serviceName} initialized.`);
-    }
-  }
-
-  public logComponentInitialization(componentName: string): void {
-    if (this._isLoggingEnabled) {
-      console.info(`${componentName} initialized.`);
     }
   }
 }

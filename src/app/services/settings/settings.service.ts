@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
-import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
-import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
+import { DEFAULT_SETTINGS } from '@xxx/constants/default-settings.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Settings } from '@xxx/interfaces/settings.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -21,13 +20,8 @@ export class SettingsService {
     private readonly _loggerService: LoggerService,
     private readonly _storageService: StorageService,
   ) {
-    const defaultSettings: Settings = {
-      language: DEFAULT_LANGUAGE,
-      theme: DEFAULT_THEME,
-    };
-
     this._settingsSubject = new BehaviorSubject<Settings>({
-      ...defaultSettings,
+      ...DEFAULT_SETTINGS,
       ...this._storageService.getLocalStorageItem<Settings>(
         STORAGE_KEYS.SETTINGS,
       ),
