@@ -5,6 +5,7 @@ import {
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
 import { Language } from '@xxx/interfaces/language.interface';
+import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
 
@@ -33,9 +34,12 @@ export class AlertService {
       });
 
     if (action) {
-      matSnackBarRef.onAction().subscribe(() => {
-        action();
-      });
+      matSnackBarRef
+        .onAction()
+        .pipe(take(1))
+        .subscribe(() => {
+          action();
+        });
     }
   }
 }

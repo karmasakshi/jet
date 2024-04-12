@@ -8,7 +8,6 @@ body {
     .mat-sidenav {
       border: unset;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-      padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
 
       .mdc-list {
         padding: 8px;
@@ -32,9 +31,8 @@ body {
 
     &[dir='ltr'] {
       .mat-sidenav {
-        .mat-toolbar {
-          padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
-        }
+        padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom)
+          env(safe-area-inset-left);
       }
 
       .mat-sidenav-content {
@@ -72,9 +70,8 @@ body {
 
     &[dir='rtl'] {
       .mat-sidenav {
-        .mat-toolbar {
-          padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
-        }
+        padding: env(safe-area-inset-top) env(safe-area-inset-right)
+          env(safe-area-inset-bottom) 0;
       }
 
       .mat-sidenav-content {
@@ -118,6 +115,10 @@ body {
 
 .mat-mdc-card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px !important;
+}
+
+.mat-mdc-list-item {
+  border-radius: 4px !important;
 }
 
 .mat-mdc-snack-bar-container {
