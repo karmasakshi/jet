@@ -10,20 +10,22 @@
       <mat-toolbar style="background-color: inherit" role="heading">{{
         t('app-name')
       }}</mat-toolbar>
-      <mat-nav-list [attr.aria-label]="t('navigation-menu')">
-        @for (page of pages; track page.url) {
-          <a
-            (click)="isSmallViewport && sidenav.close()"
-            matListItemTitle
-            [activated]="activeUrl === page.url"
-            mat-list-item
-            [routerLink]="page.url"
-          >
-            <mat-icon matListItemIcon>{{ page.icon }}</mat-icon>
-            {{ t(page.nameKey) }}
-          </a>
-        }
-      </mat-nav-list>
+      <div class="xxx-sidenav-content">
+        <mat-nav-list [attr.aria-label]="t('navigation-menu')">
+          @for (page of pages; track page.url) {
+            <a
+              (click)="isSmallViewport && sidenav.close()"
+              matListItemTitle
+              [activated]="activeUrl === page.url"
+              mat-list-item
+              [routerLink]="page.url"
+            >
+              <mat-icon matListItemIcon>{{ page.icon }}</mat-icon>
+              {{ t(page.nameKey) }}
+            </a>
+          }
+        </mat-nav-list>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content role="main">
       @if (loaderConfiguration$ | async; as loaderConfiguration) {

@@ -33,6 +33,7 @@
     "reset-description": "Use default settings and reload",
     "theme": "Theme",
     "title": "Settings",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "version": "v{{ value }}"
   }
 }

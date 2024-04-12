@@ -33,6 +33,7 @@
     "reset-description": "Use default settings and reload AR",
     "theme": "Theme AR",
     "title": "Settings AR",
-    "unknown": "Unknown AR"
+    "unknown": "Unknown AR",
+    "version": "v{{ value }} AR"
   }
 }
