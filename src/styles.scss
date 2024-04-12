@@ -35,10 +35,6 @@ body {
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
-
-        .mat-mdc-list-item {
-          padding-left: env(safe-area-inset-left);
-        }
       }
 
       .mat-sidenav-content {
@@ -78,10 +74,6 @@ body {
       .mat-sidenav {
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
-        }
-
-        .mat-mdc-list-item {
-          padding-right: env(safe-area-inset-right);
         }
       }
 
