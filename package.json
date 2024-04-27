@@ -11,6 +11,7 @@
     "prepare": "npx --no -- husky",
     "pre-commit-formalities": "npx --no -- lint-staged",
     "commit": "git add . && npx --no -- commit",
+    "commitlint": "npx --no -- commitlint --edit $1",
     "deploy:ghp": "npx --no -- ng deploy --base-href=/xxx/",
     "i18n:extract": "npx --no -- transloco-keys-manager extract",
     "i18n:find": "npx --no -- transloco-keys-manager find",
