@@ -18,6 +18,7 @@ import {
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { DEFAULT_FONT } from '@xxx/constants/default-font.constant';
+import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { LanguageOption } from '@xxx/interfaces/language-option.interface';
 import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
@@ -188,9 +189,11 @@ export class MainComponent implements OnInit, OnDestroy {
         : 'light';
     }
 
-    this._renderer2.addClass(
-      document.documentElement,
-      `xxx-theme-${availableTheme}`,
-    );
+    if (availableTheme !== DEFAULT_THEME) {
+      this._renderer2.addClass(
+        document.documentElement,
+        `xxx-theme-${availableTheme}`,
+      );
+    }
   }
 }
