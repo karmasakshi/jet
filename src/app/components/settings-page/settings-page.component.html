@@ -5,13 +5,13 @@
         <button type="button" mat-list-item [matMenuTriggerFor]="languageMenu">
           <mat-icon aria-hidden="true" matListItemIcon>translate</mat-icon>
           <span matListItemTitle>{{ t('language') }}</span>
-          <span matListItemLine>{{ t(settings.language.nameKey) }}</span>
+          <span matListItemLine>{{ t(settings.languageOption.nameKey) }}</span>
         </button>
 
         <button type="button" mat-list-item [matMenuTriggerFor]="themeMenu">
           <mat-icon aria-hidden="true" matListItemIcon>palette</mat-icon>
           <span matListItemTitle>{{ t('theme') }}</span>
-          <span matListItemLine>{{ t(settings.theme.nameKey) }}</span>
+          <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
         </button>
 
         <button type="button" mat-list-item (click)="checkForUpdate()">
@@ -46,29 +46,29 @@
   </div>
 
   <mat-menu xPosition="before" #languageMenu="matMenu">
-    @for (language of languages; track language.value) {
+    @for (languageOption of languageOptions; track languageOption.value) {
       <button
-        [disabled]="settings.language.value === language.value"
-        (click)="setLanguage(language)"
+        [disabled]="settings.languageOption.value === languageOption.value"
+        (click)="setLanguage(languageOption)"
         type="button"
         mat-menu-item
       >
-        <mat-icon>{{ language.icon }}</mat-icon>
-        <span>{{ t(language.nameKey) }}</span>
+        <mat-icon>{{ languageOption.icon }}</mat-icon>
+        <span>{{ t(languageOption.nameKey) }}</span>
       </button>
     }
   </mat-menu>
 
   <mat-menu xPosition="before" #themeMenu="matMenu">
-    @for (theme of themes; track theme.value) {
+    @for (themeOption of themeOptions; track themeOption.value) {
       <button
-        [disabled]="settings.theme.value === theme.value"
-        (click)="setTheme(theme)"
+        [disabled]="settings.themeOption.value === themeOption.value"
+        (click)="setTheme(themeOption)"
         type="button"
         mat-menu-item
       >
-        <mat-icon>{{ theme.icon }}</mat-icon>
-        <span>{{ t(theme.nameKey) }}</span>
+        <mat-icon>{{ themeOption.icon }}</mat-icon>
+        <span>{{ t(themeOption.nameKey) }}</span>
       </button>
     }
   </mat-menu>

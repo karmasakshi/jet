@@ -1,8 +1,8 @@
 import { Settings } from '@xxx/interfaces/settings.interface';
-import { DEFAULT_LANGUAGE } from './default-language.constant';
-import { DEFAULT_THEME } from './default-theme.constant';
+import { DEFAULT_LANGUAGE_OPTION } from './default-language-option.constant';
+import { DEFAULT_THEME_OPTION } from './default-theme-option.constant';
 
 export const DEFAULT_SETTINGS: Settings = {
-  language: DEFAULT_LANGUAGE,
-  theme: DEFAULT_THEME,
+  languageOption: DEFAULT_LANGUAGE_OPTION,
+  themeOption: DEFAULT_THEME_OPTION,
 };

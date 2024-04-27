@@ -7,12 +7,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { LANGUAGES } from '@xxx/constants/languages.constant';
+import { LANGUAGE_OPTIONS } from '@xxx/constants/language-options.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
-import { THEMES } from '@xxx/constants/themes.constant';
-import { Language } from '@xxx/interfaces/language.interface';
+import { THEME_OPTIONS } from '@xxx/constants/theme-options.constant';
+import { LanguageOption } from '@xxx/interfaces/language-option.interface';
 import { Settings } from '@xxx/interfaces/settings.interface';
-import { Theme } from '@xxx/interfaces/theme.interface';
+import { ThemeOption } from '@xxx/interfaces/theme-option.interface';
 import { AlertService } from '@xxx/services/alert/alert.service';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { SettingsService } from '@xxx/services/settings/settings.service';
@@ -36,10 +36,10 @@ import packageJson from 'package.json';
   templateUrl: './settings-page.component.html',
 })
 export class SettingsPageComponent implements OnInit {
-  public languages: Language[];
+  public languageOptions: LanguageOption[];
   public lastUpdateCheck: string;
   public settings: Settings;
-  public themes: Theme[];
+  public themeOptions: ThemeOption[];
   public version: string;
 
   public constructor(
@@ -59,7 +59,7 @@ export class SettingsPageComponent implements OnInit {
      * t(xxx-settings-page.english)
      */
 
-    this.languages = LANGUAGES;
+    this.languageOptions = LANGUAGE_OPTIONS;
 
     this.lastUpdateCheck = this._translocoService.translate(
       'xxx-settings-page.unknown',
@@ -75,7 +75,7 @@ export class SettingsPageComponent implements OnInit {
      * t(xxx-settings-page.light)
      */
 
-    this.themes = THEMES;
+    this.themeOptions = THEME_OPTIONS;
 
     this.version = packageJson.version;
 
@@ -132,9 +132,9 @@ export class SettingsPageComponent implements OnInit {
     this.reload();
   }
 
-  public setLanguage(language: Language): void {
+  public setLanguage(languageOption: LanguageOption): void {
     this._settingsService.storeAndUpdateSettings({
-      language,
+      languageOption,
     });
 
     this._alertService.showAlert(
@@ -146,9 +146,9 @@ export class SettingsPageComponent implements OnInit {
     );
   }
 
-  public setTheme(theme: Theme): void {
+  public setTheme(themeOption: ThemeOption): void {
     this._settingsService.storeAndUpdateSettings({
-      theme,
+      themeOption,
     });
 
     this._alertService.showAlert(

@@ -4,7 +4,7 @@ import {
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
-import { Language } from '@xxx/interfaces/language.interface';
+import { LanguageOption } from '@xxx/interfaces/language-option.interface';
 import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -13,7 +13,7 @@ import { SettingsService } from '../settings/settings.service';
   providedIn: 'root',
 })
 export class AlertService {
-  private readonly _directionality: Language['directionality'];
+  private readonly _directionality: LanguageOption['directionality'];
 
   public constructor(
     private readonly _matSnackBar: MatSnackBar,
@@ -21,7 +21,7 @@ export class AlertService {
     private readonly _loggerService: LoggerService,
   ) {
     this._directionality =
-      this._settingsService.settings.language.directionality;
+      this._settingsService.settings.languageOption.directionality;
 
     this._loggerService.logServiceInitialization('AlertService');
   }

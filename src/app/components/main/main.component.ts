@@ -17,8 +17,9 @@ import {
 } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { DEFAULT_FONT } from '@xxx/constants/default-font.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
-import { Language } from '@xxx/interfaces/language.interface';
+import { LanguageOption } from '@xxx/interfaces/language-option.interface';
 import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
 import { Page } from '@xxx/interfaces/page.interface';
 import { Settings } from '@xxx/interfaces/settings.interface';
@@ -54,7 +55,7 @@ import { filter } from 'rxjs/operators';
 })
 export class MainComponent implements OnInit, OnDestroy {
   public activeUrl: undefined | Page['url'];
-  public directionality: Language['directionality'];
+  public directionality: LanguageOption['directionality'];
   public isSmallViewport: boolean;
   public loaderConfiguration$: Observable<LoaderConfiguration>;
   public pages: Page[];
@@ -80,7 +81,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.activeUrl = undefined;
 
     this.directionality =
-      this._settingsService.settings.language.directionality;
+      this._settingsService.settings.languageOption.directionality;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
@@ -161,9 +162,9 @@ export class MainComponent implements OnInit, OnDestroy {
       );
     }
 
-    this._addFontClass(this._settings.language.font);
+    this._addFontClass(this._settings.languageOption.font);
 
-    this._addThemeClass(this._settings.theme.value);
+    this._addThemeClass(this._settings.themeOption.value);
   }
 
   public ngOnDestroy(): void {
@@ -171,9 +172,12 @@ export class MainComponent implements OnInit, OnDestroy {
     this._swUpdateSubscription.unsubscribe();
   }
 
-  private _addFontClass(font: undefined | AvailableFont): void {
-    if (font) {
-      this._renderer2.addClass(document.documentElement, `xxx-font-${font}`);
+  private _addFontClass(availableFont: AvailableFont): void {
+    if (availableFont !== DEFAULT_FONT) {
+      this._renderer2.addClass(
+        document.documentElement,
+        `xxx-font-${availableFont}`,
+      );
     }
   }
 

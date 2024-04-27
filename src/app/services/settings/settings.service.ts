@@ -27,7 +27,7 @@ export class SettingsService {
       ),
     });
 
-    this._translocoService.setActiveLang(this.settings.language.value);
+    this._translocoService.setActiveLang(this.settings.languageOption.value);
 
     this.settings$ = this._settingsSubject.asObservable();
 

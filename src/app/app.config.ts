@@ -4,9 +4,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideTransloco } from '@jsverse/transloco';
-import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
-import { LANGUAGES } from '@xxx/constants/languages.constant';
-import { Language } from '@xxx/interfaces/language.interface';
+import { DEFAULT_LANGUAGE_OPTION } from '@xxx/constants/default-language-option.constant';
+import { LANGUAGE_OPTIONS } from '@xxx/constants/language-options.constant';
+import { LanguageOption } from '@xxx/interfaces/language-option.interface';
+import { AvailableLanguage } from '@xxx/types/available-language.type';
 import { routes } from './app.routes';
 import { TranslocoHttpLoader } from './transloco-loader';
 
@@ -21,10 +22,11 @@ export const applicationConfig: ApplicationConfig = {
     }),
     provideTransloco({
       config: {
-        availableLangs: LANGUAGES.map(
-          (language: Language): string => language.value,
+        availableLangs: LANGUAGE_OPTIONS.map(
+          (languageOption: LanguageOption): AvailableLanguage =>
+            languageOption.value,
         ),
-        defaultLang: DEFAULT_LANGUAGE.value,
+        defaultLang: DEFAULT_LANGUAGE_OPTION.value,
         prodMode: !isDevMode(),
       },
       loader: TranslocoHttpLoader,

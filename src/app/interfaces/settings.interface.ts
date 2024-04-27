@@ -1,7 +1,7 @@
-import { Language } from './language.interface';
-import { Theme } from './theme.interface';
+import { LanguageOption } from './language-option.interface';
+import { ThemeOption } from './theme-option.interface';
 
 export interface Settings {
-  language: Language;
-  theme: Theme;
+  languageOption: LanguageOption;
+  themeOption: ThemeOption;
 }

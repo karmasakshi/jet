@@ -1,6 +1,6 @@
-import { Theme } from '@xxx/interfaces/theme.interface';
+import { ThemeOption } from '@xxx/interfaces/theme-option.interface';
 
-export const THEMES: Theme[] = [
+export const THEME_OPTIONS: ThemeOption[] = [
   {
     icon: 'contrast',
     nameKey: 'automatic',
