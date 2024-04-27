@@ -21,13 +21,15 @@ import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { Language } from '@xxx/interfaces/language.interface';
 import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
 import { Page } from '@xxx/interfaces/page.interface';
-import { Theme } from '@xxx/interfaces/theme.interface';
+import { Settings } from '@xxx/interfaces/settings.interface';
 import { AlertService } from '@xxx/services/alert/alert.service';
 import { LoaderService } from '@xxx/services/loader/loader.service';
 import { LoggerService } from '@xxx/services/logger/logger.service';
 import { SettingsService } from '@xxx/services/settings/settings.service';
 import { StorageService } from '@xxx/services/storage/storage.service';
 import { TitleService } from '@xxx/services/title/title.service';
+import { AvailableFont } from '@xxx/types/available-font.type';
+import { AvailableTheme } from '@xxx/types/available-theme.type';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -59,8 +61,8 @@ export class MainComponent implements OnInit, OnDestroy {
   public title$: Observable<string>;
 
   private _routerSubscription: Subscription;
+  private _settings: Settings;
   private _swUpdateSubscription: Subscription;
-  private _theme: Theme;
 
   public constructor(
     private readonly _breakpointObserver: BreakpointObserver,
@@ -111,9 +113,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this._routerSubscription = Subscription.EMPTY;
 
-    this._swUpdateSubscription = Subscription.EMPTY;
+    this._settings = this._settingsService.settings;
 
-    this._theme = this._settingsService.settings.theme;
+    this._swUpdateSubscription = Subscription.EMPTY;
 
     this._loggerService.logComponentInitialization('MainComponent');
   }
@@ -159,25 +161,32 @@ export class MainComponent implements OnInit, OnDestroy {
       );
     }
 
-    switch (this._theme.value) {
-      case 'automatic':
-        if (matchMedia('(prefers-color-scheme: dark)').matches) {
-          this._renderer2.addClass(document.body, 'dark');
-        } else {
-          this._renderer2.removeClass(document.body, 'dark');
-        }
-        break;
-      case 'dark':
-        this._renderer2.addClass(document.body, 'dark');
-        break;
-      case 'light':
-        this._renderer2.removeClass(document.body, 'dark');
-        break;
-    }
+    this._addFontClass(this._settings.language.font);
+
+    this._addThemeClass(this._settings.theme.value);
   }
 
   public ngOnDestroy(): void {
     this._routerSubscription.unsubscribe();
     this._swUpdateSubscription.unsubscribe();
+  }
+
+  private _addFontClass(font: undefined | AvailableFont): void {
+    if (font) {
+      this._renderer2.addClass(document.documentElement, `xxx-font-${font}`);
+    }
+  }
+
+  private _addThemeClass(availableTheme: AvailableTheme): void {
+    if (availableTheme === 'automatic') {
+      availableTheme = matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    }
+
+    this._renderer2.addClass(
+      document.documentElement,
+      `xxx-theme-${availableTheme}`,
+    );
   }
 }
