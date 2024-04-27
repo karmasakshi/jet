@@ -1,39 +1,39 @@
 {
   "alerts": {
-    "checking-for-update": "Checking for update... AR",
-    "downloading-update": "Downloading update... AR",
-    "no-update-found": "You're on the latest version. AR",
-    "ok-cta": "OK AR",
-    "reload-cta": "RELOAD AR",
-    "reload-to-apply": "Reload to apply. AR",
-    "reload-to-update": "Reload to update. AR",
-    "something-went-wrong": "Something went wrong. AR"
+    "checking-for-update": "التحقق من وجود التحديث...",
+    "downloading-update": "تحميل التحديث...",
+    "no-update-found": "أنت على الإصدار الأحدث.",
+    "ok-cta": "نعم",
+    "reload-cta": "إعادة تحميل",
+    "reload-to-apply": "إعادة تحميل للتطبيق.",
+    "reload-to-update": "إعادة التحميل للتحديث.",
+    "something-went-wrong": "هناك خطأ ما."
   },
   "xxx-home-page": {
-    "title": "Home AR"
+    "title": "بيت"
   },
   "xxx-main": {
-    "app-name": "xxx AR",
-    "home": "Home AR",
-    "navigation-menu": "Navigation Menu AR",
-    "settings": "Settings AR"
+    "app-name": "xxx",
+    "home": "بيت",
+    "navigation-menu": "قائمة الإبحار",
+    "settings": "إعدادات"
   },
   "xxx-settings-page": {
-    "arabic": "Arabic AR",
-    "automatic": "Automatic AR",
-    "check-for-update": "Check for update AR",
-    "dark": "Dark AR",
-    "english": "English AR",
-    "language": "Language AR",
-    "last-checked": "Last checked AR: {{ value }}",
-    "light": "Light AR",
-    "reload": "Reload AR",
-    "reload-description": "Preserve settings and reload AR",
-    "reset": "Reset AR",
-    "reset-description": "Use default settings and reload AR",
-    "theme": "Theme AR",
-    "title": "Settings AR",
-    "unknown": "Unknown AR",
-    "version": "v{{ value }} AR"
+    "arabic": "عربي",
+    "automatic": "تلقائي",
+    "check-for-update": "فحص التحديثات",
+    "dark": "مظلم",
+    "english": "إنجليزي",
+    "language": "لغة",
+    "last-checked": "{{ value }} :آخر فحص",
+    "light": "ضوء",
+    "reload": "إعادة تحميل",
+    "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
+    "reset": "إعادة ضبط",
+    "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
+    "theme": "سمة",
+    "title": "إعدادات",
+    "unknown": "مجهول",
+    "version": "v{{ value }}"
   }
 }

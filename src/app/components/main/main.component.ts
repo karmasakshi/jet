@@ -18,6 +18,7 @@ import {
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { DEFAULT_FONT } from '@xxx/constants/default-font.constant';
+import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
 import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
 import { LanguageOption } from '@xxx/interfaces/language-option.interface';
@@ -31,6 +32,7 @@ import { SettingsService } from '@xxx/services/settings/settings.service';
 import { StorageService } from '@xxx/services/storage/storage.service';
 import { TitleService } from '@xxx/services/title/title.service';
 import { AvailableFont } from '@xxx/types/available-font.type';
+import { AvailableLanguage } from '@xxx/types/available-language.type';
 import { AvailableTheme } from '@xxx/types/available-theme.type';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -165,6 +167,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this._addFontClass(this._settings.languageOption.font);
 
+    this._addLangAttribute(this._settings.languageOption.value);
+
     this._addThemeClass(this._settings.themeOption.value);
   }
 
@@ -178,6 +182,16 @@ export class MainComponent implements OnInit, OnDestroy {
       this._renderer2.addClass(
         document.documentElement,
         `xxx-font-${availableFont}`,
+      );
+    }
+  }
+
+  private _addLangAttribute(availableLanguage: AvailableLanguage): void {
+    if (availableLanguage !== DEFAULT_LANGUAGE) {
+      this._renderer2.setAttribute(
+        document.documentElement,
+        'lang',
+        availableLanguage,
       );
     }
   }
