@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,8 @@ import {
   NavigationEnd,
   Router,
   RouterEvent,
-  RouterModule,
+  RouterLink,
+  RouterOutlet,
 } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -39,7 +40,8 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   imports: [
-    CommonModule,
+    AsyncPipe,
+    NgClass,
     MatButtonModule,
     MatIconModule,
     MatListModule,
@@ -48,7 +50,8 @@ import { filter } from 'rxjs/operators';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    RouterModule,
+    RouterLink,
+    RouterOutlet,
     TranslocoModule,
   ],
   selector: 'xxx-main',
