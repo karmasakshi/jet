@@ -13,8 +13,8 @@
     "title": "Home"
   },
   "xxx-root": {
-    "app-name": "xxx",
     "home": "Home",
+    "logo": "Logo",
     "navigation-menu": "Navigation Menu",
     "settings": "Settings"
   },

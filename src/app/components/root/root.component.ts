@@ -22,7 +22,6 @@ import { DEFAULT_FONT } from '@xxx/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
 import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
 import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
-import { LanguageOption } from '@xxx/interfaces/language-option.interface';
 import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
 import { Page } from '@xxx/interfaces/page.interface';
 import { Settings } from '@xxx/interfaces/settings.interface';
@@ -61,14 +60,13 @@ import { filter } from 'rxjs/operators';
 })
 export class RootComponent implements OnInit, OnDestroy {
   public activeUrl: undefined | Page['url'];
-  public directionality: LanguageOption['directionality'];
   public isSmallViewport: boolean;
   public loaderConfiguration$: Observable<LoaderConfiguration>;
   public pages: Page[];
+  public settings: Settings;
   public title$: Observable<string>;
 
   private _routerSubscription: Subscription;
-  private _settings: Settings;
   private _swUpdateSubscription: Subscription;
 
   public constructor(
@@ -85,9 +83,6 @@ export class RootComponent implements OnInit, OnDestroy {
     private readonly _titleService: TitleService,
   ) {
     this.activeUrl = undefined;
-
-    this.directionality =
-      this._settingsService.settings.languageOption.directionality;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
@@ -116,11 +111,11 @@ export class RootComponent implements OnInit, OnDestroy {
       },
     ];
 
+    this.settings = this._settingsService.settings;
+
     this.title$ = this._titleService.title$;
 
     this._routerSubscription = Subscription.EMPTY;
-
-    this._settings = this._settingsService.settings;
 
     this._swUpdateSubscription = Subscription.EMPTY;
 
@@ -168,11 +163,11 @@ export class RootComponent implements OnInit, OnDestroy {
       );
     }
 
-    this._addFontClass(this._settings.languageOption.font);
+    this._addFontClass(this.settings.languageOption.font);
 
-    this._addLangAttribute(this._settings.languageOption.value);
+    this._addLangAttribute(this.settings.languageOption.value);
 
-    this._addThemeClass(this._settings.themeOption.value);
+    this._addThemeClass(this.settings.themeOption.value);
   }
 
   public ngOnDestroy(): void {

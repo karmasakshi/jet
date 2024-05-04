@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; prefix: 'xxx-root'">
-  <mat-sidenav-container [dir]="directionality">
+  <mat-sidenav-container [dir]="settings.languageOption.directionality">
     <mat-sidenav
       #sidenav
       style="width: 240px"
@@ -7,9 +7,12 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar style="background-color: inherit" role="heading">{{
-        t('app-name')
-      }}</mat-toolbar>
+      <mat-toolbar style="background-color: inherit" role="heading">
+        <img
+          [alt]="t('logo')"
+          [src]="'assets/' + settings.languageOption.value + '/logo.png'"
+        />
+      </mat-toolbar>
       <div class="xxx-sidenav-content">
         <mat-nav-list [attr.aria-label]="t('navigation-menu')">
           @for (page of pages; track page.url) {
@@ -27,7 +30,7 @@
         </mat-nav-list>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content role="main">
+    <mat-sidenav-content>
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
           style="position: absolute; top: 0; left: 0; right: 0"

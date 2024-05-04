@@ -13,8 +13,8 @@
     "title": "بيت"
   },
   "xxx-root": {
-    "app-name": "xxx",
     "home": "بيت",
+    "logo": "شعار",
     "navigation-menu": "قائمة الإبحار",
     "settings": "إعدادات"
   },
