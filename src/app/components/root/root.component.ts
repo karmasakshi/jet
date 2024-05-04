@@ -54,12 +54,12 @@ import { filter } from 'rxjs/operators';
     RouterOutlet,
     TranslocoModule,
   ],
-  selector: 'xxx-main',
+  selector: 'xxx-root',
   standalone: true,
-  styleUrl: './main.component.scss',
-  templateUrl: './main.component.html',
+  styleUrl: './root.component.scss',
+  templateUrl: './root.component.html',
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class RootComponent implements OnInit, OnDestroy {
   public activeUrl: undefined | Page['url'];
   public directionality: LanguageOption['directionality'];
   public isSmallViewport: boolean;
@@ -99,8 +99,8 @@ export class MainComponent implements OnInit, OnDestroy {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(xxx-main.home)
-     * t(xxx-main.settings)
+     * t(xxx-root.home)
+     * t(xxx-root.settings)
      */
 
     this.pages = [
@@ -124,7 +124,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this._swUpdateSubscription = Subscription.EMPTY;
 
-    this._loggerService.logComponentInitialization('MainComponent');
+    this._loggerService.logComponentInitialization('RootComponent');
   }
 
   public ngOnInit(): void {

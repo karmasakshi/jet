@@ -12,7 +12,7 @@
   "xxx-home-page": {
     "title": "بيت"
   },
-  "xxx-main": {
+  "xxx-root": {
     "app-name": "xxx",
     "home": "بيت",
     "navigation-menu": "قائمة الإبحار",

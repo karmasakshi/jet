@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -15,11 +16,11 @@ import { StorageService } from '@xxx/services/storage/storage.service';
 import { MockStorageService } from '@xxx/services/storage/storage.service.mock';
 import { TitleService } from '@xxx/services/title/title.service';
 import { MockTitleService } from '@xxx/services/title/title.service.mock';
-import { MainComponent } from './main.component';
+import { RootComponent } from './root.component';
 
-describe('MainComponent', () => {
-  let component: MainComponent;
-  let fixture: ComponentFixture<MainComponent>;
+describe('RootComponent', () => {
+  let component: RootComponent;
+  let fixture: ComponentFixture<RootComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -30,7 +31,7 @@ describe('MainComponent', () => {
           enabled: false,
         }),
         getTranslocoModule(),
-        MainComponent,
+        RootComponent,
       ],
       providers: [
         { provide: AlertService, useClass: MockAlertService },
@@ -42,7 +43,7 @@ describe('MainComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MainComponent);
+    fixture = TestBed.createComponent(RootComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

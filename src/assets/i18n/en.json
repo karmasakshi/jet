@@ -12,7 +12,7 @@
   "xxx-home-page": {
     "title": "Home"
   },
-  "xxx-main": {
+  "xxx-root": {
     "app-name": "xxx",
     "home": "Home",
     "navigation-menu": "Navigation Menu",
