@@ -2,6 +2,7 @@
   <mat-sidenav-container [dir]="settings.languageOption.directionality">
     <mat-sidenav
       #sidenav
+      fixedInViewport
       style="width: 240px"
       [attr.role]="isSmallViewport ? 'dialog' : 'navigation'"
       [mode]="isSmallViewport ? 'over' : 'side'"
@@ -33,7 +34,7 @@
     <mat-sidenav-content>
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
-          style="position: absolute; top: 0; left: 0; right: 0"
+          style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
           color="accent"
           [ngClass]="{
             'xxx-invisible': !loaderConfiguration.isVisible
