@@ -34,7 +34,7 @@ export class LoggerService {
 
   public logServiceInitialization(serviceName: string): void {
     if (this._isLoggingEnabled) {
-      console.warn(`${serviceName} initialized.`);
+      console.info(`${serviceName} initialized.`);
     }
   }
 }
