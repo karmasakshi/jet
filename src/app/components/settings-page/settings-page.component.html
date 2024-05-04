@@ -3,19 +3,19 @@
     <mat-card-content>
       <mat-action-list>
         <button type="button" mat-list-item [matMenuTriggerFor]="languageMenu">
-          <mat-icon aria-hidden="true" matListItemIcon>translate</mat-icon>
+          <mat-icon matListItemIcon>translate</mat-icon>
           <span matListItemTitle>{{ t('language') }}</span>
           <span matListItemLine>{{ t(settings.languageOption.nameKey) }}</span>
         </button>
 
         <button type="button" mat-list-item [matMenuTriggerFor]="themeMenu">
-          <mat-icon aria-hidden="true" matListItemIcon>palette</mat-icon>
+          <mat-icon matListItemIcon>palette</mat-icon>
           <span matListItemTitle>{{ t('theme') }}</span>
           <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
         </button>
 
         <button type="button" mat-list-item (click)="checkForUpdate()">
-          <mat-icon aria-hidden="true" matListItemIcon>sync</mat-icon>
+          <mat-icon matListItemIcon>sync</mat-icon>
           <span matListItemTitle>{{ t('check-for-update') }}</span>
           <span matListItemLine>{{
             t('last-checked', {
@@ -25,13 +25,13 @@
         </button>
 
         <button type="button" mat-list-item (click)="reload()">
-          <mat-icon aria-hidden="true" matListItemIcon>refresh</mat-icon>
+          <mat-icon matListItemIcon>refresh</mat-icon>
           <span matListItemTitle>{{ t('reload') }}</span>
           <span matListItemLine>{{ t('reload-description') }}</span>
         </button>
 
         <button type="button" mat-list-item (click)="reset()">
-          <mat-icon aria-hidden="true" matListItemIcon>restart_alt</mat-icon>
+          <mat-icon matListItemIcon>restart_alt</mat-icon>
           <span matListItemTitle>{{ t('reset') }}</span>
           <span matListItemLine>{{ t('reset-description') }}</span>
         </button>
@@ -48,9 +48,9 @@
   <mat-menu xPosition="before" #languageMenu="matMenu">
     @for (languageOption of languageOptions; track languageOption.value) {
       <button
+        type="button"
         [disabled]="settings.languageOption.value === languageOption.value"
         (click)="setLanguage(languageOption)"
-        type="button"
         mat-menu-item
       >
         <mat-icon>{{ languageOption.icon }}</mat-icon>
@@ -62,9 +62,9 @@
   <mat-menu xPosition="before" #themeMenu="matMenu">
     @for (themeOption of themeOptions; track themeOption.value) {
       <button
+        type="button"
         [disabled]="settings.themeOption.value === themeOption.value"
         (click)="setTheme(themeOption)"
-        type="button"
         mat-menu-item
       >
         <mat-icon>{{ themeOption.icon }}</mat-icon>
