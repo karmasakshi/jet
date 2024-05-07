@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { TranslocoService } from '@jsverse/transloco';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 
@@ -14,9 +15,10 @@ export class TitleService {
 
   public constructor(
     private readonly _title: Title,
+    private readonly _translocoService: TranslocoService,
     private readonly _loggerService: LoggerService,
   ) {
-    this._appName = 'jet';
+    this._appName = this._translocoService.translate('app-name');
 
     this._titleSubject = new BehaviorSubject<string>(this._appName);
 
@@ -26,7 +28,9 @@ export class TitleService {
   }
 
   public setTitle(title: string) {
-    this._title.setTitle(`${title} - ${this._appName}`);
+    this._title.setTitle(
+      this._translocoService.translate('app-name-with-title', { title }),
+    );
 
     Promise.resolve()
       .then((): void => {

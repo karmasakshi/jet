@@ -18,9 +18,7 @@
           <mat-icon matListItemIcon>sync</mat-icon>
           <span matListItemTitle>{{ t('check-for-update') }}</span>
           <span matListItemLine>{{
-            t('last-checked', {
-              value: lastUpdateCheck
-            })
+            t('last-checked', { lastUpdateCheck })
           }}</span>
         </button>
 
@@ -42,7 +40,7 @@
   <hr class="jet-invisible" />
 
   <div style="text-align: center">
-    <pre>{{ t('version', { value: version }) }}</pre>
+    <pre>{{ t('version', { version }) }}</pre>
   </div>
 
   <mat-menu xPosition="before" #languageMenu="matMenu">

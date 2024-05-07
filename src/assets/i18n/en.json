@@ -9,6 +9,8 @@
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong."
   },
+  "app-name": "Jet",
+  "app-name-with-title": "{{ title }} - Jet",
   "jet-home-page": {
     "title": "Home"
   },
@@ -25,7 +27,7 @@
     "dark": "Dark",
     "english": "English",
     "language": "Language",
-    "last-checked": "Last checked: {{ value }}",
+    "last-checked": "Last checked: {{ lastUpdateCheck }}",
     "light": "Light",
     "reload": "Reload",
     "reload-description": "Preserve settings and reload",
@@ -34,6 +36,6 @@
     "theme": "Theme",
     "title": "Settings",
     "unknown": "Unknown",
-    "version": "v{{ value }}"
+    "version": "v{{ version }}"
   }
 }

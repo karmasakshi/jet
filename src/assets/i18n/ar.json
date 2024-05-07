@@ -9,6 +9,8 @@
     "reload-to-update": "إعادة التحميل للتحديث.",
     "something-went-wrong": "هناك خطأ ما."
   },
+  "app-name": "Jet AR",
+  "app-name-with-title": "Jet AR - {{ title }}",
   "jet-home-page": {
     "title": "بيت"
   },
@@ -25,7 +27,7 @@
     "dark": "مظلم",
     "english": "إنجليزي",
     "language": "لغة",
-    "last-checked": "{{ value }} :آخر فحص",
+    "last-checked": "{{ lastUpdateCheck }} :آخر فحص",
     "light": "ضوء",
     "reload": "إعادة تحميل",
     "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
@@ -34,6 +36,6 @@
     "theme": "سمة",
     "title": "إعدادات",
     "unknown": "مجهول",
-    "version": "v{{ value }}"
+    "version": "v{{ version }}"
   }
 }
