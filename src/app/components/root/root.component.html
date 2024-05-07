@@ -3,11 +3,10 @@
     <mat-sidenav
       #sidenav
       style="width: 240px"
-      [attr.role]="isSmallViewport ? 'dialog' : 'navigation'"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar style="background-color: inherit" role="heading">
+      <mat-toolbar style="background-color: inherit">
         <img
           [alt]="t('logo')"
           ngSrc="assets/icons/icon-192x192.png"
@@ -16,7 +15,7 @@
         />
       </mat-toolbar>
       <div class="xxx-sidenav-content">
-        <mat-nav-list [attr.aria-label]="t('navigation-menu')">
+        <mat-nav-list>
           @for (page of pages; track page.url) {
             <a
               (click)="isSmallViewport && sidenav.close()"
@@ -49,13 +48,11 @@
       <mat-toolbar
         style="background-color: inherit"
         [ngClass]="{ 'xxx-sidenav-closed': !sidenav.opened }"
-        role="heading"
       >
         @if (!isSmallViewport) {
           <button
             type="button"
             [matTooltip]="t('navigation-menu')"
-            [attr.aria-label]="t('navigation-menu')"
             mat-icon-button
             (click)="sidenav.toggle()"
           >
@@ -71,12 +68,7 @@
         </main>
       </mat-tab-nav-panel>
       @if (isSmallViewport) {
-        <nav
-          [attr.aria-label]="t('navigation-menu')"
-          mat-tab-nav-bar
-          backgroundColor="primary"
-          [tabPanel]="tabNavPanel"
-        >
+        <nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabNavPanel">
           @for (page of pages; track page.url) {
             <a
               [active]="activeUrl === page.url"
