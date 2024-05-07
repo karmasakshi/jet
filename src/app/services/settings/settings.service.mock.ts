@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { DEFAULT_SETTINGS } from '@xxx/constants/default-settings.constant';
-import { Settings } from '@xxx/interfaces/settings.interface';
+import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
+import { Settings } from '@jet/interfaces/settings.interface';
 
 export class MockSettingsService {
   public get settings(): Settings {

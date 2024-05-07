@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
+import { LoaderConfiguration } from '@jet/interfaces/loader-configuration.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 

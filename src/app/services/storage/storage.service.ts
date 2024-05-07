@@ -8,7 +8,7 @@ export class StorageService {
   private readonly _prefix: string;
 
   public constructor(private readonly _loggerService: LoggerService) {
-    this._prefix = 'xxx';
+    this._prefix = 'jet';
 
     this._loggerService.logServiceInitialization('StorageService');
   }

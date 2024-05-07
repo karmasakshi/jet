@@ -9,16 +9,16 @@
     "reload-to-update": "إعادة التحميل للتحديث.",
     "something-went-wrong": "هناك خطأ ما."
   },
-  "xxx-home-page": {
+  "jet-home-page": {
     "title": "بيت"
   },
-  "xxx-root": {
+  "jet-root": {
     "home": "بيت",
     "logo": "شعار",
     "navigation-menu": "قائمة الإبحار",
     "settings": "إعدادات"
   },
-  "xxx-settings-page": {
+  "jet-settings-page": {
     "arabic": "عربي",
     "automatic": "تلقائي",
     "check-for-update": "فحص التحديثات",

@@ -16,7 +16,7 @@ export class TitleService {
     private readonly _title: Title,
     private readonly _loggerService: LoggerService,
   ) {
-    this._appName = 'xxx';
+    this._appName = 'jet';
 
     this._titleSubject = new BehaviorSubject<string>(this._appName);
 

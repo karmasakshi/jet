@@ -34,7 +34,7 @@ body {
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
-        .xxx-sidenav-content {
+        .jet-sidenav-content {
           padding-left: env(safe-area-inset-left);
         }
       }
@@ -43,7 +43,7 @@ body {
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
 
-          &.xxx-sidenav-closed {
+          &.jet-sidenav-closed {
             padding: 0 calc(env(safe-area-inset-right) + 16px) 0
               calc(env(safe-area-inset-left) + 16px);
           }
@@ -53,7 +53,7 @@ body {
           padding: 16px calc(env(safe-area-inset-right) + 16px)
             calc(env(safe-area-inset-bottom) + 120px) 16px;
 
-          &.xxx-sidenav-closed {
+          &.jet-sidenav-closed {
             padding: 16px calc(env(safe-area-inset-right) + 16px)
               calc(env(safe-area-inset-bottom) + 120px)
               calc(env(safe-area-inset-left) + 16px);
@@ -77,7 +77,7 @@ body {
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
-        .xxx-sidenav-content {
+        .jet-sidenav-content {
           padding-right: env(safe-area-inset-right);
         }
       }
@@ -86,7 +86,7 @@ body {
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
 
-          &.xxx-sidenav-closed {
+          &.jet-sidenav-closed {
             padding: 0 calc(env(safe-area-inset-right) + 16px) 0
               calc(env(safe-area-inset-left) + 16px);
           }
@@ -96,7 +96,7 @@ body {
           padding: 16px 16px calc(env(safe-area-inset-bottom) + 120px)
             calc(env(safe-area-inset-left) + 16px);
 
-          &.xxx-sidenav-closed {
+          &.jet-sidenav-closed {
             padding: 16px calc(env(safe-area-inset-right) + 16px)
               calc(env(safe-area-inset-bottom) + 120px)
               calc(env(safe-area-inset-left) + 16px);
@@ -136,6 +136,6 @@ body {
     calc(env(safe-area-inset-left) + 8px) !important;
 }
 
-.xxx-invisible {
+.jet-invisible {
   visibility: hidden;
 }

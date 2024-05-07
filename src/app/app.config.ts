@@ -3,11 +3,11 @@ import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
+import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { AvailableLanguage } from '@jet/types/available-language.type';
 import { provideTransloco } from '@jsverse/transloco';
-import { DEFAULT_LANGUAGE_OPTION } from '@xxx/constants/default-language-option.constant';
-import { LANGUAGE_OPTIONS } from '@xxx/constants/language-options.constant';
-import { LanguageOption } from '@xxx/interfaces/language-option.interface';
-import { AvailableLanguage } from '@xxx/types/available-language.type';
 import { routes } from './app.routes';
 import { TranslocoHttpLoader } from './transloco-loader';
 

@@ -1,13 +1,13 @@
+import ar from '@jet/assets/i18n/ar.json';
+import en from '@jet/assets/i18n/en.json';
+import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { AvailableLanguage } from '@jet/types/available-language.type';
 import {
   TranslocoTestingModule,
   TranslocoTestingOptions,
 } from '@jsverse/transloco';
-import ar from '@xxx/assets/i18n/ar.json';
-import en from '@xxx/assets/i18n/en.json';
-import { DEFAULT_LANGUAGE_OPTION } from '@xxx/constants/default-language-option.constant';
-import { LANGUAGE_OPTIONS } from '@xxx/constants/language-options.constant';
-import { LanguageOption } from '@xxx/interfaces/language-option.interface';
-import { AvailableLanguage } from '@xxx/types/available-language.type';
 
 export function getTranslocoModule(
   translocoTestingOptions: TranslocoTestingOptions = {},

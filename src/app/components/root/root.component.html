@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; prefix: 'xxx-root'">
+<ng-container *transloco="let t; prefix: 'jet-root'">
   <mat-sidenav-container [dir]="settings.languageOption.directionality">
     <mat-sidenav
       #sidenav
@@ -14,7 +14,7 @@
           height="20"
         />
       </mat-toolbar>
-      <div class="xxx-sidenav-content">
+      <div class="jet-sidenav-content">
         <mat-nav-list>
           @for (page of pages; track page.url) {
             <a
@@ -37,7 +37,7 @@
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
           color="accent"
           [ngClass]="{
-            'xxx-invisible': !loaderConfiguration.isVisible
+            'jet-invisible': !loaderConfiguration.isVisible
           }"
           [mode]="loaderConfiguration.mode"
           [value]="loaderConfiguration.value"
@@ -47,7 +47,7 @@
       }
       <mat-toolbar
         style="background-color: inherit"
-        [ngClass]="{ 'xxx-sidenav-closed': !sidenav.opened }"
+        [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }"
       >
         @if (!isSmallViewport) {
           <button
@@ -63,7 +63,7 @@
         <div style="flex: 1"></div>
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
-        <main [ngClass]="{ 'xxx-sidenav-closed': !sidenav.opened }">
+        <main [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }">
           <router-outlet />
         </main>
       </mat-tab-nav-panel>

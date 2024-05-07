@@ -4,7 +4,7 @@ import {
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
-import { LanguageOption } from '@xxx/interfaces/language-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';

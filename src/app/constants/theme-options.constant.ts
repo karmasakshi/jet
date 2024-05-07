@@ -1,4 +1,4 @@
-import { ThemeOption } from '@xxx/interfaces/theme-option.interface';
+import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 
 export const THEME_OPTIONS: ThemeOption[] = [
   {

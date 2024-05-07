@@ -1,4 +1,4 @@
-import { LanguageOption } from '@xxx/interfaces/language-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
 
 export const LANGUAGE_OPTIONS: LanguageOption[] = [
   {

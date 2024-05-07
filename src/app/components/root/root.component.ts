@@ -17,23 +17,23 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
+import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
+import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
+import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
+import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
+import { LoaderConfiguration } from '@jet/interfaces/loader-configuration.interface';
+import { Page } from '@jet/interfaces/page.interface';
+import { Settings } from '@jet/interfaces/settings.interface';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { LoaderService } from '@jet/services/loader/loader.service';
+import { LoggerService } from '@jet/services/logger/logger.service';
+import { SettingsService } from '@jet/services/settings/settings.service';
+import { StorageService } from '@jet/services/storage/storage.service';
+import { TitleService } from '@jet/services/title/title.service';
+import { AvailableFont } from '@jet/types/available-font.type';
+import { AvailableLanguage } from '@jet/types/available-language.type';
+import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { DEFAULT_FONT } from '@xxx/constants/default-font.constant';
-import { DEFAULT_LANGUAGE } from '@xxx/constants/default-language.constant';
-import { DEFAULT_THEME } from '@xxx/constants/default-theme.constant';
-import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
-import { LoaderConfiguration } from '@xxx/interfaces/loader-configuration.interface';
-import { Page } from '@xxx/interfaces/page.interface';
-import { Settings } from '@xxx/interfaces/settings.interface';
-import { AlertService } from '@xxx/services/alert/alert.service';
-import { LoaderService } from '@xxx/services/loader/loader.service';
-import { LoggerService } from '@xxx/services/logger/logger.service';
-import { SettingsService } from '@xxx/services/settings/settings.service';
-import { StorageService } from '@xxx/services/storage/storage.service';
-import { TitleService } from '@xxx/services/title/title.service';
-import { AvailableFont } from '@xxx/types/available-font.type';
-import { AvailableLanguage } from '@xxx/types/available-language.type';
-import { AvailableTheme } from '@xxx/types/available-theme.type';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -54,7 +54,7 @@ import { filter } from 'rxjs/operators';
     RouterOutlet,
     TranslocoModule,
   ],
-  selector: 'xxx-root',
+  selector: 'jet-root',
   standalone: true,
   styleUrl: './root.component.scss',
   templateUrl: './root.component.html',
@@ -95,8 +95,8 @@ export class RootComponent implements OnInit, OnDestroy {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(xxx-root.home)
-     * t(xxx-root.settings)
+     * t(jet-root.home)
+     * t(jet-root.settings)
      */
 
     this.pages = [
@@ -180,7 +180,7 @@ export class RootComponent implements OnInit, OnDestroy {
     if (availableFont !== DEFAULT_FONT) {
       this._renderer2.addClass(
         document.documentElement,
-        `xxx-font-${availableFont}`,
+        `jet-font-${availableFont}`,
       );
     }
   }
@@ -205,7 +205,7 @@ export class RootComponent implements OnInit, OnDestroy {
     if (availableTheme !== DEFAULT_THEME) {
       this._renderer2.addClass(
         document.documentElement,
-        `xxx-theme-${availableTheme}`,
+        `jet-theme-${availableTheme}`,
       );
     }
   }

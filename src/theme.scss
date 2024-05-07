@@ -35,10 +35,10 @@ $dark-theme: mat.define-dark-theme(
 
 @include mat.typography-hierarchy($noto-sans-typography);
 
-.xxx-font-noto-sans-arabic {
+.jet-font-noto-sans-arabic {
   @include mat.all-component-typographies($noto-sans-arabic-typography);
 }
 
-.xxx-theme-dark {
+.jet-theme-dark {
   @include mat.all-component-colors($dark-theme);
 }

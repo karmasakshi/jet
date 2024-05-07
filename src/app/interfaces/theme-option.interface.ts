@@ -1,4 +1,4 @@
-import { AvailableTheme } from '@xxx/types/available-theme.type';
+import { AvailableTheme } from '@jet/types/available-theme.type';
 
 export interface ThemeOption {
   icon: string;

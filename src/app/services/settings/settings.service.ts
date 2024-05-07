@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
+import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
+import { Settings } from '@jet/interfaces/settings.interface';
 import { TranslocoService } from '@jsverse/transloco';
-import { DEFAULT_SETTINGS } from '@xxx/constants/default-settings.constant';
-import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
-import { Settings } from '@xxx/interfaces/settings.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';

@@ -9,16 +9,16 @@
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong."
   },
-  "xxx-home-page": {
+  "jet-home-page": {
     "title": "Home"
   },
-  "xxx-root": {
+  "jet-root": {
     "home": "Home",
     "logo": "Logo",
     "navigation-menu": "Navigation Menu",
     "settings": "Settings"
   },
-  "xxx-settings-page": {
+  "jet-settings-page": {
     "arabic": "Arabic",
     "automatic": "Automatic",
     "check-for-update": "Check for update",

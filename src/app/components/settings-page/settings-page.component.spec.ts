@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { getTranslocoModule } from '@xxx/modules/transloco-testing.module';
-import { AlertService } from '@xxx/services/alert/alert.service';
-import { MockAlertService } from '@xxx/services/alert/alert.service.mock';
-import { LoggerService } from '@xxx/services/logger/logger.service';
-import { MockLoggerService } from '@xxx/services/logger/logger.service.mock';
-import { SettingsService } from '@xxx/services/settings/settings.service';
-import { MockSettingsService } from '@xxx/services/settings/settings.service.mock';
-import { StorageService } from '@xxx/services/storage/storage.service';
-import { MockStorageService } from '@xxx/services/storage/storage.service.mock';
-import { TitleService } from '@xxx/services/title/title.service';
-import { MockTitleService } from '@xxx/services/title/title.service.mock';
+import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { MockAlertService } from '@jet/services/alert/alert.service.mock';
+import { LoggerService } from '@jet/services/logger/logger.service';
+import { MockLoggerService } from '@jet/services/logger/logger.service.mock';
+import { SettingsService } from '@jet/services/settings/settings.service';
+import { MockSettingsService } from '@jet/services/settings/settings.service.mock';
+import { StorageService } from '@jet/services/storage/storage.service';
+import { MockStorageService } from '@jet/services/storage/storage.service.mock';
+import { TitleService } from '@jet/services/title/title.service';
+import { MockTitleService } from '@jet/services/title/title.service.mock';
 import { SettingsPageComponent } from './settings-page.component';
 
 describe('SettingsPageComponent', () => {

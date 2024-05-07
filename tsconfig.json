@@ -27,13 +27,13 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
-      "@xxx/assets/*": ["src/assets/*"],
-      "@xxx/components/*": ["src/app/components/*"],
-      "@xxx/constants/*": ["src/app/constants/*"],
-      "@xxx/interfaces/*": ["src/app/interfaces/*"],
-      "@xxx/modules/*": ["src/app/modules/*"],
-      "@xxx/services/*": ["src/app/services/*"],
-      "@xxx/types/*": ["src/app/types/*"]
+      "@jet/assets/*": ["src/assets/*"],
+      "@jet/components/*": ["src/app/components/*"],
+      "@jet/constants/*": ["src/app/constants/*"],
+      "@jet/interfaces/*": ["src/app/interfaces/*"],
+      "@jet/modules/*": ["src/app/modules/*"],
+      "@jet/services/*": ["src/app/services/*"],
+      "@jet/types/*": ["src/app/types/*"]
     },
     "resolveJsonModule": true
   },

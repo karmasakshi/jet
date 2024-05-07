@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { LoggerService } from '@jet/services/logger/logger.service';
+import { TitleService } from '@jet/services/title/title.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { LoggerService } from '@xxx/services/logger/logger.service';
-import { TitleService } from '@xxx/services/title/title.service';
 
 @Component({
   imports: [TranslocoModule],
-  selector: 'xxx-home-page',
+  selector: 'jet-home-page',
   standalone: true,
   styleUrl: './home-page.component.scss',
   templateUrl: './home-page.component.html',
@@ -17,7 +17,7 @@ export class HomePageComponent {
     private readonly _titleService: TitleService,
   ) {
     this._titleService.setTitle(
-      this._translocoService.translate('xxx-home-page.title'),
+      this._translocoService.translate('jet-home-page.title'),
     );
 
     this._loggerService.logComponentInitialization('HomePageComponent');

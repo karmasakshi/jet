@@ -6,18 +6,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { SwUpdate } from '@angular/service-worker';
+import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
+import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
+import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Settings } from '@jet/interfaces/settings.interface';
+import { ThemeOption } from '@jet/interfaces/theme-option.interface';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { LoggerService } from '@jet/services/logger/logger.service';
+import { SettingsService } from '@jet/services/settings/settings.service';
+import { StorageService } from '@jet/services/storage/storage.service';
+import { TitleService } from '@jet/services/title/title.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { LANGUAGE_OPTIONS } from '@xxx/constants/language-options.constant';
-import { STORAGE_KEYS } from '@xxx/constants/storage-keys.constant';
-import { THEME_OPTIONS } from '@xxx/constants/theme-options.constant';
-import { LanguageOption } from '@xxx/interfaces/language-option.interface';
-import { Settings } from '@xxx/interfaces/settings.interface';
-import { ThemeOption } from '@xxx/interfaces/theme-option.interface';
-import { AlertService } from '@xxx/services/alert/alert.service';
-import { LoggerService } from '@xxx/services/logger/logger.service';
-import { SettingsService } from '@xxx/services/settings/settings.service';
-import { StorageService } from '@xxx/services/storage/storage.service';
-import { TitleService } from '@xxx/services/title/title.service';
 import packageJson from 'package.json';
 
 @Component({
@@ -30,7 +30,7 @@ import packageJson from 'package.json';
     TranslocoModule,
   ],
   providers: [DatePipe],
-  selector: 'xxx-settings-page',
+  selector: 'jet-settings-page',
   standalone: true,
   styleUrl: './settings-page.component.scss',
   templateUrl: './settings-page.component.html',
@@ -55,14 +55,14 @@ export class SettingsPageComponent implements OnInit {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(xxx-settings-page.arabic)
-     * t(xxx-settings-page.english)
+     * t(jet-settings-page.arabic)
+     * t(jet-settings-page.english)
      */
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
     this.lastUpdateCheck = this._translocoService.translate(
-      'xxx-settings-page.unknown',
+      'jet-settings-page.unknown',
     );
 
     this.settings = this._settingsService.settings;
@@ -70,9 +70,9 @@ export class SettingsPageComponent implements OnInit {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(xxx-settings-page.automatic)
-     * t(xxx-settings-page.dark)
-     * t(xxx-settings-page.light)
+     * t(jet-settings-page.automatic)
+     * t(jet-settings-page.dark)
+     * t(jet-settings-page.light)
      */
 
     this.themeOptions = THEME_OPTIONS;
@@ -80,7 +80,7 @@ export class SettingsPageComponent implements OnInit {
     this.version = packageJson.version;
 
     this._titleService.setTitle(
-      this._translocoService.translate('xxx-settings-page.title'),
+      this._translocoService.translate('jet-settings-page.title'),
     );
 
     this._loggerService.logComponentInitialization('SettingsPageComponent');
@@ -167,6 +167,6 @@ export class SettingsPageComponent implements OnInit {
           STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
         ),
         'medium',
-      ) ?? this._translocoService.translate('xxx-settings-page.unknown');
+      ) ?? this._translocoService.translate('jet-settings-page.unknown');
   }
 }
