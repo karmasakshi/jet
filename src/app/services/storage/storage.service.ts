@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
+import { PREFIX } from '@jet/constants/prefix.constant';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  private readonly _prefix: string;
-
   public constructor(private readonly _loggerService: LoggerService) {
-    this._prefix = 'jet';
-
     this._loggerService.logServiceInitialization('StorageService');
   }
 
@@ -24,7 +21,7 @@ export class StorageService {
   public getLocalStorageItem<T>(key: string): null | T {
     let value: null | T = null;
 
-    const serializedValue = localStorage.getItem(this._prefix + '-' + key);
+    const serializedValue = localStorage.getItem(PREFIX + '-' + key);
 
     if (serializedValue) {
       try {
@@ -40,7 +37,7 @@ export class StorageService {
   public getSessionStorageItem<T>(key: string): null | T {
     let value: null | T = null;
 
-    const serializedValue = sessionStorage.getItem(this._prefix + '-' + key);
+    const serializedValue = sessionStorage.getItem(PREFIX + '-' + key);
 
     if (serializedValue) {
       try {
@@ -57,7 +54,7 @@ export class StorageService {
     try {
       const serializedValue: string = JSON.stringify(value);
 
-      localStorage.setItem(this._prefix + '-' + key, serializedValue);
+      localStorage.setItem(PREFIX + '-' + key, serializedValue);
     } catch (error: unknown) {
       this._loggerService.logError(error);
     }
@@ -67,17 +64,17 @@ export class StorageService {
     try {
       const serializedValue: string = JSON.stringify(value);
 
-      sessionStorage.setItem(this._prefix + '-' + key, serializedValue);
+      sessionStorage.setItem(PREFIX + '-' + key, serializedValue);
     } catch (error: unknown) {
       this._loggerService.logError(error);
     }
   }
 
   public removeLocalStorageItem(key: string): void {
-    localStorage.removeItem(this._prefix + '-' + key);
+    localStorage.removeItem(PREFIX + '-' + key);
   }
 
   public removeSessionStorageItem(key: string): void {
-    sessionStorage.removeItem(this._prefix + '-' + key);
+    sessionStorage.removeItem(PREFIX + '-' + key);
   }
 }
