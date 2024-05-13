@@ -1,12 +1,12 @@
 <ng-container *transloco="let t; prefix: 'jet-root'">
   <mat-sidenav-container [dir]="settings.languageOption.directionality">
     <mat-sidenav
-      #sidenav
+      #drawer
       style="width: 240px"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar style="background-color: inherit">
+      <mat-toolbar>
         <a [matTooltip]="t('home')" mat-icon-button routerLink="/">
           <img
             [alt]="t('logo')"
@@ -16,11 +16,11 @@
           />
         </a>
       </mat-toolbar>
-      <div class="jet-sidenav-content">
+      <div class="jet-drawer-content">
         <mat-nav-list>
           @for (page of pages; track page.url) {
             <a
-              (click)="isSmallViewport && sidenav.close()"
+              (click)="isSmallViewport && drawer.close()"
               matListItemTitle
               [activated]="activeUrl === page.url"
               mat-list-item
@@ -47,16 +47,13 @@
         >
         </mat-progress-bar>
       }
-      <mat-toolbar
-        style="background-color: inherit"
-        [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }"
-      >
+      <mat-toolbar [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
         @if (!isSmallViewport) {
           <button
             type="button"
             [matTooltip]="t('navigation-menu')"
             mat-icon-button
-            (click)="sidenav.toggle()"
+            (click)="drawer.toggle()"
           >
             <mat-icon>menu</mat-icon>
           </button>
@@ -74,7 +71,7 @@
         <div style="flex: 1"></div>
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
-        <main [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }">
+        <main [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
           <router-outlet />
         </main>
       </mat-tab-nav-panel>

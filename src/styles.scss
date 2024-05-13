@@ -1,20 +1,18 @@
 body {
   margin: 0;
 
-  .mat-sidenav-container {
+  .mat-drawer-container {
     min-height: 100vh;
 
-    .mat-sidenav {
+    .mat-drawer-side {
       border: unset;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-      padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-
-      .mdc-list {
-        padding: 8px;
+      .mat-drawer-inner-container {
+        padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
       }
     }
 
-    .mat-sidenav-content {
+    .mat-drawer-content {
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
@@ -30,20 +28,20 @@ body {
     }
 
     &[dir='ltr'] {
-      .mat-sidenav {
+      .mat-drawer {
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
-        .jet-sidenav-content {
-          padding-left: env(safe-area-inset-left);
+        .jet-drawer-content {
+          padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
       }
 
-      .mat-sidenav-content {
+      .mat-drawer-content {
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
 
-          &.jet-sidenav-closed {
+          &.jet-drawer-closed {
             padding: 0 calc(env(safe-area-inset-right) + 16px) 0
               calc(env(safe-area-inset-left) + 16px);
           }
@@ -53,7 +51,7 @@ body {
           padding: 16px calc(env(safe-area-inset-right) + 16px)
             calc(env(safe-area-inset-bottom) + 120px) 16px;
 
-          &.jet-sidenav-closed {
+          &.jet-drawer-closed {
             padding: 16px calc(env(safe-area-inset-right) + 16px)
               calc(env(safe-area-inset-bottom) + 120px)
               calc(env(safe-area-inset-left) + 16px);
@@ -73,20 +71,20 @@ body {
     }
 
     &[dir='rtl'] {
-      .mat-sidenav {
+      .mat-drawer {
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
-        .jet-sidenav-content {
-          padding-right: env(safe-area-inset-right);
+        .jet-drawer-content {
+          padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
       }
 
-      .mat-sidenav-content {
+      .mat-drawer-content {
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
 
-          &.jet-sidenav-closed {
+          &.jet-drawer-closed {
             padding: 0 calc(env(safe-area-inset-right) + 16px) 0
               calc(env(safe-area-inset-left) + 16px);
           }
@@ -96,7 +94,7 @@ body {
           padding: 16px 16px calc(env(safe-area-inset-bottom) + 120px)
             calc(env(safe-area-inset-left) + 16px);
 
-          &.jet-sidenav-closed {
+          &.jet-drawer-closed {
             padding: 16px calc(env(safe-area-inset-right) + 16px)
               calc(env(safe-area-inset-bottom) + 120px)
               calc(env(safe-area-inset-left) + 16px);
