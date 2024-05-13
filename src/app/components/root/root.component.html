@@ -2,11 +2,12 @@
   <mat-sidenav-container [dir]="settings.languageOption.directionality">
     <mat-sidenav
       #drawer
+      fixedInViewport
       style="width: 240px"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar>
+      <mat-toolbar style="background-color: inherit">
         <a [matTooltip]="t('home')" mat-icon-button routerLink="/">
           <img
             [alt]="t('logo')"
@@ -37,7 +38,7 @@
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
-          color="accent"
+          color="primary"
           [ngClass]="{
             'jet-invisible': !loaderConfiguration.isVisible
           }"
@@ -47,7 +48,10 @@
         >
         </mat-progress-bar>
       }
-      <mat-toolbar [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
+      <mat-toolbar
+        style="background-color: inherit"
+        [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
+      >
         @if (!isSmallViewport) {
           <button
             type="button"

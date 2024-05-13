@@ -25,8 +25,8 @@ $default-theme: mat.define-light-theme(
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$yellow-palette),
-      accent: mat.define-palette(mat.$brown-palette),
+      primary: mat.define-palette(mat.$brown-palette),
+      accent: mat.define-palette(mat.$yellow-palette),
     ),
   )
 );
