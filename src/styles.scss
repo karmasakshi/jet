@@ -4,12 +4,13 @@ body {
   .mat-drawer-container {
     min-height: 100vh;
 
+    .mat-drawer {
+      padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+    }
+
     .mat-drawer-side {
       border: unset;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-      .mat-drawer-inner-container {
-        padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-      }
     }
 
     .mat-drawer-content {
