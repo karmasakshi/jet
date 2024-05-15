@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslocoService } from '@jsverse/transloco';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TitleService {
-  private readonly _appName: string;
-  private readonly _titleSubject: BehaviorSubject<string>;
+  private readonly _titleSubject: Subject<string>;
 
   public title$: Observable<string>;
 
@@ -18,9 +17,7 @@ export class TitleService {
     private readonly _translocoService: TranslocoService,
     private readonly _loggerService: LoggerService,
   ) {
-    this._appName = this._translocoService.translate('app-name');
-
-    this._titleSubject = new BehaviorSubject<string>(this._appName);
+    this._titleSubject = new Subject<string>();
 
     this.title$ = this._titleSubject.asObservable();
 

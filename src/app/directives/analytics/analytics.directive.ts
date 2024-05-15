@@ -11,6 +11,7 @@ export class AnalyticsDirective {
 
   public constructor(private readonly _loggerService: LoggerService) {
     this.jetAnalyticsEventName = undefined;
+
     this.jetAnalyticsEventData = undefined;
 
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
