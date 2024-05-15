@@ -30,6 +30,7 @@
       "@jet/assets/*": ["src/assets/*"],
       "@jet/components/*": ["src/app/components/*"],
       "@jet/constants/*": ["src/app/constants/*"],
+      "@jet/directives/*": ["src/app/directives/*"],
       "@jet/interfaces/*": ["src/app/interfaces/*"],
       "@jet/modules/*": ["src/app/modules/*"],
       "@jet/services/*": ["src/app/services/*"],

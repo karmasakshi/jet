@@ -2,19 +2,37 @@
   <mat-card>
     <mat-card-content>
       <mat-action-list>
-        <button type="button" mat-list-item [matMenuTriggerFor]="languageMenu">
+        <button
+          type="button"
+          jetAnalytics
+          jetAnalyticsEventName="Language"
+          mat-list-item
+          [matMenuTriggerFor]="languageMenu"
+        >
           <mat-icon matListItemIcon>translate</mat-icon>
           <span matListItemTitle>{{ t('language') }}</span>
           <span matListItemLine>{{ t(settings.languageOption.nameKey) }}</span>
         </button>
 
-        <button type="button" mat-list-item [matMenuTriggerFor]="themeMenu">
+        <button
+          type="button"
+          jetAnalytics
+          jetAnalyticsEventName="Theme"
+          mat-list-item
+          [matMenuTriggerFor]="themeMenu"
+        >
           <mat-icon matListItemIcon>palette</mat-icon>
           <span matListItemTitle>{{ t('theme') }}</span>
           <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
         </button>
 
-        <button type="button" mat-list-item (click)="checkForUpdate()">
+        <button
+          type="button"
+          jetAnalytics
+          jetAnalyticsEventName="Check for Update"
+          mat-list-item
+          (click)="checkForUpdate()"
+        >
           <mat-icon matListItemIcon>sync</mat-icon>
           <span matListItemTitle>{{ t('check-for-update') }}</span>
           <span matListItemLine>{{
@@ -22,13 +40,25 @@
           }}</span>
         </button>
 
-        <button type="button" mat-list-item (click)="reload()">
+        <button
+          type="button"
+          jetAnalytics
+          jetAnalyticsEventName="Reload"
+          mat-list-item
+          (click)="reload()"
+        >
           <mat-icon matListItemIcon>refresh</mat-icon>
           <span matListItemTitle>{{ t('reload') }}</span>
           <span matListItemLine>{{ t('reload-description') }}</span>
         </button>
 
-        <button type="button" mat-list-item (click)="reset()">
+        <button
+          type="button"
+          jetAnalytics
+          jetAnalyticsEventName="Reset"
+          mat-list-item
+          (click)="reset()"
+        >
           <mat-icon matListItemIcon>restart_alt</mat-icon>
           <span matListItemTitle>{{ t('reset') }}</span>
           <span matListItemLine>{{ t('reset-description') }}</span>
@@ -46,6 +76,9 @@
   <mat-menu xPosition="before" #languageMenu="matMenu">
     @for (languageOption of languageOptions; track languageOption.value) {
       <button
+        jetAnalytics
+        jetAnalyticsEventName="Language Option"
+        [jetAnalyticsEventData]="{ languageOption }"
         type="button"
         [disabled]="settings.languageOption.value === languageOption.value"
         (click)="setLanguage(languageOption)"
@@ -60,6 +93,9 @@
   <mat-menu xPosition="before" #themeMenu="matMenu">
     @for (themeOption of themeOptions; track themeOption.value) {
       <button
+        jetAnalytics
+        jetAnalyticsEventName="Theme Option"
+        [jetAnalyticsEventData]="{ themeOption }"
         type="button"
         [disabled]="settings.themeOption.value === themeOption.value"
         (click)="setTheme(themeOption)"

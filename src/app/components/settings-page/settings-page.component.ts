@@ -9,6 +9,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
 import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
+import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { ThemeOption } from '@jet/interfaces/theme-option.interface';
@@ -27,6 +28,7 @@ import packageJson from 'package.json';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    AnalyticsDirective,
     TranslocoModule,
   ],
   providers: [DatePipe],
@@ -93,7 +95,7 @@ export class SettingsPageComponent implements OnInit {
   public checkForUpdate(): void {
     this._alertService.showAlert(
       this._translocoService.translate('alerts.checking-for-update'),
-      this._translocoService.translate('alerts.ok-cta'),
+      this._translocoService.translate('alerts.ok'),
     );
 
     this._swUpdate
@@ -108,7 +110,7 @@ export class SettingsPageComponent implements OnInit {
         if (!isUpdateFoundAndReady) {
           this._alertService.showAlert(
             this._translocoService.translate('alerts.no-update-found'),
-            this._translocoService.translate('alerts.ok-cta'),
+            this._translocoService.translate('alerts.ok'),
           );
         }
       })
@@ -117,7 +119,7 @@ export class SettingsPageComponent implements OnInit {
 
         this._alertService.showAlert(
           this._translocoService.translate('alerts.something-went-wrong'),
-          this._translocoService.translate('alerts.ok-cta'),
+          this._translocoService.translate('alerts.ok'),
         );
       });
   }
@@ -139,7 +141,7 @@ export class SettingsPageComponent implements OnInit {
 
     this._alertService.showAlert(
       this._translocoService.translate('alerts.reload-to-apply'),
-      this._translocoService.translate('alerts.reload-cta'),
+      this._translocoService.translate('alerts.reload'),
       (): void => {
         this.reload();
       },
@@ -153,7 +155,7 @@ export class SettingsPageComponent implements OnInit {
 
     this._alertService.showAlert(
       this._translocoService.translate('alerts.reload-to-apply'),
-      this._translocoService.translate('alerts.reload-cta'),
+      this._translocoService.translate('alerts.reload'),
       (): void => {
         this.reload();
       },

@@ -16,7 +16,13 @@ export class LoggerService {
 
   public logComponentInitialization(componentName: string): void {
     if (this._isLoggingEnabled) {
-      console.info(`${componentName} initialized.`);
+      console.debug(`${componentName} initialized.`);
+    }
+  }
+
+  public logDirectiveInitialization(directiveName: string): void {
+    if (this._isLoggingEnabled) {
+      console.info(`${directiveName} initialized.`);
     }
   }
 
@@ -26,9 +32,9 @@ export class LoggerService {
     }
   }
 
-  public logMessage(message: string): void {
+  public logMessages(...messages: unknown[]): void {
     if (this._isLoggingEnabled) {
-      console.log(message);
+      console.log(...messages);
     }
   }
 

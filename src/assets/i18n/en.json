@@ -3,13 +3,12 @@
     "checking-for-update": "Checking for update...",
     "downloading-update": "Downloading update...",
     "no-update-found": "You're on the latest version.",
-    "ok-cta": "OK",
-    "reload-cta": "RELOAD",
+    "ok": "OK",
+    "reload": "RELOAD",
     "reload-to-apply": "Reload to apply.",
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong."
   },
-  "app-name": "Jet",
   "app-name-with-title": "{{ title }} - Jet",
   "jet-home-page": {
     "title": "Home"
@@ -23,7 +22,7 @@
   "jet-settings-page": {
     "arabic": "Arabic",
     "automatic": "Automatic",
-    "check-for-update": "Check for update",
+    "check-for-update": "Check for Update",
     "dark": "Dark",
     "english": "English",
     "language": "Language",

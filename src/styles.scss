@@ -33,6 +33,7 @@ body {
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
+
         .jet-drawer-content {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
@@ -76,6 +77,7 @@ body {
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
+
         .jet-drawer-content {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
@@ -122,6 +124,7 @@ body {
 
 .mat-mdc-card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px !important;
+  overflow: hidden;
 }
 
 .mat-mdc-list-item {

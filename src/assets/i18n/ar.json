@@ -3,13 +3,12 @@
     "checking-for-update": "التحقق من وجود التحديث...",
     "downloading-update": "تحميل التحديث...",
     "no-update-found": "أنت على الإصدار الأحدث.",
-    "ok-cta": "نعم",
-    "reload-cta": "إعادة تحميل",
+    "ok": "نعم",
+    "reload": "إعادة تحميل",
     "reload-to-apply": "إعادة تحميل للتطبيق.",
     "reload-to-update": "إعادة التحميل للتحديث.",
     "something-went-wrong": "هناك خطأ ما."
   },
-  "app-name": "Jet AR",
   "app-name-with-title": "Jet AR - {{ title }}",
   "jet-home-page": {
     "title": "بيت"

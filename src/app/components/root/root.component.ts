@@ -147,13 +147,13 @@ export class RootComponent implements OnInit, OnDestroy {
               );
               this._alertService.showAlert(
                 this._translocoService.translate('alerts.downloading-update'),
-                this._translocoService.translate('alerts.ok-cta'),
+                this._translocoService.translate('alerts.ok'),
               );
               break;
             case 'VERSION_READY':
               this._alertService.showAlert(
                 this._translocoService.translate('alerts.reload-to-update'),
-                this._translocoService.translate('alerts.reload-cta'),
+                this._translocoService.translate('alerts.reload'),
                 (): void => {
                   location.reload();
                 },

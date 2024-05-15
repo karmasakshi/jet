@@ -3,6 +3,6 @@
     <url>
         <loc>https://jet.jet.jet</loc>
         <changefreq>daily</changefreq>
-        <priority>1.0</priority>
+        <priority>0.5</priority>
     </url>
 </urlset>

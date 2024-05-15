@@ -7,12 +7,17 @@ export class MockLoggerService {
   }
 
   // @ts-expect-error: noUnusedParameters
+  public logDirectiveInitialization(directiveName: string): void {
+    // Mock implementation, do nothing
+  }
+
+  // @ts-expect-error: noUnusedParameters
   public logError(error: unknown): void {
     // Mock implementation, do nothing
   }
 
   // @ts-expect-error: noUnusedParameters
-  public logMessage(message: string): void {
+  public logMessages(messages: unknown[]): void {
     // Mock implementation, do nothing
   }
 

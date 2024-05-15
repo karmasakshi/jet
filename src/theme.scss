@@ -13,20 +13,18 @@ $noto-sans-arabic-typography: mat.define-typography-config(
 $default-theme: mat.define-light-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$brown-palette),
-      accent: mat.define-palette(mat.$amber-palette),
-      warn: mat.define-palette(mat.$red-palette),
+      primary: mat.define-palette(mat.$brown-palette, 500),
+      accent: mat.define-palette(mat.$amber-palette, 500),
     ),
     typography: $noto-sans-typography,
-    density: 0,
   )
 );
 
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$amber-palette),
-      accent: mat.define-palette(mat.$brown-palette),
+      primary: mat.define-palette(mat.$amber-palette, 500),
+      accent: mat.define-palette(mat.$brown-palette, 500),
     ),
   )
 );
