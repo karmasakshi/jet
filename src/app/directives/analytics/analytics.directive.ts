@@ -1,4 +1,5 @@
 import { Directive, HostListener, Input } from '@angular/core';
+import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
 @Directive({
@@ -6,29 +7,26 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   standalone: true,
 })
 export class AnalyticsDirective {
-  @Input({ required: true }) public jetAnalyticsEventName: string | undefined;
   @Input() public jetAnalyticsEventData: undefined | { [key: string]: unknown };
+  @Input({ required: true }) public jetAnalyticsEventName: undefined | string;
 
-  public constructor(private readonly _loggerService: LoggerService) {
-    this.jetAnalyticsEventName = undefined;
-
+  public constructor(
+    private readonly _analyticsService: AnalyticsService,
+    private readonly _loggerService: LoggerService,
+  ) {
     this.jetAnalyticsEventData = undefined;
+
+    this.jetAnalyticsEventName = undefined;
 
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 
   @HostListener('click') public onClick(): void {
-    this._trackEvent(this.jetAnalyticsEventName, this.jetAnalyticsEventData);
-  }
-
-  private _trackEvent(
-    eventName: string | undefined,
-    eventData: undefined | { [key: string]: unknown },
-  ): void {
-    if (eventName) {
-      eventData
-        ? this._loggerService.logMessages(eventName, eventData)
-        : this._loggerService.logMessages(eventName);
+    if (this.jetAnalyticsEventName) {
+      this._analyticsService.track(
+        this.jetAnalyticsEventName,
+        this.jetAnalyticsEventData,
+      );
     }
   }
 }

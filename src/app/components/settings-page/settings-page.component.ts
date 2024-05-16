@@ -47,12 +47,12 @@ export class SettingsPageComponent implements OnInit {
   public constructor(
     private readonly _datePipe: DatePipe,
     private readonly _swUpdate: SwUpdate,
-    private readonly _translocoService: TranslocoService,
     private readonly _alertService: AlertService,
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
     public readonly _titleService: TitleService,
+    private readonly _translocoService: TranslocoService,
   ) {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):

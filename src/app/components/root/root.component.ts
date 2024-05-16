@@ -75,13 +75,13 @@ export class RootComponent implements OnInit, OnDestroy {
     private readonly _renderer2: Renderer2,
     private readonly _router: Router,
     private readonly _swUpdate: SwUpdate,
-    private readonly _translocoService: TranslocoService,
     private readonly _alertService: AlertService,
     private readonly _loaderService: LoaderService,
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
     private readonly _titleService: TitleService,
+    private readonly _translocoService: TranslocoService,
   ) {
     this.activeUrl = undefined;
 
