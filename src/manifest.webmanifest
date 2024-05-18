@@ -1,6 +1,6 @@
 {
-  "name": "jet",
-  "short_name": "jet",
+  "name": "Jet",
+  "short_name": "Jet",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
