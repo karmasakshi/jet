@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/karmasakshi/jet/compare/v1.0.0...v1.0.1) (2024-05-18)
+
+
+### Bug Fixes
+
+* **general:** card overflow ([64aad55](https://github.com/karmasakshi/jet/commit/64aad552cef54ca43fafb99336fcc3f57339b479))
+
 ## 1.0.0 (2024-05-18)
 
 
