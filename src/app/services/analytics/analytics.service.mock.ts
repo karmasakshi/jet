@@ -5,7 +5,7 @@ export class MockAnalyticsService {
     // @ts-expect-error: noUnusedParameters
     eventName: string,
     // @ts-expect-error: noUnusedParameters
-    eventData?: { [key: string]: unknown },
+    eventData?: Record<string, unknown>,
   ): void {
     // Mock implementation, do nothing
   }

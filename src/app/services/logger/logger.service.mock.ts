@@ -25,4 +25,9 @@ export class MockLoggerService {
   public logServiceInitialization(serviceName: string): void {
     // Mock implementation, do nothing
   }
+
+  // @ts-expect-error: noUnusedParameters
+  public logWarning(warning: string): void {
+    // Mock implementation, do nothing
+  }
 }

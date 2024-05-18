@@ -43,4 +43,10 @@ export class LoggerService {
       console.info(`${serviceName} initialized.`);
     }
   }
+
+  public logWarning(warning: string): void {
+    if (this._isLoggingEnabled) {
+      console.warn(warning);
+    }
+  }
 }

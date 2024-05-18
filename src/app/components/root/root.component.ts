@@ -60,7 +60,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './root.component.html',
 })
 export class RootComponent implements OnInit, OnDestroy {
-  public activeUrl: undefined | Page['url'];
+  public activeUrl: Page['url'] | undefined;
   public isSmallViewport: boolean;
   public loaderConfiguration$: Observable<LoaderConfiguration>;
   public pages: Page[];

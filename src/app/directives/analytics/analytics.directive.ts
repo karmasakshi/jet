@@ -7,8 +7,8 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   standalone: true,
 })
 export class AnalyticsDirective {
-  @Input() public jetAnalyticsEventData: undefined | { [key: string]: unknown };
-  @Input({ required: true }) public jetAnalyticsEventName: undefined | string;
+  @Input() public jetAnalyticsEventData: Record<string, unknown> | undefined;
+  @Input({ required: true }) public jetAnalyticsEventName: string | undefined;
 
   public constructor(
     private readonly _analyticsService: AnalyticsService,
@@ -27,6 +27,8 @@ export class AnalyticsDirective {
         this.jetAnalyticsEventName,
         this.jetAnalyticsEventData,
       );
+    } else {
+      this._loggerService.logWarning('jetAnalyticsEventName is not defined.');
     }
   }
 }

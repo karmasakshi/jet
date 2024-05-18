@@ -16,10 +16,7 @@ export class AnalyticsService {
     this._loggerService.logServiceInitialization('AnalyticsService');
   }
 
-  public track(
-    eventName: string,
-    eventData?: { [key: string]: unknown },
-  ): void {
+  public track(eventName: string, eventData?: Record<string, unknown>): void {
     if (this._isAnalyticsEnabled) {
       eventData
         ? this._loggerService.logMessages(eventName, eventData)
