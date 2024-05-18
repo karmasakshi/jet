@@ -124,7 +124,10 @@ body {
 
 .mat-mdc-card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px !important;
-  overflow: hidden;
+  .mat-mdc-card-content {
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
 }
 
 .mat-mdc-list-item {
