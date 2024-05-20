@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/karmasakshi/jet/compare/v1.0.1...v1.0.2) (2024-05-20)
+
+
+### Bug Fixes
+
+* **general:** update analytics data type ([b7be190](https://github.com/karmasakshi/jet/commit/b7be19059fec2f60cbab94e7aecc86b93e4ddbf1))
+
 ## [1.0.1](https://github.com/karmasakshi/jet/compare/v1.0.0...v1.0.1) (2024-05-18)
 
 
