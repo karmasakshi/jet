@@ -78,7 +78,7 @@
       <button
         jetAnalytics
         jetAnalyticsEventName="Language Option"
-        [jetAnalyticsEventData]="{ languageOption }"
+        [jetAnalyticsEventData]="languageOption.value"
         type="button"
         [disabled]="settings.languageOption.value === languageOption.value"
         (click)="setLanguage(languageOption)"
@@ -95,7 +95,7 @@
       <button
         jetAnalytics
         jetAnalyticsEventName="Theme Option"
-        [jetAnalyticsEventData]="{ themeOption }"
+        [jetAnalyticsEventData]="themeOption.value"
         type="button"
         [disabled]="settings.themeOption.value === themeOption.value"
         (click)="setTheme(themeOption)"

@@ -11,12 +11,12 @@ export class AnalyticsService {
   public constructor(private readonly _loggerService: LoggerService) {
     this._isAnalyticsEnabled = !isDevMode();
 
-    this.track('Start', { version: packageJson.version });
+    this.track('Start', packageJson.version);
 
     this._loggerService.logServiceInitialization('AnalyticsService');
   }
 
-  public track(eventName: string, eventData?: Record<string, unknown>): void {
+  public track(eventName: string, eventData?: string): void {
     if (this._isAnalyticsEnabled) {
       eventData
         ? this._loggerService.logMessages(eventName, eventData)
