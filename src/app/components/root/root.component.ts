@@ -1,5 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import {
+  AsyncPipe,
+  NgClass,
+  NgOptimizedImage,
+  NgTemplateOutlet,
+} from '@angular/common';
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -42,6 +47,7 @@ import { filter } from 'rxjs/operators';
     AsyncPipe,
     NgClass,
     NgOptimizedImage,
+    NgTemplateOutlet,
     MatButtonModule,
     MatIconModule,
     MatListModule,

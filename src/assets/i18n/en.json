@@ -9,7 +9,6 @@
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong."
   },
-  "app-name-with-title": "{{ title }} - Jet",
   "jet-home-page": {
     "title": "Home"
   },
