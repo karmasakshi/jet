@@ -3,10 +3,8 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
-  "editor.detectIndentation": false,
   "editor.renderWhitespace": "all",
   "editor.scrollBeyondLastLine": false,
-  "editor.tabSize": 2,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true
