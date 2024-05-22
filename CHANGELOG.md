@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/karmasakshi/jet/compare/v1.0.3...v1.0.4) (2024-05-22)
+
+
+### Bug Fixes
+
+* **general:** logo path ([a8dd006](https://github.com/karmasakshi/jet/commit/a8dd0060cd3b82e040b997a89400f62dbfb0eef9))
+
 ## [1.0.3](https://github.com/karmasakshi/jet/compare/v1.0.2...v1.0.3) (2024-05-22)
 
 
