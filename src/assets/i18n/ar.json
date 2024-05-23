@@ -9,13 +9,6 @@
     "reload-to-update": "إعادة التحميل للتحديث.",
     "something-went-wrong": "هناك خطأ ما."
   },
-  "constants": {
-    "arabic": "عربي",
-    "automatic": "تلقائي",
-    "dark": "مظلم",
-    "english": "إنجليزي",
-    "light": "ضوء"
-  },
   "jet-home-page": {
     "title": "بيت"
   },
@@ -26,9 +19,14 @@
     "settings": "إعدادات"
   },
   "jet-settings-page": {
+    "arabic": "عربي",
+    "automatic": "تلقائي",
     "check-for-update": "فحص التحديثات",
+    "dark": "مظلم",
+    "english": "إنجليزي",
     "language": "لغة",
     "last-checked": "{{ lastUpdateCheck }} :آخر فحص",
+    "light": "ضوء",
     "reload": "إعادة تحميل",
     "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
     "reset": "إعادة ضبط",

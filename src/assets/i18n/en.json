@@ -9,13 +9,6 @@
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong."
   },
-  "constants": {
-    "arabic": "Arabic",
-    "automatic": "Automatic",
-    "dark": "Dark",
-    "english": "English",
-    "light": "Light"
-  },
   "jet-home-page": {
     "title": "Home"
   },
@@ -26,9 +19,14 @@
     "settings": "Settings"
   },
   "jet-settings-page": {
+    "arabic": "Arabic",
+    "automatic": "Automatic",
     "check-for-update": "Check for Update",
+    "dark": "Dark",
+    "english": "English",
     "language": "Language",
     "last-checked": "Last checked: {{ lastUpdateCheck }}",
+    "light": "Light",
     "reload": "Reload",
     "reload-description": "Preserve settings and reload",
     "reset": "Reset",
