@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/karmasakshi/jet/compare/v1.0.4...v1.0.5) (2024-05-23)
+
+
+### Reverts
+
+* **general:** i18n clean-up ([a355911](https://github.com/karmasakshi/jet/commit/a355911bd96e957ccb9081549b61209ea8036b2b))
+
 ## [1.0.4](https://github.com/karmasakshi/jet/compare/v1.0.3...v1.0.4) (2024-05-22)
 
 
