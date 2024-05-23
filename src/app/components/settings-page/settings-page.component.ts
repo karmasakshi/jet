@@ -57,8 +57,8 @@ export class SettingsPageComponent implements OnInit {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(jet-settings-page.arabic)
-     * t(jet-settings-page.english)
+     * t(constants.arabic)
+     * t(constants.english)
      */
 
     this.languageOptions = LANGUAGE_OPTIONS;
@@ -72,9 +72,9 @@ export class SettingsPageComponent implements OnInit {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(jet-settings-page.automatic)
-     * t(jet-settings-page.dark)
-     * t(jet-settings-page.light)
+     * t(constants.automatic)
+     * t(constants.dark)
+     * t(constants.light)
      */
 
     this.themeOptions = THEME_OPTIONS;
