@@ -8,7 +8,7 @@
       [opened]="!isSmallViewport"
     >
       <mat-toolbar style="background-color: inherit">
-        <ng-container *ngTemplateOutlet="logo"></ng-container>
+        <ng-container *ngTemplateOutlet="logo" />
       </mat-toolbar>
       <div class="jet-drawer-content">
         <mat-nav-list>
@@ -55,7 +55,7 @@
             <mat-icon>menu</mat-icon>
           </button>
         } @else {
-          <ng-container *ngTemplateOutlet="logo"></ng-container>
+          <ng-container *ngTemplateOutlet="logo" />
         }
         <span>{{ title$ | async }}</span>
         <div style="flex: 1"></div>
