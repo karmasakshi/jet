@@ -17,6 +17,7 @@ $default-theme: mat.define-light-theme(
       accent: mat.define-palette(mat.$amber-palette, 500),
     ),
     typography: $noto-sans-typography,
+    density: 0,
   )
 );
 

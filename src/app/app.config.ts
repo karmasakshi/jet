@@ -11,15 +11,15 @@ import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
 import { TranslocoHttpLoader } from './transloco-loader';
 
-export const applicationConfig: ApplicationConfig = {
+export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
-    provideAnimationsAsync(),
     provideRouter(routes),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    provideAnimationsAsync(),
+    provideHttpClient(),
     provideTransloco({
       config: {
         availableLangs: LANGUAGE_OPTIONS.map(
