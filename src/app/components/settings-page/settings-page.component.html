@@ -73,7 +73,10 @@
     <pre>{{ t('version', { version }) }}</pre>
   </div>
 
-  <mat-menu xPosition="before" #languageMenu="matMenu">
+  <mat-menu
+    xPosition="before"
+    #languageMenu="matMenu"
+  >
     @for (languageOption of languageOptions; track languageOption.value) {
       <button
         jetAnalytics
@@ -90,7 +93,10 @@
     }
   </mat-menu>
 
-  <mat-menu xPosition="before" #themeMenu="matMenu">
+  <mat-menu
+    xPosition="before"
+    #themeMenu="matMenu"
+  >
     @for (themeOption of themeOptions; track themeOption.value) {
       <button
         jetAnalytics

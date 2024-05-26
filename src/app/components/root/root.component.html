@@ -66,7 +66,11 @@
         </main>
       </mat-tab-nav-panel>
       @if (isSmallViewport) {
-        <nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabNavPanel">
+        <nav
+          mat-tab-nav-bar
+          backgroundColor="primary"
+          [tabPanel]="tabNavPanel"
+        >
           @for (page of pages; track page.url) {
             <a
               [active]="activeUrl === page.url"
@@ -82,7 +86,11 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
   <ng-template #logo>
-    <a [matTooltip]="t('home')" mat-icon-button routerLink="/">
+    <a
+      [matTooltip]="t('home')"
+      mat-icon-button
+      routerLink="/"
+    >
       <img
         [alt]="t('logo')"
         ngSrc="assets/logo.svg"
