@@ -1,3 +1,46 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$noto-sans-typography: mat.define-typography-config(
+  $font-family: '"Noto Sans", sans-serif',
+);
+
+$noto-sans-arabic-typography: mat.define-typography-config(
+  $font-family: '"Noto Sans Arabic", sans-serif',
+);
+
+$default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$brown-palette, 500),
+      accent: mat.define-palette(mat.$amber-palette, 500),
+    ),
+    typography: $noto-sans-typography,
+  )
+);
+
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$amber-palette, 500),
+      accent: mat.define-palette(mat.$brown-palette, 500),
+    ),
+  )
+);
+
+@include mat.all-component-themes($default-theme);
+
+@include mat.typography-hierarchy($noto-sans-typography);
+
+.jet-font-noto-sans-arabic {
+  @include mat.all-component-typographies($noto-sans-arabic-typography);
+}
+
+.jet-theme-dark {
+  @include mat.all-component-colors($dark-theme);
+}
+
 body {
   margin: 0;
 
@@ -128,6 +171,7 @@ body {
     box-sizing: border-box;
     overflow-x: auto;
   }
+  overflow: hidden;
 }
 
 .mat-mdc-list-item {

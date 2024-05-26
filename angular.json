@@ -31,7 +31,7 @@
               "src/robots.txt",
               "src/sitemap.xml"
             ],
-            "styles": ["src/theme.scss", "src/styles.scss"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -91,7 +91,7 @@
               "src/robots.txt",
               "src/sitemap.xml"
             ],
-            "styles": ["src/theme.scss", "src/styles.scss"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
