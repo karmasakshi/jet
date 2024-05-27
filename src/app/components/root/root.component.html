@@ -47,6 +47,8 @@
       >
         @if (!isSmallViewport) {
           <button
+            jetAnalytics
+            jetAnalyticsEventName="Drawer"
             type="button"
             [matTooltip]="t('navigation-menu')"
             mat-icon-button
@@ -87,6 +89,8 @@
   </mat-sidenav-container>
   <ng-template #logo>
     <a
+      jetAnalytics
+      jetAnalyticsEventName="Home"
       [matTooltip]="t('home')"
       mat-icon-button
       routerLink="/"

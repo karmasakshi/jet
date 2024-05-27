@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -23,7 +22,6 @@ import packageJson from 'package.json';
 
 @Component({
   imports: [
-    MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatListModule,
