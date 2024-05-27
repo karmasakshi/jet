@@ -13,7 +13,7 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
@@ -27,7 +27,7 @@
     "noUnusedParameters": true,
     "baseUrl": "./",
     "paths": {
-      "@jet/assets/*": ["src/assets/*"],
+      "@jet/assets/*": ["public/assets/*"],
       "@jet/components/*": ["src/app/components/*"],
       "@jet/constants/*": ["src/app/constants/*"],
       "@jet/directives/*": ["src/app/directives/*"],

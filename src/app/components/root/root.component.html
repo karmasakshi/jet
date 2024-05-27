@@ -3,11 +3,10 @@
     <mat-sidenav
       #drawer
       fixedInViewport
-      style="width: 240px"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar style="background-color: inherit">
+      <mat-toolbar>
         <ng-container *ngTemplateOutlet="logo" />
       </mat-toolbar>
       <div class="jet-drawer-content">
@@ -31,7 +30,6 @@
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
-          color="primary"
           [ngClass]="{
             'jet-invisible': !loaderConfiguration.isVisible
           }"
@@ -41,10 +39,7 @@
         >
         </mat-progress-bar>
       }
-      <mat-toolbar
-        style="background-color: inherit"
-        [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
-      >
+      <mat-toolbar [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
         @if (!isSmallViewport) {
           <button
             jetAnalytics
@@ -70,7 +65,6 @@
       @if (isSmallViewport) {
         <nav
           mat-tab-nav-bar
-          backgroundColor="primary"
           [tabPanel]="tabNavPanel"
         >
           @for (page of pages; track page.url) {
