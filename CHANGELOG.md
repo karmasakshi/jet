@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/karmasakshi/jet/compare/v1.0.6...v1.0.7) (2024-05-27)
+
+
+### Bug Fixes
+
+* **general:** add eslint ([fcde6cb](https://github.com/karmasakshi/jet/commit/fcde6cbcfe0b2a37c1cc577877019c61c9f3a413))
+
 ## [1.0.6](https://github.com/karmasakshi/jet/compare/v1.0.5...v1.0.6) (2024-05-27)
 
 
