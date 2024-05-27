@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/karmasakshi/jet/compare/v1.0.5...v1.0.6) (2024-05-27)
+
+
+### Bug Fixes
+
+* **general:** extra import ([787043b](https://github.com/karmasakshi/jet/commit/787043b75f17a44957eb4ccf45d0c7e1cd722404))
+
 ## [1.0.5](https://github.com/karmasakshi/jet/compare/v1.0.4...v1.0.5) (2024-05-23)
 
 
