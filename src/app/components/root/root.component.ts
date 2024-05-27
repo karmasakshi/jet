@@ -126,6 +126,12 @@ export class RootComponent implements OnInit, OnDestroy {
 
     this._swUpdateSubscription = Subscription.EMPTY;
 
+    this._addFontClass(this.settings.languageOption.font);
+
+    this._addThemeClass(this.settings.themeOption.value);
+
+    this._setLanguage(this.settings.languageOption.value);
+
     this._loggerService.logComponentInitialization('RootComponent');
   }
 
@@ -169,12 +175,6 @@ export class RootComponent implements OnInit, OnDestroy {
         },
       );
     }
-
-    this._addFontClass(this.settings.languageOption.font);
-
-    this._addLangAttribute(this.settings.languageOption.value);
-
-    this._addThemeClass(this.settings.themeOption.value);
   }
 
   public ngOnDestroy(): void {
@@ -191,8 +191,10 @@ export class RootComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _addLangAttribute(availableLanguage: AvailableLanguage): void {
+  private _setLanguage(availableLanguage: AvailableLanguage): void {
     if (availableLanguage !== DEFAULT_LANGUAGE) {
+      this._translocoService.setActiveLang(availableLanguage);
+
       this._renderer2.setAttribute(
         document.documentElement,
         'lang',

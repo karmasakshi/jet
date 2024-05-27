@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { TranslocoService } from '@jsverse/transloco';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
@@ -16,7 +15,6 @@ export class SettingsService {
   public settings$: Observable<Settings>;
 
   public constructor(
-    private readonly _translocoService: TranslocoService,
     private readonly _loggerService: LoggerService,
     private readonly _storageService: StorageService,
   ) {
@@ -26,8 +24,6 @@ export class SettingsService {
         STORAGE_KEYS.SETTINGS,
       ),
     });
-
-    this._translocoService.setActiveLang(this.settings.languageOption.value);
 
     this.settings$ = this._settingsSubject.asObservable();
 

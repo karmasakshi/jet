@@ -22,7 +22,7 @@ export class LoggerService {
 
   public logDirectiveInitialization(directiveName: string): void {
     if (this._isLoggingEnabled) {
-      console.info(`${directiveName} initialized.`);
+      console.debug(`${directiveName} initialized.`);
     }
   }
 
