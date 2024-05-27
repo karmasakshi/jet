@@ -191,18 +191,6 @@ export class RootComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _setLanguage(availableLanguage: AvailableLanguage): void {
-    if (availableLanguage !== DEFAULT_LANGUAGE) {
-      this._translocoService.setActiveLang(availableLanguage);
-
-      this._renderer2.setAttribute(
-        document.documentElement,
-        'lang',
-        availableLanguage,
-      );
-    }
-  }
-
   private _addThemeClass(availableTheme: AvailableTheme): void {
     if (availableTheme === 'automatic') {
       availableTheme = matchMedia('(prefers-color-scheme: dark)').matches
@@ -214,6 +202,18 @@ export class RootComponent implements OnInit, OnDestroy {
       this._renderer2.addClass(
         document.documentElement,
         `jet-theme-${availableTheme}`,
+      );
+    }
+  }
+
+  private _setLanguage(availableLanguage: AvailableLanguage): void {
+    if (availableLanguage !== DEFAULT_LANGUAGE) {
+      this._translocoService.setActiveLang(availableLanguage);
+
+      this._renderer2.setAttribute(
+        document.documentElement,
+        'lang',
+        availableLanguage,
       );
     }
   }

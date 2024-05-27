@@ -30,29 +30,17 @@ export class LoaderService {
   }
 
   public hideLoader(): void {
-    Promise.resolve()
-      .then((): void => {
-        this._loaderConfigurationSubject.next({
-          ...this._defaultLoaderConfiguration,
-          isVisible: false,
-        });
-      })
-      .catch((error: unknown): void => {
-        this._loggerService.logError(error);
-      });
+    this._loaderConfigurationSubject.next({
+      ...this._defaultLoaderConfiguration,
+      isVisible: false,
+    });
   }
 
   public showLoader(): void {
-    Promise.resolve()
-      .then((): void => {
-        this._loaderConfigurationSubject.next({
-          ...this._defaultLoaderConfiguration,
-          isVisible: true,
-          mode: 'indeterminate',
-        });
-      })
-      .catch((error: unknown): void => {
-        this._loggerService.logError(error);
-      });
+    this._loaderConfigurationSubject.next({
+      ...this._defaultLoaderConfiguration,
+      isVisible: true,
+      mode: 'indeterminate',
+    });
   }
 }

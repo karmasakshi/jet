@@ -42,12 +42,6 @@ export class SettingsService {
 
     this._storageService.setLocalStorageItem(STORAGE_KEYS.SETTINGS, settings);
 
-    Promise.resolve()
-      .then((): void => {
-        this._settingsSubject.next(settings);
-      })
-      .catch((error: unknown): void => {
-        this._loggerService.logError(error);
-      });
+    this._settingsSubject.next(settings);
   }
 }
