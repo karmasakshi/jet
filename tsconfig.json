@@ -35,8 +35,7 @@
       "@jet/modules/*": ["src/app/modules/*"],
       "@jet/services/*": ["src/app/services/*"],
       "@jet/types/*": ["src/app/types/*"]
-    },
-    "resolveJsonModule": true
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
