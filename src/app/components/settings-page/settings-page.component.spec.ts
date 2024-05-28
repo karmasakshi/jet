@@ -18,7 +18,7 @@ describe('SettingsPageComponent', () => {
   let fixture: ComponentFixture<SettingsPageComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       imports: [
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: false,

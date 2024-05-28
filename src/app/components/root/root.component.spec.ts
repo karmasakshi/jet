@@ -22,7 +22,7 @@ describe('RootComponent', () => {
   let fixture: ComponentFixture<RootComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         RouterModule.forRoot([]),

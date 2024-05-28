@@ -11,7 +11,7 @@ describe('HomePageComponent', () => {
   let fixture: ComponentFixture<HomePageComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       imports: [getTranslocoModule(), HomePageComponent],
       providers: [
         { provide: LoggerService, useClass: MockLoggerService },
