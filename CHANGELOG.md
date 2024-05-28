@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/karmasakshi/jet/compare/v1.0.7...v1.1.0) (2024-05-28)
+
+
+### Features
+
+* **general:** add v18 theme ([b8dbf27](https://github.com/karmasakshi/jet/commit/b8dbf2721b9802cf403d4cabd85010e327c5c0f7))
+* **general:** migrate to angular v18 ([ee6e417](https://github.com/karmasakshi/jet/commit/ee6e4176a4f8dfb763ac6a56693e6a0823289abb))
+
 ## [1.0.7](https://github.com/karmasakshi/jet/compare/v1.0.6...v1.0.7) (2024-05-27)
 
 
