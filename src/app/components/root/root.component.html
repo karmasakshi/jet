@@ -54,7 +54,7 @@
         } @else {
           <ng-container *ngTemplateOutlet="logo" />
         }
-        <span>{{ title$ | async }}</span>
+        <small>{{ title$ | async }}</small>
         <div style="flex: 1"></div>
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
@@ -90,6 +90,7 @@
       routerLink="/"
     >
       <img
+        style="transform: scale(0.75)"
         [alt]="t('logo')"
         ngSrc="assets/logo.svg"
         width="24"

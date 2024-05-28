@@ -2,44 +2,67 @@
 
 @include mat.core();
 
-$noto-sans-typography: mat.define-typography-config(
-  $font-family: '"Noto Sans", sans-serif',
+$dark-color: (
+  theme-type: dark,
+  primary: mat.$red-palette,
 );
 
-$noto-sans-arabic-typography: mat.define-typography-config(
-  $font-family: '"Noto Sans Arabic", sans-serif',
+$light-color: (
+  theme-type: light,
+  primary: mat.$azure-palette,
 );
 
-$default-theme: mat.define-light-theme(
+$noto-sans-typography: (
+  plain-family: (
+    'Noto Sans',
+    sans-serif,
+  ),
+  brand-family: (
+    'Noto Sans',
+    sans-serif,
+  ),
+);
+
+$noto-sans-arabic-typography: (
+  plain-family: (
+    'Noto Sans Arabic',
+    sans-serif,
+  ),
+  brand-family: (
+    'Noto Sans Arabic',
+    sans-serif,
+  ),
+);
+
+$base-theme: mat.define-theme(
   (
-    color: (
-      primary: mat.define-palette(mat.$brown-palette, 500),
-      accent: mat.define-palette(mat.$amber-palette, 500),
-    ),
+    color: $light-color,
     typography: $noto-sans-typography,
-    density: 0,
   )
 );
 
-$dark-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: mat.define-palette(mat.$amber-palette, 500),
-      accent: mat.define-palette(mat.$brown-palette, 500),
-    ),
-  )
-);
+html {
+  @include mat.all-component-themes($base-theme);
+  @include mat.typography-hierarchy($base-theme);
 
-@include mat.all-component-themes($default-theme);
+  &.jet-font-noto-sans-arabic {
+    $override-theme: mat.define-theme(
+      (
+        typography: $noto-sans-arabic-typography,
+      )
+    );
+    @include mat.all-component-typographies($override-theme);
+    @include mat.typography-hierarchy($override-theme);
+  }
 
-@include mat.typography-hierarchy($noto-sans-typography);
-
-.jet-font-noto-sans-arabic {
-  @include mat.all-component-typographies($noto-sans-arabic-typography);
-}
-
-.jet-theme-dark {
-  @include mat.all-component-colors($dark-theme);
+  &.jet-theme-dark {
+    $override-theme: mat.define-theme(
+      (
+        color: $dark-color,
+      )
+    );
+    @include mat.all-component-colors($override-theme);
+  }
 }
 
 body {
@@ -53,20 +76,25 @@ body {
     }
 
     .mat-drawer-side {
-      border: unset;
+      width: 240px;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+      border-radius: unset;
     }
 
     .mat-drawer-content {
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        background-color: rgba(0, 0, 0, 0.03);
         bottom: 0;
         left: 0;
         position: fixed;
         right: 0;
 
         .mat-mdc-tab-link-container {
+          border-bottom: unset;
           padding-bottom: env(safe-area-inset-bottom);
         }
       }
@@ -162,21 +190,14 @@ body {
   }
 }
 
-.mat-mdc-button {
-  letter-spacing: unset !important;
-}
-
 .mat-mdc-card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px !important;
+  overflow: hidden;
+
   .mat-mdc-card-content {
     box-sizing: border-box;
     overflow-x: auto;
   }
-  overflow: hidden;
-}
-
-.mat-mdc-list-item {
-  border-radius: 4px !important;
 }
 
 .mat-mdc-snack-bar-container {
