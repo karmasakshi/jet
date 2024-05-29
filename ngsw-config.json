@@ -7,6 +7,7 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
+          "/apple-touch-icon.png",
           "/favicon.ico",
           "/index.html",
           "/manifest.webmanifest",

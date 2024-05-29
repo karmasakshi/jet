@@ -41,7 +41,7 @@ $base-theme: mat.define-theme(
   )
 );
 
-html {
+body {
   @include mat.all-component-themes($base-theme);
   @include mat.typography-hierarchy($base-theme);
 
@@ -63,9 +63,7 @@ html {
     );
     @include mat.all-component-colors($override-theme);
   }
-}
 
-body {
   margin: 0;
 
   .mat-drawer-container {

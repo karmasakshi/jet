@@ -1,5 +1,8 @@
 <ng-container *transloco="let t; prefix: 'jet-root'">
-  <mat-sidenav-container [dir]="settings.languageOption.directionality">
+  <mat-sidenav-container
+    class="mat-typography"
+    [dir]="settings.languageOption.directionality"
+  >
     <mat-sidenav
       #drawer
       fixedInViewport

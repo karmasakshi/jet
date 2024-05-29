@@ -184,10 +184,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
   private _addFontClass(availableFont: AvailableFont): void {
     if (availableFont !== DEFAULT_FONT) {
-      this._renderer2.addClass(
-        document.documentElement,
-        `jet-font-${availableFont}`,
-      );
+      this._renderer2.addClass(document.body, `jet-font-${availableFont}`);
     }
   }
 
@@ -199,10 +196,7 @@ export class RootComponent implements OnInit, OnDestroy {
     }
 
     if (availableTheme !== DEFAULT_THEME) {
-      this._renderer2.addClass(
-        document.documentElement,
-        `jet-theme-${availableTheme}`,
-      );
+      this._renderer2.addClass(document.body, `jet-theme-${availableTheme}`);
     }
   }
 
