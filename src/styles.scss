@@ -34,7 +34,7 @@ $noto-sans-arabic-typography: (
   ),
 );
 
-$base-theme: mat.define-theme(
+$default-theme: mat.define-theme(
   (
     color: $light-color,
     typography: $noto-sans-typography,
@@ -42,8 +42,8 @@ $base-theme: mat.define-theme(
 );
 
 body {
-  @include mat.all-component-themes($base-theme);
-  @include mat.typography-hierarchy($base-theme);
+  @include mat.all-component-themes($default-theme);
+  @include mat.typography-hierarchy($default-theme);
 
   &.jet-font-noto-sans-arabic {
     $override-theme: mat.define-theme(
@@ -70,13 +70,14 @@ body {
     min-height: 100vh;
 
     .mat-drawer {
+      border-radius: unset;
+      width: 240px;
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
     }
 
     .mat-drawer-side {
-      width: 240px;
+      border: unset;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-      border-radius: unset;
     }
 
     .mat-drawer-content {
