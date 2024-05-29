@@ -60,7 +60,7 @@
         } @else {
           <ng-container *ngTemplateOutlet="logo" />
         }
-        <small>{{ title$ | async }}</small>
+        <span>{{ title$ | async }}</span>
         <div style="flex: 1"></div>
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>

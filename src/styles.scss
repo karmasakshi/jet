@@ -2,16 +2,6 @@
 
 @include mat.core();
 
-$dark-color: (
-  theme-type: dark,
-  primary: mat.$red-palette,
-);
-
-$light-color: (
-  theme-type: light,
-  primary: mat.$azure-palette,
-);
-
 $noto-sans-typography: (
   plain-family: (
     'Noto Sans',
@@ -34,10 +24,25 @@ $noto-sans-arabic-typography: (
   ),
 );
 
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$red-palette,
+    ),
+  )
+);
+
 $default-theme: mat.define-theme(
   (
-    color: $light-color,
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+    ),
     typography: $noto-sans-typography,
+    density: (
+      scale: 0,
+    ),
   )
 );
 
@@ -56,12 +61,7 @@ body {
   }
 
   &.jet-theme-dark {
-    $override-theme: mat.define-theme(
-      (
-        color: $dark-color,
-      )
-    );
-    @include mat.all-component-colors($override-theme);
+    @include mat.all-component-colors($dark-theme);
   }
 
   margin: 0;
