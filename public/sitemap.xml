@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://jet.jet</loc>
-        <changefreq>daily</changefreq>
-        <lastmod>2023-12-31</lastmod>
-        <priority>0.5</priority>
-    </url>
+  <url>
+    <loc>https://jet.jet</loc>
+    <changefreq>daily</changefreq>
+    <lastmod>2023-12-31</lastmod>
+    <priority>0.5</priority>
+  </url>
 </urlset>
