@@ -9,7 +9,7 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar>
+      <mat-toolbar style="background-color: inherit">
         <ng-container *ngTemplateOutlet="logo" />
       </mat-toolbar>
       <div class="jet-drawer-content">
@@ -42,7 +42,10 @@
         >
         </mat-progress-bar>
       }
-      <mat-toolbar [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
+      <mat-toolbar
+        style="background-color: inherit"
+        [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
+      >
         @if (!isSmallViewport) {
           <button
             jetAnalytics
