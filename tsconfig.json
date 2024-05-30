@@ -21,11 +21,11 @@
     "lib": ["ES2022", "dom"],
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
+    "baseUrl": "./",
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": "./",
     "paths": {
       "@jet/assets/*": ["public/assets/*"],
       "@jet/components/*": ["src/app/components/*"],

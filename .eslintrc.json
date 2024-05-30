@@ -12,8 +12,6 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "sort-keys": "error",
-        "@typescript-eslint/no-inferrable-types": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -29,7 +27,9 @@
             "prefix": "jet",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "sort-keys": "error"
       },
       "parserOptions": {
         "project": "tsconfig.json"
