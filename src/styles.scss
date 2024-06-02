@@ -31,15 +31,55 @@ $default-theme: mat.define-light-theme(
 );
 
 body {
-  @include mat.all-component-themes($default-theme);
+  @include mat.core-theme($default-theme);
+
+  @include mat.button-theme($default-theme);
+  @include mat.card-theme($default-theme);
+  @include mat.icon-theme($default-theme);
+  @include mat.icon-button-theme($default-theme);
+  @include mat.list-theme($default-theme);
+  @include mat.menu-theme($default-theme);
+  @include mat.progress-bar-theme($default-theme);
+  @include mat.sidenav-theme($default-theme);
+  @include mat.snack-bar-theme($default-theme);
+  @include mat.tabs-theme($default-theme);
+  @include mat.toolbar-theme($default-theme);
+  @include mat.tooltip-theme($default-theme);
+
   @include mat.typography-hierarchy($noto-sans-typography);
 
   &.jet-font-noto-sans-arabic {
-    @include mat.all-component-typographies($noto-sans-arabic-typography);
+    @include mat.button-typography($noto-sans-arabic-typography);
+    @include mat.card-typography($noto-sans-arabic-typography);
+    @include mat.icon-typography($noto-sans-arabic-typography);
+    @include mat.icon-button-typography($noto-sans-arabic-typography);
+    @include mat.list-typography($noto-sans-arabic-typography);
+    @include mat.menu-typography($noto-sans-arabic-typography);
+    @include mat.progress-bar-typography($noto-sans-arabic-typography);
+    @include mat.sidenav-typography($noto-sans-arabic-typography);
+    @include mat.snack-bar-typography($noto-sans-arabic-typography);
+    @include mat.tabs-typography($noto-sans-arabic-typography);
+    @include mat.toolbar-typography($noto-sans-arabic-typography);
+    @include mat.tooltip-typography($noto-sans-arabic-typography);
+
+    @include mat.typography-hierarchy($noto-sans-arabic-typography);
   }
 
   &.jet-theme-dark {
-    @include mat.all-component-colors($dark-theme);
+    @include mat.core-color($dark-theme);
+
+    @include mat.button-color($dark-theme);
+    @include mat.card-color($dark-theme);
+    @include mat.icon-color($dark-theme);
+    @include mat.icon-button-color($dark-theme);
+    @include mat.list-color($dark-theme);
+    @include mat.menu-color($dark-theme);
+    @include mat.progress-bar-color($dark-theme);
+    @include mat.sidenav-color($dark-theme);
+    @include mat.snack-bar-color($dark-theme);
+    @include mat.tabs-color($dark-theme);
+    @include mat.toolbar-color($dark-theme);
+    @include mat.tooltip-color($dark-theme);
   }
 
   margin: 0;
