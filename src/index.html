@@ -98,6 +98,12 @@
       name="twitter:card"
       content="summary_large_image"
     />
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; connect-src 'self'; font-src https://fonts.gstatic.com; img-src 'self'; manifest-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    />
   </head>
   <body class="mat-app-background">
     <jet-root></jet-root>
