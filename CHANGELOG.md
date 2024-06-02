@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/karmasakshi/jet/compare/v1.2.0...v1.3.0) (2024-06-02)
+
+
+### Features
+
+* **general:** add csp ([33e59a5](https://github.com/karmasakshi/jet/commit/33e59a5c45b23084944b1a0c813a66e45244ace5))
+
 ## [1.2.0](https://github.com/karmasakshi/jet/compare/v1.1.0...v1.2.0) (2024-06-02)
 
 
