@@ -62,7 +62,7 @@
     "karma-jasmine-html-reporter": "^2.1.0",
     "lint-staged": "^15.2.5",
     "ngx-build-plus": "^17.0.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.0.0-alpha.24"
   }

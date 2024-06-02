@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { MockLoggerService } from '@jet/services/logger/logger.service.mock';
@@ -10,17 +10,15 @@ describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [getTranslocoModule(), HomePageComponent],
       providers: [
         { provide: LoggerService, useClass: MockLoggerService },
         { provide: TitleService, useClass: MockTitleService },
       ],
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

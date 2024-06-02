@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { AlertService } from '@jet/services/alert/alert.service';
@@ -17,8 +17,8 @@ describe('SettingsPageComponent', () => {
   let component: SettingsPageComponent;
   let fixture: ComponentFixture<SettingsPageComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: false,
@@ -34,9 +34,7 @@ describe('SettingsPageComponent', () => {
         { provide: TitleService, useClass: MockTitleService },
       ],
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SettingsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

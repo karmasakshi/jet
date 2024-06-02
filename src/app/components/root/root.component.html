@@ -34,9 +34,7 @@
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
-          [ngClass]="{
-            'jet-invisible': !loaderConfiguration.isVisible
-          }"
+          [ngClass]="{ 'jet-invisible': !loaderConfiguration.isVisible }"
           [mode]="loaderConfiguration.mode"
           [value]="loaderConfiguration.value"
           [bufferValue]="loaderConfiguration.bufferValue"
