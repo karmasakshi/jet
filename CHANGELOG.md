@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/karmasakshi/jet/compare/v1.1.0...v1.2.0) (2024-06-02)
+
+
+### Features
+
+* **general:** revert to v17 ([f6bf2e8](https://github.com/karmasakshi/jet/commit/f6bf2e8830cbf8cf99e8a9e19b453cd2a89f990e))
+
 ## [1.1.0](https://github.com/karmasakshi/jet/compare/v1.0.7...v1.1.0) (2024-05-28)
 
 
