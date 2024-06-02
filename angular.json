@@ -24,10 +24,12 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/apple-touch-icon.png",
+              "src/robots.txt",
+              "src/sitemap.xml"
             ],
             "styles": ["src/styles.scss"],
             "scripts": []
@@ -70,7 +72,10 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "jet:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -79,10 +84,12 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/apple-touch-icon.png",
+              "src/robots.txt",
+              "src/sitemap.xml"
             ],
             "styles": ["src/styles.scss"],
             "scripts": []

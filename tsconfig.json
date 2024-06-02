@@ -27,7 +27,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@jet/assets/*": ["public/assets/*"],
+      "@jet/assets/*": ["src/assets/*"],
       "@jet/components/*": ["src/app/components/*"],
       "@jet/constants/*": ["src/app/constants/*"],
       "@jet/directives/*": ["src/app/directives/*"],

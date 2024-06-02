@@ -2,62 +2,40 @@
 
 @include mat.core();
 
-$noto-sans-typography: (
-  plain-family: (
-    'Noto Sans',
-    sans-serif,
-  ),
-  brand-family: (
-    'Noto Sans',
-    sans-serif,
-  ),
+$noto-sans-typography: mat.define-typography-config(
+  $font-family: '"Noto Sans", sans-serif',
 );
 
-$noto-sans-arabic-typography: (
-  plain-family: (
-    'Noto Sans Arabic',
-    sans-serif,
-  ),
-  brand-family: (
-    'Noto Sans Arabic',
-    sans-serif,
-  ),
+$noto-sans-arabic-typography: mat.define-typography-config(
+  $font-family: '"Noto Sans Arabic", sans-serif',
 );
 
-$dark-theme: mat.define-theme(
+$dark-theme: mat.define-dark-theme(
   (
     color: (
-      theme-type: dark,
-      primary: mat.$red-palette,
+      primary: mat.define-palette(mat.$amber-palette, 500),
+      accent: mat.define-palette(mat.$brown-palette, 500),
     ),
   )
 );
 
-$default-theme: mat.define-theme(
+$default-theme: mat.define-light-theme(
   (
     color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
+      primary: mat.define-palette(mat.$brown-palette, 500),
+      accent: mat.define-palette(mat.$amber-palette, 500),
     ),
     typography: $noto-sans-typography,
-    density: (
-      scale: 0,
-    ),
+    density: 0,
   )
 );
 
 body {
   @include mat.all-component-themes($default-theme);
-  @include mat.typography-hierarchy($default-theme);
+  @include mat.typography-hierarchy($noto-sans-typography);
 
   &.jet-font-noto-sans-arabic {
-    $override-theme: mat.define-theme(
-      (
-        typography: $noto-sans-arabic-typography,
-      )
-    );
-    @include mat.all-component-typographies($override-theme);
-    @include mat.typography-hierarchy($override-theme);
+    @include mat.all-component-typographies($noto-sans-arabic-typography);
   }
 
   &.jet-theme-dark {
@@ -70,7 +48,6 @@ body {
     min-height: 100vh;
 
     .mat-drawer {
-      border-radius: unset;
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
     }
 
@@ -188,6 +165,10 @@ body {
   }
 }
 
+.mat-mdc-button {
+  letter-spacing: unset !important;
+}
+
 .mat-mdc-card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px !important;
   overflow: hidden;
@@ -196,6 +177,10 @@ body {
     box-sizing: border-box;
     overflow: auto;
   }
+}
+
+.mat-mdc-list-item {
+  border-radius: 4px !important;
 }
 
 .mat-mdc-snack-bar-container {
