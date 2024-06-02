@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/karmasakshi/jet/compare/v1.3.0...v1.3.1) (2024-06-02)
+
+
+### Bug Fixes
+
+* **general:** remove unused styles ([a8b805b](https://github.com/karmasakshi/jet/commit/a8b805be1102ee239c811140c7a7ca798ecab7e8))
+
 ## [1.3.0](https://github.com/karmasakshi/jet/compare/v1.2.0...v1.3.0) (2024-06-02)
 
 
