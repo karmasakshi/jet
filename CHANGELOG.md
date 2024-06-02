@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/karmasakshi/jet/compare/v1.3.1...v1.4.0) (2024-06-02)
+
+
+### Features
+
+* **general:** migrate to v18 ([9c1ca51](https://github.com/karmasakshi/jet/commit/9c1ca51949c230d967cc30adca3035794d6bfa15))
+
 ## [1.3.1](https://github.com/karmasakshi/jet/compare/v1.3.0...v1.3.1) (2024-06-02)
 
 
