@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { MockLoggerService } from '@jet/services/logger/logger.service.mock';
+import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { TitleService } from '@jet/services/title/title.service';
-import { MockTitleService } from '@jet/services/title/title.service.mock';
+import { TitleServiceMock } from '@jet/services/title/title.service.mock';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
@@ -14,8 +14,8 @@ describe('HomePageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [getTranslocoModule(), HomePageComponent],
       providers: [
-        { provide: LoggerService, useClass: MockLoggerService },
-        { provide: TitleService, useClass: MockTitleService },
+        { provide: LoggerService, useClass: LoggerServiceMock },
+        { provide: TitleService, useClass: TitleServiceMock },
       ],
     }).compileComponents();
 

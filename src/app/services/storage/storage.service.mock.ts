@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-export class MockStorageService {
+export class StorageServiceMock {
   public clearLocalStorage(): void {
     // Mock implementation, do nothing
   }

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { LoggerService } from '../logger/logger.service';
-import { MockLoggerService } from '../logger/logger.service.mock';
+import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { StorageService } from '../storage/storage.service';
-import { MockStorageService } from '../storage/storage.service.mock';
+import { StorageServiceMock } from '../storage/storage.service.mock';
 import { SettingsService } from './settings.service';
 
 describe('SettingsService', () => {
@@ -11,8 +11,8 @@ describe('SettingsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: LoggerService, useClass: MockLoggerService },
-        { provide: StorageService, useClass: MockStorageService },
+        { provide: LoggerService, useClass: LoggerServiceMock },
+        { provide: StorageService, useClass: StorageServiceMock },
       ],
     });
     service = TestBed.inject(SettingsService);

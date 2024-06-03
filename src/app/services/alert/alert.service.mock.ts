@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-export class MockAlertService {
+export class AlertServiceMock {
   public showAlert(
     _message: string,
     _cta?: string,

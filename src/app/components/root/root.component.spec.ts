@@ -4,17 +4,17 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { AlertService } from '@jet/services/alert/alert.service';
-import { MockAlertService } from '@jet/services/alert/alert.service.mock';
+import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoaderService } from '@jet/services/loader/loader.service';
-import { MockLoaderService } from '@jet/services/loader/loader.service.mock';
+import { LoaderServiceMock } from '@jet/services/loader/loader.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { MockLoggerService } from '@jet/services/logger/logger.service.mock';
+import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { SettingsService } from '@jet/services/settings/settings.service';
-import { MockSettingsService } from '@jet/services/settings/settings.service.mock';
+import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
 import { StorageService } from '@jet/services/storage/storage.service';
-import { MockStorageService } from '@jet/services/storage/storage.service.mock';
+import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
 import { TitleService } from '@jet/services/title/title.service';
-import { MockTitleService } from '@jet/services/title/title.service.mock';
+import { TitleServiceMock } from '@jet/services/title/title.service.mock';
 import { RootComponent } from './root.component';
 
 describe('RootComponent', () => {
@@ -33,12 +33,12 @@ describe('RootComponent', () => {
         RootComponent,
       ],
       providers: [
-        { provide: AlertService, useClass: MockAlertService },
-        { provide: LoaderService, useClass: MockLoaderService },
-        { provide: LoggerService, useClass: MockLoggerService },
-        { provide: SettingsService, useClass: MockSettingsService },
-        { provide: StorageService, useClass: MockStorageService },
-        { provide: TitleService, useClass: MockTitleService },
+        { provide: AlertService, useClass: AlertServiceMock },
+        { provide: LoaderService, useClass: LoaderServiceMock },
+        { provide: LoggerService, useClass: LoggerServiceMock },
+        { provide: SettingsService, useClass: SettingsServiceMock },
+        { provide: StorageService, useClass: StorageServiceMock },
+        { provide: TitleService, useClass: TitleServiceMock },
       ],
     }).compileComponents();
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-export class MockLoggerService {
+export class LoggerServiceMock {
   public logComponentInitialization(_componentName: string): void {
     // Mock implementation, do nothing
   }

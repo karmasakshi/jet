@@ -3,7 +3,7 @@
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { Settings } from '@jet/interfaces/settings.interface';
 
-export class MockSettingsService {
+export class SettingsServiceMock {
   public get settings(): Settings {
     return DEFAULT_SETTINGS;
   }
