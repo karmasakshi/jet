@@ -100,9 +100,6 @@ body {
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
-        -webkit-backdrop-filter: blur(16px);
-        backdrop-filter: blur(16px);
-        background-color: rgba(0, 0, 0, 0.03);
         bottom: 0;
         left: 0;
         position: fixed;

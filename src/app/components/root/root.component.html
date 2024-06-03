@@ -54,7 +54,7 @@
             mat-icon-button
             (click)="drawer.toggle()"
           >
-            <mat-icon>menu</mat-icon>
+            <mat-icon aria-hidden="false">menu</mat-icon>
           </button>
         } @else {
           <ng-container *ngTemplateOutlet="logo" />
@@ -69,6 +69,7 @@
       </mat-tab-nav-panel>
       @if (isSmallViewport) {
         <nav
+          backgroundColor="primary"
           mat-tab-nav-bar
           [tabPanel]="tabNavPanel"
         >
