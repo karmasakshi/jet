@@ -8,8 +8,7 @@ export class MockSettingsService {
     return DEFAULT_SETTINGS;
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public storeAndUpdateSettings(partialSettings: Partial<Settings>): void {
+  public storeAndUpdateSettings(_partialSettings: Partial<Settings>): void {
     // Mock implementation, do nothing
   }
 }

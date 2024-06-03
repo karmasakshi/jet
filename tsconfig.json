@@ -35,6 +35,7 @@
       "@jet/interfaces/*": ["src/app/interfaces/*"],
       "@jet/modules/*": ["src/app/modules/*"],
       "@jet/services/*": ["src/app/services/*"],
+      "@jet/tokens/*": ["src/app/tokens/*"],
       "@jet/types/*": ["src/app/types/*"]
     }
   },

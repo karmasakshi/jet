@@ -29,6 +29,10 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
+      '@typescript-eslint/consistent-generic-constructors': [
+        'error',
+        'type-annotation',
+      ],
       '@typescript-eslint/no-inferrable-types': 'off',
       '@typescript-eslint/no-unused-expressions': [
         'error',

@@ -9,33 +9,27 @@ export class MockStorageService {
     // Mock implementation, do nothing
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public getLocalStorageItem<T>(key: string): null | T {
+  public getLocalStorageItem<T>(_key: string): null | T {
     return null; // Mock implementation, always return null
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public getSessionStorageItem<T>(key: string): null | T {
+  public getSessionStorageItem<T>(_key: string): null | T {
     return null; // Mock implementation, always return null
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public setLocalStorageItem(key: string, value: unknown): void {
+  public setLocalStorageItem(_key: string, _value: unknown): void {
     // Mock implementation, do nothing
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public setSessionStorageItem(key: string, value: unknown): void {
+  public setSessionStorageItem(_key: string, _value: unknown): void {
     // Mock implementation, do nothing
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public removeLocalStorageItem(key: string): void {
+  public removeLocalStorageItem(_key: string): void {
     // Mock implementation, do nothing
   }
 
-  // @ts-expect-error: noUnusedParameters
-  public removeSessionStorageItem(key: string): void {
+  public removeSessionStorageItem(_key: string): void {
     // Mock implementation, do nothing
   }
 }
