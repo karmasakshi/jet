@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/karmasakshi/jet/compare/v1.4.0...v1.4.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **general:** sidenav shadow ([2a36422](https://github.com/karmasakshi/jet/commit/2a3642207d02c2f51bc50c59a5057ec043f4f20a))
+
 ## [1.4.0](https://github.com/karmasakshi/jet/compare/v1.3.1...v1.4.0) (2024-06-02)
 
 
