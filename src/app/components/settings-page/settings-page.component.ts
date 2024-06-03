@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { SwUpdate } from '@angular/service-worker';
+import { PageClass } from '@jet/classes/page.class';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
 import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
@@ -35,7 +36,7 @@ import packageJson from 'package.json';
   styleUrl: './settings-page.component.scss',
   templateUrl: './settings-page.component.html',
 })
-export class SettingsPageComponent implements OnInit {
+export class SettingsPageComponent extends PageClass implements OnInit {
   public languageOptions: LanguageOption[];
   public lastUpdateCheck: string;
   public settings: Settings;
@@ -46,12 +47,26 @@ export class SettingsPageComponent implements OnInit {
     private readonly _datePipe: DatePipe,
     private readonly _swUpdate: SwUpdate,
     private readonly _alertService: AlertService,
-    private readonly _loggerService: LoggerService,
+    protected override readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
-    public readonly _titleService: TitleService,
-    private readonly _translocoService: TranslocoService,
+    protected override readonly _titleService: TitleService,
+    protected override readonly _translocoService: TranslocoService,
   ) {
+    /**
+     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
+     *
+     * t(jet-settings-page.title)
+     */
+
+    super(
+      'SettingsPageComponent',
+      'jet-settings-page.title',
+      _loggerService,
+      _titleService,
+      _translocoService,
+    );
+
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
@@ -78,12 +93,6 @@ export class SettingsPageComponent implements OnInit {
     this.themeOptions = THEME_OPTIONS;
 
     this.version = packageJson.version;
-
-    this._titleService.setTitle(
-      this._translocoService.translate('jet-settings-page.title'),
-    );
-
-    this._loggerService.logComponentInitialization('SettingsPageComponent');
   }
 
   public ngOnInit(): void {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageClass } from '@jet/classes/page.class';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TitleService } from '@jet/services/title/title.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -10,16 +11,24 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
   styleUrl: './home-page.component.scss',
   templateUrl: './home-page.component.html',
 })
-export class HomePageComponent {
+export class HomePageComponent extends PageClass {
   public constructor(
-    private readonly _loggerService: LoggerService,
-    private readonly _titleService: TitleService,
-    private readonly _translocoService: TranslocoService,
+    protected override readonly _loggerService: LoggerService,
+    protected override readonly _titleService: TitleService,
+    protected override readonly _translocoService: TranslocoService,
   ) {
-    this._titleService.setTitle(
-      this._translocoService.translate('jet-home-page.title'),
-    );
+    /**
+     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
+     *
+     * t(jet-home-page.title)
+     */
 
-    this._loggerService.logComponentInitialization('HomePageComponent');
+    super(
+      'HomePageComponent',
+      'jet-home-page.title',
+      _loggerService,
+      _titleService,
+      _translocoService,
+    );
   }
 }
