@@ -84,7 +84,7 @@
         [jetAnalyticsEventData]="languageOption.value"
         type="button"
         [disabled]="settings.languageOption.value === languageOption.value"
-        (click)="setLanguage(languageOption)"
+        (click)="setLanguageOption(languageOption)"
         mat-menu-item
       >
         <mat-icon>{{ languageOption.icon }}</mat-icon>
@@ -104,7 +104,7 @@
         [jetAnalyticsEventData]="themeOption.value"
         type="button"
         [disabled]="settings.themeOption.value === themeOption.value"
-        (click)="setTheme(themeOption)"
+        (click)="setThemeOption(themeOption)"
         mat-menu-item
       >
         <mat-icon>{{ themeOption.icon }}</mat-icon>

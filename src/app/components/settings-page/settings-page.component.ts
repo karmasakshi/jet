@@ -141,7 +141,7 @@ export class SettingsPageComponent extends PageClass implements OnInit {
     this.reload();
   }
 
-  public setLanguage(languageOption: LanguageOption): void {
+  public setLanguageOption(languageOption: LanguageOption): void {
     this._settingsService.storeAndUpdateSettings({
       languageOption,
     });
@@ -155,7 +155,7 @@ export class SettingsPageComponent extends PageClass implements OnInit {
     );
   }
 
-  public setTheme(themeOption: ThemeOption): void {
+  public setThemeOption(themeOption: ThemeOption): void {
     this._settingsService.storeAndUpdateSettings({
       themeOption,
     });
