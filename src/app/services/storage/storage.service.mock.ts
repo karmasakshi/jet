@@ -10,11 +10,11 @@ export class StorageServiceMock {
   }
 
   public getLocalStorageItem<T>(_key: string): null | T {
-    return null; // Mock implementation, always return null
+    return null;
   }
 
   public getSessionStorageItem<T>(_key: string): null | T {
-    return null; // Mock implementation, always return null
+    return null;
   }
 
   public setLocalStorageItem(_key: string, _value: unknown): void {

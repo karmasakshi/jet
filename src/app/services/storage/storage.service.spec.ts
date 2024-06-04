@@ -55,7 +55,7 @@ describe('StorageService', () => {
     const value = 'value';
 
     service.setLocalStorageItem(key, value);
-    expect(service.getLocalStorageItem<string>(key)).toBe(value);
+    expect(service.getLocalStorageItem(key)).toBe(value);
   });
 
   it('should set and get item from sessionStorage', () => {
@@ -72,7 +72,7 @@ describe('StorageService', () => {
 
     localStorage.setItem(key, value);
     service.removeLocalStorageItem(key);
-    expect(service.getLocalStorageItem<string>(key)).toBeNull();
+    expect(service.getLocalStorageItem(key)).toBeNull();
   });
 
   it('should remove item from sessionStorage', () => {

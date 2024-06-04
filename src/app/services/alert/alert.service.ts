@@ -17,8 +17,8 @@ export class AlertService {
 
   public constructor(
     private readonly _matSnackBar: MatSnackBar,
-    private readonly _settingsService: SettingsService,
     private readonly _loggerService: LoggerService,
+    private readonly _settingsService: SettingsService,
   ) {
     this._directionality =
       this._settingsService.settings.languageOption.directionality;

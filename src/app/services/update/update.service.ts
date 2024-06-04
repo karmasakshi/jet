@@ -11,7 +11,7 @@ import { StorageService } from '../storage/storage.service';
   providedIn: 'root',
 })
 export class UpdateService {
-  public readonly swUpdateSubscription$: Subscription;
+  public readonly swUpdateSubscription: Subscription;
   public readonly lastUpdateCheckTimestamp$: Observable<string>;
 
   private _isReloadPending: boolean;
@@ -24,12 +24,12 @@ export class UpdateService {
     private readonly _loggerService: LoggerService,
     private readonly _storageService: StorageService,
   ) {
-    this.swUpdateSubscription$ = this._subscribeToUpdates();
+    this.swUpdateSubscription = this._subscribeToUpdates();
 
     this._isReloadPending = false;
 
     this._lastUpdateCheckTimestampSubject$ = new BehaviorSubject<string>(
-      this._storageService.getLocalStorageItem(
+      this._storageService.getLocalStorageItem<string>(
         STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
       ) ?? new Date().toISOString(),
     );

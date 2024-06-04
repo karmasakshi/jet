@@ -9,15 +9,15 @@ import { LoggerService } from '../logger/logger.service';
 export class TitleService {
   public readonly title$: Observable<string>;
 
-  private readonly _titleSubject: Subject<string>;
+  private readonly _titleSubject$: Subject<string>;
 
   public constructor(
     private readonly _title: Title,
     private readonly _loggerService: LoggerService,
   ) {
-    this._titleSubject = new Subject<string>();
+    this._titleSubject$ = new Subject<string>();
 
-    this.title$ = this._titleSubject.asObservable();
+    this.title$ = this._titleSubject$.asObservable();
 
     this._loggerService.logServiceInitialization('TitleService');
   }
@@ -27,7 +27,7 @@ export class TitleService {
 
     Promise.resolve()
       .then((): void => {
-        this._titleSubject.next(title);
+        this._titleSubject$.next(title);
       })
       .catch((error: Error): void => {
         this._loggerService.logError(error);

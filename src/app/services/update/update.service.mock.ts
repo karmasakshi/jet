@@ -1,13 +1,9 @@
 import { Observable, Subscription, of } from 'rxjs';
 
 export class UpdateServiceMock {
-  public readonly swUpdateSubscription: Subscription;
-  public readonly lastUpdateCheckTimestamp$: Observable<string>;
+  public readonly swUpdateSubscription: Subscription = Subscription.EMPTY;
+  public readonly lastUpdateCheckTimestamp$: Observable<string> = of('');
 
-  public constructor() {
-    this.swUpdateSubscription = Subscription.EMPTY;
-    this.lastUpdateCheckTimestamp$ = of('');
-  }
   public checkForUpdate(): void {
     // Mock implementation, do nothing
   }

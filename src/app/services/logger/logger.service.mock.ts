@@ -13,7 +13,7 @@ export class LoggerServiceMock {
     // Mock implementation, do nothing
   }
 
-  public logMessages(_messages: unknown[]): void {
+  public logMessages(..._messages: unknown[]): void {
     // Mock implementation, do nothing
   }
 

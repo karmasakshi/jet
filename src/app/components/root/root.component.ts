@@ -5,7 +5,7 @@ import {
   NgOptimizedImage,
   NgTemplateOutlet,
 } from '@angular/common';
-import { Component, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -27,6 +27,7 @@ import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { LoaderConfiguration } from '@jet/interfaces/loader-configuration.interface';
 import { Page } from '@jet/interfaces/page.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
+import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoaderService } from '@jet/services/loader/loader.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
@@ -36,6 +37,7 @@ import { AvailableFont } from '@jet/types/available-font.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import packageJson from 'package.json';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -62,7 +64,7 @@ import { filter } from 'rxjs/operators';
   styleUrl: './root.component.scss',
   templateUrl: './root.component.html',
 })
-export class RootComponent implements OnDestroy {
+export class RootComponent implements OnInit, OnDestroy {
   public activeUrl: Page['url'] | undefined;
   public readonly isSmallViewport: boolean;
   public readonly loaderConfiguration$: Observable<LoaderConfiguration>;
@@ -77,6 +79,7 @@ export class RootComponent implements OnDestroy {
     private readonly _breakpointObserver: BreakpointObserver,
     private readonly _renderer2: Renderer2,
     private readonly _router: Router,
+    private readonly _analyticsService: AnalyticsService,
     private readonly _loaderService: LoaderService,
     private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
@@ -129,7 +132,7 @@ export class RootComponent implements OnDestroy {
         this.activeUrl = navigationEnd.url;
       });
 
-    this._swUpdateSubscription = this._updateService.swUpdateSubscription$;
+    this._swUpdateSubscription = this._updateService.swUpdateSubscription;
 
     this._addFontClass(this.settings.languageOption.font);
 
@@ -138,6 +141,10 @@ export class RootComponent implements OnDestroy {
     this._setLanguage(this.settings.languageOption.value);
 
     this._loggerService.logComponentInitialization('RootComponent');
+  }
+
+  public ngOnInit(): void {
+    this._analyticsService.track('Start', packageJson.version);
   }
 
   public ngOnDestroy(): void {
