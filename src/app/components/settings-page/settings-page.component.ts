@@ -1,13 +1,11 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { SwUpdate } from '@angular/service-worker';
 import { PageClass } from '@jet/classes/page.class';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
-import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
 import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
@@ -18,11 +16,15 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
 import { TitleService } from '@jet/services/title/title.service';
+import { UpdateService } from '@jet/services/update/update.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
+import { Observable } from 'rxjs';
 
 @Component({
   imports: [
+    AsyncPipe,
+    DatePipe,
     MatCardModule,
     MatIconModule,
     MatListModule,
@@ -30,27 +32,25 @@ import packageJson from 'package.json';
     AnalyticsDirective,
     TranslocoModule,
   ],
-  providers: [DatePipe],
   selector: 'jet-settings-page',
   standalone: true,
   styleUrl: './settings-page.component.scss',
   templateUrl: './settings-page.component.html',
 })
-export class SettingsPageComponent extends PageClass implements OnInit {
-  public languageOptions: LanguageOption[];
-  public lastUpdateCheck: string;
-  public settings: Settings;
-  public themeOptions: ThemeOption[];
-  public version: string;
+export class SettingsPageComponent extends PageClass {
+  public readonly languageOptions: LanguageOption[];
+  public readonly lastUpdateCheckTimestamp$: Observable<string>;
+  public readonly settings: Settings;
+  public readonly themeOptions: ThemeOption[];
+  public readonly version: string;
 
   public constructor(
-    private readonly _datePipe: DatePipe,
-    private readonly _swUpdate: SwUpdate,
     private readonly _alertService: AlertService,
     protected override readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
     protected override readonly _titleService: TitleService,
+    private readonly _updateService: UpdateService,
     protected override readonly _translocoService: TranslocoService,
   ) {
     /**
@@ -76,9 +76,8 @@ export class SettingsPageComponent extends PageClass implements OnInit {
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
-    this.lastUpdateCheck = this._translocoService.translate(
-      'jet-settings-page.unknown',
-    );
+    this.lastUpdateCheckTimestamp$ =
+      this._updateService.lastUpdateCheckTimestamp$;
 
     this.settings = this._settingsService.settings;
 
@@ -95,44 +94,12 @@ export class SettingsPageComponent extends PageClass implements OnInit {
     this.version = packageJson.version;
   }
 
-  public ngOnInit(): void {
-    this._updateLastUpdateCheck();
-  }
-
   public checkForUpdate(): void {
-    this._alertService.showAlert(
-      this._translocoService.translate('alerts.checking-for-update'),
-      this._translocoService.translate('alerts.ok'),
-    );
-
-    this._swUpdate
-      .checkForUpdate()
-      .then((isUpdateFoundAndReady: boolean): void => {
-        this._storageService.setLocalStorageItem(
-          STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
-          new Date().toISOString(),
-        );
-        this._updateLastUpdateCheck();
-
-        if (!isUpdateFoundAndReady) {
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.no-update-found'),
-            this._translocoService.translate('alerts.ok'),
-          );
-        }
-      })
-      .catch((error: unknown): void => {
-        this._loggerService.logError(error);
-
-        this._alertService.showAlert(
-          this._translocoService.translate('alerts.something-went-wrong'),
-          this._translocoService.translate('alerts.ok'),
-        );
-      });
+    this._updateService.checkForUpdate();
   }
 
   public reload(): void {
-    location.reload();
+    window.location.reload();
   }
 
   public reset(): void {
@@ -141,10 +108,8 @@ export class SettingsPageComponent extends PageClass implements OnInit {
     this.reload();
   }
 
-  public setLanguageOption(languageOption: LanguageOption): void {
-    this._settingsService.storeAndUpdateSettings({
-      languageOption,
-    });
+  public updateSettings(partialSettings: Partial<Settings>): void {
+    this._settingsService.updateSettings(partialSettings);
 
     this._alertService.showAlert(
       this._translocoService.translate('alerts.reload-to-apply'),
@@ -153,29 +118,5 @@ export class SettingsPageComponent extends PageClass implements OnInit {
         this.reload();
       },
     );
-  }
-
-  public setThemeOption(themeOption: ThemeOption): void {
-    this._settingsService.storeAndUpdateSettings({
-      themeOption,
-    });
-
-    this._alertService.showAlert(
-      this._translocoService.translate('alerts.reload-to-apply'),
-      this._translocoService.translate('alerts.reload'),
-      (): void => {
-        this.reload();
-      },
-    );
-  }
-
-  private _updateLastUpdateCheck(): void {
-    this.lastUpdateCheck =
-      this._datePipe.transform(
-        this._storageService.getLocalStorageItem(
-          STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
-        ),
-        'medium',
-      ) ?? this._translocoService.translate('jet-settings-page.unknown');
   }
 }

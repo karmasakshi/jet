@@ -7,7 +7,8 @@
     "reload": "RELOAD",
     "reload-to-apply": "Reload to apply.",
     "reload-to-update": "Reload to update.",
-    "something-went-wrong": "Something went wrong."
+    "something-went-wrong": "Something went wrong.",
+    "updating-failed": "Updating failed, please retry."
   },
   "jet-home-page": {
     "title": "Home"
@@ -25,7 +26,7 @@
     "dark": "Dark",
     "english": "English",
     "language": "Language",
-    "last-checked": "Last checked: {{ lastUpdateCheck }}",
+    "last-checked": "Last checked:",
     "light": "Light",
     "reload": "Reload",
     "reload-description": "Preserve settings and reload",
@@ -33,7 +34,6 @@
     "reset-description": "Use default settings and reload",
     "theme": "Theme",
     "title": "Settings",
-    "unknown": "Unknown",
     "version": "v{{ version }}"
   }
 }

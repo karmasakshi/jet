@@ -35,9 +35,10 @@
         >
           <mat-icon matListItemIcon>sync</mat-icon>
           <span matListItemTitle>{{ t('check-for-update') }}</span>
-          <span matListItemLine>{{
-            t('last-checked', { lastUpdateCheck })
-          }}</span>
+          <span matListItemLine>
+            {{ t('last-checked') }}
+            {{ lastUpdateCheckTimestamp$ | async | date: 'medium' }}
+          </span>
         </button>
 
         <button
@@ -84,7 +85,7 @@
         [jetAnalyticsEventData]="languageOption.value"
         type="button"
         [disabled]="settings.languageOption.value === languageOption.value"
-        (click)="setLanguageOption(languageOption)"
+        (click)="updateSettings({ languageOption })"
         mat-menu-item
       >
         <mat-icon>{{ languageOption.icon }}</mat-icon>
@@ -104,7 +105,7 @@
         [jetAnalyticsEventData]="themeOption.value"
         type="button"
         [disabled]="settings.themeOption.value === themeOption.value"
-        (click)="setThemeOption(themeOption)"
+        (click)="updateSettings({ themeOption })"
         mat-menu-item
       >
         <mat-icon>{{ themeOption.icon }}</mat-icon>

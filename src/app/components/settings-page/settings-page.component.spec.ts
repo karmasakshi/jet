@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
@@ -11,6 +10,8 @@ import { StorageService } from '@jet/services/storage/storage.service';
 import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
 import { TitleService } from '@jet/services/title/title.service';
 import { TitleServiceMock } from '@jet/services/title/title.service.mock';
+import { UpdateService } from '@jet/services/update/update.service';
+import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
 import { SettingsPageComponent } from './settings-page.component';
 
 describe('SettingsPageComponent', () => {
@@ -19,19 +20,14 @@ describe('SettingsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: false,
-        }),
-        getTranslocoModule(),
-        SettingsPageComponent,
-      ],
+      imports: [getTranslocoModule(), SettingsPageComponent],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
         { provide: StorageService, useClass: StorageServiceMock },
         { provide: TitleService, useClass: TitleServiceMock },
+        { provide: UpdateService, useClass: UpdateServiceMock },
       ],
     }).compileComponents();
 

@@ -7,7 +7,8 @@
     "reload": "إعادة تحميل",
     "reload-to-apply": "إعادة تحميل للتطبيق.",
     "reload-to-update": "إعادة التحميل للتحديث.",
-    "something-went-wrong": "هناك خطأ ما."
+    "something-went-wrong": "هناك خطأ ما.",
+    "updating-failed": "فشل التحديث، يرجى إعادة المحاولة"
   },
   "jet-home-page": {
     "title": "بيت"
@@ -25,7 +26,7 @@
     "dark": "مظلم",
     "english": "إنجليزي",
     "language": "لغة",
-    "last-checked": "{{ lastUpdateCheck }} :آخر فحص",
+    "last-checked": "آخر فحص:",
     "light": "ضوء",
     "reload": "إعادة تحميل",
     "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
@@ -33,7 +34,6 @@
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "theme": "سمة",
     "title": "إعدادات",
-    "unknown": "مجهول",
     "version": "v{{ version }}"
   }
 }
