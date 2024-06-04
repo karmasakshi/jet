@@ -10,7 +10,7 @@ import { StorageService } from '../storage/storage.service';
   providedIn: 'root',
 })
 export class SettingsService {
-  public settings$: Observable<Settings>;
+  public readonly settings$: Observable<Settings>;
 
   private readonly _settingsSubject: BehaviorSubject<Settings>;
 
@@ -34,7 +34,7 @@ export class SettingsService {
     return this._settingsSubject.getValue();
   }
 
-  public storeAndUpdateSettings(partialSettings: Partial<Settings>): void {
+  public updateSettings(partialSettings: Partial<Settings>): void {
     const settings: Settings = {
       ...this.settings,
       ...partialSettings,

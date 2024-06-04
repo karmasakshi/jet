@@ -8,7 +8,7 @@ export class SettingsServiceMock {
     return DEFAULT_SETTINGS;
   }
 
-  public storeAndUpdateSettings(_partialSettings: Partial<Settings>): void {
+  public updateSettings(_partialSettings: Partial<Settings>): void {
     // Mock implementation, do nothing
   }
 }
