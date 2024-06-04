@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,7 +6,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { PageClass } from '@jet/classes/page.class';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
-import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
 import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
@@ -20,9 +19,12 @@ import { TitleService } from '@jet/services/title/title.service';
 import { UpdateService } from '@jet/services/update/update.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
+import { Observable } from 'rxjs';
 
 @Component({
   imports: [
+    AsyncPipe,
+    DatePipe,
     MatCardModule,
     MatIconModule,
     MatListModule,
@@ -30,7 +32,6 @@ import packageJson from 'package.json';
     AnalyticsDirective,
     TranslocoModule,
   ],
-  providers: [DatePipe],
   selector: 'jet-settings-page',
   standalone: true,
   styleUrl: './settings-page.component.scss',
@@ -38,13 +39,12 @@ import packageJson from 'package.json';
 })
 export class SettingsPageComponent extends PageClass {
   public readonly languageOptions: LanguageOption[];
-  public lastUpdateCheckTimestamp: string;
+  public readonly lastUpdateCheckTimestamp$: Observable<string>;
   public readonly settings: Settings;
   public readonly themeOptions: ThemeOption[];
   public readonly version: string;
 
   public constructor(
-    private readonly _datePipe: DatePipe,
     private readonly _alertService: AlertService,
     protected override readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
@@ -76,13 +76,8 @@ export class SettingsPageComponent extends PageClass {
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
-    this.lastUpdateCheckTimestamp =
-      this._datePipe.transform(
-        this._storageService.getLocalStorageItem(
-          STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
-        ),
-        'medium',
-      ) ?? this._translocoService.translate('jet-settings-page.never');
+    this.lastUpdateCheckTimestamp$ =
+      this._updateService.lastUpdateCheckTimestamp$;
 
     this.settings = this._settingsService.settings;
 

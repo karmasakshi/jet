@@ -129,7 +129,7 @@ export class RootComponent implements OnDestroy {
         this.activeUrl = navigationEnd.url;
       });
 
-    this._swUpdateSubscription = this._updateService.swUpdateSubscription;
+    this._swUpdateSubscription = this._updateService.swUpdateSubscription$;
 
     this._addFontClass(this.settings.languageOption.font);
 
