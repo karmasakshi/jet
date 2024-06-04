@@ -7,7 +7,7 @@ import { LoggerService } from '../logger/logger.service';
   providedIn: 'root',
 })
 export class TitleService {
-  public title$: Observable<string>;
+  public readonly title$: Observable<string>;
 
   private readonly _titleSubject: Subject<string>;
 
@@ -29,7 +29,7 @@ export class TitleService {
       .then((): void => {
         this._titleSubject.next(title);
       })
-      .catch((error: unknown): void => {
+      .catch((error: Error): void => {
         this._loggerService.logError(error);
       });
   }

@@ -33,6 +33,7 @@ module.exports = tseslint.config(
         'error',
         'type-annotation',
       ],
+      '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
       '@typescript-eslint/no-unused-expressions': [
         'error',
