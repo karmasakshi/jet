@@ -20,7 +20,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     availableLanguage: AvailableLanguage,
   ): Observable<Translation> {
     return this._httpClient.get<Translation>(
-      `./assets/i18n/${availableLanguage}.json`,
+      `./i18n/${availableLanguage}.json`,
     );
   }
 }

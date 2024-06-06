@@ -1,8 +1,8 @@
-import ar from '@jet/assets/i18n/ar.json';
-import en from '@jet/assets/i18n/en.json';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import ar from '@jet/public/i18n/ar.json';
+import en from '@jet/public/i18n/en.json';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import {
   TranslocoTestingModule,
