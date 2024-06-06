@@ -1,3 +1,5 @@
+// @ts-check
+
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
@@ -35,12 +37,6 @@ module.exports = tseslint.config(
       ],
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
-      '@typescript-eslint/no-unused-expressions': [
-        'error',
-        {
-          allowTernary: true,
-        },
-      ],
       'sort-keys': 'error',
     },
     languageOptions: {

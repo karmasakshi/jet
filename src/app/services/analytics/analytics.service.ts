@@ -15,9 +15,11 @@ export class AnalyticsService {
 
   public track(eventName: string, eventData?: string): void {
     if (this._isAnalyticsEnabled) {
-      eventData
-        ? this._loggerService.logMessages(eventName, eventData)
-        : this._loggerService.logMessages(eventName);
+      if (eventData) {
+        this._loggerService.logMessages(eventName, eventData);
+      } else {
+        this._loggerService.logMessages(eventName);
+      }
     }
   }
 }
