@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/karmasakshi/jet/compare/v1.4.1...v1.5.0) (2024-06-08)
+
+
+### Features
+
+* **general:** add a11y tags ([4c0cd75](https://github.com/karmasakshi/jet/commit/4c0cd75cca837ce2037b23e728d223e4bbbbb347))
+
 ## [1.4.1](https://github.com/karmasakshi/jet/compare/v1.4.0...v1.4.1) (2024-06-03)
 
 
