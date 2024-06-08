@@ -17,7 +17,9 @@
     "home": "بيت",
     "logo": "شعار",
     "navigation-menu": "قائمة الإبحار",
-    "settings": "إعدادات"
+    "progress-bar": "شريط التقدم",
+    "settings": "إعدادات",
+    "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-settings-page": {
     "arabic": "عربي",

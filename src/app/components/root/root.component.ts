@@ -122,7 +122,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
     this._routerSubscription = this._router.events
       .pipe(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
         filter<any>(
           (routerEvent: RouterEvent): boolean =>
             routerEvent instanceof NavigationEnd,

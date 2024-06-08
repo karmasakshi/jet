@@ -17,7 +17,9 @@
     "home": "Home",
     "logo": "Logo",
     "navigation-menu": "Navigation Menu",
-    "settings": "Settings"
+    "progress-bar": "Progress Bar",
+    "settings": "Settings",
+    "toggle-navigation-menu": "Toggle Navigation Menu"
   },
   "jet-settings-page": {
     "arabic": "Arabic",

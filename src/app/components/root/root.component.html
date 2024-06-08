@@ -7,6 +7,7 @@
       #drawer
       style="width: 240px"
       fixedInViewport
+      [attr.role]="isSmallViewport ? 'dialog' : 'navigation'"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
@@ -14,7 +15,7 @@
         <ng-container *ngTemplateOutlet="logo" />
       </mat-toolbar>
       <div class="jet-drawer-content">
-        <mat-nav-list>
+        <mat-nav-list [attr.aria-label]="t('navigation-menu')">
           @for (page of pages; track page.url) {
             <a
               (click)="isSmallViewport && drawer.close()"
@@ -30,7 +31,7 @@
         </mat-nav-list>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content role="region">
       @if (loaderConfiguration$ | async; as loaderConfiguration) {
         <mat-progress-bar
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
@@ -38,10 +39,12 @@
           [mode]="loaderConfiguration.mode"
           [value]="loaderConfiguration.value"
           [bufferValue]="loaderConfiguration.bufferValue"
+          [attr.aria-label]="t('progress-bar')"
         >
         </mat-progress-bar>
       }
       <mat-toolbar
+        role="heading"
         style="background-color: inherit"
         [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
       >
@@ -50,7 +53,8 @@
             jetAnalytics
             jetAnalyticsEventName="Drawer"
             type="button"
-            [matTooltip]="t('navigation-menu')"
+            [matTooltip]="t('toggle-navigation-menu')"
+            [attr.aria-label]="t('toggle-navigation-menu')"
             mat-icon-button
             (click)="drawer.toggle()"
           >
@@ -69,6 +73,7 @@
       </mat-tab-nav-panel>
       @if (isSmallViewport) {
         <nav
+          [attr.aria-label]="t('navigation-menu')"
           backgroundColor="primary"
           mat-tab-nav-bar
           [tabPanel]="tabNavPanel"
@@ -92,6 +97,7 @@
       jetAnalytics
       jetAnalyticsEventName="Home"
       [matTooltip]="t('home')"
+      [attr.aria-label]="t('home')"
       mat-icon-button
       routerLink="/"
     >
