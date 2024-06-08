@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
+import { AnalyticsService } from '@jet/services/analytics/analytics.service';
+import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
 import { LoaderService } from '@jet/services/loader/loader.service';
 import { LoaderServiceMock } from '@jet/services/loader/loader.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -27,6 +29,7 @@ describe('RootComponent', () => {
         RootComponent,
       ],
       providers: [
+        { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoaderService, useClass: LoaderServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },

@@ -12,7 +12,8 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/**/*.(json|png|svg|woff2)"
+          "/i18n/*.json",
+          "/**/*.(png|svg|woff2)"
         ]
       }
     },

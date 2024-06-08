@@ -39,7 +39,7 @@
     "@jsverse/transloco": "^7.4.2",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.3",
-    "zone.js": "^0.14.6"
+    "zone.js": "^0.14.7"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.3",
@@ -61,7 +61,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "lint-staged": "^15.2.5",
-    "ngx-build-plus": "^17.0.0",
+    "ngx-build-plus": "^18.0.0",
     "prettier": "^3.3.1",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.0.0-alpha.28"

@@ -6,15 +6,11 @@ import { AnalyticsDirective } from './analytics.directive';
 
 describe('AnalyticsDirective', () => {
   it('should create an instance', () => {
-    const analyticsServiceMock: AnalyticsService =
+    const analyticsService: AnalyticsService =
       new AnalyticsServiceMock() as AnalyticsService;
-    const loggerServiceMock: LoggerService =
+    const loggerService: LoggerService =
       new LoggerServiceMock() as LoggerService;
-    const directive = new AnalyticsDirective(
-      analyticsServiceMock,
-      loggerServiceMock,
-    );
-
+    const directive = new AnalyticsDirective(analyticsService, loggerService);
     expect(directive).toBeTruthy();
   });
 });
