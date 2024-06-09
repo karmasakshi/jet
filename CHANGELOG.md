@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/karmasakshi/jet/compare/v1.5.0...v1.5.1) (2024-06-09)
+
+
+### Bug Fixes
+
+* **general:** language error ([c9e932b](https://github.com/karmasakshi/jet/commit/c9e932b13654f6fb93abefdf28e56c6c5b367820))
+
 ## [1.5.0](https://github.com/karmasakshi/jet/compare/v1.4.1...v1.5.0) (2024-06-08)
 
 
