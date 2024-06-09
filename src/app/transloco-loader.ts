@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +19,13 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   public getTranslation(
     availableLanguage: AvailableLanguage,
   ): Observable<Translation> {
-    return this._httpClient.get<Translation>(
-      `./i18n/${availableLanguage}.json`,
-    );
+    return this._httpClient
+      .get<Translation>(`./i18n/${availableLanguage}.json`)
+      .pipe(
+        catchError(() => {
+          const emptyTranslation: Translation = {};
+          return of(emptyTranslation);
+        }),
+      );
   }
 }
