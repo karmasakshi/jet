@@ -14,11 +14,11 @@ import { TitleService } from '@jet/services/title/title.service';
 import { TitleServiceMock } from '@jet/services/title/title.service.mock';
 import { UpdateService } from '@jet/services/update/update.service';
 import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
-import { RootComponent } from './root.component';
+import { AppComponent } from './app.component';
 
-describe('RootComponent', () => {
-  let component: RootComponent;
-  let fixture: ComponentFixture<RootComponent>;
+describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,7 +26,7 @@ describe('RootComponent', () => {
         NoopAnimationsModule,
         RouterModule.forRoot([]),
         getTranslocoModule(),
-        RootComponent,
+        AppComponent,
       ],
       providers: [
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
@@ -38,7 +38,7 @@ describe('RootComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RootComponent);
+    fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

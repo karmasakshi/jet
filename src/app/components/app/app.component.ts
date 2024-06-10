@@ -59,12 +59,12 @@ import { filter } from 'rxjs/operators';
     RouterOutlet,
     TranslocoModule,
   ],
-  selector: 'jet-root',
+  selector: 'jet-app',
   standalone: true,
-  styleUrl: './root.component.scss',
-  templateUrl: './root.component.html',
+  styleUrl: './app.component.scss',
+  templateUrl: './app.component.html',
 })
-export class RootComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   public activeUrl: Page['url'] | undefined;
   public readonly isSmallViewport: boolean;
   public readonly loaderConfiguration$: Observable<LoaderConfiguration>;
@@ -99,8 +99,8 @@ export class RootComponent implements OnInit, OnDestroy {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
-     * t(jet-root.home)
-     * t(jet-root.settings)
+     * t(jet-app.home)
+     * t(jet-app.settings)
      */
 
     this.pages = [
@@ -140,7 +140,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
     this._setLanguage(this.settings.languageOption.value);
 
-    this._loggerService.logComponentInitialization('RootComponent');
+    this._loggerService.logComponentInitialization('AppComponent');
   }
 
   public ngOnInit(): void {

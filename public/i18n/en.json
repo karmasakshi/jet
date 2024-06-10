@@ -10,16 +10,16 @@
     "something-went-wrong": "Something went wrong.",
     "updating-failed": "Updating failed, please retry."
   },
-  "jet-home-page": {
-    "title": "Home"
-  },
-  "jet-root": {
+  "jet-app": {
     "home": "Home",
     "logo": "Logo",
     "navigation-menu": "Navigation Menu",
     "progress-bar": "Progress Bar",
     "settings": "Settings",
     "toggle-navigation-menu": "Toggle Navigation Menu"
+  },
+  "jet-home-page": {
+    "title": "Home"
   },
   "jet-settings-page": {
     "arabic": "Arabic",

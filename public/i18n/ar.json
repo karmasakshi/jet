@@ -10,16 +10,16 @@
     "something-went-wrong": "هناك خطأ ما.",
     "updating-failed": "فشل التحديث، يرجى إعادة المحاولة"
   },
-  "jet-home-page": {
-    "title": "بيت"
-  },
-  "jet-root": {
+  "jet-app": {
     "home": "بيت",
     "logo": "شعار",
     "navigation-menu": "قائمة الإبحار",
     "progress-bar": "شريط التقدم",
     "settings": "إعدادات",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
+  },
+  "jet-home-page": {
+    "title": "بيت"
   },
   "jet-settings-page": {
     "arabic": "عربي",
