@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
 import { LoaderService } from '@jet/services/loader/loader.service';
@@ -14,6 +13,7 @@ import { TitleService } from '@jet/services/title/title.service';
 import { TitleServiceMock } from '@jet/services/title/title.service.mock';
 import { UpdateService } from '@jet/services/update/update.service';
 import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
       imports: [
         NoopAnimationsModule,
         RouterModule.forRoot([]),
-        getTranslocoModule(),
+        TranslocoTestingModule.forRoot({}),
         AppComponent,
       ],
       providers: [

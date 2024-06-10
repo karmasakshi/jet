@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -12,6 +11,7 @@ import { TitleService } from '@jet/services/title/title.service';
 import { TitleServiceMock } from '@jet/services/title/title.service.mock';
 import { UpdateService } from '@jet/services/update/update.service';
 import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 import { SettingsPageComponent } from './settings-page.component';
 
 describe('SettingsPageComponent', () => {
@@ -20,7 +20,7 @@ describe('SettingsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [getTranslocoModule(), SettingsPageComponent],
+      imports: [TranslocoTestingModule.forRoot({}), SettingsPageComponent],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

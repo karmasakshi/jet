@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { getTranslocoModule } from '@jet/modules/transloco-testing.module';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AlertService } from '../alert/alert.service';
 import { AlertServiceMock } from '../alert/alert.service.mock';
 import { LoggerService } from '../logger/logger.service';
@@ -18,7 +18,7 @@ describe('UpdateService', () => {
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: false,
         }),
-        getTranslocoModule(),
+        TranslocoTestingModule.forRoot({}),
       ],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
