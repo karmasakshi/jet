@@ -51,7 +51,7 @@
     "@commitlint/prompt-cli": "^19.3.1",
     "@jsverse/transloco-keys-manager": "^4.2.0",
     "@types/jasmine": "^5.1.4",
-    "angular-cli-ghpages": "^2.0.0",
+    "angular-cli-ghpages": "^2.0.1",
     "angular-eslint": "^18.0.1",
     "eslint": "^9.4.0",
     "husky": "^9.0.11",
@@ -63,8 +63,8 @@
     "karma-jasmine-html-reporter": "^2.1.0",
     "lint-staged": "^15.2.5",
     "ngx-build-plus": "^18.0.0",
-    "prettier": "^3.3.1",
+    "prettier": "^3.3.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^8.0.0-alpha.29"
+    "typescript-eslint": "^8.0.0-alpha.30"
   }
 }
