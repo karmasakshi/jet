@@ -35,10 +35,10 @@
         >
           <mat-icon matListItemIcon>sync</mat-icon>
           <span matListItemTitle>{{ t('check-for-update') }}</span>
-          <span matListItemLine>
-            {{ t('last-checked') }}
-            {{ lastUpdateCheckTimestamp$ | async | date: 'medium' }}
-          </span>
+          <span matListItemLine
+            >{{ t('last-checked') }}
+            {{ lastUpdateCheckTimestamp$ | async | date: 'medium' }}</span
+          >
         </button>
 
         <button

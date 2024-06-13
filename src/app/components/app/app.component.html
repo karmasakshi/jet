@@ -23,10 +23,9 @@
               [activated]="activeUrl === page.url"
               mat-list-item
               [routerLink]="page.url"
+              ><mat-icon matListItemIcon>{{ page.icon }}</mat-icon
+              >{{ t(page.nameKey) }}</a
             >
-              <mat-icon matListItemIcon>{{ page.icon }}</mat-icon>
-              {{ t(page.nameKey) }}
-            </a>
           }
         </mat-nav-list>
       </div>
@@ -83,10 +82,9 @@
               [active]="activeUrl === page.url"
               [routerLink]="page.url"
               mat-tab-link
+              ><mat-icon style="margin: 0 8px">{{ page.icon }}</mat-icon
+              >{{ t(page.nameKey) }}</a
             >
-              <mat-icon>{{ page.icon }}</mat-icon
-              >&nbsp;{{ t(page.nameKey) }}
-            </a>
           }
         </nav>
       }
