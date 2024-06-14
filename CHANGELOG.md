@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/karmasakshi/jet/compare/v1.5.1...v1.5.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* **general:** whitespace due to formatting ([709b4bd](https://github.com/karmasakshi/jet/commit/709b4bd7f2f03d28048ee7eb5945e78f981af41e))
+
 ## [1.5.1](https://github.com/karmasakshi/jet/compare/v1.5.0...v1.5.1) (2024-06-09)
 
 
