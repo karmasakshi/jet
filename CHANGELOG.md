@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/karmasakshi/jet/compare/v1.5.2...v1.6.0) (2024-06-14)
+
+
+### Features
+
+* **general:** remove theme color ([6a5f313](https://github.com/karmasakshi/jet/commit/6a5f313c5313c4ebcb81e5eb6ef170c628b9173b))
+
 ## [1.5.2](https://github.com/karmasakshi/jet/compare/v1.5.1...v1.5.2) (2024-06-13)
 
 
