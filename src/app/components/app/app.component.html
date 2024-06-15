@@ -31,13 +31,13 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content role="region">
-      @if (loaderConfiguration$ | async; as loaderConfiguration) {
+      @if (progressBarConfiguration$ | async; as progressBarConfiguration) {
         <mat-progress-bar
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
-          [ngClass]="{ 'jet-invisible': !loaderConfiguration.isVisible }"
-          [mode]="loaderConfiguration.mode"
-          [value]="loaderConfiguration.value"
-          [bufferValue]="loaderConfiguration.bufferValue"
+          [ngClass]="{ 'jet-invisible': !progressBarConfiguration.isVisible }"
+          [mode]="progressBarConfiguration.mode"
+          [value]="progressBarConfiguration.value"
+          [bufferValue]="progressBarConfiguration.bufferValue"
           [attr.aria-label]="t('progress-bar')"
         >
         </mat-progress-bar>

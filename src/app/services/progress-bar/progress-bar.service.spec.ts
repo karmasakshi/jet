@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
-import { LoaderService } from './loader.service';
+import { ProgressBarService } from './progress-bar.service';
 
-describe('LoaderService', () => {
-  let service: LoaderService;
+describe('ProgressBarService', () => {
+  let service: ProgressBarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     });
-    service = TestBed.inject(LoaderService);
+    service = TestBed.inject(ProgressBarService);
   });
 
   it('should be created', () => {

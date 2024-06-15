@@ -24,12 +24,12 @@ import {
 import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
-import { LoaderConfiguration } from '@jet/interfaces/loader-configuration.interface';
 import { Page } from '@jet/interfaces/page.interface';
+import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
-import { LoaderService } from '@jet/services/loader/loader.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { TitleService } from '@jet/services/title/title.service';
 import { UpdateService } from '@jet/services/update/update.service';
@@ -67,8 +67,8 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit, OnDestroy {
   public activeUrl: Page['url'] | undefined;
   public readonly isSmallViewport: boolean;
-  public readonly loaderConfiguration$: Observable<LoaderConfiguration>;
   public readonly pages: Page[];
+  public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
   public readonly settings: Settings;
   public readonly title$: Observable<string>;
 
@@ -80,8 +80,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly _renderer2: Renderer2,
     private readonly _router: Router,
     private readonly _analyticsService: AnalyticsService,
-    private readonly _loaderService: LoaderService,
     private readonly _loggerService: LoggerService,
+    private readonly _progressBarService: ProgressBarService,
     private readonly _settingsService: SettingsService,
     private readonly _titleService: TitleService,
     private readonly _updateService: UpdateService,
@@ -94,7 +94,8 @@ export class AppComponent implements OnInit, OnDestroy {
       Breakpoints.Tablet,
     ]);
 
-    this.loaderConfiguration$ = this._loaderService.loaderConfiguration$;
+    this.progressBarConfiguration$ =
+      this._progressBarService.progressBarConfiguration$;
 
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):

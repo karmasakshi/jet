@@ -1,6 +1,6 @@
 import { ProgressBarMode } from '@angular/material/progress-bar';
 
-export interface LoaderConfiguration {
+export interface ProgressBarConfiguration {
   bufferValue: number;
   isVisible: boolean;
   mode: ProgressBarMode;
