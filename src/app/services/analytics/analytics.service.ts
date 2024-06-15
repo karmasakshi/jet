@@ -1,15 +1,16 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { IS_ANALYTICS_ENABLED } from '@jet/tokens/is-analytics-enabled.token';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnalyticsService {
-  private readonly _isAnalyticsEnabled: boolean;
-
-  public constructor(private readonly _loggerService: LoggerService) {
-    this._isAnalyticsEnabled = !isDevMode();
-
+  public constructor(
+    @Inject(IS_ANALYTICS_ENABLED)
+    private readonly _isAnalyticsEnabled: boolean,
+    private readonly _loggerService: LoggerService,
+  ) {
     this._loggerService.logServiceInitialization('AnalyticsService');
   }
 
