@@ -21,14 +21,12 @@ export class AnalyticsDirective {
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 
-  @HostListener('click') public onClick(): void {
+  @HostListener('click') public logClick(): void {
     if (this.jetAnalyticsEventName) {
-      this._analyticsService.track(
+      this._analyticsService.logEvent(
         this.jetAnalyticsEventName,
         this.jetAnalyticsEventData,
       );
-    } else {
-      this._loggerService.logWarning('jetAnalyticsEventName is not defined.');
     }
   }
 }

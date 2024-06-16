@@ -145,7 +145,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this._analyticsService.track('Start', packageJson.version);
+    this._analyticsService.logEvent('Start', packageJson.version);
   }
 
   public ngOnDestroy(): void {
