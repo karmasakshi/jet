@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/karmasakshi/jet/compare/v1.6.0...v1.7.0) (2024-06-16)
+
+
+### Features
+
+* **general:** add storage enums ([c24cbfa](https://github.com/karmasakshi/jet/commit/c24cbfab21ab8bc3f2dc558f2ff10fd6884471b1))
+
 ## [1.6.0](https://github.com/karmasakshi/jet/compare/v1.5.2...v1.6.0) (2024-06-14)
 
 
