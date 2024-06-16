@@ -50,7 +50,7 @@
         @if (!isSmallViewport) {
           <button
             jetAnalytics
-            jetAnalyticsEventName="Drawer"
+            jetAnalyticsEventName="Toggle Drawer"
             type="button"
             [matTooltip]="t('toggle-navigation-menu')"
             [attr.aria-label]="t('toggle-navigation-menu')"
@@ -93,7 +93,7 @@
   <ng-template #logo>
     <a
       jetAnalytics
-      jetAnalyticsEventName="Home"
+      jetAnalyticsEventName="Open Home"
       [matTooltip]="t('home')"
       [attr.aria-label]="t('home')"
       mat-icon-button

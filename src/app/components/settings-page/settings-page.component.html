@@ -5,7 +5,7 @@
         <button
           type="button"
           jetAnalytics
-          jetAnalyticsEventName="Language"
+          jetAnalyticsEventName="Open Language Options"
           mat-list-item
           [matMenuTriggerFor]="languageMenu"
         >
@@ -17,7 +17,7 @@
         <button
           type="button"
           jetAnalytics
-          jetAnalyticsEventName="Theme"
+          jetAnalyticsEventName="Open Theme Options"
           mat-list-item
           [matMenuTriggerFor]="themeMenu"
         >
@@ -81,7 +81,7 @@
     @for (languageOption of languageOptions; track languageOption.value) {
       <button
         jetAnalytics
-        jetAnalyticsEventName="Language Option"
+        jetAnalyticsEventName="Select Language Option"
         [jetAnalyticsEventData]="languageOption.value"
         type="button"
         [disabled]="settings.languageOption.value === languageOption.value"
@@ -101,7 +101,7 @@
     @for (themeOption of themeOptions; track themeOption.value) {
       <button
         jetAnalytics
-        jetAnalyticsEventName="Theme Option"
+        jetAnalyticsEventName="Select Theme Option"
         [jetAnalyticsEventData]="themeOption.value"
         type="button"
         [disabled]="settings.themeOption.value === themeOption.value"
