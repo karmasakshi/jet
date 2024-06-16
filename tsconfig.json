@@ -32,6 +32,7 @@
       "@jet/components/*": ["src/app/components/*"],
       "@jet/constants/*": ["src/app/constants/*"],
       "@jet/directives/*": ["src/app/directives/*"],
+      "@jet/enums/*": ["src/app/enums/*"],
       "@jet/interfaces/*": ["src/app/interfaces/*"],
       "@jet/services/*": ["src/app/services/*"],
       "@jet/tokens/*": ["src/app/tokens/*"],

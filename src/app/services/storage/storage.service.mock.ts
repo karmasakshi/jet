@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
+import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
+
 export class StorageServiceMock {
   public clearLocalStorage(): void {
     // Mock implementation, do nothing
@@ -9,27 +12,35 @@ export class StorageServiceMock {
     // Mock implementation, do nothing
   }
 
-  public getLocalStorageItem<T>(_key: string): null | T {
+  public getLocalStorageItem<T>(_localStorageKey: LocalStorageKey): null | T {
     return null;
   }
 
-  public getSessionStorageItem<T>(_key: string): null | T {
+  public getSessionStorageItem<T>(
+    _sessionStorageKey: SessionStorageKey,
+  ): null | T {
     return null;
   }
 
-  public setLocalStorageItem(_key: string, _value: unknown): void {
+  public setLocalStorageItem(
+    _localStorageKey: LocalStorageKey,
+    _value: unknown,
+  ): void {
     // Mock implementation, do nothing
   }
 
-  public setSessionStorageItem(_key: string, _value: unknown): void {
+  public setSessionStorageItem(
+    _sessionStorageKey: SessionStorageKey,
+    _value: unknown,
+  ): void {
     // Mock implementation, do nothing
   }
 
-  public removeLocalStorageItem(_key: string): void {
+  public removeLocalStorageItem(_localStorageKey: LocalStorageKey): void {
     // Mock implementation, do nothing
   }
 
-  public removeSessionStorageItem(_key: string): void {
+  public removeSessionStorageItem(_sessionStorageKey: SessionStorageKey): void {
     // Mock implementation, do nothing
   }
 }

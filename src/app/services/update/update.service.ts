@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
-import { STORAGE_KEYS } from '@jet/constants/storage-keys.constant';
+import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { TranslocoService } from '@jsverse/transloco';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
@@ -30,7 +30,7 @@ export class UpdateService {
 
     this._lastUpdateCheckTimestampSubject$ = new BehaviorSubject<string>(
       this._storageService.getLocalStorageItem<string>(
-        STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
+        LocalStorageKey.LastUpdateCheckTimestamp,
       ) ?? new Date().toISOString(),
     );
 
@@ -123,7 +123,7 @@ export class UpdateService {
     const now: string = new Date().toISOString();
 
     this._storageService.setLocalStorageItem(
-      STORAGE_KEYS.LAST_UPDATE_CHECK_TIMESTAMP,
+      LocalStorageKey.LastUpdateCheckTimestamp,
       now,
     );
 
