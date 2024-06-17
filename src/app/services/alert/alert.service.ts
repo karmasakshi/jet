@@ -30,7 +30,6 @@ export class AlertService {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
       this._matSnackBar.open(message, cta, {
         direction: this._directionality,
-        duration: 9000,
       });
 
     if (action) {

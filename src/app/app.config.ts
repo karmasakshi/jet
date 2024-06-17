@@ -4,6 +4,8 @@ import {
   isDevMode,
   provideZoneChangeDetection,
 } from '@angular/core';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
@@ -19,6 +21,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 9000 } },
+    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { showDelay: 1000 } },
     provideAnimationsAsync(),
     provideRouter(routes),
     provideServiceWorker('ngsw-worker.js', {
