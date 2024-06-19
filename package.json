@@ -9,7 +9,6 @@
     "test": "ng test",
     "commit": "git add . && npx --no -- commit",
     "commitlint": "npx --no -- commitlint --edit $1",
-    "deploy": "npx --no -- ng deploy --base-href=/jet/",
     "i18n:extract": "npx --no -- transloco-keys-manager extract",
     "i18n:find": "npx --no -- transloco-keys-manager find",
     "lint": "npx --no -- ng lint && npx --no -- lint-staged",
