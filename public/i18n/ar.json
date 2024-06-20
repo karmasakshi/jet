@@ -13,6 +13,7 @@
   "jet-app": {
     "home": "بيت",
     "logo": "شعار",
+    "main-toolbar": "شريط الأدوات الرئيسي",
     "navigation-menu": "قائمة الإبحار",
     "progress-bar": "شريط التقدم",
     "settings": "إعدادات",

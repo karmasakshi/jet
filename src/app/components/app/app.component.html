@@ -11,7 +11,10 @@
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
     >
-      <mat-toolbar style="background-color: inherit">
+      <mat-toolbar
+        role="banner"
+        style="background-color: inherit"
+      >
         <ng-container *ngTemplateOutlet="logo" />
       </mat-toolbar>
       <div class="jet-drawer-content">
@@ -43,7 +46,8 @@
         </mat-progress-bar>
       }
       <mat-toolbar
-        role="heading"
+        [attr.aria-label]="t('main-toolbar')"
+        role="toolbar"
         style="background-color: inherit"
         [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
       >

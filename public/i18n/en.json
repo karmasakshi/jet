@@ -13,6 +13,7 @@
   "jet-app": {
     "home": "Home",
     "logo": "Logo",
+    "main-toolbar": "Main Toolbar",
     "navigation-menu": "Navigation Menu",
     "progress-bar": "Progress Bar",
     "settings": "Settings",
