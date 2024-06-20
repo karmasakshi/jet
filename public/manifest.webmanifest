@@ -1,6 +1,8 @@
 {
   "name": "Jet",
   "short_name": "Jet",
+  "theme_color": "#74564a",
+  "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
