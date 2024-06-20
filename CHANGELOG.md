@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/karmasakshi/jet/compare/v1.7.0...v1.8.0) (2024-06-20)
+
+
+### Features
+
+* **general:** add role to toolbar ([0b0b401](https://github.com/karmasakshi/jet/commit/0b0b4014a1018749b22a04e4f286ef78b2efd36c))
+
 ## [1.7.0](https://github.com/karmasakshi/jet/compare/v1.6.0...v1.7.0) (2024-06-16)
 
 
