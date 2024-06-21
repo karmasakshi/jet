@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Meta } from '@angular/platform-browser';
 import {
   NavigationEnd,
   Router,
@@ -66,6 +67,7 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public activeUrl: Page['url'] | undefined;
+  public readonly isPwa: boolean;
   public readonly isSmallViewport: boolean;
   public readonly pages: Page[];
   public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
@@ -78,6 +80,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly _breakpointObserver: BreakpointObserver,
     private readonly _renderer2: Renderer2,
+    private readonly _meta: Meta,
     private readonly _router: Router,
     private readonly _analyticsService: AnalyticsService,
     private readonly _loggerService: LoggerService,
@@ -89,13 +92,12 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     this.activeUrl = undefined;
 
+    this.isPwa = window.matchMedia('(display-mode: standalone)').matches;
+
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
       Breakpoints.Tablet,
     ]);
-
-    this.progressBarConfiguration$ =
-      this._progressBarService.progressBarConfiguration$;
 
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
@@ -117,9 +119,22 @@ export class AppComponent implements OnInit, OnDestroy {
       },
     ];
 
+    this.progressBarConfiguration$ =
+      this._progressBarService.progressBarConfiguration$;
+
     this.settings = this._settingsService.settings;
 
     this.title$ = this._titleService.title$;
+
+    this._routerSubscription = Subscription.EMPTY;
+
+    this._swUpdateSubscription = Subscription.EMPTY;
+
+    this._loggerService.logComponentInitialization('AppComponent');
+  }
+
+  public ngOnInit(): void {
+    this._analyticsService.logEvent('Start', packageJson.version);
 
     this._routerSubscription = this._router.events
       .pipe(
@@ -139,13 +154,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._addThemeClass(this.settings.themeOption.value);
 
+    this._disableZoom(this.isPwa);
+
     this._setLanguage(this.settings.languageOption.value);
-
-    this._loggerService.logComponentInitialization('AppComponent');
-  }
-
-  public ngOnInit(): void {
-    this._analyticsService.logEvent('Start', packageJson.version);
   }
 
   public ngOnDestroy(): void {
@@ -180,6 +191,16 @@ export class AppComponent implements OnInit, OnDestroy {
         'lang',
         availableLanguage,
       );
+    }
+  }
+
+  private _disableZoom(isPwa: boolean): void {
+    if (isPwa) {
+      this._meta.updateTag({
+        content:
+          'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover',
+        name: 'viewport',
+      });
     }
   }
 }
