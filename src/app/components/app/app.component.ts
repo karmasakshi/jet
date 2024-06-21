@@ -67,13 +67,13 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public activeUrl: Page['url'] | undefined;
-  public readonly isPwa: boolean;
   public readonly isSmallViewport: boolean;
   public readonly pages: Page[];
   public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
   public readonly settings: Settings;
   public readonly title$: Observable<string>;
 
+  private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
 
@@ -91,8 +91,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly _translocoService: TranslocoService,
   ) {
     this.activeUrl = undefined;
-
-    this.isPwa = window.matchMedia('(display-mode: standalone)').matches;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
@@ -126,6 +124,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.title$ = this._titleService.title$;
 
+    this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
+
     this._routerSubscription = Subscription.EMPTY;
 
     this._swUpdateSubscription = Subscription.EMPTY;
@@ -154,9 +154,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._addThemeClass(this.settings.themeOption.value);
 
-    this._disableZoom(this.isPwa);
-
     this._setLanguage(this.settings.languageOption.value);
+
+    this._setZoom(this._isPwaMode);
   }
 
   public ngOnDestroy(): void {
@@ -194,8 +194,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _disableZoom(isPwa: boolean): void {
-    if (isPwa) {
+  private _setZoom(isPwaMode: boolean): void {
+    if (isPwaMode) {
       this._meta.updateTag({
         content:
           'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover',
