@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/karmasakshi/jet/compare/v1.8.0...v1.9.0) (2024-06-21)
+
+
+### Features
+
+* **general:** disable zoom in pwa ([34c7d15](https://github.com/karmasakshi/jet/commit/34c7d1566c7c4d97ad24d7077b4c2bffffd2f3c2))
+
 ## [1.8.0](https://github.com/karmasakshi/jet/compare/v1.7.0...v1.8.0) (2024-06-20)
 
 
