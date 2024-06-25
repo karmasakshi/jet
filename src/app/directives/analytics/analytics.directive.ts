@@ -7,7 +7,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   standalone: true,
 })
 export class AnalyticsDirective {
-  @Input() public jetAnalyticsEventData: string | undefined;
+  @Input() public jetAnalyticsEventData: unknown;
   @Input({ required: true }) public jetAnalyticsEventName: string | undefined;
 
   public constructor(
