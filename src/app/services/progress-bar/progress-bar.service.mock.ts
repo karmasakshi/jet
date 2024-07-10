@@ -17,7 +17,7 @@ export class ProgressBarServiceMock {
   }
 
   public showProgressBar(
-    _partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
+    _partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
   ): void {
     // Mock implementation, do nothing
   }

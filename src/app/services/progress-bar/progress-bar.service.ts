@@ -39,7 +39,7 @@ export class ProgressBarService {
   }
 
   public showProgressBar(
-    partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
+    partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
   ): void {
     this._progressBarConfigurationSubject$.next({
       ...this._defaultProgressBarConfiguration,
