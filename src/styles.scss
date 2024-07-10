@@ -91,32 +91,32 @@ body {
         width: calc(240px + env(safe-area-inset-left));
 
         .mat-toolbar {
-          padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
+          padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
         }
 
         .jet-drawer-content {
-          padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
+          padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
         }
       }
 
       .mat-drawer-content {
         .mat-toolbar {
-          padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
+          padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
 
           &.jet-drawer-closed {
-            padding: 0 calc(env(safe-area-inset-right) + 16px) 0
-              calc(env(safe-area-inset-left) + 16px);
+            padding: 0 calc(16px + env(safe-area-inset-right)) 0
+              calc(16px + env(safe-area-inset-left));
           }
         }
 
         main {
-          padding: 16px calc(env(safe-area-inset-right) + 16px)
-            calc(env(safe-area-inset-bottom) + 120px) 16px;
+          padding: 16px calc(16px + env(safe-area-inset-right))
+            calc(120px + env(safe-area-inset-bottom)) 16px;
 
           &.jet-drawer-closed {
-            padding: 16px calc(env(safe-area-inset-right) + 16px)
-              calc(env(safe-area-inset-bottom) + 120px)
-              calc(env(safe-area-inset-left) + 16px);
+            padding: 16px calc(16px + env(safe-area-inset-right))
+              calc(120px + env(safe-area-inset-bottom))
+              calc(16px + env(safe-area-inset-left));
           }
         }
       }
@@ -137,32 +137,32 @@ body {
         width: calc(240px + env(safe-area-inset-right));
 
         .mat-toolbar {
-          padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
+          padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
         }
 
         .jet-drawer-content {
-          padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
+          padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
         }
       }
 
       .mat-drawer-content {
         .mat-toolbar {
-          padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
+          padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
 
           &.jet-drawer-closed {
-            padding: 0 calc(env(safe-area-inset-right) + 16px) 0
-              calc(env(safe-area-inset-left) + 16px);
+            padding: 0 calc(16px + env(safe-area-inset-right)) 0
+              calc(16px + env(safe-area-inset-left));
           }
         }
 
         main {
-          padding: 16px 16px calc(env(safe-area-inset-bottom) + 120px)
-            calc(env(safe-area-inset-left) + 16px);
+          padding: 16px 16px calc(120px + env(safe-area-inset-bottom))
+            calc(16px + env(safe-area-inset-left));
 
           &.jet-drawer-closed {
-            padding: 16px calc(env(safe-area-inset-right) + 16px)
-              calc(env(safe-area-inset-bottom) + 120px)
-              calc(env(safe-area-inset-left) + 16px);
+            padding: 16px calc(16px + env(safe-area-inset-right))
+              calc(120px + env(safe-area-inset-bottom))
+              calc(16px + env(safe-area-inset-left));
           }
         }
       }
@@ -241,10 +241,10 @@ footer {
 }
 
 .mat-mdc-snack-bar-container {
-  margin: calc(env(safe-area-inset-top) + 8px)
-    calc(env(safe-area-inset-right) + 8px)
-    calc(env(safe-area-inset-bottom) + 8px)
-    calc(env(safe-area-inset-left) + 8px) !important;
+  margin: calc(8px + env(safe-area-inset-top))
+    calc(8px + env(safe-area-inset-right))
+    calc(8px + env(safe-area-inset-bottom))
+    calc(8px + env(safe-area-inset-left)) !important;
 }
 
 .jet-cards-container {
