@@ -20,7 +20,7 @@
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-home-page": {
-    "title": "بيت"
+    "title": "Jet AR"
   },
   "jet-settings-page": {
     "arabic": "عربي",
@@ -37,6 +37,6 @@
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "theme": "سمة",
     "title": "إعدادات",
-    "version": "v{{ version }}"
+    "version": "v{{ value }}"
   }
 }

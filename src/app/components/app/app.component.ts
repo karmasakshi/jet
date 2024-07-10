@@ -25,7 +25,7 @@ import {
 import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
-import { Page } from '@jet/interfaces/page.interface';
+import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
@@ -41,6 +41,12 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+interface Page {
+  icon: string;
+  nameKey: string;
+  url: string;
+}
 
 @Component({
   imports: [
@@ -58,6 +64,7 @@ import { filter } from 'rxjs/operators';
     MatTooltipModule,
     RouterLink,
     RouterOutlet,
+    AnalyticsDirective,
     TranslocoModule,
   ],
   selector: 'jet-app',

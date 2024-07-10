@@ -20,7 +20,7 @@
     "toggle-navigation-menu": "Toggle Navigation Menu"
   },
   "jet-home-page": {
-    "title": "Home"
+    "title": "Jet"
   },
   "jet-settings-page": {
     "arabic": "Arabic",
@@ -37,6 +37,6 @@
     "reset-description": "Use default settings and reload",
     "theme": "Theme",
     "title": "Settings",
-    "version": "v{{ version }}"
+    "version": "v{{ value }}"
   }
 }

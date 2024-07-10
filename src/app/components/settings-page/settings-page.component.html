@@ -68,11 +68,12 @@
     </mat-card-content>
   </mat-card>
 
-  <hr class="jet-invisible" />
+  <hr
+    aria-hidden="true"
+    class="jet-invisible"
+  />
 
-  <div style="text-align: center">
-    <pre>{{ t('version', { version }) }}</pre>
-  </div>
+  <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
 
   <mat-menu
     xPosition="before"

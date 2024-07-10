@@ -30,12 +30,14 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
-      '@typescript-eslint/consistent-generic-constructors': [
-        'error',
-        'type-annotation',
-      ],
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
+      '@typescript-eslint/unbound-method': [
+        'error',
+        {
+          ignoreStatic: true,
+        },
+      ],
       'sort-keys': 'error',
     },
     languageOptions: {

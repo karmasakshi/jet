@@ -8,16 +8,12 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 })
 export class AnalyticsDirective {
   @Input() public jetAnalyticsEventData: unknown;
-  @Input({ required: true }) public jetAnalyticsEventName: string | undefined;
+  @Input({ required: true }) public jetAnalyticsEventName!: string;
 
   public constructor(
     private readonly _analyticsService: AnalyticsService,
     private readonly _loggerService: LoggerService,
   ) {
-    this.jetAnalyticsEventData = undefined;
-
-    this.jetAnalyticsEventName = undefined;
-
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 

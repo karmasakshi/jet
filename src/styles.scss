@@ -88,6 +88,8 @@ body {
 
     &[dir='ltr'] {
       .mat-drawer {
+        width: calc(240px + env(safe-area-inset-left));
+
         .mat-toolbar {
           padding: 0 16px 0 calc(env(safe-area-inset-left) + 16px);
         }
@@ -132,6 +134,8 @@ body {
 
     &[dir='rtl'] {
       .mat-drawer {
+        width: calc(240px + env(safe-area-inset-right));
+
         .mat-toolbar {
           padding: 0 calc(env(safe-area-inset-right) + 16px) 0 16px;
         }
@@ -201,6 +205,10 @@ body {
   }
 }
 
+footer {
+  padding: 16px 0;
+}
+
 .mat-mdc-button {
   letter-spacing: unset !important;
 }
@@ -213,6 +221,15 @@ body {
     box-sizing: border-box;
     overflow: auto;
   }
+
+  .mdc-card__actions {
+    gap: 8px;
+  }
+}
+
+.mat-mdc-form-field {
+  margin-top: 8px;
+  width: 100%;
 }
 
 .mat-mdc-list-item {
@@ -224,6 +241,13 @@ body {
     calc(env(safe-area-inset-right) + 8px)
     calc(env(safe-area-inset-bottom) + 8px)
     calc(env(safe-area-inset-left) + 8px) !important;
+}
+
+.jet-cards-container {
+  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(0, 360px));
+  gap: 16px;
 }
 
 .jet-invisible {
