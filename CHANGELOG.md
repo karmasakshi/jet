@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/karmasakshi/jet/compare/v1.9.0...v1.9.1) (2024-07-11)
+
+
+### Bug Fixes
+
+* **general:** scrolling ([15e3089](https://github.com/karmasakshi/jet/commit/15e3089e2c6c42e2a4a1f4615b6ec9e28a9bed5b))
+
 ## [1.9.0](https://github.com/karmasakshi/jet/compare/v1.8.0...v1.9.0) (2024-06-21)
 
 
