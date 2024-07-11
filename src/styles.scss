@@ -247,6 +247,10 @@ footer {
     calc(8px + env(safe-area-inset-left)) !important;
 }
 
+.mdc-checkbox {
+  overflow: hidden;
+}
+
 .jet-cards-container {
   justify-content: space-evenly;
   display: grid;
