@@ -27,7 +27,7 @@ export class StorageService {
     let value: null | T = null;
 
     const serializedValue = localStorage.getItem(
-      this._prefix + '-' + localStorageKey,
+      `${this._prefix}-${localStorageKey}`,
     );
 
     if (serializedValue) {
@@ -47,7 +47,7 @@ export class StorageService {
     let value: null | T = null;
 
     const serializedValue = sessionStorage.getItem(
-      this._prefix + '-' + sessionStorageKey,
+      `${this._prefix}-${sessionStorageKey}`,
     );
 
     if (serializedValue) {
@@ -69,7 +69,7 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       localStorage.setItem(
-        this._prefix + '-' + localStorageKey,
+        `${this._prefix}-${localStorageKey}`,
         serializedValue,
       );
     } catch (error: unknown) {
@@ -85,7 +85,7 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       sessionStorage.setItem(
-        this._prefix + '-' + sessionStorageKey,
+        `${this._prefix}-${sessionStorageKey}`,
         serializedValue,
       );
     } catch (error: unknown) {
@@ -94,10 +94,10 @@ export class StorageService {
   }
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    localStorage.removeItem(this._prefix + '-' + localStorageKey);
+    localStorage.removeItem(`${this._prefix}-${localStorageKey}`);
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    sessionStorage.removeItem(this._prefix + '-' + sessionStorageKey);
+    sessionStorage.removeItem(`${this._prefix}-${sessionStorageKey}`);
   }
 }
