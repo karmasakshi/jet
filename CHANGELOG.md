@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.2](https://github.com/karmasakshi/jet/compare/v1.9.1...v1.9.2) (2024-07-12)
+
+
+### Bug Fixes
+
+* **general:** ios safari gap ([6a4cf0d](https://github.com/karmasakshi/jet/commit/6a4cf0d4d642bb5c541166ac31617781583584ef))
+
 ## [1.9.1](https://github.com/karmasakshi/jet/compare/v1.9.0...v1.9.1) (2024-07-11)
 
 
