@@ -191,7 +191,7 @@ body {
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
-        bottom: 0;
+        bottom: -1px;
         left: 0;
         position: fixed;
         right: 0;
