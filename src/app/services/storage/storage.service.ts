@@ -30,7 +30,7 @@ export class StorageService {
       `${this._prefix}-${localStorageKey}`,
     );
 
-    if (serializedValue) {
+    if (serializedValue !== null) {
       try {
         value = JSON.parse(serializedValue) as T;
       } catch (error: unknown) {
@@ -50,7 +50,7 @@ export class StorageService {
       `${this._prefix}-${sessionStorageKey}`,
     );
 
-    if (serializedValue) {
+    if (serializedValue !== null) {
       try {
         value = JSON.parse(serializedValue) as T;
       } catch (error: unknown) {

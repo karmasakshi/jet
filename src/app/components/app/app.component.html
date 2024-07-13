@@ -36,7 +36,8 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content role="region">
-      @if (progressBarConfiguration$ | async; as progressBarConfiguration) {
+      @let progressBarConfiguration = progressBarConfiguration$ | async;
+      @if (progressBarConfiguration) {
         <mat-progress-bar
           style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
           [ngClass]="{ 'jet-invisible': !progressBarConfiguration.isVisible }"
