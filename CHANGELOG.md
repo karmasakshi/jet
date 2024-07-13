@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/karmasakshi/jet/compare/v1.9.2...v1.10.0) (2024-07-13)
+
+
+### Features
+
+* **general:** add environments ([fffbba4](https://github.com/karmasakshi/jet/commit/fffbba4d003ba629508c3ac1a43a4b21df135685))
+
 ## [1.9.2](https://github.com/karmasakshi/jet/compare/v1.9.1...v1.9.2) (2024-07-12)
 
 
