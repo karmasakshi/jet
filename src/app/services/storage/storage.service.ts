@@ -26,7 +26,7 @@ export class StorageService {
   public getLocalStorageItem<T>(localStorageKey: LocalStorageKey): null | T {
     let value: null | T = null;
 
-    const serializedValue = localStorage.getItem(
+    const serializedValue: string | null = localStorage.getItem(
       `${this._prefix}-${localStorageKey}`,
     );
 
@@ -46,7 +46,7 @@ export class StorageService {
   ): null | T {
     let value: null | T = null;
 
-    const serializedValue = sessionStorage.getItem(
+    const serializedValue: string | null = sessionStorage.getItem(
       `${this._prefix}-${sessionStorageKey}`,
     );
 
