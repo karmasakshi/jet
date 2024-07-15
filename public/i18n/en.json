@@ -8,7 +8,7 @@
     "reload-to-apply": "Reload to apply.",
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong.",
-    "updating-failed": "Updating failed, please retry."
+    "updating-failed": "Updating failed."
   },
   "jet-app": {
     "home": "Home",
