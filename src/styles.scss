@@ -213,7 +213,9 @@ footer {
   padding: 16px 0 calc(16px + env(safe-area-inset-bottom)) 0;
 }
 
-.mat-mdc-button {
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button {
   letter-spacing: unset !important;
 }
 
