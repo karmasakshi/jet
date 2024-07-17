@@ -18,7 +18,7 @@
     "prepare": "npx --no -- husky",
     "install-dependencies": "npm install @angular/animations @angular/cdk@17 @angular/common @angular/compiler @angular/core @angular/forms @angular/material@17 @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
     "uninstall-dependencies": "npm uninstall @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
-    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint@9 husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint@8.0.0-alpha.41",
+    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint@9 husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint@8.0.0-alpha.44",
     "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
     "reinstall-dependencies": "npm run uninstall-devDependencies && npm run uninstall-dependencies && npm run install-dependencies && npm run install-devDependencies && npm run build"
   },
@@ -54,7 +54,7 @@
     "@ngx-env/builder": "^18.0.1",
     "@types/jasmine": "^5.1.4",
     "angular-eslint": "^18.1.0",
-    "eslint": "^9.6.0",
+    "eslint": "^9.7.0",
     "husky": "^9.0.11",
     "jasmine-core": "^5.1.2",
     "karma": "^6.4.3",
@@ -66,6 +66,6 @@
     "ngx-build-plus": "^18.0.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^8.0.0-alpha.41"
+    "typescript-eslint": "^8.0.0-alpha.44"
   }
 }
