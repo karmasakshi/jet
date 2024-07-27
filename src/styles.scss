@@ -2,6 +2,8 @@
 
 @include mat.core();
 
+// Fonts
+
 $noto-sans-typography: mat.define-typography-config(
   $font-family: '"Noto Sans", sans-serif',
 );
@@ -10,24 +12,41 @@ $noto-sans-arabic-typography: mat.define-typography-config(
   $font-family: '"Noto Sans Arabic", sans-serif',
 );
 
+// Palettes
+
+$amber-palette: mat.define-palette(mat.$amber-palette, 500);
+
+$brown-palette: mat.define-palette(mat.$brown-palette, 500);
+
+$red-palette: mat.define-palette(mat.$red-palette);
+
+// Themes
+
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$amber-palette, 500),
-      accent: mat.define-palette(mat.$brown-palette, 500),
+      primary: $amber-palette,
+      accent: $brown-palette,
+      warn: $red-palette,
     ),
   )
 );
 
+// Default Theme
+
 $default-theme: mat.define-light-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$brown-palette, 500),
-      accent: mat.define-palette(mat.$amber-palette, 500),
+      primary: $brown-palette,
+      accent: $amber-palette,
+      warn: $red-palette,
     ),
     typography: $noto-sans-typography,
+    density: 0,
   )
 );
+
+// Styles
 
 body {
   margin: 0;
@@ -50,6 +69,8 @@ body {
   @include mat.typography-hierarchy($noto-sans-typography);
 
   &.jet-font-noto-sans-arabic {
+    @include mat.core-typography($noto-sans-arabic-typography);
+
     @include mat.button-typography($noto-sans-arabic-typography);
     @include mat.card-typography($noto-sans-arabic-typography);
     @include mat.icon-typography($noto-sans-arabic-typography);
@@ -252,6 +273,8 @@ footer {
 .mdc-checkbox {
   overflow: hidden;
 }
+
+// Global Classes
 
 .jet-cards-container {
   justify-content: space-evenly;
