@@ -12,26 +12,26 @@ import { StorageService } from '../storage/storage.service';
 export class SettingsService {
   public readonly settings$: Observable<Settings>;
 
-  private readonly _settingsSubject$: BehaviorSubject<Settings>;
+  private readonly _settingsSubject: BehaviorSubject<Settings>;
 
   public constructor(
     private readonly _loggerService: LoggerService,
     private readonly _storageService: StorageService,
   ) {
-    this._settingsSubject$ = new BehaviorSubject<Settings>({
+    this._settingsSubject = new BehaviorSubject<Settings>({
       ...DEFAULT_SETTINGS,
       ...this._storageService.getLocalStorageItem<Settings>(
         LocalStorageKey.Settings,
       ),
     });
 
-    this.settings$ = this._settingsSubject$.asObservable();
+    this.settings$ = this._settingsSubject.asObservable();
 
     this._loggerService.logServiceInitialization('SettingsService');
   }
 
   public get settings(): Settings {
-    return this._settingsSubject$.getValue();
+    return this._settingsSubject.getValue();
   }
 
   public updateSettings(partialSettings: Partial<Settings>): void {
@@ -45,6 +45,6 @@ export class SettingsService {
       settings,
     );
 
-    this._settingsSubject$.next(settings);
+    this._settingsSubject.next(settings);
   }
 }

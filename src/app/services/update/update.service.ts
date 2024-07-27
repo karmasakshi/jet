@@ -15,7 +15,7 @@ export class UpdateService {
   public readonly lastUpdateCheckTimestamp$: Observable<string>;
 
   private _isReloadPending: boolean;
-  private readonly _lastUpdateCheckTimestampSubject$: BehaviorSubject<string>;
+  private readonly _lastUpdateCheckTimestampSubject: BehaviorSubject<string>;
 
   public constructor(
     private readonly _swUpdate: SwUpdate,
@@ -28,14 +28,14 @@ export class UpdateService {
 
     this._isReloadPending = false;
 
-    this._lastUpdateCheckTimestampSubject$ = new BehaviorSubject<string>(
+    this._lastUpdateCheckTimestampSubject = new BehaviorSubject<string>(
       this._storageService.getLocalStorageItem<string>(
         LocalStorageKey.LastUpdateCheckTimestamp,
       ) ?? new Date().toISOString(),
     );
 
     this.lastUpdateCheckTimestamp$ =
-      this._lastUpdateCheckTimestampSubject$.asObservable();
+      this._lastUpdateCheckTimestampSubject.asObservable();
 
     this._loggerService.logServiceInitialization('UpdateService');
   }
@@ -127,6 +127,6 @@ export class UpdateService {
       now,
     );
 
-    this._lastUpdateCheckTimestampSubject$.next(now);
+    this._lastUpdateCheckTimestampSubject.next(now);
   }
 }

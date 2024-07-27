@@ -10,7 +10,7 @@ export class ProgressBarService {
   public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
 
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
-  private readonly _progressBarConfigurationSubject$: BehaviorSubject<ProgressBarConfiguration>;
+  private readonly _progressBarConfigurationSubject: BehaviorSubject<ProgressBarConfiguration>;
 
   public constructor(private readonly _loggerService: LoggerService) {
     this._defaultProgressBarConfiguration = {
@@ -20,19 +20,19 @@ export class ProgressBarService {
       value: 0,
     };
 
-    this._progressBarConfigurationSubject$ =
+    this._progressBarConfigurationSubject =
       new BehaviorSubject<ProgressBarConfiguration>(
         this._defaultProgressBarConfiguration,
       );
 
     this.progressBarConfiguration$ =
-      this._progressBarConfigurationSubject$.asObservable();
+      this._progressBarConfigurationSubject.asObservable();
 
     this._loggerService.logServiceInitialization('ProgressBarService');
   }
 
   public hideProgressBar(): void {
-    this._progressBarConfigurationSubject$.next({
+    this._progressBarConfigurationSubject.next({
       ...this._defaultProgressBarConfiguration,
       isVisible: false,
     });
@@ -41,7 +41,7 @@ export class ProgressBarService {
   public showProgressBar(
     partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
   ): void {
-    this._progressBarConfigurationSubject$.next({
+    this._progressBarConfigurationSubject.next({
       ...this._defaultProgressBarConfiguration,
       ...partialProgressBarConfiguration,
       isVisible: true,
