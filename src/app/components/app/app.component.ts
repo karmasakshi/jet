@@ -32,7 +32,7 @@ import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
-import { TitleService } from '@jet/services/title/title.service';
+import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { UpdateService } from '@jet/services/update/update.service';
 import { AvailableFont } from '@jet/types/available-font.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly pages: Page[];
   public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
   public readonly settings: Settings;
-  public readonly title$: Observable<string>;
+  public readonly toolbarTitle$: Observable<string>;
 
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
@@ -93,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly _loggerService: LoggerService,
     private readonly _progressBarService: ProgressBarService,
     private readonly _settingsService: SettingsService,
-    private readonly _titleService: TitleService,
+    private readonly _toolbarTitleService: ToolbarTitleService,
     private readonly _updateService: UpdateService,
     private readonly _translocoService: TranslocoService,
   ) {
@@ -129,7 +129,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.settings = this._settingsService.settings;
 
-    this.title$ = this._titleService.title$;
+    this.toolbarTitle$ = this._toolbarTitleService.toolbarTitle$;
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
@@ -141,7 +141,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this._analyticsService.logEvent('Start', packageJson.version);
+    this._analyticsService.logEvent('Start', `v${packageJson.version}`);
 
     this._routerSubscription = this._router.events
       .pipe(

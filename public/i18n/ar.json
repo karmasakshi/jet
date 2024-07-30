@@ -20,7 +20,12 @@
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-home-page": {
-    "title": "Jet AR"
+    "seo": {
+      "description": "Jet.",
+      "keywords": "",
+      "title": "Jet"
+    },
+    "toolbar-title": "Jet"
   },
   "jet-settings-page": {
     "arabic": "عربي",
@@ -35,8 +40,13 @@
     "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
     "reset": "إعادة ضبط",
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
+    "seo": {
+      "description": "Jet.",
+      "keywords": "",
+      "title": "إعدادات"
+    },
     "theme": "سمة",
-    "title": "إعدادات",
+    "toolbar-title": "إعدادات",
     "version": "v{{ value }}"
   }
 }

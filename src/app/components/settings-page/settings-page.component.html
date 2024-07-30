@@ -1,114 +1,123 @@
 <ng-container *transloco="let t; prefix: 'jet-settings-page'">
-  <mat-card>
-    <mat-card-content>
-      <mat-action-list>
-        <button
-          type="button"
-          jetAnalytics
-          jetAnalyticsEventName="Open Language Options"
-          mat-list-item
-          [matMenuTriggerFor]="languageMenu"
-        >
-          <mat-icon matListItemIcon>translate</mat-icon>
-          <span matListItemTitle>{{ t('language') }}</span>
-          <span matListItemLine>{{ t(settings.languageOption.nameKey) }}</span>
-        </button>
-
-        <button
-          type="button"
-          jetAnalytics
-          jetAnalyticsEventName="Open Theme Options"
-          mat-list-item
-          [matMenuTriggerFor]="themeMenu"
-        >
-          <mat-icon matListItemIcon>palette</mat-icon>
-          <span matListItemTitle>{{ t('theme') }}</span>
-          <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
-        </button>
-
-        <button
-          type="button"
-          jetAnalytics
-          jetAnalyticsEventName="Check for Update"
-          mat-list-item
-          (click)="checkForUpdate()"
-        >
-          <mat-icon matListItemIcon>sync</mat-icon>
-          <span matListItemTitle>{{ t('check-for-update') }}</span>
-          <span matListItemLine
-            >{{ t('last-checked') }}
-            {{ lastUpdateCheckTimestamp$ | async | date: 'medium' }}</span
+  <jet-page
+    [seoTitle]="t('seo.title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [toolbarTitle]="t('toolbar-title')"
+  >
+    <mat-card>
+      <mat-card-content>
+        <mat-action-list>
+          <button
+            type="button"
+            jetAnalytics
+            jetAnalyticsEventName="Open Language Options"
+            mat-list-item
+            [matMenuTriggerFor]="languageMenu"
           >
-        </button>
+            <mat-icon matListItemIcon>translate</mat-icon>
+            <span matListItemTitle>{{ t('language') }}</span>
+            <span matListItemLine>{{
+              t(settings.languageOption.nameKey)
+            }}</span>
+          </button>
 
+          <button
+            type="button"
+            jetAnalytics
+            jetAnalyticsEventName="Open Theme Options"
+            mat-list-item
+            [matMenuTriggerFor]="themeMenu"
+          >
+            <mat-icon matListItemIcon>palette</mat-icon>
+            <span matListItemTitle>{{ t('theme') }}</span>
+            <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
+          </button>
+
+          <button
+            type="button"
+            jetAnalytics
+            jetAnalyticsEventName="Check for Update"
+            mat-list-item
+            (click)="checkForUpdate()"
+          >
+            <mat-icon matListItemIcon>sync</mat-icon>
+            <span matListItemTitle>{{ t('check-for-update') }}</span>
+            <span matListItemLine
+              >{{ t('last-checked') }}
+              {{ lastUpdateCheckTimestamp$ | async | date: 'medium' }}</span
+            >
+          </button>
+
+          <button
+            type="button"
+            jetAnalytics
+            jetAnalyticsEventName="Reload"
+            mat-list-item
+            (click)="reload()"
+          >
+            <mat-icon matListItemIcon>refresh</mat-icon>
+            <span matListItemTitle>{{ t('reload') }}</span>
+            <span matListItemLine>{{ t('reload-description') }}</span>
+          </button>
+
+          <button
+            type="button"
+            jetAnalytics
+            jetAnalyticsEventName="Reset"
+            mat-list-item
+            (click)="reset()"
+          >
+            <mat-icon matListItemIcon>restart_alt</mat-icon>
+            <span matListItemTitle>{{ t('reset') }}</span>
+            <span matListItemLine>{{ t('reset-description') }}</span>
+          </button>
+        </mat-action-list>
+      </mat-card-content>
+    </mat-card>
+
+    <hr class="jet-invisible" />
+
+    <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
+
+    <mat-menu
+      xPosition="before"
+      #languageMenu="matMenu"
+    >
+      @for (languageOption of languageOptions; track languageOption.value) {
         <button
-          type="button"
           jetAnalytics
-          jetAnalyticsEventName="Reload"
-          mat-list-item
-          (click)="reload()"
+          jetAnalyticsEventName="Select Language Option"
+          [jetAnalyticsEventData]="languageOption.value"
+          type="button"
+          [disabled]="settings.languageOption.value === languageOption.value"
+          (click)="updateSettings({ languageOption })"
+          mat-menu-item
         >
-          <mat-icon matListItemIcon>refresh</mat-icon>
-          <span matListItemTitle>{{ t('reload') }}</span>
-          <span matListItemLine>{{ t('reload-description') }}</span>
+          <mat-icon>{{ languageOption.icon }}</mat-icon>
+          <span>{{ t(languageOption.nameKey) }}</span>
         </button>
+      }
+    </mat-menu>
 
+    <mat-menu
+      xPosition="before"
+      #themeMenu="matMenu"
+    >
+      @for (themeOption of themeOptions; track themeOption.value) {
         <button
-          type="button"
           jetAnalytics
-          jetAnalyticsEventName="Reset"
-          mat-list-item
-          (click)="reset()"
+          jetAnalyticsEventName="Select Theme Option"
+          [jetAnalyticsEventData]="themeOption.value"
+          type="button"
+          [disabled]="settings.themeOption.value === themeOption.value"
+          (click)="updateSettings({ themeOption })"
+          mat-menu-item
         >
-          <mat-icon matListItemIcon>restart_alt</mat-icon>
-          <span matListItemTitle>{{ t('reset') }}</span>
-          <span matListItemLine>{{ t('reset-description') }}</span>
+          <mat-icon>{{ themeOption.icon }}</mat-icon>
+          <span>{{ t(themeOption.nameKey) }}</span>
         </button>
-      </mat-action-list>
-    </mat-card-content>
-  </mat-card>
-
-  <hr class="jet-invisible" />
-
-  <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
-
-  <mat-menu
-    xPosition="before"
-    #languageMenu="matMenu"
-  >
-    @for (languageOption of languageOptions; track languageOption.value) {
-      <button
-        jetAnalytics
-        jetAnalyticsEventName="Select Language Option"
-        [jetAnalyticsEventData]="languageOption.value"
-        type="button"
-        [disabled]="settings.languageOption.value === languageOption.value"
-        (click)="updateSettings({ languageOption })"
-        mat-menu-item
-      >
-        <mat-icon>{{ languageOption.icon }}</mat-icon>
-        <span>{{ t(languageOption.nameKey) }}</span>
-      </button>
-    }
-  </mat-menu>
-
-  <mat-menu
-    xPosition="before"
-    #themeMenu="matMenu"
-  >
-    @for (themeOption of themeOptions; track themeOption.value) {
-      <button
-        jetAnalytics
-        jetAnalyticsEventName="Select Theme Option"
-        [jetAnalyticsEventData]="themeOption.value"
-        type="button"
-        [disabled]="settings.themeOption.value === themeOption.value"
-        (click)="updateSettings({ themeOption })"
-        mat-menu-item
-      >
-        <mat-icon>{{ themeOption.icon }}</mat-icon>
-        <span>{{ t(themeOption.nameKey) }}</span>
-      </button>
-    }
-  </mat-menu>
+      }
+    </mat-menu>
+  </jet-page>
 </ng-container>

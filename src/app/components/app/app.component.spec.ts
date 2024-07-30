@@ -9,8 +9,8 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.service.mock';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
-import { TitleService } from '@jet/services/title/title.service';
-import { TitleServiceMock } from '@jet/services/title/title.service.mock';
+import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
+import { ToolbarTitleServiceMock } from '@jet/services/toolbar-title/toolbar-title.service.mock';
 import { UpdateService } from '@jet/services/update/update.service';
 import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
@@ -33,7 +33,7 @@ describe('AppComponent', () => {
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
-        { provide: TitleService, useClass: TitleServiceMock },
+        { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },
         { provide: UpdateService, useClass: UpdateServiceMock },
       ],
     }).compileComponents();

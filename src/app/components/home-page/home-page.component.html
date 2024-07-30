@@ -1,3 +1,10 @@
 <ng-container *transloco="let t; prefix: 'jet-home-page'">
-  <p>home-page works!</p>
+  <jet-page
+    [seoTitle]="t('seo.title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [toolbarTitle]="t('toolbar-title')"
+  >
+    <p>home-page works!</p>
+  </jet-page>
 </ng-container>

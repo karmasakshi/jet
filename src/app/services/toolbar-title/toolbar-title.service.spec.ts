@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
-import { TitleService } from './title.service';
+import { ToolbarTitleService } from './toolbar-title.service';
 
-describe('TitleService', () => {
-  let service: TitleService;
+describe('ToolbarTitleService', () => {
+  let service: ToolbarTitleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     });
-    service = TestBed.inject(TitleService);
+    service = TestBed.inject(ToolbarTitleService);
   });
 
   it('should be created', () => {

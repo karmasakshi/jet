@@ -20,7 +20,12 @@
     "toggle-navigation-menu": "Toggle Navigation Menu"
   },
   "jet-home-page": {
-    "title": "Jet"
+    "seo": {
+      "description": "Jet.",
+      "keywords": "",
+      "title": "Jet"
+    },
+    "toolbar-title": "Jet"
   },
   "jet-settings-page": {
     "arabic": "Arabic",
@@ -35,8 +40,13 @@
     "reload-description": "Preserve settings and reload",
     "reset": "Reset",
     "reset-description": "Use default settings and reload",
+    "seo": {
+      "description": "Jet.",
+      "keywords": "",
+      "title": "Settings"
+    },
     "theme": "Theme",
-    "title": "Settings",
+    "toolbar-title": "Settings",
     "version": "v{{ value }}"
   }
 }

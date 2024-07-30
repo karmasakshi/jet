@@ -4,7 +4,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { PageClass } from '@jet/classes/page.class';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
@@ -15,11 +14,11 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
-import { TitleService } from '@jet/services/title/title.service';
 import { UpdateService } from '@jet/services/update/update.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { Observable } from 'rxjs';
+import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
@@ -31,13 +30,14 @@ import { Observable } from 'rxjs';
     MatMenuModule,
     AnalyticsDirective,
     TranslocoModule,
+    PageComponent,
   ],
   selector: 'jet-settings-page',
   standalone: true,
   styleUrl: './settings-page.component.scss',
   templateUrl: './settings-page.component.html',
 })
-export class SettingsPageComponent extends PageClass {
+export class SettingsPageComponent {
   public readonly languageOptions: LanguageOption[];
   public readonly lastUpdateCheckTimestamp$: Observable<string>;
   public readonly settings: Settings;
@@ -46,27 +46,12 @@ export class SettingsPageComponent extends PageClass {
 
   public constructor(
     private readonly _alertService: AlertService,
-    protected override readonly _loggerService: LoggerService,
+    private readonly _loggerService: LoggerService,
     private readonly _settingsService: SettingsService,
     private readonly _storageService: StorageService,
-    protected override readonly _titleService: TitleService,
     private readonly _updateService: UpdateService,
-    protected override readonly _translocoService: TranslocoService,
+    private readonly _translocoService: TranslocoService,
   ) {
-    /**
-     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
-     *
-     * t(jet-settings-page.title)
-     */
-
-    super(
-      'SettingsPageComponent',
-      'jet-settings-page.title',
-      _loggerService,
-      _titleService,
-      _translocoService,
-    );
-
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
@@ -92,6 +77,8 @@ export class SettingsPageComponent extends PageClass {
     this.themeOptions = THEME_OPTIONS;
 
     this.version = packageJson.version;
+
+    this._loggerService.logComponentInitialization('SettingsPageComponent');
   }
 
   public checkForUpdate(): void {

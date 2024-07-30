@@ -7,8 +7,6 @@ import { SettingsService } from '@jet/services/settings/settings.service';
 import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
 import { StorageService } from '@jet/services/storage/storage.service';
 import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
-import { TitleService } from '@jet/services/title/title.service';
-import { TitleServiceMock } from '@jet/services/title/title.service.mock';
 import { UpdateService } from '@jet/services/update/update.service';
 import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
@@ -26,7 +24,6 @@ describe('SettingsPageComponent', () => {
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
         { provide: StorageService, useClass: StorageServiceMock },
-        { provide: TitleService, useClass: TitleServiceMock },
         { provide: UpdateService, useClass: UpdateServiceMock },
       ],
     }).compileComponents();
