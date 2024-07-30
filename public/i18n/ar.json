@@ -22,7 +22,7 @@
   "jet-home-page": {
     "seo": {
       "description": "Jet.",
-      "keywords": "",
+      "keywords": "jet",
       "title": "Jet"
     },
     "toolbar-title": "Jet"
@@ -42,7 +42,7 @@
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "seo": {
       "description": "Jet.",
-      "keywords": "",
+      "keywords": "jet",
       "title": "إعدادات"
     },
     "theme": "سمة",

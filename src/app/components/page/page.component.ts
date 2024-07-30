@@ -17,7 +17,6 @@ export class PageComponent implements OnInit {
   @Input({ required: true }) public seoTitle!: string;
   @Input({ required: true }) public toolbarTitle!: string;
 
-  private readonly _commonKeywords: string;
   private readonly _defaultSeoImageUrl: string;
 
   public constructor(
@@ -26,8 +25,6 @@ export class PageComponent implements OnInit {
     private readonly _loggerService: LoggerService,
     private readonly _toolbarTitleService: ToolbarTitleService,
   ) {
-    this._commonKeywords = 'jet';
-
     this._defaultSeoImageUrl = 'https://jet.jet/og-image.jpg';
 
     this._loggerService.logComponentInitialization('PageComponent');
@@ -39,7 +36,7 @@ export class PageComponent implements OnInit {
     this._title.setTitle(this.seoTitle);
 
     this._meta.updateTag({
-      content: `${this.seoKeywords}, ${this._commonKeywords}`,
+      content: this.seoKeywords,
       name: 'keywords',
     });
 
