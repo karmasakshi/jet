@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/karmasakshi/jet/compare/v1.10.0...v1.11.0) (2024-07-30)
+
+
+### Features
+
+* **general:** replace page class with page component ([e036f94](https://github.com/karmasakshi/jet/commit/e036f94f4fa291ad6a7b9e15b34c0752cfc37875))
+
 ## [1.10.0](https://github.com/karmasakshi/jet/compare/v1.9.2...v1.10.0) (2024-07-13)
 
 
