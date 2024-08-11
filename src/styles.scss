@@ -8,17 +8,53 @@ $noto-sans-typography: mat.define-typography-config(
   $font-family: '"Noto Sans", sans-serif',
 );
 
+// // Material 3
+
+// $noto-sans-typography: (
+//   plain-family: (
+//     'Noto Sans',
+//     sans-serif,
+//   ),
+//   brand-family: (
+//     'Noto Sans',
+//     sans-serif,
+//   ),
+//   bold-weight: 900,
+//   medium-weight: 500,
+//   regular-weight: 300,
+// );
+
 $noto-sans-arabic-typography: mat.define-typography-config(
   $font-family: '"Noto Sans Arabic", sans-serif',
 );
 
+// // Material 3
+
+// $noto-sans-arabic-typography: (
+//   plain-family: (
+//     'Noto Sans Arabic',
+//     sans-serif,
+//   ),
+//   brand-family: (
+//     'Noto Sans Arabic',
+//     sans-serif,
+//   ),
+//   bold-weight: 900,
+//   medium-weight: 500,
+//   regular-weight: 300,
+// );
+
 // Palettes
 
 $amber-palette: mat.define-palette(mat.$amber-palette, 500);
-
 $brown-palette: mat.define-palette(mat.$brown-palette, 500);
-
 $red-palette: mat.define-palette(mat.$red-palette);
+
+// // Material 3
+
+// $rose-palette: mat.define-palette(mat.$rose-palette);
+// $green-palette: mat.define-palette(mat.$green-palette);
+// $red-palette: mat.define-palette(mat.$red-palette);
 
 // Themes
 
@@ -31,6 +67,21 @@ $dark-theme: mat.define-dark-theme(
     ),
   )
 );
+
+// // Material 3
+
+// $dark-theme: mat.define-theme(
+//   (
+//     color: (
+//       theme-type: dark,
+//       primary: $rose-palette,
+//       tertiary: $green-palette,
+//     ),
+//     density: (
+//       scale: 0,
+//     ),
+//   )
+// );
 
 // Default Theme
 
@@ -45,6 +96,22 @@ $default-theme: mat.define-light-theme(
     density: 0,
   )
 );
+
+// // Material 3
+
+// $default-theme: mat.define-theme(
+//   (
+//     color: (
+//       theme-type: light,
+//       primary: $rose-palette,
+//       tertiary: $green-palette,
+//     ),
+//     density: (
+//       scale: 0,
+//     ),
+//     typography: $noto-sans-typography,
+//   )
+// );
 
 // Styles
 
@@ -68,6 +135,10 @@ body {
 
   @include mat.typography-hierarchy($noto-sans-typography);
 
+  // // Material 3
+
+  // @include mat.typography-hierarchy($default-theme);
+
   &.jet-font-noto-sans-arabic {
     @include mat.core-typography($noto-sans-arabic-typography);
 
@@ -85,6 +156,31 @@ body {
     @include mat.tooltip-typography($noto-sans-arabic-typography);
 
     @include mat.typography-hierarchy($noto-sans-arabic-typography);
+
+    // // Material 3
+
+    // $override-theme: mat.define-theme(
+    //   (
+    //     typography: $noto-sans-arabic-typography,
+    //   )
+    // );
+
+    // @include mat.core-typography($override-theme);
+
+    // @include mat.button-typography($override-theme);
+    // @include mat.card-typography($override-theme);
+    // @include mat.icon-typography($override-theme);
+    // @include mat.icon-button-typography($override-theme);
+    // @include mat.list-typography($override-theme);
+    // @include mat.menu-typography($override-theme);
+    // @include mat.progress-bar-typography($override-theme);
+    // @include mat.sidenav-typography($override-theme);
+    // @include mat.snack-bar-typography($override-theme);
+    // @include mat.tabs-typography($override-theme);
+    // @include mat.toolbar-typography($override-theme);
+    // @include mat.tooltip-typography($override-theme);
+
+    // @include mat.typography-hierarchy($override-theme);
   }
 
   &.jet-theme-dark {
