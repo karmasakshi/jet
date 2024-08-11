@@ -52,9 +52,9 @@ $red-palette: mat.define-palette(mat.$red-palette);
 
 // // Material 3
 
-// $rose-palette: mat.define-palette(mat.$rose-palette);
-// $green-palette: mat.define-palette(mat.$green-palette);
-// $red-palette: mat.define-palette(mat.$red-palette);
+// $rose-palette: mat.$rose-palette;
+// $green-palette: mat.$green-palette;
+// $red-palette: mat.$red-palette;
 
 // Themes
 
@@ -77,9 +77,6 @@ $dark-theme: mat.define-dark-theme(
 //       primary: $rose-palette,
 //       tertiary: $green-palette,
 //     ),
-//     density: (
-//       scale: 0,
-//     ),
 //   )
 // );
 
@@ -92,8 +89,8 @@ $default-theme: mat.define-light-theme(
       accent: $amber-palette,
       warn: $red-palette,
     ),
-    typography: $noto-sans-typography,
     density: 0,
+    typography: $noto-sans-typography,
   )
 );
 
