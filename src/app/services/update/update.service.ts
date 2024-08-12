@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { TranslocoService } from '@jsverse/transloco';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
@@ -12,10 +12,9 @@ import { StorageService } from '../storage/storage.service';
 })
 export class UpdateService {
   public readonly swUpdateSubscription: Subscription;
-  public readonly lastUpdateCheckTimestamp$: Observable<string>;
 
   private _isReloadPending: boolean;
-  private readonly _lastUpdateCheckTimestampSubject: BehaviorSubject<string>;
+  private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
   public constructor(
     private readonly _swUpdate: SwUpdate,
@@ -28,16 +27,17 @@ export class UpdateService {
 
     this._isReloadPending = false;
 
-    this._lastUpdateCheckTimestampSubject = new BehaviorSubject<string>(
+    this._lastUpdateCheckTimestamp = signal(
       this._storageService.getLocalStorageItem<string>(
         LocalStorageKey.LastUpdateCheckTimestamp,
       ) ?? new Date().toISOString(),
     );
 
-    this.lastUpdateCheckTimestamp$ =
-      this._lastUpdateCheckTimestampSubject.asObservable();
-
     this._loggerService.logServiceInitialization('UpdateService');
+  }
+
+  public get lastUpdateCheckTimestamp(): Signal<string> {
+    return this._lastUpdateCheckTimestamp.asReadonly();
   }
 
   public checkForUpdate(): void {
@@ -127,6 +127,6 @@ export class UpdateService {
       now,
     );
 
-    this._lastUpdateCheckTimestampSubject.next(now);
+    this._lastUpdateCheckTimestamp.set(now);
   }
 }

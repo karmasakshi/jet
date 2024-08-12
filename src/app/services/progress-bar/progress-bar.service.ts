@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProgressBarService {
-  public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
-
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
-  private readonly _progressBarConfigurationSubject: BehaviorSubject<ProgressBarConfiguration>;
+  private readonly _progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
 
   public constructor(private readonly _loggerService: LoggerService) {
     this._defaultProgressBarConfiguration = {
@@ -20,19 +17,19 @@ export class ProgressBarService {
       value: 0,
     };
 
-    this._progressBarConfigurationSubject =
-      new BehaviorSubject<ProgressBarConfiguration>(
-        this._defaultProgressBarConfiguration,
-      );
-
-    this.progressBarConfiguration$ =
-      this._progressBarConfigurationSubject.asObservable();
+    this._progressBarConfiguration = signal(
+      this._defaultProgressBarConfiguration,
+    );
 
     this._loggerService.logServiceInitialization('ProgressBarService');
   }
 
+  public get progressBarConfiguration(): Signal<ProgressBarConfiguration> {
+    return this._progressBarConfiguration.asReadonly();
+  }
+
   public hideProgressBar(): void {
-    this._progressBarConfigurationSubject.next({
+    this._progressBarConfiguration.set({
       ...this._defaultProgressBarConfiguration,
       isVisible: false,
     });
@@ -41,10 +38,19 @@ export class ProgressBarService {
   public showProgressBar(
     partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
   ): void {
-    this._progressBarConfigurationSubject.next({
+    this._progressBarConfiguration.set({
       ...this._defaultProgressBarConfiguration,
       ...partialProgressBarConfiguration,
       isVisible: true,
+    });
+  }
+
+  public updateProgressBar(
+    partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
+  ): void {
+    this._progressBarConfiguration.set({
+      ...this._progressBarConfiguration(),
+      ...partialProgressBarConfiguration,
     });
   }
 }

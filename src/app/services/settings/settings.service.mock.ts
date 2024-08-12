@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { Signal, WritableSignal, signal } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { Observable, of } from 'rxjs';
 
 export class SettingsServiceMock {
-  public readonly settings$: Observable<Settings> = of(DEFAULT_SETTINGS);
+  public get settings(): Signal<Settings> {
+    const settings: WritableSignal<Settings> = signal(DEFAULT_SETTINGS);
 
-  public get settings(): Settings {
-    return DEFAULT_SETTINGS;
+    return settings.asReadonly();
   }
 
   public updateSettings(_partialSettings: Partial<Settings>): void {

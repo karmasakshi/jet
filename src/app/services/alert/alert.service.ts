@@ -21,7 +21,7 @@ export class AlertService {
     private readonly _settingsService: SettingsService,
   ) {
     this._directionality =
-      this._settingsService.settings.languageOption.directionality;
+      this._settingsService.settings().languageOption.directionality;
 
     this._loggerService.logServiceInitialization('AlertService');
   }

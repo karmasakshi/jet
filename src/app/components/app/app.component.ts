@@ -1,11 +1,13 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import {
-  AsyncPipe,
-  NgClass,
-  NgOptimizedImage,
-  NgTemplateOutlet,
-} from '@angular/common';
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  Signal,
+  computed,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -26,6 +28,7 @@ import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
@@ -39,18 +42,11 @@ import { AvailableLanguage } from '@jet/types/available-language.type';
 import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
-interface Page {
-  icon: string;
-  nameKey: string;
-  url: string;
-}
 
 @Component({
   imports: [
-    AsyncPipe,
     NgClass,
     NgOptimizedImage,
     NgTemplateOutlet,
@@ -73,12 +69,12 @@ interface Page {
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public activeUrl: Page['url'] | undefined;
+  public activeNavigationMenuItemUrl: NavigationMenuItem['url'] | undefined;
   public readonly isSmallViewport: boolean;
-  public readonly pages: Page[];
-  public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
+  public readonly navigationMenuItems: NavigationMenuItem[];
+  public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly settings: Settings;
-  public readonly toolbarTitle$: Observable<string>;
+  public readonly toolbarTitle: Signal<string>;
 
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
@@ -97,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly _updateService: UpdateService,
     private readonly _translocoService: TranslocoService,
   ) {
-    this.activeUrl = undefined;
+    this.activeNavigationMenuItemUrl = undefined;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
@@ -111,7 +107,7 @@ export class AppComponent implements OnInit, OnDestroy {
      * t(jet-app.settings)
      */
 
-    this.pages = [
+    this.navigationMenuItems = [
       {
         icon: 'home',
         nameKey: 'home',
@@ -124,12 +120,15 @@ export class AppComponent implements OnInit, OnDestroy {
       },
     ];
 
-    this.progressBarConfiguration$ =
-      this._progressBarService.progressBarConfiguration$;
+    this.progressBarConfiguration = computed(() =>
+      this._progressBarService.progressBarConfiguration(),
+    );
 
-    this.settings = this._settingsService.settings;
+    this.settings = this._settingsService.settings();
 
-    this.toolbarTitle$ = this._toolbarTitleService.toolbarTitle$;
+    this.toolbarTitle = computed(() =>
+      this._toolbarTitleService.toolbarTitle(),
+    );
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
@@ -152,7 +151,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ),
       )
       .subscribe((navigationEnd: NavigationEnd): void => {
-        this.activeUrl = navigationEnd.url;
+        this.activeNavigationMenuItemUrl = navigationEnd.url;
       });
 
     this._swUpdateSubscription = this._updateService.swUpdateSubscription;
