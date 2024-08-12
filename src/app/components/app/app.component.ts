@@ -69,7 +69,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public activeUrl: NavigationMenuItem['url'] | undefined;
+  public activeNavigationMenuItemUrl: NavigationMenuItem['url'] | undefined;
   public readonly isSmallViewport: boolean;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
@@ -93,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly _updateService: UpdateService,
     private readonly _translocoService: TranslocoService,
   ) {
-    this.activeUrl = undefined;
+    this.activeNavigationMenuItemUrl = undefined;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
@@ -151,7 +151,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ),
       )
       .subscribe((navigationEnd: NavigationEnd): void => {
-        this.activeUrl = navigationEnd.url;
+        this.activeNavigationMenuItemUrl = navigationEnd.url;
       });
 
     this._swUpdateSubscription = this._updateService.swUpdateSubscription;

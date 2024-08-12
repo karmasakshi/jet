@@ -25,7 +25,9 @@
             <a
               (click)="isSmallViewport && drawer.close()"
               matListItemTitle
-              [activated]="activeUrl === navigationMenuItem.url"
+              [activated]="
+                activeNavigationMenuItemUrl === navigationMenuItem.url
+              "
               mat-list-item
               [matTooltip]="t(navigationMenuItem.nameKey)"
               matTooltipPosition="after"
@@ -90,7 +92,7 @@
             track navigationMenuItem.url
           ) {
             <a
-              [active]="activeUrl === navigationMenuItem.url"
+              [active]="activeNavigationMenuItemUrl === navigationMenuItem.url"
               [routerLink]="navigationMenuItem.url"
               mat-tab-link
             >
