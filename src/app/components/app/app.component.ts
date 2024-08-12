@@ -5,7 +5,14 @@ import {
   NgOptimizedImage,
   NgTemplateOutlet,
 } from '@angular/common';
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  Signal,
+  computed,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -76,7 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public activeUrl: Page['url'] | undefined;
   public readonly isSmallViewport: boolean;
   public readonly pages: Page[];
-  public readonly progressBarConfiguration$: Observable<ProgressBarConfiguration>;
+  public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly settings: Settings;
   public readonly toolbarTitle$: Observable<string>;
 
@@ -124,8 +131,9 @@ export class AppComponent implements OnInit, OnDestroy {
       },
     ];
 
-    this.progressBarConfiguration$ =
-      this._progressBarService.progressBarConfiguration$;
+    this.progressBarConfiguration = computed(() =>
+      this._progressBarService.progressBarConfiguration(),
+    );
 
     this.settings = this._settingsService.settings;
 
