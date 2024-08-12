@@ -28,6 +28,7 @@ import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
@@ -43,12 +44,6 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
-interface Page {
-  icon: string;
-  nameKey: string;
-  url: string;
-}
 
 @Component({
   imports: [
@@ -74,9 +69,9 @@ interface Page {
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public activeUrl: Page['url'] | undefined;
+  public activeUrl: NavigationMenuItem['url'] | undefined;
   public readonly isSmallViewport: boolean;
-  public readonly pages: Page[];
+  public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly settings: Settings;
   public readonly toolbarTitle: Signal<string>;
@@ -112,7 +107,7 @@ export class AppComponent implements OnInit, OnDestroy {
      * t(jet-app.settings)
      */
 
-    this.pages = [
+    this.navigationMenuItems = [
       {
         icon: 'home',
         nameKey: 'home',
