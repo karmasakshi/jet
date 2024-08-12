@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/karmasakshi/jet/compare/v1.13.0...v1.14.0) (2024-08-12)
+
+
+### Features
+
+* **general:** replace inputs with input signals ([76793fe](https://github.com/karmasakshi/jet/commit/76793fe34b78457d8528dde685a6c94f117d68fd))
+
 ## [1.13.0](https://github.com/karmasakshi/jet/compare/v1.12.0...v1.13.0) (2024-08-12)
 
 
