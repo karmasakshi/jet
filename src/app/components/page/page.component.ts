@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, InputSignal, OnInit, input } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
@@ -11,11 +11,11 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   templateUrl: './page.component.html',
 })
 export class PageComponent implements OnInit {
-  @Input({ required: true }) public seoDescription!: string;
-  @Input() public seoImageUrl: string | undefined;
-  @Input({ required: true }) public seoKeywords!: string;
-  @Input({ required: true }) public seoTitle!: string;
-  @Input({ required: true }) public toolbarTitle!: string;
+  public seoDescription: InputSignal<string> = input.required();
+  public seoImageUrl: InputSignal<string | undefined> = input();
+  public seoKeywords: InputSignal<string> = input.required();
+  public seoTitle: InputSignal<string> = input.required();
+  public toolbarTitle: InputSignal<string> = input.required();
 
   private readonly _defaultSeoImageUrl: string;
 
@@ -31,35 +31,38 @@ export class PageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._toolbarTitleService.setToolbarTitle(this.toolbarTitle);
+    this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
 
-    this._title.setTitle(this.seoTitle);
+    this._title.setTitle(this.seoTitle());
 
     this._meta.updateTag({
-      content: this.seoKeywords,
+      content: this.seoKeywords(),
       name: 'keywords',
     });
 
-    this._meta.updateTag({ content: this.seoDescription, name: 'description' });
     this._meta.updateTag({
-      content: this.seoDescription,
+      content: this.seoDescription(),
+      name: 'description',
+    });
+    this._meta.updateTag({
+      content: this.seoDescription(),
       name: 'og:description',
     });
     this._meta.updateTag({
-      content: this.seoDescription,
+      content: this.seoDescription(),
       name: 'twitter:description',
     });
 
     this._meta.updateTag({
-      content: this.seoImageUrl ?? this._defaultSeoImageUrl,
+      content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
       name: 'og:image',
     });
     this._meta.updateTag({
-      content: this.seoImageUrl ?? this._defaultSeoImageUrl,
+      content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
       name: 'twitter:image',
     });
 
-    this._meta.updateTag({ content: this.seoTitle, name: 'og:title' });
-    this._meta.updateTag({ content: this.seoTitle, name: 'twitter:title' });
+    this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });
+    this._meta.updateTag({ content: this.seoTitle(), name: 'twitter:title' });
   }
 }
