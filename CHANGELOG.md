@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.13.0](https://github.com/karmasakshi/jet/compare/v1.12.0...v1.13.0) (2024-08-12)
+
+
+### Features
+
+* **general:** add function to update progress bar ([cdac5a5](https://github.com/karmasakshi/jet/commit/cdac5a503d7013b249e4b076e195a4dcb63f216d))
+* **general:** move progress bar service to signals ([1a63228](https://github.com/karmasakshi/jet/commit/1a63228129f4d99ec2a85f4ae6d364ff067d52f7))
+* **general:** move settings service to signals ([89b4284](https://github.com/karmasakshi/jet/commit/89b4284637db2838bdbcf688e10dad726586851c))
+* **general:** move toolbar title service to signals ([9a81130](https://github.com/karmasakshi/jet/commit/9a81130a034f794790492f27a173ca4e7016ea7e))
+* **general:** move update service to signals ([f997d39](https://github.com/karmasakshi/jet/commit/f997d396ab185623ea706e0c6a5128abcf2248d4))
+
 ## [1.12.0](https://github.com/karmasakshi/jet/compare/v1.11.0...v1.12.0) (2024-08-03)
 
 
