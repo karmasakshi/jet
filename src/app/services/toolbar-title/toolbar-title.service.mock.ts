@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Observable, of } from 'rxjs';
+import { Signal, WritableSignal, signal } from '@angular/core';
 
 export class ToolbarTitleServiceMock {
-  public readonly toolbarTitle$: Observable<string> = of('Mock Toolbar Title');
+  public get toolbarTitle(): Signal<string> {
+    const toolbarTitle: WritableSignal<string> = signal('');
 
-  public setToolbarTitle(_toolbarTitle: string) {
+    return toolbarTitle.asReadonly();
+  }
+
+  public setToolbarTitle(_toolbarTitle: string): void {
     // Mock implementation, do nothing
   }
 }

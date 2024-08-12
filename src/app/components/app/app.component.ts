@@ -46,7 +46,7 @@ import { AvailableLanguage } from '@jet/types/available-language.type';
 import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 interface Page {
@@ -85,7 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly pages: Page[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly settings: Settings;
-  public readonly toolbarTitle$: Observable<string>;
+  public readonly toolbarTitle: Signal<string>;
 
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
@@ -137,7 +137,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.settings = this._settingsService.settings;
 
-    this.toolbarTitle$ = this._toolbarTitleService.toolbarTitle$;
+    this.toolbarTitle = computed(() =>
+      this._toolbarTitleService.toolbarTitle(),
+    );
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
