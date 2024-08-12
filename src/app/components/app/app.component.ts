@@ -129,7 +129,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this._progressBarService.progressBarConfiguration(),
     );
 
-    this.settings = this._settingsService.settings;
+    this.settings = this._settingsService.settings();
 
     this.toolbarTitle = computed(() =>
       this._toolbarTitleService.toolbarTitle(),

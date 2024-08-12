@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, Signal, computed } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,7 +21,6 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
-    AsyncPipe,
     DatePipe,
     MatCardModule,
     MatIconModule,
@@ -64,7 +63,7 @@ export class SettingsPageComponent {
       this._updateService.lastUpdateCheckTimestamp(),
     );
 
-    this.settings = this._settingsService.settings;
+    this.settings = this._settingsService.settings();
 
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
