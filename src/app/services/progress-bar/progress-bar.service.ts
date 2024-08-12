@@ -44,4 +44,13 @@ export class ProgressBarService {
       isVisible: true,
     });
   }
+
+  public updateProgressBar(
+    partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
+  ): void {
+    this._progressBarConfiguration.set({
+      ...this._progressBarConfiguration(),
+      ...partialProgressBarConfiguration,
+    });
+  }
 }
