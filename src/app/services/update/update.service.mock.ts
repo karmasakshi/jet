@@ -1,10 +1,16 @@
-import { Observable, Subscription, of } from 'rxjs';
+import { Signal, WritableSignal, signal } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 export class UpdateServiceMock {
   public readonly swUpdateSubscription: Subscription = Subscription.EMPTY;
-  public readonly lastUpdateCheckTimestamp$: Observable<string> = of(
-    new Date().toISOString(),
-  );
+
+  public get lastUpdateCheckTimestamp(): Signal<string> {
+    const lastUpdateCheckTimestamp: WritableSignal<string> = signal(
+      new Date().toISOString(),
+    );
+
+    return lastUpdateCheckTimestamp.asReadonly();
+  }
 
   public checkForUpdate(): void {
     // Mock implementation, do nothing

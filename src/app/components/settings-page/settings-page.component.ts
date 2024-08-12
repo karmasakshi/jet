@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Signal, computed } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -17,7 +17,6 @@ import { StorageService } from '@jet/services/storage/storage.service';
 import { UpdateService } from '@jet/services/update/update.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
-import { Observable } from 'rxjs';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -39,7 +38,7 @@ import { PageComponent } from '../page/page.component';
 })
 export class SettingsPageComponent {
   public readonly languageOptions: LanguageOption[];
-  public readonly lastUpdateCheckTimestamp$: Observable<string>;
+  public readonly lastUpdateCheckTimestamp: Signal<string>;
   public readonly settings: Settings;
   public readonly themeOptions: ThemeOption[];
   public readonly version: string;
@@ -61,8 +60,9 @@ export class SettingsPageComponent {
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
-    this.lastUpdateCheckTimestamp$ =
-      this._updateService.lastUpdateCheckTimestamp$;
+    this.lastUpdateCheckTimestamp = computed(() =>
+      this._updateService.lastUpdateCheckTimestamp(),
+    );
 
     this.settings = this._settingsService.settings;
 
