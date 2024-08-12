@@ -1,10 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import {
-  AsyncPipe,
-  NgClass,
-  NgOptimizedImage,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   OnDestroy,
@@ -57,7 +52,6 @@ interface Page {
 
 @Component({
   imports: [
-    AsyncPipe,
     NgClass,
     NgOptimizedImage,
     NgTemplateOutlet,
