@@ -316,7 +316,7 @@ form {
 }
 
 footer {
-  padding: 16px 0 calc(16px + env(safe-area-inset-bottom)) 0;
+  padding: 16px 0 calc(48px + 16px + env(safe-area-inset-bottom)) 0;
 }
 
 .mat-mdc-button,
@@ -360,7 +360,7 @@ footer {
   overflow: hidden;
 }
 
-// Global Classes
+// Utility Classes
 
 .jet-cards-container {
   justify-content: space-evenly;
