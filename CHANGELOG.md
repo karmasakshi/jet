@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.15.0](https://github.com/karmasakshi/jet/compare/v1.14.0...v1.15.0) (2024-08-19)
+
+
+### Features
+
+* **general:** lazy-load all routes ([92576aa](https://github.com/karmasakshi/jet/commit/92576aacf86d0a6ab1f78d5b6087da93c58f6838))
+* **general:** update dependencies ([e776dc2](https://github.com/karmasakshi/jet/commit/e776dc267d1b8bdd8c636a1fe8bc30faf718078c))
+
 ## [1.14.0](https://github.com/karmasakshi/jet/compare/v1.13.0...v1.14.0) (2024-08-12)
 
 
