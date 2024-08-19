@@ -1,14 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { IS_LOGGING_ENABLED } from '@jet/tokens/is-logging-enabled.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoggerService {
-  public constructor(
-    @Inject(IS_LOGGING_ENABLED)
-    private readonly _isLoggingEnabled: boolean,
-  ) {
+  private readonly _isLoggingEnabled = inject(IS_LOGGING_ENABLED);
+
+  public constructor() {
     if (this._isLoggingEnabled) {
       this.logServiceInitialization('LoggerService');
     }

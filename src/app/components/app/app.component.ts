@@ -7,6 +7,7 @@ import {
   Renderer2,
   Signal,
   computed,
+  inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -80,19 +81,19 @@ export class AppComponent implements OnInit, OnDestroy {
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
 
-  public constructor(
-    private readonly _breakpointObserver: BreakpointObserver,
-    private readonly _renderer2: Renderer2,
-    private readonly _meta: Meta,
-    private readonly _router: Router,
-    private readonly _analyticsService: AnalyticsService,
-    private readonly _loggerService: LoggerService,
-    private readonly _progressBarService: ProgressBarService,
-    private readonly _settingsService: SettingsService,
-    private readonly _toolbarTitleService: ToolbarTitleService,
-    private readonly _updateService: UpdateService,
-    private readonly _translocoService: TranslocoService,
-  ) {
+  private readonly _breakpointObserver = inject(BreakpointObserver);
+  private readonly _renderer2 = inject(Renderer2);
+  private readonly _meta = inject(Meta);
+  private readonly _router = inject(Router);
+  private readonly _analyticsService = inject(AnalyticsService);
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _progressBarService = inject(ProgressBarService);
+  private readonly _settingsService = inject(SettingsService);
+  private readonly _toolbarTitleService = inject(ToolbarTitleService);
+  private readonly _updateService = inject(UpdateService);
+  private readonly _translocoService = inject(TranslocoService);
+
+  public constructor() {
     this.activeNavigationMenuItemUrl = undefined;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([

@@ -1,4 +1,10 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import {
+  Injectable,
+  Signal,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
@@ -7,7 +13,9 @@ import { LoggerService } from '../logger/logger.service';
 export class ToolbarTitleService {
   private readonly _toolbarTitle: WritableSignal<string>;
 
-  public constructor(private readonly _loggerService: LoggerService) {
+  private readonly _loggerService = inject(LoggerService);
+
+  public constructor() {
     this._toolbarTitle = signal('');
 
     this._loggerService.logServiceInitialization('ToolbarTitleService');

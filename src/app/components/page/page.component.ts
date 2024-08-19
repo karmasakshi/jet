@@ -1,4 +1,4 @@
-import { Component, InputSignal, OnInit, input } from '@angular/core';
+import { Component, InputSignal, OnInit, inject, input } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
@@ -19,12 +19,12 @@ export class PageComponent implements OnInit {
 
   private readonly _defaultSeoImageUrl: string;
 
-  public constructor(
-    private readonly _meta: Meta,
-    private readonly _title: Title,
-    private readonly _loggerService: LoggerService,
-    private readonly _toolbarTitleService: ToolbarTitleService,
-  ) {
+  private readonly _meta = inject(Meta);
+  private readonly _title = inject(Title);
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _toolbarTitleService = inject(ToolbarTitleService);
+
+  public constructor() {
     this._defaultSeoImageUrl = 'https://jet.jet/og-image.jpg';
 
     this._loggerService.logComponentInitialization('PageComponent');
@@ -34,6 +34,8 @@ export class PageComponent implements OnInit {
     this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
 
     this._title.setTitle(this.seoTitle());
+    this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });
+    this._meta.updateTag({ content: this.seoTitle(), name: 'twitter:title' });
 
     this._meta.updateTag({
       content: this.seoKeywords(),
@@ -61,8 +63,5 @@ export class PageComponent implements OnInit {
       content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
       name: 'twitter:image',
     });
-
-    this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });
-    this._meta.updateTag({ content: this.seoTitle(), name: 'twitter:title' });
   }
 }

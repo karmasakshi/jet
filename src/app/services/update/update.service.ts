@@ -1,4 +1,10 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import {
+  Injectable,
+  Signal,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { TranslocoService } from '@jsverse/transloco';
@@ -16,13 +22,13 @@ export class UpdateService {
   private _isReloadPending: boolean;
   private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
-  public constructor(
-    private readonly _swUpdate: SwUpdate,
-    private readonly _translocoService: TranslocoService,
-    private readonly _alertService: AlertService,
-    private readonly _loggerService: LoggerService,
-    private readonly _storageService: StorageService,
-  ) {
+  private readonly _swUpdate = inject(SwUpdate);
+  private readonly _translocoService = inject(TranslocoService);
+  private readonly _alertService = inject(AlertService);
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _storageService = inject(StorageService);
+
+  public constructor() {
     this.swUpdateSubscription = this._subscribeToUpdates();
 
     this._isReloadPending = false;

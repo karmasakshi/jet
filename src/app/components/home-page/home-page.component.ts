@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
@@ -11,7 +11,9 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
-  public constructor(private readonly _loggerService: LoggerService) {
+  private readonly _loggerService = inject(LoggerService);
+
+  public constructor() {
     this._loggerService.logComponentInitialization('HomePageComponent');
   }
 }

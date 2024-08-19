@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Signal, computed } from '@angular/core';
+import { Component, Signal, computed, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -42,14 +42,14 @@ export class SettingsPageComponent {
   public readonly themeOptions: ThemeOption[];
   public readonly version: string;
 
-  public constructor(
-    private readonly _alertService: AlertService,
-    private readonly _loggerService: LoggerService,
-    private readonly _settingsService: SettingsService,
-    private readonly _storageService: StorageService,
-    private readonly _updateService: UpdateService,
-    private readonly _translocoService: TranslocoService,
-  ) {
+  private readonly _alertService = inject(AlertService);
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _settingsService = inject(SettingsService);
+  private readonly _storageService = inject(StorageService);
+  private readonly _updateService = inject(UpdateService);
+  private readonly _translocoService = inject(TranslocoService);
+
+  public constructor() {
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *

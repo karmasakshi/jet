@@ -1,4 +1,10 @@
-import { Directive, HostListener, InputSignal, input } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+  InputSignal,
+  inject,
+  input,
+} from '@angular/core';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
@@ -10,10 +16,10 @@ export class AnalyticsDirective {
   public jetAnalyticsEventData: InputSignal<unknown> = input();
   public jetAnalyticsEventName: InputSignal<string> = input.required();
 
-  public constructor(
-    private readonly _analyticsService: AnalyticsService,
-    private readonly _loggerService: LoggerService,
-  ) {
+  private readonly _analyticsService = inject(AnalyticsService);
+  private readonly _loggerService = inject(LoggerService);
+
+  public constructor() {
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 

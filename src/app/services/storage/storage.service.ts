@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
 import { LoggerService } from '../logger/logger.service';
@@ -9,7 +9,9 @@ import { LoggerService } from '../logger/logger.service';
 export class StorageService {
   private readonly _prefix: string;
 
-  public constructor(private readonly _loggerService: LoggerService) {
+  private readonly _loggerService = inject(LoggerService);
+
+  public constructor() {
     this._prefix = 'jet';
 
     this._loggerService.logServiceInitialization('StorageService');

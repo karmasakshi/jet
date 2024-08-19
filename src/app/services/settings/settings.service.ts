@@ -1,4 +1,10 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import {
+  Injectable,
+  Signal,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { Settings } from '@jet/interfaces/settings.interface';
@@ -11,10 +17,10 @@ import { StorageService } from '../storage/storage.service';
 export class SettingsService {
   private readonly _settings: WritableSignal<Settings>;
 
-  public constructor(
-    private readonly _loggerService: LoggerService,
-    private readonly _storageService: StorageService,
-  ) {
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _storageService = inject(StorageService);
+
+  public constructor() {
     this._settings = signal({
       ...DEFAULT_SETTINGS,
       ...this._storageService.getLocalStorageItem<Settings>(

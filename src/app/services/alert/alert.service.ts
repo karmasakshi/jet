@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MatSnackBar,
   MatSnackBarRef,
@@ -15,11 +15,11 @@ import { SettingsService } from '../settings/settings.service';
 export class AlertService {
   private readonly _directionality: LanguageOption['directionality'];
 
-  public constructor(
-    private readonly _matSnackBar: MatSnackBar,
-    private readonly _loggerService: LoggerService,
-    private readonly _settingsService: SettingsService,
-  ) {
+  private readonly _matSnackBar = inject(MatSnackBar);
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _settingsService = inject(SettingsService);
+
+  public constructor() {
     this._directionality =
       this._settingsService.settings().languageOption.directionality;
 

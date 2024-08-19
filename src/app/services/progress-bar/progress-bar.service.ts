@@ -1,4 +1,10 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import {
+  Injectable,
+  Signal,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { LoggerService } from '../logger/logger.service';
 
@@ -9,7 +15,9 @@ export class ProgressBarService {
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
   private readonly _progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
 
-  public constructor(private readonly _loggerService: LoggerService) {
+  private readonly _loggerService = inject(LoggerService);
+
+  public constructor() {
     this._defaultProgressBarConfiguration = {
       bufferValue: 0,
       isVisible: false,
