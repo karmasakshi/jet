@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from '@jet/components/home-page/home-page.component';
 
 export const routes: Routes = [
-  { component: HomePageComponent, path: '' },
+  {
+    loadComponent: () =>
+      import('@jet/components/home-page/home-page.component').then(
+        (m) => m.HomePageComponent,
+      ),
+    path: '',
+  },
   {
     loadComponent: () =>
       import('@jet/components/settings-page/settings-page.component').then(
-        (module) => module.SettingsPageComponent,
+        (m) => m.SettingsPageComponent,
       ),
     path: 'settings',
   },
