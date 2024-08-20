@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/karmasakshi/jet/compare/v1.15.0...v1.16.0) (2024-08-20)
+
+
+### Features
+
+* **general:** add issue templates ([2dae6f3](https://github.com/karmasakshi/jet/commit/2dae6f35f131f69ecee302a2c60ac505ecda1ad1))
+
 ## [1.15.0](https://github.com/karmasakshi/jet/compare/v1.14.0...v1.15.0) (2024-08-19)
 
 
