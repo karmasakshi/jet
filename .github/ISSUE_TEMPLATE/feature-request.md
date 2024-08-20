@@ -1,20 +1,23 @@
 ---
 name: Feature Request
-about: Suggest an idea for this project
+about: Suggest an improvement to the project
 title: 'feat: '
 labels: enhancement
 assignees: karmasakshi
-
 ---
 
-## Description
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Problem
+
+A clear and concise description of the problem.
 
 ## Proposal
-A clear and concise description of what you want to happen.
+
+A clear and concise description of the solution.
 
 ## Alternatives
-A clear and concise description of any alternative solutions or features you've considered.
+
+A clear and concise description of the alternative solutions you've considered.
 
 ## Additional Context
+
 Add any other context or screenshots.

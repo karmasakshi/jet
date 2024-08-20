@@ -1,23 +1,26 @@
 ---
 name: Question
-about: Ask a question about this project
-title: question
+about: Ask a question
+title: 'question: '
 labels: question
 assignees: karmasakshi
-
 ---
 
-## Question
-Describe your question or the problem you need help with.
+## Problem
+
+A clear and concise description of the problem.
 
 ## Attempts
-Describe what you’ve tried so far to resolve the issue.
+
+A clear and concise description of the solutions attempted.
 
 ## Environment
+
 - Operating System: [e.g., Windows, macOS, Ubuntu]
 - Operating System Version: [e.g., Windows, macOS, Ubuntu]
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
 
 ## Additional Context
+
 Add any other context or screenshots.
