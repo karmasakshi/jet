@@ -36,18 +36,18 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './settings-page.component.html',
 })
 export class SettingsPageComponent {
-  public readonly languageOptions: LanguageOption[];
-  public readonly lastUpdateCheckTimestamp: Signal<string>;
-  public readonly settings: Settings;
-  public readonly themeOptions: ThemeOption[];
-  public readonly version: string;
-
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
   private readonly _storageService = inject(StorageService);
   private readonly _updateService = inject(UpdateService);
   private readonly _translocoService = inject(TranslocoService);
+
+  public readonly languageOptions: LanguageOption[];
+  public readonly lastUpdateCheckTimestamp: Signal<string>;
+  public readonly settings: Settings;
+  public readonly themeOptions: ThemeOption[];
+  public readonly version: string;
 
   public constructor() {
     /**

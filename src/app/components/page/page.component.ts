@@ -11,18 +11,18 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   templateUrl: './page.component.html',
 })
 export class PageComponent implements OnInit {
+  private readonly _meta = inject(Meta);
+  private readonly _title = inject(Title);
+  private readonly _loggerService = inject(LoggerService);
+  private readonly _toolbarTitleService = inject(ToolbarTitleService);
+
+  private readonly _defaultSeoImageUrl: string;
+
   public seoDescription: InputSignal<string> = input.required();
   public seoImageUrl: InputSignal<string | undefined> = input();
   public seoKeywords: InputSignal<string> = input.required();
   public seoTitle: InputSignal<string> = input.required();
   public toolbarTitle: InputSignal<string> = input.required();
-
-  private readonly _defaultSeoImageUrl: string;
-
-  private readonly _meta = inject(Meta);
-  private readonly _title = inject(Title);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _toolbarTitleService = inject(ToolbarTitleService);
 
   public constructor() {
     this._defaultSeoImageUrl = 'https://jet.jet/og-image.jpg';
@@ -31,7 +31,7 @@ export class PageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
+    this._toolbarTitleService.updateToolbarTitle(this.toolbarTitle());
 
     this._title.setTitle(this.seoTitle());
     this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });

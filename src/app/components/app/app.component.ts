@@ -70,17 +70,6 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public activeNavigationMenuItemUrl: NavigationMenuItem['url'] | undefined;
-  public readonly isSmallViewport: boolean;
-  public readonly navigationMenuItems: NavigationMenuItem[];
-  public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly settings: Settings;
-  public readonly toolbarTitle: Signal<string>;
-
-  private readonly _isPwaMode: boolean;
-  private _routerSubscription: Subscription;
-  private _swUpdateSubscription: Subscription;
-
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _renderer2 = inject(Renderer2);
   private readonly _meta = inject(Meta);
@@ -93,7 +82,24 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _updateService = inject(UpdateService);
   private readonly _translocoService = inject(TranslocoService);
 
+  private readonly _isPwaMode: boolean;
+  private _routerSubscription: Subscription;
+  private _swUpdateSubscription: Subscription;
+
+  public activeNavigationMenuItemUrl: NavigationMenuItem['url'] | undefined;
+  public readonly isSmallViewport: boolean;
+  public readonly navigationMenuItems: NavigationMenuItem[];
+  public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
+  public readonly settings: Settings;
+  public readonly toolbarTitle: Signal<string>;
+
   public constructor() {
+    this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
+
+    this._routerSubscription = Subscription.EMPTY;
+
+    this._swUpdateSubscription = Subscription.EMPTY;
+
     this.activeNavigationMenuItemUrl = undefined;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
@@ -130,12 +136,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.toolbarTitle = computed(() =>
       this._toolbarTitleService.toolbarTitle(),
     );
-
-    this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
-
-    this._routerSubscription = Subscription.EMPTY;
-
-    this._swUpdateSubscription = Subscription.EMPTY;
 
     this._loggerService.logComponentInitialization('AppComponent');
   }

@@ -7,9 +7,9 @@ import { LoggerService } from '../logger/logger.service';
   providedIn: 'root',
 })
 export class StorageService {
-  private readonly _prefix: string;
-
   private readonly _loggerService = inject(LoggerService);
+
+  private readonly _prefix: string;
 
   public constructor() {
     this._prefix = 'jet';
@@ -63,6 +63,14 @@ export class StorageService {
     return value;
   }
 
+  public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
+    localStorage.removeItem(`${this._prefix}-${localStorageKey}`);
+  }
+
+  public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
+    sessionStorage.removeItem(`${this._prefix}-${sessionStorageKey}`);
+  }
+
   public setLocalStorageItem(
     localStorageKey: LocalStorageKey,
     value: unknown,
@@ -93,13 +101,5 @@ export class StorageService {
     } catch (error: unknown) {
       this._loggerService.logError(error);
     }
-  }
-
-  public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    localStorage.removeItem(`${this._prefix}-${localStorageKey}`);
-  }
-
-  public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    sessionStorage.removeItem(`${this._prefix}-${sessionStorageKey}`);
   }
 }

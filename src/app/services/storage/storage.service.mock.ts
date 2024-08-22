@@ -22,6 +22,14 @@ export class StorageServiceMock {
     return null;
   }
 
+  public removeLocalStorageItem(_localStorageKey: LocalStorageKey): void {
+    // Mock implementation, do nothing
+  }
+
+  public removeSessionStorageItem(_sessionStorageKey: SessionStorageKey): void {
+    // Mock implementation, do nothing
+  }
+
   public setLocalStorageItem(
     _localStorageKey: LocalStorageKey,
     _value: unknown,
@@ -33,14 +41,6 @@ export class StorageServiceMock {
     _sessionStorageKey: SessionStorageKey,
     _value: unknown,
   ): void {
-    // Mock implementation, do nothing
-  }
-
-  public removeLocalStorageItem(_localStorageKey: LocalStorageKey): void {
-    // Mock implementation, do nothing
-  }
-
-  public removeSessionStorageItem(_sessionStorageKey: SessionStorageKey): void {
     // Mock implementation, do nothing
   }
 }

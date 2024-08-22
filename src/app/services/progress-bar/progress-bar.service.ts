@@ -12,10 +12,10 @@ import { LoggerService } from '../logger/logger.service';
   providedIn: 'root',
 })
 export class ProgressBarService {
+  private readonly _loggerService = inject(LoggerService);
+
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
   private readonly _progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
-
-  private readonly _loggerService = inject(LoggerService);
 
   public constructor() {
     this._defaultProgressBarConfiguration = {
@@ -53,7 +53,7 @@ export class ProgressBarService {
     });
   }
 
-  public updateProgressBar(
+  public updateProgressBarConfiguration(
     partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
     this._progressBarConfiguration.set({

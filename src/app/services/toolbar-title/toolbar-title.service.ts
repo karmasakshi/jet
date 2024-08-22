@@ -11,9 +11,9 @@ import { LoggerService } from '../logger/logger.service';
   providedIn: 'root',
 })
 export class ToolbarTitleService {
-  private readonly _toolbarTitle: WritableSignal<string>;
-
   private readonly _loggerService = inject(LoggerService);
+
+  private readonly _toolbarTitle: WritableSignal<string>;
 
   public constructor() {
     this._toolbarTitle = signal('');
@@ -25,7 +25,7 @@ export class ToolbarTitleService {
     return this._toolbarTitle.asReadonly();
   }
 
-  public setToolbarTitle(toolbarTitle: string) {
+  public updateToolbarTitle(toolbarTitle: string) {
     this._toolbarTitle.set(toolbarTitle);
   }
 }

@@ -15,10 +15,10 @@ import { StorageService } from '../storage/storage.service';
   providedIn: 'root',
 })
 export class SettingsService {
-  private readonly _settings: WritableSignal<Settings>;
-
   private readonly _loggerService = inject(LoggerService);
   private readonly _storageService = inject(StorageService);
+
+  private readonly _settings: WritableSignal<Settings>;
 
   public constructor() {
     this._settings = signal({

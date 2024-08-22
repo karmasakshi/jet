@@ -17,20 +17,18 @@ import { StorageService } from '../storage/storage.service';
   providedIn: 'root',
 })
 export class UpdateService {
-  public readonly swUpdateSubscription: Subscription;
-
-  private _isReloadPending: boolean;
-  private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
-
   private readonly _swUpdate = inject(SwUpdate);
   private readonly _translocoService = inject(TranslocoService);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _storageService = inject(StorageService);
 
-  public constructor() {
-    this.swUpdateSubscription = this._subscribeToUpdates();
+  private _isReloadPending: boolean;
+  private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
+  public readonly swUpdateSubscription: Subscription;
+
+  public constructor() {
     this._isReloadPending = false;
 
     this._lastUpdateCheckTimestamp = signal(
@@ -38,6 +36,8 @@ export class UpdateService {
         LocalStorageKey.LastUpdateCheckTimestamp,
       ) ?? new Date().toISOString(),
     );
+
+    this.swUpdateSubscription = this._subscribeToUpdates();
 
     this._loggerService.logServiceInitialization('UpdateService');
   }
@@ -83,6 +83,17 @@ export class UpdateService {
     }
   }
 
+  private _resetLastUpdateCheckTimestamp(): void {
+    const now: string = new Date().toISOString();
+
+    this._storageService.setLocalStorageItem(
+      LocalStorageKey.LastUpdateCheckTimestamp,
+      now,
+    );
+
+    this._lastUpdateCheckTimestamp.set(now);
+  }
+
   private _subscribeToUpdates(): Subscription {
     if (!this._swUpdate.isEnabled) {
       return Subscription.EMPTY;
@@ -123,16 +134,5 @@ export class UpdateService {
         },
       );
     }
-  }
-
-  private _resetLastUpdateCheckTimestamp(): void {
-    const now: string = new Date().toISOString();
-
-    this._storageService.setLocalStorageItem(
-      LocalStorageKey.LastUpdateCheckTimestamp,
-      now,
-    );
-
-    this._lastUpdateCheckTimestamp.set(now);
   }
 }

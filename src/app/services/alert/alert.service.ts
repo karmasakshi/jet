@@ -13,11 +13,11 @@ import { SettingsService } from '../settings/settings.service';
   providedIn: 'root',
 })
 export class AlertService {
-  private readonly _directionality: LanguageOption['directionality'];
-
   private readonly _matSnackBar = inject(MatSnackBar);
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
+
+  private readonly _directionality: LanguageOption['directionality'];
 
   public constructor() {
     this._directionality =

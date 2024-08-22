@@ -13,11 +13,11 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   standalone: true,
 })
 export class AnalyticsDirective {
-  public jetAnalyticsEventData: InputSignal<unknown> = input();
-  public jetAnalyticsEventName: InputSignal<string> = input.required();
-
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
+
+  public jetAnalyticsEventData: InputSignal<unknown> = input();
+  public jetAnalyticsEventName: InputSignal<string> = input.required();
 
   public constructor() {
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
