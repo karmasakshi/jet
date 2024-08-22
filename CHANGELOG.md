@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.17.0](https://github.com/karmasakshi/jet/compare/v1.16.0...v1.17.0) (2024-08-22)
+
+
+### Features
+
+* **general:** add compressed-size-action ([12b4850](https://github.com/karmasakshi/jet/commit/12b4850903edcd8bbabed91a7cf36faa9a1c806d))
+* **general:** replace compressed-size-action with pkg-size-action ([8181d03](https://github.com/karmasakshi/jet/commit/8181d03c29a58e74bfc7dacc3d5cce788f3f82ae))
+
 ## [1.16.0](https://github.com/karmasakshi/jet/compare/v1.15.0...v1.16.0) (2024-08-20)
 
 
