@@ -16,7 +16,7 @@
     "i18n:extract": "npx --no -- transloco-keys-manager extract",
     "i18n:find": "npx --no -- transloco-keys-manager find",
     "prepare": "npx --no -- husky",
-    "install-dependencies": "npm install @angular/animations @angular/cdk@17 @angular/common @angular/compiler @angular/core @angular/forms @angular/material@17 @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
+    "install-dependencies": "npm install @angular/animations @angular/cdk@17 @angular/common @angular/compiler @angular/core @angular/forms @angular/material@17 @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js@0.14.10",
     "uninstall-dependencies": "npm uninstall @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
     "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
     "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
@@ -44,8 +44,8 @@
     "zone.js": "^0.14.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.0",
-    "@angular/cli": "^18.2.0",
+    "@angular-devkit/build-angular": "^18.2.1",
+    "@angular/cli": "^18.2.1",
     "@angular/compiler-cli": "^18.2.0",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-angular": "^19.3.0",
@@ -55,7 +55,7 @@
     "@types/jasmine": "^5.1.4",
     "angular-eslint": "^18.3.0",
     "eslint": "^9.9.0",
-    "husky": "^9.1.4",
+    "husky": "^9.1.5",
     "jasmine-core": "^5.2.0",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
@@ -66,6 +66,6 @@
     "ngx-build-plus": "^18.0.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.1.0"
+    "typescript-eslint": "^8.2.0"
   }
 }
