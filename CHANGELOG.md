@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.18.0](https://github.com/karmasakshi/jet/compare/v1.17.0...v1.18.0) (2024-08-22)
+
+
+### Features
+
+* **general:** remove pkg-size-action ([052a27b](https://github.com/karmasakshi/jet/commit/052a27b5d28dec4d2cc2a8ba6e370e5eb084125b))
+* **general:** update dependencies ([10d07d4](https://github.com/karmasakshi/jet/commit/10d07d453cbda2d5b9ba274a0e52b75bf2629993))
+
+
+### Bug Fixes
+
+* **general:** pkg-size-action permission ([37d6355](https://github.com/karmasakshi/jet/commit/37d6355dcdc92ff7263d69e98584088c49677d76))
+
 ## [1.17.0](https://github.com/karmasakshi/jet/compare/v1.16.0...v1.17.0) (2024-08-22)
 
 
