@@ -12,8 +12,6 @@ jobs:
       - uses: actions/checkout@v4 # https://github.com/marketplace/actions/checkout
       - uses: actions/setup-node@v4 # https://github.com/marketplace/actions/setup-node-js-environment
       - uses: actions/setup-node@v4
-        with:
-          node-version: 22
       - uses: pkg-size/action@v1 # https://github.com/marketplace/actions/pkg-size-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
