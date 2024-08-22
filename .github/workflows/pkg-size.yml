@@ -11,8 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4 # https://github.com/marketplace/actions/checkout
       - uses: actions/setup-node@v4 # https://github.com/marketplace/actions/setup-node-js-environment
-        with:
-          node-version: 'lts'
-      - uses: pkg-size/action@v1
+      - uses: pkg-size/action@v1 # https://github.com/marketplace/actions/pkg-size-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
