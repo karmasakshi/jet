@@ -3,7 +3,7 @@ name: Documentation Request
 about: Suggest an improvement to the documentation
 title: 'docs: '
 labels: documentation
-assignees: karmasakshi
+assignees: ''
 ---
 
 ## Description

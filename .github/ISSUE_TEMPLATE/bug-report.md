@@ -3,7 +3,7 @@ name: Bug Report
 about: Report a feature not working as expected
 title: 'bug: '
 labels: bug
-assignees: karmasakshi
+assignees: ''
 ---
 
 ## Description

@@ -3,7 +3,7 @@ name: Feature Request
 about: Suggest an improvement to the project
 title: 'feat: '
 labels: enhancement
-assignees: karmasakshi
+assignees: ''
 ---
 
 ## Problem
