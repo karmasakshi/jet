@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.0](https://github.com/karmasakshi/jet/compare/v1.19.0...v1.20.0) (2024-08-23)
+
+
+### Features
+
+* **general:** replace config-angular with config-conventional ([ff214e4](https://github.com/karmasakshi/jet/commit/ff214e4669a281feb8525bc0e186082e6dbbb83d))
+
 ## [1.19.0](https://github.com/karmasakshi/jet/compare/v1.18.0...v1.19.0) (2024-08-22)
 
 
