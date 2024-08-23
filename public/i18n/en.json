@@ -41,7 +41,7 @@
     "reset": "Reset",
     "reset-description": "Use default settings and reload",
     "seo": {
-      "description": "Jet.",
+      "description": "Manage app settings.",
       "keywords": "jet",
       "title": "Settings"
     },

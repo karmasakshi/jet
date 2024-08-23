@@ -18,7 +18,7 @@
     "prepare": "npx --no -- husky",
     "install-dependencies": "npm install @angular/animations @angular/cdk@17 @angular/common @angular/compiler @angular/core @angular/forms @angular/material@17 @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js@0.14.10",
     "uninstall-dependencies": "npm uninstall @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
-    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
+    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
     "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-angular @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
     "reinstall-dependencies": "npm run uninstall-devDependencies && npm run uninstall-dependencies && npm run install-dependencies && npm run install-devDependencies && npm run build"
   },
@@ -48,7 +48,7 @@
     "@angular/cli": "^18.2.1",
     "@angular/compiler-cli": "^18.2.1",
     "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-angular": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/prompt-cli": "^19.4.0",
     "@jsverse/transloco-keys-manager": "^5.1.0",
     "@ngx-env/builder": "^18.0.1",
