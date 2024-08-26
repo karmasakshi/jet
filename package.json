@@ -40,7 +40,7 @@
     "@angular/service-worker": "^18.2.1",
     "@jsverse/transloco": "^7.4.3",
     "rxjs": "^7.8.1",
-    "tslib": "^2.6.3",
+    "tslib": "^2.7.0",
     "zone.js": "^0.14.10"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "@ngx-env/builder": "^18.0.1",
     "@types/jasmine": "^5.1.4",
     "angular-eslint": "^18.3.0",
-    "eslint": "^9.9.0",
+    "eslint": "^9.9.1",
     "husky": "^9.1.5",
     "jasmine-core": "^5.2.0",
     "karma": "^6.4.4",
@@ -66,6 +66,6 @@
     "ngx-build-plus": "^18.0.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.2.0"
+    "typescript-eslint": "^8.3.0"
   }
 }
