@@ -14,7 +14,24 @@
         role="banner"
         style="background-color: inherit"
       >
-        <ng-container *ngTemplateOutlet="logo" />
+        <a
+          jetAnalytics
+          jetAnalyticsEventName="Open Home"
+          [matTooltip]="t('home')"
+          [attr.aria-label]="t('home')"
+          mat-icon-button
+          routerLink="/"
+          style="margin: 0 auto"
+        >
+          <img
+            style="transform: scale(0.75)"
+            [alt]="t('logo')"
+            ngSrc="./logo.svg"
+            width="24"
+            height="24"
+            priority
+          />
+        </a>
       </mat-toolbar>
       <div class="jet-drawer-content">
         <mat-nav-list [attr.aria-label]="t('navigation-menu')">
@@ -69,7 +86,23 @@
             <mat-icon>short_text</mat-icon>
           </button>
         } @else {
-          <ng-container *ngTemplateOutlet="logo" />
+          <a
+            jetAnalytics
+            jetAnalyticsEventName="Open Home"
+            [matTooltip]="t('home')"
+            [attr.aria-label]="t('home')"
+            mat-icon-button
+            routerLink="/"
+          >
+            <img
+              style="transform: scale(0.75)"
+              [alt]="t('logo')"
+              ngSrc="./logo.svg"
+              width="24"
+              height="24"
+              priority
+            />
+          </a>
         }
         <span>{{ toolbarTitle() }}</span>
         <div style="flex: 1"></div>
@@ -104,23 +137,4 @@
       }
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <ng-template #logo>
-    <a
-      jetAnalytics
-      jetAnalyticsEventName="Open Home"
-      [matTooltip]="t('home')"
-      [attr.aria-label]="t('home')"
-      mat-icon-button
-      routerLink="/"
-    >
-      <img
-        style="transform: scale(0.75)"
-        [alt]="t('logo')"
-        ngSrc="./logo.svg"
-        width="24"
-        height="24"
-        priority
-      />
-    </a>
-  </ng-template>
 </ng-container>
