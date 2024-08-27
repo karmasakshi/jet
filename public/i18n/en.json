@@ -10,9 +10,20 @@
     "something-went-wrong": "Something went wrong.",
     "updating-failed": "Updating failed."
   },
+  "jet-account-page": {
+    "seo": {
+      "description": "Manage your account.",
+      "keywords": "jet",
+      "title": "Account"
+    },
+    "toolbar-title": "Account"
+  },
   "jet-app": {
+    "account": "Account",
     "home": "Home",
+    "login": "Login",
     "logo": "Logo",
+    "logout": "Logout",
     "main-toolbar": "Main Toolbar",
     "navigation-menu": "Navigation Menu",
     "progress-bar": "Progress Bar",
@@ -26,6 +37,23 @@
       "title": "Jet"
     },
     "toolbar-title": "Jet"
+  },
+  "jet-login-page": {
+    "login": "Login",
+    "seo": {
+      "description": "Login.",
+      "keywords": "jet",
+      "title": "Login"
+    },
+    "toolbar-title": "Login"
+  },
+  "jet-logout-page": {
+    "seo": {
+      "description": "Logout.",
+      "keywords": "jet",
+      "title": "Logout"
+    },
+    "toolbar-title": "Logout"
   },
   "jet-settings-page": {
     "arabic": "Arabic",

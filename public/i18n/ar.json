@@ -10,9 +10,20 @@
     "something-went-wrong": "هناك خطأ ما.",
     "updating-failed": "فشل التحديث."
   },
+  "jet-account-page": {
+    "seo": {
+      "description": "إدارة حسابك.",
+      "keywords": "jet",
+      "title": "حساب"
+    },
+    "toolbar-title": "حساب"
+  },
   "jet-app": {
+    "account": "حساب",
     "home": "بيت",
+    "login": "تسجيل الدخول",
     "logo": "شعار",
+    "logout": "تسجيل الخروج",
     "main-toolbar": "شريط الأدوات الرئيسي",
     "navigation-menu": "قائمة الإبحار",
     "progress-bar": "شريط التقدم",
@@ -26,6 +37,23 @@
       "title": "Jet"
     },
     "toolbar-title": "Jet"
+  },
+  "jet-login-page": {
+    "login": "تسجيل الدخول",
+    "seo": {
+      "description": "تسجيل الدخول.",
+      "keywords": "jet",
+      "title": "تسجيل الدخول"
+    },
+    "toolbar-title": "تسجيل الدخول"
+  },
+  "jet-logout-page": {
+    "seo": {
+      "description": "تسجيل الخروج.",
+      "keywords": "jet",
+      "title": "تسجيل الخروج"
+    },
+    "toolbar-title": "تسجيل الخروج"
   },
   "jet-settings-page": {
     "arabic": "عربي",
@@ -41,7 +69,7 @@
     "reset": "إعادة ضبط",
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "seo": {
-      "description": "Jet.",
+      "description": "إدارة إعدادات التطبيق.",
       "keywords": "jet",
       "title": "إعدادات"
     },

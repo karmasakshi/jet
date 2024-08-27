@@ -32,7 +32,9 @@ import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directiv
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
+import { User } from '@jet/interfaces/user.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
+import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
@@ -74,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
   private readonly _analyticsService = inject(AnalyticsService);
+  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _settingsService = inject(SettingsService);
@@ -91,6 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly settings: Settings;
   public readonly toolbarTitle: Signal<string>;
+  public readonly user: Signal<User | null>;
 
   public constructor() {
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
@@ -110,6 +114,7 @@ export class AppComponent implements OnInit, OnDestroy {
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
      * t(jet-app.home)
+     * t(jet-app.account)
      * t(jet-app.settings)
      */
 
@@ -118,6 +123,11 @@ export class AppComponent implements OnInit, OnDestroy {
         icon: 'home',
         nameKey: 'home',
         url: '/',
+      },
+      {
+        icon: 'account_circle',
+        nameKey: 'account',
+        url: '/account',
       },
       {
         icon: 'settings',
@@ -135,6 +145,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.toolbarTitle = computed(() =>
       this._toolbarTitleService.toolbarTitle(),
     );
+
+    this.user = computed(() => this._authenticationService.user());
 
     this._loggerService.logComponentInitialization('AppComponent');
   }

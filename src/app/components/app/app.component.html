@@ -106,6 +106,25 @@
         }
         <span>{{ toolbarTitle() }}</span>
         <div style="flex: 1"></div>
+        @if (user()) {
+          <button
+            type="button"
+            mat-button
+            routerLink="/logout"
+          >
+            <mat-icon>logout</mat-icon>
+            <span>{{ t('logout') }}</span>
+          </button>
+        } @else {
+          <button
+            type="button"
+            mat-button
+            routerLink="/login"
+          >
+            <mat-icon>login</mat-icon>
+            <span>{{ t('login') }}</span>
+          </button>
+        }
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
         <main [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">

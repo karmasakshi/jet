@@ -1,0 +1,17 @@
+<ng-container *transloco="let t; prefix: 'jet-login-page'">
+  <jet-page
+    [seoTitle]="t('seo.title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [toolbarTitle]="t('toolbar-title')"
+  >
+    <button
+      color="primary"
+      type="button"
+      mat-flat-button
+      (click)="login()"
+    >
+      {{ t('login') }}
+    </button>
+  </jet-page>
+</ng-container>
