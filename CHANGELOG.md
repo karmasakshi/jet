@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.0](https://github.com/karmasakshi/jet/compare/v1.20.0...v1.21.0) (2024-08-27)
+
+
+### Features
+
+* **general:** add authentication ([fdb0aaf](https://github.com/karmasakshi/jet/commit/fdb0aafc69d0f4eeb660ebf8d2724e83afb2fa2f))
+
 ## [1.20.0](https://github.com/karmasakshi/jet/compare/v1.19.0...v1.20.0) (2024-08-23)
 
 
