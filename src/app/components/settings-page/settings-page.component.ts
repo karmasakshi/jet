@@ -1,4 +1,4 @@
-import { DatePipe, NgOptimizedImage } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, Signal, computed, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,7 +22,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [
     DatePipe,
-    NgOptimizedImage,
     MatCardModule,
     MatIconModule,
     MatListModule,

@@ -78,42 +78,7 @@
 
     <hr class="jet-invisible" />
 
-    <div style="text-align: center">
-      <pre>{{ t('version', { value: version }) }}</pre>
-      <a
-        href="https://docs.jetproject.dev"
-        target="_blank"
-      >
-        <div
-          style="
-            background-color: white;
-            border-radius: 4px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-            color: #74564a;
-            direction: ltr;
-            display: inline-flex;
-            font-family: monospace;
-            letter-spacing: 1px;
-            line-height: 1.25;
-            padding: 4px 8px;
-          "
-        >
-          <div style="width: 24px; position: relative">
-            <img
-              alt="Jet Logo"
-              ngSrc="jet-logo.svg"
-              fill
-            />
-          </div>
-          <div style="width: 12px"></div>
-          <div style="text-align: center">
-            <span style="font-size: 9px">BUILT WITH</span>
-            <br />
-            <strong>JET</strong>
-          </div>
-        </div>
-      </a>
-    </div>
+    <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
 
     <mat-menu
       xPosition="before"
