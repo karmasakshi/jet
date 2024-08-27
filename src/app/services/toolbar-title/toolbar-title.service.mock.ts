@@ -9,7 +9,7 @@ export class ToolbarTitleServiceMock {
     return toolbarTitle.asReadonly();
   }
 
-  public updateToolbarTitle(_toolbarTitle: string): void {
+  public setToolbarTitle(_toolbarTitle: string): void {
     // Mock implementation, do nothing
   }
 }

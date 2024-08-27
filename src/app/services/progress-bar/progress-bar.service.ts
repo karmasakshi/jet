@@ -56,9 +56,9 @@ export class ProgressBarService {
   public updateProgressBarConfiguration(
     partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
-    this._progressBarConfiguration.set({
-      ...this._progressBarConfiguration(),
+    this._progressBarConfiguration.update((progressBarConfiguration) => ({
+      ...progressBarConfiguration,
       ...partialProgressBarConfiguration,
-    });
+    }));
   }
 }

@@ -31,7 +31,7 @@ export class PageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._toolbarTitleService.updateToolbarTitle(this.toolbarTitle());
+    this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
 
     this._title.setTitle(this.seoTitle());
     this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });

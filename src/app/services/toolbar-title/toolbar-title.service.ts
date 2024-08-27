@@ -25,7 +25,7 @@ export class ToolbarTitleService {
     return this._toolbarTitle.asReadonly();
   }
 
-  public updateToolbarTitle(toolbarTitle: string) {
+  public setToolbarTitle(toolbarTitle: string) {
     this._toolbarTitle.set(toolbarTitle);
   }
 }

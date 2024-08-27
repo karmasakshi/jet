@@ -36,16 +36,14 @@ export class SettingsService {
   }
 
   public updateSettings(partialSettings: Partial<Settings>): void {
-    const settings: Settings = {
-      ...this.settings(),
+    this._settings.update((settings) => ({
+      ...settings,
       ...partialSettings,
-    };
+    }));
 
     this._storageService.setLocalStorageItem(
       LocalStorageKey.Settings,
-      settings,
+      this._settings(),
     );
-
-    this._settings.set(settings);
   }
 }
