@@ -57,7 +57,7 @@ export class UpdateService {
       );
     } else {
       this._alertService.showAlert(
-        this._translocoService.translate('alerts.checking-for-update'),
+        this._translocoService.translate('alerts.checking-for-updates'),
         this._translocoService.translate('alerts.ok'),
       );
 
@@ -108,7 +108,7 @@ export class UpdateService {
             case 'VERSION_DETECTED':
               this._resetLastUpdateCheckTimestamp();
               this._alertService.showAlert(
-                this._translocoService.translate('alerts.downloading-update'),
+                this._translocoService.translate('alerts.downloading-updates'),
                 this._translocoService.translate('alerts.ok'),
               );
               break;

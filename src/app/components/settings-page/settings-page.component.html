@@ -16,7 +16,7 @@
             [matMenuTriggerFor]="languageMenu"
           >
             <mat-icon matListItemIcon>translate</mat-icon>
-            <span matListItemTitle>{{ t('language') }}</span>
+            <span matListItemTitle>{{ t('change-language') }}</span>
             <span matListItemLine>{{
               t(settings.languageOption.nameKey)
             }}</span>
@@ -30,7 +30,7 @@
             [matMenuTriggerFor]="themeMenu"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
-            <span matListItemTitle>{{ t('theme') }}</span>
+            <span matListItemTitle>{{ t('change-theme') }}</span>
             <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
           </button>
 
@@ -42,7 +42,7 @@
             (click)="checkForUpdate()"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
-            <span matListItemTitle>{{ t('check-for-update') }}</span>
+            <span matListItemTitle>{{ t('check-for-updates') }}</span>
             <span matListItemLine
               >{{ t('last-checked') }}
               {{ lastUpdateCheckTimestamp() | date: 'medium' }}</span

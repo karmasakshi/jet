@@ -1,33 +1,33 @@
 {
   "alerts": {
-    "checking-for-update": "التحقق من وجود التحديث...",
-    "downloading-update": "تحميل التحديث...",
+    "checking-for-updates": "جاري التحقق من التحديثات...",
+    "downloading-updates": "جاري تنزيل التحديثات...",
     "no-update-found": "أنت على الإصدار الأحدث.",
-    "ok": "نعم",
+    "ok": "حسناً",
     "reload": "إعادة تحميل",
-    "reload-to-apply": "إعادة تحميل للتطبيق.",
-    "reload-to-update": "إعادة التحميل للتحديث.",
-    "something-went-wrong": "هناك خطأ ما.",
+    "reload-to-apply": "إعادة تحميل لتطبيق التغييرات.",
+    "reload-to-update": "إعادة تحميل للتحديث.",
+    "something-went-wrong": "حدث خطأ ما.",
     "updating-failed": "فشل التحديث."
   },
   "jet-account-page": {
     "seo": {
       "description": "إدارة حسابك.",
       "keywords": "jet",
-      "title": "حساب"
+      "title": "الحساب"
     },
-    "toolbar-title": "حساب"
+    "toolbar-title": "الحساب"
   },
   "jet-app": {
-    "account": "حساب",
-    "home": "بيت",
+    "account": "الحساب",
+    "home": "الرئيسية",
     "login": "تسجيل الدخول",
     "logo": "شعار",
     "logout": "تسجيل الخروج",
     "main-toolbar": "شريط الأدوات الرئيسي",
-    "navigation-menu": "قائمة الإبحار",
+    "navigation-menu": "قائمة التنقل",
     "progress-bar": "شريط التقدم",
-    "settings": "إعدادات",
+    "settings": "الإعدادات",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-home-page": {
@@ -56,25 +56,25 @@
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-settings-page": {
-    "arabic": "عربي",
+    "arabic": "العربية",
     "automatic": "تلقائي",
-    "check-for-update": "فحص التحديثات",
-    "dark": "مظلم",
-    "english": "إنجليزي",
-    "language": "لغة",
-    "last-checked": "آخر فحص:",
-    "light": "ضوء",
+    "change-language": "تغيير اللغة",
+    "change-theme": "تغيير السمة",
+    "check-for-updates": "التحقق من التحديثات",
+    "dark": "داكن",
+    "english": "الإنجليزية",
+    "last-checked": "آخر تحقق:",
+    "light": "فاتح",
     "reload": "إعادة تحميل",
-    "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
-    "reset": "إعادة ضبط",
-    "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
+    "reload-description": "حفظ الإعدادات وإعادة التحميل",
+    "reset": "إعادة تعيين",
+    "reset-description": "استخدام الإعدادات الافتراضية وإعادة التحميل",
     "seo": {
       "description": "إدارة إعدادات التطبيق.",
       "keywords": "jet",
-      "title": "إعدادات"
+      "title": "الإعدادات"
     },
-    "theme": "سمة",
-    "toolbar-title": "إعدادات",
+    "toolbar-title": "الإعدادات",
     "version": "v{{ value }}"
   }
 }
