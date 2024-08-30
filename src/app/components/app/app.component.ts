@@ -188,26 +188,26 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _addThemeClass(availableTheme: AvailableTheme): void {
-    if (availableTheme === 'automatic') {
-      availableTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+  private _addThemeClass(activeTheme: AvailableTheme): void {
+    if (activeTheme === 'automatic') {
+      activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
     }
 
-    if (availableTheme !== DEFAULT_THEME) {
-      this._renderer2.addClass(document.body, `jet-theme-${availableTheme}`);
+    if (activeTheme !== DEFAULT_THEME) {
+      this._renderer2.addClass(document.body, `jet-theme-${activeTheme}`);
     }
   }
 
-  private _setLanguage(availableLanguage: AvailableLanguage): void {
-    if (availableLanguage !== DEFAULT_LANGUAGE) {
-      this._translocoService.setActiveLang(availableLanguage);
+  private _setLanguage(activeLanguage: AvailableLanguage): void {
+    if (activeLanguage !== DEFAULT_LANGUAGE) {
+      this._translocoService.setActiveLang(activeLanguage);
 
       this._renderer2.setAttribute(
         document.documentElement,
         'lang',
-        availableLanguage,
+        activeLanguage,
       );
     }
   }

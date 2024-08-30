@@ -1,4 +1,10 @@
-import { Component, InputSignal, OnInit, inject, input } from '@angular/core';
+import {
+  Component,
+  InputSignal,
+  OnChanges,
+  inject,
+  input,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
@@ -10,7 +16,7 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   styleUrl: './page.component.scss',
   templateUrl: './page.component.html',
 })
-export class PageComponent implements OnInit {
+export class PageComponent implements OnChanges {
   private readonly _meta = inject(Meta);
   private readonly _title = inject(Title);
   private readonly _loggerService = inject(LoggerService);
@@ -30,7 +36,7 @@ export class PageComponent implements OnInit {
     this._loggerService.logComponentInitialization('PageComponent');
   }
 
-  public ngOnInit(): void {
+  public ngOnChanges(): void {
     this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
 
     this._title.setTitle(this.seoTitle());

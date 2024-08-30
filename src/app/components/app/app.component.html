@@ -48,7 +48,7 @@
               mat-list-item
               [matTooltip]="t(navigationMenuItem.nameKey)"
               matTooltipPosition="after"
-              [routerLink]="navigationMenuItem.url"
+              [routerLink]="[navigationMenuItem.url]"
             >
               <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
               <span>{{ t(navigationMenuItem.nameKey) }}</span>
@@ -58,21 +58,21 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content role="region">
-      <mat-progress-bar
-        style="position: fixed; top: 0; left: 0; right: 0; z-index: 2"
-        [ngClass]="{ 'jet-invisible': !progressBarConfiguration().isVisible }"
-        [mode]="progressBarConfiguration().mode"
-        [value]="progressBarConfiguration().value"
-        [bufferValue]="progressBarConfiguration().bufferValue"
-        [attr.aria-label]="t('progress-bar')"
-      >
-      </mat-progress-bar>
       <mat-toolbar
         [attr.aria-label]="t('main-toolbar')"
         role="toolbar"
-        style="background-color: inherit"
+        style="background-color: inherit; position: relative"
         [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
       >
+        <mat-progress-bar
+          style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 2"
+          [ngClass]="{ 'jet-invisible': !progressBarConfiguration().isVisible }"
+          [mode]="progressBarConfiguration().mode"
+          [value]="progressBarConfiguration().value"
+          [bufferValue]="progressBarConfiguration().bufferValue"
+          [attr.aria-label]="t('progress-bar')"
+        >
+        </mat-progress-bar>
         @if (!isSmallViewport) {
           <button
             jetAnalytics
@@ -145,7 +145,7 @@
           ) {
             <a
               [active]="activeNavigationMenuItemUrl === navigationMenuItem.url"
-              [routerLink]="navigationMenuItem.url"
+              [routerLink]="[navigationMenuItem.url]"
               mat-tab-link
             >
               <mat-icon>{{ navigationMenuItem.icon }}</mat-icon>

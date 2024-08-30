@@ -4,4 +4,20 @@
     <loc>https://jet.jet</loc>
     <lastmod>2024-07-09T00:00:00+00:00</lastmod>
   </url>
+  <url>
+    <loc>https://jet.jet/account</loc>
+    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://jet.jet/login</loc>
+    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://jet.jet/logout</loc>
+    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://jet.jet/settings</loc>
+    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+  </url>
 </urlset>
