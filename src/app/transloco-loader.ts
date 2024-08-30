@@ -17,10 +17,10 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   }
 
   public getTranslation(
-    availableLanguage: AvailableLanguage,
+    activeLanguage: AvailableLanguage,
   ): Observable<Translation> {
     return this._httpClient
-      .get<Translation>(`/i18n/${availableLanguage}.json`)
+      .get<Translation>(`/i18n/${activeLanguage}.json`)
       .pipe(
         catchError(() => {
           const emptyTranslation: Translation = {};

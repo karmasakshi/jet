@@ -20,7 +20,7 @@
     "uninstall-dependencies": "npm uninstall @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
     "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
     "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier typescript typescript-eslint",
-    "reinstall-dependencies": "npm run uninstall-devDependencies && npm run uninstall-dependencies && npm run install-dependencies && npm run install-devDependencies && npm run build"
+    "reinstall-dependencies": "npm run uninstall-devDependencies && npm run uninstall-dependencies && npm run install-dependencies && npm run install-devDependencies && npm run prepare && npm run build"
   },
   "private": true,
   "lint-staged": {

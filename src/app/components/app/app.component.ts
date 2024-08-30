@@ -182,9 +182,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this._swUpdateSubscription.unsubscribe();
   }
 
-  private _addFontClass(availableFont: AvailableFont): void {
-    if (availableFont !== DEFAULT_FONT) {
-      this._renderer2.addClass(document.body, `jet-font-${availableFont}`);
+  private _addFontClass(activeFont: AvailableFont): void {
+    if (activeFont !== DEFAULT_FONT) {
+      this._renderer2.addClass(document.body, `jet-font-${activeFont}`);
     }
   }
 
