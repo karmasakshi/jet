@@ -19,9 +19,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Meta } from '@angular/platform-browser';
 import {
+  Event,
   NavigationEnd,
   Router,
-  RouterEvent,
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
@@ -156,10 +156,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._routerSubscription = this._router.events
       .pipe(
-        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-        filter<any>(
-          (routerEvent: RouterEvent): boolean =>
-            routerEvent instanceof NavigationEnd,
+        filter(
+          (event: Event): event is NavigationEnd =>
+            event instanceof NavigationEnd,
         ),
       )
       .subscribe((navigationEnd: NavigationEnd): void => {
