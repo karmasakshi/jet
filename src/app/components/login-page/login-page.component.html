@@ -6,8 +6,9 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <button
-      color="primary"
       type="button"
+      color="primary"
+      [disabled]="isLoginPending"
       mat-flat-button
       (click)="login()"
     >

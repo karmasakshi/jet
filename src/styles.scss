@@ -245,7 +245,7 @@ $red-palette: mat.define-palette(mat.$red-palette);
 // $_primary: map.merge(map.get($_palettes, primary), $_rest);
 // $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
-// Themes (Material 2)
+// Additional Theme (Material 2)
 
 $dark-theme: mat.define-dark-theme(
   (
@@ -257,7 +257,7 @@ $dark-theme: mat.define-dark-theme(
   )
 );
 
-// Themes (Material 3)
+// Additional Theme (Material 3)
 
 // $dark-theme: mat.define-theme(
 //   (
@@ -319,16 +319,16 @@ body {
   @include mat.toolbar-theme($default-theme);
   @include mat.tooltip-theme($default-theme);
 
-  // Typography Hierarchy (Material 2)
+  // Default Typography Hierarchy (Material 2)
 
   @include mat.typography-hierarchy($noto-sans-typography);
 
-  // Typography Hierarchy (Material 3)
+  // Default Typography Hierarchy (Material 3)
 
   // @include mat.typography-hierarchy($default-theme);
 
   &.jet-font-noto-sans-arabic {
-    // Material 2
+    // Additional Typography and Hierarchy (Material 2)
 
     @include mat.core-typography($noto-sans-arabic-typography);
 
@@ -347,7 +347,7 @@ body {
 
     @include mat.typography-hierarchy($noto-sans-arabic-typography);
 
-    // Material 3
+    // Additional Typography and Hierarchy (Material 3)
 
     // $override-theme: mat.define-theme(
     //   (
@@ -512,12 +512,12 @@ body {
   }
 }
 
-form {
-  margin: 8px 0;
-}
-
 footer {
   padding: 16px 0 calc(48px + 16px + env(safe-area-inset-bottom)) 0;
+}
+
+form {
+  margin: 8px 0;
 }
 
 .mat-mdc-button,

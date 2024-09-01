@@ -7,8 +7,8 @@ export const authenticatedGuard: CanActivateFn = (
   _activatedRouteSnapshot,
   routerStateSnapshot,
 ) => {
-  const authenticationService = inject(AuthenticationService);
   const router = inject(Router);
+  const authenticationService = inject(AuthenticationService);
 
   if (authenticationService.user() !== null) {
     return true;

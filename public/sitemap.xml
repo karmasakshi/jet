@@ -4,22 +4,22 @@
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://jet.jet</loc>
-    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://jet.jet/account</loc>
-    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://jet.jet/login</loc>
-    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://jet.jet/logout</loc>
-    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://jet.jet/settings</loc>
-    <lastmod>2024-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>

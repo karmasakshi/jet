@@ -3,6 +3,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
+import { AuthenticationService } from '@jet/services/authentication/authentication.service';
+import { AuthenticationServiceMock } from '@jet/services/authentication/authentication.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -30,6 +32,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
+        { provide: AuthenticationService, useClass: AuthenticationServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },

@@ -27,7 +27,7 @@ export class AuthenticationService {
   }
 
   public login(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve, reject): void => {
       try {
         this._user.set({});
         resolve();
@@ -39,7 +39,7 @@ export class AuthenticationService {
   }
 
   public logout(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve, reject): void => {
       try {
         this._user.set(null);
         resolve();
