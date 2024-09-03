@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.23.0](https://github.com/karmasakshi/jet/compare/v1.22.0...v1.23.0) (2024-09-03)
+
+
+### Features
+
+* **general:** signal optimisations ([edde524](https://github.com/karmasakshi/jet/commit/edde5249b24753489187bcd2e1f514eb15ecb110))
+
 ## [1.22.0](https://github.com/karmasakshi/jet/compare/v1.21.0...v1.22.0) (2024-08-30)
 
 
