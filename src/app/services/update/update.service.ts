@@ -2,8 +2,10 @@ import {
   Injectable,
   Signal,
   WritableSignal,
+  effect,
   inject,
   signal,
+  untracked,
 } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
@@ -39,6 +41,16 @@ export class UpdateService {
 
     this.swUpdateSubscription = this._subscribeToUpdates();
 
+    effect(() => {
+      const lastUpdateCheckTimestamp: string = this._lastUpdateCheckTimestamp();
+      untracked(() =>
+        this._storageService.setLocalStorageItem(
+          LocalStorageKey.LastUpdateCheckTimestamp,
+          lastUpdateCheckTimestamp,
+        ),
+      );
+    });
+
     this._loggerService.logServiceInitialization('UpdateService');
   }
 
@@ -64,7 +76,6 @@ export class UpdateService {
       this._swUpdate
         .checkForUpdate()
         .then((isUpdateFoundAndReady: boolean): void => {
-          this._resetLastUpdateCheckTimestamp();
           if (!isUpdateFoundAndReady) {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.no-update-found'),
@@ -83,17 +94,6 @@ export class UpdateService {
     }
   }
 
-  private _resetLastUpdateCheckTimestamp(): void {
-    const now: string = new Date().toISOString();
-
-    this._storageService.setLocalStorageItem(
-      LocalStorageKey.LastUpdateCheckTimestamp,
-      now,
-    );
-
-    this._lastUpdateCheckTimestamp.set(now);
-  }
-
   private _subscribeToUpdates(): Subscription {
     if (!this._swUpdate.isEnabled) {
       return Subscription.EMPTY;
@@ -102,11 +102,11 @@ export class UpdateService {
         (versionEvent: VersionEvent): void => {
           switch (versionEvent.type) {
             case 'NO_NEW_VERSION_DETECTED':
-              this._resetLastUpdateCheckTimestamp();
+              this._lastUpdateCheckTimestamp.set(new Date().toISOString());
               break;
 
             case 'VERSION_DETECTED':
-              this._resetLastUpdateCheckTimestamp();
+              this._lastUpdateCheckTimestamp.set(new Date().toISOString());
               this._alertService.showAlert(
                 this._translocoService.translate('alerts.downloading-updates'),
                 this._translocoService.translate('alerts.ok'),

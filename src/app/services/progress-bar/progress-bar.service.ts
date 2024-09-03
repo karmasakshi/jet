@@ -25,9 +25,9 @@ export class ProgressBarService {
       value: 0,
     };
 
-    this._progressBarConfiguration = signal(
-      this._defaultProgressBarConfiguration,
-    );
+    this._progressBarConfiguration = signal({
+      ...this._defaultProgressBarConfiguration,
+    });
 
     this._loggerService.logServiceInitialization('ProgressBarService');
   }

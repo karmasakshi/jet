@@ -3,6 +3,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
+import { StorageService } from '@jet/services/storage/storage.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -18,6 +19,7 @@ export class LogoutPageComponent implements OnInit {
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
+  private readonly _storageService = inject(StorageService);
   private readonly _translocoService = inject(TranslocoService);
 
   public constructor() {
@@ -29,6 +31,8 @@ export class LogoutPageComponent implements OnInit {
     this._authenticationService
       .logout()
       .then((): void => {
+        this._storageService.clearSessionStorage();
+        this._storageService.clearLocalStorage();
         this._progressBarService.hideProgressBar();
       })
       .catch((error: Error): void => {

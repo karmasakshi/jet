@@ -2,8 +2,10 @@ import {
   Injectable,
   Signal,
   WritableSignal,
+  effect,
   inject,
   signal,
+  untracked,
 } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
@@ -28,6 +30,16 @@ export class SettingsService {
       ),
     });
 
+    effect(() => {
+      const settings: Settings = this._settings();
+      untracked(() =>
+        this._storageService.setLocalStorageItem(
+          LocalStorageKey.Settings,
+          settings,
+        ),
+      );
+    });
+
     this._loggerService.logServiceInitialization('SettingsService');
   }
 
@@ -40,10 +52,5 @@ export class SettingsService {
       ...settings,
       ...partialSettings,
     }));
-
-    this._storageService.setLocalStorageItem(
-      LocalStorageKey.Settings,
-      this._settings(),
-    );
   }
 }

@@ -557,6 +557,10 @@ form {
     calc(8px + env(safe-area-inset-left)) !important;
 }
 
+.mat-toolbar {
+  gap: 8px;
+}
+
 .mdc-checkbox {
   overflow: hidden;
 }

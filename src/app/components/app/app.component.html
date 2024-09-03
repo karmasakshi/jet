@@ -107,23 +107,21 @@
         <span>{{ toolbarTitle() }}</span>
         <div style="flex: 1"></div>
         @if (user()) {
-          <button
-            type="button"
+          <a
             mat-button
             routerLink="/logout"
           >
             <mat-icon>logout</mat-icon>
             <span>{{ t('logout') }}</span>
-          </button>
+          </a>
         } @else {
-          <button
-            type="button"
+          <a
             mat-button
             routerLink="/login"
           >
             <mat-icon>login</mat-icon>
             <span>{{ t('login') }}</span>
-          </button>
+          </a>
         }
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
