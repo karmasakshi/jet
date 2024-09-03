@@ -502,6 +502,7 @@ body {
         left: 0;
         position: fixed;
         right: 0;
+        z-index: 2;
 
         .mat-mdc-tab-link-container {
           border-bottom: unset;
