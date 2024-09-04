@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.24.0](https://github.com/karmasakshi/jet/compare/v1.23.0...v1.24.0) (2024-09-04)
+
+
+### Features
+
+* **general:** apply settings without reload ([5709e1f](https://github.com/karmasakshi/jet/commit/5709e1f20fc933b7a286ca0f4d98ebeecf8abc5a))
+* **general:** update dependencies ([c5055ee](https://github.com/karmasakshi/jet/commit/c5055ee3905aa40d7dabb45f5a0ebceae32a3f2a))
+
 ## [1.23.0](https://github.com/karmasakshi/jet/compare/v1.22.0...v1.23.0) (2024-09-03)
 
 
