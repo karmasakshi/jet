@@ -27,7 +27,6 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
-import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
@@ -188,17 +187,23 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (activeFont !== DEFAULT_FONT) {
       this._renderer2.addClass(this._document.body, prefix + activeFont);
+    } else {
+      this._document.body.classList.forEach((className) => {
+        if (className.startsWith(prefix)) {
+          this._renderer2.removeClass(this._document.body, className);
+        }
+      });
     }
   }
 
   private _addThemeClass(activeTheme: AvailableTheme): void {
-    const prefix: string = 'jet-theme-';
-
     if (activeTheme === 'automatic') {
       activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
     }
+
+    const prefix: string = 'jet-theme-';
 
     if (activeTheme !== DEFAULT_THEME) {
       this._renderer2.addClass(this._document.body, prefix + activeTheme);
@@ -212,7 +217,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _setLanguage(activeLanguage: AvailableLanguage): void {
-    if (activeLanguage !== DEFAULT_LANGUAGE) {
+    if (activeLanguage !== this._translocoService.getActiveLang()) {
       this._translocoService.setActiveLang(activeLanguage);
 
       this._renderer2.setAttribute(
