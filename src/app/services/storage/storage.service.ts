@@ -18,17 +18,17 @@ export class StorageService {
   }
 
   public clearLocalStorage(): void {
-    localStorage.clear();
+    window.localStorage.clear();
   }
 
   public clearSessionStorage(): void {
-    sessionStorage.clear();
+    window.sessionStorage.clear();
   }
 
   public getLocalStorageItem<T>(localStorageKey: LocalStorageKey): null | T {
     let value: null | T = null;
 
-    const serializedValue: string | null = localStorage.getItem(
+    const serializedValue: string | null = window.localStorage.getItem(
       `${this._prefix}-${localStorageKey}`,
     );
 
@@ -48,7 +48,7 @@ export class StorageService {
   ): null | T {
     let value: null | T = null;
 
-    const serializedValue: string | null = sessionStorage.getItem(
+    const serializedValue: string | null = window.sessionStorage.getItem(
       `${this._prefix}-${sessionStorageKey}`,
     );
 
@@ -64,11 +64,11 @@ export class StorageService {
   }
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    localStorage.removeItem(`${this._prefix}-${localStorageKey}`);
+    window.localStorage.removeItem(`${this._prefix}-${localStorageKey}`);
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    sessionStorage.removeItem(`${this._prefix}-${sessionStorageKey}`);
+    window.sessionStorage.removeItem(`${this._prefix}-${sessionStorageKey}`);
   }
 
   public setLocalStorageItem(
@@ -78,7 +78,7 @@ export class StorageService {
     try {
       const serializedValue: string = JSON.stringify(value);
 
-      localStorage.setItem(
+      window.localStorage.setItem(
         `${this._prefix}-${localStorageKey}`,
         serializedValue,
       );
@@ -94,7 +94,7 @@ export class StorageService {
     try {
       const serializedValue: string = JSON.stringify(value);
 
-      sessionStorage.setItem(
+      window.sessionStorage.setItem(
         `${this._prefix}-${sessionStorageKey}`,
         serializedValue,
       );
