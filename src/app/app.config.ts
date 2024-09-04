@@ -53,6 +53,7 @@ export const appConfig: ApplicationConfig = {
         ),
         defaultLang: DEFAULT_LANGUAGE_OPTION.value,
         prodMode: !isDevMode(),
+        reRenderOnLangChange: true,
       },
       loader: TranslocoHttpLoader,
     }),

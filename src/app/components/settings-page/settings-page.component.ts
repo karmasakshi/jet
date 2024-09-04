@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Signal, computed, inject } from '@angular/core';
+import { Component, Signal, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -10,12 +10,11 @@ import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directiv
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { ThemeOption } from '@jet/interfaces/theme-option.interface';
-import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
 import { UpdateService } from '@jet/services/update/update.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { PageComponent } from '../page/page.component';
 
@@ -36,16 +35,14 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './settings-page.component.html',
 })
 export class SettingsPageComponent {
-  private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
   private readonly _storageService = inject(StorageService);
   private readonly _updateService = inject(UpdateService);
-  private readonly _translocoService = inject(TranslocoService);
 
   public readonly languageOptions: LanguageOption[];
   public readonly lastUpdateCheckTimestamp: Signal<string>;
-  public readonly settings: Settings;
+  public readonly settings: Signal<Settings>;
   public readonly themeOptions: ThemeOption[];
   public readonly version: string;
 
@@ -59,11 +56,10 @@ export class SettingsPageComponent {
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
-    this.lastUpdateCheckTimestamp = computed(() =>
-      this._updateService.lastUpdateCheckTimestamp(),
-    );
+    this.lastUpdateCheckTimestamp =
+      this._updateService.lastUpdateCheckTimestamp;
 
-    this.settings = this._settingsService.settings();
+    this.settings = this._settingsService.settings;
 
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
@@ -96,13 +92,5 @@ export class SettingsPageComponent {
 
   public updateSettings(partialSettings: Partial<Settings>): void {
     this._settingsService.updateSettings(partialSettings);
-
-    this._alertService.showAlert(
-      this._translocoService.translate('alerts.reload-to-apply'),
-      this._translocoService.translate('alerts.reload'),
-      (): void => {
-        this.reload();
-      },
-    );
   }
 }

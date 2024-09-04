@@ -1,10 +1,10 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject } from '@angular/core';
 import {
   MatSnackBar,
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
-import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Settings } from '@jet/interfaces/settings.interface';
 import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -17,11 +17,10 @@ export class AlertService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
 
-  private readonly _directionality: LanguageOption['directionality'];
+  private readonly _settings: Signal<Settings>;
 
   public constructor() {
-    this._directionality =
-      this._settingsService.settings().languageOption.directionality;
+    this._settings = this._settingsService.settings;
 
     this._loggerService.logServiceInitialization('AlertService');
   }
@@ -29,7 +28,7 @@ export class AlertService {
   public showAlert(message: string, cta?: string, action?: () => void): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
       this._matSnackBar.open(message, cta, {
-        direction: this._directionality,
+        direction: this._settings().languageOption.directionality,
       });
 
     if (action) {

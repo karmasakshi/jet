@@ -1,6 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AlertService } from '@jet/services/alert/alert.service';
-import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { SettingsService } from '@jet/services/settings/settings.service';
@@ -20,7 +18,6 @@ describe('SettingsPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TranslocoTestingModule.forRoot({}), SettingsPageComponent],
       providers: [
-        { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
         { provide: StorageService, useClass: StorageServiceMock },

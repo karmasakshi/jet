@@ -18,7 +18,7 @@
             <mat-icon matListItemIcon>translate</mat-icon>
             <span matListItemTitle>{{ t('change-language') }}</span>
             <span matListItemLine>{{
-              t(settings.languageOption.nameKey)
+              t(settings().languageOption.nameKey)
             }}</span>
           </button>
 
@@ -31,7 +31,7 @@
           >
             <mat-icon matListItemIcon>palette</mat-icon>
             <span matListItemTitle>{{ t('change-theme') }}</span>
-            <span matListItemLine>{{ t(settings.themeOption.nameKey) }}</span>
+            <span matListItemLine>{{ t(settings().themeOption.nameKey) }}</span>
           </button>
 
           <button
@@ -90,7 +90,7 @@
           jetAnalyticsEventName="Select Language Option"
           [jetAnalyticsEventData]="languageOption.value"
           type="button"
-          [disabled]="settings.languageOption.value === languageOption.value"
+          [disabled]="settings().languageOption.value === languageOption.value"
           (click)="updateSettings({ languageOption })"
           mat-menu-item
         >
@@ -110,7 +110,7 @@
           jetAnalyticsEventName="Select Theme Option"
           [jetAnalyticsEventData]="themeOption.value"
           type="button"
-          [disabled]="settings.themeOption.value === themeOption.value"
+          [disabled]="settings().themeOption.value === themeOption.value"
           (click)="updateSettings({ themeOption })"
           mat-menu-item
         >

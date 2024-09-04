@@ -5,7 +5,6 @@
     "no-update-found": "You're on the latest version.",
     "ok": "OK",
     "reload": "RELOAD",
-    "reload-to-apply": "Reload to apply.",
     "reload-to-update": "Reload to update.",
     "something-went-wrong": "Something went wrong.",
     "updating-failed": "Updating failed."

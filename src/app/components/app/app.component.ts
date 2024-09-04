@@ -1,13 +1,14 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { DOCUMENT, NgClass, NgOptimizedImage } from '@angular/common';
 import {
   Component,
   OnDestroy,
   OnInit,
   Renderer2,
   Signal,
-  computed,
+  effect,
   inject,
+  untracked,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -73,6 +74,7 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit, OnDestroy {
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _renderer2 = inject(Renderer2);
+  private readonly _document = inject(DOCUMENT);
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
   private readonly _analyticsService = inject(AnalyticsService);
@@ -92,7 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly isSmallViewport: boolean;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly settings: Settings;
+  public readonly settings: Signal<Settings>;
   public readonly toolbarTitle: Signal<string>;
   public readonly user: Signal<User | null>;
 
@@ -136,17 +138,23 @@ export class AppComponent implements OnInit, OnDestroy {
       },
     ];
 
-    this.progressBarConfiguration = computed(() =>
-      this._progressBarService.progressBarConfiguration(),
-    );
+    this.progressBarConfiguration =
+      this._progressBarService.progressBarConfiguration;
 
-    this.settings = this._settingsService.settings();
+    this.settings = this._settingsService.settings;
 
-    this.toolbarTitle = computed(() =>
-      this._toolbarTitleService.toolbarTitle(),
-    );
+    this.toolbarTitle = this._toolbarTitleService.toolbarTitle;
 
-    this.user = computed(() => this._authenticationService.user());
+    this.user = this._authenticationService.user;
+
+    effect(() => {
+      const settings: Settings = this.settings();
+      untracked(() => {
+        this._addFontClass(settings.languageOption.font);
+        this._addThemeClass(settings.themeOption.value);
+        this._setLanguage(settings.languageOption.value);
+      });
+    });
 
     this._loggerService.logComponentInitialization('AppComponent');
   }
@@ -167,12 +175,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._swUpdateSubscription = this._updateService.swUpdateSubscription;
 
-    this._addFontClass(this.settings.languageOption.font);
-
-    this._addThemeClass(this.settings.themeOption.value);
-
-    this._setLanguage(this.settings.languageOption.value);
-
     this._setZoom(this._isPwaMode);
   }
 
@@ -182,12 +184,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _addFontClass(activeFont: AvailableFont): void {
+    const prefix: string = 'jet-font-';
+
     if (activeFont !== DEFAULT_FONT) {
-      this._renderer2.addClass(document.body, `jet-font-${activeFont}`);
+      this._renderer2.addClass(this._document.body, prefix + activeFont);
     }
   }
 
   private _addThemeClass(activeTheme: AvailableTheme): void {
+    const prefix: string = 'jet-theme-';
+
     if (activeTheme === 'automatic') {
       activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
@@ -195,7 +201,13 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     if (activeTheme !== DEFAULT_THEME) {
-      this._renderer2.addClass(document.body, `jet-theme-${activeTheme}`);
+      this._renderer2.addClass(this._document.body, prefix + activeTheme);
+    } else {
+      this._document.body.classList.forEach((className) => {
+        if (className.startsWith(prefix)) {
+          this._renderer2.removeClass(this._document.body, className);
+        }
+      });
     }
   }
 
@@ -204,7 +216,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this._translocoService.setActiveLang(activeLanguage);
 
       this._renderer2.setAttribute(
-        document.documentElement,
+        this._document.documentElement,
         'lang',
         activeLanguage,
       );
