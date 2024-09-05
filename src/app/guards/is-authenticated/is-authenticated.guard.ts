@@ -8,7 +8,7 @@ import {
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 
-export const authenticatedGuard: CanActivateFn = (
+export const isAuthenticatedGuard: CanActivateFn = (
   _activatedRouteSnapshot,
   routerStateSnapshot,
 ): MaybeAsync<GuardResult> => {

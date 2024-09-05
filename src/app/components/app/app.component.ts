@@ -183,7 +183,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _addFontClass(activeFont: AvailableFont): void {
-    const prefix: string = 'jet-font-';
+    const prefix = 'jet-font-';
 
     if (activeFont !== DEFAULT_FONT) {
       this._renderer2.addClass(this._document.body, prefix + activeFont);
@@ -203,7 +203,7 @@ export class AppComponent implements OnInit, OnDestroy {
         : 'light';
     }
 
-    const prefix: string = 'jet-theme-';
+    const prefix = 'jet-theme-';
 
     if (activeTheme !== DEFAULT_THEME) {
       this._renderer2.addClass(this._document.body, prefix + activeTheme);

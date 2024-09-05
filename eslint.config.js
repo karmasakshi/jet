@@ -31,13 +31,6 @@ module.exports = tseslint.config(
         },
       ],
       '@typescript-eslint/explicit-member-accessibility': 'error',
-      '@typescript-eslint/no-inferrable-types': 'off',
-      '@typescript-eslint/unbound-method': [
-        'error',
-        {
-          ignoreStatic: true,
-        },
-      ],
       'sort-keys': 'error',
     },
     languageOptions: {

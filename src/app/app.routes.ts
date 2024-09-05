@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
-import { authenticatedGuard } from '@jet/guards/authenticated/authenticated.guard';
+import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
 
 export const routes: Routes = [
   { component: HomePageComponent, path: '' },
   {
-    canActivate: [authenticatedGuard],
+    canActivate: [isAuthenticatedGuard],
     loadComponent: () =>
       import('@jet/components/account-page/account-page.component').then(
         (m) => m.AccountPageComponent,
