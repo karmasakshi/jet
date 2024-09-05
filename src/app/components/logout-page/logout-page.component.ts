@@ -22,26 +22,39 @@ export class LogoutPageComponent implements OnInit {
   private readonly _storageService = inject(StorageService);
   private readonly _translocoService = inject(TranslocoService);
 
+  private _isLogoutPending: boolean;
+
   public constructor() {
+    this._isLogoutPending = false;
+
     this._loggerService.logComponentInitialization('LogoutPageComponent');
   }
 
   public ngOnInit(): void {
-    this._progressBarService.showProgressBar();
-    this._authenticationService
-      .logout()
-      .then((): void => {
-        this._storageService.clearSessionStorage();
-        this._storageService.clearLocalStorage();
-        this._progressBarService.hideProgressBar();
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showAlert(
-          this._translocoService.translate('alerts.something-went-wrong'),
-          this._translocoService.translate('alerts.ok'),
-        );
-        this._progressBarService.hideProgressBar();
-      });
+    this._logout();
+  }
+
+  private _logout(): void {
+    if (!this._isLogoutPending) {
+      this._isLogoutPending = true;
+      this._progressBarService.showProgressBar();
+      this._authenticationService
+        .logout()
+        .then((): void => {
+          this._storageService.clearSessionStorage();
+          this._storageService.clearLocalStorage();
+          this._progressBarService.hideProgressBar();
+          this._isLogoutPending = false;
+        })
+        .catch((error: Error): void => {
+          this._loggerService.logError(error);
+          this._alertService.showAlert(
+            this._translocoService.translate('alerts.something-went-wrong'),
+            this._translocoService.translate('alerts.ok'),
+          );
+          this._progressBarService.hideProgressBar();
+          this._isLogoutPending = false;
+        });
+    }
   }
 }

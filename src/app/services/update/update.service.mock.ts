@@ -8,7 +8,6 @@ export class UpdateServiceMock {
     const lastUpdateCheckTimestamp: WritableSignal<string> = signal(
       new Date().toISOString(),
     );
-
     return lastUpdateCheckTimestamp.asReadonly();
   }
 

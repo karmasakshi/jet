@@ -59,15 +59,7 @@ export class UpdateService {
   }
 
   public checkForUpdate(): void {
-    if (this._isReloadPending) {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.reload-to-update'),
-        this._translocoService.translate('alerts.reload'),
-        (): void => {
-          window.location.reload();
-        },
-      );
-    } else {
+    if (!this._isReloadPending) {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.checking-for-updates'),
         this._translocoService.translate('alerts.ok'),
@@ -91,6 +83,14 @@ export class UpdateService {
             this._translocoService.translate('alerts.ok'),
           );
         });
+    } else {
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.reload-to-update'),
+        this._translocoService.translate('alerts.reload'),
+        (): void => {
+          window.location.reload();
+        },
+      );
     }
   }
 

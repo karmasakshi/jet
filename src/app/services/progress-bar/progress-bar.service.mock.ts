@@ -12,7 +12,6 @@ export class ProgressBarServiceMock {
         mode: 'indeterminate',
         value: 0,
       });
-
     return progressBarConfiguration.asReadonly();
   }
 

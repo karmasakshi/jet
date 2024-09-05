@@ -12,7 +12,7 @@ export class StorageService {
   private readonly _prefix: string;
 
   public constructor() {
-    this._prefix = 'jet';
+    this._prefix = 'jet-';
 
     this._loggerService.logServiceInitialization('StorageService');
   }
@@ -29,7 +29,7 @@ export class StorageService {
     let value: null | T = null;
 
     const serializedValue: string | null = window.localStorage.getItem(
-      `${this._prefix}-${localStorageKey}`,
+      this._prefix + localStorageKey,
     );
 
     if (serializedValue !== null) {
@@ -49,7 +49,7 @@ export class StorageService {
     let value: null | T = null;
 
     const serializedValue: string | null = window.sessionStorage.getItem(
-      `${this._prefix}-${sessionStorageKey}`,
+      this._prefix + sessionStorageKey,
     );
 
     if (serializedValue !== null) {
@@ -64,11 +64,11 @@ export class StorageService {
   }
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    window.localStorage.removeItem(`${this._prefix}-${localStorageKey}`);
+    window.localStorage.removeItem(this._prefix + localStorageKey);
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    window.sessionStorage.removeItem(`${this._prefix}-${sessionStorageKey}`);
+    window.sessionStorage.removeItem(this._prefix + sessionStorageKey);
   }
 
   public setLocalStorageItem(
@@ -79,7 +79,7 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       window.localStorage.setItem(
-        `${this._prefix}-${localStorageKey}`,
+        this._prefix + localStorageKey,
         serializedValue,
       );
     } catch (error: unknown) {
@@ -95,7 +95,7 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       window.sessionStorage.setItem(
-        `${this._prefix}-${sessionStorageKey}`,
+        this._prefix + sessionStorageKey,
         serializedValue,
       );
     } catch (error: unknown) {

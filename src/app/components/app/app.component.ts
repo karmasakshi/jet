@@ -72,8 +72,8 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private readonly _breakpointObserver = inject(BreakpointObserver);
-  private readonly _renderer2 = inject(Renderer2);
   private readonly _document = inject(DOCUMENT);
+  private readonly _renderer2 = inject(Renderer2);
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
   private readonly _analyticsService = inject(AnalyticsService);

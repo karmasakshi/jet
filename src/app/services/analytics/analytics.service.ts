@@ -15,7 +15,7 @@ export class AnalyticsService {
 
   public logEvent(eventName: string, eventData?: unknown): void {
     if (this._isAnalyticsEnabled) {
-      if (eventData) {
+      if (eventData !== undefined) {
         this._loggerService.logMessages(eventName, eventData);
       } else {
         this._loggerService.logMessages(eventName);

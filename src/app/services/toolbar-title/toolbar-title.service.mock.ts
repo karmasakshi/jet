@@ -5,7 +5,6 @@ import { Signal, WritableSignal, signal } from '@angular/core';
 export class ToolbarTitleServiceMock {
   public get toolbarTitle(): Signal<string> {
     const toolbarTitle: WritableSignal<string> = signal('');
-
     return toolbarTitle.asReadonly();
   }
 

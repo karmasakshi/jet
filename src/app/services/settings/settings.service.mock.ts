@@ -7,7 +7,6 @@ import { Settings } from '@jet/interfaces/settings.interface';
 export class SettingsServiceMock {
   public get settings(): Signal<Settings> {
     const settings: WritableSignal<Settings> = signal(DEFAULT_SETTINGS);
-
     return settings.asReadonly();
   }
 

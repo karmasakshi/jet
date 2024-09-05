@@ -106,7 +106,7 @@
         }
         <span>{{ toolbarTitle() }}</span>
         <div style="flex: 1"></div>
-        @if (user()) {
+        @if (user() !== null) {
           <a
             mat-button
             routerLink="/logout"

@@ -16,8 +16,8 @@ export class AnalyticsDirective {
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
 
-  public jetAnalyticsEventData: InputSignal<unknown> = input();
-  public jetAnalyticsEventName: InputSignal<string> = input.required();
+  public readonly jetAnalyticsEventData: InputSignal<unknown> = input();
+  public readonly jetAnalyticsEventName: InputSignal<string> = input.required();
 
   public constructor() {
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');

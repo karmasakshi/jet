@@ -24,11 +24,11 @@ export class PageComponent implements OnChanges {
 
   private readonly _defaultSeoImageUrl: string;
 
-  public seoDescription: InputSignal<string> = input.required();
-  public seoImageUrl: InputSignal<string | undefined> = input();
-  public seoKeywords: InputSignal<string> = input.required();
-  public seoTitle: InputSignal<string> = input.required();
-  public toolbarTitle: InputSignal<string> = input.required();
+  public readonly seoDescription: InputSignal<string> = input.required();
+  public readonly seoImageUrl: InputSignal<string | undefined> = input();
+  public readonly seoKeywords: InputSignal<string> = input.required();
+  public readonly seoTitle: InputSignal<string> = input.required();
+  public readonly toolbarTitle: InputSignal<string> = input.required();
 
   public constructor() {
     this._defaultSeoImageUrl = 'https://jet.jet/og-image.jpg';
@@ -37,17 +37,21 @@ export class PageComponent implements OnChanges {
   }
 
   public ngOnChanges(): void {
+    // Toolbar Title
     this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
 
+    // Title
     this._title.setTitle(this.seoTitle());
     this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });
     this._meta.updateTag({ content: this.seoTitle(), name: 'twitter:title' });
 
+    // Keywords
     this._meta.updateTag({
       content: this.seoKeywords(),
       name: 'keywords',
     });
 
+    // Description
     this._meta.updateTag({
       content: this.seoDescription(),
       name: 'description',
@@ -61,6 +65,7 @@ export class PageComponent implements OnChanges {
       name: 'twitter:description',
     });
 
+    // SEO Image URL
     this._meta.updateTag({
       content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
       name: 'og:image',
