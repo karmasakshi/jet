@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { DOCUMENT, NgClass, NgOptimizedImage } from '@angular/common';
+import { DOCUMENT, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   Component,
   OnDestroy,
@@ -27,8 +27,10 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
+import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
@@ -51,6 +53,7 @@ import { filter } from 'rxjs/operators';
 @Component({
   imports: [
     NgClass,
+    NgStyle,
     NgOptimizedImage,
     MatButtonModule,
     MatIconModule,
@@ -85,6 +88,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _updateService = inject(UpdateService);
   private readonly _translocoService = inject(TranslocoService);
 
+  private _activeFont: AvailableFont;
+  private _activeLanguage: AvailableLanguage;
+  private _activeTheme: AvailableTheme;
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
@@ -98,6 +104,12 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly user: Signal<User | null>;
 
   public constructor() {
+    this._activeFont = DEFAULT_FONT;
+
+    this._activeLanguage = DEFAULT_LANGUAGE;
+
+    this._activeTheme = DEFAULT_THEME;
+
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
     this._routerSubscription = Subscription.EMPTY;
@@ -149,9 +161,11 @@ export class AppComponent implements OnInit, OnDestroy {
     effect(() => {
       const settings: Settings = this.settings();
       untracked(() => {
-        this._addFontClass(settings.languageOption.font);
-        this._addThemeClass(settings.themeOption.value);
-        this._setLanguage(settings.languageOption.value);
+        requestAnimationFrame(() => {
+          this._setFontClass(settings.languageOption.font);
+          this._setLanguage(settings.languageOption);
+          this._setThemeClass(settings.themeOption.value);
+        });
       });
     });
 
@@ -174,7 +188,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._swUpdateSubscription = this._updateService.swUpdateSubscription;
 
-    this._setZoom(this._isPwaMode);
+    this._disableZoom(this._isPwaMode);
   }
 
   public ngOnDestroy(): void {
@@ -182,59 +196,66 @@ export class AppComponent implements OnInit, OnDestroy {
     this._swUpdateSubscription.unsubscribe();
   }
 
-  private _addFontClass(activeFont: AvailableFont): void {
-    const prefix = 'jet-font-';
+  private _disableZoom(isPwaMode: boolean): void {
+    if (isPwaMode) {
+      this._meta.updateTag({
+        content:
+          'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
+        name: 'viewport',
+      });
+    }
+  }
 
-    if (activeFont !== DEFAULT_FONT) {
-      this._renderer2.addClass(this._document.body, prefix + activeFont);
-    } else {
+  private _setFontClass(activeFont: AvailableFont): void {
+    if (activeFont !== this._activeFont) {
+      this._activeFont = activeFont;
+      const prefix = 'jet-font-';
       this._document.body.classList.forEach((className) => {
         if (className.startsWith(prefix)) {
           this._renderer2.removeClass(this._document.body, className);
         }
       });
+      if (activeFont !== DEFAULT_FONT) {
+        this._renderer2.addClass(this._document.body, prefix + activeFont);
+      }
     }
   }
 
-  private _addThemeClass(activeTheme: AvailableTheme): void {
+  private _setLanguage(activeLanguageOption: LanguageOption): void {
+    if (activeLanguageOption.value !== this._activeLanguage) {
+      this._activeLanguage = activeLanguageOption.value;
+      this._renderer2.setAttribute(
+        this._document.body,
+        'dir',
+        activeLanguageOption.directionality,
+      );
+      this._renderer2.setAttribute(
+        this._document.documentElement,
+        'lang',
+        activeLanguageOption.value,
+      );
+      this._translocoService.setActiveLang(activeLanguageOption.value);
+    }
+  }
+
+  private _setThemeClass(activeTheme: AvailableTheme): void {
     if (activeTheme === 'automatic') {
       activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
     }
 
-    const prefix = 'jet-theme-';
-
-    if (activeTheme !== DEFAULT_THEME) {
-      this._renderer2.addClass(this._document.body, prefix + activeTheme);
-    } else {
+    if (activeTheme !== this._activeTheme) {
+      this._activeTheme = activeTheme;
+      const prefix = 'jet-theme-';
       this._document.body.classList.forEach((className) => {
         if (className.startsWith(prefix)) {
           this._renderer2.removeClass(this._document.body, className);
         }
       });
-    }
-  }
-
-  private _setLanguage(activeLanguage: AvailableLanguage): void {
-    if (activeLanguage !== this._translocoService.getActiveLang()) {
-      this._translocoService.setActiveLang(activeLanguage);
-
-      this._renderer2.setAttribute(
-        this._document.documentElement,
-        'lang',
-        activeLanguage,
-      );
-    }
-  }
-
-  private _setZoom(isPwaMode: boolean): void {
-    if (isPwaMode) {
-      this._meta.updateTag({
-        content:
-          'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover',
-        name: 'viewport',
-      });
+      if (activeTheme !== DEFAULT_THEME) {
+        this._renderer2.addClass(this._document.body, prefix + activeTheme);
+      }
     }
   }
 }

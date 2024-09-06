@@ -66,7 +66,11 @@
       >
         <mat-progress-bar
           style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 2"
-          [ngClass]="{ 'jet-invisible': !progressBarConfiguration().isVisible }"
+          [ngStyle]="{
+            visibility: progressBarConfiguration().isVisible
+              ? 'visible'
+              : 'hidden',
+          }"
           [mode]="progressBarConfiguration().mode"
           [value]="progressBarConfiguration().value"
           [bufferValue]="progressBarConfiguration().bufferValue"
