@@ -210,11 +210,9 @@ export class AppComponent implements OnInit, OnDestroy {
     if (activeFont !== this._activeFont) {
       this._activeFont = activeFont;
       const prefix = 'jet-font-';
-      this._document.body.classList.forEach((className) => {
-        if (className.startsWith(prefix)) {
-          this._renderer2.removeClass(this._document.body, className);
-        }
-      });
+      this._document.body.className = this._document.body.classList.value
+        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+        .trim();
       if (activeFont !== DEFAULT_FONT) {
         this._renderer2.addClass(this._document.body, prefix + activeFont);
       }
@@ -244,15 +242,12 @@ export class AppComponent implements OnInit, OnDestroy {
         ? 'dark'
         : 'light';
     }
-
     if (activeTheme !== this._activeTheme) {
       this._activeTheme = activeTheme;
       const prefix = 'jet-theme-';
-      this._document.body.classList.forEach((className) => {
-        if (className.startsWith(prefix)) {
-          this._renderer2.removeClass(this._document.body, className);
-        }
-      });
+      this._document.body.className = this._document.body.classList.value
+        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+        .trim();
       if (activeTheme !== DEFAULT_THEME) {
         this._renderer2.addClass(this._document.body, prefix + activeTheme);
       }

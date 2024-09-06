@@ -21,7 +21,6 @@
               t(settings().languageOption.nameKey)
             }}</span>
           </button>
-
           <button
             type="button"
             jetAnalytics
@@ -33,7 +32,6 @@
             <span matListItemTitle>{{ t('change-theme') }}</span>
             <span matListItemLine>{{ t(settings().themeOption.nameKey) }}</span>
           </button>
-
           <button
             type="button"
             jetAnalytics
@@ -48,7 +46,6 @@
               {{ lastUpdateCheckTimestamp() | date: 'medium' }}</span
             >
           </button>
-
           <button
             type="button"
             jetAnalytics
@@ -60,7 +57,6 @@
             <span matListItemTitle>{{ t('reload') }}</span>
             <span matListItemLine>{{ t('reload-description') }}</span>
           </button>
-
           <button
             type="button"
             jetAnalytics
@@ -75,9 +71,7 @@
         </mat-action-list>
       </mat-card-content>
     </mat-card>
-
     <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
-
     <mat-menu
       xPosition="before"
       #languageMenu="matMenu"
@@ -97,7 +91,6 @@
         </button>
       }
     </mat-menu>
-
     <mat-menu
       xPosition="before"
       #themeMenu="matMenu"

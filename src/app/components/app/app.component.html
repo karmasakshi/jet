@@ -12,7 +12,7 @@
     >
       <mat-toolbar
         role="banner"
-        style="background-color: inherit"
+        style="background-color: inherit; justify-content: center"
       >
         <a
           jetAnalytics
@@ -21,10 +21,8 @@
           [attr.aria-label]="t('home')"
           mat-icon-button
           routerLink="/"
-          style="margin: 0 auto"
         >
           <img
-            style="transform: scale(0.75)"
             [alt]="t('logo')"
             ngSrc="./logo.svg"
             width="24"
@@ -99,7 +97,6 @@
             routerLink="/"
           >
             <img
-              style="transform: scale(0.75)"
               [alt]="t('logo')"
               ngSrc="./logo.svg"
               width="24"
