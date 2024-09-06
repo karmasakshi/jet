@@ -26,7 +26,8 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
-import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
+import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
@@ -103,9 +104,9 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly user: Signal<User | null>;
 
   public constructor() {
-    this._activeFont = DEFAULT_LANGUAGE_OPTION.font;
+    this._activeFont = DEFAULT_FONT;
 
-    this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
+    this._activeLanguage = DEFAULT_LANGUAGE;
 
     this._activeTheme = DEFAULT_THEME;
 
@@ -214,7 +215,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this._renderer2.removeClass(this._document.body, className);
         }
       });
-      if (activeFont !== DEFAULT_LANGUAGE_OPTION.font) {
+      if (activeFont !== DEFAULT_FONT) {
         this._renderer2.addClass(this._document.body, prefix + activeFont);
       }
     }
