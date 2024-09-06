@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { DOCUMENT, NgClass, NgOptimizedImage } from '@angular/common';
+import { DOCUMENT, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   Component,
   OnDestroy,
@@ -52,6 +52,7 @@ import { filter } from 'rxjs/operators';
 @Component({
   imports: [
     NgClass,
+    NgStyle,
     NgOptimizedImage,
     MatButtonModule,
     MatIconModule,

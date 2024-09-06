@@ -245,7 +245,7 @@ $red-palette: mat.define-palette(mat.$red-palette);
 // $_primary: map.merge(map.get($_palettes, primary), $_rest);
 // $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
-// Additional Theme (Material 2)
+// Additional Themes (Material 2)
 
 $dark-theme: mat.define-dark-theme(
   (
@@ -257,7 +257,7 @@ $dark-theme: mat.define-dark-theme(
   )
 );
 
-// Additional Theme (Material 3)
+// Additional Themes (Material 3)
 
 // $dark-theme: mat.define-theme(
 //   (
@@ -573,8 +573,4 @@ form {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(0, 360px));
   gap: 16px;
-}
-
-.jet-invisible {
-  visibility: hidden;
 }
