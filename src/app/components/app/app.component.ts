@@ -34,7 +34,6 @@ import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { User } from '@jet/interfaces/user.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
@@ -44,6 +43,7 @@ import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { UpdateService } from '@jet/services/update/update.service';
 import { AvailableFont } from '@jet/types/available-font.type';
+import { AvailableLanguage } from '@jet/types/available-language.type';
 import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
@@ -88,9 +88,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _updateService = inject(UpdateService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private _activeFont: LanguageOption['font'];
-  private _activeLanguage: LanguageOption['value'];
-  private _activeTheme: ThemeOption['value'];
+  private _activeFont: AvailableFont;
+  private _activeLanguage: AvailableLanguage;
+  private _activeTheme: AvailableTheme;
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
