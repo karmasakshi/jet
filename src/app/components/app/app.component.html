@@ -5,29 +5,29 @@
   >
     <mat-sidenav
       #drawer
-      fixedInViewport
       [attr.role]="isSmallViewport ? 'dialog' : 'navigation'"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
+      fixedInViewport
     >
       <mat-toolbar
         role="banner"
         style="background-color: inherit; justify-content: center"
       >
         <a
+          [attr.aria-label]="t('home')"
+          [matTooltip]="t('home')"
           jetAnalytics
           jetAnalyticsEventName="Open Home"
-          [matTooltip]="t('home')"
-          [attr.aria-label]="t('home')"
           mat-icon-button
           routerLink="/"
         >
           <img
             [alt]="t('logo')"
-            ngSrc="./logo.svg"
-            width="24"
             height="24"
+            ngSrc="./logo.svg"
             priority
+            width="24"
           />
         </a>
       </mat-toolbar>
@@ -38,15 +38,15 @@
             track navigationMenuItem.url
           ) {
             <a
-              (click)="isSmallViewport && drawer.close()"
-              matListItemTitle
               [activated]="
                 activeNavigationMenuItemUrl === navigationMenuItem.url
               "
-              mat-list-item
               [matTooltip]="t(navigationMenuItem.nameKey)"
-              matTooltipPosition="after"
               [routerLink]="[navigationMenuItem.url]"
+              (click)="isSmallViewport && drawer.close()"
+              mat-list-item
+              matListItemTitle
+              matTooltipPosition="after"
             >
               <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
               <span>{{ t(navigationMenuItem.nameKey) }}</span>
@@ -58,50 +58,50 @@
     <mat-sidenav-content role="region">
       <mat-toolbar
         [attr.aria-label]="t('main-toolbar')"
+        [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
         role="toolbar"
         style="background-color: inherit; position: relative"
-        [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
       >
         <mat-progress-bar
-          style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 2"
+          [attr.aria-label]="t('progress-bar')"
+          [bufferValue]="progressBarConfiguration().bufferValue"
+          [mode]="progressBarConfiguration().mode"
           [ngStyle]="{
             visibility: progressBarConfiguration().isVisible
               ? 'visible'
               : 'hidden',
           }"
-          [mode]="progressBarConfiguration().mode"
           [value]="progressBarConfiguration().value"
-          [bufferValue]="progressBarConfiguration().bufferValue"
-          [attr.aria-label]="t('progress-bar')"
+          style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 2"
         >
         </mat-progress-bar>
         @if (!isSmallViewport) {
           <button
+            [attr.aria-label]="t('toggle-navigation-menu')"
+            [matTooltip]="t('toggle-navigation-menu')"
+            (click)="drawer.toggle()"
             jetAnalytics
             jetAnalyticsEventName="Toggle Drawer"
-            type="button"
-            [matTooltip]="t('toggle-navigation-menu')"
-            [attr.aria-label]="t('toggle-navigation-menu')"
             mat-icon-button
-            (click)="drawer.toggle()"
+            type="button"
           >
             <mat-icon>short_text</mat-icon>
           </button>
         } @else {
           <a
+            [attr.aria-label]="t('home')"
+            [matTooltip]="t('home')"
             jetAnalytics
             jetAnalyticsEventName="Open Home"
-            [matTooltip]="t('home')"
-            [attr.aria-label]="t('home')"
             mat-icon-button
             routerLink="/"
           >
             <img
               [alt]="t('logo')"
-              ngSrc="./logo.svg"
-              width="24"
               height="24"
+              ngSrc="./logo.svg"
               priority
+              width="24"
             />
           </a>
         }
@@ -134,9 +134,9 @@
       @if (isSmallViewport) {
         <nav
           [attr.aria-label]="t('navigation-menu')"
+          [tabPanel]="tabNavPanel"
           backgroundColor="primary"
           mat-tab-nav-bar
-          [tabPanel]="tabNavPanel"
         >
           @for (
             navigationMenuItem of navigationMenuItems;

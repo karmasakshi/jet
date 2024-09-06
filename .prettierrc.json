@@ -1,4 +1,6 @@
 {
+  "attributeSort": "ASC",
+  "plugins": ["prettier-plugin-organize-attributes"],
   "singleAttributePerLine": true,
   "singleQuote": true
 }

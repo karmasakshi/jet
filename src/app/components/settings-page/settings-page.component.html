@@ -1,19 +1,19 @@
 <ng-container *transloco="let t; prefix: 'jet-settings-page'">
   <jet-page
-    [seoTitle]="t('seo.title')"
     [seoDescription]="t('seo.description')"
     [seoKeywords]="t('seo.keywords')"
+    [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
     <mat-card>
       <mat-card-content>
         <mat-action-list>
           <button
-            type="button"
+            [matMenuTriggerFor]="languageMenu"
             jetAnalytics
             jetAnalyticsEventName="Open Language Options"
             mat-list-item
-            [matMenuTriggerFor]="languageMenu"
+            type="button"
           >
             <mat-icon matListItemIcon>translate</mat-icon>
             <span matListItemTitle>{{ t('change-language') }}</span>
@@ -22,22 +22,22 @@
             }}</span>
           </button>
           <button
-            type="button"
+            [matMenuTriggerFor]="themeMenu"
             jetAnalytics
             jetAnalyticsEventName="Open Theme Options"
             mat-list-item
-            [matMenuTriggerFor]="themeMenu"
+            type="button"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
             <span matListItemTitle>{{ t('change-theme') }}</span>
             <span matListItemLine>{{ t(settings().themeOption.nameKey) }}</span>
           </button>
           <button
-            type="button"
+            (click)="checkForUpdate()"
             jetAnalytics
             jetAnalyticsEventName="Check for Update"
             mat-list-item
-            (click)="checkForUpdate()"
+            type="button"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
             <span matListItemTitle>{{ t('check-for-updates') }}</span>
@@ -47,22 +47,22 @@
             >
           </button>
           <button
-            type="button"
+            (click)="reload()"
             jetAnalytics
             jetAnalyticsEventName="Reload"
             mat-list-item
-            (click)="reload()"
+            type="button"
           >
             <mat-icon matListItemIcon>refresh</mat-icon>
             <span matListItemTitle>{{ t('reload') }}</span>
             <span matListItemLine>{{ t('reload-description') }}</span>
           </button>
           <button
-            type="button"
+            (click)="reset()"
             jetAnalytics
             jetAnalyticsEventName="Reset"
             mat-list-item
-            (click)="reset()"
+            type="button"
           >
             <mat-icon matListItemIcon>restart_alt</mat-icon>
             <span matListItemTitle>{{ t('reset') }}</span>
@@ -73,18 +73,18 @@
     </mat-card>
     <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
     <mat-menu
-      xPosition="before"
       #languageMenu="matMenu"
+      xPosition="before"
     >
       @for (languageOption of languageOptions; track languageOption.value) {
         <button
+          [disabled]="settings().languageOption.value === languageOption.value"
+          [jetAnalyticsEventData]="languageOption.value"
+          (click)="updateSettings({ languageOption })"
           jetAnalytics
           jetAnalyticsEventName="Select Language Option"
-          [jetAnalyticsEventData]="languageOption.value"
-          type="button"
-          [disabled]="settings().languageOption.value === languageOption.value"
-          (click)="updateSettings({ languageOption })"
           mat-menu-item
+          type="button"
         >
           <mat-icon>{{ languageOption.icon }}</mat-icon>
           <span>{{ t(languageOption.nameKey) }}</span>
@@ -92,18 +92,18 @@
       }
     </mat-menu>
     <mat-menu
-      xPosition="before"
       #themeMenu="matMenu"
+      xPosition="before"
     >
       @for (themeOption of themeOptions; track themeOption.value) {
         <button
+          [disabled]="settings().themeOption.value === themeOption.value"
+          [jetAnalyticsEventData]="themeOption.value"
+          (click)="updateSettings({ themeOption })"
           jetAnalytics
           jetAnalyticsEventName="Select Theme Option"
-          [jetAnalyticsEventData]="themeOption.value"
-          type="button"
-          [disabled]="settings().themeOption.value === themeOption.value"
-          (click)="updateSettings({ themeOption })"
           mat-menu-item
+          type="button"
         >
           <mat-icon>{{ themeOption.icon }}</mat-icon>
           <span>{{ t(themeOption.nameKey) }}</span>
