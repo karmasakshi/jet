@@ -224,7 +224,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (activeLanguageOption.value !== this._activeLanguage) {
       this._activeLanguage = activeLanguageOption.value;
       this._renderer2.setAttribute(
-        this._document.documentElement,
+        this._document.body,
         'dir',
         activeLanguageOption.directionality,
       );
