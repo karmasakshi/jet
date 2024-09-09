@@ -571,6 +571,6 @@ form {
 .jet-cards-container {
   justify-content: space-evenly;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(0, 360px));
+  grid-template-columns: repeat(auto-fill, minmax(0, 320px));
   gap: 16px;
 }
