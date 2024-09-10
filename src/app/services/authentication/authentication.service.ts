@@ -29,8 +29,10 @@ export class AuthenticationService {
   public login(): Promise<void> {
     return new Promise<void>((resolve, reject): void => {
       try {
-        this._user.set({});
-        resolve();
+        window.setTimeout(() => {
+          this._user.set({});
+          resolve();
+        }, 3000);
       } catch (error) {
         this._loggerService.logError(error);
         reject(new Error());
@@ -41,8 +43,10 @@ export class AuthenticationService {
   public logout(): Promise<void> {
     return new Promise<void>((resolve, reject): void => {
       try {
-        this._user.set(null);
-        resolve();
+        window.setTimeout(() => {
+          this._user.set(null);
+          resolve();
+        }, 3000);
       } catch (error) {
         this._loggerService.logError(error);
         reject(new Error());
