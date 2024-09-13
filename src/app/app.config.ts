@@ -31,7 +31,13 @@ export const appConfig: ApplicationConfig = {
       useValue: { appearance: 'outline' },
     },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 5000 } },
-    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { showDelay: 1000 } },
+    {
+      provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
+      useValue: {
+        disableTooltipInteractivity: true,
+        showDelay: 900,
+      },
+    },
     provideAnimationsAsync(),
     provideRouter(
       routes,
