@@ -41,12 +41,10 @@
               [activated]="
                 activeNavigationMenuItemUrl === navigationMenuItem.url
               "
-              [matTooltip]="t(navigationMenuItem.nameKey)"
               [routerLink]="[navigationMenuItem.url]"
               (click)="isSmallViewport && drawer.close()"
               mat-list-item
               matListItemTitle
-              matTooltipPosition="after"
             >
               <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
               <span>{{ t(navigationMenuItem.nameKey) }}</span>
