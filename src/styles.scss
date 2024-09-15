@@ -10,7 +10,7 @@ $noto-sans-typography: mat.define-typography-config(
 );
 
 $noto-sans-arabic-typography: mat.define-typography-config(
-  $font-family: '"Noto Sans Arabic", sans-serif',
+  $font-family: '"Noto Sans Arabic", "Noto Sans", sans-serif',
 );
 
 // Fonts (Material 3)
@@ -29,10 +29,12 @@ $noto-sans-arabic-typography: mat.define-typography-config(
 // $noto-sans-arabic-typography: (
 //   plain-family: (
 //     'Noto Sans Arabic',
+//     'Noto Sans',
 //     sans-serif,
 //   ),
 //   brand-family: (
 //     'Noto Sans Arabic',
+//     'Noto Sans',
 //     sans-serif,
 //   ),
 // );
