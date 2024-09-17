@@ -183,7 +183,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ),
       )
       .subscribe((navigationEnd: NavigationEnd): void => {
-        this.activeNavigationMenuItemUrl = navigationEnd.url;
+        this.activeNavigationMenuItemUrl = navigationEnd.url.split('?')[0];
       });
 
     this._swUpdateSubscription = this._updateService.swUpdateSubscription;

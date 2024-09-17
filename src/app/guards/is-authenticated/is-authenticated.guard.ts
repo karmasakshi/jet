@@ -20,7 +20,6 @@ export const isAuthenticatedGuard: CanActivateFn = (
   } else {
     return router.createUrlTree(['/login'], {
       queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
-      queryParamsHandling: 'merge',
     });
   }
 };
