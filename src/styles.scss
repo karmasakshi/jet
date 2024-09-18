@@ -500,10 +500,10 @@ body {
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
-        bottom: -1px;
-        left: 0;
         position: fixed;
         right: 0;
+        bottom: -1px;
+        left: 0;
         z-index: 2;
 
         .mat-mdc-tab-link-container {
@@ -539,6 +539,13 @@ form {
     overflow: auto;
   }
 
+  .mat-mdc-card-sm-image,
+  .mat-mdc-card-md-image,
+  .mat-mdc-card-lg-image,
+  .mat-mdc-card-xl-image {
+    border-radius: 4px !important;
+  }
+
   .mdc-card__actions {
     gap: 8px;
   }
@@ -570,9 +577,32 @@ form {
 
 // Utility Classes
 
-.jet-cards-container {
-  justify-content: space-evenly;
+.jet-40-60-container {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.jet-carousel-container {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.jet-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(0, 320px));
+  justify-content: space-evenly;
   gap: 16px;
+}
+
+// Responsiveness Overrides
+
+@media (max-width: 960px) {
+  .jet-40-60-container {
+    grid-template-columns: 1fr;
+  }
 }
