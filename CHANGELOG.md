@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.0](https://github.com/karmasakshi/jet/compare/v1.25.0...v1.26.0) (2024-09-18)
+
+
+### Features
+
+* **general:** update dependencies ([31b6afd](https://github.com/karmasakshi/jet/commit/31b6afd7e34da7f34124a4849dea00373de9d92e))
+
 ## [1.25.0](https://github.com/karmasakshi/jet/compare/v1.24.0...v1.25.0) (2024-09-13)
 
 
