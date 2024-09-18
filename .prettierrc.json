@@ -1,6 +1,10 @@
 {
   "attributeSort": "ASC",
-  "plugins": ["prettier-plugin-organize-attributes"],
+  "cssDeclarationSorterOrder": "alphabetical",
+  "plugins": [
+    "prettier-plugin-css-order",
+    "prettier-plugin-organize-attributes"
+  ],
   "singleAttributePerLine": true,
   "singleQuote": true
 }

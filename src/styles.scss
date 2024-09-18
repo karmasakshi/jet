@@ -500,10 +500,10 @@ body {
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
-        position: fixed;
-        right: 0;
         bottom: -1px;
         left: 0;
+        position: fixed;
+        right: 0;
         z-index: 2;
 
         .mat-mdc-tab-link-container {
@@ -578,25 +578,25 @@ form {
 // Utility Classes
 
 .jet-40-60-container {
-  display: grid;
-  grid-template-columns: 0.4fr 0.6fr;
   align-items: start;
+  display: grid;
   gap: 16px;
+  grid-template-columns: 0.4fr 0.6fr;
 }
 
 .jet-carousel-container {
   display: flex;
   gap: 16px;
-  padding: 16px;
   overflow-x: auto;
+  padding: 16px;
   scroll-snap-type: x mandatory;
 }
 
 .jet-grid-container {
   display: grid;
+  gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(0, 320px));
   justify-content: space-evenly;
-  gap: 16px;
 }
 
 // Responsiveness Overrides
