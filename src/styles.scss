@@ -592,8 +592,9 @@ form {
 .jet-carousel-container {
   display: flex;
   gap: 16px;
+  margin-top: -2px;
   overflow-x: auto;
-  padding: 16px;
+  padding: 2px 16px 16px;
   scroll-snap-type: x mandatory;
 }
 
