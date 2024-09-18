@@ -3,19 +3,15 @@
 
 @include mat.core();
 
-// Fonts (Material 2)
+// Default Typography (Material 2)
 
-$noto-sans-typography: mat.define-typography-config(
+$default-typography: mat.define-typography-config(
   $font-family: '"Noto Sans", sans-serif',
 );
 
-$noto-sans-arabic-typography: mat.define-typography-config(
-  $font-family: '"Noto Sans Arabic", "Noto Sans", sans-serif',
-);
+// Default Typography (Material 3)
 
-// Fonts (Material 3)
-
-// $noto-sans-typography: (
+// $default-typography: (
 //   plain-family: (
 //     'Noto Sans',
 //     sans-serif,
@@ -25,6 +21,14 @@ $noto-sans-arabic-typography: mat.define-typography-config(
 //     sans-serif,
 //   ),
 // );
+
+// Additional Typography (Material 2)
+
+$noto-sans-arabic-typography: mat.define-typography-config(
+  $font-family: '"Noto Sans Arabic", "Noto Sans", sans-serif',
+);
+
+// Additional Typography (Material 3)
 
 // $noto-sans-arabic-typography: (
 //   plain-family: (
@@ -39,7 +43,7 @@ $noto-sans-arabic-typography: mat.define-typography-config(
 //   ),
 // );
 
-// Palettes (Material 2)
+// Palettes (Material 2) - Generate yours at http://mcg.mbitson.com
 
 $amber-palette: mat.define-palette(
   (
@@ -115,7 +119,7 @@ $brown-palette: mat.define-palette(
 
 $red-palette: mat.define-palette(mat.$red-palette);
 
-// Palettes (Material 3)
+// Palettes (Material 3) - Generate yours using ng generate @angular/material:m3-theme
 
 // $_palettes: (
 //   primary: (
@@ -247,30 +251,6 @@ $red-palette: mat.define-palette(mat.$red-palette);
 // $_primary: map.merge(map.get($_palettes, primary), $_rest);
 // $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
-// Additional Themes (Material 2)
-
-$dark-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: $amber-palette,
-      accent: $brown-palette,
-      warn: $red-palette,
-    ),
-  )
-);
-
-// Additional Themes (Material 3)
-
-// $dark-theme: mat.define-theme(
-//   (
-//     color: (
-//       theme-type: dark,
-//       primary: $_primary,
-//       tertiary: $_tertiary,
-//     ),
-//   )
-// );
-
 // Default Theme (Material 2)
 
 $default-theme: mat.define-light-theme(
@@ -281,7 +261,7 @@ $default-theme: mat.define-light-theme(
       warn: $red-palette,
     ),
     density: 0,
-    typography: $noto-sans-typography,
+    typography: $default-typography,
   )
 );
 
@@ -297,7 +277,31 @@ $default-theme: mat.define-light-theme(
 //     density: (
 //       scale: 0,
 //     ),
-//     typography: $noto-sans-typography,
+//     typography: $default-typography,
+//   )
+// );
+
+// Additional Theme (Material 2)
+
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $amber-palette,
+      accent: $brown-palette,
+      warn: $red-palette,
+    ),
+  )
+);
+
+// Additional Theme (Material 3)
+
+// $dark-theme: mat.define-theme(
+//   (
+//     color: (
+//       theme-type: dark,
+//       primary: $_primary,
+//       tertiary: $_tertiary,
+//     ),
 //   )
 // );
 
@@ -323,7 +327,7 @@ body {
 
   // Default Typography Hierarchy (Material 2)
 
-  @include mat.typography-hierarchy($noto-sans-typography);
+  @include mat.typography-hierarchy($default-typography);
 
   // Default Typography Hierarchy (Material 3)
 
@@ -376,6 +380,7 @@ body {
   }
 
   &.jet-theme-dark {
+    // Additional Theme
     @include mat.core-color($dark-theme);
 
     @include mat.button-color($dark-theme);
