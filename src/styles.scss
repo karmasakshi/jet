@@ -601,3 +601,7 @@ form {
   grid-template-columns: repeat(auto-fill, minmax(0, 320px));
   justify-content: space-evenly;
 }
+
+.jet-masonry-container {
+  columns: 320px;
+}
