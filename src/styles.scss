@@ -3,47 +3,38 @@
 
 @include mat.core();
 
+// Fonts
+
+$default-font: ('Noto Sans', sans-serif);
+$noto-sans-arabic-font: ('Noto Sans Arabic', 'Noto Sans', sans-serif);
+
 // Default Typography (Material 2)
 
 $default-typography: mat.define-typography-config(
-  $font-family: '"Noto Sans", sans-serif',
+  $font-family: $default-font,
 );
 
 // Default Typography (Material 3)
 
 // $default-typography: (
-//   plain-family: (
-//     'Noto Sans',
-//     sans-serif,
-//   ),
-//   brand-family: (
-//     'Noto Sans',
-//     sans-serif,
-//   ),
+//   plain-family: $default-font,
+//   brand-family: $default-font,
 // );
 
 // Additional Typography (Material 2)
 
 $noto-sans-arabic-typography: mat.define-typography-config(
-  $font-family: '"Noto Sans Arabic", "Noto Sans", sans-serif',
+  $font-family: $noto-sans-arabic-font,
 );
 
 // Additional Typography (Material 3)
 
 // $noto-sans-arabic-typography: (
-//   plain-family: (
-//     'Noto Sans Arabic',
-//     'Noto Sans',
-//     sans-serif,
-//   ),
-//   brand-family: (
-//     'Noto Sans Arabic',
-//     'Noto Sans',
-//     sans-serif,
-//   ),
+//   plain-family: $noto-sans-arabic-font,
+//   brand-family: $noto-sans-arabic-font,
 // );
 
-// Palettes (Material 2) - Generate yours at http://mcg.mbitson.com
+// Palettes (Material 2) - Generated using http://mcg.mbitson.com
 
 $amber-palette: mat.define-palette(
   (
@@ -119,7 +110,7 @@ $brown-palette: mat.define-palette(
 
 $red-palette: mat.define-palette(mat.$red-palette);
 
-// Palettes (Material 3) - Generate yours using ng generate @angular/material:m3-theme
+// Palettes (Material 3) - Generated using ng generate @angular/material:m3-theme
 
 // $_palettes: (
 //   primary: (
@@ -580,13 +571,19 @@ form {
   overflow: hidden;
 }
 
-// Utility Classes
+// Container Classes
 
 .jet-40-60-container {
   align-items: start;
   display: grid;
   gap: 16px;
   grid-template-columns: 0.4fr 0.6fr;
+}
+
+@media (max-width: 960px) {
+  .jet-40-60-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .jet-carousel-container {
@@ -603,12 +600,4 @@ form {
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(0, 320px));
   justify-content: space-evenly;
-}
-
-// Responsiveness Overrides
-
-@media (max-width: 960px) {
-  .jet-40-60-container {
-    grid-template-columns: 1fr;
-  }
 }

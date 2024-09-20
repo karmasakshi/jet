@@ -32,7 +32,7 @@ export class AuthenticationService {
         window.setTimeout(() => {
           this._user.set({});
           resolve();
-        }, 1800);
+        }, 900);
       } catch (error) {
         this._loggerService.logError(error);
         reject(new Error());
@@ -46,7 +46,7 @@ export class AuthenticationService {
         window.setTimeout(() => {
           this._user.set(null);
           resolve();
-        }, 1800);
+        }, 900);
       } catch (error) {
         this._loggerService.logError(error);
         reject(new Error());
