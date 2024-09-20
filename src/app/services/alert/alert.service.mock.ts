@@ -8,4 +8,8 @@ export class AlertServiceMock {
   ): void {
     // Mock implementation, do nothing
   }
+
+  public showErrorAlert(_message = ''): void {
+    // Mock implementation, do nothing
+  }
 }

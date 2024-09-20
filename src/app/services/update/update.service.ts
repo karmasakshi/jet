@@ -77,11 +77,7 @@ export class UpdateService {
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
-          this._alertService.showAlert(
-            error.message ??
-              this._translocoService.translate('alerts.something-went-wrong'),
-            this._translocoService.translate('alerts.ok'),
-          );
+          this._alertService.showErrorAlert(error.message);
         });
     } else {
       this._alertService.showAlert(

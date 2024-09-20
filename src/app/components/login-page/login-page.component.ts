@@ -6,7 +6,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -23,7 +23,6 @@ export class LoginPageComponent {
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _translocoService = inject(TranslocoService);
 
   public isLoginPending: boolean;
 
@@ -50,10 +49,7 @@ export class LoginPageComponent {
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.something-went-wrong'),
-            this._translocoService.translate('alerts.ok'),
-          );
+          this._alertService.showErrorAlert();
           this._progressBarService.hideProgressBar();
           this.isLoginPending = false;
         });

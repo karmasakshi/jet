@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { SettingsService } from '../settings/settings.service';
@@ -10,6 +11,7 @@ describe('AlertService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [TranslocoTestingModule.forRoot({})],
       providers: [
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
