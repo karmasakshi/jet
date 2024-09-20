@@ -3,7 +3,8 @@
   "cssDeclarationSorterOrder": "alphabetical",
   "plugins": [
     "prettier-plugin-css-order",
-    "prettier-plugin-organize-attributes"
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-organize-imports"
   ],
   "singleAttributePerLine": true,
   "singleQuote": true
