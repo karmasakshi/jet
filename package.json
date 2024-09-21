@@ -54,7 +54,7 @@
     "@ngx-env/builder": "^18.0.1",
     "@types/jasmine": "^5.1.4",
     "angular-eslint": "^18.3.1",
-    "eslint": "^9.10.0",
+    "eslint": "^9.11.0",
     "husky": "^9.1.6",
     "jasmine-core": "^5.3.0",
     "karma": "^6.4.4",
@@ -67,7 +67,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-organize-attributes": "^1.0.0",
-    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.6.0"
   }
