@@ -426,6 +426,10 @@ body {
         }
       }
 
+      .mat-mdc-form-field-text-prefix {
+        padding-right: 8px;
+      }
+
       .mat-mdc-tab-nav-bar {
         .mat-mdc-tab-header-pagination-before {
           padding-left: calc(env(safe-area-inset-left) + 4px);
@@ -470,6 +474,10 @@ body {
               calc(16px + env(safe-area-inset-left));
           }
         }
+      }
+
+      .mat-mdc-form-field-text-prefix {
+        padding-left: 8px;
       }
 
       .mat-mdc-tab-nav-bar {
@@ -561,6 +569,11 @@ form {
     calc(8px + env(safe-area-inset-right))
     calc(8px + env(safe-area-inset-bottom))
     calc(8px + env(safe-area-inset-left)) !important;
+}
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
 }
 
 .mat-toolbar {
