@@ -1,5 +1,8 @@
 {
   "diffEditor.ignoreTrimWhitespace": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
   "editor.renderWhitespace": "all",
   "editor.scrollBeyondLastLine": false,
   "editor.tabSize": 2,
