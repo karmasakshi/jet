@@ -54,6 +54,14 @@
     },
     "toolbar-title": "تسجيل الخروج"
   },
+  "jet-not-found-page": {
+    "seo": {
+      "description": "الصفحة غير موجودة.",
+      "keywords": "jet",
+      "title": "الصفحة غير موجودة"
+    },
+    "toolbar-title": "الصفحة غير موجودة"
+  },
   "jet-settings-page": {
     "arabic": "العربية",
     "automatic": "تلقائي",

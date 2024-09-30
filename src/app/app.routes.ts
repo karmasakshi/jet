@@ -33,5 +33,11 @@ export const routes: Routes = [
       ),
     path: 'settings',
   },
-  { path: '**', redirectTo: '/' },
+  {
+    loadComponent: () =>
+      import('@jet/components/not-found-page/not-found-page.component').then(
+        (m) => m.NotFoundPageComponent,
+      ),
+    path: '**',
+  },
 ];

@@ -34,7 +34,7 @@ $noto-sans-arabic-typography: mat.define-typography-config(
 //   brand-family: $noto-sans-arabic-font,
 // );
 
-// Palettes (Material 2) - Generated using http://mcg.mbitson.com
+// Palettes (Material 2) (Generated using http://mcg.mbitson.com)
 
 $amber-palette: mat.define-palette(
   (
@@ -110,7 +110,7 @@ $brown-palette: mat.define-palette(
 
 $red-palette: mat.define-palette(mat.$red-palette);
 
-// Palettes (Material 3) - Generated using ng generate @angular/material:m3-theme
+// Palettes (Material 3) (Generated using ng generate @angular/material:m3-theme)
 
 // $_palettes: (
 //   primary: (
@@ -584,37 +584,42 @@ form {
   overflow: hidden;
 }
 
-// Container Classes
+// Container Classes (Breakpoints as per https://material.angular.io/cdk/layout/overview#predefined-breakpoints)
 
 .jet-40-60-container {
-  align-items: start;
+  align-items: flex-start;
+  box-sizing: border-box;
   display: grid;
   gap: 16px;
   grid-template-columns: 0.4fr 0.6fr;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 959.98px) {
   .jet-40-60-container {
     grid-template-columns: 1fr;
   }
 }
 
 .jet-carousel-container {
+  box-sizing: border-box;
   display: flex;
   gap: 16px;
   margin-top: -2px;
   overflow-x: auto;
-  padding: 2px 16px 16px;
+  padding: 2px 16px 16px 16px;
   scroll-snap-type: x mandatory;
 }
 
 .jet-grid-container {
+  box-sizing: border-box;
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(0, 320px));
   justify-content: space-evenly;
 }
 
-.jet-masonry-container {
-  columns: 320px;
+@media (max-width: 599.98px) {
+  .jet-grid-container {
+    grid-template-columns: 1fr;
+  }
 }

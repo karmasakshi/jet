@@ -54,6 +54,14 @@
     },
     "toolbar-title": "Logout"
   },
+  "jet-not-found-page": {
+    "seo": {
+      "description": "Not found.",
+      "keywords": "jet",
+      "title": "Not Found"
+    },
+    "toolbar-title": "Not Found"
+  },
   "jet-settings-page": {
     "arabic": "Arabic",
     "automatic": "Automatic",
