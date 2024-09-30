@@ -372,6 +372,7 @@ body {
 
   &.jet-theme-dark {
     // Additional Theme
+
     @include mat.core-color($dark-theme);
 
     @include mat.button-color($dark-theme);
@@ -389,20 +390,11 @@ body {
   }
 
   .mat-drawer-container {
-    .mat-sidenav-content {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
     &[dir='ltr'] {
       .mat-drawer {
-        width: calc(240px + env(safe-area-inset-left));
+        --mat-sidenav-container-width: calc(240px + env(safe-area-inset-left));
 
-        .mat-toolbar {
-          padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
-        }
-
+        .mat-toolbar,
         .jet-drawer-content {
           padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
         }
@@ -428,31 +420,24 @@ body {
               calc(16px + env(safe-area-inset-left));
           }
         }
-      }
 
-      .mat-mdc-form-field-text-prefix {
-        padding-right: 8px;
-      }
+        .mat-mdc-tab-nav-bar {
+          .mat-mdc-tab-header-pagination-before {
+            padding-left: calc(env(safe-area-inset-left) + 4px);
+          }
 
-      .mat-mdc-tab-nav-bar {
-        .mat-mdc-tab-header-pagination-before {
-          padding-left: calc(env(safe-area-inset-left) + 4px);
-        }
-
-        .mat-mdc-tab-header-pagination-after {
-          padding-right: calc(env(safe-area-inset-right) + 4px);
+          .mat-mdc-tab-header-pagination-after {
+            padding-right: calc(env(safe-area-inset-right) + 4px);
+          }
         }
       }
     }
 
     &[dir='rtl'] {
       .mat-drawer {
-        width: calc(240px + env(safe-area-inset-right));
+        --mat-sidenav-container-width: calc(240px + env(safe-area-inset-right));
 
-        .mat-toolbar {
-          padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
-        }
-
+        .mat-toolbar,
         .jet-drawer-content {
           padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
         }
@@ -478,19 +463,15 @@ body {
               calc(16px + env(safe-area-inset-left));
           }
         }
-      }
 
-      .mat-mdc-form-field-text-prefix {
-        padding-left: 8px;
-      }
+        .mat-mdc-tab-nav-bar {
+          .mat-mdc-tab-header-pagination-before {
+            padding-right: calc(env(safe-area-inset-right) + 4px);
+          }
 
-      .mat-mdc-tab-nav-bar {
-        .mat-mdc-tab-header-pagination-before {
-          padding-right: calc(env(safe-area-inset-right) + 4px);
-        }
-
-        .mat-mdc-tab-header-pagination-after {
-          padding-left: calc(env(safe-area-inset-left) + 4px);
+          .mat-mdc-tab-header-pagination-after {
+            padding-left: calc(env(safe-area-inset-left) + 4px);
+          }
         }
       }
     }
@@ -498,24 +479,26 @@ body {
     .mat-drawer {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-    }
 
-    .mat-drawer-side {
-      border: unset;
+      &.mat-drawer-side {
+        border: unset;
+      }
     }
 
     .mat-drawer-content {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       padding-top: env(safe-area-inset-top);
 
       .mat-mdc-tab-nav-bar {
-        bottom: -1px;
+        bottom: 0;
         left: 0;
         position: fixed;
         right: 0;
         z-index: 2;
 
         .mat-mdc-tab-link-container {
-          border-bottom: unset;
           padding-bottom: env(safe-area-inset-bottom);
         }
       }
@@ -525,10 +508,6 @@ body {
 
 footer {
   padding: 16px 16px calc(48px + 16px + env(safe-area-inset-bottom)) 16px;
-}
-
-form {
-  margin: 8px 0;
 }
 
 .mat-mdc-button,
@@ -543,7 +522,6 @@ form {
   overflow: hidden;
 
   .mat-mdc-card-content {
-    box-sizing: border-box;
     overflow: auto;
   }
 
@@ -575,8 +553,8 @@ form {
     calc(8px + env(safe-area-inset-left)) !important;
 }
 
-.mat-stepper-vertical,
-.mat-stepper-horizontal {
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
 }
 
@@ -584,11 +562,7 @@ form {
   gap: 8px;
 }
 
-.mdc-checkbox {
-  overflow: hidden;
-}
-
-// Container Classes (Breakpoints as per https://material.angular.io/cdk/layout/overview#predefined-breakpoints)
+// Container Classes (Using breakpoints defined in https://material.angular.io/cdk/layout/overview#predefined-breakpoints)
 
 .jet-40-60-container {
   align-items: flex-start;
@@ -620,10 +594,4 @@ form {
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(0, 320px));
   justify-content: space-evenly;
-}
-
-@media (max-width: 599.98px) {
-  .jet-grid-container {
-    grid-template-columns: 1fr;
-  }
 }
