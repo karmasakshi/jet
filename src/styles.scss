@@ -389,7 +389,11 @@ body {
   }
 
   .mat-drawer-container {
-    min-height: 100vh;
+    .mat-sidenav-content {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
     &[dir='ltr'] {
       .mat-drawer {
@@ -520,7 +524,7 @@ body {
 }
 
 footer {
-  padding: 16px 0 calc(48px + 16px + env(safe-area-inset-bottom)) 0;
+  padding: 16px 16px calc(48px + 16px + env(safe-area-inset-bottom)) 16px;
 }
 
 form {

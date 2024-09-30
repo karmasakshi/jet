@@ -123,7 +123,10 @@
           </a>
         }
       </mat-toolbar>
-      <mat-tab-nav-panel #tabNavPanel>
+      <mat-tab-nav-panel
+        #tabNavPanel
+        style="flex: 1"
+      >
         <main [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
           <router-outlet />
         </main>
