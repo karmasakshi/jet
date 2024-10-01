@@ -562,6 +562,10 @@ footer {
   gap: 8px;
 }
 
+.mdc-checkbox {
+  overflow: hidden;
+}
+
 // Container Classes (Using breakpoints defined in https://material.angular.io/cdk/layout/overview#predefined-breakpoints)
 
 .jet-40-60-container {
