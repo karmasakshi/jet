@@ -27,26 +27,26 @@
     "*": "npx --no -- prettier --ignore-unknown --write"
   },
   "dependencies": {
-    "@angular/animations": "^18.2.6",
+    "@angular/animations": "^18.2.7",
     "@angular/cdk": "^17.3.10",
-    "@angular/common": "^18.2.6",
-    "@angular/compiler": "^18.2.6",
-    "@angular/core": "^18.2.6",
-    "@angular/forms": "^18.2.6",
+    "@angular/common": "^18.2.7",
+    "@angular/compiler": "^18.2.7",
+    "@angular/core": "^18.2.7",
+    "@angular/forms": "^18.2.7",
     "@angular/material": "^17.3.10",
-    "@angular/platform-browser": "^18.2.6",
-    "@angular/platform-browser-dynamic": "^18.2.6",
-    "@angular/router": "^18.2.6",
-    "@angular/service-worker": "^18.2.6",
+    "@angular/platform-browser": "^18.2.7",
+    "@angular/platform-browser-dynamic": "^18.2.7",
+    "@angular/router": "^18.2.7",
+    "@angular/service-worker": "^18.2.7",
     "@jsverse/transloco": "^7.5.0",
     "rxjs": "^7.8.1",
     "tslib": "^2.7.0",
     "zone.js": "^0.14.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.6",
-    "@angular/cli": "^18.2.6",
-    "@angular/compiler-cli": "^18.2.6",
+    "@angular-devkit/build-angular": "^18.2.7",
+    "@angular/cli": "^18.2.7",
+    "@angular/compiler-cli": "^18.2.7",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/prompt-cli": "^19.5.0",
@@ -69,6 +69,6 @@
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.7.0"
+    "typescript-eslint": "^8.8.0"
   }
 }
