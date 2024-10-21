@@ -26,31 +26,31 @@ export class AuthenticationService {
     return this._user.asReadonly();
   }
 
-  public login(): Promise<void> {
-    return new Promise<void>((resolve, reject): void => {
-      try {
+  public async login(): Promise<void> {
+    try {
+      await new Promise<void>((resolve) => {
         window.setTimeout(() => {
-          this._user.set({});
+          this._user.set({} as User);
           resolve();
         }, 900);
-      } catch (error) {
-        this._loggerService.logError(error);
-        reject(new Error());
-      }
-    });
+      });
+    } catch (error) {
+      this._loggerService.logError(error);
+      throw new Error();
+    }
   }
 
-  public logout(): Promise<void> {
-    return new Promise<void>((resolve, reject): void => {
-      try {
+  public async logout(): Promise<void> {
+    try {
+      await new Promise<void>((resolve) => {
         window.setTimeout(() => {
           this._user.set(null);
           resolve();
         }, 900);
-      } catch (error) {
-        this._loggerService.logError(error);
-        reject(new Error());
-      }
-    });
+      });
+    } catch (error) {
+      this._loggerService.logError(error);
+      throw new Error();
+    }
   }
 }

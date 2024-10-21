@@ -2,20 +2,25 @@ import { Signal, WritableSignal, signal } from '@angular/core';
 import { User } from '@jet/interfaces/user.interface';
 
 export class AuthenticationServiceMock {
-  public get user(): Signal<User | null> {
-    const user: WritableSignal<User | null> = signal(null);
-    return user.asReadonly();
+  private readonly _user: WritableSignal<User | null>;
+
+  public constructor() {
+    this._user = signal(null);
   }
 
-  public login(): Promise<void> {
-    return new Promise((): void => {
-      // Mock implementation, do nothing
+  public get user(): Signal<User | null> {
+    return this._user.asReadonly();
+  }
+
+  public async login(): Promise<void> {
+    await new Promise<void>((resolve) => {
+      resolve();
     });
   }
 
-  public logout(): Promise<void> {
-    return new Promise((): void => {
-      // Mock implementation, do nothing
+  public async logout(): Promise<void> {
+    await new Promise<void>((resolve) => {
+      resolve();
     });
   }
 }

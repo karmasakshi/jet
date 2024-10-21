@@ -2,16 +2,28 @@ import { Signal, WritableSignal, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 export class UpdateServiceMock {
-  public readonly swUpdateSubscription: Subscription = Subscription.EMPTY;
+  private _isReloadPending: boolean;
+  private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
+
+  public readonly swUpdateSubscription: Subscription;
+
+  public constructor() {
+    this._isReloadPending = false;
+
+    this._lastUpdateCheckTimestamp = signal(new Date().toISOString());
+
+    this.swUpdateSubscription = this._subscribeToUpdates();
+  }
 
   public get lastUpdateCheckTimestamp(): Signal<string> {
-    const lastUpdateCheckTimestamp: WritableSignal<string> = signal(
-      new Date().toISOString(),
-    );
-    return lastUpdateCheckTimestamp.asReadonly();
+    return this._lastUpdateCheckTimestamp.asReadonly();
   }
 
   public checkForUpdate(): void {
     // Mock implementation, do nothing
+  }
+
+  private _subscribeToUpdates(): Subscription {
+    return Subscription.EMPTY;
   }
 }
