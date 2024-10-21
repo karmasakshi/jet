@@ -4,12 +4,6 @@ import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
 
 export class StorageServiceMock {
-  private readonly _prefix: string;
-
-  public constructor() {
-    this._prefix = '';
-  }
-
   public clearLocalStorage(): void {
     // Mock implementation, do nothing
   }
