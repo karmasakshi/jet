@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a feature not working as expected
+about: Report something not working as expected
 title: 'bug: '
 labels: bug
 assignees: ''
@@ -8,25 +8,25 @@ assignees: ''
 
 ## Description
 
-A clear and concise description of the problem.
+Provide a clear and concise description of the bug.
 
-## To Reproduce
+## Steps to Reproduce
 
 1. Go to '...'
 2. Click on '...'
 3. Scroll down to '...'
 
-## Expectation
+## Expected Behavior
 
-A clear and concise description of the expectation.
+Describe what you expected to happen.
 
 ## Environment
 
-- Operating System: [e.g., Windows, macOS, Ubuntu]
-- Operating System Version: [e.g., Windows, macOS, Ubuntu]
+- Operating System (OS): [e.g., Windows, macOS, Ubuntu]
+- OS Version: [e.g., 10.0.0, 11.0.0]
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
 
 ## Additional Context
 
-Add any other context or screenshots.
+Add any other context or screenshots here.

@@ -1,23 +1,23 @@
 ---
 name: Feature Request
-about: Suggest an improvement to the project
+about: Suggest a new feature
 title: 'feat: '
 labels: enhancement
 assignees: ''
 ---
 
-## Problem
+## Description
 
-A clear and concise description of the problem.
+Provide a clear and concise description of the feature.
 
-## Proposal
+## Proposed Solution
 
-A clear and concise description of the solution.
+Provide a clear and concise description of the proposed solution.
 
-## Alternatives
+## Alternative Solutions
 
-A clear and concise description of the alternative solutions you've considered.
+Provide a clear and concise description of any alternative solutions you've considered.
 
 ## Additional Context
 
-Add any other context or screenshots.
+Add any other context or screenshots here.

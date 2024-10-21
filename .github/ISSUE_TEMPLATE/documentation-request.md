@@ -8,12 +8,8 @@ assignees: ''
 
 ## Description
 
-A clear and concise description of the change.
-
-## Location
-
-Link where the change is needed.
+Provide a clear and concise description of the documentation request.
 
 ## Additional Context
 
-Add any other context or screenshots.
+Add any other context or screenshots here.

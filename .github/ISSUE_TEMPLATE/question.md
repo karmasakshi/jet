@@ -6,21 +6,23 @@ labels: question
 assignees: ''
 ---
 
-## Problem
+## Description
 
-A clear and concise description of the problem.
+Provide a clear and concise question.
 
-## Attempts
+## Steps to Reproduce
 
-A clear and concise description of the solutions attempted.
+1. Go to '...'
+2. Click on '...'
+3. Scroll down to '...'
 
 ## Environment
 
-- Operating System: [e.g., Windows, macOS, Ubuntu]
-- Operating System Version: [e.g., Windows, macOS, Ubuntu]
+- Operating System (OS): [e.g., Windows, macOS, Ubuntu]
+- OS Version: [e.g., 10.0.0, 11.0.0]
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
 
 ## Additional Context
 
-Add any other context or screenshots.
+Add any other context or screenshots here.
