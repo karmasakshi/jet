@@ -18,26 +18,34 @@ export class StorageService {
   }
 
   public clearLocalStorage(): void {
-    window.localStorage.clear();
+    try {
+      window.localStorage.clear();
+    } catch (error) {
+      this._loggerService.logError(error);
+    }
   }
 
   public clearSessionStorage(): void {
-    window.sessionStorage.clear();
+    try {
+      window.sessionStorage.clear();
+    } catch (error) {
+      this._loggerService.logError(error);
+    }
   }
 
   public getLocalStorageItem<T>(localStorageKey: LocalStorageKey): null | T {
     let value: null | T = null;
 
-    const serializedValue: string | null = window.localStorage.getItem(
-      this._prefix + localStorageKey,
-    );
+    try {
+      const serializedValue: string | null = window.localStorage.getItem(
+        this._prefix + localStorageKey,
+      );
 
-    if (serializedValue !== null) {
-      try {
+      if (serializedValue !== null) {
         value = JSON.parse(serializedValue) as T;
-      } catch (error: unknown) {
-        this._loggerService.logError(error);
       }
+    } catch (error) {
+      this._loggerService.logError(error);
     }
 
     return value;
@@ -48,27 +56,35 @@ export class StorageService {
   ): null | T {
     let value: null | T = null;
 
-    const serializedValue: string | null = window.sessionStorage.getItem(
-      this._prefix + sessionStorageKey,
-    );
+    try {
+      const serializedValue: string | null = window.sessionStorage.getItem(
+        this._prefix + sessionStorageKey,
+      );
 
-    if (serializedValue !== null) {
-      try {
+      if (serializedValue !== null) {
         value = JSON.parse(serializedValue) as T;
-      } catch (error: unknown) {
-        this._loggerService.logError(error);
       }
+    } catch (error) {
+      this._loggerService.logError(error);
     }
 
     return value;
   }
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    window.localStorage.removeItem(this._prefix + localStorageKey);
+    try {
+      window.localStorage.removeItem(this._prefix + localStorageKey);
+    } catch (error) {
+      this._loggerService.logError(error);
+    }
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    window.sessionStorage.removeItem(this._prefix + sessionStorageKey);
+    try {
+      window.sessionStorage.removeItem(this._prefix + sessionStorageKey);
+    } catch (error) {
+      this._loggerService.logError(error);
+    }
   }
 
   public setLocalStorageItem(

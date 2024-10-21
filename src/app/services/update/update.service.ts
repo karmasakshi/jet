@@ -126,6 +126,10 @@ export class UpdateService {
                 },
               );
               break;
+
+            default:
+              this._loggerService.logError(new Error());
+              break;
           }
         },
       );

@@ -33,7 +33,7 @@ export class AlertService {
         direction: this._settings().languageOption.directionality,
       });
 
-    if (action !== undefined) {
+    if (action) {
       matSnackBarRef
         .onAction()
         .pipe(take(1))

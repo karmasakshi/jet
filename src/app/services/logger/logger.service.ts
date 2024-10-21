@@ -15,13 +15,13 @@ export class LoggerService {
 
   public logComponentInitialization(componentName: string): void {
     if (this._isLoggingEnabled) {
-      console.debug(`${componentName} initialized.`);
+      console.debug(`Component ${componentName} initialized.`);
     }
   }
 
   public logDirectiveInitialization(directiveName: string): void {
     if (this._isLoggingEnabled) {
-      console.debug(`${directiveName} initialized.`);
+      console.debug(`Directive ${directiveName} initialized.`);
     }
   }
 
@@ -39,7 +39,7 @@ export class LoggerService {
 
   public logServiceInitialization(serviceName: string): void {
     if (this._isLoggingEnabled) {
-      console.info(`${serviceName} initialized.`);
+      console.info(`Service ${serviceName} initialized.`);
     }
   }
 

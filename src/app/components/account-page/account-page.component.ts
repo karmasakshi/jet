@@ -11,7 +11,7 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './account-page.component.html',
 })
 export class AccountPageComponent {
-  private readonly _loggerService: LoggerService = inject(LoggerService);
+  private readonly _loggerService = inject(LoggerService);
 
   public constructor() {
     this._loggerService.logComponentInitialization('AccountPageComponent');

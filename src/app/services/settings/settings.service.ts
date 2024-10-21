@@ -23,11 +23,13 @@ export class SettingsService {
   private readonly _settings: WritableSignal<Settings>;
 
   public constructor() {
+    const storedSettings = this._storageService.getLocalStorageItem<Settings>(
+      LocalStorageKey.Settings,
+    );
+
     this._settings = signal({
       ...DEFAULT_SETTINGS,
-      ...this._storageService.getLocalStorageItem<Settings>(
-        LocalStorageKey.Settings,
-      ),
+      ...storedSettings,
     });
 
     effect(() => {
