@@ -95,7 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private _routerSubscription: Subscription;
   private _swUpdateSubscription: Subscription;
 
-  public activeNavigationMenuItemUrl: NavigationMenuItem['url'] | undefined;
+  public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly isSmallViewport: boolean;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
@@ -116,7 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._swUpdateSubscription = Subscription.EMPTY;
 
-    this.activeNavigationMenuItemUrl = undefined;
+    this.activeNavigationMenuItemPath = undefined;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
       Breakpoints.Handset,
@@ -135,17 +135,17 @@ export class AppComponent implements OnInit, OnDestroy {
       {
         icon: 'home',
         nameKey: 'home',
-        url: '/',
+        path: '/',
       },
       {
         icon: 'account_circle',
         nameKey: 'account',
-        url: '/account',
+        path: '/account',
       },
       {
         icon: 'settings',
         nameKey: 'settings',
-        url: '/settings',
+        path: '/settings',
       },
     ];
 
@@ -183,7 +183,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ),
       )
       .subscribe((navigationEnd: NavigationEnd): void => {
-        this.activeNavigationMenuItemUrl = navigationEnd.url.split('?')[0];
+        this.activeNavigationMenuItemPath = navigationEnd.url.split('?')[0];
       });
 
     this._swUpdateSubscription = this._updateService.swUpdateSubscription;

@@ -35,13 +35,13 @@
         <mat-nav-list [attr.aria-label]="t('navigation-menu')">
           @for (
             navigationMenuItem of navigationMenuItems;
-            track navigationMenuItem.url
+            track navigationMenuItem.path
           ) {
             <a
               [activated]="
-                activeNavigationMenuItemUrl === navigationMenuItem.url
+                activeNavigationMenuItemPath === navigationMenuItem.path
               "
-              [routerLink]="[navigationMenuItem.url]"
+              [routerLink]="[navigationMenuItem.path]"
               (click)="isSmallViewport && drawer.close()"
               mat-list-item
               matListItemTitle
@@ -141,11 +141,13 @@
         >
           @for (
             navigationMenuItem of navigationMenuItems;
-            track navigationMenuItem.url
+            track navigationMenuItem.path
           ) {
             <a
-              [active]="activeNavigationMenuItemUrl === navigationMenuItem.url"
-              [routerLink]="[navigationMenuItem.url]"
+              [active]="
+                activeNavigationMenuItemPath === navigationMenuItem.path
+              "
+              [routerLink]="[navigationMenuItem.path]"
               mat-tab-link
             >
               <mat-icon>{{ navigationMenuItem.icon }}</mat-icon>
