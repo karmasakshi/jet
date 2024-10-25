@@ -27,7 +27,11 @@ export class AlertService {
     this._loggerService.logServiceInitialization('AlertService');
   }
 
-  public showAlert(message: string, cta?: string, action?: () => void): void {
+  public showAlert(
+    message: string,
+    cta: string = this._translocoService.translate('alerts.ok'),
+    action?: () => void,
+  ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
       this._matSnackBar.open(message, cta, {
         direction: this._settings().languageOption.directionality,
@@ -48,9 +52,6 @@ export class AlertService {
       'alerts.something-went-wrong',
     ),
   ): void {
-    this._matSnackBar.open(
-      message,
-      this._translocoService.translate('alerts.ok'),
-    );
+    this.showAlert(message);
   }
 }

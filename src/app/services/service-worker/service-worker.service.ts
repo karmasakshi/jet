@@ -62,7 +62,6 @@ export class ServiceWorkerService {
     if (!this._isReloadPending) {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.checking-for-updates'),
-        this._translocoService.translate('alerts.ok'),
       );
 
       this._swUpdate
@@ -71,7 +70,6 @@ export class ServiceWorkerService {
           if (!isUpdateFoundAndReady) {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.no-update-found'),
-              this._translocoService.translate('alerts.ok'),
             );
           }
         })
@@ -105,14 +103,12 @@ export class ServiceWorkerService {
               this._lastUpdateCheckTimestamp.set(new Date().toISOString());
               this._alertService.showAlert(
                 this._translocoService.translate('alerts.downloading-updates'),
-                this._translocoService.translate('alerts.ok'),
               );
               break;
 
             case 'VERSION_INSTALLATION_FAILED':
               this._alertService.showAlert(
                 this._translocoService.translate('alerts.updating-failed'),
-                this._translocoService.translate('alerts.ok'),
               );
               break;
 
