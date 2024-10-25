@@ -107,9 +107,8 @@ export class ServiceWorkerService {
               break;
 
             case 'VERSION_INSTALLATION_FAILED':
-              this._alertService.showAlert(
-                this._translocoService.translate('alerts.updating-failed'),
-              );
+              this._loggerService.logError(versionEvent.error);
+              this._alertService.showErrorAlert(versionEvent.error);
               break;
 
             case 'VERSION_READY':
