@@ -7,10 +7,10 @@ import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { StorageService } from '../storage/storage.service';
 import { StorageServiceMock } from '../storage/storage.service.mock';
-import { UpdateService } from './update.service';
+import { ServiceWorkerService } from './service-worker.service';
 
-describe('UpdateService', () => {
-  let service: UpdateService;
+describe('ServiceWorkerService', () => {
+  let service: ServiceWorkerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,7 +26,7 @@ describe('UpdateService', () => {
         { provide: StorageService, useClass: StorageServiceMock },
       ],
     });
-    service = TestBed.inject(UpdateService);
+    service = TestBed.inject(ServiceWorkerService);
   });
 
   it('should be created', () => {

@@ -9,12 +9,12 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.service.mock';
+import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
+import { ServiceWorkerServiceMock } from '@jet/services/service-worker/service-worker.service.mock';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { ToolbarTitleServiceMock } from '@jet/services/toolbar-title/toolbar-title.service.mock';
-import { UpdateService } from '@jet/services/update/update.service';
-import { UpdateServiceMock } from '@jet/services/update/update.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AppComponent } from './app.component';
 
@@ -35,9 +35,9 @@ describe('AppComponent', () => {
         { provide: AuthenticationService, useClass: AuthenticationServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
+        { provide: ServiceWorkerService, useClass: ServiceWorkerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
         { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },
-        { provide: UpdateService, useClass: UpdateServiceMock },
       ],
     }).compileComponents();
 

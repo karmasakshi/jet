@@ -39,9 +39,9 @@ import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
+import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
-import { UpdateService } from '@jet/services/update/update.service';
 import { AvailableFont } from '@jet/types/available-font.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { AvailableTheme } from '@jet/types/available-theme.type';
@@ -83,9 +83,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
+  private readonly _serviceWorkerService = inject(ServiceWorkerService);
   private readonly _settingsService = inject(SettingsService);
   private readonly _toolbarTitleService = inject(ToolbarTitleService);
-  private readonly _updateService = inject(UpdateService);
   private readonly _translocoService = inject(TranslocoService);
 
   private _activeFont: AvailableFont;
@@ -93,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private _activeTheme: AvailableTheme;
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
-  private _swUpdateSubscription: Subscription;
+  private _serviceWorkerUpdateSubscription: Subscription;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly isSmallViewport: boolean;
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._routerSubscription = Subscription.EMPTY;
 
-    this._swUpdateSubscription = Subscription.EMPTY;
+    this._serviceWorkerUpdateSubscription = Subscription.EMPTY;
 
     this.activeNavigationMenuItemPath = undefined;
 
@@ -186,14 +186,15 @@ export class AppComponent implements OnInit, OnDestroy {
         this.activeNavigationMenuItemPath = navigationEnd.url.split('?')[0];
       });
 
-    this._swUpdateSubscription = this._updateService.swUpdateSubscription;
+    this._serviceWorkerUpdateSubscription =
+      this._serviceWorkerService.serviceWorkerUpdateSubscription;
 
     this._disableZoom(this._isPwaMode);
   }
 
   public ngOnDestroy(): void {
     this._routerSubscription.unsubscribe();
-    this._swUpdateSubscription.unsubscribe();
+    this._serviceWorkerUpdateSubscription.unsubscribe();
   }
 
   private _disableZoom(isPwaMode: boolean): void {

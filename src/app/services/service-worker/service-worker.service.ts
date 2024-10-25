@@ -18,7 +18,7 @@ import { StorageService } from '../storage/storage.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UpdateService {
+export class ServiceWorkerService {
   private readonly _swUpdate = inject(SwUpdate);
   private readonly _translocoService = inject(TranslocoService);
   private readonly _alertService = inject(AlertService);
@@ -28,7 +28,7 @@ export class UpdateService {
   private _isReloadPending: boolean;
   private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
-  public readonly swUpdateSubscription: Subscription;
+  public readonly serviceWorkerUpdateSubscription: Subscription;
 
   public constructor() {
     this._isReloadPending = false;
@@ -39,7 +39,7 @@ export class UpdateService {
       ) ?? new Date().toISOString(),
     );
 
-    this.swUpdateSubscription = this._subscribeToUpdates();
+    this.serviceWorkerUpdateSubscription = this._subscribeToUpdates();
 
     effect(() => {
       const lastUpdateCheckTimestamp: string = this._lastUpdateCheckTimestamp();
@@ -51,7 +51,7 @@ export class UpdateService {
       );
     });
 
-    this._loggerService.logServiceInitialization('UpdateService');
+    this._loggerService.logServiceInitialization('ServiceWorkerService');
   }
 
   public get lastUpdateCheckTimestamp(): Signal<string> {

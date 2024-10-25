@@ -11,9 +11,9 @@ import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
-import { UpdateService } from '@jet/services/update/update.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { PageComponent } from '../page/page.component';
@@ -38,7 +38,7 @@ export class SettingsPageComponent {
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
   private readonly _storageService = inject(StorageService);
-  private readonly _updateService = inject(UpdateService);
+  private readonly _serviceWorkerService = inject(ServiceWorkerService);
 
   public readonly languageOptions: LanguageOption[];
   public readonly lastUpdateCheckTimestamp: Signal<string>;
@@ -57,7 +57,7 @@ export class SettingsPageComponent {
     this.languageOptions = LANGUAGE_OPTIONS;
 
     this.lastUpdateCheckTimestamp =
-      this._updateService.lastUpdateCheckTimestamp;
+      this._serviceWorkerService.lastUpdateCheckTimestamp;
 
     this.settings = this._settingsService.settings;
 
@@ -77,7 +77,7 @@ export class SettingsPageComponent {
   }
 
   public checkForUpdate(): void {
-    this._updateService.checkForUpdate();
+    this._serviceWorkerService.checkForUpdate();
   }
 
   public reload(): void {

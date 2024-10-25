@@ -1,15 +1,15 @@
 import { Signal, WritableSignal, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-export class UpdateServiceMock {
+export class ServiceWorkerServiceMock {
   private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
-  public readonly swUpdateSubscription: Subscription;
+  public readonly serviceWorkerUpdateSubscription: Subscription;
 
   public constructor() {
     this._lastUpdateCheckTimestamp = signal(new Date().toISOString());
 
-    this.swUpdateSubscription = this._subscribeToUpdates();
+    this.serviceWorkerUpdateSubscription = this._subscribeToUpdates();
   }
 
   public get lastUpdateCheckTimestamp(): Signal<string> {
