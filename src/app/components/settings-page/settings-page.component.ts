@@ -36,9 +36,9 @@ import { PageComponent } from '../page/page.component';
 })
 export class SettingsPageComponent {
   private readonly _loggerService = inject(LoggerService);
+  private readonly _serviceWorkerService = inject(ServiceWorkerService);
   private readonly _settingsService = inject(SettingsService);
   private readonly _storageService = inject(StorageService);
-  private readonly _serviceWorkerService = inject(ServiceWorkerService);
 
   public readonly languageOptions: LanguageOption[];
   public readonly lastUpdateCheckTimestamp: Signal<string>;
