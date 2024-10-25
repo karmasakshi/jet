@@ -19,7 +19,9 @@ export class StorageService {
 
   public clearLocalStorage(): void {
     try {
-      window.localStorage.clear();
+      Object.values(LocalStorageKey).forEach((key) => {
+        window.localStorage.removeItem(this._prefix + key);
+      });
     } catch (error) {
       this._loggerService.logError(error);
     }
@@ -27,7 +29,9 @@ export class StorageService {
 
   public clearSessionStorage(): void {
     try {
-      window.sessionStorage.clear();
+      Object.values(SessionStorageKey).forEach((key) => {
+        window.sessionStorage.removeItem(this._prefix + key);
+      });
     } catch (error) {
       this._loggerService.logError(error);
     }
