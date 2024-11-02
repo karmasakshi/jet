@@ -3,23 +3,23 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://jet.jet</loc>
+    <loc>https://jet-tau.vercel.app</loc>
     <lastmod>2024-10-01T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://jet.jet/account</loc>
+    <loc>https://jet-tau.vercel.app/account</loc>
     <lastmod>2024-10-01T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://jet.jet/login</loc>
+    <loc>https://jet-tau.vercel.app/login</loc>
     <lastmod>2024-10-01T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://jet.jet/logout</loc>
+    <loc>https://jet-tau.vercel.app/logout</loc>
     <lastmod>2024-10-01T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://jet.jet/settings</loc>
+    <loc>https://jet-tau.vercel.app/settings</loc>
     <lastmod>2024-10-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>

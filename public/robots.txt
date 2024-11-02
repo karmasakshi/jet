@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: /sitemap.xml
+Sitemap: https://jet-tau.vercel.app/sitemap.xml

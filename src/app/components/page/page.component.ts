@@ -31,7 +31,7 @@ export class PageComponent implements OnChanges {
   public readonly toolbarTitle: InputSignal<string> = input.required();
 
   public constructor() {
-    this._defaultSeoImageUrl = 'https://jet.jet/og-image.jpg';
+    this._defaultSeoImageUrl = 'https://jet-tau.vercel.app/og-image.jpg';
 
     this._loggerService.logComponentInitialization('PageComponent');
   }
