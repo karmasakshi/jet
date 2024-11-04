@@ -54,8 +54,9 @@
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-not-found-page": {
+    "page-not-found": "لم يتم العثور على الصفحة.",
     "seo": {
-      "description": "الصفحة غير موجودة.",
+      "description": "لم يتم العثور على الصفحة.",
       "keywords": "jet",
       "title": "الصفحة غير موجودة"
     },

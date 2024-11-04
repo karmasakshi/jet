@@ -54,8 +54,9 @@
     "toolbar-title": "Logout"
   },
   "jet-not-found-page": {
+    "page-not-found": "Page not found.",
     "seo": {
-      "description": "Not found.",
+      "description": "Page not found.",
       "keywords": "jet",
       "title": "Not Found"
     },

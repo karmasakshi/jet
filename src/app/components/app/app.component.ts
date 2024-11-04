@@ -53,8 +53,8 @@ import { filter } from 'rxjs/operators';
 @Component({
   imports: [
     NgClass,
-    NgStyle,
     NgOptimizedImage,
+    NgStyle,
     MatButtonModule,
     MatIconModule,
     MatListModule,
