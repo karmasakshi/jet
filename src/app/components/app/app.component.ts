@@ -50,6 +50,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   imports: [
@@ -68,6 +69,7 @@ import { filter } from 'rxjs/operators';
     RouterOutlet,
     AnalyticsDirective,
     TranslocoModule,
+    FooterComponent,
   ],
   selector: 'jet-app',
   standalone: true,
