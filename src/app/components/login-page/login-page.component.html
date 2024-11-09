@@ -6,7 +6,7 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <button
-      [disabled]="isLoginPending"
+      [disabled]="isLoginPending || isGetUserPending"
       (click)="login()"
       color="primary"
       mat-flat-button

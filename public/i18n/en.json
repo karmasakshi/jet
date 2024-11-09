@@ -6,7 +6,8 @@
     "ok": "OK",
     "reload": "RELOAD",
     "reload-to-update": "Reload to update.",
-    "something-went-wrong": "Something went wrong."
+    "something-went-wrong": "Something went wrong.",
+    "welcome": "Welcome!"
   },
   "jet-account-page": {
     "seo": {

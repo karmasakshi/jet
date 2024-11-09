@@ -12,14 +12,20 @@ export class AuthenticationServiceMock {
     return this._user.asReadonly();
   }
 
-  public async login(): Promise<void> {
-    await new Promise<void>((resolve) => {
+  public getUser(): Promise<User | null> {
+    return new Promise((resolve) => {
+      resolve(null);
+    });
+  }
+
+  public login(): Promise<void> {
+    return new Promise((resolve) => {
       resolve();
     });
   }
 
-  public async logout(): Promise<void> {
-    await new Promise<void>((resolve) => {
+  public logout(): Promise<void> {
+    return new Promise((resolve) => {
       resolve();
     });
   }
