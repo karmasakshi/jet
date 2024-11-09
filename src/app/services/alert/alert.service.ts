@@ -4,7 +4,7 @@ import {
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
-import { Settings } from '@jet/interfaces/settings.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { TranslocoService } from '@jsverse/transloco';
 import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
@@ -19,10 +19,10 @@ export class AlertService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
 
-  private readonly _settings: Signal<Settings>;
+  private readonly _languageOption: Signal<LanguageOption>;
 
   public constructor() {
-    this._settings = this._settingsService.settings;
+    this._languageOption = this._settingsService.languageOption;
 
     this._loggerService.logServiceInitialization('AlertService');
   }
@@ -34,7 +34,7 @@ export class AlertService {
   ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
       this._matSnackBar.open(message, cta, {
-        direction: this._settings().languageOption.directionality,
+        direction: this._languageOption().directionality,
       });
 
     if (action) {

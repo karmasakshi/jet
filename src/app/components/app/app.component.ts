@@ -34,7 +34,7 @@ import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directiv
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
-import { Settings } from '@jet/interfaces/settings.interface';
+import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { User } from '@jet/interfaces/user.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
@@ -97,12 +97,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
+  private readonly _themeOption: Signal<ThemeOption>;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly isSmallViewport: boolean;
+  public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly settings: Signal<Settings>;
   public readonly toolbarTitle: Signal<string>;
   public readonly user: Signal<User | null>;
 
@@ -119,6 +120,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._serviceWorkerUpdateSubscription = Subscription.EMPTY;
 
+    this._themeOption = this._settingsService.themeOption;
+
     this.activeNavigationMenuItemPath = undefined;
 
     this.isSmallViewport = this._breakpointObserver.isMatched([
@@ -126,25 +129,29 @@ export class AppComponent implements OnInit, OnDestroy {
       Breakpoints.Tablet,
     ]);
 
+    this.languageOption = this._settingsService.languageOption;
+
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
 
     this.progressBarConfiguration =
       this._progressBarService.progressBarConfiguration;
-
-    this.settings = this._settingsService.settings;
 
     this.toolbarTitle = this._toolbarTitleService.toolbarTitle;
 
     this.user = this._authenticationService.user;
 
     effect(() => {
-      const settings: Settings = this.settings();
+      const languageOption: LanguageOption = this.languageOption();
       untracked(() => {
-        requestAnimationFrame(() => {
-          this._setFontClass(settings.languageOption.font);
-          this._setLanguage(settings.languageOption);
-          this._setThemeClass(settings.themeOption.value);
-        });
+        this._setFontClass(languageOption.font);
+        this._setLanguage(languageOption);
+      });
+    });
+
+    effect(() => {
+      const themeOption: ThemeOption = this._themeOption();
+      untracked(() => {
+        this._setThemeClass(themeOption.value);
       });
     });
 
@@ -186,50 +193,50 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _setFontClass(activeFont: AvailableFont): void {
-    if (activeFont !== this._activeFont) {
-      this._activeFont = activeFont;
+  private _setFontClass(nextFont: AvailableFont): void {
+    if (nextFont !== this._activeFont) {
+      this._activeFont = nextFont;
       const prefix = 'jet-font-';
       this._document.body.className = this._document.body.classList.value
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
-      if (activeFont !== DEFAULT_FONT) {
-        this._renderer2.addClass(this._document.body, prefix + activeFont);
+      if (nextFont !== DEFAULT_FONT) {
+        this._renderer2.addClass(this._document.body, prefix + nextFont);
       }
     }
   }
 
-  private _setLanguage(activeLanguageOption: LanguageOption): void {
-    if (activeLanguageOption.value !== this._activeLanguage) {
-      this._activeLanguage = activeLanguageOption.value;
+  private _setLanguage(nextLanguageOption: LanguageOption): void {
+    if (nextLanguageOption.value !== this._activeLanguage) {
+      this._activeLanguage = nextLanguageOption.value;
       this._renderer2.setAttribute(
         this._document.body,
         'dir',
-        activeLanguageOption.directionality,
+        nextLanguageOption.directionality,
       );
       this._renderer2.setAttribute(
         this._document.documentElement,
         'lang',
-        activeLanguageOption.value,
+        nextLanguageOption.value,
       );
-      this._translocoService.setActiveLang(activeLanguageOption.value);
+      this._translocoService.setActiveLang(nextLanguageOption.value);
     }
   }
 
-  private _setThemeClass(activeTheme: AvailableTheme): void {
-    if (activeTheme === 'automatic') {
-      activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+  private _setThemeClass(nextTheme: AvailableTheme): void {
+    if (nextTheme === 'automatic') {
+      nextTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
     }
-    if (activeTheme !== this._activeTheme) {
-      this._activeTheme = activeTheme;
+    if (nextTheme !== this._activeTheme) {
+      this._activeTheme = nextTheme;
       const prefix = 'jet-theme-';
       this._document.body.className = this._document.body.classList.value
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
-      if (activeTheme !== DEFAULT_THEME) {
-        this._renderer2.addClass(this._document.body, prefix + activeTheme);
+      if (nextTheme !== DEFAULT_THEME) {
+        this._renderer2.addClass(this._document.body, prefix + nextTheme);
       }
     }
   }

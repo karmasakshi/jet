@@ -2,6 +2,7 @@ import {
   Injectable,
   Signal,
   WritableSignal,
+  computed,
   effect,
   inject,
   signal,
@@ -9,7 +10,9 @@ import {
 } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
+import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
@@ -22,6 +25,9 @@ export class SettingsService {
 
   private readonly _settings: WritableSignal<Settings>;
 
+  public readonly languageOption: Signal<LanguageOption>;
+  public readonly themeOption: Signal<ThemeOption>;
+
   public constructor() {
     const storedSettings = this._storageService.getLocalStorageItem<Settings>(
       LocalStorageKey.Settings,
@@ -31,6 +37,10 @@ export class SettingsService {
       ...DEFAULT_SETTINGS,
       ...storedSettings,
     });
+
+    this.languageOption = computed(() => this._settings().languageOption);
+
+    this.themeOption = computed(() => this._settings().themeOption);
 
     effect(() => {
       const settings: Settings = this._settings();

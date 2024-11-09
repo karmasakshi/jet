@@ -1,15 +1,15 @@
 <ng-container *transloco="let t; prefix: 'jet-app'">
   <mat-sidenav-container
     class="mat-typography"
-    [dir]="settings().languageOption.directionality"
+    [dir]="languageOption().directionality"
   >
     <mat-sidenav
-      #drawer
+      #sidenav
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
       fixedInViewport
     >
-      <mat-toolbar style="background-color: inherit; justify-content: center">
+      <mat-toolbar class="jet-sidenav-toolbar">
         <a
           [matTooltip]="t('home')"
           jetAnalytics
@@ -26,7 +26,7 @@
           />
         </a>
       </mat-toolbar>
-      <div class="jet-drawer-content">
+      <div class="jet-sidenav-content">
         <mat-nav-list>
           @for (
             navigationMenuItem of navigationMenuItems;
@@ -37,7 +37,7 @@
                 activeNavigationMenuItemPath === navigationMenuItem.path
               "
               [routerLink]="[navigationMenuItem.path]"
-              (click)="isSmallViewport && drawer.close()"
+              (click)="isSmallViewport && sidenav.close()"
               mat-list-item
               matListItemTitle
             >
@@ -50,8 +50,8 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar
-        [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
-        style="background-color: inherit; position: relative"
+        class="jet-sidenav-content-toolbar"
+        [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }"
       >
         <mat-progress-bar
           [bufferValue]="progressBarConfiguration().bufferValue"
@@ -68,9 +68,9 @@
         @if (!isSmallViewport) {
           <button
             [matTooltip]="t('toggle-navigation-menu')"
-            (click)="drawer.toggle()"
+            (click)="sidenav.toggle()"
             jetAnalytics
-            jetAnalyticsEventName="Toggle Drawer"
+            jetAnalyticsEventName="Toggle Sidenav"
             mat-icon-button
             type="button"
           >
@@ -117,7 +117,7 @@
         #tabNavPanel
         style="flex: 1"
       >
-        <main [ngClass]="{ 'jet-drawer-closed': !drawer.opened }">
+        <main [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }">
           <router-outlet />
         </main>
       </mat-tab-nav-panel>

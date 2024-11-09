@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-development": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test-coverage": "ng test --code-coverage --no-watch",
@@ -70,6 +71,6 @@
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.13.0"
+    "typescript-eslint": "^8.14.0"
   }
 }
