@@ -29,6 +29,7 @@ import {
 import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
+import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
@@ -123,31 +124,7 @@ export class AppComponent implements OnInit, OnDestroy {
       Breakpoints.Tablet,
     ]);
 
-    /**
-     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
-     *
-     * t(jet-app.home)
-     * t(jet-app.account)
-     * t(jet-app.settings)
-     */
-
-    this.navigationMenuItems = [
-      {
-        icon: 'home',
-        nameKey: 'home',
-        path: '/',
-      },
-      {
-        icon: 'account_circle',
-        nameKey: 'account',
-        path: '/account',
-      },
-      {
-        icon: 'settings',
-        nameKey: 'settings',
-        path: '/settings',
-      },
-    ];
+    this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
 
     this.progressBarConfiguration =
       this._progressBarService.progressBarConfiguration;
