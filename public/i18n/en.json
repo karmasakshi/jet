@@ -23,9 +23,6 @@
     "login": "Login",
     "logo": "Logo",
     "logout": "Logout",
-    "main-toolbar": "Main Toolbar",
-    "navigation-menu": "Navigation Menu",
-    "progress-bar": "Progress Bar",
     "settings": "Settings",
     "toggle-navigation-menu": "Toggle Navigation Menu"
   },

@@ -5,17 +5,12 @@
   >
     <mat-sidenav
       #drawer
-      [attr.role]="isSmallViewport ? 'dialog' : 'navigation'"
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
       fixedInViewport
     >
-      <mat-toolbar
-        role="banner"
-        style="background-color: inherit; justify-content: center"
-      >
+      <mat-toolbar style="background-color: inherit; justify-content: center">
         <a
-          [attr.aria-label]="t('home')"
           [matTooltip]="t('home')"
           jetAnalytics
           jetAnalyticsEventName="Open Home"
@@ -32,7 +27,7 @@
         </a>
       </mat-toolbar>
       <div class="jet-drawer-content">
-        <mat-nav-list [attr.aria-label]="t('navigation-menu')">
+        <mat-nav-list>
           @for (
             navigationMenuItem of navigationMenuItems;
             track navigationMenuItem.path
@@ -53,15 +48,12 @@
         </mat-nav-list>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content role="region">
+    <mat-sidenav-content>
       <mat-toolbar
-        [attr.aria-label]="t('main-toolbar')"
         [ngClass]="{ 'jet-drawer-closed': !drawer.opened }"
-        role="toolbar"
         style="background-color: inherit; position: relative"
       >
         <mat-progress-bar
-          [attr.aria-label]="t('progress-bar')"
           [bufferValue]="progressBarConfiguration().bufferValue"
           [mode]="progressBarConfiguration().mode"
           [ngStyle]="{
@@ -75,7 +67,6 @@
         </mat-progress-bar>
         @if (!isSmallViewport) {
           <button
-            [attr.aria-label]="t('toggle-navigation-menu')"
             [matTooltip]="t('toggle-navigation-menu')"
             (click)="drawer.toggle()"
             jetAnalytics
@@ -87,7 +78,6 @@
           </button>
         } @else {
           <a
-            [attr.aria-label]="t('home')"
             [matTooltip]="t('home')"
             jetAnalytics
             jetAnalyticsEventName="Open Home"
@@ -134,7 +124,6 @@
       <jet-footer></jet-footer>
       @if (isSmallViewport) {
         <nav
-          [attr.aria-label]="t('navigation-menu')"
           [tabPanel]="tabNavPanel"
           backgroundColor="primary"
           mat-tab-nav-bar
