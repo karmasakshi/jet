@@ -5,26 +5,39 @@
     <title>Jet</title>
     <base href="/" />
     <meta
-      content="Jet."
-      name="description"
-    />
-    <meta
-      content="jet"
-      name="keywords"
-    />
-    <meta
       content="width=device-width, initial-scale=1, viewport-fit=cover"
       name="viewport"
     />
+    <link
+      href="https://jet-tau.vercel.app"
+      rel="canonical"
+    />
 
+    <!-- Icons -->
     <link
       href="favicon.ico"
       rel="icon"
       type="image/x-icon"
     />
     <link
+      href="apple-touch-icon.png"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Manifest -->
+    <link
       href="manifest.webmanifest"
       rel="manifest"
+    />
+
+    <!-- SEO -->
+    <meta
+      content="Jet."
+      name="description"
+    />
+    <meta
+      content="jet"
+      name="keywords"
     />
 
     <!-- Theme Color -->
@@ -60,21 +73,13 @@
       rel="stylesheet"
     />
 
-    <!-- Apple Meta -->
+    <!-- Apple Meta (https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html) -->
     <meta
       content="black-translucent"
       name="apple-mobile-web-app-status-bar-style"
     />
-    <link
-      href="apple-touch-icon.png"
-      rel="apple-touch-icon"
-    />
 
-    <!-- Open Graph Meta -->
-    <meta
-      content="Jet"
-      property="og:title"
-    />
+    <!-- Open Graph Meta (https://ogp.me, https://developers.facebook.com/tools/debug/) -->
     <meta
       content="Jet."
       property="og:description"
@@ -83,30 +88,32 @@
       content="https://jet-tau.vercel.app/og-image.jpg"
       property="og:image"
     />
+    <meta
+      content="Jet"
+      property="og:title"
+    />
+    <meta
+      content="website"
+      property="og:type"
+    />
+    <meta
+      content="https://jet-tau.vercel.app"
+      property="og:url"
+    />
 
-    <!-- Twitter Meta -->
+    <!-- X Meta (https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started) -->
     <meta
       content="summary_large_image"
       name="twitter:card"
     />
-    <meta
-      content="Jet"
-      name="twitter:title"
-    />
-    <meta
-      content="Jet."
-      name="twitter:description"
-    />
-    <meta
-      content="https://jet-tau.vercel.app/og-image.jpg"
-      name="twitter:image"
-    />
 
-    <!-- Content Security Policy -->
+    <!-- Content Security Policy (https://csp-evaluator.withgoogle.com) -->
     <meta
       content="default-src 'none'; connect-src 'self'; font-src https://fonts.gstatic.com; img-src 'self'; manifest-src 'self'; script-src 'unsafe-inline'; script-src-elem 'self'; style-src 'self' 'unsafe-inline'; style-src-elem 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self';"
       http-equiv="Content-Security-Policy"
     />
+
+    <!-- Rich Results (https://search.google.com/test/rich-results) -->
   </head>
   <body
     class="mat-app-background"

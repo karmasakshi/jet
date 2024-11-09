@@ -43,7 +43,6 @@ export class PageComponent implements OnChanges {
     // Title
     this._title.setTitle(this.seoTitle());
     this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });
-    this._meta.updateTag({ content: this.seoTitle(), name: 'twitter:title' });
 
     // Keywords
     this._meta.updateTag({
@@ -60,19 +59,11 @@ export class PageComponent implements OnChanges {
       content: this.seoDescription(),
       name: 'og:description',
     });
-    this._meta.updateTag({
-      content: this.seoDescription(),
-      name: 'twitter:description',
-    });
 
     // SEO Image URL
     this._meta.updateTag({
       content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
       name: 'og:image',
-    });
-    this._meta.updateTag({
-      content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
-      name: 'twitter:image',
     });
   }
 }
