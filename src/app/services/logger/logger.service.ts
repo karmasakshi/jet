@@ -13,6 +13,12 @@ export class LoggerService {
     }
   }
 
+  public logClassInitialization(className: string): void {
+    if (this._isLoggingEnabled) {
+      console.info(`Class ${className} initialized.`);
+    }
+  }
+
   public logComponentInitialization(componentName: string): void {
     if (this._isLoggingEnabled) {
       console.debug(`Component ${componentName} initialized.`);

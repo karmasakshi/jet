@@ -28,6 +28,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
+      "@jet/classes/*": ["src/app/classes/*"],
       "@jet/components/*": ["src/app/components/*"],
       "@jet/constants/*": ["src/app/constants/*"],
       "@jet/directives/*": ["src/app/directives/*"],
