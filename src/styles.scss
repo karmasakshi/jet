@@ -8,33 +8,33 @@
 $default-font: ('Noto Sans', sans-serif);
 $noto-sans-arabic-font: ('Noto Sans Arabic', 'Noto Sans', sans-serif);
 
-// Default Typography (Material 2)
+// Material 2 Default Typography
 
 $default-typography: mat.define-typography-config(
   $font-family: $default-font,
 );
 
-// Default Typography (Material 3)
+// Material 3 Default Typography
 
 // $default-typography: (
 //   plain-family: $default-font,
 //   brand-family: $default-font,
 // );
 
-// Additional Typography (Material 2)
+// Material 2 Additional Typography
 
 $noto-sans-arabic-typography: mat.define-typography-config(
   $font-family: $noto-sans-arabic-font,
 );
 
-// Additional Typography (Material 3)
+// Material 3 Additional Typography
 
 // $noto-sans-arabic-typography: (
 //   plain-family: $noto-sans-arabic-font,
 //   brand-family: $noto-sans-arabic-font,
 // );
 
-// Palettes (Material 2) (Generated using http://mcg.mbitson.com)
+// Material 2 Palettes (http://mcg.mbitson.com)
 
 $amber-palette: mat.define-palette(
   (
@@ -110,7 +110,7 @@ $brown-palette: mat.define-palette(
 
 $red-palette: mat.define-palette(mat.$red-palette);
 
-// Palettes (Material 3) (Generated using ng generate @angular/material:m3-theme)
+// Material 3 Palettes (ng generate @angular/material:m3-theme)
 
 // $_palettes: (
 //   primary: (
@@ -242,7 +242,7 @@ $red-palette: mat.define-palette(mat.$red-palette);
 // $_primary: map.merge(map.get($_palettes, primary), $_rest);
 // $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
-// Default Theme (Material 2)
+// Material 2 Default Theme
 
 $default-theme: mat.define-light-theme(
   (
@@ -256,7 +256,7 @@ $default-theme: mat.define-light-theme(
   )
 );
 
-// Default Theme (Material 3)
+// Material 3 Default Theme
 
 // $default-theme: mat.define-theme(
 //   (
@@ -272,7 +272,7 @@ $default-theme: mat.define-light-theme(
 //   )
 // );
 
-// Additional Theme (Material 2)
+// Material 2 Additional Theme
 
 $dark-theme: mat.define-dark-theme(
   (
@@ -284,7 +284,7 @@ $dark-theme: mat.define-dark-theme(
   )
 );
 
-// Additional Theme (Material 3)
+// Material 3 Additional Theme
 
 // $dark-theme: mat.define-theme(
 //   (
@@ -316,16 +316,28 @@ body {
   @include mat.toolbar-theme($default-theme);
   @include mat.tooltip-theme($default-theme);
 
-  // Default Typography Hierarchy (Material 2)
+  // Material 2 Default Typography Hierarchy
 
   @include mat.typography-hierarchy($default-typography);
 
-  // Default Typography Hierarchy (Material 3)
+  // Material 2 Overrides
+
+  --mdc-filled-button-label-text-tracking: normal;
+  --mdc-outlined-button-label-text-tracking: normal;
+  --mdc-protected-button-label-text-tracking: normal;
+  --mdc-text-button-label-text-tracking: normal;
+
+  --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+
+  --mat-list-active-indicator-shape: 4px;
+  --mdc-list-list-item-container-shape: 4px;
+
+  // Material 3 Default Typography Hierarchy
 
   // @include mat.typography-hierarchy($default-theme);
 
   &.jet-font-noto-sans-arabic {
-    // Additional Typography and Hierarchy (Material 2)
+    // Material 2 Additional Typography and Hierarchy
 
     @include mat.core-typography($noto-sans-arabic-typography);
 
@@ -344,7 +356,7 @@ body {
 
     @include mat.typography-hierarchy($noto-sans-arabic-typography);
 
-    // Additional Typography and Hierarchy (Material 3)
+    // Material 3 Additional Typography and Hierarchy
 
     // $override-theme: mat.define-theme(
     //   (
@@ -391,32 +403,30 @@ body {
 
   .mat-drawer-container {
     &[dir='ltr'] {
-      .mat-drawer {
-        --mat-sidenav-container-width: calc(240px + env(safe-area-inset-left));
+      --mat-sidenav-container-width: calc(240px + env(safe-area-inset-left));
 
-        .mat-toolbar,
-        .jet-drawer-content {
+      .mat-drawer {
+        .jet-sidenav-toolbar,
+        .jet-sidenav-content {
           padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
         }
       }
 
       .mat-drawer-content {
-        .mat-toolbar {
+        .jet-sidenav-content-toolbar {
           padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
 
-          &.jet-drawer-closed {
+          &.jet-sidenav-closed {
             padding: 0 calc(16px + env(safe-area-inset-right)) 0
               calc(16px + env(safe-area-inset-left));
           }
         }
 
         main {
-          padding: 16px calc(16px + env(safe-area-inset-right))
-            calc(120px + env(safe-area-inset-bottom)) 16px;
+          padding: 16px calc(16px + env(safe-area-inset-right)) 16px 16px;
 
-          &.jet-drawer-closed {
-            padding: 16px calc(16px + env(safe-area-inset-right))
-              calc(120px + env(safe-area-inset-bottom))
+          &.jet-sidenav-closed {
+            padding: 16px calc(16px + env(safe-area-inset-right)) 16px
               calc(16px + env(safe-area-inset-left));
           }
         }
@@ -434,32 +444,30 @@ body {
     }
 
     &[dir='rtl'] {
-      .mat-drawer {
-        --mat-sidenav-container-width: calc(240px + env(safe-area-inset-right));
+      --mat-sidenav-container-width: calc(240px + env(safe-area-inset-right));
 
-        .mat-toolbar,
-        .jet-drawer-content {
+      .mat-drawer {
+        .jet-sidenav-toolbar,
+        .jet-sidenav-content {
           padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
         }
       }
 
       .mat-drawer-content {
-        .mat-toolbar {
+        .jet-sidenav-content-toolbar {
           padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
 
-          &.jet-drawer-closed {
+          &.jet-sidenav-closed {
             padding: 0 calc(16px + env(safe-area-inset-right)) 0
               calc(16px + env(safe-area-inset-left));
           }
         }
 
         main {
-          padding: 16px 16px calc(120px + env(safe-area-inset-bottom))
-            calc(16px + env(safe-area-inset-left));
+          padding: 16px 16px 16px calc(16px + env(safe-area-inset-left));
 
-          &.jet-drawer-closed {
-            padding: 16px calc(16px + env(safe-area-inset-right))
-              calc(120px + env(safe-area-inset-bottom))
+          &.jet-sidenav-closed {
+            padding: 16px calc(16px + env(safe-area-inset-right)) 16px
               calc(16px + env(safe-area-inset-left));
           }
         }
@@ -480,6 +488,11 @@ body {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
 
+      .jet-sidenav-toolbar {
+        background-color: inherit;
+        justify-content: center;
+      }
+
       &.mat-drawer-side {
         border: unset;
       }
@@ -491,47 +504,35 @@ body {
       min-height: 100vh;
       padding-top: env(safe-area-inset-top);
 
+      .jet-sidenav-content-toolbar {
+        background-color: inherit;
+        overflow-x: auto;
+        position: relative;
+      }
+
       .mat-mdc-tab-nav-bar {
-        bottom: 0;
+        bottom: -1px;
         left: 0;
         position: fixed;
         right: 0;
         z-index: 2;
 
+        .mat-mdc-tab-header-pagination-before {
+          padding-bottom: 1px;
+        }
+        .mat-mdc-tab-header-pagination-after {
+          padding-bottom: 1px;
+        }
+
         .mat-mdc-tab-link-container {
-          padding-bottom: env(safe-area-inset-bottom);
+          padding-bottom: calc(1px + env(safe-area-inset-bottom));
         }
       }
     }
   }
 }
 
-footer {
-  padding: 16px 16px calc(48px + 16px + env(safe-area-inset-bottom)) 16px;
-}
-
-.mat-mdc-button,
-.mat-mdc-outlined-button,
-.mat-mdc-raised-button,
-.mat-mdc-unelevated-button {
-  letter-spacing: unset !important;
-}
-
 .mat-mdc-card {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px !important;
-  overflow: hidden;
-
-  .mat-mdc-card-content {
-    overflow: auto;
-  }
-
-  .mat-mdc-card-sm-image,
-  .mat-mdc-card-md-image,
-  .mat-mdc-card-lg-image,
-  .mat-mdc-card-xl-image {
-    border-radius: 4px !important;
-  }
-
   .mdc-card__actions {
     gap: 8px;
   }
@@ -542,10 +543,6 @@ footer {
   width: 100%;
 }
 
-.mat-mdc-list-item {
-  border-radius: 4px !important;
-}
-
 .mat-mdc-snack-bar-container {
   margin: calc(8px + env(safe-area-inset-top))
     calc(8px + env(safe-area-inset-right))
@@ -553,49 +550,6 @@ footer {
     calc(8px + env(safe-area-inset-left)) !important;
 }
 
-.mat-stepper-horizontal,
-.mat-stepper-vertical {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-}
-
 .mat-toolbar {
   gap: 8px;
-}
-
-.mdc-checkbox {
-  overflow: hidden;
-}
-
-// Container Classes (Using breakpoints defined in https://material.angular.io/cdk/layout/overview#predefined-breakpoints)
-
-.jet-40-60-container {
-  align-items: flex-start;
-  box-sizing: border-box;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: 0.4fr 0.6fr;
-}
-
-@media (max-width: 959.98px) {
-  .jet-40-60-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.jet-carousel-container {
-  box-sizing: border-box;
-  display: flex;
-  gap: 16px;
-  margin-top: -2px;
-  overflow-x: auto;
-  padding: 2px 16px 16px 16px;
-  scroll-snap-type: x mandatory;
-}
-
-.jet-grid-container {
-  box-sizing: border-box;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(0, 320px));
-  justify-content: space-evenly;
 }
