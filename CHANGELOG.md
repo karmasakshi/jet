@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.32.0](https://github.com/karmasakshi/jet/compare/v1.31.0...v1.32.0) (2024-11-12)
+
+
+### Features
+
+* **general:** get user before login ([5200117](https://github.com/karmasakshi/jet/commit/5200117f272c80ef01bda0ed08c6c3d3eca355f4))
+* **general:** update dependencies ([d01554d](https://github.com/karmasakshi/jet/commit/d01554da70a87079dedbbbfd91fa2e1d3ca6bc5c))
+* **general:** use material variable overrides ([fff848f](https://github.com/karmasakshi/jet/commit/fff848f683bccf584f22640d2705bd319348fcea))
+
 ## [1.31.0](https://github.com/karmasakshi/jet/compare/v1.30.0...v1.31.0) (2024-11-02)
 
 
