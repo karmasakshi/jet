@@ -499,6 +499,7 @@ body {
     }
 
     .mat-drawer-content {
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -511,21 +512,14 @@ body {
       }
 
       .mat-mdc-tab-nav-bar {
-        bottom: -1px;
+        bottom: 0;
         left: 0;
         position: fixed;
         right: 0;
         z-index: 2;
 
-        .mat-mdc-tab-header-pagination-before {
-          padding-bottom: 1px;
-        }
-        .mat-mdc-tab-header-pagination-after {
-          padding-bottom: 1px;
-        }
-
         .mat-mdc-tab-link-container {
-          padding-bottom: calc(1px + env(safe-area-inset-bottom));
+          padding-bottom: env(safe-area-inset-bottom);
         }
       }
     }
