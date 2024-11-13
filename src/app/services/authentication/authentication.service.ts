@@ -29,7 +29,7 @@ export class AuthenticationService {
   public getUser(): Promise<User | null> {
     return new Promise((resolve) => {
       window.setTimeout(() => {
-        resolve(null);
+        resolve(this._user());
       }, 900);
     });
   }
