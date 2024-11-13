@@ -34,7 +34,7 @@ $noto-sans-arabic-typography: mat.define-typography-config(
 //   brand-family: $noto-sans-arabic-font,
 // );
 
-// Material 2 Palettes (http://mcg.mbitson.com)
+// Material 2 Palettes
 
 $amber-palette: mat.define-palette(
   (
@@ -110,7 +110,7 @@ $brown-palette: mat.define-palette(
 
 $red-palette: mat.define-palette(mat.$red-palette);
 
-// Material 3 Palettes (ng generate @angular/material:m3-theme)
+// Material 3 Palettes
 
 // $_palettes: (
 //   primary: (
