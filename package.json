@@ -4,19 +4,19 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build-development": "ng build --configuration development",
+    "build": "ng build --subresource-integrity",
+    "build-development": "ng build --configuration development --subresource-integrity",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test-coverage": "ng test --code-coverage --no-watch",
     "lint": "ng lint",
-    "commit": "git add . && npx --no -- commit",
-    "commitlint": "npx --no -- commitlint --edit $1",
-    "format": "npx --no -- prettier --write .",
-    "format-staged": "npx --no -- lint-staged",
-    "i18n:extract": "npx --no -- transloco-keys-manager extract",
-    "i18n:find": "npx --no -- transloco-keys-manager find",
-    "prepare": "npx --no -- husky",
+    "commit": "git add . && commit",
+    "commitlint": "commitlint --edit $1",
+    "format": "prettier --write .",
+    "format-staged": "lint-staged",
+    "i18n:extract": "transloco-keys-manager extract",
+    "i18n:find": "transloco-keys-manager find",
+    "prepare": "husky",
     "install-dependencies": "npm install @angular/animations @angular/cdk@17 @angular/common @angular/compiler @angular/core @angular/forms @angular/material@17 @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js@0.14.10",
     "uninstall-dependencies": "npm uninstall @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco rxjs tslib zone.js",
     "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports typescript@5.5.4 typescript-eslint",
@@ -26,7 +26,7 @@
   },
   "private": true,
   "lint-staged": {
-    "*": "npx --no -- prettier --ignore-unknown --write"
+    "*": "prettier --ignore-unknown --write"
   },
   "dependencies": {
     "@angular/animations": "^18.2.11",
