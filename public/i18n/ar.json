@@ -81,5 +81,14 @@
     },
     "toolbar-title": "الإعدادات",
     "version": "v{{ value }}"
+  },
+  "paginator": {
+    "first-page": "الصفحة الأولى",
+    "items-per-page": "عناصر لكل صفحة:",
+    "last-page": "الصفحة الأخيرة",
+    "next-page": "الصفحة التالية",
+    "page": "صفحة {{ current }} / {{ total }}",
+    "page-1-of-1": "صفحة 1 / 1",
+    "previous-page": "الصفحة السابقة"
   }
 }
