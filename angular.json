@@ -29,7 +29,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/jet.scss", "src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +84,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/jet.scss", "src/styles.scss"],
             "scripts": []
           }
         },
