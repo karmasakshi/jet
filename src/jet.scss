@@ -296,8 +296,6 @@ $dark-theme: mat.define-dark-theme(
 //   )
 // );
 
-// Styles
-
 body {
   margin: 0;
 
@@ -380,11 +378,21 @@ body {
     // @include mat.tooltip-typography($override-theme);
 
     // @include mat.typography-hierarchy($override-theme);
+
+    // Material 2 Overrides
+
+    --mdc-filled-button-label-text-tracking: normal;
+    --mdc-outlined-button-label-text-tracking: normal;
+    --mdc-protected-button-label-text-tracking: normal;
+    --mdc-text-button-label-text-tracking: normal;
+
+    --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+
+    --mat-list-active-indicator-shape: 4px;
+    --mdc-list-list-item-container-shape: 4px;
   }
 
   &.jet-theme-dark {
-    // Additional Theme
-
     @include mat.core-color($dark-theme);
 
     @include mat.button-color($dark-theme);
@@ -399,6 +407,18 @@ body {
     @include mat.tabs-color($dark-theme);
     @include mat.toolbar-color($dark-theme);
     @include mat.tooltip-color($dark-theme);
+
+    // Material 2 Overrides
+
+    --mdc-filled-button-label-text-tracking: normal;
+    --mdc-outlined-button-label-text-tracking: normal;
+    --mdc-protected-button-label-text-tracking: normal;
+    --mdc-text-button-label-text-tracking: normal;
+
+    --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+
+    --mat-list-active-indicator-shape: 4px;
+    --mdc-list-list-item-container-shape: 4px;
   }
 
   .mat-sidenav-container {
