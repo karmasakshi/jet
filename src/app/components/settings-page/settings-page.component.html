@@ -9,7 +9,7 @@
       <mat-card-content>
         <mat-action-list>
           <button
-            [matMenuTriggerFor]="languageMenu"
+            [matMenuTriggerFor]="languageOptionsMenu"
             jetAnalytics
             jetAnalyticsEventName="Open Language Options"
             mat-list-item
@@ -22,7 +22,7 @@
             }}</span>
           </button>
           <button
-            [matMenuTriggerFor]="themeMenu"
+            [matMenuTriggerFor]="themeOptionsMenu"
             jetAnalytics
             jetAnalyticsEventName="Open Theme Options"
             mat-list-item
@@ -72,8 +72,10 @@
       </mat-card-content>
     </mat-card>
     <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
+
+    <!-- Language Options Menu -->
     <mat-menu
-      #languageMenu="matMenu"
+      #languageOptionsMenu="matMenu"
       xPosition="before"
     >
       @for (languageOption of languageOptions; track languageOption.value) {
@@ -91,8 +93,10 @@
         </button>
       }
     </mat-menu>
+
+    <!-- Theme Options Menu -->
     <mat-menu
-      #themeMenu="matMenu"
+      #themeOptionsMenu="matMenu"
       xPosition="before"
     >
       @for (themeOption of themeOptions; track themeOption.value) {

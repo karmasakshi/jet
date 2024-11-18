@@ -45,11 +45,12 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
   public getRangeLabel(page: number, pageSize: number, length: number): string {
     if (length === 0) {
       return this._translocoService.translate('paginator.page-1-of-1');
+    } else {
+      const pages = Math.ceil(length / pageSize);
+      return this._translocoService.translate('paginator.page', {
+        current: page + 1,
+        total: pages,
+      });
     }
-    const pages = Math.ceil(length / pageSize);
-    return this._translocoService.translate('paginator.page', {
-      current: page + 1,
-      total: pages,
-    });
   }
 }
