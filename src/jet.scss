@@ -320,10 +320,6 @@ body {
 
   @include mat.typography-hierarchy($default-typography);
 
-  // Material 3 Default Typography Hierarchy
-
-  // @include mat.typography-hierarchy($default-theme);
-
   // Material 2 Overrides
 
   --mdc-filled-button-label-text-tracking: normal;
@@ -335,6 +331,10 @@ body {
 
   --mat-list-active-indicator-shape: 4px;
   --mdc-list-list-item-container-shape: 4px;
+
+  // Material 3 Default Typography Hierarchy
+
+  // @include mat.typography-hierarchy($default-theme);
 
   &.jet-font-noto-sans-arabic {
     // Material 2 Additional Typography and Hierarchy
@@ -383,8 +383,6 @@ body {
   }
 
   &.jet-theme-dark {
-    // Additional Theme
-
     @include mat.core-color($dark-theme);
 
     @include mat.button-color($dark-theme);
