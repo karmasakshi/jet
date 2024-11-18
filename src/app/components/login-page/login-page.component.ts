@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { User } from '@jet/interfaces/user.interface';
@@ -11,7 +12,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
-  imports: [MatButtonModule, TranslocoModule, PageComponent],
+  imports: [MatButtonModule, MatIconModule, TranslocoModule, PageComponent],
   selector: 'jet-login-page',
   standalone: true,
   styleUrl: './login-page.component.scss',

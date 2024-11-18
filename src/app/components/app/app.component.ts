@@ -11,7 +11,7 @@ import {
   untracked,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -80,6 +80,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _document = inject(DOCUMENT);
   private readonly _renderer2 = inject(Renderer2);
+  private readonly _matIconRegistry = inject(MatIconRegistry);
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
   private readonly _analyticsService = inject(AnalyticsService);
@@ -176,6 +177,8 @@ export class AppComponent implements OnInit, OnDestroy {
       this._serviceWorkerService.serviceWorkerUpdateSubscription;
 
     this._disableZoom(this._isPwaMode);
+
+    this._setIcons();
   }
 
   public ngOnDestroy(): void {
@@ -204,6 +207,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this._renderer2.addClass(this._document.body, prefix + nextFont);
       }
     }
+  }
+
+  private _setIcons(): void {
+    this._matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
   }
 
   private _setLanguage(nextLanguageOption: LanguageOption): void {
