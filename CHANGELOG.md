@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/karmasakshi/jet/compare/v1.33.0...v1.34.0) (2024-11-19)
+
+
+### Features
+
+* **general:** update theme-color dynamically ([029f37d](https://github.com/karmasakshi/jet/commit/029f37db29fa3a3dd3255bf800faf764b3b7de9a))
+
 ## [1.33.0](https://github.com/karmasakshi/jet/compare/v1.32.0...v1.33.0) (2024-11-14)
 
 
