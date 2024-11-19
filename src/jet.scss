@@ -4,38 +4,32 @@
 @include mat.core();
 
 // Fonts
-
 $font-default: ('Noto Sans', sans-serif);
 $font-noto-sans-arabic: ('Noto Sans Arabic', 'Noto Sans', sans-serif);
 
 // Material 2 Default Typography
-
 $typography-default: mat.define-typography-config(
   $font-family: $font-default,
 );
 
 // Material 3 Default Typography
-
 // $typography-default: (
 //   plain-family: $font-default,
 //   brand-family: $font-default,
 // );
 
 // Material 2 Additional Typography
-
 $typography-noto-sans-arabic: mat.define-typography-config(
   $font-family: $font-noto-sans-arabic,
 );
 
 // Material 3 Additional Typography
-
 // $typography-noto-sans-arabic: (
 //   plain-family: $font-noto-sans-arabic,
 //   brand-family: $font-noto-sans-arabic,
 // );
 
 // Material 2 Palettes
-
 $palette-amber: mat.define-palette(
   (
     50: #fff8e1,
@@ -111,7 +105,6 @@ $palette-brown: mat.define-palette(
 $palette-red: mat.define-palette(mat.$red-palette);
 
 // Material 3 Palettes
-
 // $_palettes: (
 //   primary: (
 //     0: #000000,
@@ -243,7 +236,6 @@ $palette-red: mat.define-palette(mat.$red-palette);
 // $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
 // Material 2 Default Theme
-
 $theme-default: mat.define-light-theme(
   (
     color: (
@@ -257,7 +249,6 @@ $theme-default: mat.define-light-theme(
 );
 
 // Material 3 Default Theme
-
 // $theme-default: mat.define-theme(
 //   (
 //     color: (
@@ -273,7 +264,6 @@ $theme-default: mat.define-light-theme(
 // );
 
 // Material 2 Additional Theme
-
 $theme-dark: mat.define-dark-theme(
   (
     color: (
@@ -285,7 +275,6 @@ $theme-dark: mat.define-dark-theme(
 );
 
 // Material 3 Additional Theme
-
 // $theme-dark: mat.define-theme(
 //   (
 //     color: (
@@ -295,6 +284,19 @@ $theme-dark: mat.define-dark-theme(
 //     ),
 //   )
 // );
+
+// Mixins
+@mixin jet-material-overrides {
+  --mdc-filled-button-label-text-tracking: normal;
+  --mdc-outlined-button-label-text-tracking: normal;
+  --mdc-protected-button-label-text-tracking: normal;
+  --mdc-text-button-label-text-tracking: normal;
+
+  --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+
+  --mat-list-active-indicator-shape: 4px;
+  --mdc-list-list-item-container-shape: 4px;
+}
 
 body {
   margin: 0;
@@ -315,28 +317,16 @@ body {
   @include mat.tooltip-theme($theme-default);
 
   // Material 2 Default Typography Hierarchy
-
   @include mat.typography-hierarchy($typography-default);
 
   // Material 3 Default Typography Hierarchy
-
   // @include mat.typography-hierarchy($theme-default);
 
   // Material 2 Overrides
-
-  --mdc-filled-button-label-text-tracking: normal;
-  --mdc-outlined-button-label-text-tracking: normal;
-  --mdc-protected-button-label-text-tracking: normal;
-  --mdc-text-button-label-text-tracking: normal;
-
-  --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-
-  --mat-list-active-indicator-shape: 4px;
-  --mdc-list-list-item-container-shape: 4px;
+  @include jet-material-overrides;
 
   &.jet-font-noto-sans-arabic {
     // Material 2 Additional Typography and Hierarchy
-
     @include mat.core-typography($typography-noto-sans-arabic);
 
     @include mat.button-typography($typography-noto-sans-arabic);
@@ -355,7 +345,6 @@ body {
     @include mat.typography-hierarchy($typography-noto-sans-arabic);
 
     // Material 3 Additional Typography and Hierarchy
-
     // $override-theme: mat.define-theme(
     //   (
     //     typography: $typography-noto-sans-arabic,
@@ -380,16 +369,7 @@ body {
     // @include mat.typography-hierarchy($override-theme);
 
     // Material 2 Overrides
-
-    --mdc-filled-button-label-text-tracking: normal;
-    --mdc-outlined-button-label-text-tracking: normal;
-    --mdc-protected-button-label-text-tracking: normal;
-    --mdc-text-button-label-text-tracking: normal;
-
-    --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-
-    --mat-list-active-indicator-shape: 4px;
-    --mdc-list-list-item-container-shape: 4px;
+    @include jet-material-overrides;
   }
 
   &.jet-theme-dark {
@@ -409,16 +389,7 @@ body {
     @include mat.tooltip-color($theme-dark);
 
     // Material 2 Overrides
-
-    --mdc-filled-button-label-text-tracking: normal;
-    --mdc-outlined-button-label-text-tracking: normal;
-    --mdc-protected-button-label-text-tracking: normal;
-    --mdc-text-button-label-text-tracking: normal;
-
-    --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-
-    --mat-list-active-indicator-shape: 4px;
-    --mdc-list-list-item-container-shape: 4px;
+    @include jet-material-overrides;
   }
 
   .mat-sidenav-container {
