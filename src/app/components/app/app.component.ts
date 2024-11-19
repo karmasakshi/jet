@@ -28,8 +28,10 @@ import {
 } from '@angular/router';
 import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
 import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
+import { DEFAULT_THEME_OPTION } from '@jet/constants/default-theme-option.constant';
 import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
+import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
@@ -160,7 +162,7 @@ export class AppComponent implements OnInit, OnDestroy {
     effect(() => {
       const themeOption: ThemeOption = this._themeOption();
       untracked(() => {
-        this._setThemeClass(themeOption.value);
+        this._setThemeClass(themeOption);
       });
     });
 
@@ -204,13 +206,28 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  private _getSystemThemeOption(): ThemeOption {
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+      .matches
+      ? 'dark'
+      : 'light';
+
+    return (
+      THEME_OPTIONS.find((themeOption) => themeOption.value === systemTheme) ??
+      DEFAULT_THEME_OPTION
+    );
+  }
+
   private _setFontClass(nextFont: AvailableFont): void {
     if (nextFont !== this._activeFont) {
       this._activeFont = nextFont;
+
       const prefix = 'jet-font-';
+
       this._document.body.className = this._document.body.classList.value
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
+
       if (nextFont !== DEFAULT_FONT) {
         this._renderer2.addClass(this._document.body, prefix + nextFont);
       }
@@ -224,34 +241,47 @@ export class AppComponent implements OnInit, OnDestroy {
   private _setLanguage(nextLanguageOption: LanguageOption): void {
     if (nextLanguageOption.value !== this._activeLanguage) {
       this._activeLanguage = nextLanguageOption.value;
+
       this._renderer2.setAttribute(
         this._document.body,
         'dir',
         nextLanguageOption.directionality,
       );
+
       this._renderer2.setAttribute(
         this._document.documentElement,
         'lang',
         nextLanguageOption.value,
       );
+
       this._translocoService.setActiveLang(nextLanguageOption.value);
     }
   }
 
-  private _setThemeClass(nextTheme: AvailableTheme): void {
-    if (nextTheme === 'automatic') {
-      nextTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
+  private _setThemeClass(nextThemeOption: ThemeOption): void {
+    if (nextThemeOption.value === 'automatic') {
+      nextThemeOption = this._getSystemThemeOption();
     }
-    if (nextTheme !== this._activeTheme) {
-      this._activeTheme = nextTheme;
+
+    if (nextThemeOption.value !== this._activeTheme) {
+      this._activeTheme = nextThemeOption.value;
+
       const prefix = 'jet-theme-';
+
       this._document.body.className = this._document.body.classList.value
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
-      if (nextTheme !== DEFAULT_THEME) {
-        this._renderer2.addClass(this._document.body, prefix + nextTheme);
+
+      this._meta.updateTag({
+        content: nextThemeOption.themeColor,
+        name: 'theme-color',
+      });
+
+      if (nextThemeOption.value !== DEFAULT_THEME) {
+        this._renderer2.addClass(
+          this._document.body,
+          prefix + nextThemeOption.value,
+        );
       }
     }
   }
