@@ -102,8 +102,6 @@ $palette-brown: mat.define-palette(
   500
 );
 
-$palette-red: mat.define-palette(mat.$red-palette);
-
 // Material 3 Palettes
 // $_palettes: (
 //   primary: (
@@ -241,7 +239,7 @@ $theme-default: mat.define-light-theme(
     color: (
       primary: $palette-brown,
       accent: $palette-amber,
-      warn: $palette-red,
+      warn: mat.$red-palette,
     ),
     density: 0,
     typography: $typography-default,
@@ -269,7 +267,7 @@ $theme-dark: mat.define-dark-theme(
     color: (
       primary: $palette-amber,
       accent: $palette-brown,
-      warn: $palette-red,
+      warn: mat.$red-palette,
     ),
   )
 );
@@ -287,13 +285,16 @@ $theme-dark: mat.define-dark-theme(
 
 // Mixins
 @mixin jet-material-overrides {
+  // Button
   --mdc-filled-button-label-text-tracking: normal;
   --mdc-outlined-button-label-text-tracking: normal;
   --mdc-protected-button-label-text-tracking: normal;
   --mdc-text-button-label-text-tracking: normal;
 
+  // Card
   --mdc-elevated-card-container-elevation: rgba(0, 0, 0, 0.1) 0px 1px 2px;
 
+  // List
   --mat-list-active-indicator-shape: 4px;
   --mdc-list-list-item-container-shape: 4px;
 }
@@ -302,7 +303,6 @@ body {
   margin: 0;
 
   @include mat.core-theme($theme-default);
-
   @include mat.button-theme($theme-default);
   @include mat.card-theme($theme-default);
   @include mat.icon-theme($theme-default);
@@ -328,7 +328,6 @@ body {
   &.jet-font-noto-sans-arabic {
     // Material 2 Additional Typography and Hierarchy
     @include mat.core-typography($typography-noto-sans-arabic);
-
     @include mat.button-typography($typography-noto-sans-arabic);
     @include mat.card-typography($typography-noto-sans-arabic);
     @include mat.icon-typography($typography-noto-sans-arabic);
@@ -352,7 +351,6 @@ body {
     // );
 
     // @include mat.core-typography($override-theme);
-
     // @include mat.button-typography($override-theme);
     // @include mat.card-typography($override-theme);
     // @include mat.icon-typography($override-theme);
@@ -374,7 +372,6 @@ body {
 
   &.jet-theme-dark {
     @include mat.core-color($theme-dark);
-
     @include mat.button-color($theme-dark);
     @include mat.card-color($theme-dark);
     @include mat.icon-color($theme-dark);
