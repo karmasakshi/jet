@@ -5,38 +5,38 @@
 
 // Fonts
 
-$default-font: ('Noto Sans', sans-serif);
-$noto-sans-arabic-font: ('Noto Sans Arabic', 'Noto Sans', sans-serif);
+$font-default: ('Noto Sans', sans-serif);
+$font-noto-sans-arabic: ('Noto Sans Arabic', 'Noto Sans', sans-serif);
 
 // Material 2 Default Typography
 
-$default-typography: mat.define-typography-config(
-  $font-family: $default-font,
+$typography-default: mat.define-typography-config(
+  $font-family: $font-default,
 );
 
 // Material 3 Default Typography
 
-// $default-typography: (
-//   plain-family: $default-font,
-//   brand-family: $default-font,
+// $typography-default: (
+//   plain-family: $font-default,
+//   brand-family: $font-default,
 // );
 
 // Material 2 Additional Typography
 
-$noto-sans-arabic-typography: mat.define-typography-config(
-  $font-family: $noto-sans-arabic-font,
+$typography-noto-sans-arabic: mat.define-typography-config(
+  $font-family: $font-noto-sans-arabic,
 );
 
 // Material 3 Additional Typography
 
-// $noto-sans-arabic-typography: (
-//   plain-family: $noto-sans-arabic-font,
-//   brand-family: $noto-sans-arabic-font,
+// $typography-noto-sans-arabic: (
+//   plain-family: $font-noto-sans-arabic,
+//   brand-family: $font-noto-sans-arabic,
 // );
 
 // Material 2 Palettes
 
-$amber-palette: mat.define-palette(
+$palette-amber: mat.define-palette(
   (
     50: #fff8e1,
     100: #ffecb5,
@@ -72,7 +72,7 @@ $amber-palette: mat.define-palette(
   500
 );
 
-$brown-palette: mat.define-palette(
+$palette-brown: mat.define-palette(
   (
     50: #eeebe9,
     100: #d5ccc9,
@@ -108,7 +108,7 @@ $brown-palette: mat.define-palette(
   500
 );
 
-$red-palette: mat.define-palette(mat.$red-palette);
+$palette-red: mat.define-palette(mat.$red-palette);
 
 // Material 3 Palettes
 
@@ -244,21 +244,21 @@ $red-palette: mat.define-palette(mat.$red-palette);
 
 // Material 2 Default Theme
 
-$default-theme: mat.define-light-theme(
+$theme-default: mat.define-light-theme(
   (
     color: (
-      primary: $brown-palette,
-      accent: $amber-palette,
-      warn: $red-palette,
+      primary: $palette-brown,
+      accent: $palette-amber,
+      warn: $palette-red,
     ),
     density: 0,
-    typography: $default-typography,
+    typography: $typography-default,
   )
 );
 
 // Material 3 Default Theme
 
-// $default-theme: mat.define-theme(
+// $theme-default: mat.define-theme(
 //   (
 //     color: (
 //       theme-type: light,
@@ -268,25 +268,25 @@ $default-theme: mat.define-light-theme(
 //     density: (
 //       scale: 0,
 //     ),
-//     typography: $default-typography,
+//     typography: $typography-default,
 //   )
 // );
 
 // Material 2 Additional Theme
 
-$dark-theme: mat.define-dark-theme(
+$theme-dark: mat.define-dark-theme(
   (
     color: (
-      primary: $amber-palette,
-      accent: $brown-palette,
-      warn: $red-palette,
+      primary: $palette-amber,
+      accent: $palette-brown,
+      warn: $palette-red,
     ),
   )
 );
 
 // Material 3 Additional Theme
 
-// $dark-theme: mat.define-theme(
+// $theme-dark: mat.define-theme(
 //   (
 //     color: (
 //       theme-type: dark,
@@ -299,28 +299,28 @@ $dark-theme: mat.define-dark-theme(
 body {
   margin: 0;
 
-  @include mat.core-theme($default-theme);
+  @include mat.core-theme($theme-default);
 
-  @include mat.button-theme($default-theme);
-  @include mat.card-theme($default-theme);
-  @include mat.icon-theme($default-theme);
-  @include mat.icon-button-theme($default-theme);
-  @include mat.list-theme($default-theme);
-  @include mat.menu-theme($default-theme);
-  @include mat.progress-bar-theme($default-theme);
-  @include mat.sidenav-theme($default-theme);
-  @include mat.snack-bar-theme($default-theme);
-  @include mat.tabs-theme($default-theme);
-  @include mat.toolbar-theme($default-theme);
-  @include mat.tooltip-theme($default-theme);
+  @include mat.button-theme($theme-default);
+  @include mat.card-theme($theme-default);
+  @include mat.icon-theme($theme-default);
+  @include mat.icon-button-theme($theme-default);
+  @include mat.list-theme($theme-default);
+  @include mat.menu-theme($theme-default);
+  @include mat.progress-bar-theme($theme-default);
+  @include mat.sidenav-theme($theme-default);
+  @include mat.snack-bar-theme($theme-default);
+  @include mat.tabs-theme($theme-default);
+  @include mat.toolbar-theme($theme-default);
+  @include mat.tooltip-theme($theme-default);
 
   // Material 2 Default Typography Hierarchy
 
-  @include mat.typography-hierarchy($default-typography);
+  @include mat.typography-hierarchy($typography-default);
 
   // Material 3 Default Typography Hierarchy
 
-  // @include mat.typography-hierarchy($default-theme);
+  // @include mat.typography-hierarchy($theme-default);
 
   // Material 2 Overrides
 
@@ -337,28 +337,28 @@ body {
   &.jet-font-noto-sans-arabic {
     // Material 2 Additional Typography and Hierarchy
 
-    @include mat.core-typography($noto-sans-arabic-typography);
+    @include mat.core-typography($typography-noto-sans-arabic);
 
-    @include mat.button-typography($noto-sans-arabic-typography);
-    @include mat.card-typography($noto-sans-arabic-typography);
-    @include mat.icon-typography($noto-sans-arabic-typography);
-    @include mat.icon-button-typography($noto-sans-arabic-typography);
-    @include mat.list-typography($noto-sans-arabic-typography);
-    @include mat.menu-typography($noto-sans-arabic-typography);
-    @include mat.progress-bar-typography($noto-sans-arabic-typography);
-    @include mat.sidenav-typography($noto-sans-arabic-typography);
-    @include mat.snack-bar-typography($noto-sans-arabic-typography);
-    @include mat.tabs-typography($noto-sans-arabic-typography);
-    @include mat.toolbar-typography($noto-sans-arabic-typography);
-    @include mat.tooltip-typography($noto-sans-arabic-typography);
+    @include mat.button-typography($typography-noto-sans-arabic);
+    @include mat.card-typography($typography-noto-sans-arabic);
+    @include mat.icon-typography($typography-noto-sans-arabic);
+    @include mat.icon-button-typography($typography-noto-sans-arabic);
+    @include mat.list-typography($typography-noto-sans-arabic);
+    @include mat.menu-typography($typography-noto-sans-arabic);
+    @include mat.progress-bar-typography($typography-noto-sans-arabic);
+    @include mat.sidenav-typography($typography-noto-sans-arabic);
+    @include mat.snack-bar-typography($typography-noto-sans-arabic);
+    @include mat.tabs-typography($typography-noto-sans-arabic);
+    @include mat.toolbar-typography($typography-noto-sans-arabic);
+    @include mat.tooltip-typography($typography-noto-sans-arabic);
 
-    @include mat.typography-hierarchy($noto-sans-arabic-typography);
+    @include mat.typography-hierarchy($typography-noto-sans-arabic);
 
     // Material 3 Additional Typography and Hierarchy
 
     // $override-theme: mat.define-theme(
     //   (
-    //     typography: $noto-sans-arabic-typography,
+    //     typography: $typography-noto-sans-arabic,
     //   )
     // );
 
@@ -393,20 +393,20 @@ body {
   }
 
   &.jet-theme-dark {
-    @include mat.core-color($dark-theme);
+    @include mat.core-color($theme-dark);
 
-    @include mat.button-color($dark-theme);
-    @include mat.card-color($dark-theme);
-    @include mat.icon-color($dark-theme);
-    @include mat.icon-button-color($dark-theme);
-    @include mat.list-color($dark-theme);
-    @include mat.menu-color($dark-theme);
-    @include mat.progress-bar-color($dark-theme);
-    @include mat.sidenav-color($dark-theme);
-    @include mat.snack-bar-color($dark-theme);
-    @include mat.tabs-color($dark-theme);
-    @include mat.toolbar-color($dark-theme);
-    @include mat.tooltip-color($dark-theme);
+    @include mat.button-color($theme-dark);
+    @include mat.card-color($theme-dark);
+    @include mat.icon-color($theme-dark);
+    @include mat.icon-button-color($theme-dark);
+    @include mat.list-color($theme-dark);
+    @include mat.menu-color($theme-dark);
+    @include mat.progress-bar-color($theme-dark);
+    @include mat.sidenav-color($theme-dark);
+    @include mat.snack-bar-color($theme-dark);
+    @include mat.tabs-color($theme-dark);
+    @include mat.toolbar-color($theme-dark);
+    @include mat.tooltip-color($theme-dark);
 
     // Material 2 Overrides
 
@@ -544,10 +544,6 @@ body {
       }
     }
   }
-}
-
-.mat-icon {
-  font-variation-settings: 'FILL' 1;
 }
 
 .mat-mdc-card {
