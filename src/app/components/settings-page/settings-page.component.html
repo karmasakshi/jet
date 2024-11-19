@@ -81,7 +81,7 @@
       @for (languageOption of languageOptions; track languageOption.value) {
         <button
           [disabled]="settings().languageOption.value === languageOption.value"
-          [jetAnalyticsEventData]="languageOption.value"
+          [jetAnalyticsEventData]="{ languageOption: languageOption.value }"
           (click)="updateSettings({ languageOption })"
           jetAnalytics
           jetAnalyticsEventName="Select Language Option"
@@ -102,7 +102,7 @@
       @for (themeOption of themeOptions; track themeOption.value) {
         <button
           [disabled]="settings().themeOption.value === themeOption.value"
-          [jetAnalyticsEventData]="themeOption.value"
+          [jetAnalyticsEventData]="{ themeOption: themeOption.value }"
           (click)="updateSettings({ themeOption })"
           jetAnalytics
           jetAnalyticsEventName="Select Theme Option"

@@ -13,7 +13,10 @@ export class AnalyticsService {
     this._loggerService.logServiceInitialization('AnalyticsService');
   }
 
-  public logEvent(eventName: string, eventData?: unknown): void {
+  public logEvent(
+    eventName: string,
+    eventData?: Record<string, string | number | boolean | null | undefined>,
+  ): void {
     if (this._isAnalyticsEnabled) {
       if (eventData !== undefined) {
         this._loggerService.logMessages(eventName, eventData);
