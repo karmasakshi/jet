@@ -34,7 +34,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; connect-src 'self' https://fonts.gstatic.com;"
+          "value": "default-src 'none'; connect-src 'self' https:;"
         }
       ]
     }
