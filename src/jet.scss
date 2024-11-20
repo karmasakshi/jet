@@ -239,7 +239,7 @@ $theme-default: mat.define-light-theme(
     color: (
       primary: $palette-brown,
       accent: $palette-amber,
-      warn: mat.$red-palette,
+      warn: mat.define-palette(mat.$red-palette),
     ),
     density: 0,
     typography: $typography-default,
@@ -267,7 +267,7 @@ $theme-dark: mat.define-dark-theme(
     color: (
       primary: $palette-amber,
       accent: $palette-brown,
-      warn: mat.$red-palette,
+      warn: mat.define-palette(mat.$red-palette),
     ),
   )
 );
