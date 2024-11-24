@@ -1,0 +1,26 @@
+// https://fonts.googleapis.com/css2?display=swap&family=Material+Symbols+Rounded:FILL@0..1&icon_names=account_circle,contrast,dark_mode,home,language,light_mode,login,logout,palette,refresh,restart_alt,settings,short_text,sync,translate
+
+@font-face {
+  font-display: swap;
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/material-symbols-rounded.woff2') format('woff2');
+}
+
+.material-symbols-rounded {
+  display: inline-block;
+  font-family: 'Material Symbols Rounded';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 1;
+}

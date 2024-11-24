@@ -29,7 +29,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/jet.scss", "src/styles.scss"],
+            "styles": [
+              "src/jet-icons.scss",
+              "src/jet-styles.scss",
+              "src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +88,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/jet.scss", "src/styles.scss"],
+            "styles": [
+              "src/jet-icons.scss",
+              "src/jet-styles.scss",
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
