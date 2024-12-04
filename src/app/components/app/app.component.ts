@@ -188,24 +188,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this._serviceWorkerUpdateSubscription =
       this._serviceWorkerService.serviceWorkerUpdateSubscription;
 
-    this._disableZoom(this._isPwaMode);
-
     this._setIcons();
+
+    this._setZoom(this._isPwaMode);
   }
 
   public ngOnDestroy(): void {
     this._routerSubscription.unsubscribe();
     this._serviceWorkerUpdateSubscription.unsubscribe();
-  }
-
-  private _disableZoom(isPwaMode: boolean): void {
-    if (isPwaMode) {
-      this._meta.updateTag({
-        content:
-          'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
-        name: 'viewport',
-      });
-    }
   }
 
   private _getSystemThemeOption(): ThemeOption {
@@ -285,6 +275,16 @@ export class AppComponent implements OnInit, OnDestroy {
           prefix + nextThemeOption.value,
         );
       }
+    }
+  }
+
+  private _setZoom(isPwaMode: boolean): void {
+    if (isPwaMode) {
+      this._meta.updateTag({
+        content:
+          'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
+        name: 'viewport',
+      });
     }
   }
 }

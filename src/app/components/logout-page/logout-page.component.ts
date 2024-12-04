@@ -36,19 +36,27 @@ export class LogoutPageComponent implements OnInit {
   private _logout(): void {
     if (!this._isLogoutPending) {
       this._isLogoutPending = true;
+
       this._progressBarService.showProgressBar();
+
       this._authenticationService
         .logout()
         .then((): void => {
           this._storageService.clearSessionStorage();
+
           this._storageService.clearLocalStorage();
+
           this._progressBarService.hideProgressBar();
+
           this._isLogoutPending = false;
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
+
           this._alertService.showErrorAlert();
+
           this._progressBarService.hideProgressBar();
+
           this._isLogoutPending = false;
         });
     }

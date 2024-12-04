@@ -45,7 +45,9 @@ export class LoginPageComponent implements OnInit {
   public login(): void {
     if (!this.isLoginPending) {
       this.isLoginPending = true;
+
       this._progressBarService.showProgressBar();
+
       this._authenticationService
         .login()
         .then((): void => {
@@ -53,13 +55,18 @@ export class LoginPageComponent implements OnInit {
             this._activatedRoute.snapshot.queryParamMap.get(
               QueryParam.ReturnUrl,
             ) ?? '/';
+
           this._progressBarService.hideProgressBar();
+
           void this._router.navigateByUrl(returnUrl);
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
+
           this._alertService.showErrorAlert();
+
           this._progressBarService.hideProgressBar();
+
           this.isLoginPending = false;
         });
     }
@@ -68,19 +75,24 @@ export class LoginPageComponent implements OnInit {
   private _getUser(): void {
     if (!this.isGetUserPending) {
       this.isGetUserPending = true;
+
       this._progressBarService.showProgressBar({ mode: 'query' });
+
       this._authenticationService
         .getUser()
         .then((user: User | null): void => {
           this._progressBarService.hideProgressBar();
+
           if (user !== null) {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
+
             const returnUrl =
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,
               ) ?? '/';
+
             void this._router.navigateByUrl(returnUrl);
           } else {
             this.isGetUserPending = false;
@@ -88,8 +100,11 @@ export class LoginPageComponent implements OnInit {
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
+
           this._alertService.showErrorAlert(error.message);
+
           this._progressBarService.hideProgressBar();
+
           this.isGetUserPending = false;
         });
     }

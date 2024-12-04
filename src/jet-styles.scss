@@ -284,7 +284,7 @@ $theme-dark: mat.define-dark-theme(
 // );
 
 // Mixins
-@mixin jet-material-overrides {
+@mixin jet-overrides {
   // Button
   --mdc-filled-button-label-text-tracking: normal;
   --mdc-outlined-button-label-text-tracking: normal;
@@ -322,8 +322,8 @@ body {
   // Material 3 Default Typography Hierarchy
   // @include mat.typography-hierarchy($theme-default);
 
-  // Material 2 Overrides
-  @include jet-material-overrides;
+  // Jet Overrides
+  @include jet-overrides;
 
   &.jet-font-noto-sans-arabic {
     // Material 2 Additional Typography and Hierarchy
@@ -366,8 +366,8 @@ body {
 
     // @include mat.typography-hierarchy($override-theme);
 
-    // Material 2 Overrides
-    @include jet-material-overrides;
+    // Jet Overrides
+    @include jet-overrides;
   }
 
   &.jet-theme-dark {
@@ -385,8 +385,8 @@ body {
     @include mat.toolbar-color($theme-dark);
     @include mat.tooltip-color($theme-dark);
 
-    // Material 2 Overrides
-    @include jet-material-overrides;
+    // Jet Overrides
+    @include jet-overrides;
   }
 
   .mat-sidenav-container {
