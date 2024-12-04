@@ -33,9 +33,14 @@
   font-weight: normal;
   letter-spacing: normal;
   line-height: 1;
+  text-rendering: optimizeLegibility;
   text-transform: none;
   white-space: nowrap;
   word-wrap: normal;
+
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
