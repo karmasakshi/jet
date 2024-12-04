@@ -77,7 +77,7 @@
           "builder": "@ngx-env/builder:extract-i18n"
         },
         "test": {
-          "builder": "@ngx-env/builder:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
@@ -106,6 +106,6 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@angular-eslint/schematics"]
+    "schematicCollections": ["angular-eslint"]
   }
 }
