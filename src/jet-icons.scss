@@ -9,18 +9,18 @@
 }
 
 .material-symbols-rounded {
+  direction: ltr;
   display: inline-block;
   font-family: 'Material Symbols Rounded';
   font-size: 24px;
   font-style: normal;
+  font-variation-settings: 'FILL' 1;
   font-weight: normal;
   letter-spacing: normal;
   line-height: 1;
+  text-rendering: optimizeLegibility;
   text-transform: none;
   white-space: nowrap;
   word-wrap: normal;
-  direction: ltr;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  font-variation-settings: 'FILL' 1;
 }
