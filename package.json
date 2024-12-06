@@ -55,7 +55,7 @@
     "@jsverse/transloco-keys-manager": "^6.0.0",
     "@ngx-env/builder": "^18.0.2",
     "@types/jasmine": "^5.1.5",
-    "angular-eslint": "^19.0.0",
+    "angular-eslint": "^19.0.1",
     "eslint": "^9.16.0",
     "husky": "^9.1.7",
     "jasmine-core": "^5.5.0",
