@@ -514,6 +514,10 @@ body {
   }
 }
 
+.mat-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
 .mat-mdc-card {
   .mdc-card__actions {
     gap: 8px;
