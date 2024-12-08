@@ -30,42 +30,6 @@ $typography-noto-sans-arabic: mat.define-typography-config(
 // );
 
 // Material 2 Palettes
-$palette-amber: mat.define-palette(
-  (
-    50: #fff8e1,
-    100: #ffecb5,
-    200: #ffe083,
-    300: #ffd451,
-    400: #ffca2c,
-    500: #ffc107,
-    600: #ffbb06,
-    700: #ffb305,
-    800: #ffab04,
-    900: #ff9e02,
-    A100: #ffffff,
-    A200: #fffaf2,
-    A400: #ffe4bf,
-    A700: #ffd9a6,
-    contrast: (
-      50: #000000,
-      100: #000000,
-      200: #000000,
-      300: #000000,
-      400: #000000,
-      500: #000000,
-      600: #000000,
-      700: #000000,
-      800: #000000,
-      900: #000000,
-      A100: #000000,
-      A200: #000000,
-      A400: #000000,
-      A700: #000000,
-    ),
-  ),
-  500
-);
-
 $palette-brown: mat.define-palette(
   (
     50: #eeebe9,
@@ -238,7 +202,7 @@ $theme-default: mat.define-light-theme(
   (
     color: (
       primary: $palette-brown,
-      accent: $palette-amber,
+      accent: mat.define-palette(mat.$amber-palette),
       warn: mat.define-palette(mat.$red-palette),
     ),
     density: 0,
@@ -265,7 +229,7 @@ $theme-default: mat.define-light-theme(
 $theme-dark: mat.define-dark-theme(
   (
     color: (
-      primary: $palette-amber,
+      primary: mat.define-palette(mat.$amber-palette),
       accent: $palette-brown,
       warn: mat.define-palette(mat.$red-palette),
     ),
