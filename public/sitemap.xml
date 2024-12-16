@@ -7,15 +7,15 @@
     <lastmod>2024-11-01T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://jet-tau.vercel.app/account</loc>
-    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://jet-tau.vercel.app/login</loc>
     <lastmod>2024-11-01T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://jet-tau.vercel.app/logout</loc>
+    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://jet-tau.vercel.app/profile</loc>
     <lastmod>2024-11-01T00:00:00+00:00</lastmod>
   </url>
   <url>

@@ -7,9 +7,9 @@ export const NAVIGATION_MENU_ITEMS: NavigationMenuItem[] = [
     path: '/',
   },
   {
-    icon: 'account_circle',
-    nameKey: 'account',
-    path: '/account',
+    icon: 'person',
+    nameKey: 'profile',
+    path: '/profile',
   },
   {
     icon: 'settings',

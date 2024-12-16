@@ -5,15 +5,15 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [TranslocoModule, PageComponent],
-  selector: 'jet-account-page',
+  selector: 'jet-profile-page',
   standalone: true,
-  styleUrl: './account-page.component.scss',
-  templateUrl: './account-page.component.html',
+  styleUrl: './profile-page.component.scss',
+  templateUrl: './profile-page.component.html',
 })
-export class AccountPageComponent {
+export class ProfilePageComponent {
   private readonly _loggerService = inject(LoggerService);
 
   public constructor() {
-    this._loggerService.logComponentInitialization('AccountPageComponent');
+    this._loggerService.logComponentInitialization('ProfilePageComponent');
   }
 }

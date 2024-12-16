@@ -1,28 +1,20 @@
 {
   "alerts": {
-    "checking-for-updates": "التحقق من التحديثات...",
-    "downloading-updates": "جاري تنزيل التحديثات...",
-    "no-update-found": "أنت تستخدم أحدث إصدار.",
+    "checking-for-updates": "جارٍ التحقق من التحديثات...",
+    "downloading-updates": "جارٍ تنزيل التحديثات...",
+    "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
     "reload": "إعادة التحميل",
-    "reload-to-update": "إعادة التحميل للتحديث.",
+    "reload-to-update": "أعد التحميل للتحديث.",
     "something-went-wrong": "حدث خطأ ما.",
     "welcome": "مرحباً!"
   },
-  "jet-account-page": {
-    "seo": {
-      "description": "إدارة حسابك.",
-      "keywords": "jet",
-      "title": "الحساب"
-    },
-    "toolbar-title": "الحساب"
-  },
   "jet-app": {
-    "account": "الحساب",
-    "home": "الرئيسية",
+    "home": "الصفحة الرئيسية",
     "login": "تسجيل الدخول",
     "logo": "الشعار",
     "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
     "settings": "الإعدادات",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
@@ -52,13 +44,21 @@
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-not-found-page": {
-    "page-not-found": "لم يتم العثور على الصفحة.",
+    "page-not-found": "الصفحة غير موجودة.",
     "seo": {
-      "description": "لم يتم العثور على الصفحة.",
+      "description": "غير موجودة.",
       "keywords": "jet",
-      "title": "الصفحة غير موجودة"
+      "title": "غير موجودة"
     },
-    "toolbar-title": "الصفحة غير موجودة"
+    "toolbar-title": "غير موجودة"
+  },
+  "jet-profile-page": {
+    "seo": {
+      "description": "الملف الشخصي.",
+      "keywords": "jet",
+      "title": "الملف الشخصي"
+    },
+    "toolbar-title": "الملف الشخصي"
   },
   "jet-settings-page": {
     "arabic": "العربية",
@@ -68,27 +68,27 @@
     "check-for-updates": "التحقق من التحديثات",
     "dark": "داكن",
     "english": "الإنجليزية",
-    "last-checked": "آخر فحص:",
+    "last-checked": "آخر تحقق:",
     "light": "فاتح",
     "reload": "إعادة التحميل",
     "reload-description": "حفظ الإعدادات وإعادة التحميل",
     "reset": "إعادة التعيين",
     "reset-description": "استخدام الإعدادات الافتراضية وإعادة التحميل",
     "seo": {
-      "description": "إدارة إعدادات التطبيق.",
+      "description": "الإعدادات.",
       "keywords": "jet",
       "title": "الإعدادات"
     },
     "toolbar-title": "الإعدادات",
-    "version": "v{{ value }}"
+    "version": "الإصدار {{ value }}"
   },
   "paginator": {
     "first-page": "الصفحة الأولى",
-    "items-per-page": "عناصر لكل صفحة:",
+    "items-per-page": "العناصر لكل صفحة:",
     "last-page": "الصفحة الأخيرة",
     "next-page": "الصفحة التالية",
-    "page": "صفحة {{ current }} / {{ total }}",
-    "page-1-of-1": "صفحة 1 / 1",
+    "page": "الصفحة {{ current }} / {{ total }}",
+    "page-1-of-1": "الصفحة 1 / 1",
     "previous-page": "الصفحة السابقة"
   }
 }

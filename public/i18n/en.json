@@ -9,20 +9,12 @@
     "something-went-wrong": "Something went wrong.",
     "welcome": "Welcome!"
   },
-  "jet-account-page": {
-    "seo": {
-      "description": "Manage your account.",
-      "keywords": "jet",
-      "title": "Account"
-    },
-    "toolbar-title": "Account"
-  },
   "jet-app": {
-    "account": "Account",
     "home": "Home",
     "login": "Login",
     "logo": "Logo",
     "logout": "Logout",
+    "profile": "Profile",
     "settings": "Settings",
     "toggle-navigation-menu": "Toggle Navigation Menu"
   },
@@ -54,11 +46,19 @@
   "jet-not-found-page": {
     "page-not-found": "Page not found.",
     "seo": {
-      "description": "Page not found.",
+      "description": "Not found.",
       "keywords": "jet",
       "title": "Not Found"
     },
     "toolbar-title": "Not Found"
+  },
+  "jet-profile-page": {
+    "seo": {
+      "description": "Profile.",
+      "keywords": "jet",
+      "title": "Profile"
+    },
+    "toolbar-title": "Profile"
   },
   "jet-settings-page": {
     "arabic": "Arabic",
@@ -75,7 +75,7 @@
     "reset": "Reset",
     "reset-description": "Use default settings and reload",
     "seo": {
-      "description": "Manage app settings.",
+      "description": "Settings.",
       "keywords": "jet",
       "title": "Settings"
     },
