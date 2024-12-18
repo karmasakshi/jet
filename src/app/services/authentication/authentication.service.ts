@@ -43,7 +43,7 @@ export class AuthenticationService {
     });
   }
 
-  public logout(): Promise<void> {
+  public signOut(): Promise<void> {
     return new Promise((resolve) => {
       window.setTimeout(() => {
         this._user.set(null);

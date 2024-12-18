@@ -5,13 +5,6 @@ import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authentica
 export const routes: Routes = [
   { component: HomePageComponent, path: '' },
   {
-    loadComponent: () =>
-      import('@jet/components/logout-page/logout-page.component').then(
-        (m) => m.LogoutPageComponent,
-      ),
-    path: 'logout',
-  },
-  {
     canActivate: [isAuthenticatedGuard],
     loadComponent: () =>
       import('@jet/components/profile-page/profile-page.component').then(
@@ -32,6 +25,13 @@ export const routes: Routes = [
         (m) => m.SignInPageComponent,
       ),
     path: 'sign-in',
+  },
+  {
+    loadComponent: () =>
+      import('@jet/components/sign-out-page/sign-out-page.component').then(
+        (m) => m.SignOutPageComponent,
+      ),
+    path: 'sign-out',
   },
   {
     loadComponent: () =>

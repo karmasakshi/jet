@@ -24,7 +24,7 @@ export class AuthenticationServiceMock {
     });
   }
 
-  public logout(): Promise<void> {
+  public signOut(): Promise<void> {
     return new Promise((resolve) => {
       resolve();
     });

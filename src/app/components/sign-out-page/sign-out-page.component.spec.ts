@@ -10,15 +10,15 @@ import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.
 import { StorageService } from '@jet/services/storage/storage.service';
 import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { LogoutPageComponent } from './logout-page.component';
+import { SignOutPageComponent } from './sign-out-page.component';
 
-describe('LogoutPageComponent', () => {
-  let component: LogoutPageComponent;
-  let fixture: ComponentFixture<LogoutPageComponent>;
+describe('SignOutPageComponent', () => {
+  let component: SignOutPageComponent;
+  let fixture: ComponentFixture<SignOutPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), LogoutPageComponent],
+      imports: [TranslocoTestingModule.forRoot({}), SignOutPageComponent],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AuthenticationService, useClass: AuthenticationServiceMock },
@@ -28,7 +28,7 @@ describe('LogoutPageComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LogoutPageComponent);
+    fixture = TestBed.createComponent(SignOutPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
