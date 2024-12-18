@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; base-uri 'self'; connect-src 'self'; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com;"
+          "value": "default-src 'none'; base-uri 'self'; connect-src 'self'; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline';"
         },
         {
           "key": "Cross-Origin-Resource-Policy",
