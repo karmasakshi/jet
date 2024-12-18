@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; prefix: 'jet-login-page'">
+<ng-container *transloco="let t; prefix: 'jet-sign-in-page'">
   <jet-page
     [seoDescription]="t('seo.description')"
     [seoKeywords]="t('seo.keywords')"
@@ -6,14 +6,14 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <button
-      [disabled]="isLoginPending || isGetUserPending"
-      (click)="login()"
+      [disabled]="isSignInPending || isGetUserPending"
+      (click)="signIn()"
       color="primary"
       mat-flat-button
       type="button"
     >
       <mat-icon>login</mat-icon>
-      <span>{{ t('login') }}</span>
+      <span>{{ t('sign-in') }}</span>
     </button>
   </jet-page>
 </ng-container>

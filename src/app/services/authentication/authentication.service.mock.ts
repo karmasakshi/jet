@@ -18,7 +18,7 @@ export class AuthenticationServiceMock {
     });
   }
 
-  public login(): Promise<void> {
+  public signIn(): Promise<void> {
     return new Promise((resolve) => {
       resolve();
     });

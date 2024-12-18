@@ -18,7 +18,7 @@ export const isAuthenticatedGuard: CanActivateFn = (
   if (authenticationService.user() !== null) {
     return true;
   } else {
-    return router.createUrlTree(['/login'], {
+    return router.createUrlTree(['/sign-in'], {
       queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
     });
   }

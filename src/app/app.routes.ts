@@ -6,13 +6,6 @@ export const routes: Routes = [
   { component: HomePageComponent, path: '' },
   {
     loadComponent: () =>
-      import('@jet/components/login-page/login-page.component').then(
-        (m) => m.LoginPageComponent,
-      ),
-    path: 'login',
-  },
-  {
-    loadComponent: () =>
       import('@jet/components/logout-page/logout-page.component').then(
         (m) => m.LogoutPageComponent,
       ),
@@ -32,6 +25,13 @@ export const routes: Routes = [
         (m) => m.SettingsPageComponent,
       ),
     path: 'settings',
+  },
+  {
+    loadComponent: () =>
+      import('@jet/components/sign-in-page/sign-in-page.component').then(
+        (m) => m.SignInPageComponent,
+      ),
+    path: 'sign-in',
   },
   {
     loadComponent: () =>

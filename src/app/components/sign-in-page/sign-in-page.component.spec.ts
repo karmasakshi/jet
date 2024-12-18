@@ -9,15 +9,15 @@ import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { LoginPageComponent } from './login-page.component';
+import { SignInPageComponent } from './sign-in-page.component';
 
-describe('LoginPageComponent', () => {
-  let component: LoginPageComponent;
-  let fixture: ComponentFixture<LoginPageComponent>;
+describe('SignInPageComponent', () => {
+  let component: SignInPageComponent;
+  let fixture: ComponentFixture<SignInPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), LoginPageComponent],
+      imports: [TranslocoTestingModule.forRoot({}), SignInPageComponent],
       providers: [
         { provide: ActivatedRoute, useValue: {} },
         { provide: AlertService, useClass: AlertServiceMock },
@@ -27,7 +27,7 @@ describe('LoginPageComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginPageComponent);
+    fixture = TestBed.createComponent(SignInPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

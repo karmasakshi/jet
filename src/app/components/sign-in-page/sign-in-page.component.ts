@@ -13,12 +13,12 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [MatButtonModule, MatIconModule, TranslocoModule, PageComponent],
-  selector: 'jet-login-page',
+  selector: 'jet-sign-in-page',
   standalone: true,
-  styleUrl: './login-page.component.scss',
-  templateUrl: './login-page.component.html',
+  styleUrl: './sign-in-page.component.scss',
+  templateUrl: './sign-in-page.component.html',
 })
-export class LoginPageComponent implements OnInit {
+export class SignInPageComponent implements OnInit {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -28,28 +28,28 @@ export class LoginPageComponent implements OnInit {
   private readonly _translocoService = inject(TranslocoService);
 
   public isGetUserPending: boolean;
-  public isLoginPending: boolean;
+  public isSignInPending: boolean;
 
   public constructor() {
     this.isGetUserPending = false;
 
-    this.isLoginPending = false;
+    this.isSignInPending = false;
 
-    this._loggerService.logComponentInitialization('LoginPageComponent');
+    this._loggerService.logComponentInitialization('SignInPageComponent');
   }
 
   public ngOnInit(): void {
     this._getUser();
   }
 
-  public login(): void {
-    if (!this.isLoginPending) {
-      this.isLoginPending = true;
+  public signIn(): void {
+    if (!this.isSignInPending) {
+      this.isSignInPending = true;
 
       this._progressBarService.showProgressBar();
 
       this._authenticationService
-        .login()
+        .signIn()
         .then((): void => {
           const returnUrl =
             this._activatedRoute.snapshot.queryParamMap.get(
@@ -67,7 +67,7 @@ export class LoginPageComponent implements OnInit {
 
           this._progressBarService.hideProgressBar();
 
-          this.isLoginPending = false;
+          this.isSignInPending = false;
         });
     }
   }

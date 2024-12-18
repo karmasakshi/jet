@@ -34,7 +34,7 @@ export class AuthenticationService {
     });
   }
 
-  public login(): Promise<void> {
+  public signIn(): Promise<void> {
     return new Promise((resolve) => {
       window.setTimeout(() => {
         this._user.set({});
