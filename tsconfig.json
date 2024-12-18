@@ -36,7 +36,6 @@
       "@jet/guards/*": ["src/app/guards/*"],
       "@jet/interfaces/*": ["src/app/interfaces/*"],
       "@jet/services/*": ["src/app/services/*"],
-      "@jet/tokens/*": ["src/app/tokens/*"],
       "@jet/types/*": ["src/app/types/*"]
     }
   },

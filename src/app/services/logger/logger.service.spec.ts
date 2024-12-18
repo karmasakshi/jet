@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { IS_LOGGING_ENABLED } from '@jet/tokens/is-logging-enabled.token';
 import { LoggerService } from './logger.service';
 
 describe('LoggerService', () => {
@@ -7,7 +6,7 @@ describe('LoggerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: IS_LOGGING_ENABLED, useValue: false }],
+      providers: [],
     });
     service = TestBed.inject(LoggerService);
   });

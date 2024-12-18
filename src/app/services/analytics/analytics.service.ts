@@ -1,15 +1,18 @@
 import { Injectable, inject } from '@angular/core';
-import { IS_ANALYTICS_ENABLED } from '@jet/tokens/is-analytics-enabled.token';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnalyticsService {
-  private readonly _isAnalyticsEnabled = inject(IS_ANALYTICS_ENABLED);
   private readonly _loggerService = inject(LoggerService);
 
+  private readonly _isAnalyticsEnabled: boolean;
+
   public constructor() {
+    this._isAnalyticsEnabled =
+      import.meta.env.NG_APP_IS_ANALYTICS_ENABLED === 'true';
+
     this._loggerService.logServiceInitialization('AnalyticsService');
   }
 
