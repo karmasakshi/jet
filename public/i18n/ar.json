@@ -11,11 +11,11 @@
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",
-    "login": "تسجيل الدخول",
     "logo": "الشعار",
-    "logout": "تسجيل الخروج",
     "profile": "الملف الشخصي",
     "settings": "الإعدادات",
+    "sign-in": "تسجيل الدخول",
+    "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-home-page": {
@@ -25,23 +25,6 @@
       "title": "Jet"
     },
     "toolbar-title": "Jet"
-  },
-  "jet-login-page": {
-    "login": "تسجيل الدخول",
-    "seo": {
-      "description": "تسجيل الدخول.",
-      "keywords": "jet",
-      "title": "تسجيل الدخول"
-    },
-    "toolbar-title": "تسجيل الدخول"
-  },
-  "jet-logout-page": {
-    "seo": {
-      "description": "تسجيل الخروج.",
-      "keywords": "jet",
-      "title": "تسجيل الخروج"
-    },
-    "toolbar-title": "تسجيل الخروج"
   },
   "jet-not-found-page": {
     "page-not-found": "الصفحة غير موجودة.",
@@ -59,6 +42,14 @@
       "title": "الملف الشخصي"
     },
     "toolbar-title": "الملف الشخصي"
+  },
+  "jet-reset-password-page": {
+    "seo": {
+      "description": "إعادة تعيين كلمة المرور.",
+      "keywords": "jet",
+      "title": "إعادة تعيين كلمة المرور"
+    },
+    "toolbar-title": "إعادة تعيين كلمة المرور"
   },
   "jet-settings-page": {
     "arabic": "العربية",
@@ -81,6 +72,31 @@
     },
     "toolbar-title": "الإعدادات",
     "version": "الإصدار {{ value }}"
+  },
+  "jet-sign-in-page": {
+    "seo": {
+      "description": "تسجيل الدخول.",
+      "keywords": "jet",
+      "title": "تسجيل الدخول"
+    },
+    "sign-in": "تسجيل الدخول",
+    "toolbar-title": "تسجيل الدخول"
+  },
+  "jet-sign-out-page": {
+    "seo": {
+      "description": "تسجيل الخروج.",
+      "keywords": "jet",
+      "title": "تسجيل الخروج"
+    },
+    "toolbar-title": "تسجيل الخروج"
+  },
+  "jet-sign-up-page": {
+    "seo": {
+      "description": "إنشاء حساب.",
+      "keywords": "jet",
+      "title": "إنشاء حساب"
+    },
+    "toolbar-title": "إنشاء حساب"
   },
   "paginator": {
     "first-page": "الصفحة الأولى",

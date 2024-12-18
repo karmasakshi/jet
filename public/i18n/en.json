@@ -11,11 +11,11 @@
   },
   "jet-app": {
     "home": "Home",
-    "login": "Login",
     "logo": "Logo",
-    "logout": "Logout",
     "profile": "Profile",
     "settings": "Settings",
+    "sign-in": "Sign In",
+    "sign-out": "Sign Out",
     "toggle-navigation-menu": "Toggle Navigation Menu"
   },
   "jet-home-page": {
@@ -25,23 +25,6 @@
       "title": "Jet"
     },
     "toolbar-title": "Jet"
-  },
-  "jet-login-page": {
-    "login": "Login",
-    "seo": {
-      "description": "Login.",
-      "keywords": "jet",
-      "title": "Login"
-    },
-    "toolbar-title": "Login"
-  },
-  "jet-logout-page": {
-    "seo": {
-      "description": "Logout.",
-      "keywords": "jet",
-      "title": "Logout"
-    },
-    "toolbar-title": "Logout"
   },
   "jet-not-found-page": {
     "page-not-found": "Page not found.",
@@ -59,6 +42,14 @@
       "title": "Profile"
     },
     "toolbar-title": "Profile"
+  },
+  "jet-reset-password-page": {
+    "seo": {
+      "description": "Reset password.",
+      "keywords": "jet",
+      "title": "Reset Password"
+    },
+    "toolbar-title": "Reset Password"
   },
   "jet-settings-page": {
     "arabic": "Arabic",
@@ -81,6 +72,31 @@
     },
     "toolbar-title": "Settings",
     "version": "v{{ value }}"
+  },
+  "jet-sign-in-page": {
+    "seo": {
+      "description": "Sign in.",
+      "keywords": "jet",
+      "title": "Sign In"
+    },
+    "sign-in": "Sign In",
+    "toolbar-title": "Sign In"
+  },
+  "jet-sign-out-page": {
+    "seo": {
+      "description": "Sign out.",
+      "keywords": "jet",
+      "title": "Sign Out"
+    },
+    "toolbar-title": "Sign Out"
+  },
+  "jet-sign-up-page": {
+    "seo": {
+      "description": "Sign up.",
+      "keywords": "jet",
+      "title": "Sign Up"
+    },
+    "toolbar-title": "Sign Up"
   },
   "paginator": {
     "first-page": "First Page",

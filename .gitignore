@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 # Environment
-.env
-.env.*
+.env*
+!.env.example
