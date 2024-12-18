@@ -14,6 +14,13 @@ export const routes: Routes = [
   },
   {
     loadComponent: () =>
+      import(
+        '@jet/components/reset-password-page/reset-password-page.component'
+      ).then((m) => m.ResetPasswordPageComponent),
+    path: 'reset-password',
+  },
+  {
+    loadComponent: () =>
       import('@jet/components/settings-page/settings-page.component').then(
         (m) => m.SettingsPageComponent,
       ),
