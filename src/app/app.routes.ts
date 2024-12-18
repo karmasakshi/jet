@@ -35,6 +35,13 @@ export const routes: Routes = [
   },
   {
     loadComponent: () =>
+      import('@jet/components/sign-up-page/sign-up-page.component').then(
+        (m) => m.SignUpPageComponent,
+      ),
+    path: 'sign-up',
+  },
+  {
+    loadComponent: () =>
       import('@jet/components/not-found-page/not-found-page.component').then(
         (m) => m.NotFoundPageComponent,
       ),
