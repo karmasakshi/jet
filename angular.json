@@ -42,8 +42,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all",
@@ -67,10 +67,12 @@
               "buildTarget": "jet:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {}
         },
         "extract-i18n": {
-          "builder": "@ngx-env/builder:extract-i18n"
+          "builder": "@ngx-env/builder:extract-i18n",
+          "options": {}
         },
         "test": {
           "builder": "@ngx-env/builder:karma",
@@ -85,7 +87,8 @@
               }
             ],
             "styles": ["src/jet-m3.scss", "src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "builderMode": "browser"
           }
         },
         "lint": {
