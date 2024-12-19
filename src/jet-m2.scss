@@ -353,11 +353,11 @@ body {
     @include jet-overrides;
   }
 
-  .mat-sidenav-container {
+  .jet-sidenav-container {
     &[dir='ltr'] {
       --mat-sidenav-container-width: calc(240px + env(safe-area-inset-left));
 
-      .mat-sidenav {
+      .jet-sidenav {
         .jet-sidenav-toolbar,
         .jet-sidenav-content {
           padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
@@ -398,7 +398,7 @@ body {
     &[dir='rtl'] {
       --mat-sidenav-container-width: calc(240px + env(safe-area-inset-right));
 
-      .mat-sidenav {
+      .jet-sidenav {
         .jet-sidenav-toolbar,
         .jet-sidenav-content {
           padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
@@ -436,7 +436,7 @@ body {
       }
     }
 
-    .mat-sidenav {
+    .jet-sidenav {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
 
