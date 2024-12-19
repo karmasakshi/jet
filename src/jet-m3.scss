@@ -116,7 +116,7 @@ body {
           }
         }
 
-        .mat-mdc-tab-nav-bar {
+        .jet-tab-nav-bar {
           .mat-mdc-tab-header-pagination-before {
             padding-left: calc(env(safe-area-inset-left) + 4px);
           }
@@ -161,7 +161,7 @@ body {
           }
         }
 
-        .mat-mdc-tab-nav-bar {
+        .jet-tab-nav-bar {
           .mat-mdc-tab-header-pagination-before {
             padding-right: calc(env(safe-area-inset-right) + 4px);
           }
@@ -177,13 +177,13 @@ body {
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
 
       .jet-sidenav-toolbar {
+        justify-content: center;
+
         @include mat.toolbar-overrides(
           (
             container-background-color: var(--mat-sys-surface-container-low),
           )
         );
-
-        justify-content: center;
       }
     }
 
@@ -199,7 +199,7 @@ body {
         position: relative;
       }
 
-      .mat-mdc-tab-nav-bar {
+      .jet-tab-nav-bar {
         bottom: 0;
         left: 0;
         position: fixed;
