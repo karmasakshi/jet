@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/karmasakshi/jet/compare/v1.37.0...v2.0.0) (2024-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **general:** move to material 3
+
+### Features
+
+* **general:** move to material 3 ([c123e7e](https://github.com/karmasakshi/jet/commit/c123e7eb9931cc854a073cf665fddd157aa2c40b))
+
 ## [1.37.0](https://github.com/karmasakshi/jet/compare/v1.36.0...v1.37.0) (2024-12-16)
 
 
