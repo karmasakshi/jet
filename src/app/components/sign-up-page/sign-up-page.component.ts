@@ -6,7 +6,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-sign-up-page',
-  standalone: true,
   styleUrl: './sign-up-page.component.scss',
   templateUrl: './sign-up-page.component.html',
 })

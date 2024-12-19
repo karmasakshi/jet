@@ -10,7 +10,6 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 
 @Directive({
   selector: '[jetAnalytics]',
-  standalone: true,
 })
 export class AnalyticsDirective {
   private readonly _analyticsService = inject(AnalyticsService);

@@ -6,7 +6,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-not-found-page',
-  standalone: true,
   styleUrl: './not-found-page.component.scss',
   templateUrl: './not-found-page.component.html',
 })

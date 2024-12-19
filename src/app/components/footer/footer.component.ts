@@ -5,7 +5,6 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   imports: [TranslocoModule],
   selector: 'jet-footer',
-  standalone: true,
   styleUrl: './footer.component.scss',
   templateUrl: './footer.component.html',
 })

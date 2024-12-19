@@ -14,7 +14,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [MatButtonModule, MatIconModule, TranslocoModule, PageComponent],
   selector: 'jet-sign-in-page',
-  standalone: true,
   styleUrl: './sign-in-page.component.scss',
   templateUrl: './sign-in-page.component.html',
 })

@@ -10,7 +10,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-sign-out-page',
-  standalone: true,
   styleUrl: './sign-out-page.component.scss',
   templateUrl: './sign-out-page.component.html',
 })

@@ -6,7 +6,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-home-page',
-  standalone: true,
   styleUrl: './home-page.component.scss',
   templateUrl: './home-page.component.html',
 })

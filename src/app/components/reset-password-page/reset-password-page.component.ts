@@ -6,7 +6,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-reset-password-page',
-  standalone: true,
   styleUrl: './reset-password-page.component.scss',
   templateUrl: './reset-password-page.component.html',
 })

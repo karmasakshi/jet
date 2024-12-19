@@ -74,7 +74,6 @@ import { FooterComponent } from '../footer/footer.component';
     FooterComponent,
   ],
   selector: 'jet-app',
-  standalone: true,
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })

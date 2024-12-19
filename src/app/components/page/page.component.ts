@@ -12,7 +12,6 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
 @Component({
   imports: [],
   selector: 'jet-page',
-  standalone: true,
   styleUrl: './page.component.scss',
   templateUrl: './page.component.html',
 })

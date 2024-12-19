@@ -30,7 +30,6 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-settings-page',
-  standalone: true,
   styleUrl: './settings-page.component.scss',
   templateUrl: './settings-page.component.html',
 })
