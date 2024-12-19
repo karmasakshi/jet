@@ -4,19 +4,19 @@ export const THEME_OPTIONS: ThemeOption[] = [
   {
     icon: 'contrast',
     nameKey: 'automatic',
-    themeColor: '',
+    themeColor: null,
     value: 'automatic',
   },
   {
     icon: 'light_mode',
     nameKey: 'light',
-    themeColor: '#fafafa',
+    themeColor: '#f9faf4',
     value: 'light',
   },
   {
     icon: 'dark_mode',
     nameKey: 'dark',
-    themeColor: '#303030',
+    themeColor: '#111411',
     value: 'dark',
   },
 ];

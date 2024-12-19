@@ -1,8 +1,5 @@
 <ng-container *transloco="let t; prefix: 'jet-app'">
-  <mat-sidenav-container
-    class="mat-typography"
-    [dir]="languageOption().directionality"
-  >
+  <mat-sidenav-container [dir]="languageOption().directionality">
     <mat-sidenav
       #sidenav
       [mode]="isSmallViewport ? 'over' : 'side'"
