@@ -98,7 +98,7 @@ body {
       }
 
       .jet-content {
-        .jet-sidenav-content-toolbar {
+        .jet-content-toolbar {
           padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
 
           &.jet-sidenav-closed {
@@ -143,7 +143,7 @@ body {
       }
 
       .jet-content {
-        .jet-sidenav-content-toolbar {
+        .jet-content-toolbar {
           padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
 
           &.jet-sidenav-closed {
@@ -177,12 +177,13 @@ body {
       padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
 
       .jet-sidenav-toolbar {
-        background-color: inherit;
-        justify-content: center;
-      }
+        @include mat.toolbar-overrides(
+          (
+            container-background-color: var(--mat-sys-surface-container-low),
+          )
+        );
 
-      &.mat-drawer-side {
-        border: unset;
+        justify-content: center;
       }
     }
 
@@ -193,8 +194,7 @@ body {
       min-height: 100vh;
       padding-top: env(safe-area-inset-top);
 
-      .jet-sidenav-content-toolbar {
-        background-color: inherit;
+      .jet-content-toolbar {
         overflow-x: auto;
         position: relative;
       }
