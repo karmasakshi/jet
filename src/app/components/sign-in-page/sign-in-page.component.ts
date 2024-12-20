@@ -215,6 +215,10 @@ export class SignInPageComponent implements OnInit {
 
               this._progressBarService.hideProgressBar();
             } else {
+              this._alertService.showAlert(
+                this._translocoService.translate('alerts.welcome'),
+              );
+
               const returnUrl =
                 this._activatedRoute.snapshot.queryParamMap.get(
                   QueryParam.ReturnUrl,
