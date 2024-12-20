@@ -47,11 +47,25 @@
             <mat-form-field>
               <mat-label>{{ t('password') }}</mat-label>
               <input
+                [type]="isPasswordHidden ? 'password' : 'text'"
                 formControlName="password"
                 matInput
                 required
-                type="password"
               />
+              <button
+                [disabled]="signInFormGroup.controls.password.disabled"
+                [matTooltip]="
+                  isPasswordHidden ? t('show-password') : t('hide-password')
+                "
+                (click)="isPasswordHidden = !isPasswordHidden"
+                mat-icon-button
+                matSuffix
+                type="button"
+              >
+                <mat-icon>{{
+                  isPasswordHidden ? 'visibility_off' : 'visibility'
+                }}</mat-icon>
+              </button>
             </mat-form-field>
           </form>
         </mat-card-content>
@@ -106,6 +120,7 @@
             "
             (click)="signInWithOauth('google')"
             mat-stroked-button
+            type="button"
           >
             <mat-icon>login</mat-icon>
             <span>{{ t('sign-in-with-google') }}</span>

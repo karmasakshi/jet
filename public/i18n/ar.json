@@ -80,12 +80,14 @@
   "jet-sign-in-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
+    "hide-password": "إخفاء كلمة المرور",
     "password": "كلمة المرور",
     "seo": {
       "description": "تسجيل الدخول.",
       "keywords": "jet",
       "title": "تسجيل الدخول"
     },
+    "show-password": "إظهار كلمة المرور",
     "sign-in": "تسجيل الدخول",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",

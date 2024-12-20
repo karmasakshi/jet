@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { AlertService } from '@jet/services/alert/alert.service';
@@ -34,6 +35,7 @@ import { PageComponent } from '../page/page.component';
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
+    MatTooltipModule,
     RouterLink,
     TranslocoModule,
     PageComponent,
@@ -53,6 +55,7 @@ export class SignInPageComponent implements OnInit {
   private readonly _translocoService = inject(TranslocoService);
 
   public isGetUserPending: boolean;
+  public isPasswordHidden: boolean;
   public isSignInWithEmailAndPasswordPending: boolean;
   public isSignInWithOauthPending: boolean;
   public signInFormGroup: FormGroup<{
@@ -62,6 +65,8 @@ export class SignInPageComponent implements OnInit {
 
   public constructor() {
     this.isGetUserPending = false;
+
+    this.isPasswordHidden = true;
 
     this.isSignInWithEmailAndPasswordPending = false;
 

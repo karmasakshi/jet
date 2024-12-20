@@ -362,6 +362,11 @@ body {
 
 .mat-mdc-form-field {
   width: 100%;
+
+  .mat-mdc-form-field-icon-suffix,
+  [dir='rtl'] .mat-mdc-form-field-icon-prefix {
+    padding: 0 4px;
+  }
 }
 
 .mat-mdc-snack-bar-container {

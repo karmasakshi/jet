@@ -12,6 +12,7 @@ import { AnalyticsDirective } from './analytics.directive';
       jetAnalytics
       jetAnalyticsEventData="eventData"
       jetAnalyticsEventName="eventName"
+      type="button"
     >
       Click Me
     </button>

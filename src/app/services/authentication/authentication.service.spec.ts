@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { AuthenticationService } from './authentication.service';
@@ -8,7 +9,10 @@ describe('AuthenticationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
+      providers: [
+        { provide: ActivatedRoute, useValue: {} },
+        { provide: LoggerService, useClass: LoggerServiceMock },
+      ],
     });
     service = TestBed.inject(AuthenticationService);
   });
