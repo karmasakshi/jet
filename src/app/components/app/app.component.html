@@ -99,7 +99,9 @@
           </a>
         }
         <div style="width: 8px"></div>
-        <span>{{ toolbarTitle() }}</span>
+        <span style="font: var(--mat-sys-title-medium)">{{
+          toolbarTitle()
+        }}</span>
         <div style="flex: 1"></div>
         @if (user() !== null) {
           <a
