@@ -78,12 +78,17 @@
     "version": "الإصدار {{ value }}"
   },
   "jet-sign-in-page": {
+    "clear": "مسح",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
     "seo": {
       "description": "تسجيل الدخول.",
       "keywords": "jet",
       "title": "تسجيل الدخول"
     },
     "sign-in": "تسجيل الدخول",
+    "sign-in-with-google": "تسجيل الدخول باستخدام Google",
+    "sign-up": "إنشاء حساب",
     "toolbar-title": "تسجيل الدخول"
   },
   "jet-sign-out-page": {

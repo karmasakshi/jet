@@ -54,11 +54,15 @@ export class AuthenticationService {
     return this._supabaseClient.auth.getSession();
   }
 
+  public getUser() {
+    return this._supabaseClient.auth.getUser();
+  }
+
   public resetPassword(email: string) {
     return this._supabaseClient.auth.resetPasswordForEmail(email);
   }
 
-  public signInWithOAuth(
+  public signInWithOauth(
     provider: Provider = 'google',
   ): Promise<OAuthResponse> {
     const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
@@ -72,7 +76,7 @@ export class AuthenticationService {
     }
 
     return this._supabaseClient.auth.signInWithOAuth({
-      options: { redirectTo },
+      options: { redirectTo }, // Allow redirect to http://localhost:4200/login*
       provider,
     });
   }
