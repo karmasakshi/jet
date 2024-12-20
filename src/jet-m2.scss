@@ -483,8 +483,15 @@ body {
   font-variation-settings: 'FILL' 1;
 }
 
-.mat-mdc-card-actions {
-  gap: 8px;
+.mat-mdc-card {
+  overflow: hidden;
+  .mat-mdc-card-actions {
+    gap: 8px;
+  }
+}
+
+.mat-mdc-form-field {
+  width: 100%;
 }
 
 .mat-mdc-snack-bar-container {

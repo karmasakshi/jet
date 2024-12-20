@@ -5,14 +5,120 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <button
-      [disabled]="isGetSessionPending || isSignInWithEmailAndPasswordPending"
-      (click)="signInWithEmailAndPassword('', '')"
-      mat-flat-button
-      type="button"
+    <div
+      style="
+        margin: 0 auto;
+        max-width: 480px;
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+      "
     >
-      <mat-icon>login</mat-icon>
-      <span>{{ t('sign-in') }}</span>
-    </button>
+      <mat-card>
+        <img
+          [alt]="t('sign-in')"
+          height="240"
+          mat-card-image
+          ngSrc="./sign-in.webp"
+          priority
+          style="background-color: var(--mat-sys-outline); object-fit: cover"
+          width="480"
+        />
+        <mat-card-content style="padding-top: 16px">
+          <form
+            id="sign-in-form"
+            [formGroup]="signInFormGroup"
+            (ngSubmit)="
+              signInWithEmailAndPassword(
+                signInFormGroup.controls.email.value ?? '',
+                signInFormGroup.controls.password.value ?? ''
+              )
+            "
+          >
+            <mat-form-field>
+              <mat-label>{{ t('email') }}</mat-label>
+              <input
+                formControlName="email"
+                matInput
+                required
+                type="email"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('password') }}</mat-label>
+              <input
+                formControlName="password"
+                matInput
+                required
+                type="password"
+              />
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            [disabled]="
+              isGetUserPending ||
+              isSignInWithEmailAndPasswordPending ||
+              signInFormGroup.invalid ||
+              isSignInWithOauthPending
+            "
+            form="sign-in-form"
+            mat-flat-button
+            type="submit"
+          >
+            <mat-icon>login</mat-icon>
+            <span>{{ t('sign-in') }}</span>
+          </button>
+          <button
+            [disabled]="
+              isGetUserPending ||
+              isSignInWithEmailAndPasswordPending ||
+              isSignInWithOauthPending
+            "
+            form="sign-in-form"
+            mat-button
+            type="reset"
+          >
+            <span>{{ t('clear') }}</span>
+          </button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar
+            [ngStyle]="{
+              visibility: isSignInWithEmailAndPasswordPending
+                ? 'visible'
+                : 'hidden',
+            }"
+            mode="indeterminate"
+          ></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+      <mat-card>
+        <mat-card-content
+          style="display: flex; flex-direction: column; gap: 16px"
+        >
+          <button
+            [disabled]="
+              isGetUserPending ||
+              isSignInWithOauthPending ||
+              isSignInWithEmailAndPasswordPending
+            "
+            (click)="signInWithOauth('google')"
+            mat-stroked-button
+          >
+            <mat-icon>login</mat-icon>
+            <span>{{ t('sign-in-with-google') }}</span>
+          </button>
+          <a
+            mat-stroked-button
+            routerLink="/sign-up"
+          >
+            <mat-icon>login</mat-icon>
+            <span>{{ t('sign-up') }}</span>
+          </a>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </jet-page>
 </ng-container>
