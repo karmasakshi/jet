@@ -4,6 +4,7 @@
     "downloading-updates": "Downloading updates...",
     "no-update-found": "You're on the latest version.",
     "ok": "OK",
+    "password-reset-link-sent": "Password reset link sent.",
     "reload": "RELOAD",
     "reload-to-update": "Reload to update.",
     "signed-out-successfully": "Signed out successfully.",
@@ -12,8 +13,8 @@
   },
   "jet-app": {
     "home": "Home",
-    "logo": "Logo",
     "loading": "Loading...",
+    "logo": "Logo",
     "profile": "Profile",
     "settings": "Settings",
     "sign-in": "Sign In",
@@ -46,6 +47,7 @@
     "toolbar-title": "Profile"
   },
   "jet-reset-password-page": {
+    "reset-password": "Reset Password",
     "seo": {
       "description": "Reset password.",
       "keywords": "jet",

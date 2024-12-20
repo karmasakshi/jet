@@ -4,16 +4,17 @@
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
+    "password-reset-link-sent": "تم إرسال رابط إعادة تعيين كلمة المرور.",
     "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للتحديث.",
-    "something-went-wrong": "حدث خطأ ما.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
+    "something-went-wrong": "حدث خطأ ما.",
     "welcome": "مرحباً!"
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",
-    "logo": "الشعار",
     "loading": "جاري التحميل...",
+    "logo": "الشعار",
     "profile": "الملف الشخصي",
     "settings": "الإعدادات",
     "sign-in": "تسجيل الدخول",
@@ -46,6 +47,7 @@
     "toolbar-title": "الملف الشخصي"
   },
   "jet-reset-password-page": {
+    "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
       "description": "إعادة تعيين كلمة المرور.",
       "keywords": "jet",

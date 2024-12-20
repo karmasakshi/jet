@@ -43,16 +43,19 @@ export class SignInPageComponent implements OnInit {
   public signInWithEmailAndPassword(): void {
     if (!this.isSignInWithEmailAndPasswordPending) {
       this.isSignInWithEmailAndPasswordPending = true;
+
       this._progressBarService.showProgressBar();
 
       this._authenticationService
         .signInWithEmailAndPassword('', '')
         .then(({ data, error }): void => {
           this._progressBarService.hideProgressBar();
+
           this.isSignInWithEmailAndPasswordPending = false;
 
           if (error) {
             this._loggerService.logError(error);
+
             this._alertService.showErrorAlert(error.message);
           } else {
             if (data.user === null) {
@@ -73,8 +76,11 @@ export class SignInPageComponent implements OnInit {
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
+
           this._alertService.showErrorAlert(error.message);
+
           this._progressBarService.hideProgressBar();
+
           this.isSignInWithEmailAndPasswordPending = false;
         });
     }
