@@ -5,6 +5,14 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <p>sign-up-page works!</p>
+    <button
+      [disabled]="isGetUserPending || isSignUpPending"
+      (click)="signUp()"
+      mat-flat-button
+      type="button"
+    >
+      <mat-icon>login</mat-icon>
+      <span>{{ t('sign-up') }}</span>
+    </button>
   </jet-page>
 </ng-container>
