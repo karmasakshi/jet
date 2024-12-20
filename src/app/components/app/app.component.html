@@ -100,7 +100,7 @@
         }
         <div style="width: 8px"></div>
         <span style="font: var(--mat-sys-title-medium)">{{
-          toolbarTitle()
+          toolbarTitle() || t('loading')
         }}</span>
         <div style="flex: 1"></div>
         @if (user() !== null) {

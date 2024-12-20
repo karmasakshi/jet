@@ -21,7 +21,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Meta } from '@angular/platform-browser';
 import {
   Event,
+  NavigationCancel,
   NavigationEnd,
+  NavigationError,
+  NavigationStart,
   Router,
   RouterLink,
   RouterOutlet,
@@ -51,7 +54,6 @@ import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
@@ -106,7 +108,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly toolbarTitle: Signal<string>;
+  public readonly toolbarTitle: Signal<string | undefined>;
   public readonly user: Signal<User | null>;
 
   public constructor() {
@@ -173,16 +175,21 @@ export class AppComponent implements OnInit, OnDestroy {
       version: `v${packageJson.version}`,
     });
 
-    this._routerSubscription = this._router.events
-      .pipe(
-        filter(
-          (event: Event): event is NavigationEnd =>
-            event instanceof NavigationEnd,
-        ),
-      )
-      .subscribe((navigationEnd: NavigationEnd): void => {
-        this.activeNavigationMenuItemPath = navigationEnd.url.split('?')[0];
-      });
+    this._routerSubscription = this._router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this._progressBarService.showProgressBar();
+      } else if (
+        event instanceof NavigationCancel ||
+        event instanceof NavigationEnd ||
+        event instanceof NavigationError
+      ) {
+        if (event instanceof NavigationEnd) {
+          this.activeNavigationMenuItemPath = event.url.split('?')[0];
+        }
+
+        this._progressBarService.hideProgressBar();
+      }
+    });
 
     this._serviceWorkerUpdateSubscription =
       this._serviceWorkerService.serviceWorkerUpdateSubscription;

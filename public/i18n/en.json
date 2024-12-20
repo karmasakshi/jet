@@ -13,6 +13,7 @@
   "jet-app": {
     "home": "Home",
     "logo": "Logo",
+    "loading": "Loading...",
     "profile": "Profile",
     "settings": "Settings",
     "sign-in": "Sign In",

@@ -3,13 +3,13 @@
 import { Signal, WritableSignal, signal } from '@angular/core';
 
 export class ToolbarTitleServiceMock {
-  private readonly _toolbarTitle: WritableSignal<string>;
+  private readonly _toolbarTitle: WritableSignal<undefined>;
 
   public constructor() {
-    this._toolbarTitle = signal('');
+    this._toolbarTitle = signal(undefined);
   }
 
-  public get toolbarTitle(): Signal<string> {
+  public get toolbarTitle(): Signal<string | undefined> {
     return this._toolbarTitle.asReadonly();
   }
 
