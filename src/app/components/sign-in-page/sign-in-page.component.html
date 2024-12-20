@@ -7,7 +7,7 @@
   >
     <button
       [disabled]="isGetSessionPending || isSignInWithEmailAndPasswordPending"
-      (click)="signInWithEmailAndPassword()"
+      (click)="signInWithEmailAndPassword('', '')"
       mat-flat-button
       type="button"
     >

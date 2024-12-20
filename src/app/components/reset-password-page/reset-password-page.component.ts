@@ -1,6 +1,15 @@
 import { Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
@@ -10,12 +19,21 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
-  imports: [MatButtonModule, MatIconModule, TranslocoModule, PageComponent],
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    TranslocoModule,
+    PageComponent,
+  ],
   selector: 'jet-reset-password-page',
   styleUrl: './reset-password-page.component.scss',
   templateUrl: './reset-password-page.component.html',
 })
 export class ResetPasswordPageComponent {
+  private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
@@ -24,38 +42,51 @@ export class ResetPasswordPageComponent {
   private readonly _translocoService = inject(TranslocoService);
 
   public isResetPasswordPending: boolean;
+  public resetPasswordFormGroup: FormGroup<{
+    email: FormControl<string | null>;
+  }>;
 
   public constructor() {
     this.isResetPasswordPending = false;
+
+    this.resetPasswordFormGroup = this._formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
 
     this._loggerService.logComponentInitialization(
       'ResetPasswordPageComponent',
     );
   }
 
-  public resetPassword(): void {
+  public resetPassword(email: string): void {
     if (!this.isResetPasswordPending) {
       this.isResetPasswordPending = true;
+
+      this.resetPasswordFormGroup.disable();
 
       this._progressBarService.showProgressBar();
 
       this._authenticationService
-        .resetPassword('')
+        .resetPassword(email)
         .then(({ error }): void => {
-          this._progressBarService.hideProgressBar();
-
-          this.isResetPasswordPending = false;
-
           if (error) {
             this._loggerService.logError(error);
 
             this._alertService.showErrorAlert(error.message);
+
+            this.isResetPasswordPending = false;
+
+            this.resetPasswordFormGroup.enable();
+
+            this._progressBarService.hideProgressBar();
           } else {
             this._alertService.showAlert(
               this._translocoService.translate(
                 'alerts.password-reset-link-sent',
               ),
             );
+
+            this._progressBarService.hideProgressBar();
 
             void this._router.navigateByUrl('/sign-in');
           }
@@ -65,9 +96,11 @@ export class ResetPasswordPageComponent {
 
           this._alertService.showErrorAlert(error.message);
 
-          this._progressBarService.hideProgressBar();
-
           this.isResetPasswordPending = false;
+
+          this.resetPasswordFormGroup.enable();
+
+          this._progressBarService.hideProgressBar();
         });
     }
   }
