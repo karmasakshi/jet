@@ -5,19 +5,44 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { QueryParam } from '@jet/enums/query-param.enum';
 import { User } from '@jet/interfaces/user.interface';
+import {
+  AuthChangeEvent,
+  AuthError,
+  AuthResponse,
+  AuthSession,
+  AuthTokenResponsePassword,
+  OAuthResponse,
+  Provider,
+  SupabaseClient,
+  UserResponse,
+} from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
+import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _supabaseService = inject(SupabaseService);
 
+  private readonly _supabaseClient: SupabaseClient;
   private readonly _user: WritableSignal<User | null>;
 
   public constructor() {
+    this._supabaseClient = this._supabaseService.supabaseClient;
+
     this._user = signal(null);
+
+    this._supabaseClient.auth.onAuthStateChange(
+      (_authChangeEvent: AuthChangeEvent, authSession: AuthSession | null) => {
+        this._user.set(authSession?.user ?? null);
+      },
+    );
 
     this._loggerService.logServiceInitialization('AuthenticationService');
   }
@@ -26,29 +51,45 @@ export class AuthenticationService {
     return this._user.asReadonly();
   }
 
-  public getUser(): Promise<User | null> {
-    return new Promise((resolve) => {
-      window.setTimeout(() => {
-        resolve(this._user());
-      }, 900);
+  public getUser(): Promise<UserResponse> {
+    return this._supabaseClient.auth.getUser();
+  }
+
+  public resetPassword(email: string) {
+    return this._supabaseClient.auth.resetPasswordForEmail(email);
+  }
+
+  public signInWithOAuth(
+    provider: Provider = 'google',
+  ): Promise<OAuthResponse> {
+    const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
+      QueryParam.ReturnUrl,
+    );
+
+    let redirectTo = `${window.location.protocol}//${window.location.host}/sign-in`;
+
+    if (returnUrl !== null) {
+      redirectTo += '?' + new URLSearchParams({ returnUrl }).toString();
+    }
+
+    return this._supabaseClient.auth.signInWithOAuth({
+      options: { redirectTo },
+      provider,
     });
   }
 
-  public signIn(): Promise<void> {
-    return new Promise((resolve) => {
-      window.setTimeout(() => {
-        this._user.set({});
-        resolve();
-      }, 900);
-    });
+  public signInWithEmailAndPassword(
+    email: string,
+    password: string,
+  ): Promise<AuthTokenResponsePassword> {
+    return this._supabaseClient.auth.signInWithPassword({ email, password });
   }
 
-  public signOut(): Promise<void> {
-    return new Promise((resolve) => {
-      window.setTimeout(() => {
-        this._user.set(null);
-        resolve();
-      }, 900);
-    });
+  public signOut(): Promise<{ error: AuthError | null }> {
+    return this._supabaseClient.auth.signOut();
+  }
+
+  public signUp(email: string, password: string): Promise<AuthResponse> {
+    return this._supabaseClient.auth.signUp({ email, password });
   }
 }

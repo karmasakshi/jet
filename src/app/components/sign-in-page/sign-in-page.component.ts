@@ -3,7 +3,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
-import { User } from '@jet/interfaces/user.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -27,12 +26,12 @@ export class SignInPageComponent implements OnInit {
   private readonly _translocoService = inject(TranslocoService);
 
   public isGetUserPending: boolean;
-  public isSignInPending: boolean;
+  public isSignInWithEmailAndPasswordPending: boolean;
 
   public constructor() {
     this.isGetUserPending = false;
 
-    this.isSignInPending = false;
+    this.isSignInWithEmailAndPasswordPending = false;
 
     this._loggerService.logComponentInitialization('SignInPageComponent');
   }
@@ -41,32 +40,42 @@ export class SignInPageComponent implements OnInit {
     this._getUser();
   }
 
-  public signIn(): void {
-    if (!this.isSignInPending) {
-      this.isSignInPending = true;
-
+  public signInWithEmailAndPassword(): void {
+    if (!this.isSignInWithEmailAndPasswordPending) {
+      this.isSignInWithEmailAndPasswordPending = true;
       this._progressBarService.showProgressBar();
 
       this._authenticationService
-        .signIn()
-        .then((): void => {
-          const returnUrl =
-            this._activatedRoute.snapshot.queryParamMap.get(
-              QueryParam.ReturnUrl,
-            ) ?? '/';
-
+        .signInWithEmailAndPassword('', '')
+        .then(({ data, error }): void => {
           this._progressBarService.hideProgressBar();
+          this.isSignInWithEmailAndPasswordPending = false;
 
-          void this._router.navigateByUrl(returnUrl);
+          if (error) {
+            this._loggerService.logError(error);
+            this._alertService.showErrorAlert(error.message);
+          } else {
+            if (data.user === null) {
+              this._alertService.showErrorAlert();
+            } else {
+              this._alertService.showAlert(
+                this._translocoService.translate('alerts.welcome'),
+              );
+
+              const returnUrl =
+                this._activatedRoute.snapshot.queryParamMap.get(
+                  QueryParam.ReturnUrl,
+                ) ?? '/';
+
+              void this._router.navigateByUrl(returnUrl);
+            }
+          }
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
-
-          this._alertService.showErrorAlert();
-
+          this._alertService.showErrorAlert(error.message);
           this._progressBarService.hideProgressBar();
-
-          this.isSignInPending = false;
+          this.isSignInWithEmailAndPasswordPending = false;
         });
     }
   }
@@ -74,36 +83,34 @@ export class SignInPageComponent implements OnInit {
   private _getUser(): void {
     if (!this.isGetUserPending) {
       this.isGetUserPending = true;
-
       this._progressBarService.showProgressBar({ mode: 'query' });
 
       this._authenticationService
         .getUser()
-        .then((user: User | null): void => {
+        .then(({ data, error }): void => {
           this._progressBarService.hideProgressBar();
+          this.isGetUserPending = false;
 
-          if (user !== null) {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.welcome'),
-            );
-
-            const returnUrl =
-              this._activatedRoute.snapshot.queryParamMap.get(
-                QueryParam.ReturnUrl,
-              ) ?? '/';
-
-            void this._router.navigateByUrl(returnUrl);
+          if (error) {
+            this._loggerService.logError(error);
+            // this._alertService.showErrorAlert(error.message);
           } else {
-            this.isGetUserPending = false;
+            if (data.user === null) {
+              this._alertService.showErrorAlert();
+            } else {
+              const returnUrl =
+                this._activatedRoute.snapshot.queryParamMap.get(
+                  QueryParam.ReturnUrl,
+                ) ?? '/';
+
+              void this._router.navigateByUrl(returnUrl);
+            }
           }
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
-
           this._alertService.showErrorAlert(error.message);
-
           this._progressBarService.hideProgressBar();
-
           this.isGetUserPending = false;
         });
     }

@@ -7,6 +7,7 @@
     "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للتحديث.",
     "something-went-wrong": "حدث خطأ ما.",
+    "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "welcome": "مرحباً!"
   },
   "jet-app": {
@@ -96,6 +97,7 @@
       "keywords": "jet",
       "title": "إنشاء حساب"
     },
+    "sign-up": "إنشاء حساب",
     "toolbar-title": "إنشاء حساب"
   },
   "paginator": {

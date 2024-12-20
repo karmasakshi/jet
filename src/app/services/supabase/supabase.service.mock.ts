@@ -1,6 +1,6 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-export class SupabaseService {
+export class SupabaseServiceMock {
   private readonly _supabaseClient: SupabaseClient;
 
   public constructor() {

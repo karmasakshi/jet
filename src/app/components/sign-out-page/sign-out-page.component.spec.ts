@@ -7,8 +7,6 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.service.mock';
-import { StorageService } from '@jet/services/storage/storage.service';
-import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { SignOutPageComponent } from './sign-out-page.component';
 
@@ -24,7 +22,6 @@ describe('SignOutPageComponent', () => {
         { provide: AuthenticationService, useClass: AuthenticationServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
-        { provide: StorageService, useClass: StorageServiceMock },
       ],
     }).compileComponents();
 

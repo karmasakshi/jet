@@ -6,6 +6,7 @@
     "ok": "OK",
     "reload": "RELOAD",
     "reload-to-update": "Reload to update.",
+    "signed-out-successfully": "Signed out successfully.",
     "something-went-wrong": "Something went wrong.",
     "welcome": "Welcome!"
   },
@@ -96,6 +97,7 @@
       "keywords": "jet",
       "title": "Sign Up"
     },
+    "sign-up": "Sign Up",
     "toolbar-title": "Sign Up"
   },
   "paginator": {
