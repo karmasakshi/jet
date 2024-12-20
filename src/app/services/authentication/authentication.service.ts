@@ -17,7 +17,6 @@ import {
   OAuthResponse,
   Provider,
   SupabaseClient,
-  UserResponse,
 } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
@@ -51,8 +50,8 @@ export class AuthenticationService {
     return this._user.asReadonly();
   }
 
-  public getUser(): Promise<UserResponse> {
-    return this._supabaseClient.auth.getUser();
+  public getSession() {
+    return this._supabaseClient.auth.getSession();
   }
 
   public resetPassword(email: string) {

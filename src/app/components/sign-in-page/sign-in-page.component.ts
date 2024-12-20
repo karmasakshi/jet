@@ -25,11 +25,11 @@ export class SignInPageComponent implements OnInit {
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _translocoService = inject(TranslocoService);
 
-  public isGetUserPending: boolean;
+  public isGetSessionPending: boolean;
   public isSignInWithEmailAndPasswordPending: boolean;
 
   public constructor() {
-    this.isGetUserPending = false;
+    this.isGetSessionPending = false;
 
     this.isSignInWithEmailAndPasswordPending = false;
 
@@ -37,7 +37,7 @@ export class SignInPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._getUser();
+    this._getSession();
   }
 
   public signInWithEmailAndPassword(): void {
@@ -80,24 +80,25 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  private _getUser(): void {
-    if (!this.isGetUserPending) {
-      this.isGetUserPending = true;
+  private _getSession(): void {
+    if (!this.isGetSessionPending) {
+      this.isGetSessionPending = true;
+
       this._progressBarService.showProgressBar({ mode: 'query' });
 
       this._authenticationService
-        .getUser()
+        .getSession()
         .then(({ data, error }): void => {
           this._progressBarService.hideProgressBar();
-          this.isGetUserPending = false;
+
+          this.isGetSessionPending = false;
 
           if (error) {
             this._loggerService.logError(error);
+
             // this._alertService.showErrorAlert(error.message);
           } else {
-            if (data.user === null) {
-              this._alertService.showErrorAlert();
-            } else {
+            if (data.session !== null) {
               const returnUrl =
                 this._activatedRoute.snapshot.queryParamMap.get(
                   QueryParam.ReturnUrl,
@@ -109,9 +110,12 @@ export class SignInPageComponent implements OnInit {
         })
         .catch((error: Error): void => {
           this._loggerService.logError(error);
+
           this._alertService.showErrorAlert(error.message);
+
           this._progressBarService.hideProgressBar();
-          this.isGetUserPending = false;
+
+          this.isGetSessionPending = false;
         });
     }
   }

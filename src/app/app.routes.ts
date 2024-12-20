@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
 import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
+import { isNotAuthenticatedGuard } from './guards/is-not-authenticated/is-not-authenticated.guard';
 
 export const routes: Routes = [
   { component: HomePageComponent, path: '' },
@@ -13,6 +14,7 @@ export const routes: Routes = [
     path: 'profile',
   },
   {
+    canActivate: [isNotAuthenticatedGuard],
     loadComponent: () =>
       import(
         '@jet/components/reset-password-page/reset-password-page.component'
@@ -41,6 +43,7 @@ export const routes: Routes = [
     path: 'sign-out',
   },
   {
+    canActivate: [isNotAuthenticatedGuard],
     loadComponent: () =>
       import('@jet/components/sign-up-page/sign-up-page.component').then(
         (m) => m.SignUpPageComponent,

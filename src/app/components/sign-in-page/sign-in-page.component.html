@@ -6,7 +6,7 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <button
-      [disabled]="isGetUserPending || isSignInWithEmailAndPasswordPending"
+      [disabled]="isGetSessionPending || isSignInWithEmailAndPasswordPending"
       (click)="signInWithEmailAndPassword()"
       mat-flat-button
       type="button"

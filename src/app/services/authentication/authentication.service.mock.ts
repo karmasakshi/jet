@@ -12,7 +12,7 @@ export class AuthenticationServiceMock {
     return this._user.asReadonly();
   }
 
-  public getUser(): Promise<User | null> {
+  public getSession() {
     return new Promise((resolve) => {
       resolve(null);
     });

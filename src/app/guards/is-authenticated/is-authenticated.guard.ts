@@ -4,6 +4,7 @@ import {
   GuardResult,
   MaybeAsync,
   Router,
+  UrlTree,
 } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
@@ -15,11 +16,20 @@ export const isAuthenticatedGuard: CanActivateFn = (
   const router = inject(Router);
   const authenticationService = inject(AuthenticationService);
 
-  if (authenticationService.user() !== null) {
-    return true;
-  } else {
-    return router.createUrlTree(['/sign-in'], {
-      queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
+  return authenticationService
+    .getSession()
+    .then(({ data, error }): boolean | UrlTree => {
+      if (error || data.session === null) {
+        return router.createUrlTree(['/sign-in'], {
+          queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
+        });
+      } else {
+        return true;
+      }
+    })
+    .catch((): UrlTree => {
+      return router.createUrlTree(['/sign-in'], {
+        queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
+      });
     });
-  }
 };
