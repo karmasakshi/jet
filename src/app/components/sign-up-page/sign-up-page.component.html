@@ -5,14 +5,109 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <button
-      [disabled]="isSignUpPending"
-      (click)="signUp('', '')"
-      mat-flat-button
-      type="button"
+    <div
+      style="
+        margin: 0 auto;
+        max-width: 480px;
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+      "
     >
-      <mat-icon>login</mat-icon>
-      <span>{{ t('sign-up') }}</span>
-    </button>
+      <mat-card>
+        <img
+          [alt]="t('sign-up')"
+          height="240"
+          mat-card-image
+          ngSrc="./sign-up.webp"
+          priority
+          style="background-color: var(--mat-sys-outline); object-fit: cover"
+          width="480"
+        />
+        <mat-card-content style="padding-top: 16px">
+          <form
+            id="sign-up-form"
+            [formGroup]="signUpFormGroup"
+            (ngSubmit)="
+              signUp(
+                signUpFormGroup.controls.email.value ?? '',
+                signUpFormGroup.controls.password.value ?? ''
+              )
+            "
+          >
+            <mat-form-field>
+              <mat-label>{{ t('email') }}</mat-label>
+              <input
+                formControlName="email"
+                matInput
+                required
+                type="email"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('password') }}</mat-label>
+              <input
+                [type]="isPasswordHidden ? 'password' : 'text'"
+                formControlName="password"
+                matInput
+                required
+              />
+              <button
+                [disabled]="signUpFormGroup.controls.password.disabled"
+                [matTooltip]="t('toggle-password-visibility')"
+                (click)="isPasswordHidden = !isPasswordHidden"
+                mat-icon-button
+                matSuffix
+                type="button"
+              >
+                <mat-icon>{{
+                  isPasswordHidden ? 'visibility_off' : 'visibility'
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            [disabled]="isSignUpPending || signUpFormGroup.invalid"
+            form="sign-up-form"
+            mat-flat-button
+            type="submit"
+          >
+            <mat-icon>login</mat-icon>
+            <span>{{ t('sign-up') }}</span>
+          </button>
+          <button
+            [disabled]="isSignUpPending"
+            form="sign-up-form"
+            mat-button
+            type="reset"
+          >
+            <span>{{ t('clear') }}</span>
+          </button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar
+            [ngStyle]="{
+              visibility: isSignUpPending ? 'visible' : 'hidden',
+            }"
+            mode="indeterminate"
+          ></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+      <mat-card>
+        <mat-card-content
+          style="display: flex; flex-direction: column; gap: 16px"
+        >
+          <a
+            mat-stroked-button
+            routerLink="/sign-in"
+          >
+            <mat-icon>login</mat-icon>
+            <span>{{ t('sign-in') }}</span>
+          </a>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </jet-page>
 </ng-container>

@@ -80,7 +80,6 @@
   "jet-sign-in-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
-    "hide-password": "إخفاء كلمة المرور",
     "password": "كلمة المرور",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
@@ -88,10 +87,10 @@
       "keywords": "jet",
       "title": "تسجيل الدخول"
     },
-    "show-password": "إظهار كلمة المرور",
     "sign-in": "تسجيل الدخول",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",
+    "toggle-password-visibility": "تبديل رؤية كلمة المرور",
     "toolbar-title": "تسجيل الدخول"
   },
   "jet-sign-out-page": {
@@ -103,12 +102,17 @@
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-sign-up-page": {
+    "clear": "مسح",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
     "seo": {
       "description": "إنشاء حساب.",
       "keywords": "jet",
       "title": "إنشاء حساب"
     },
+    "sign-in": "تسجيل الدخول",
     "sign-up": "إنشاء حساب",
+    "toggle-password-visibility": "تبديل رؤية كلمة المرور",
     "toolbar-title": "إنشاء حساب"
   },
   "paginator": {

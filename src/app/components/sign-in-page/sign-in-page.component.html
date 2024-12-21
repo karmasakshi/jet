@@ -54,9 +54,7 @@
               />
               <button
                 [disabled]="signInFormGroup.controls.password.disabled"
-                [matTooltip]="
-                  isPasswordHidden ? t('show-password') : t('hide-password')
-                "
+                [matTooltip]="t('toggle-password-visibility')"
                 (click)="isPasswordHidden = !isPasswordHidden"
                 mat-icon-button
                 matSuffix

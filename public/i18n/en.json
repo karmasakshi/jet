@@ -18,8 +18,8 @@
     "profile": "Profile",
     "settings": "Settings",
     "sign-in": "Sign in",
-    "sign-out": "Sign Out",
-    "toggle-navigation-menu": "Toggle Navigation Menu"
+    "sign-out": "Sign out",
+    "toggle-navigation-menu": "Toggle navigation menu"
   },
   "jet-home-page": {
     "seo": {
@@ -80,7 +80,6 @@
   "jet-sign-in-page": {
     "clear": "Clear",
     "email": "Email",
-    "hide-password": "Hide password",
     "password": "Password",
     "reset-password": "Reset password",
     "seo": {
@@ -88,10 +87,10 @@
       "keywords": "jet",
       "title": "Sign In"
     },
-    "show-password": "Show password",
     "sign-in": "Sign in",
     "sign-in-with-google": "Sign in with Google",
     "sign-up": "Sign up",
+    "toggle-password-visibility": "Toggle password visibility",
     "toolbar-title": "Sign In"
   },
   "jet-sign-out-page": {
@@ -103,12 +102,17 @@
     "toolbar-title": "Sign Out"
   },
   "jet-sign-up-page": {
+    "clear": "Clear",
+    "email": "Email",
+    "password": "Password",
     "seo": {
       "description": "Sign up.",
       "keywords": "jet",
       "title": "Sign Up"
     },
-    "sign-up": "Sign Up",
+    "sign-in": "Sign in",
+    "sign-up": "Sign up",
+    "toggle-password-visibility": "Toggle password visibility",
     "toolbar-title": "Sign Up"
   },
   "paginator": {

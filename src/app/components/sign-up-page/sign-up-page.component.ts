@@ -1,8 +1,10 @@
+import { NgOptimizedImage, NgStyle } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,22 +12,29 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
+    NgOptimizedImage,
+    NgStyle,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    RouterLink,
     TranslocoModule,
     PageComponent,
   ],
@@ -40,9 +49,9 @@ export class SignUpPageComponent {
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
   private readonly _translocoService = inject(TranslocoService);
 
+  public isPasswordHidden: boolean;
   public isSignUpPending: boolean;
   public signUpFormGroup: FormGroup<{
     email: FormControl<string | null>;
@@ -50,6 +59,8 @@ export class SignUpPageComponent {
   }>;
 
   public constructor() {
+    this.isPasswordHidden = true;
+
     this.isSignUpPending = false;
 
     this.signUpFormGroup = this._formBuilder.group({
@@ -61,12 +72,10 @@ export class SignUpPageComponent {
   }
 
   public signUp(email: string, password: string): void {
-    if (!this.isSignUpPending) {
+    if (!this.isSignUpPending && this.signUpFormGroup.valid) {
       this.isSignUpPending = true;
 
       this.signUpFormGroup.disable();
-
-      this._progressBarService.showProgressBar();
 
       this._authenticationService
         .signUp(email, password)
@@ -79,8 +88,6 @@ export class SignUpPageComponent {
             this.isSignUpPending = false;
 
             this.signUpFormGroup.enable();
-
-            this._progressBarService.hideProgressBar();
           } else {
             if (data.user === null) {
               this._alertService.showErrorAlert();
@@ -88,8 +95,6 @@ export class SignUpPageComponent {
               this.isSignUpPending = false;
 
               this.signUpFormGroup.enable();
-
-              this._progressBarService.hideProgressBar();
             } else {
               this._alertService.showAlert(
                 this._translocoService.translate('alerts.welcome'),
@@ -99,8 +104,6 @@ export class SignUpPageComponent {
                 this._activatedRoute.snapshot.queryParamMap.get(
                   QueryParam.ReturnUrl,
                 ) ?? '/';
-
-              this._progressBarService.hideProgressBar();
 
               void this._router.navigateByUrl(returnUrl);
             }
@@ -114,8 +117,6 @@ export class SignUpPageComponent {
           this.isSignUpPending = false;
 
           this.signUpFormGroup.enable();
-
-          this._progressBarService.hideProgressBar();
         });
     }
   }
