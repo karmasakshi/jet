@@ -191,6 +191,7 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
+  color-scheme: light dark;
   font-family: $jet-font-default;
   margin: 0;
 
