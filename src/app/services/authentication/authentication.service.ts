@@ -54,10 +54,6 @@ export class AuthenticationService {
     return this._supabaseClient.auth.getSession();
   }
 
-  public getUser() {
-    return this._supabaseClient.auth.getUser();
-  }
-
   public resetPassword(email: string) {
     return this._supabaseClient.auth.resetPasswordForEmail(email);
   }

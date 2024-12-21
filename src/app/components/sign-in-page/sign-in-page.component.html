@@ -70,7 +70,7 @@
         <mat-card-actions>
           <button
             [disabled]="
-              isGetUserPending ||
+              isGetSessionPending ||
               isSignInPending ||
               signInFormGroup.invalid ||
               isSignInWithOauthPending
@@ -84,7 +84,7 @@
           </button>
           <button
             [disabled]="
-              isGetUserPending || isSignInPending || isSignInWithOauthPending
+              isGetSessionPending || isSignInPending || isSignInWithOauthPending
             "
             form="sign-in-form"
             mat-button
@@ -95,7 +95,7 @@
           <div style="flex: 1"></div>
           <a
             [disabled]="
-              isGetUserPending || isSignInPending || isSignInWithOauthPending
+              isGetSessionPending || isSignInPending || isSignInWithOauthPending
             "
             mat-button
             routerLink="/reset-password"
@@ -118,7 +118,7 @@
         >
           <button
             [disabled]="
-              isGetUserPending || isSignInWithOauthPending || isSignInPending
+              isGetSessionPending || isSignInWithOauthPending || isSignInPending
             "
             (click)="signInWithOauth('google')"
             mat-stroked-button

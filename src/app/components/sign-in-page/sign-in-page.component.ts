@@ -54,7 +54,7 @@ export class SignInPageComponent implements OnInit {
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _translocoService = inject(TranslocoService);
 
-  public isGetUserPending: boolean;
+  public isGetSessionPending: boolean;
   public isPasswordHidden: boolean;
   public isSignInPending: boolean;
   public isSignInWithOauthPending: boolean;
@@ -64,7 +64,7 @@ export class SignInPageComponent implements OnInit {
   }>;
 
   public constructor() {
-    this.isGetUserPending = false;
+    this.isGetSessionPending = false;
 
     this.isPasswordHidden = true;
 
@@ -81,13 +81,13 @@ export class SignInPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._getUser();
+    this._getSession();
   }
 
   public signIn(email: string, password: string): void {
     if (
       !this.isSignInPending &&
-      !this.isGetUserPending &&
+      !this.isGetSessionPending &&
       !this.isSignInWithOauthPending &&
       this.signInFormGroup.valid
     ) {
@@ -142,7 +142,7 @@ export class SignInPageComponent implements OnInit {
   public signInWithOauth(oauthProvider: AvailableOauthProviders): void {
     if (
       !this.isSignInWithOauthPending &&
-      !this.isGetUserPending &&
+      !this.isGetSessionPending &&
       !this.isSignInPending
     ) {
       this.isSignInWithOauthPending = true;
@@ -180,47 +180,47 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  private _getUser(): void {
-    if (!this.isGetUserPending) {
-      this.isGetUserPending = true;
+  private _getSession(): void {
+    if (!this.isGetSessionPending) {
+      this.isGetSessionPending = true;
 
       this.signInFormGroup.disable();
 
       this._progressBarService.showProgressBar({ mode: 'query' });
 
       this._authenticationService
-        .getUser()
+        .getSession()
         .then(({ data, error }): void => {
           if (error) {
             this._loggerService.logError(error);
 
-            // this._alertService.showErrorAlert(error.message);
+            this._alertService.showErrorAlert(error.message);
 
-            this.isGetUserPending = false;
+            this.isGetSessionPending = false;
 
             this.signInFormGroup.enable();
 
             this._progressBarService.hideProgressBar();
           } else {
-            if (data.user === null) {
-              this.isGetUserPending = false;
+            if (data.session === null) {
+              this.isGetSessionPending = false;
 
               this.signInFormGroup.enable();
 
               this._progressBarService.hideProgressBar();
             } else {
-              this._alertService.showAlert(
-                this._translocoService.translate('alerts.welcome'),
-              );
+              setTimeout(() => {
+                this._alertService.showAlert(
+                  this._translocoService.translate('alerts.welcome'),
+                );
 
-              const returnUrl =
-                this._activatedRoute.snapshot.queryParamMap.get(
-                  QueryParam.ReturnUrl,
-                ) ?? '/';
+                const returnUrl =
+                  this._activatedRoute.snapshot.queryParamMap.get(
+                    QueryParam.ReturnUrl,
+                  ) ?? '/';
 
-              this._progressBarService.hideProgressBar();
-
-              void this._router.navigateByUrl(returnUrl);
+                void this._router.navigateByUrl(returnUrl);
+              }, 900);
             }
           }
         })
@@ -229,7 +229,7 @@ export class SignInPageComponent implements OnInit {
 
           this._alertService.showErrorAlert(error.message);
 
-          this.isGetUserPending = false;
+          this.isGetSessionPending = false;
 
           this.signInFormGroup.enable();
 

@@ -57,8 +57,6 @@ export class SignOutPageComponent implements OnInit {
               ),
             );
 
-            this._progressBarService.hideProgressBar();
-
             void this._router.navigateByUrl('/');
           }
         })

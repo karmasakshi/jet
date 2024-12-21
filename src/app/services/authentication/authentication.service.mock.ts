@@ -18,12 +18,6 @@ export class AuthenticationServiceMock {
     });
   }
 
-  public getUser() {
-    return new Promise((resolve) => {
-      resolve(null);
-    });
-  }
-
   public signIn(): Promise<void> {
     return new Promise((resolve) => {
       resolve();
