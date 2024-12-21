@@ -257,16 +257,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _setThemeClass(nextThemeOption: ThemeOption): void {
-    if (nextThemeOption.value !== this._activeTheme) {
-      const systemThemeOption =
-        nextThemeOption.value === 'automatic'
-          ? this._getSystemThemeOption()
-          : nextThemeOption;
+    if (nextThemeOption.value === 'automatic') {
+      nextThemeOption = this._getSystemThemeOption();
+    }
 
+    if (nextThemeOption.value !== this._activeTheme) {
       this._activeTheme = nextThemeOption.value;
 
       this._meta.updateTag({
-        content: systemThemeOption.themeColor ?? '',
+        content: nextThemeOption.themeColor ?? '',
         name: 'theme-color',
       });
 
