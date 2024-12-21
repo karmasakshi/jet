@@ -19,13 +19,11 @@ export const isAuthenticatedGuard: CanActivateFn = (
   return authenticationService
     .getSession()
     .then(({ data, error }): boolean | UrlTree => {
-      if (error || data.session === null) {
-        return router.createUrlTree(['/sign-in'], {
-          queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
-        });
-      } else {
-        return true;
-      }
+      return error || data.session === null
+        ? router.createUrlTree(['/sign-in'], {
+            queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
+          })
+        : true;
     })
     .catch((): UrlTree => {
       return router.createUrlTree(['/sign-in'], {

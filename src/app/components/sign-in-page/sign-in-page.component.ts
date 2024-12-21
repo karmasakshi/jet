@@ -164,12 +164,6 @@ export class SignInPageComponent implements OnInit {
             this.signInFormGroup.enable();
 
             this._progressBarService.hideProgressBar();
-          } else {
-            this.isSignInWithOauthPending = false;
-
-            this.signInFormGroup.enable();
-
-            this._progressBarService.hideProgressBar();
           }
         })
         .catch((error: Error): void => {

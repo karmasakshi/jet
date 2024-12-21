@@ -69,7 +69,7 @@ export class AuthenticationService {
       QueryParam.ReturnUrl,
     );
 
-    let redirectTo = `${window.location.protocol}//${window.location.host}/sign-in`;
+    let redirectTo = `${window.location.origin}/sign-in`;
 
     if (returnUrl !== null) {
       redirectTo += '?' + new URLSearchParams({ returnUrl }).toString();

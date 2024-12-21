@@ -16,11 +16,9 @@ export const isNotAuthenticatedGuard: CanActivateFn =
     return authenticationService
       .getSession()
       .then(({ data, error }): boolean | UrlTree => {
-        if (error || data.session === null) {
-          return true;
-        } else {
-          return router.createUrlTree(['/']);
-        }
+        return error || data.session === null
+          ? true
+          : router.createUrlTree(['/']);
       })
       .catch((): UrlTree => {
         return router.createUrlTree(['/']);
