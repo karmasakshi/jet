@@ -479,8 +479,12 @@ body {
   }
 }
 
-.mat-icon {
+.material-symbols-rounded {
   font-variation-settings: 'FILL' 1;
+}
+
+.mat-mdc-button-base {
+  white-space: nowrap;
 }
 
 .mat-mdc-card {
@@ -493,9 +497,11 @@ body {
 .mat-mdc-form-field {
   width: 100%;
 
+  .mat-mdc-form-field-icon-prefix,
+  [dir='rtl'] .mat-mdc-form-field-icon-suffix,
   .mat-mdc-form-field-icon-suffix,
   [dir='rtl'] .mat-mdc-form-field-icon-prefix {
-    padding: 0 8px;
+    padding: 0 8px !important;
   }
 }
 

@@ -76,7 +76,7 @@ export class AuthenticationService {
     }
 
     return this._supabaseClient.auth.signInWithOAuth({
-      options: { redirectTo }, // Allow redirect to http://localhost:4200/login*
+      options: { redirectTo },
       provider,
     });
   }

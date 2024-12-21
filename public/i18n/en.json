@@ -17,7 +17,7 @@
     "logo": "Logo",
     "profile": "Profile",
     "settings": "Settings",
-    "sign-in": "Sign In",
+    "sign-in": "Sign in",
     "sign-out": "Sign Out",
     "toggle-navigation-menu": "Toggle Navigation Menu"
   },
@@ -82,6 +82,7 @@
     "email": "Email",
     "hide-password": "Hide password",
     "password": "Password",
+    "reset-password": "Reset password",
     "seo": {
       "description": "Sign in.",
       "keywords": "jet",
