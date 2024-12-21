@@ -4,12 +4,12 @@
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
-    "password-reset-link-sent": "تم إرسال رابط إعادة تعيين كلمة المرور.",
     "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
-    "welcome": "مرحباً!"
+    "welcome": "مرحباً!",
+    "weve-sent-you-an-email": "لقد أرسلنا لك بريدًا إلكترونيًا."
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",
@@ -47,12 +47,15 @@
     "toolbar-title": "الملف الشخصي"
   },
   "jet-reset-password-page": {
+    "clear": "مسح",
+    "email": "البريد الإلكتروني",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
       "description": "إعادة تعيين كلمة المرور.",
       "keywords": "jet",
       "title": "إعادة تعيين كلمة المرور"
     },
+    "sign-in": "تسجيل الدخول",
     "toolbar-title": "إعادة تعيين كلمة المرور"
   },
   "jet-settings-page": {

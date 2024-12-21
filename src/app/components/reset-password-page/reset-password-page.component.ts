@@ -1,8 +1,10 @@
+import { NgOptimizedImage, NgStyle } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,21 +12,28 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
+    NgOptimizedImage,
+    NgStyle,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    RouterLink,
     TranslocoModule,
     PageComponent,
   ],
@@ -38,7 +47,6 @@ export class ResetPasswordPageComponent {
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
   private readonly _translocoService = inject(TranslocoService);
 
   public isResetPasswordPending: boolean;
@@ -59,12 +67,10 @@ export class ResetPasswordPageComponent {
   }
 
   public resetPassword(email: string): void {
-    if (!this.isResetPasswordPending) {
+    if (!this.isResetPasswordPending && this.resetPasswordFormGroup.valid) {
       this.isResetPasswordPending = true;
 
       this.resetPasswordFormGroup.disable();
-
-      this._progressBarService.showProgressBar();
 
       this._authenticationService
         .resetPassword(email)
@@ -77,16 +83,10 @@ export class ResetPasswordPageComponent {
             this.isResetPasswordPending = false;
 
             this.resetPasswordFormGroup.enable();
-
-            this._progressBarService.hideProgressBar();
           } else {
             this._alertService.showAlert(
-              this._translocoService.translate(
-                'alerts.password-reset-link-sent',
-              ),
+              this._translocoService.translate('alerts.weve-sent-you-an-email'),
             );
-
-            this._progressBarService.hideProgressBar();
 
             void this._router.navigateByUrl('/sign-in');
           }
@@ -99,8 +99,6 @@ export class ResetPasswordPageComponent {
           this.isResetPasswordPending = false;
 
           this.resetPasswordFormGroup.enable();
-
-          this._progressBarService.hideProgressBar();
         });
     }
   }
