@@ -101,7 +101,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
-  private readonly _themeOption: Signal<ThemeOption>;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly isSmallViewport: boolean;
@@ -123,8 +122,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this._routerSubscription = Subscription.EMPTY;
 
     this._serviceWorkerUpdateSubscription = Subscription.EMPTY;
-
-    this._themeOption = this._settingsService.themeOption;
 
     this.activeNavigationMenuItemPath = undefined;
 
@@ -161,7 +158,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     effect(() => {
-      const themeOption: ThemeOption = this._themeOption();
+      const themeOption: ThemeOption = this._settingsService.themeOption();
       untracked(() => {
         this._setThemeClass(themeOption);
       });
@@ -217,18 +214,20 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _setFontClass(nextFont: AvailableFont): void {
-    if (nextFont !== this._activeFont) {
-      this._activeFont = nextFont;
+    if (nextFont === this._activeFont) {
+      return;
+    }
 
-      const prefix = 'jet-font-';
+    this._activeFont = nextFont;
 
-      this._document.body.className = this._document.body.classList.value
-        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-        .trim();
+    const prefix = 'jet-font-';
 
-      if (nextFont !== DEFAULT_FONT) {
-        this._renderer2.addClass(this._document.body, prefix + nextFont);
-      }
+    this._document.body.className = this._document.body.classList.value
+      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+      .trim();
+
+    if (nextFont !== DEFAULT_FONT) {
+      this._renderer2.addClass(this._document.body, prefix + nextFont);
     }
   }
 
@@ -237,51 +236,55 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _setLanguage(nextLanguageOption: LanguageOption): void {
-    if (nextLanguageOption.value !== this._activeLanguage) {
-      this._activeLanguage = nextLanguageOption.value;
-
-      this._renderer2.setAttribute(
-        this._document.body,
-        'dir',
-        nextLanguageOption.directionality,
-      );
-
-      this._renderer2.setAttribute(
-        this._document.documentElement,
-        'lang',
-        nextLanguageOption.value,
-      );
-
-      this._translocoService.setActiveLang(nextLanguageOption.value);
+    if (nextLanguageOption.value === this._activeLanguage) {
+      return;
     }
+
+    this._activeLanguage = nextLanguageOption.value;
+
+    this._renderer2.setAttribute(
+      this._document.body,
+      'dir',
+      nextLanguageOption.directionality,
+    );
+
+    this._renderer2.setAttribute(
+      this._document.documentElement,
+      'lang',
+      nextLanguageOption.value,
+    );
+
+    this._translocoService.setActiveLang(nextLanguageOption.value);
   }
 
   private _setThemeClass(nextThemeOption: ThemeOption): void {
-    if (nextThemeOption.value !== this._activeTheme) {
-      this._activeTheme = nextThemeOption.value;
+    if (nextThemeOption.value === this._activeTheme) {
+      return;
+    }
 
-      const systemThemeOption =
-        nextThemeOption.value === 'automatic'
-          ? this._getSystemThemeOption()
-          : nextThemeOption;
+    this._activeTheme = nextThemeOption.value;
 
-      this._meta.updateTag({
-        content: systemThemeOption.themeColor ?? '',
-        name: 'theme-color',
-      });
+    const systemThemeOption =
+      nextThemeOption.value === 'automatic'
+        ? this._getSystemThemeOption()
+        : nextThemeOption;
 
-      const prefix = 'jet-theme-';
+    this._meta.updateTag({
+      content: systemThemeOption.themeColor ?? '',
+      name: 'theme-color',
+    });
 
-      this._document.body.className = this._document.body.classList.value
-        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-        .trim();
+    const prefix = 'jet-theme-';
 
-      if (nextThemeOption.value !== DEFAULT_THEME) {
-        this._renderer2.addClass(
-          this._document.body,
-          prefix + nextThemeOption.value,
-        );
-      }
+    this._document.body.className = this._document.body.classList.value
+      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+      .trim();
+
+    if (nextThemeOption.value !== DEFAULT_THEME) {
+      this._renderer2.addClass(
+        this._document.body,
+        prefix + nextThemeOption.value,
+      );
     }
   }
 
