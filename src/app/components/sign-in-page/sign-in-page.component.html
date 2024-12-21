@@ -29,7 +29,7 @@
             id="sign-in-form"
             [formGroup]="signInFormGroup"
             (ngSubmit)="
-              signInWithEmailAndPassword(
+              signIn(
                 signInFormGroup.controls.email.value ?? '',
                 signInFormGroup.controls.password.value ?? ''
               )
@@ -73,7 +73,7 @@
           <button
             [disabled]="
               isGetUserPending ||
-              isSignInWithEmailAndPasswordPending ||
+              isSignInPending ||
               signInFormGroup.invalid ||
               isSignInWithOauthPending
             "
@@ -86,9 +86,7 @@
           </button>
           <button
             [disabled]="
-              isGetUserPending ||
-              isSignInWithEmailAndPasswordPending ||
-              isSignInWithOauthPending
+              isGetUserPending || isSignInPending || isSignInWithOauthPending
             "
             form="sign-in-form"
             mat-button
@@ -100,9 +98,7 @@
         <mat-card-footer>
           <mat-progress-bar
             [ngStyle]="{
-              visibility: isSignInWithEmailAndPasswordPending
-                ? 'visible'
-                : 'hidden',
+              visibility: isSignInPending ? 'visible' : 'hidden',
             }"
             mode="indeterminate"
           ></mat-progress-bar>
@@ -114,9 +110,7 @@
         >
           <button
             [disabled]="
-              isGetUserPending ||
-              isSignInWithOauthPending ||
-              isSignInWithEmailAndPasswordPending
+              isGetUserPending || isSignInWithOauthPending || isSignInPending
             "
             (click)="signInWithOauth('google')"
             mat-stroked-button

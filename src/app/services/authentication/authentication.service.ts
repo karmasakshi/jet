@@ -81,7 +81,7 @@ export class AuthenticationService {
     });
   }
 
-  public signInWithEmailAndPassword(
+  public signIn(
     email: string,
     password: string,
   ): Promise<AuthTokenResponsePassword> {

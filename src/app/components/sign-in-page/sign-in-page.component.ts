@@ -56,7 +56,7 @@ export class SignInPageComponent implements OnInit {
 
   public isGetUserPending: boolean;
   public isPasswordHidden: boolean;
-  public isSignInWithEmailAndPasswordPending: boolean;
+  public isSignInPending: boolean;
   public isSignInWithOauthPending: boolean;
   public signInFormGroup: FormGroup<{
     email: FormControl<string | null>;
@@ -68,7 +68,7 @@ export class SignInPageComponent implements OnInit {
 
     this.isPasswordHidden = true;
 
-    this.isSignInWithEmailAndPasswordPending = false;
+    this.isSignInPending = false;
 
     this.isSignInWithOauthPending = false;
 
@@ -84,33 +84,33 @@ export class SignInPageComponent implements OnInit {
     this._getUser();
   }
 
-  public signInWithEmailAndPassword(email: string, password: string): void {
+  public signIn(email: string, password: string): void {
     if (
-      !this.isSignInWithEmailAndPasswordPending &&
+      !this.isSignInPending &&
       !this.isGetUserPending &&
       !this.isSignInWithOauthPending &&
       this.signInFormGroup.valid
     ) {
-      this.isSignInWithEmailAndPasswordPending = true;
+      this.isSignInPending = true;
 
       this.signInFormGroup.disable();
 
       this._authenticationService
-        .signInWithEmailAndPassword(email, password)
+        .signIn(email, password)
         .then(({ data, error }): void => {
           if (error) {
             this._loggerService.logError(error);
 
             this._alertService.showErrorAlert(error.message);
 
-            this.isSignInWithEmailAndPasswordPending = false;
+            this.isSignInPending = false;
 
             this.signInFormGroup.enable();
           } else {
             if (data.user === null) {
               this._alertService.showErrorAlert();
 
-              this.isSignInWithEmailAndPasswordPending = false;
+              this.isSignInPending = false;
 
               this.signInFormGroup.enable();
             } else {
@@ -132,7 +132,7 @@ export class SignInPageComponent implements OnInit {
 
           this._alertService.showErrorAlert(error.message);
 
-          this.isSignInWithEmailAndPasswordPending = false;
+          this.isSignInPending = false;
 
           this.signInFormGroup.enable();
         });
@@ -143,7 +143,7 @@ export class SignInPageComponent implements OnInit {
     if (
       !this.isSignInWithOauthPending &&
       !this.isGetUserPending &&
-      !this.isSignInWithEmailAndPasswordPending
+      !this.isSignInPending
     ) {
       this.isSignInWithOauthPending = true;
 
