@@ -68,7 +68,9 @@ export class AuthenticationService {
     let redirectTo = `${window.location.origin}/sign-in`;
 
     if (returnUrl !== null) {
-      redirectTo += '?' + new URLSearchParams({ returnUrl }).toString();
+      redirectTo +=
+        '?' +
+        new URLSearchParams({ [QueryParam.ReturnUrl]: returnUrl }).toString();
     }
 
     return this._supabaseClient.auth.signInWithOAuth({

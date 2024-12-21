@@ -34,33 +34,18 @@ export class SignOutPageComponent implements OnInit {
   }
 
   private _signOut(): void {
-    if (!this._isSignOutPending) {
-      this._isSignOutPending = true;
+    if (this._isSignOutPending) {
+      return;
+    }
 
-      this._progressBarService.showProgressBar();
+    this._isSignOutPending = true;
 
-      this._authenticationService
-        .signOut()
-        .then(({ error }): void => {
-          if (error) {
-            this._loggerService.logError(error);
+    this._progressBarService.showProgressBar();
 
-            this._alertService.showErrorAlert(error.message);
-
-            this._isSignOutPending = false;
-
-            this._progressBarService.hideProgressBar();
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate(
-                'alerts.signed-out-successfully',
-              ),
-            );
-
-            void this._router.navigateByUrl('/');
-          }
-        })
-        .catch((error: Error): void => {
+    this._authenticationService
+      .signOut()
+      .then(({ error }): void => {
+        if (error) {
           this._loggerService.logError(error);
 
           this._alertService.showErrorAlert(error.message);
@@ -68,7 +53,22 @@ export class SignOutPageComponent implements OnInit {
           this._isSignOutPending = false;
 
           this._progressBarService.hideProgressBar();
-        });
-    }
+        } else {
+          this._alertService.showAlert(
+            this._translocoService.translate('alerts.signed-out-successfully'),
+          );
+
+          void this._router.navigateByUrl('/');
+        }
+      })
+      .catch((error: Error): void => {
+        this._loggerService.logError(error);
+
+        this._alertService.showErrorAlert(error.message);
+
+        this._isSignOutPending = false;
+
+        this._progressBarService.hideProgressBar();
+      });
   }
 }

@@ -67,31 +67,18 @@ export class ResetPasswordPageComponent {
   }
 
   public resetPassword(email: string): void {
-    if (!this.isResetPasswordPending && this.resetPasswordFormGroup.valid) {
-      this.isResetPasswordPending = true;
+    if (this.isResetPasswordPending || this.resetPasswordFormGroup.invalid) {
+      return;
+    }
 
-      this.resetPasswordFormGroup.disable();
+    this.isResetPasswordPending = true;
 
-      this._authenticationService
-        .resetPassword(email)
-        .then(({ error }): void => {
-          if (error) {
-            this._loggerService.logError(error);
+    this.resetPasswordFormGroup.disable();
 
-            this._alertService.showErrorAlert(error.message);
-
-            this.isResetPasswordPending = false;
-
-            this.resetPasswordFormGroup.enable();
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.weve-sent-you-an-email'),
-            );
-
-            void this._router.navigateByUrl('/sign-in');
-          }
-        })
-        .catch((error: Error): void => {
+    this._authenticationService
+      .resetPassword(email)
+      .then(({ error }): void => {
+        if (error) {
           this._loggerService.logError(error);
 
           this._alertService.showErrorAlert(error.message);
@@ -99,7 +86,22 @@ export class ResetPasswordPageComponent {
           this.isResetPasswordPending = false;
 
           this.resetPasswordFormGroup.enable();
-        });
-    }
+        } else {
+          this._alertService.showAlert(
+            this._translocoService.translate('alerts.weve-sent-you-an-email'),
+          );
+
+          void this._router.navigateByUrl('/sign-in');
+        }
+      })
+      .catch((error: Error): void => {
+        this._loggerService.logError(error);
+
+        this._alertService.showErrorAlert(error.message);
+
+        this.isResetPasswordPending = false;
+
+        this.resetPasswordFormGroup.enable();
+      });
   }
 }

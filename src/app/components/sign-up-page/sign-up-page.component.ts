@@ -72,44 +72,18 @@ export class SignUpPageComponent {
   }
 
   public signUp(email: string, password: string): void {
-    if (!this.isSignUpPending && this.signUpFormGroup.valid) {
-      this.isSignUpPending = true;
+    if (this.isSignUpPending || this.signUpFormGroup.invalid) {
+      return;
+    }
 
-      this.signUpFormGroup.disable();
+    this.isSignUpPending = true;
 
-      this._authenticationService
-        .signUp(email, password)
-        .then(({ data, error }): void => {
-          if (error) {
-            this._loggerService.logError(error);
+    this.signUpFormGroup.disable();
 
-            this._alertService.showErrorAlert(error.message);
-
-            this.isSignUpPending = false;
-
-            this.signUpFormGroup.enable();
-          } else {
-            if (data.user === null) {
-              this._alertService.showErrorAlert();
-
-              this.isSignUpPending = false;
-
-              this.signUpFormGroup.enable();
-            } else {
-              this._alertService.showAlert(
-                this._translocoService.translate('alerts.welcome'),
-              );
-
-              const returnUrl =
-                this._activatedRoute.snapshot.queryParamMap.get(
-                  QueryParam.ReturnUrl,
-                ) ?? '/';
-
-              void this._router.navigateByUrl(returnUrl);
-            }
-          }
-        })
-        .catch((error: Error): void => {
+    this._authenticationService
+      .signUp(email, password)
+      .then(({ data, error }): void => {
+        if (error) {
           this._loggerService.logError(error);
 
           this._alertService.showErrorAlert(error.message);
@@ -117,7 +91,35 @@ export class SignUpPageComponent {
           this.isSignUpPending = false;
 
           this.signUpFormGroup.enable();
-        });
-    }
+        } else {
+          if (data.user === null) {
+            this._alertService.showErrorAlert();
+
+            this.isSignUpPending = false;
+
+            this.signUpFormGroup.enable();
+          } else {
+            this._alertService.showAlert(
+              this._translocoService.translate('alerts.welcome'),
+            );
+
+            const returnUrl =
+              this._activatedRoute.snapshot.queryParamMap.get(
+                QueryParam.ReturnUrl,
+              ) ?? '/';
+
+            void this._router.navigateByUrl(returnUrl);
+          }
+        }
+      })
+      .catch((error: Error): void => {
+        this._loggerService.logError(error);
+
+        this._alertService.showErrorAlert(error.message);
+
+        this.isSignUpPending = false;
+
+        this.signUpFormGroup.enable();
+      });
   }
 }

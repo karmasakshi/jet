@@ -59,7 +59,15 @@ export class ServiceWorkerService {
   }
 
   public checkForUpdate(): void {
-    if (!this._isReloadPending) {
+    if (this._isReloadPending) {
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.reload-to-update'),
+        this._translocoService.translate('alerts.reload'),
+        (): void => {
+          window.location.reload();
+        },
+      );
+    } else {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.checking-for-updates'),
       );
@@ -77,14 +85,6 @@ export class ServiceWorkerService {
           this._loggerService.logError(error);
           this._alertService.showErrorAlert(error.message);
         });
-    } else {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.reload-to-update'),
-        this._translocoService.translate('alerts.reload'),
-        (): void => {
-          window.location.reload();
-        },
-      );
     }
   }
 
