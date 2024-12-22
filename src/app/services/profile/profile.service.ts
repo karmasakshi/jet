@@ -36,7 +36,11 @@ export class ProfileService {
     effect(() => {
       const user: User | null = this._authenticationService.user();
       untracked(() => {
-        this.selectProfile(user?.id);
+        if (user === null) {
+          this._profile.set(undefined);
+        } else {
+          this.selectProfile();
+        }
       });
     });
 
@@ -47,15 +51,8 @@ export class ProfileService {
     return this._profile.asReadonly();
   }
 
-  public selectProfile(userId: User['id'] | undefined): void {
-    if (userId === this.profile()?.id) {
-      return;
-    }
-
-    if (userId === undefined) {
-      this._profile.set(undefined);
-      return;
-    }
+  public selectProfile(): void {
+    const userId = this._authenticationService.user()?.id;
 
     this._supabaseClient
       .from(Tables.Profiles)

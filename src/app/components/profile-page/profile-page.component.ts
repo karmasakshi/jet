@@ -108,6 +108,8 @@ export class ProfilePageComponent {
 
           this.profileFormGroup.enable();
         } else {
+          this._profileService.selectProfile();
+
           this._alertService.showAlert(
             this._translocoService.translate(
               'alerts.profile-updated-successfully',
