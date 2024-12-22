@@ -82,16 +82,6 @@
             <mat-icon>login</mat-icon>
             <span>{{ t('sign-in') }}</span>
           </button>
-          <button
-            [disabled]="
-              isGetSessionPending || isSignInPending || isSignInWithOauthPending
-            "
-            form="sign-in-form"
-            mat-button
-            type="reset"
-          >
-            <span>{{ t('clear') }}</span>
-          </button>
           <div style="flex: 1"></div>
           <a
             [disabled]="

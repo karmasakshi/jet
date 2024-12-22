@@ -4,6 +4,7 @@
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
+    "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح.",
     "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
@@ -39,15 +40,21 @@
     "toolbar-title": "غير موجودة"
   },
   "jet-profile-page": {
+    "avatar": "الصورة الشخصية",
+    "characters": "{{ value }} حروف",
+    "created-on": "تم الإنشاء في {{ value }}",
+    "last-updated-on": "آخر تحديث في {{ value }}",
+    "profile": "الملف الشخصي",
     "seo": {
       "description": "الملف الشخصي.",
       "keywords": "jet",
       "title": "الملف الشخصي"
     },
-    "toolbar-title": "الملف الشخصي"
+    "toolbar-title": "الملف الشخصي",
+    "update-profile": "تحديث الملف الشخصي",
+    "username": "اسم المستخدم"
   },
   "jet-reset-password-page": {
-    "clear": "مسح",
     "email": "البريد الإلكتروني",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
@@ -81,7 +88,6 @@
     "version": "الإصدار {{ value }}"
   },
   "jet-sign-in-page": {
-    "clear": "مسح",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
     "reset-password": "إعادة تعيين كلمة المرور",
@@ -105,7 +111,6 @@
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-sign-up-page": {
-    "clear": "مسح",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
     "seo": {

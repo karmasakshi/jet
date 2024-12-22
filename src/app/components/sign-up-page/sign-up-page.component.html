@@ -77,14 +77,6 @@
             <mat-icon>login</mat-icon>
             <span>{{ t('sign-up') }}</span>
           </button>
-          <button
-            [disabled]="isSignUpPending"
-            form="sign-up-form"
-            mat-button
-            type="reset"
-          >
-            <span>{{ t('clear') }}</span>
-          </button>
         </mat-card-actions>
         <mat-card-footer>
           <mat-progress-bar

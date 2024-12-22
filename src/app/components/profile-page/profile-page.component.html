@@ -5,6 +5,116 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <p>profile-page works!</p>
+    @let _profile = profile();
+    @if (_profile) {
+      <div
+        style="
+          margin: 0 auto;
+          max-width: 480px;
+          display: flex;
+          gap: 16px;
+          flex-direction: column;
+        "
+      >
+        <mat-card>
+          <img
+            [alt]="t('profile')"
+            height="240"
+            mat-card-image
+            ngSrc="./profile.webp"
+            priority
+            style="background-color: var(--mat-sys-outline); object-fit: cover"
+            width="480"
+          />
+          <mat-card-content style="text-align: center">
+            <mat-card
+              matRipple
+              style="
+                display: inline-flex;
+                margin: -96px 0 32px;
+                box-shadow: var(--mat-sys-level1);
+              "
+            >
+              <img
+                [alt]="t('avatar')"
+                [ngSrc]="_profile.avatar_url"
+                height="128"
+                mat-card-image
+                style="
+                  background-color: var(--mat-sys-outline);
+                  object-fit: cover;
+                "
+                width="128"
+              />
+            </mat-card>
+            <form
+              id="profile-form"
+              [formGroup]="profileFormGroup"
+              (ngSubmit)="
+                updateProfile({
+                  username: profileFormGroup.controls.username.value ?? '',
+                })
+              "
+            >
+              <mat-form-field>
+                <mat-label>{{ t('username') }}</mat-label>
+                <input
+                  formControlName="username"
+                  matInput
+                  maxlength="30"
+                  minlength="5"
+                  required
+                  type="text"
+                />
+                <mat-hint align="end"
+                  >{{
+                    t('characters', {
+                      value:
+                        profileFormGroup.controls.username.value?.length || 0,
+                    })
+                  }}
+                </mat-hint>
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              [disabled]="
+                isUpdateProfilePending ||
+                profileFormGroup.invalid ||
+                profileFormGroup.pristine
+              "
+              form="profile-form"
+              mat-flat-button
+              type="submit"
+            >
+              <mat-icon>check</mat-icon>
+              <span>{{ t('update-profile') }}</span>
+            </button>
+          </mat-card-actions>
+          <mat-card-footer>
+            <mat-progress-bar
+              [ngStyle]="{
+                visibility: isUpdateProfilePending ? 'visible' : 'hidden',
+              }"
+              mode="indeterminate"
+            ></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+        <mat-card>
+          <mat-card-content style="text-align: center">
+            <small>{{
+              t('last-updated-on', {
+                value: _profile.updated_at | date: 'fullDate',
+              })
+            }}</small>
+            <br />
+            <small>{{
+              t('created-on', { value: _profile.created_at | date: 'fullDate' })
+            }}</small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    }
   </jet-page>
 </ng-container>
