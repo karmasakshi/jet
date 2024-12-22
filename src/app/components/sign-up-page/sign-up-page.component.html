@@ -77,6 +77,15 @@
             <mat-icon>login</mat-icon>
             <span>{{ t('sign-up') }}</span>
           </button>
+          <div style="flex: 1"></div>
+          <a
+            [disabled]="isSignUpPending"
+            mat-button
+            routerLink="/reset-password"
+          >
+            <mat-icon>lock_reset</mat-icon>
+            <span>{{ t('reset-password') }}</span>
+          </a>
         </mat-card-actions>
         <mat-card-footer>
           <mat-progress-bar

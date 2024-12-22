@@ -13,7 +13,7 @@
     "something-went-wrong": "Something went wrong.",
     "upload-successful-saving-to-profile": "Upload successful, saving to profile.",
     "welcome": "Welcome!",
-    "weve-sent-you-an-email": "We've sent you an email."
+    "well-send-an-email": "We'll send an email if an account is found."
   },
   "jet-app": {
     "home": "Home",
@@ -66,6 +66,7 @@
       "title": "Reset Password"
     },
     "sign-in": "Sign in",
+    "sign-up": "Sign up",
     "toolbar-title": "Reset Password"
   },
   "jet-settings-page": {
@@ -116,6 +117,7 @@
   "jet-sign-up-page": {
     "email": "Email",
     "password": "Password",
+    "reset-password": "Reset password",
     "seo": {
       "description": "Sign up.",
       "keywords": "jet",

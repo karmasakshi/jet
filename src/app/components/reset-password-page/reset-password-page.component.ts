@@ -83,7 +83,7 @@ export class ResetPasswordPageComponent {
           this.resetPasswordFormGroup.enable();
         } else {
           this._alertService.showAlert(
-            this._translocoService.translate('alerts.weve-sent-you-an-email'),
+            this._translocoService.translate('alerts.well-send-an-email'),
           );
 
           void this._router.navigateByUrl('/sign-in');

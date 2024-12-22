@@ -4,16 +4,16 @@
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
+    "please-choose-a-smaller-image": "يرجى اختيار صورة حجمها أقل من 1 ميجابايت.",
+    "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
     "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح.",
     "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
-    "please-choose-a-smaller-image": "يرجى اختيار صورة حجمها أقل من 1 ميجابايت.",
-    "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
     "upload-successful-saving-to-profile": "تم التحميل بنجاح، جاري حفظ الصورة في الملف الشخصي.",
     "welcome": "مرحباً!",
-    "weve-sent-you-an-email": "لقد أرسلنا لك بريدًا إلكترونيًا."
+    "well-send-an-email": "سنرسل بريدًا إلكترونيًا إذا تم العثور على حساب."
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",
@@ -66,6 +66,7 @@
       "title": "إعادة تعيين كلمة المرور"
     },
     "sign-in": "تسجيل الدخول",
+    "sign-up": "إنشاء حساب",
     "toolbar-title": "إعادة تعيين كلمة المرور"
   },
   "jet-settings-page": {
@@ -116,6 +117,7 @@
   "jet-sign-up-page": {
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
+    "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
       "description": "إنشاء حساب.",
       "keywords": "jet",
