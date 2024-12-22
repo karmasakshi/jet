@@ -74,7 +74,7 @@ export class AuthenticationService {
     }
 
     return this._supabaseClient.auth.signInWithOAuth({
-      options: { redirectTo },
+      options: { redirectTo, skipBrowserRedirect: true },
       provider,
     });
   }

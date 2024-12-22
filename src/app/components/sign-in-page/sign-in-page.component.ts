@@ -162,12 +162,14 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this.signInFormGroup.disable();
     this._authenticationService
       .signInWithOauth(oauthProvider)
-      .then(({ error }): void => {
+      .then(({ data, error }): void => {
         if (error) {
           this._loggerService.logError(error);
           this._alertService.showErrorAlert(error.message);
           this.isSignInWithOauthPending = false;
           this.signInFormGroup.enable();
+        } else {
+          window.location.href = data.url;
         }
       })
       .catch((error: Error): void => {
@@ -201,18 +203,16 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this.signInFormGroup.enable();
             this._progressBarService.hideProgressBar();
           } else {
-            setTimeout(() => {
-              this._alertService.showAlert(
-                this._translocoService.translate('alerts.welcome'),
-              );
+            this._alertService.showAlert(
+              this._translocoService.translate('alerts.welcome'),
+            );
 
-              const returnUrl =
-                this._activatedRoute.snapshot.queryParamMap.get(
-                  QueryParam.ReturnUrl,
-                ) ?? '/';
+            const returnUrl =
+              this._activatedRoute.snapshot.queryParamMap.get(
+                QueryParam.ReturnUrl,
+              ) ?? '/';
 
-              void this._router.navigateByUrl(returnUrl);
-            });
+            void this._router.navigateByUrl(returnUrl);
           }
         }
       })
