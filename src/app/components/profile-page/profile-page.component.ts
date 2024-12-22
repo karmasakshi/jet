@@ -204,6 +204,10 @@ export class ProfilePageComponent {
         this._loggerService.logError(error);
 
         this._alertService.showErrorAlert(error.message);
+
+        this.isUpdateProfilePending = false;
+
+        this.profileFormGroup.enable();
       });
   }
 }
