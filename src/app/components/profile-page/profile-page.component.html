@@ -100,16 +100,25 @@
           </mat-card-footer>
         </mat-card>
         <mat-card>
-          <mat-card-content style="text-align: center">
-            <small>{{
-              t('last-updated-on', {
-                value: _profile.updated_at | date: 'fullDate',
-              })
-            }}</small>
-            <br />
-            <small>{{
-              t('created-on', { value: _profile.created_at | date: 'fullDate' })
-            }}</small>
+          <mat-card-content
+            style="font: var(--mat-sys-label-small); text-align: center"
+          >
+            <div>
+              <p>
+                {{
+                  t('last-updated-on', {
+                    value: _profile.updated_at | date: 'fullDate',
+                  })
+                }}
+              </p>
+              <p>
+                {{
+                  t('created-on', {
+                    value: _profile.created_at | date: 'fullDate',
+                  })
+                }}
+              </p>
+            </div>
           </mat-card-content>
         </mat-card>
       </div>

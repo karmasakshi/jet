@@ -40,7 +40,7 @@
     "toolbar-title": "Not Found"
   },
   "jet-profile-page": {
-    "avatar": "Avatar'",
+    "avatar": "Avatar",
     "characters": "{{ value }} characters",
     "created-on": "Created on {{ value }}",
     "last-updated-on": "Last updated on {{ value }}",
