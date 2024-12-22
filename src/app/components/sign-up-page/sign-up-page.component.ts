@@ -1,5 +1,5 @@
 import { NgOptimizedImage, NgStyle } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -20,6 +20,10 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import {
+  BindQueryParamsFactory,
+  BindQueryParamsManager,
+} from '@ngneat/bind-query-params';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -42,14 +46,19 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './sign-up-page.component.scss',
   templateUrl: './sign-up-page.component.html',
 })
-export class SignUpPageComponent {
+export class SignUpPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
   private readonly _translocoService = inject(TranslocoService);
+
+  private readonly _bindQueryParamsManager: BindQueryParamsManager<{
+    email: string;
+  }>;
 
   public isPasswordHidden: boolean;
   public isSignUpPending: boolean;
@@ -59,6 +68,10 @@ export class SignUpPageComponent {
   }>;
 
   public constructor() {
+    this._bindQueryParamsManager = this._bindQueryParamsFactory.create([
+      { queryKey: 'email', type: 'string' },
+    ]);
+
     this.isPasswordHidden = true;
 
     this.isSignUpPending = false;
@@ -69,6 +82,14 @@ export class SignUpPageComponent {
     });
 
     this._loggerService.logComponentInitialization('SignUpPageComponent');
+  }
+
+  public ngOnInit(): void {
+    this._bindQueryParamsManager.connect(this.signUpFormGroup);
+  }
+
+  public ngOnDestroy(): void {
+    this._bindQueryParamsManager.destroy();
   }
 
   public signUp(email: string, password: string): void {

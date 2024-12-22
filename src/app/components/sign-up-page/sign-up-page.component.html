@@ -80,6 +80,7 @@
           <div style="flex: 1"></div>
           <a
             [disabled]="isSignUpPending"
+            [queryParams]="{ email: signUpFormGroup.controls.email.value }"
             mat-button
             routerLink="/reset-password"
           >
@@ -101,6 +102,7 @@
           style="display: flex; flex-direction: column; gap: 16px"
         >
           <a
+            [queryParams]="{ email: signUpFormGroup.controls.email.value }"
             mat-stroked-button
             routerLink="/sign-in"
           >

@@ -1,5 +1,5 @@
 import { NgOptimizedImage, NgStyle } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -22,6 +22,10 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { AvailableOauthProviders } from '@jet/types/available-oauth-providers.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import {
+  BindQueryParamsFactory,
+  BindQueryParamsManager,
+} from '@ngneat/bind-query-params';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -44,7 +48,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './sign-in-page.component.scss',
   templateUrl: './sign-in-page.component.html',
 })
-export class SignInPageComponent implements OnInit {
+export class SignInPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
@@ -52,7 +56,12 @@ export class SignInPageComponent implements OnInit {
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
+  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
   private readonly _translocoService = inject(TranslocoService);
+
+  private readonly _bindQueryParamsManager: BindQueryParamsManager<{
+    email: string;
+  }>;
 
   public isGetSessionPending: boolean;
   public isPasswordHidden: boolean;
@@ -64,6 +73,10 @@ export class SignInPageComponent implements OnInit {
   }>;
 
   public constructor() {
+    this._bindQueryParamsManager = this._bindQueryParamsFactory.create([
+      { queryKey: 'email', type: 'string' },
+    ]);
+
     this.isGetSessionPending = false;
 
     this.isPasswordHidden = true;
@@ -81,7 +94,12 @@ export class SignInPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this._bindQueryParamsManager.connect(this.signInFormGroup);
     this._getSession();
+  }
+
+  public ngOnDestroy(): void {
+    this._bindQueryParamsManager.destroy();
   }
 
   public signIn(email: string, password: string): void {

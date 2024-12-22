@@ -87,6 +87,7 @@
             [disabled]="
               isGetSessionPending || isSignInPending || isSignInWithOauthPending
             "
+            [queryParams]="{ email: signInFormGroup.controls.email.value }"
             mat-button
             routerLink="/reset-password"
           >
@@ -124,6 +125,7 @@
             <span>{{ t('sign-in-with-google') }}</span>
           </button>
           <a
+            [queryParams]="{ email: signInFormGroup.controls.email.value }"
             mat-stroked-button
             routerLink="/sign-up"
           >

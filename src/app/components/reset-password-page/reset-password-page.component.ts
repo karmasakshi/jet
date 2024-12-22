@@ -1,5 +1,5 @@
 import { NgOptimizedImage, NgStyle } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -19,6 +19,10 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import {
+  BindQueryParamsFactory,
+  BindQueryParamsManager,
+} from '@ngneat/bind-query-params';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -41,13 +45,18 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './reset-password-page.component.scss',
   templateUrl: './reset-password-page.component.html',
 })
-export class ResetPasswordPageComponent {
+export class ResetPasswordPageComponent implements OnDestroy, OnInit {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
   private readonly _translocoService = inject(TranslocoService);
+
+  private readonly _bindQueryParamsManager: BindQueryParamsManager<{
+    email: string;
+  }>;
 
   public isResetPasswordPending: boolean;
   public resetPasswordFormGroup: FormGroup<{
@@ -55,6 +64,10 @@ export class ResetPasswordPageComponent {
   }>;
 
   public constructor() {
+    this._bindQueryParamsManager = this._bindQueryParamsFactory.create([
+      { queryKey: 'email', type: 'string' },
+    ]);
+
     this.isResetPasswordPending = false;
 
     this.resetPasswordFormGroup = this._formBuilder.group({
@@ -64,6 +77,14 @@ export class ResetPasswordPageComponent {
     this._loggerService.logComponentInitialization(
       'ResetPasswordPageComponent',
     );
+  }
+
+  public ngOnInit(): void {
+    this._bindQueryParamsManager.connect(this.resetPasswordFormGroup);
+  }
+
+  public ngOnDestroy(): void {
+    this._bindQueryParamsManager.destroy();
   }
 
   public resetPassword(email: string): void {
