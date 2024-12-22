@@ -41,7 +41,7 @@
   },
   "jet-profile-page": {
     "avatar": "الصورة الشخصية",
-    "characters": "{{ value }} حروف",
+    "characters": "{{ value }} / {{ maximum }} حرفًا",
     "created-on": "تم الإنشاء في {{ value }}",
     "last-updated-on": "آخر تحديث في {{ value }}",
     "profile": "الملف الشخصي",

@@ -41,7 +41,7 @@
   },
   "jet-profile-page": {
     "avatar": "Avatar",
-    "characters": "{{ value }} characters",
+    "characters": "{{ value }} / {{ maximum }} characters",
     "created-on": "Created on {{ value }}",
     "last-updated-on": "Last updated on {{ value }}",
     "profile": "Profile",

@@ -28,8 +28,10 @@
           />
           <mat-card-content style="text-align: center">
             <mat-card
+              (click)="avatarInput.click()"
               matRipple
               style="
+                border-radius: 50%;
                 display: inline-flex;
                 margin: -96px 0 32px;
                 box-shadow: var(--mat-sys-level1);
@@ -46,6 +48,14 @@
                 "
                 width="128"
               />
+              <mat-card-content style="display: none">
+                <input
+                  #avatarInput
+                  [disabled]="profileFormGroup.disabled"
+                  accept="image/*"
+                  type="file"
+                />
+              </mat-card-content>
             </mat-card>
             <form
               id="profile-form"
@@ -67,6 +77,7 @@
                 <mat-hint align="end"
                   >{{
                     t('characters', {
+                      maximum: 30,
                       value:
                         profileFormGroup.controls.username.value?.length || 0,
                     })
