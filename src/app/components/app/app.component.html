@@ -8,7 +8,6 @@
       #sidenav
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
-      fixedInViewport
     >
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
@@ -67,20 +66,20 @@
           style="bottom: 0; left: 0; position: absolute; right: 0; z-index: 2"
         >
         </mat-progress-bar>
-        @if (!isSmallViewport) {
-          <button
-            [attr.aria-label]="t('toggle-navigation-menu')"
-            [matTooltip]="t('toggle-navigation-menu')"
-            (click)="sidenav.toggle()"
-            jetAnalytics
-            jetAnalyticsEventName="Toggle Sidenav"
-            mat-icon-button
-            matTooltipPosition="after"
-            type="button"
-          >
-            <mat-icon>short_text</mat-icon>
-          </button>
-        } @else {
+        <!-- @if (!isSmallViewport) { -->
+        <button
+          [attr.aria-label]="t('toggle-navigation-menu')"
+          [matTooltip]="t('toggle-navigation-menu')"
+          (click)="sidenav.toggle()"
+          jetAnalytics
+          jetAnalyticsEventName="Toggle Sidenav"
+          mat-icon-button
+          matTooltipPosition="after"
+          type="button"
+        >
+          <mat-icon>short_text</mat-icon>
+        </button>
+        <!-- } @else {
           <a
             [matTooltip]="t('home')"
             jetAnalytics
@@ -97,7 +96,7 @@
               width="24"
             />
           </a>
-        }
+        } -->
         <div style="width: 8px"></div>
         <span style="font: var(--mat-sys-title-medium)">{{
           toolbarTitle() || t('loading')
@@ -121,10 +120,7 @@
           </a>
         }
       </mat-toolbar>
-      <mat-tab-nav-panel
-        #tabNavPanel
-        style="flex: 1"
-      >
+      <mat-tab-nav-panel #tabNavPanel>
         <main [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }">
           <router-outlet />
         </main>

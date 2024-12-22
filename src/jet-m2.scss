@@ -354,6 +354,8 @@ body {
   }
 
   .jet-sidenav-container {
+    height: 100vh;
+
     &[dir='ltr'] {
       .jet-sidenav {
         --mat-sidenav-container-width: calc(240px + env(safe-area-inset-left));
@@ -451,10 +453,6 @@ body {
     }
 
     .jet-content {
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
       padding-top: env(safe-area-inset-top);
 
       .jet-content-toolbar {
