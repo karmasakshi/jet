@@ -77,26 +77,19 @@ export class SignUpPageComponent {
     }
 
     this.isSignUpPending = true;
-
     this.signUpFormGroup.disable();
-
     this._authenticationService
       .signUp(email, password)
       .then(({ data, error }): void => {
         if (error) {
           this._loggerService.logError(error);
-
           this._alertService.showErrorAlert(error.message);
-
           this.isSignUpPending = false;
-
           this.signUpFormGroup.enable();
         } else {
           if (data.user === null) {
             this._alertService.showErrorAlert();
-
             this.isSignUpPending = false;
-
             this.signUpFormGroup.enable();
           } else {
             this._alertService.showAlert(
@@ -114,11 +107,8 @@ export class SignUpPageComponent {
       })
       .catch((error: Error): void => {
         this._loggerService.logError(error);
-
         this._alertService.showErrorAlert(error.message);
-
         this.isSignUpPending = false;
-
         this.signUpFormGroup.enable();
       });
   }

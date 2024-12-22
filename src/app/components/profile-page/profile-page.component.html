@@ -74,15 +74,17 @@
                   required
                   type="text"
                 />
-                <mat-hint align="end"
-                  >{{
-                    t('characters', {
-                      maximum: 30,
-                      value:
-                        profileFormGroup.controls.username.value?.length || 0,
-                    })
-                  }}
-                </mat-hint>
+                @if (profileFormGroup.controls.username.dirty) {
+                  <mat-hint align="end"
+                    >{{
+                      t('characters', {
+                        maximum: 30,
+                        value:
+                          profileFormGroup.controls.username.value?.length || 0,
+                      })
+                    }}
+                  </mat-hint>
+                }
               </mat-form-field>
             </form>
           </mat-card-content>

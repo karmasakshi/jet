@@ -104,7 +104,12 @@
       </mat-card>
       <mat-card>
         <mat-card-content
-          style="display: flex; flex-direction: column; gap: 16px"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 16px;
+          "
         >
           <button
             [disabled]="
@@ -125,6 +130,14 @@
             <span>{{ t('sign-up') }}</span>
           </a>
         </mat-card-content>
+        <mat-card-footer>
+          <mat-progress-bar
+            [ngStyle]="{
+              visibility: isSignInWithOauthPending ? 'visible' : 'hidden',
+            }"
+            mode="indeterminate"
+          ></mat-progress-bar>
+        </mat-card-footer>
       </mat-card>
     </div>
   </jet-page>

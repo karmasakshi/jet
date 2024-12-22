@@ -39,19 +39,14 @@ export class SignOutPageComponent implements OnInit {
     }
 
     this._isSignOutPending = true;
-
     this._progressBarService.showProgressBar();
-
     this._authenticationService
       .signOut()
       .then(({ error }): void => {
         if (error) {
           this._loggerService.logError(error);
-
           this._alertService.showErrorAlert(error.message);
-
           this._isSignOutPending = false;
-
           this._progressBarService.hideProgressBar();
         } else {
           this._alertService.showAlert(
@@ -63,11 +58,8 @@ export class SignOutPageComponent implements OnInit {
       })
       .catch((error: Error): void => {
         this._loggerService.logError(error);
-
         this._alertService.showErrorAlert(error.message);
-
         this._isSignOutPending = false;
-
         this._progressBarService.hideProgressBar();
       });
   }

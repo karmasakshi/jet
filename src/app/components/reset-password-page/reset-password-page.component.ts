@@ -72,19 +72,14 @@ export class ResetPasswordPageComponent {
     }
 
     this.isResetPasswordPending = true;
-
     this.resetPasswordFormGroup.disable();
-
     this._authenticationService
       .resetPassword(email)
       .then(({ error }): void => {
         if (error) {
           this._loggerService.logError(error);
-
           this._alertService.showErrorAlert(error.message);
-
           this.isResetPasswordPending = false;
-
           this.resetPasswordFormGroup.enable();
         } else {
           this._alertService.showAlert(
@@ -96,11 +91,8 @@ export class ResetPasswordPageComponent {
       })
       .catch((error: Error): void => {
         this._loggerService.logError(error);
-
         this._alertService.showErrorAlert(error.message);
-
         this.isResetPasswordPending = false;
-
         this.resetPasswordFormGroup.enable();
       });
   }
