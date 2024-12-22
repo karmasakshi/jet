@@ -7,6 +7,7 @@ import {
   untracked,
   WritableSignal,
 } from '@angular/core';
+import { Buckets } from '@jet/enums/buckets.enum';
 import { Tables } from '@jet/enums/tables.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { User } from '@jet/interfaces/user.interface';
@@ -51,6 +52,14 @@ export class ProfileService {
     return this._profile.asReadonly();
   }
 
+  public getAvatarPublicUrl(path: string): string {
+    const { data } = this._supabaseClient.storage
+      .from(Buckets.Avatars)
+      .getPublicUrl(path);
+
+    return data.publicUrl;
+  }
+
   public selectProfile(): void {
     const userId = this._authenticationService.user()?.id;
 
@@ -80,5 +89,14 @@ export class ProfileService {
       .from(Tables.Profiles)
       .update(partialProfile)
       .eq('id', userId);
+  }
+
+  public uploadAvatar(file: File) {
+    const fileExt = file.name.split('.').pop();
+    const path = `${this._authenticationService.user()?.id}/avatar.${fileExt}`;
+
+    return this._supabaseClient.storage
+      .from(Buckets.Avatars)
+      .upload(path, file, { upsert: true });
   }
 }

@@ -9,6 +9,9 @@
     "reload-to-update": "أعد التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
+    "please-choose-a-smaller-image": "يرجى اختيار صورة حجمها أقل من 1 ميجابايت.",
+    "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
+    "upload-successful-saving-to-profile": "تم التحميل بنجاح، جاري حفظ الصورة في الملف الشخصي.",
     "welcome": "مرحباً!",
     "weve-sent-you-an-email": "لقد أرسلنا لك بريدًا إلكترونيًا."
   },

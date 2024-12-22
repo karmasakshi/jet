@@ -51,6 +51,7 @@
                 <input
                   #avatarInput
                   [disabled]="profileFormGroup.disabled"
+                  (change)="uploadAvatar()"
                   accept="image/*"
                   type="file"
                 />

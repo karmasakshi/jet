@@ -1,5 +1,13 @@
 import { DatePipe, NgOptimizedImage, NgStyle } from '@angular/common';
-import { Component, effect, inject, Signal, untracked } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  Signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -47,6 +55,9 @@ export class ProfilePageComponent {
   private readonly _loggerService = inject(LoggerService);
   private readonly _profileService = inject(ProfileService);
   private readonly _translocoService = inject(TranslocoService);
+
+  private readonly _avatarInput =
+    viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
 
   public isUpdateProfilePending: boolean;
   public profile: Signal<Profile | undefined>;
@@ -120,6 +131,79 @@ export class ProfilePageComponent {
 
           this.profileFormGroup.enable();
         }
+      });
+  }
+
+  public uploadAvatar(): void {
+    const files = this._avatarInput().nativeElement.files;
+
+    if (!files || files.length !== 1) {
+      return;
+    }
+
+    const file = files[0];
+
+    if (!file?.type.startsWith('image/')) {
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.please-choose-a-valid-image'),
+      );
+      return;
+    }
+
+    if (!(file?.size <= 1024 * 1024)) {
+      this._alertService.showAlert(
+        this._translocoService.translate(
+          'alerts.please-choose-a-smaller-image',
+        ),
+      );
+      return;
+    }
+
+    if (this.isUpdateProfilePending) {
+      return;
+    }
+
+    this.isUpdateProfilePending = true;
+
+    this.profileFormGroup.disable();
+
+    this._profileService
+      .uploadAvatar(file)
+      .then(({ data, error }) => {
+        if (error) {
+          this._loggerService.logError(error);
+
+          this._alertService.showErrorAlert(error.message);
+
+          this.isUpdateProfilePending = false;
+
+          this.profileFormGroup.enable();
+        } else {
+          if (data === null) {
+            this._alertService.showErrorAlert();
+
+            this.isUpdateProfilePending = false;
+
+            this.profileFormGroup.enable();
+          } else {
+            this._alertService.showAlert(
+              this._translocoService.translate(
+                'alerts.upload-successful-saving-to-profile',
+              ),
+            );
+
+            this.isUpdateProfilePending = false;
+
+            this.updateProfile({
+              avatar_url: this._profileService.getAvatarPublicUrl(data.path),
+            });
+          }
+        }
+      })
+      .catch((error: Error) => {
+        this._loggerService.logError(error);
+
+        this._alertService.showErrorAlert(error.message);
       });
   }
 }
