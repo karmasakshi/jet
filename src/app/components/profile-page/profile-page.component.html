@@ -23,7 +23,7 @@
             mat-card-image
             ngSrc="./profile.webp"
             priority
-            style="background-color: var(--mat-sys-outline); object-fit: cover"
+            style="object-fit: cover"
             width="480"
           />
           <mat-card-content style="text-align: center">
@@ -31,10 +31,11 @@
               (click)="avatarInput.click()"
               matRipple
               style="
+                border: 2px solid var(--mat-sys-primary);
+                cursor: pointer;
                 border-radius: 50%;
                 display: inline-flex;
                 margin: -96px 0 32px;
-                box-shadow: var(--mat-sys-level1);
               "
             >
               <img
@@ -42,10 +43,8 @@
                 [ngSrc]="_profile.avatar_url"
                 height="128"
                 mat-card-image
-                style="
-                  background-color: var(--mat-sys-outline);
-                  object-fit: cover;
-                "
+                priority
+                style="object-fit: cover"
                 width="128"
               />
               <mat-card-content style="display: none">
