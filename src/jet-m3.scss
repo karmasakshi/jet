@@ -183,6 +183,7 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
   @include mat.tabs-overrides(
     (
       background-color: var(--mat-sys-primary),
+      divider-height: 0px,
       foreground-color: var(--mat-sys-on-primary),
     )
   );

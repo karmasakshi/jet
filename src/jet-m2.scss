@@ -464,6 +464,8 @@ body {
       }
 
       .jet-tab-nav-bar {
+        --mat-tab-header-divider-height: 0px;
+
         bottom: 0;
         left: 0;
         position: fixed;
