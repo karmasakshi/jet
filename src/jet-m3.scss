@@ -233,6 +233,12 @@ body {
       }
 
       .jet-content {
+        margin-left: calc(240px + env(safe-area-inset-left));
+
+        &.jet-sidenav-closed {
+          margin-left: 0;
+        }
+
         .jet-content-toolbar {
           padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
 
@@ -278,6 +284,12 @@ body {
       }
 
       .jet-content {
+        margin-right: calc(240px + env(safe-area-inset-right));
+
+        &.jet-sidenav-closed {
+          margin-right: 0;
+        }
+
         .jet-content-toolbar {
           padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
 
