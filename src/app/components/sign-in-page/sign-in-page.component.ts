@@ -214,7 +214,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
                 QueryParam.ReturnUrl,
               ) ?? '/';
 
-            void this._router.navigateByUrl(returnUrl);
+            setTimeout(() => {
+              void this._router.navigateByUrl(returnUrl);
+            });
           }
         }
       })
