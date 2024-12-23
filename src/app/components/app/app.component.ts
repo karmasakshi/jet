@@ -98,6 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private _activeFont: AvailableFont;
   private _activeLanguage: AvailableLanguage;
   private _activeTheme: AvailableTheme;
+  private _activeThemeColor: ThemeOption['themeColor'];
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
@@ -116,6 +117,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this._activeLanguage = DEFAULT_LANGUAGE;
 
     this._activeTheme = DEFAULT_THEME;
+
+    this._activeThemeColor = DEFAULT_THEME_OPTION.themeColor;
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
@@ -160,7 +163,8 @@ export class AppComponent implements OnInit, OnDestroy {
     effect(() => {
       const themeOption: ThemeOption = this._settingsService.themeOption();
       untracked(() => {
-        this._setThemeClass(themeOption);
+        this._setThemeClass(themeOption.value);
+        this._setThemeColor(themeOption);
       });
     });
 
@@ -219,9 +223,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     this._activeFont = nextFont;
-
     const prefix = 'jet-font-';
-
     this._document.body.className = this._document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
@@ -243,48 +245,48 @@ export class AppComponent implements OnInit, OnDestroy {
     this._activeLanguage = nextLanguageOption.value;
 
     this._renderer2.setAttribute(
-      this._document.body,
-      'dir',
-      nextLanguageOption.directionality,
-    );
-
-    this._renderer2.setAttribute(
       this._document.documentElement,
       'lang',
       nextLanguageOption.value,
     );
 
+    this._renderer2.setAttribute(
+      this._document.body,
+      'dir',
+      nextLanguageOption.directionality,
+    );
+
     this._translocoService.setActiveLang(nextLanguageOption.value);
   }
 
-  private _setThemeClass(nextThemeOption: ThemeOption): void {
-    if (nextThemeOption.value === this._activeTheme) {
+  private _setThemeClass(nextTheme: AvailableTheme): void {
+    if (nextTheme === this._activeTheme) {
       return;
     }
 
-    this._activeTheme = nextThemeOption.value;
+    this._activeTheme = nextTheme;
+    const prefix = 'jet-theme-';
+    this._document.body.className = this._document.body.classList.value
+      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+      .trim();
 
+    if (nextTheme !== DEFAULT_THEME) {
+      this._renderer2.addClass(this._document.body, prefix + nextTheme);
+    }
+  }
+
+  public _setThemeColor(nextThemeOption: ThemeOption): void {
     const systemThemeOption =
       nextThemeOption.value === 'automatic'
         ? this._getSystemThemeOption()
         : nextThemeOption;
 
-    this._meta.updateTag({
-      content: systemThemeOption.themeColor ?? '',
-      name: 'theme-color',
-    });
-
-    const prefix = 'jet-theme-';
-
-    this._document.body.className = this._document.body.classList.value
-      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-      .trim();
-
-    if (nextThemeOption.value !== DEFAULT_THEME) {
-      this._renderer2.addClass(
-        this._document.body,
-        prefix + nextThemeOption.value,
-      );
+    if (systemThemeOption.themeColor !== this._activeThemeColor) {
+      this._activeThemeColor = systemThemeOption.themeColor;
+      this._meta.updateTag({
+        content: systemThemeOption.themeColor ?? '',
+        name: 'theme-color',
+      });
     }
   }
 
