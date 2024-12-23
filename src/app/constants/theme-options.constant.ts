@@ -10,13 +10,13 @@ export const THEME_OPTIONS: ThemeOption[] = [
   {
     icon: 'light_mode',
     nameKey: 'light',
-    themeColor: '#f9faf4',
+    themeColor: '#fff8f6',
     value: 'light',
   },
   {
     icon: 'dark_mode',
     nameKey: 'dark',
-    themeColor: '#111411',
+    themeColor: '#161312',
     value: 'dark',
   },
 ];
