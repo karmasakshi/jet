@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/karmasakshi/jet/compare/v2.0.0...v2.0.1) (2024-12-23)
+
+
+### Bug Fixes
+
+* **general:** theme-color application ([6f13557](https://github.com/karmasakshi/jet/commit/6f135577314a10a760c1bb5c0f7143a4674d00e3))
+
 ## [2.0.0](https://github.com/karmasakshi/jet/compare/v1.37.0...v2.0.0) (2024-12-19)
 
 
