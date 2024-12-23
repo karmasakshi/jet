@@ -52,7 +52,9 @@
     <mat-sidenav-content class="jet-content">
       <mat-toolbar
         class="jet-content-toolbar"
-        [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }"
+        [ngClass]="{
+          'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
+        }"
       >
         <mat-progress-bar
           [bufferValue]="progressBarConfiguration().bufferValue"
@@ -124,7 +126,12 @@
         #tabNavPanel
         style="flex: 1"
       >
-        <main [ngClass]="{ 'jet-sidenav-closed': !sidenav.opened }">
+        <main
+          [ngClass]="{
+            'jet-add-safe-area':
+              sidenav.mode === 'over' ? true : !sidenav.opened,
+          }"
+        >
           <router-outlet />
         </main>
       </mat-tab-nav-panel>
