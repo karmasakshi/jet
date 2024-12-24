@@ -135,6 +135,13 @@
           </mat-card-content>
         </mat-card>
       </div>
+    } @else {
+      <div style="display: flex; justify-content: center">
+        <mat-progress-spinner
+          diameter="32"
+          mode="indeterminate"
+        ></mat-progress-spinner>
+      </div>
     }
   </jet-page>
 </ng-container>
