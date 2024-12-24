@@ -31,17 +31,17 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
+    DatePipe,
     NgOptimizedImage,
     NgStyle,
-    DatePipe,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
+    MatRippleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
-    MatRippleModule,
     TranslocoModule,
     PageComponent,
   ],
@@ -60,8 +60,8 @@ export class ProfilePageComponent {
     viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
 
   public isUpdateProfilePending: boolean;
-  public profile: Signal<Profile | undefined>;
-  public profileFormGroup: FormGroup<{
+  public readonly profile: Signal<Profile | undefined>;
+  public readonly profileFormGroup: FormGroup<{
     username: FormControl<string | null>;
   }>;
 
@@ -77,7 +77,7 @@ export class ProfilePageComponent {
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(30),
-          Validators.pattern(/^[a-zA-Z0-9_]{5,30}$/),
+          Validators.pattern(/^[a-z0-9_]{5,30}$/),
         ],
       ],
     });
@@ -100,35 +100,24 @@ export class ProfilePageComponent {
     }
 
     this.isUpdateProfilePending = true;
-
     this.profileFormGroup.disable();
-
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this._profileService
       .updateProfile(partialProfile)
-      // @ts-expect-error Supabase types unavailable
       .then(({ error }): void => {
         if (error) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-          const message: string = error.message;
-
-          this._loggerService.logError(message);
-
-          this._alertService.showErrorAlert(message);
-
+          this._loggerService.logError(error);
+          this._alertService.showErrorAlert(error.message);
           this.isUpdateProfilePending = false;
-
           this.profileFormGroup.enable();
         } else {
           this._profileService.selectProfile();
-
           this._alertService.showAlert(
             this._translocoService.translate(
               'alerts.profile-updated-successfully',
             ),
           );
-
           this.isUpdateProfilePending = false;
-
           this.profileFormGroup.enable();
         }
       });
@@ -164,26 +153,19 @@ export class ProfilePageComponent {
     }
 
     this.isUpdateProfilePending = true;
-
     this.profileFormGroup.disable();
-
     this._profileService
       .uploadAvatar(file)
       .then(({ data, error }) => {
         if (error) {
           this._loggerService.logError(error);
-
           this._alertService.showErrorAlert(error.message);
-
           this.isUpdateProfilePending = false;
-
           this.profileFormGroup.enable();
         } else {
           if (data === null) {
             this._alertService.showErrorAlert();
-
             this.isUpdateProfilePending = false;
-
             this.profileFormGroup.enable();
           } else {
             this._alertService.showAlert(
@@ -191,9 +173,7 @@ export class ProfilePageComponent {
                 'alerts.upload-successful-saving-to-profile',
               ),
             );
-
             this.isUpdateProfilePending = false;
-
             this.updateProfile({
               avatar_url: this._profileService.getAvatarPublicUrl(data.path),
             });
@@ -202,11 +182,8 @@ export class ProfilePageComponent {
       })
       .catch((error: Error) => {
         this._loggerService.logError(error);
-
         this._alertService.showErrorAlert(error.message);
-
         this.isUpdateProfilePending = false;
-
         this.profileFormGroup.enable();
       });
   }

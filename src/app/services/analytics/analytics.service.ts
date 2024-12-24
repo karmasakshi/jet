@@ -22,7 +22,7 @@ export class AnalyticsService {
   ): void {
     if (this._isAnalyticsEnabled) {
       if (eventData !== undefined) {
-        this._loggerService.logMessages(eventName, eventData);
+        this._loggerService.logMessages(eventName, JSON.stringify(eventData));
       } else {
         this._loggerService.logMessages(eventName);
       }

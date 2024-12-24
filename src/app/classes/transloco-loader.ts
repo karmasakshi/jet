@@ -22,7 +22,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     return this._httpClient
       .get<Translation>(`/i18n/${activeLanguage}.json`)
       .pipe(
-        catchError((error): Observable<Translation> => {
+        catchError((error: Error): Observable<Translation> => {
           this._loggerService.logError(error);
           const emptyTranslation: Translation = {};
           return of(emptyTranslation);

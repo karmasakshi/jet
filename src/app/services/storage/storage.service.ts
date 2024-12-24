@@ -22,8 +22,8 @@ export class StorageService {
       Object.values(LocalStorageKey).forEach((key) => {
         window.localStorage.removeItem(this._prefix + key);
       });
-    } catch (error) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
   }
 
@@ -32,8 +32,8 @@ export class StorageService {
       Object.values(SessionStorageKey).forEach((key) => {
         window.sessionStorage.removeItem(this._prefix + key);
       });
-    } catch (error) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
   }
 
@@ -48,8 +48,8 @@ export class StorageService {
       if (serializedValue !== null) {
         value = JSON.parse(serializedValue) as T;
       }
-    } catch (error) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
 
     return value;
@@ -68,8 +68,8 @@ export class StorageService {
       if (serializedValue !== null) {
         value = JSON.parse(serializedValue) as T;
       }
-    } catch (error) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
 
     return value;
@@ -78,16 +78,16 @@ export class StorageService {
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
     try {
       window.localStorage.removeItem(this._prefix + localStorageKey);
-    } catch (error) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
     try {
       window.sessionStorage.removeItem(this._prefix + sessionStorageKey);
-    } catch (error) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
   }
 
@@ -97,13 +97,12 @@ export class StorageService {
   ): void {
     try {
       const serializedValue: string = JSON.stringify(value);
-
       window.localStorage.setItem(
         this._prefix + localStorageKey,
         serializedValue,
       );
-    } catch (error: unknown) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
   }
 
@@ -113,13 +112,12 @@ export class StorageService {
   ): void {
     try {
       const serializedValue: string = JSON.stringify(value);
-
       window.sessionStorage.setItem(
         this._prefix + sessionStorageKey,
         serializedValue,
       );
-    } catch (error: unknown) {
-      this._loggerService.logError(error);
+    } catch (exception: unknown) {
+      this._loggerService.logException(exception);
     }
   }
 }

@@ -1,5 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Signal, WritableSignal, signal } from '@angular/core';
 import { User } from '@jet/interfaces/user.interface';
+import {
+  AuthError,
+  AuthResponse,
+  AuthSession,
+  AuthTokenResponsePassword,
+  OAuthResponse,
+  Provider,
+  Session,
+  User as SupabaseUser,
+  WeakPassword,
+} from '@supabase/supabase-js';
 
 export class AuthenticationServiceMock {
   private readonly _user: WritableSignal<User | null>;
@@ -12,21 +25,56 @@ export class AuthenticationServiceMock {
     return this._user.asReadonly();
   }
 
-  public getSession() {
-    return new Promise((resolve) => {
-      resolve(null);
+  public getSession(): Promise<
+    | { data: { session: AuthSession }; error: null }
+    | { data: { session: null }; error: AuthError }
+    | { data: { session: null }; error: null }
+  > {
+    return Promise.resolve({ data: { session: null }, error: null });
+  }
+
+  public resetPassword(
+    _email: string,
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  ): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> {
+    return Promise.resolve({ data: {}, error: null });
+  }
+
+  public signInWithOauth(provider: Provider): Promise<OAuthResponse> {
+    return Promise.resolve({
+      data: {
+        provider,
+        url: '',
+      },
+      error: null,
     });
   }
 
-  public signIn(): Promise<void> {
-    return new Promise((resolve) => {
-      resolve();
+  public signIn(
+    _email: string,
+    _password: string,
+  ): Promise<AuthTokenResponsePassword> {
+    return Promise.resolve({
+      data: {
+        session: {} as Session,
+        user: {} as SupabaseUser,
+        weakPassword: {} as WeakPassword,
+      },
+      error: null,
     });
   }
 
-  public signOut(): Promise<void> {
-    return new Promise((resolve) => {
-      resolve();
+  public signOut(): Promise<{ error: AuthError | null }> {
+    return Promise.resolve({ error: null });
+  }
+
+  public signUp(_email: string, _password: string): Promise<AuthResponse> {
+    return Promise.resolve({
+      data: {
+        session: null,
+        user: null,
+      },
+      error: null,
     });
   }
 }

@@ -33,13 +33,19 @@ export class LoggerService {
     }
   }
 
-  public logError(error: unknown): void {
+  public logError(error: Error): void {
     if (this._isLoggingEnabled) {
       console.error(error);
     }
   }
 
-  public logMessages(...messages: unknown[]): void {
+  public logException(exception: unknown): void {
+    if (this._isLoggingEnabled) {
+      console.error(exception);
+    }
+  }
+
+  public logMessages(...messages: string[]): void {
     if (this._isLoggingEnabled) {
       console.log(...messages);
     }

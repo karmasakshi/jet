@@ -27,6 +27,6 @@ export class SettingsServiceMock {
   }
 
   public updateSettings(_partialSettings: Partial<Settings>): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 }

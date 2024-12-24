@@ -45,21 +45,21 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './reset-password-page.component.scss',
   templateUrl: './reset-password-page.component.html',
 })
-export class ResetPasswordPageComponent implements OnDestroy, OnInit {
+export class ResetPasswordPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
-  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
   private readonly _translocoService = inject(TranslocoService);
+  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
   private readonly _bindQueryParamsManager: BindQueryParamsManager<{
     email: string;
   }>;
 
   public isResetPasswordPending: boolean;
-  public resetPasswordFormGroup: FormGroup<{
+  public readonly resetPasswordFormGroup: FormGroup<{
     email: FormControl<string | null>;
   }>;
 
@@ -106,7 +106,6 @@ export class ResetPasswordPageComponent implements OnDestroy, OnInit {
           this._alertService.showAlert(
             this._translocoService.translate('alerts.well-send-an-email'),
           );
-
           void this._router.navigateByUrl('/sign-in');
         }
       })

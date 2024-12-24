@@ -17,7 +17,7 @@ export class ServiceWorkerServiceMock {
   }
 
   public checkForUpdate(): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   private _subscribeToUpdates(): Subscription {

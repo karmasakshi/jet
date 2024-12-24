@@ -5,6 +5,6 @@ export class AnalyticsServiceMock {
     _eventName: string,
     _eventData?: Record<string, string | number | boolean | null | undefined>,
   ): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 }

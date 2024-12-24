@@ -2,30 +2,34 @@
 
 export class LoggerServiceMock {
   public logClassInitialization(_className: string): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public logComponentInitialization(_componentName: string): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public logDirectiveInitialization(_directiveName: string): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
-  public logError(_error: unknown): void {
-    // Mock implementation, do nothing
+  public logError(_error: Error): void {
+    // Do nothing
   }
 
-  public logMessages(..._messages: unknown[]): void {
-    // Mock implementation, do nothing
+  public logException(_exception: unknown): void {
+    // Do nothing
+  }
+
+  public logMessages(..._messages: string[]): void {
+    // Do nothing
   }
 
   public logServiceInitialization(_serviceName: string): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public logWarning(_warning: string): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 }

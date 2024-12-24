@@ -25,18 +25,18 @@ export class ProgressBarServiceMock {
   }
 
   public hideProgressBar(): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public showProgressBar(
     _partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
   ): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public updateProgressBarConfiguration(
     _partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 }

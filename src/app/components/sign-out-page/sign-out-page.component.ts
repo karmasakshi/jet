@@ -52,7 +52,6 @@ export class SignOutPageComponent implements OnInit {
           this._alertService.showAlert(
             this._translocoService.translate('alerts.signed-out-successfully'),
           );
-
           void this._router.navigateByUrl('/');
         }
       })

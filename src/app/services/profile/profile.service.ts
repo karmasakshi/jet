@@ -11,6 +11,7 @@ import { Buckets } from '@jet/enums/buckets.enum';
 import { Tables } from '@jet/enums/tables.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { User } from '@jet/interfaces/user.interface';
+import { StorageError } from '@supabase/storage-js/';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { AlertService } from '../alert/alert.service';
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -56,7 +57,6 @@ export class ProfileService {
     const { data } = this._supabaseClient.storage
       .from(Buckets.Avatars)
       .getPublicUrl(path);
-
     return data.publicUrl;
   }
 
@@ -78,7 +78,7 @@ export class ProfileService {
       });
   }
 
-  public updateProfile(partialProfile: Partial<Profile>): PromiseLike<unknown> {
+  public updateProfile(partialProfile: Partial<Profile>) {
     const userId = this._authenticationService.user()?.id;
 
     if (userId === undefined) {
@@ -91,10 +91,14 @@ export class ProfileService {
       .eq('id', userId);
   }
 
-  public uploadAvatar(file: File) {
+  public uploadAvatar(
+    file: File,
+  ): Promise<
+    | { data: { id: string; path: string; fullPath: string }; error: null }
+    | { data: null; error: StorageError }
+  > {
     const fileExt = file.name.split('.').pop();
     const path = `${this._authenticationService.user()?.id}/avatar.${fileExt}`;
-
     return this._supabaseClient.storage
       .from(Buckets.Avatars)
       .upload(path, file, { upsert: true });

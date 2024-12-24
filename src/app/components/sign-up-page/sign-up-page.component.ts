@@ -53,8 +53,8 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
-  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
   private readonly _translocoService = inject(TranslocoService);
+  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
   private readonly _bindQueryParamsManager: BindQueryParamsManager<{
     email: string;
@@ -62,7 +62,7 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
 
   public isPasswordHidden: boolean;
   public isSignUpPending: boolean;
-  public signUpFormGroup: FormGroup<{
+  public readonly signUpFormGroup: FormGroup<{
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
@@ -116,12 +116,10 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
-
             const returnUrl =
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,
               ) ?? '/';
-
             void this._router.navigateByUrl(returnUrl);
           }
         }

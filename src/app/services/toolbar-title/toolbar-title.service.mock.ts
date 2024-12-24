@@ -3,7 +3,7 @@
 import { Signal, WritableSignal, signal } from '@angular/core';
 
 export class ToolbarTitleServiceMock {
-  private readonly _toolbarTitle: WritableSignal<undefined>;
+  private readonly _toolbarTitle: WritableSignal<string | undefined>;
 
   public constructor() {
     this._toolbarTitle = signal(undefined);
@@ -14,6 +14,6 @@ export class ToolbarTitleServiceMock {
   }
 
   public setToolbarTitle(_toolbarTitle: string): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 }

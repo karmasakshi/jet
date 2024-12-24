@@ -56,8 +56,8 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
   private readonly _translocoService = inject(TranslocoService);
+  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
   private readonly _bindQueryParamsManager: BindQueryParamsManager<{
     email: string;
@@ -67,7 +67,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   public isPasswordHidden: boolean;
   public isSignInPending: boolean;
   public isSignInWithOauthPending: boolean;
-  public signInFormGroup: FormGroup<{
+  public readonly signInFormGroup: FormGroup<{
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
@@ -131,12 +131,10 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
-
             const returnUrl =
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,
               ) ?? '/';
-
             void this._router.navigateByUrl(returnUrl);
           }
         }
@@ -208,12 +206,10 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
-
             const returnUrl =
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,
               ) ?? '/';
-
             setTimeout(() => {
               void this._router.navigateByUrl(returnUrl);
             });

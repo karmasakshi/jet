@@ -12,7 +12,6 @@ export const isNotAuthenticatedGuard: CanActivateFn =
   (): MaybeAsync<GuardResult> => {
     const router = inject(Router);
     const authenticationService = inject(AuthenticationService);
-
     return authenticationService
       .getSession()
       .then(({ data, error }): boolean | UrlTree => {

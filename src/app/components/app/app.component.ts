@@ -29,10 +29,8 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
-import { DEFAULT_FONT } from '@jet/constants/default-font.constant';
-import { DEFAULT_LANGUAGE } from '@jet/constants/default-language.constant';
+import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { DEFAULT_THEME_OPTION } from '@jet/constants/default-theme-option.constant';
-import { DEFAULT_THEME } from '@jet/constants/default-theme.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
 import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
@@ -112,11 +110,11 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly user: Signal<User | null>;
 
   public constructor() {
-    this._activeFont = DEFAULT_FONT;
+    this._activeFont = DEFAULT_LANGUAGE_OPTION.font;
 
-    this._activeLanguage = DEFAULT_LANGUAGE;
+    this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
-    this._activeTheme = DEFAULT_THEME;
+    this._activeTheme = DEFAULT_THEME_OPTION.value;
 
     this._activeThemeColor = DEFAULT_THEME_OPTION.themeColor;
 
@@ -210,7 +208,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .matches
       ? 'dark'
       : 'light';
-
     return (
       THEME_OPTIONS.find((themeOption) => themeOption.value === systemTheme) ??
       DEFAULT_THEME_OPTION
@@ -228,7 +225,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
-    if (nextFont !== DEFAULT_FONT) {
+    if (nextFont !== DEFAULT_LANGUAGE_OPTION.font) {
       this._renderer2.addClass(this._document.body, prefix + nextFont);
     }
   }
@@ -270,7 +267,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
-    if (nextTheme !== DEFAULT_THEME) {
+    if (nextTheme !== DEFAULT_THEME_OPTION.value) {
       this._renderer2.addClass(this._document.body, prefix + nextTheme);
     }
   }

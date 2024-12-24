@@ -5,11 +5,11 @@ import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
 
 export class StorageServiceMock {
   public clearLocalStorage(): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public clearSessionStorage(): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public getLocalStorageItem<T>(_localStorageKey: LocalStorageKey): null | T {
@@ -23,24 +23,24 @@ export class StorageServiceMock {
   }
 
   public removeLocalStorageItem(_localStorageKey: LocalStorageKey): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public removeSessionStorageItem(_sessionStorageKey: SessionStorageKey): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public setLocalStorageItem(
     _localStorageKey: LocalStorageKey,
     _value: unknown,
   ): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 
   public setSessionStorageItem(
     _sessionStorageKey: SessionStorageKey,
     _value: unknown,
   ): void {
-    // Mock implementation, do nothing
+    // Do nothing
   }
 }

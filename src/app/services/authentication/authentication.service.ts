@@ -50,22 +50,26 @@ export class AuthenticationService {
     return this._user.asReadonly();
   }
 
-  public getSession() {
+  public getSession(): Promise<
+    | { data: { session: AuthSession }; error: null }
+    | { data: { session: null }; error: AuthError }
+    | { data: { session: null }; error: null }
+  > {
     return this._supabaseClient.auth.getSession();
   }
 
-  public resetPassword(email: string) {
+  public resetPassword(
+    email: string,
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  ): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> {
     return this._supabaseClient.auth.resetPasswordForEmail(email);
   }
 
-  public signInWithOauth(
-    provider: Provider = 'google',
-  ): Promise<OAuthResponse> {
+  public signInWithOauth(provider: Provider): Promise<OAuthResponse> {
+    let redirectTo = `${window.location.origin}/sign-in`;
     const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
       QueryParam.ReturnUrl,
     );
-
-    let redirectTo = `${window.location.origin}/sign-in`;
 
     if (returnUrl !== null) {
       redirectTo +=

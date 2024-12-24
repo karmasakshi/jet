@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { Signal, signal, WritableSignal } from '@angular/core';
 import { Profile } from '@jet/interfaces/profile.interface';
-import { User } from '@jet/interfaces/user.interface';
+import { StorageError } from '@supabase/storage-js/';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class ProfileServiceMock {
   private readonly _profile: WritableSignal<Profile | undefined>;
 
@@ -18,13 +15,27 @@ export class ProfileServiceMock {
     return this._profile.asReadonly();
   }
 
-  public selectProfile(_userId: User['id'] | undefined): void {
-    // Mock implementation, do nothing
+  public getAvatarPublicUrl(_path: string): string {
+    return '';
   }
 
-  public updateProfile(
-    _partialProfile: Partial<Profile>,
-  ): PromiseLike<unknown> {
+  public selectProfile(): void {
+    // Do nothing
+  }
+
+  public updateProfile(_partialProfile: Partial<Profile>): Promise<unknown> {
     return Promise.resolve();
+  }
+
+  public uploadAvatar(
+    _file: File,
+  ): Promise<
+    | { data: { id: string; path: string; fullPath: string }; error: null }
+    | { data: null; error: StorageError }
+  > {
+    return Promise.resolve({
+      data: { fullPath: '', id: '', path: '' },
+      error: null,
+    });
   }
 }
