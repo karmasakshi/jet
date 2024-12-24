@@ -29,9 +29,6 @@
     "*": "prettier --ignore-unknown --write"
   },
   "overrides": {
-    "@jsverse/transloco-keys-manager": {
-      "@angular/compiler": "^19.0.5"
-    },
     "@supabase/supabase-js": {
       "@supabase/auth-js": "2.61.0"
     }
@@ -62,7 +59,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@commitlint/prompt-cli": "^19.6.1",
-    "@jsverse/transloco-keys-manager": "^6.0.0",
+    "@jsverse/transloco-keys-manager": "^6.1.0",
     "@ngx-env/builder": "^19.0.4",
     "@types/jasmine": "^5.1.5",
     "angular-eslint": "^19.0.2",
@@ -81,6 +78,6 @@
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.18.1"
+    "typescript-eslint": "^8.18.2"
   }
 }
