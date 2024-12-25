@@ -20,7 +20,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
-import { AvailableOauthProviders } from '@jet/types/available-oauth-providers.type';
+import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import {
   BindQueryParamsFactory,
@@ -147,7 +147,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  public signInWithOauth(oauthProvider: AvailableOauthProviders): void {
+  public signInWithOauth(oauthProvider: AvailableOauthProvider): void {
     if (
       this.isSignInWithOauthPending ||
       this.isGetSessionPending ||

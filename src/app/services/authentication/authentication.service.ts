@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { User } from '@jet/interfaces/user.interface';
+import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthChangeEvent,
   AuthError,
@@ -15,7 +16,6 @@ import {
   AuthSession,
   AuthTokenResponsePassword,
   OAuthResponse,
-  Provider,
   SupabaseClient,
 } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
@@ -65,7 +65,9 @@ export class AuthenticationService {
     return this._supabaseClient.auth.resetPasswordForEmail(email);
   }
 
-  public signInWithOauth(provider: Provider): Promise<OAuthResponse> {
+  public signInWithOauth(
+    oauthProvider: AvailableOauthProvider,
+  ): Promise<OAuthResponse> {
     let redirectTo = `${window.location.origin}/sign-in`;
     const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
       QueryParam.ReturnUrl,
@@ -79,7 +81,7 @@ export class AuthenticationService {
 
     return this._supabaseClient.auth.signInWithOAuth({
       options: { redirectTo, skipBrowserRedirect: true },
-      provider,
+      provider: oauthProvider,
     });
   }
 

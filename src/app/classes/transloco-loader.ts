@@ -16,17 +16,13 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     this._loggerService.logServiceInitialization('TranslocoHttpLoader');
   }
 
-  public getTranslation(
-    activeLanguage: AvailableLanguage,
-  ): Observable<Translation> {
-    return this._httpClient
-      .get<Translation>(`/i18n/${activeLanguage}.json`)
-      .pipe(
-        catchError((error: Error): Observable<Translation> => {
-          this._loggerService.logError(error);
-          const emptyTranslation: Translation = {};
-          return of(emptyTranslation);
-        }),
-      );
+  public getTranslation(language: AvailableLanguage): Observable<Translation> {
+    return this._httpClient.get<Translation>(`/i18n/${language}.json`).pipe(
+      catchError((error: Error): Observable<Translation> => {
+        this._loggerService.logError(error);
+        const emptyTranslation: Translation = {};
+        return of(emptyTranslation);
+      }),
+    );
   }
 }

@@ -2,13 +2,13 @@
 
 import { Signal, WritableSignal, signal } from '@angular/core';
 import { User } from '@jet/interfaces/user.interface';
+import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthError,
   AuthResponse,
   AuthSession,
   AuthTokenResponsePassword,
   OAuthResponse,
-  Provider,
   Session,
   User as SupabaseUser,
   WeakPassword,
@@ -40,10 +40,12 @@ export class AuthenticationServiceMock {
     return Promise.resolve({ data: {}, error: null });
   }
 
-  public signInWithOauth(provider: Provider): Promise<OAuthResponse> {
+  public signInWithOauth(
+    oauthProvider: AvailableOauthProvider,
+  ): Promise<OAuthResponse> {
     return Promise.resolve({
       data: {
-        provider,
+        provider: oauthProvider,
         url: '',
       },
       error: null,
