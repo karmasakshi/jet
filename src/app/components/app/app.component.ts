@@ -205,10 +205,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _getSystemColorSchemeOption(): ColorSchemeOption {
-    const systemColorScheme = window.matchMedia('(prefers-color-scheme: dark)')
-      .matches
-      ? 'dark'
-      : 'light';
+    const systemColorScheme: Omit<AvailableColorScheme, 'automatic'> =
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
     return (
       COLOR_SCHEME_OPTIONS.find(
         (colorSchemeOption) => colorSchemeOption.value === systemColorScheme,
@@ -275,15 +275,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public _setThemeColor(nextColorSchemeOption: ColorSchemeOption): void {
-    const systemColorSchemeOption =
+    nextColorSchemeOption =
       nextColorSchemeOption.value === 'automatic'
         ? this._getSystemColorSchemeOption()
         : nextColorSchemeOption;
 
-    if (systemColorSchemeOption.themeColor !== this._activeThemeColor) {
-      this._activeThemeColor = systemColorSchemeOption.themeColor;
+    if (nextColorSchemeOption.themeColor !== this._activeThemeColor) {
+      this._activeThemeColor = nextColorSchemeOption.themeColor;
       this._meta.updateTag({
-        content: systemColorSchemeOption.themeColor ?? '',
+        content: nextColorSchemeOption.themeColor ?? '#ffffff',
         name: 'theme-color',
       });
     }
