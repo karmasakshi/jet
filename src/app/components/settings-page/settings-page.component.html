@@ -22,15 +22,17 @@
             }}</span>
           </button>
           <button
-            [matMenuTriggerFor]="themeOptionsMenu"
+            [matMenuTriggerFor]="colorSchemeOptionsMenu"
             jetAnalytics
-            jetAnalyticsEventName="Open Theme Options"
+            jetAnalyticsEventName="Open Color Scheme Options"
             mat-list-item
             type="button"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
-            <span matListItemTitle>{{ t('change-theme') }}</span>
-            <span matListItemLine>{{ t(settings().themeOption.nameKey) }}</span>
+            <span matListItemTitle>{{ t('change-color-scheme') }}</span>
+            <span matListItemLine>{{
+              t(settings().colorSchemeOption.nameKey)
+            }}</span>
           </button>
           <button
             (click)="checkForUpdate()"
@@ -94,23 +96,30 @@
       }
     </mat-menu>
 
-    <!-- Theme Options Menu -->
+    <!-- Color Scheme Options Menu -->
     <mat-menu
-      #themeOptionsMenu="matMenu"
+      #colorSchemeOptionsMenu="matMenu"
       xPosition="before"
     >
-      @for (themeOption of themeOptions; track themeOption.value) {
+      @for (
+        colorSchemeOption of colorSchemeOptions;
+        track colorSchemeOption.value
+      ) {
         <button
-          [disabled]="settings().themeOption.value === themeOption.value"
-          [jetAnalyticsEventData]="{ themeOption: themeOption.value }"
-          (click)="updateSettings({ themeOption })"
+          [disabled]="
+            settings().colorSchemeOption.value === colorSchemeOption.value
+          "
+          [jetAnalyticsEventData]="{
+            colorSchemeOption: colorSchemeOption.value,
+          }"
+          (click)="updateSettings({ colorSchemeOption })"
           jetAnalytics
-          jetAnalyticsEventName="Select Theme Option"
+          jetAnalyticsEventName="Select Color Scheme Option"
           mat-menu-item
           type="button"
         >
-          <mat-icon>{{ themeOption.icon }}</mat-icon>
-          <span>{{ t(themeOption.nameKey) }}</span>
+          <mat-icon>{{ colorSchemeOption.icon }}</mat-icon>
+          <span>{{ t(colorSchemeOption.nameKey) }}</span>
         </button>
       }
     </mat-menu>

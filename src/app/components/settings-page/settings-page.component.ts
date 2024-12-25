@@ -4,12 +4,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
-import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
@@ -39,13 +39,23 @@ export class SettingsPageComponent {
   private readonly _settingsService = inject(SettingsService);
   private readonly _storageService = inject(StorageService);
 
+  public readonly colorSchemeOptions: ColorSchemeOption[];
   public readonly languageOptions: LanguageOption[];
   public readonly lastUpdateCheckTimestamp: Signal<string>;
   public readonly settings: Signal<Settings>;
-  public readonly themeOptions: ThemeOption[];
   public readonly version: string;
 
   public constructor() {
+    /**
+     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
+     *
+     * t(jet-settings-page.automatic)
+     * t(jet-settings-page.dark)
+     * t(jet-settings-page.light)
+     */
+
+    this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
+
     /**
      * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
      *
@@ -59,16 +69,6 @@ export class SettingsPageComponent {
       this._serviceWorkerService.lastUpdateCheckTimestamp;
 
     this.settings = this._settingsService.settings;
-
-    /**
-     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
-     *
-     * t(jet-settings-page.automatic)
-     * t(jet-settings-page.dark)
-     * t(jet-settings-page.light)
-     */
-
-    this.themeOptions = THEME_OPTIONS;
 
     this.version = packageJson.version;
 

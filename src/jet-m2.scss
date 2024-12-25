@@ -334,7 +334,7 @@ body {
     @include jet-overrides;
   }
 
-  &.jet-theme-dark {
+  &.jet-color-scheme-dark {
     @include mat.core-color($theme-dark);
     @include mat.button-color($theme-dark);
     @include mat.card-color($theme-dark);

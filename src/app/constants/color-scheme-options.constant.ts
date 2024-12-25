@@ -1,6 +1,6 @@
-import { ThemeOption } from '@jet/interfaces/theme-option.interface';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 
-export const THEME_OPTIONS: ThemeOption[] = [
+export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
   {
     icon: 'contrast',
     nameKey: 'automatic',

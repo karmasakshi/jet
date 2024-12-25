@@ -10,9 +10,9 @@ import {
 } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
@@ -25,8 +25,8 @@ export class SettingsService {
 
   private readonly _settings: WritableSignal<Settings>;
 
+  public readonly colorSchemeOption: Signal<ColorSchemeOption>;
   public readonly languageOption: Signal<LanguageOption>;
-  public readonly themeOption: Signal<ThemeOption>;
 
   public constructor() {
     const storedSettings = this._storageService.getLocalStorageItem<Settings>(
@@ -38,9 +38,9 @@ export class SettingsService {
       ...storedSettings,
     });
 
-    this.languageOption = computed(() => this._settings().languageOption);
+    this.colorSchemeOption = computed(() => this._settings().colorSchemeOption);
 
-    this.themeOption = computed(() => this._settings().themeOption);
+    this.languageOption = computed(() => this._settings().languageOption);
 
     effect(() => {
       const settings: Settings = this._settings();

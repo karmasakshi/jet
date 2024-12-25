@@ -2,24 +2,24 @@
 
 import { Signal, WritableSignal, computed, signal } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 
 export class SettingsServiceMock {
   private readonly _settings: WritableSignal<Settings>;
 
+  public readonly colorSchemeOption: Signal<ColorSchemeOption>;
   public readonly languageOption: Signal<LanguageOption>;
-  public readonly themeOption: Signal<ThemeOption>;
 
   public constructor() {
     this._settings = signal({
       ...DEFAULT_SETTINGS,
     });
 
-    this.languageOption = computed(() => this._settings().languageOption);
+    this.colorSchemeOption = computed(() => this._settings().colorSchemeOption);
 
-    this.themeOption = computed(() => this._settings().themeOption);
+    this.languageOption = computed(() => this._settings().languageOption);
   }
 
   public get settings(): Signal<Settings> {

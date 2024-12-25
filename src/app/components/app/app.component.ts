@@ -29,15 +29,15 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
+import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
+import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
-import { DEFAULT_THEME_OPTION } from '@jet/constants/default-theme-option.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
-import { THEME_OPTIONS } from '@jet/constants/theme-options.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
-import { ThemeOption } from '@jet/interfaces/theme-option.interface';
 import { User } from '@jet/interfaces/user.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
@@ -46,9 +46,9 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
+import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
 import { AvailableFont } from '@jet/types/available-font.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
-import { AvailableTheme } from '@jet/types/available-theme.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { Subscription } from 'rxjs';
@@ -95,8 +95,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private _activeFont: AvailableFont;
   private _activeLanguage: AvailableLanguage;
-  private _activeTheme: AvailableTheme;
-  private _activeThemeColor: ThemeOption['themeColor'];
+  private _activeColorScheme: AvailableColorScheme;
+  private _activeThemeColor: ColorSchemeOption['themeColor'];
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
@@ -114,9 +114,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
-    this._activeTheme = DEFAULT_THEME_OPTION.value;
+    this._activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
-    this._activeThemeColor = DEFAULT_THEME_OPTION.themeColor;
+    this._activeThemeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
@@ -159,10 +159,11 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     effect(() => {
-      const themeOption: ThemeOption = this._settingsService.themeOption();
+      const colorSchemeOption: ColorSchemeOption =
+        this._settingsService.colorSchemeOption();
       untracked(() => {
-        this._setThemeClass(themeOption.value);
-        this._setThemeColor(themeOption);
+        this._setColorSchemeClass(colorSchemeOption.value);
+        this._setThemeColor(colorSchemeOption);
       });
     });
 
@@ -203,14 +204,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this._serviceWorkerUpdateSubscription.unsubscribe();
   }
 
-  private _getSystemThemeOption(): ThemeOption {
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+  private _getSystemColorSchemeOption(): ColorSchemeOption {
+    const systemColorScheme = window.matchMedia('(prefers-color-scheme: dark)')
       .matches
       ? 'dark'
       : 'light';
     return (
-      THEME_OPTIONS.find((themeOption) => themeOption.value === systemTheme) ??
-      DEFAULT_THEME_OPTION
+      COLOR_SCHEME_OPTIONS.find(
+        (colorSchemeOption) => colorSchemeOption.value === systemColorScheme,
+      ) ?? DEFAULT_COLOR_SCHEME_OPTION
     );
   }
 
@@ -256,32 +258,32 @@ export class AppComponent implements OnInit, OnDestroy {
     this._translocoService.setActiveLang(nextLanguageOption.value);
   }
 
-  private _setThemeClass(nextTheme: AvailableTheme): void {
-    if (nextTheme === this._activeTheme) {
+  private _setColorSchemeClass(nextColorScheme: AvailableColorScheme): void {
+    if (nextColorScheme === this._activeColorScheme) {
       return;
     }
 
-    this._activeTheme = nextTheme;
-    const prefix = 'jet-theme-';
+    this._activeColorScheme = nextColorScheme;
+    const prefix = 'jet-color-scheme-';
     this._document.body.className = this._document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
-    if (nextTheme !== DEFAULT_THEME_OPTION.value) {
-      this._renderer2.addClass(this._document.body, prefix + nextTheme);
+    if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+      this._renderer2.addClass(this._document.body, prefix + nextColorScheme);
     }
   }
 
-  public _setThemeColor(nextThemeOption: ThemeOption): void {
-    const systemThemeOption =
-      nextThemeOption.value === 'automatic'
-        ? this._getSystemThemeOption()
-        : nextThemeOption;
+  public _setThemeColor(nextColorSchemeOption: ColorSchemeOption): void {
+    const systemColorSchemeOption =
+      nextColorSchemeOption.value === 'automatic'
+        ? this._getSystemColorSchemeOption()
+        : nextColorSchemeOption;
 
-    if (systemThemeOption.themeColor !== this._activeThemeColor) {
-      this._activeThemeColor = systemThemeOption.themeColor;
+    if (systemColorSchemeOption.themeColor !== this._activeThemeColor) {
+      this._activeThemeColor = systemColorSchemeOption.themeColor;
       this._meta.updateTag({
-        content: systemThemeOption.themeColor ?? '',
+        content: systemColorSchemeOption.themeColor ?? '',
         name: 'theme-color',
       });
     }

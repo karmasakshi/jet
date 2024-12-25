@@ -1,7 +1,7 @@
+import { ColorSchemeOption } from './color-scheme-option.interface';
 import { LanguageOption } from './language-option.interface';
-import { ThemeOption } from './theme-option.interface';
 
 export interface Settings {
+  colorSchemeOption: ColorSchemeOption;
   languageOption: LanguageOption;
-  themeOption: ThemeOption;
 }
