@@ -97,6 +97,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private _activeLanguage: AvailableLanguage;
   private _activeColorScheme: AvailableColorScheme;
   private _activeThemeColor: ColorSchemeOption['themeColor'];
+  private readonly _darkColorSchemeMediaQuery: MediaQueryList;
+  private _systemColorSchemeListener:
+    | ((mediaQueryListEvent: MediaQueryListEvent) => void)
+    | undefined;
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
@@ -117,6 +121,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this._activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
     this._activeThemeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
+
+    this._darkColorSchemeMediaQuery = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    );
+
+    this._systemColorSchemeListener = undefined;
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
@@ -159,11 +169,17 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     effect(() => {
-      const colorSchemeOption: ColorSchemeOption =
-        this._settingsService.colorSchemeOption();
+      const colorScheme: AvailableColorScheme =
+        this._settingsService.colorSchemeOption().value;
       untracked(() => {
-        this._setColorSchemeClass(colorSchemeOption.value);
-        this._setThemeColor(colorSchemeOption);
+        if (colorScheme === 'automatic') {
+          this._setSystemColorSchemeListener();
+        } else {
+          this._unsetSystemColorSchemeListener();
+        }
+
+        this._setColorSchemeClass(colorScheme);
+        this._setThemeColor(colorScheme);
       });
     });
 
@@ -202,18 +218,43 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this._routerSubscription.unsubscribe();
     this._serviceWorkerUpdateSubscription.unsubscribe();
+    this._unsetSystemColorSchemeListener();
   }
 
-  private _getSystemColorSchemeOption(): ColorSchemeOption {
-    const systemColorScheme: Omit<AvailableColorScheme, 'automatic'> =
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
-    return (
-      COLOR_SCHEME_OPTIONS.find(
-        (colorSchemeOption) => colorSchemeOption.value === systemColorScheme,
-      ) ?? DEFAULT_COLOR_SCHEME_OPTION
+  private _setSystemColorSchemeListener(): void {
+    if (this._systemColorSchemeListener) {
+      return;
+    }
+
+    this._systemColorSchemeListener = (
+      mediaQueryListEvent: MediaQueryListEvent,
+    ) => {
+      // This updates `<meta name="theme-color" />` based on system setting.
+      // This needs to run only when `this._activeColorScheme === 'automatic'`, not otherwise.
+      // The listener is set and unset accordingly, so `this._activeColorScheme === 'automatic'` check isn't needed.
+      if (mediaQueryListEvent.matches) {
+        this._setThemeColor('dark');
+      } else {
+        this._setThemeColor('light');
+      }
+    };
+
+    this._darkColorSchemeMediaQuery.addEventListener(
+      'change',
+      this._systemColorSchemeListener,
     );
+  }
+
+  private _unsetSystemColorSchemeListener(): void {
+    if (!this._systemColorSchemeListener) {
+      return;
+    }
+
+    this._darkColorSchemeMediaQuery.removeEventListener(
+      'change',
+      this._systemColorSchemeListener,
+    );
+    this._systemColorSchemeListener = undefined;
   }
 
   private _setFontClass(nextFont: AvailableFont): void {
@@ -274,11 +315,17 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  public _setThemeColor(nextColorSchemeOption: ColorSchemeOption): void {
-    nextColorSchemeOption =
-      nextColorSchemeOption.value === 'automatic'
-        ? this._getSystemColorSchemeOption()
-        : nextColorSchemeOption;
+  public _setThemeColor(nextColorScheme: AvailableColorScheme): void {
+    if (nextColorScheme === 'automatic') {
+      nextColorScheme = this._darkColorSchemeMediaQuery.matches
+        ? 'dark'
+        : 'light';
+    }
+
+    const nextColorSchemeOption =
+      COLOR_SCHEME_OPTIONS.find(
+        (colorSchemeOption) => colorSchemeOption.value === nextColorScheme,
+      ) ?? DEFAULT_COLOR_SCHEME_OPTION;
 
     if (nextColorSchemeOption.themeColor !== this._activeThemeColor) {
       this._activeThemeColor = nextColorSchemeOption.themeColor;
