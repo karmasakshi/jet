@@ -14,8 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { QueryParam } from '@jet/enums/query-param.enum';
+import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -48,7 +47,6 @@ import { PageComponent } from '../page/page.component';
 })
 export class SignUpPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
-  private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _authenticationService = inject(AuthenticationService);
@@ -116,11 +114,7 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
-            const returnUrl =
-              this._activatedRoute.snapshot.queryParamMap.get(
-                QueryParam.ReturnUrl,
-              ) ?? '/';
-            void this._router.navigateByUrl(returnUrl);
+            void this._router.navigateByUrl('/');
           }
         }
       })

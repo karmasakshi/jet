@@ -23,8 +23,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouterLink } from '@angular/router';
 import { Profile } from '@jet/interfaces/profile.interface';
+import { User } from '@jet/interfaces/user.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
+import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -44,6 +47,7 @@ import { PageComponent } from '../page/page.component';
     MatInputModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    RouterLink,
     TranslocoModule,
     PageComponent,
   ],
@@ -56,6 +60,7 @@ export class ProfilePageComponent {
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _profileService = inject(ProfileService);
+  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _translocoService = inject(TranslocoService);
 
   private readonly _avatarInput =
@@ -66,6 +71,7 @@ export class ProfilePageComponent {
   public readonly profileFormGroup: FormGroup<{
     username: FormControl<string | null>;
   }>;
+  public readonly user: Signal<User | null>;
 
   public constructor() {
     this.isUpdateProfilePending = false;
@@ -83,6 +89,8 @@ export class ProfilePageComponent {
         ],
       ],
     });
+
+    this.user = this._authenticationService.user;
 
     effect(() => {
       const profile: Profile | undefined = this.profile();

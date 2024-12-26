@@ -4,6 +4,7 @@
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
+    "password-updated": "تم تحديث كلمة المرور.",
     "please-choose-a-smaller-image": "يرجى اختيار صورة حجمها أقل من 1 ميجابايت.",
     "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
     "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح.",
@@ -45,8 +46,8 @@
   "jet-profile-page": {
     "avatar": "الصورة الشخصية",
     "characters": "{{ value }} / {{ maximum }} حرفًا",
-    "created-on": "تم الإنشاء في {{ value }}",
-    "last-updated-on": "آخر تحديث في {{ value }}",
+    "created-on": "تم إنشاء الملف الشخصي في {{ value }}",
+    "last-updated-on": "آخر تحديث للملف الشخصي كان في {{ value }}",
     "profile": "الملف الشخصي",
     "seo": {
       "description": "الملف الشخصي.",
@@ -54,6 +55,7 @@
       "title": "الملف الشخصي"
     },
     "toolbar-title": "الملف الشخصي",
+    "update-password": "تحديث كلمة المرور",
     "update-profile": "تحديث الملف الشخصي",
     "username": "اسم المستخدم"
   },
@@ -103,7 +105,7 @@
     "sign-in": "تسجيل الدخول",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",
-    "toggle-password-visibility": "تبديل رؤية كلمة المرور",
+    "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تسجيل الدخول"
   },
   "jet-sign-out-page": {
@@ -125,8 +127,20 @@
     },
     "sign-in": "تسجيل الدخول",
     "sign-up": "إنشاء حساب",
-    "toggle-password-visibility": "تبديل رؤية كلمة المرور",
+    "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "إنشاء حساب"
+  },
+  "jet-update-password-page": {
+    "confirm-password": "تأكيد كلمة المرور",
+    "password": "كلمة المرور",
+    "seo": {
+      "description": "تحديث كلمة المرور.",
+      "keywords": "jet",
+      "title": "تحديث كلمة المرور"
+    },
+    "toggle-visibility": "تبديل الرؤية",
+    "toolbar-title": "تحديث كلمة المرور",
+    "update-password": "تحديث كلمة المرور"
   },
   "paginator": {
     "first-page": "الصفحة الأولى",

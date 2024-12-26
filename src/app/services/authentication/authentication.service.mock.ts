@@ -11,7 +11,8 @@ import {
   OAuthResponse,
   Session,
   User as SupabaseUser,
-  WeakPassword,
+  UserAttributes,
+  UserResponse,
 } from '@supabase/supabase-js';
 
 export class AuthenticationServiceMock {
@@ -60,7 +61,6 @@ export class AuthenticationServiceMock {
       data: {
         session: {} as Session,
         user: {} as SupabaseUser,
-        weakPassword: {} as WeakPassword,
       },
       error: null,
     });
@@ -75,6 +75,15 @@ export class AuthenticationServiceMock {
       data: {
         session: null,
         user: null,
+      },
+      error: null,
+    });
+  }
+
+  public updateUser(_userAttributes: UserAttributes): Promise<UserResponse> {
+    return Promise.resolve({
+      data: {
+        user: {} as SupabaseUser,
       },
       error: null,
     });

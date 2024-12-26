@@ -17,6 +17,8 @@ import {
   AuthTokenResponsePassword,
   OAuthResponse,
   SupabaseClient,
+  UserAttributes,
+  UserResponse,
 } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
@@ -62,25 +64,27 @@ export class AuthenticationService {
     email: string,
     // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   ): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> {
-    return this._supabaseClient.auth.resetPasswordForEmail(email);
+    const redirectTo = new URL('/sign-in', window.location.origin);
+    redirectTo.searchParams.set(QueryParam.ReturnUrl, 'set-password');
+    return this._supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: redirectTo.toString(),
+    });
   }
 
   public signInWithOauth(
     oauthProvider: AvailableOauthProvider,
   ): Promise<OAuthResponse> {
-    let redirectTo = `${window.location.origin}/sign-in`;
+    const redirectTo = new URL('/sign-in', window.location.origin);
     const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
       QueryParam.ReturnUrl,
     );
 
-    if (returnUrl !== null) {
-      redirectTo +=
-        '?' +
-        new URLSearchParams({ [QueryParam.ReturnUrl]: returnUrl }).toString();
+    if (returnUrl) {
+      redirectTo.searchParams.set(QueryParam.ReturnUrl, returnUrl);
     }
 
     return this._supabaseClient.auth.signInWithOAuth({
-      options: { redirectTo, skipBrowserRedirect: true },
+      options: { redirectTo: redirectTo.toString(), skipBrowserRedirect: true },
       provider: oauthProvider,
     });
   }
@@ -98,5 +102,9 @@ export class AuthenticationService {
 
   public signUp(email: string, password: string): Promise<AuthResponse> {
     return this._supabaseClient.auth.signUp({ email, password });
+  }
+
+  public updateUser(userAttributes: UserAttributes): Promise<UserResponse> {
+    return this._supabaseClient.auth.updateUser(userAttributes);
   }
 }

@@ -6,15 +6,18 @@ import { AuthenticationServiceMock } from '@jet/services/authentication/authenti
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { SignUpPageComponent } from './sign-up-page.component';
+import { UpdatePasswordPageComponent } from './update-password-page.component';
 
-describe('SignUpPageComponent', () => {
-  let component: SignUpPageComponent;
-  let fixture: ComponentFixture<SignUpPageComponent>;
+describe('UpdatePasswordPageComponent', () => {
+  let component: UpdatePasswordPageComponent;
+  let fixture: ComponentFixture<UpdatePasswordPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), SignUpPageComponent],
+      imports: [
+        TranslocoTestingModule.forRoot({}),
+        UpdatePasswordPageComponent,
+      ],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AuthenticationService, useClass: AuthenticationServiceMock },
@@ -22,7 +25,7 @@ describe('SignUpPageComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SignUpPageComponent);
+    fixture = TestBed.createComponent(UpdatePasswordPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

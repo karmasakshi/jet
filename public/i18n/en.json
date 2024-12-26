@@ -4,6 +4,7 @@
     "downloading-updates": "Downloading updates...",
     "no-update-found": "You're on the latest version.",
     "ok": "OK",
+    "password-updated": "Password updated.",
     "please-choose-a-smaller-image": "Please choose an image < 1MB in size.",
     "please-choose-a-valid-image": "Please choose a valid image.",
     "profile-updated-successfully": "Profile updated successfully.",
@@ -45,8 +46,8 @@
   "jet-profile-page": {
     "avatar": "Avatar",
     "characters": "{{ value }} / {{ maximum }} characters",
-    "created-on": "Created on {{ value }}",
-    "last-updated-on": "Last updated on {{ value }}",
+    "created-on": "Profile created on {{ value }}",
+    "last-updated-on": "Profile last updated on {{ value }}",
     "profile": "Profile",
     "seo": {
       "description": "Profile.",
@@ -54,6 +55,7 @@
       "title": "Profile"
     },
     "toolbar-title": "Profile",
+    "update-password": "Update password",
     "update-profile": "Update profile",
     "username": "Username"
   },
@@ -103,7 +105,7 @@
     "sign-in": "Sign in",
     "sign-in-with-google": "Sign in with Google",
     "sign-up": "Sign up",
-    "toggle-password-visibility": "Toggle password visibility",
+    "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Sign In"
   },
   "jet-sign-out-page": {
@@ -125,8 +127,20 @@
     },
     "sign-in": "Sign in",
     "sign-up": "Sign up",
-    "toggle-password-visibility": "Toggle password visibility",
+    "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Sign Up"
+  },
+  "jet-update-password-page": {
+    "confirm-password": "Confirm password",
+    "password": "Password",
+    "seo": {
+      "description": "Update password.",
+      "keywords": "jet",
+      "title": "Update Password"
+    },
+    "toggle-visibility": "Toggle visibility",
+    "toolbar-title": "Update Password",
+    "update-password": "Update password"
   },
   "paginator": {
     "first-page": "First Page",

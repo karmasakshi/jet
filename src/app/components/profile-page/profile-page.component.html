@@ -102,6 +102,14 @@
               <mat-icon>check</mat-icon>
               <span>{{ t('update-profile') }}</span>
             </button>
+            <div style="flex: 1"></div>
+            <a
+              mat-button
+              routerLink="/update-password"
+            >
+              <mat-icon>lock_reset</mat-icon>
+              <span>{{ t('update-password') }}</span>
+            </a>
           </mat-card-actions>
           <mat-card-footer>
             <mat-progress-bar
@@ -117,6 +125,7 @@
             style="font: var(--mat-sys-label-small); text-align: center"
           >
             <div>
+              <p>{{ user()?.email }}</p>
               <p>
                 {{
                   t('last-updated-on', {
