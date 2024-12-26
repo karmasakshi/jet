@@ -65,7 +65,7 @@ export class AuthenticationService {
     // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   ): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> {
     const redirectTo = new URL('/sign-in', window.location.origin);
-    redirectTo.searchParams.set(QueryParam.ReturnUrl, 'set-password');
+    redirectTo.searchParams.set(QueryParam.ReturnUrl, 'update-password');
     return this._supabaseClient.auth.resetPasswordForEmail(email, {
       redirectTo: redirectTo.toString(),
     });
