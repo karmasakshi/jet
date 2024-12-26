@@ -26,23 +26,23 @@
             style="object-fit: cover"
             width="480"
           />
-          <mat-card-content style="text-align: center">
+          <mat-card-content>
             <mat-card
               (click)="avatarInput.click()"
               matRipple
               style="
                 border: 2px solid var(--mat-sys-primary);
                 cursor: pointer;
+                height: 132px;
+                width: 132px;
                 border-radius: 50%;
-                display: inline-flex;
-                margin: -96px 0 32px;
+                margin: -100px auto 32px;
               "
             >
               <img
                 [alt]="t('avatar')"
                 [ngSrc]="_profile.avatar_url"
                 height="128"
-                mat-card-image
                 priority
                 style="object-fit: cover"
                 width="128"
@@ -51,7 +51,7 @@
                 <input
                   #avatarInput
                   [disabled]="profileFormGroup.disabled"
-                  (change)="uploadAvatar()"
+                  (change)="checkAndUploadAvatar()"
                   accept="image/*"
                   type="file"
                 />
@@ -69,6 +69,7 @@
               <mat-form-field>
                 <mat-label>{{ t('username') }}</mat-label>
                 <input
+                  autocomplete="username"
                   formControlName="username"
                   matInput
                   required

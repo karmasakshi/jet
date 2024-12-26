@@ -38,6 +38,7 @@
             <mat-form-field>
               <mat-label>{{ t('email') }}</mat-label>
               <input
+                autocomplete="email"
                 formControlName="email"
                 matInput
                 required
@@ -48,6 +49,7 @@
               <mat-label>{{ t('password') }}</mat-label>
               <input
                 [type]="isPasswordHidden ? 'password' : 'text'"
+                autocomplete="current-password"
                 formControlName="password"
                 matInput
                 required

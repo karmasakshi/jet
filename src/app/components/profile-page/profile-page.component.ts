@@ -133,7 +133,7 @@ export class ProfilePageComponent {
       });
   }
 
-  public uploadAvatar(): void {
+  public checkAndUploadAvatar(): void {
     const files = this._avatarInput().nativeElement.files;
 
     if (!files || files.length !== 1) {
@@ -158,6 +158,10 @@ export class ProfilePageComponent {
       return;
     }
 
+    this._uploadAvatar(file);
+  }
+
+  private _uploadAvatar(file: File): void {
     if (this.isUpdateProfilePending) {
       return;
     }
