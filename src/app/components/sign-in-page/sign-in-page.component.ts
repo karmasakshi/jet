@@ -123,10 +123,20 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this.isSignInPending = false;
           this.signInFormGroup.enable();
         } else {
-          if (data.user === null) {
-            this._alertService.showErrorAlert();
-            this.isSignInPending = false;
-            this.signInFormGroup.enable();
+          if (data.session === null) {
+            if (
+              import.meta.env.NG_APP_SUPABASE_IS_CONFIRM_EMAIL_ON === 'true'
+            ) {
+              this._alertService.showAlert(
+                this._translocoService.translate(
+                  'alerts.email-confirmation-pending',
+                ),
+              );
+            } else {
+              this._alertService.showErrorAlert();
+              this.isSignInPending = false;
+              this.signInFormGroup.enable();
+            }
           } else {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),

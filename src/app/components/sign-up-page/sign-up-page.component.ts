@@ -106,10 +106,20 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
           this.isSignUpPending = false;
           this.signUpFormGroup.enable();
         } else {
-          if (data.user === null) {
-            this._alertService.showErrorAlert();
-            this.isSignUpPending = false;
-            this.signUpFormGroup.enable();
+          if (data.session === null) {
+            if (
+              import.meta.env.NG_APP_SUPABASE_IS_CONFIRM_EMAIL_ON === 'true'
+            ) {
+              this._alertService.showAlert(
+                this._translocoService.translate(
+                  'alerts.weve-sent-confirmation',
+                ),
+              );
+            } else {
+              this._alertService.showErrorAlert();
+              this.isSignUpPending = false;
+              this.signUpFormGroup.enable();
+            }
           } else {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),

@@ -2,6 +2,7 @@
   "alerts": {
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
+    "email-confirmation-pending": "تأكيد البريد الإلكتروني قيد الانتظار.",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
     "password-updated": "تم تحديث كلمة المرور.",
@@ -14,7 +15,8 @@
     "something-went-wrong": "حدث خطأ ما.",
     "upload-successful-saving-to-profile": "تم التحميل بنجاح، جاري حفظ الصورة في الملف الشخصي.",
     "welcome": "مرحباً!",
-    "well-send-an-email": "سنرسل بريدًا إلكترونيًا إذا تم العثور على حساب."
+    "well-send-an-email": "سنرسل بريدًا إلكترونيًا إذا تم العثور على حساب.",
+    "weve-sent-confirmation": "لقد أرسلنا بريدًا إلكترونيًا للتأكيد."
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",

@@ -101,7 +101,12 @@ export class AuthenticationService {
   }
 
   public signUp(email: string, password: string): Promise<AuthResponse> {
-    return this._supabaseClient.auth.signUp({ email, password });
+    const redirectTo = new URL('/sign-in', window.location.origin);
+    return this._supabaseClient.auth.signUp({
+      email,
+      options: { emailRedirectTo: redirectTo.toString() },
+      password,
+    });
   }
 
   public updateUser(userAttributes: UserAttributes): Promise<UserResponse> {
