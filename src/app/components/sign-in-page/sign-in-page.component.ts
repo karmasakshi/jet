@@ -132,6 +132,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
                   'alerts.email-confirmation-pending',
                 ),
               );
+              this.isSignInPending = false;
             } else {
               this._alertService.showErrorAlert();
               this.isSignInPending = false;

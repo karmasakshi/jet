@@ -115,6 +115,7 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
                   'alerts.weve-sent-confirmation',
                 ),
               );
+              this.isSignUpPending = false;
             } else {
               this._alertService.showErrorAlert();
               this.isSignUpPending = false;
