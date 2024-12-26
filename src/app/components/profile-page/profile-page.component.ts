@@ -58,9 +58,9 @@ import { PageComponent } from '../page/page.component';
 export class ProfilePageComponent {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _alertService = inject(AlertService);
+  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _profileService = inject(ProfileService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _translocoService = inject(TranslocoService);
 
   private readonly _avatarInput =
