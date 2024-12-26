@@ -6,13 +6,13 @@ import {
   Router,
   UrlTree,
 } from '@angular/router';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
+import { UserService } from '@jet/services/user/user.service';
 
 export const isNotAuthenticatedGuard: CanActivateFn =
   (): MaybeAsync<GuardResult> => {
     const router = inject(Router);
-    const authenticationService = inject(AuthenticationService);
-    return authenticationService
+    const userService = inject(UserService);
+    return userService
       .getSession()
       .then(({ data, error }): boolean | UrlTree => {
         return error || data.session === null

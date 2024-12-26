@@ -26,7 +26,7 @@ import { SupabaseService } from '../supabase/supabase.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class UserService {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _loggerService = inject(LoggerService);
   private readonly _supabaseService = inject(SupabaseService);
@@ -45,7 +45,7 @@ export class AuthenticationService {
       },
     );
 
-    this._loggerService.logServiceInitialization('AuthenticationService');
+    this._loggerService.logServiceInitialization('UserService');
   }
 
   public get user(): Signal<User | null> {

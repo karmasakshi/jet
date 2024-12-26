@@ -3,8 +3,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
-import { AuthenticationServiceMock } from '@jet/services/authentication/authentication.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -15,6 +13,8 @@ import { SettingsService } from '@jet/services/settings/settings.service';
 import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { ToolbarTitleServiceMock } from '@jet/services/toolbar-title/toolbar-title.service.mock';
+import { UserService } from '@jet/services/user/user.service';
+import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AppComponent } from './app.component';
 
@@ -32,12 +32,12 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
-        { provide: AuthenticationService, useClass: AuthenticationServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: ServiceWorkerService, useClass: ServiceWorkerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
         { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },
+        { provide: UserService, useClass: UserServiceMock },
       ],
     }).compileComponents();
 

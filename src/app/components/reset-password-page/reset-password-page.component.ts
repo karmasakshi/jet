@@ -16,8 +16,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import {
   BindQueryParamsFactory,
@@ -49,8 +49,8 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
   private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
@@ -94,7 +94,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
 
     this.isResetPasswordPending = true;
     this.resetPasswordFormGroup.disable();
-    this._authenticationService
+    this._userService
       .resetPassword(email)
       .then(({ error }): void => {
         if (error) {

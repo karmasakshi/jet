@@ -13,7 +13,7 @@ import {
   UserResponse,
 } from '@supabase/supabase-js';
 
-export class AuthenticationServiceMock {
+export class UserServiceMock {
   private readonly _user: WritableSignal<User | null>;
 
   public constructor() {

@@ -14,18 +14,18 @@ import { User } from '@jet/interfaces/user.interface';
 import { StorageError } from '@supabase/storage-js/';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { AlertService } from '../alert/alert.service';
-import { AuthenticationService } from '../authentication/authentication.service';
 import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
   private readonly _alertService = inject(AlertService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _supabaseService = inject(SupabaseService);
+  private readonly _userService = inject(UserService);
 
   private readonly _profile: WritableSignal<Profile | undefined>;
   private readonly _supabaseClient: SupabaseClient;
@@ -36,7 +36,7 @@ export class ProfileService {
     this._supabaseClient = this._supabaseService.supabaseClient;
 
     effect(() => {
-      const user: User | null = this._authenticationService.user();
+      const user: User | null = this._userService.user();
       untracked(() => {
         if (user === null) {
           this._profile.set(undefined);
@@ -61,7 +61,7 @@ export class ProfileService {
   }
 
   public selectProfile(): void {
-    const userId = this._authenticationService.user()?.id;
+    const userId = this._userService.user()?.id;
 
     this._supabaseClient
       .from(Tables.Profiles)
@@ -79,7 +79,7 @@ export class ProfileService {
   }
 
   public updateProfile(partialProfile: Partial<Profile>) {
-    const userId = this._authenticationService.user()?.id;
+    const userId = this._userService.user()?.id;
 
     if (userId === undefined) {
       return Promise.reject(new Error());
@@ -98,7 +98,7 @@ export class ProfileService {
     | { data: null; error: StorageError }
   > {
     const fileExt = file.name.split('.').pop();
-    const path = `${this._authenticationService.user()?.id}/avatar.${fileExt}`;
+    const path = `${this._userService.user()?.id}/avatar.${fileExt}`;
     return this._supabaseClient.storage
       .from(Buckets.Avatars)
       .upload(path, file, { upsert: true });

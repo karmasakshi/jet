@@ -27,9 +27,9 @@ import { RouterLink } from '@angular/router';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { User } from '@jet/interfaces/user.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';
+import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -58,9 +58,9 @@ import { PageComponent } from '../page/page.component';
 export class ProfilePageComponent {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _alertService = inject(AlertService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _profileService = inject(ProfileService);
+  private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
   private readonly _avatarInput =
@@ -90,7 +90,7 @@ export class ProfilePageComponent {
       ],
     });
 
-    this.user = this._authenticationService.user;
+    this.user = this._userService.user;
 
     effect(() => {
       const profile: Profile | undefined = this.profile();

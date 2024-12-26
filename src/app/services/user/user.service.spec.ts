@@ -4,10 +4,10 @@ import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { SupabaseService } from '../supabase/supabase.service';
 import { SupabaseServiceMock } from '../supabase/supabase.service.mock';
-import { AuthenticationService } from './authentication.service';
+import { UserService } from './user.service';
 
-describe('AuthenticationService', () => {
-  let service: AuthenticationService;
+describe('UserService', () => {
+  let service: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +17,7 @@ describe('AuthenticationService', () => {
         { provide: SupabaseService, useClass: SupabaseServiceMock },
       ],
     });
-    service = TestBed.inject(AuthenticationService);
+    service = TestBed.inject(UserService);
   });
 
   it('should be created', () => {

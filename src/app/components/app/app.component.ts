@@ -40,12 +40,12 @@ import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interfa
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { User } from '@jet/interfaces/user.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
+import { UserService } from '@jet/services/user/user.service';
 import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
 import { AvailableFont } from '@jet/types/available-font.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
@@ -85,12 +85,12 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
   private readonly _analyticsService = inject(AnalyticsService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _serviceWorkerService = inject(ServiceWorkerService);
   private readonly _settingsService = inject(SettingsService);
   private readonly _toolbarTitleService = inject(ToolbarTitleService);
+  private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
   private _activeFont: AvailableFont;
@@ -158,7 +158,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.toolbarTitle = this._toolbarTitleService.toolbarTitle;
 
-    this.user = this._authenticationService.user;
+    this.user = this._userService.user;
 
     effect(() => {
       const languageOption: LanguageOption = this.languageOption();

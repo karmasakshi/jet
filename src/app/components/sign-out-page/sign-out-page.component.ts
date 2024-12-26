@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
+import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -16,9 +16,9 @@ import { PageComponent } from '../page/page.component';
 export class SignOutPageComponent implements OnInit {
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
+  private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
   private _isSignOutPending: boolean;
@@ -40,7 +40,7 @@ export class SignOutPageComponent implements OnInit {
 
     this._isSignOutPending = true;
     this._progressBarService.showProgressBar();
-    this._authenticationService
+    this._userService
       .signOut()
       .then(({ error }): void => {
         if (error) {

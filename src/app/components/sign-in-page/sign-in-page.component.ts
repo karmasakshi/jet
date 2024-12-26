@@ -17,9 +17,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { AlertService } from '@jet/services/alert/alert.service';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
+import { UserService } from '@jet/services/user/user.service';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import {
@@ -53,9 +53,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
+  private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
   private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
@@ -114,7 +114,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
     this.isSignInPending = true;
     this.signInFormGroup.disable();
-    this._authenticationService
+    this._userService
       .signIn(email, password)
       .then(({ data, error }): void => {
         if (error) {
@@ -168,7 +168,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
     this.isSignInWithOauthPending = true;
     this.signInFormGroup.disable();
-    this._authenticationService
+    this._userService
       .signInWithOauth(oauthProvider)
       .then(({ data, error }): void => {
         if (error) {
@@ -196,7 +196,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this.isGetSessionPending = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar({ mode: 'query' });
-    this._authenticationService
+    this._userService
       .getSession()
       .then(({ data, error }): void => {
         if (error) {

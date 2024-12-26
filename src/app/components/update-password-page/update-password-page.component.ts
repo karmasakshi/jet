@@ -19,8 +19,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
-import { AuthenticationService } from '@jet/services/authentication/authentication.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
 import { PageComponent } from '../page/page.component';
@@ -48,8 +48,8 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
-  private readonly _authenticationService = inject(AuthenticationService);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
   private _passwordSubscription: Subscription;
@@ -107,7 +107,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
 
     this.isUpdatePasswordPending = true;
     this.updatePasswordFormGroup.disable();
-    this._authenticationService
+    this._userService
       .updateUser({ password })
       .then(({ error }): void => {
         if (error) {
