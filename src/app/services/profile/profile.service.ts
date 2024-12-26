@@ -11,7 +11,7 @@ import { Buckets } from '@jet/enums/buckets.enum';
 import { Tables } from '@jet/enums/tables.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { User } from '@jet/interfaces/user.interface';
-import { StorageError } from '@supabase/storage-js/';
+import { FileObject, StorageError } from '@supabase/storage-js/';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { AlertService } from '../alert/alert.service';
 import { LoggerService } from '../logger/logger.service';
@@ -60,6 +60,21 @@ export class ProfileService {
     return data.publicUrl;
   }
 
+  public deleteAvatar(publicUrl: string): Promise<
+    | {
+        data: FileObject[];
+        error: null;
+      }
+    | {
+        data: null;
+        error: StorageError;
+      }
+  > {
+    const fileExtension = publicUrl.split('.').pop();
+    const path = `${this._userService.user()?.id}/avatar.${fileExtension}`;
+    return this._supabaseClient.storage.from(Buckets.Avatars).remove([path]);
+  }
+
   public selectProfile(): void {
     const userId = this._userService.user()?.id;
 
@@ -97,8 +112,8 @@ export class ProfileService {
     | { data: { id: string; path: string; fullPath: string }; error: null }
     | { data: null; error: StorageError }
   > {
-    const fileExt = file.name.split('.').pop();
-    const path = `${this._userService.user()?.id}/avatar.${fileExt}`;
+    const fileExtension = file.name.split('.').pop();
+    const path = `${this._userService.user()?.id}/avatar.${fileExtension}`;
     return this._supabaseClient.storage
       .from(Buckets.Avatars)
       .upload(path, file, { upsert: true });

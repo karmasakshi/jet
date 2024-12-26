@@ -96,7 +96,7 @@ export class ProfilePageComponent {
       const profile: Profile | undefined = this.profile();
       untracked(() => {
         if (profile) {
-          this.profileFormGroup.controls.username.setValue(profile.username);
+          this.profileFormGroup.controls.username.patchValue(profile.username);
         }
       });
     });
