@@ -23,7 +23,7 @@ export class ProfileServiceMock {
     // Do nothing
   }
 
-  public updateProfile(_partialProfile: Partial<Profile>): Promise<unknown> {
+  public updateProfile(_partialProfile: Partial<Profile>) {
     return Promise.resolve();
   }
 

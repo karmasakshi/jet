@@ -9,8 +9,6 @@ import {
   AuthSession,
   AuthTokenResponsePassword,
   OAuthResponse,
-  Session,
-  User as SupabaseUser,
   UserAttributes,
   UserResponse,
 } from '@supabase/supabase-js';
@@ -31,7 +29,10 @@ export class AuthenticationServiceMock {
     | { data: { session: null }; error: AuthError }
     | { data: { session: null }; error: null }
   > {
-    return Promise.resolve({ data: { session: null }, error: null });
+    return Promise.resolve({
+      data: { session: {} as AuthSession },
+      error: null,
+    });
   }
 
   public resetPassword(
@@ -42,28 +43,16 @@ export class AuthenticationServiceMock {
   }
 
   public signInWithOauth(
-    oauthProvider: AvailableOauthProvider,
+    _oauthProvider: AvailableOauthProvider,
   ): Promise<OAuthResponse> {
-    return Promise.resolve({
-      data: {
-        provider: oauthProvider,
-        url: '',
-      },
-      error: null,
-    });
+    return Promise.resolve({} as OAuthResponse);
   }
 
   public signIn(
     _email: string,
     _password: string,
   ): Promise<AuthTokenResponsePassword> {
-    return Promise.resolve({
-      data: {
-        session: {} as Session,
-        user: {} as SupabaseUser,
-      },
-      error: null,
-    });
+    return Promise.resolve({} as AuthTokenResponsePassword);
   }
 
   public signOut(): Promise<{ error: AuthError | null }> {
@@ -71,21 +60,10 @@ export class AuthenticationServiceMock {
   }
 
   public signUp(_email: string, _password: string): Promise<AuthResponse> {
-    return Promise.resolve({
-      data: {
-        session: null,
-        user: null,
-      },
-      error: null,
-    });
+    return Promise.resolve({} as AuthResponse);
   }
 
   public updateUser(_userAttributes: UserAttributes): Promise<UserResponse> {
-    return Promise.resolve({
-      data: {
-        user: {} as SupabaseUser,
-      },
-      error: null,
-    });
+    return Promise.resolve({} as UserResponse);
   }
 }
