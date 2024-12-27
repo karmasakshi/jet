@@ -2,7 +2,7 @@
 
 import { Signal, signal, WritableSignal } from '@angular/core';
 import { Profile } from '@jet/interfaces/profile.interface';
-import { StorageError } from '@supabase/storage-js/';
+import { FileObject, StorageError } from '@supabase/storage-js/';
 
 export class ProfileServiceMock {
   private readonly _profile: WritableSignal<Profile | undefined>;
@@ -17,6 +17,19 @@ export class ProfileServiceMock {
 
   public getAvatarPublicUrl(_path: string): string {
     return '';
+  }
+
+  public deleteAvatar(_publicUrl: string): Promise<
+    | {
+        data: FileObject[];
+        error: null;
+      }
+    | {
+        data: null;
+        error: StorageError;
+      }
+  > {
+    return Promise.resolve({ data: [], error: null });
   }
 
   public selectProfile(): void {

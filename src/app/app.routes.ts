@@ -6,6 +6,30 @@ import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not
 export const routes: Routes = [
   { component: HomePageComponent, path: '' },
   {
+    data: { case: 'email-verification-pending' },
+    loadComponent: () =>
+      import('@jet/components/message-page/message-page.component').then(
+        (m) => m.MessagePageComponent,
+      ),
+    path: 'email-verification-pending',
+  },
+  {
+    data: { case: 'email-verified' },
+    loadComponent: () =>
+      import('@jet/components/message-page/message-page.component').then(
+        (m) => m.MessagePageComponent,
+      ),
+    path: 'email-verified',
+  },
+  {
+    data: { case: 'password-reset-email-sent' },
+    loadComponent: () =>
+      import('@jet/components/message-page/message-page.component').then(
+        (m) => m.MessagePageComponent,
+      ),
+    path: 'password-reset-email-sent',
+  },
+  {
     canActivate: [isAuthenticatedGuard],
     loadComponent: () =>
       import('@jet/components/profile-page/profile-page.component').then(

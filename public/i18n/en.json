@@ -2,7 +2,6 @@
   "alerts": {
     "checking-for-updates": "Checking for updates...",
     "downloading-updates": "Downloading updates...",
-    "email-confirmation-pending": "Email confirmation pending.",
     "no-update-found": "You're on the latest version.",
     "ok": "OK",
     "password-updated": "Password updated.",
@@ -14,9 +13,7 @@
     "signed-out-successfully": "Signed out successfully.",
     "something-went-wrong": "Something went wrong.",
     "upload-successful-saving-to-profile": "Upload successful, saving to profile.",
-    "welcome": "Welcome!",
-    "well-send-an-email": "We'll send an email if an account is found.",
-    "weve-sent-confirmation": "We've sent a confirmation email."
+    "welcome": "Welcome!"
   },
   "jet-app": {
     "home": "Home",
@@ -35,6 +32,22 @@
       "title": "Jet"
     },
     "toolbar-title": "Jet"
+  },
+  "jet-message-page": {
+    "email-verification-pending": "Email verification pending.",
+    "email-verified": "Email verified!",
+    "message": "Message",
+    "password-reset-email-sent": "Email sent.",
+    "seo": {
+      "description": "Message.",
+      "keywords": "jet",
+      "title": "Jet"
+    },
+    "sign-in": "Sign in",
+    "sign-in-and-update-password": "Use the link in the email to sign in and update your password.",
+    "toolbar-title": "Jet",
+    "weve-sent-an-email": "We've sent a verification email. Please click the link in the email to verify.",
+    "you-can-sign-in": "Thank you for verifying your email. You can sign in now."
   },
   "jet-not-found-page": {
     "page-not-found": "Page not found.",

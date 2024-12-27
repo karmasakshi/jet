@@ -18,7 +18,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { UserService } from '@jet/services/user/user.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import {
   BindQueryParamsFactory,
   BindQueryParamsManager,
@@ -51,7 +51,6 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
   private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
   private readonly _bindQueryParamsManager: BindQueryParamsManager<{
@@ -103,10 +102,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
           this.isResetPasswordPending = false;
           this.resetPasswordFormGroup.enable();
         } else {
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.well-send-an-email'),
-          );
-          void this._router.navigateByUrl('/sign-in');
+          void this._router.navigateByUrl('/password-reset-email-sent');
         }
       })
       .catch((error: Error): void => {

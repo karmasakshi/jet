@@ -110,12 +110,7 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
             if (
               import.meta.env.NG_APP_SUPABASE_IS_CONFIRM_EMAIL_ON === 'true'
             ) {
-              this._alertService.showAlert(
-                this._translocoService.translate(
-                  'alerts.weve-sent-confirmation',
-                ),
-              );
-              this.isSignUpPending = false;
+              void this._router.navigateByUrl('/email-verification-pending');
             } else {
               this._alertService.showErrorAlert();
               this.isSignUpPending = false;

@@ -2,7 +2,6 @@
   "alerts": {
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
-    "email-confirmation-pending": "تأكيد البريد الإلكتروني قيد الانتظار.",
     "no-update-found": "أنت على أحدث إصدار.",
     "ok": "موافق",
     "password-updated": "تم تحديث كلمة المرور.",
@@ -14,9 +13,7 @@
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
     "upload-successful-saving-to-profile": "تم التحميل بنجاح، جاري حفظ الصورة في الملف الشخصي.",
-    "welcome": "مرحباً!",
-    "well-send-an-email": "سنرسل بريدًا إلكترونيًا إذا تم العثور على حساب.",
-    "weve-sent-confirmation": "لقد أرسلنا بريدًا إلكترونيًا للتأكيد."
+    "welcome": "مرحباً!"
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",
@@ -35,6 +32,22 @@
       "title": "Jet"
     },
     "toolbar-title": "Jet"
+  },
+  "jet-message-page": {
+    "email-verification-pending": "التحقق من البريد الإلكتروني قيد الانتظار.",
+    "email-verified": "تم التحقق من البريد الإلكتروني!",
+    "message": "رسالة",
+    "password-reset-email-sent": "تم إرسال البريد الإلكتروني.",
+    "seo": {
+      "description": "رسالة.",
+      "keywords": "jet",
+      "title": "Jet"
+    },
+    "sign-in": "تسجيل الدخول",
+    "sign-in-and-update-password": "استخدم الرابط الموجود في البريد الإلكتروني لتسجيل الدخول وتحديث كلمة المرور.",
+    "toolbar-title": "Jet",
+    "weve-sent-an-email": "لقد أرسلنا بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط الموجود في البريد الإلكتروني للتحقق.",
+    "you-can-sign-in": "شكرًا لتأكيد بريدك الإلكتروني. يمكنك تسجيل الدخول الآن."
   },
   "jet-not-found-page": {
     "page-not-found": "الصفحة غير موجودة.",

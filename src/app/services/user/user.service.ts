@@ -101,7 +101,7 @@ export class UserService {
   }
 
   public signUp(email: string, password: string): Promise<AuthResponse> {
-    const redirectTo = new URL('/sign-in', window.location.origin);
+    const redirectTo = new URL('/email-verified', window.location.origin);
     return this._supabaseClient.auth.signUp({
       email,
       options: { emailRedirectTo: redirectTo.toString() },
