@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
+import { from } from 'rxjs';
 import { MessagePageComponent } from './message-page.component';
 
 describe('MessagePageComponent', () => {
@@ -13,7 +14,7 @@ describe('MessagePageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TranslocoTestingModule.forRoot({}), MessagePageComponent],
       providers: [
-        { provide: ActivatedRoute, useValue: {} },
+        { provide: ActivatedRoute, useValue: { data: from([]) } },
         { provide: LoggerService, useClass: LoggerServiceMock },
       ],
     }).compileComponents();
