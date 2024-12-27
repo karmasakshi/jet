@@ -34,20 +34,17 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "email-verification-pending": "التحقق من البريد الإلكتروني قيد الانتظار.",
-    "email-verified": "تم التحقق من البريد الإلكتروني!",
+    "email-verification-pending": "اقتربنا من الوصول!",
     "message": "رسالة",
-    "password-reset-email-sent": "تم إرسال البريد الإلكتروني.",
+    "reset-password-email-sent": "تم إرسال البريد الإلكتروني.",
     "seo": {
       "description": "رسالة.",
       "keywords": "jet",
       "title": "Jet"
     },
-    "sign-in": "تسجيل الدخول",
     "sign-in-and-update-password": "استخدم الرابط الموجود في البريد الإلكتروني لتسجيل الدخول وتحديث كلمة المرور.",
     "toolbar-title": "Jet",
-    "weve-sent-an-email": "لقد أرسلنا بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط الموجود في البريد الإلكتروني للتحقق.",
-    "you-can-sign-in": "شكرًا لتأكيد بريدك الإلكتروني. يمكنك تسجيل الدخول الآن."
+    "weve-sent-an-email": "لقد أرسلنا بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط الموجود في البريد الإلكتروني للتحقق."
   },
   "jet-not-found-page": {
     "page-not-found": "الصفحة غير موجودة.",

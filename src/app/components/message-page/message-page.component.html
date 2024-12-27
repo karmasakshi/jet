@@ -24,7 +24,7 @@
           style="object-fit: cover"
           width="480"
         />
-        <mat-card-content style="padding-bottom: 16px">
+        <mat-card-content>
           @switch (case) {
             @case ('email-verification-pending') {
               <p style="font: var(--mat-sys-headline-small)">
@@ -32,31 +32,14 @@
               </p>
               <p>{{ t('weve-sent-an-email') }}</p>
             }
-            @case ('email-verified') {
+            @case ('reset-password-email-sent') {
               <p style="font: var(--mat-sys-headline-small)">
-                {{ t('email-verified') }}
-              </p>
-              <p>{{ t('you-can-sign-in') }}</p>
-            }
-            @case ('password-reset-email-sent') {
-              <p style="font: var(--mat-sys-headline-small)">
-                {{ t('password-reset-email-sent') }}
+                {{ t('reset-password-email-sent') }}
               </p>
               <p>{{ t('sign-in-and-update-password') }}</p>
             }
           }
         </mat-card-content>
-        @if (case !== 'password-reset-email-sent') {
-          <mat-card-actions>
-            <a
-              mat-stroked-button
-              routerLink="/sign-in"
-            >
-              <mat-icon>login</mat-icon>
-              <span>{{ t('sign-in') }}</span>
-            </a>
-          </mat-card-actions>
-        }
       </mat-card>
     </div>
   </jet-page>

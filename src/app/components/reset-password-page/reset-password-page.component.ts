@@ -102,7 +102,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
           this.isResetPasswordPending = false;
           this.resetPasswordFormGroup.enable();
         } else {
-          void this._router.navigateByUrl('/password-reset-email-sent');
+          void this._router.navigateByUrl('/reset-password-email-sent');
         }
       })
       .catch((error: Error): void => {

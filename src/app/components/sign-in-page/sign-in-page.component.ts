@@ -124,15 +124,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this.signInFormGroup.enable();
         } else {
           if (data.session === null) {
-            if (
-              import.meta.env.NG_APP_SUPABASE_IS_CONFIRM_EMAIL_ON === 'true'
-            ) {
-              void this._router.navigateByUrl('/email-verification-pending');
-            } else {
-              this._alertService.showErrorAlert();
-              this.isSignInPending = false;
-              this.signInFormGroup.enable();
-            }
+            this._alertService.showErrorAlert();
+            this.isSignInPending = false;
+            this.signInFormGroup.enable();
           } else {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),

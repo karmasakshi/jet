@@ -3,7 +3,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,6 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [
     NgOptimizedImage,
-    RouterLink,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -31,8 +30,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
 
   public case:
     | 'email-verification-pending'
-    | 'email-verified'
-    | 'password-reset-email-sent'
+    | 'reset-password-email-sent'
     | undefined;
 
   public constructor() {

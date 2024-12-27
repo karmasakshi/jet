@@ -34,20 +34,17 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "email-verification-pending": "Email verification pending.",
-    "email-verified": "Email verified!",
+    "email-verification-pending": "Almost there!",
     "message": "Message",
-    "password-reset-email-sent": "Email sent.",
+    "reset-password-email-sent": "Email sent.",
     "seo": {
       "description": "Message.",
       "keywords": "jet",
       "title": "Jet"
     },
-    "sign-in": "Sign in",
     "sign-in-and-update-password": "Use the link in the email to sign in and update your password.",
     "toolbar-title": "Jet",
-    "weve-sent-an-email": "We've sent a verification email. Please click the link in the email to verify.",
-    "you-can-sign-in": "Thank you for verifying your email. You can sign in now."
+    "weve-sent-an-email": "We've sent a verification email. Please click the link in the email to verify."
   },
   "jet-not-found-page": {
     "page-not-found": "Page not found.",

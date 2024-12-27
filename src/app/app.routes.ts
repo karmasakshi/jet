@@ -14,22 +14,6 @@ export const routes: Routes = [
     path: 'email-verification-pending',
   },
   {
-    data: { case: 'email-verified' },
-    loadComponent: () =>
-      import('@jet/components/message-page/message-page.component').then(
-        (m) => m.MessagePageComponent,
-      ),
-    path: 'email-verified',
-  },
-  {
-    data: { case: 'password-reset-email-sent' },
-    loadComponent: () =>
-      import('@jet/components/message-page/message-page.component').then(
-        (m) => m.MessagePageComponent,
-      ),
-    path: 'password-reset-email-sent',
-  },
-  {
     canActivate: [isAuthenticatedGuard],
     loadComponent: () =>
       import('@jet/components/profile-page/profile-page.component').then(
@@ -44,6 +28,14 @@ export const routes: Routes = [
         '@jet/components/reset-password-page/reset-password-page.component'
       ).then((m) => m.ResetPasswordPageComponent),
     path: 'reset-password',
+  },
+  {
+    data: { case: 'reset-password-email-sent' },
+    loadComponent: () =>
+      import('@jet/components/message-page/message-page.component').then(
+        (m) => m.MessagePageComponent,
+      ),
+    path: 'reset-password-email-sent',
   },
   {
     loadComponent: () =>
