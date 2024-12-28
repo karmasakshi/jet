@@ -41,7 +41,10 @@
             >
               <img
                 [alt]="t('avatar')"
-                [ngSrc]="_profile.avatar_url"
+                [ngSrc]="
+                  _profile.avatar_url ??
+                  'https://placehold.co/128x128/webp?text=?'
+                "
                 height="128"
                 priority
                 style="object-fit: cover"

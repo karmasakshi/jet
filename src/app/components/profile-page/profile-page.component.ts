@@ -85,7 +85,7 @@ export class ProfilePageComponent {
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(30),
-          Validators.pattern(/^[a-z0-9_]{5,30}$/),
+          Validators.pattern(/^[a-z0-9_]+$/),
         ],
       ],
     });
