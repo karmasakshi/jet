@@ -167,6 +167,8 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this.isSignInWithOauthPending = false;
           this.signInFormGroup.enable();
         } else {
+          this.isSignInWithOauthPending = false;
+          this.signInFormGroup.enable();
           window.location.href = data.url;
         }
       })

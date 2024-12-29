@@ -99,9 +99,9 @@
             />
           </a>
         }
-        <span style="font: var(--mat-sys-title-medium)">{{
-          toolbarTitle() || t('loading')
-        }}</span>
+        <h1 style="font: var(--mat-sys-title-medium)">
+          {{ toolbarTitle() || t('loading') }}
+        </h1>
         <div style="flex: 1"></div>
         @if (user() !== null) {
           <a

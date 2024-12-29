@@ -52,7 +52,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private _passwordSubscription: Subscription;
+  private _passwordFormControlSubscription: Subscription;
 
   public isConfirmPasswordHidden: boolean;
   public isPasswordHidden: boolean;
@@ -63,7 +63,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   }>;
 
   public constructor() {
-    this._passwordSubscription = Subscription.EMPTY;
+    this._passwordFormControlSubscription = Subscription.EMPTY;
 
     this.isConfirmPasswordHidden = true;
 
@@ -88,7 +88,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
       ),
     );
 
-    this._passwordSubscription =
+    this._passwordFormControlSubscription =
       this.updatePasswordFormGroup.controls.password.valueChanges.subscribe(
         () => {
           this.updatePasswordFormGroup.controls.confirmPassword.updateValueAndValidity();
@@ -97,7 +97,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._passwordSubscription.unsubscribe();
+    this._passwordFormControlSubscription.unsubscribe();
   }
 
   public updatePassword(password: string): void {

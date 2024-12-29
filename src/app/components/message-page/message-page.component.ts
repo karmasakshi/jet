@@ -26,7 +26,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _loggerService = inject(LoggerService);
 
-  private _routeDataSubscription: Subscription;
+  private _activatedRouteDataSubscription: Subscription;
 
   public case:
     | 'email-verification-pending'
@@ -34,7 +34,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
     | undefined;
 
   public constructor() {
-    this._routeDataSubscription = Subscription.EMPTY;
+    this._activatedRouteDataSubscription = Subscription.EMPTY;
 
     this.case = undefined;
 
@@ -42,7 +42,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this._routeDataSubscription = this._activatedRoute.data.subscribe(
+    this._activatedRouteDataSubscription = this._activatedRoute.data.subscribe(
       (data) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         this.case = data['case'];
@@ -51,6 +51,6 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._routeDataSubscription.unsubscribe();
+    this._activatedRouteDataSubscription.unsubscribe();
   }
 }
