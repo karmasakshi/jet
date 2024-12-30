@@ -94,8 +94,8 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this._bindQueryParamsManager.connect(this.signInFormGroup);
     this._getSession();
+    this._bindQueryParamsManager.connect(this.signInFormGroup);
   }
 
   public ngOnDestroy(): void {

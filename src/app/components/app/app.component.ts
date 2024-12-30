@@ -315,7 +315,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  public _setThemeColor(nextColorScheme: AvailableColorScheme): void {
+  private _setThemeColor(nextColorScheme: AvailableColorScheme): void {
     if (nextColorScheme === 'automatic') {
       nextColorScheme = this._darkColorSchemeMediaQuery.matches
         ? 'dark'
