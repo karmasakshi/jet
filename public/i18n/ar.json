@@ -162,7 +162,7 @@
     "items-per-page": "العناصر لكل صفحة:",
     "last-page": "الصفحة الأخيرة",
     "next-page": "الصفحة التالية",
-    "page": "الصفحة {{ current }} / {{ total }}",
+    "page": "الصفحة {{ active }} / {{ total }}",
     "page-1-of-1": "الصفحة 1 / 1",
     "previous-page": "الصفحة السابقة"
   }

@@ -162,7 +162,7 @@
     "items-per-page": "Items per page:",
     "last-page": "Last Page",
     "next-page": "Next Page",
-    "page": "Page {{ current }} / {{ total }}",
+    "page": "Page {{ active }} / {{ total }}",
     "page-1-of-1": "Page 1 / 1",
     "previous-page": "Previous Page"
   }

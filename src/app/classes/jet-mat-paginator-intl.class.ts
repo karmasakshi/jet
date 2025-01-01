@@ -48,7 +48,7 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
     } else {
       const pages = Math.ceil(length / pageSize);
       return this._translocoService.translate('paginator.page', {
-        current: page + 1,
+        active: page + 1,
         total: pages,
       });
     }
