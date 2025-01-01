@@ -40,7 +40,7 @@
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
     "@angular/service-worker": "^19.0.5",
-    "@jsverse/transloco": "^7.5.0",
+    "@jsverse/transloco": "^7.5.1",
     "@ngneat/bind-query-params": "^6.0.0",
     "@supabase/supabase-js": "^2.47.10",
     "rxjs": "^7.8.1",
@@ -66,13 +66,13 @@
     "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
-    "lint-staged": "^15.2.11",
+    "lint-staged": "^15.3.0",
     "ngx-build-plus": "^18.0.0",
     "prettier": "^3.4.2",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.18.2"
+    "typescript-eslint": "^8.19.0"
   }
 }
