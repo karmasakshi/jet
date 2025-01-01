@@ -27,16 +27,16 @@
         <mat-card-content>
           @switch (case) {
             @case ('email-verification-pending') {
-              <p style="font: var(--mat-sys-headline-small)">
+              <span style="font: var(--mat-sys-headline-small)">
                 {{ t('email-verification-pending') }}
-              </p>
-              <p>{{ t('weve-sent-an-email') }}</p>
+              </span>
+              <span>{{ t('weve-sent-an-email') }}</span>
             }
             @case ('reset-password-email-sent') {
-              <p style="font: var(--mat-sys-headline-small)">
+              <span style="font: var(--mat-sys-headline-small)">
                 {{ t('reset-password-email-sent') }}
-              </p>
-              <p>{{ t('sign-in-and-update-password') }}</p>
+              </span>
+              <span>{{ t('sign-in-and-update-password') }}</span>
             }
           }
         </mat-card-content>

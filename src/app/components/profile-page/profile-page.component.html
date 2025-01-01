@@ -31,7 +31,7 @@
               (click)="avatarInput.click()"
               matRipple
               style="
-                border: 2px solid var(--mat-sys-primary);
+                border: 2px solid var(--mat-sys-surface-container-low);
                 cursor: pointer;
                 height: 132px;
                 width: 132px;
@@ -126,25 +126,29 @@
         </mat-card>
         <mat-card>
           <mat-card-content
-            style="font: var(--mat-sys-label-small); text-align: center"
+            style="
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+              font: var(--mat-sys-body-small);
+            "
           >
-            <div>
-              <p>{{ user()?.email }}</p>
-              <p>
-                {{
-                  t('last-updated-on', {
-                    value: _profile.updated_at | date: 'fullDate',
-                  })
-                }}
-              </p>
-              <p>
-                {{
-                  t('created-on', {
-                    value: _profile.created_at | date: 'fullDate',
-                  })
-                }}
-              </p>
-            </div>
+            <span>{{ user()?.email }}</span>
+            <span>
+              {{
+                t('last-updated-on', {
+                  value: _profile.updated_at | date: 'medium',
+                })
+              }}
+            </span>
+            <span>
+              {{
+                t('created-on', {
+                  value: _profile.created_at | date: 'medium',
+                })
+              }}
+            </span>
           </mat-card-content>
         </mat-card>
       </div>

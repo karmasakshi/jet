@@ -290,12 +290,6 @@ export class AppComponent implements OnInit, OnDestroy {
       nextLanguageOption.value,
     );
 
-    this._renderer2.setAttribute(
-      this._document.body,
-      'dir',
-      nextLanguageOption.directionality,
-    );
-
     this._translocoService.setActiveLang(nextLanguageOption.value);
   }
 

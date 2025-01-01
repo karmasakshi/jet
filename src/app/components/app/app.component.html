@@ -99,7 +99,7 @@
             />
           </a>
         }
-        <h1 style="font: var(--mat-sys-title-medium)">
+        <h1>
           {{ toolbarTitle() || t('loading') }}
         </h1>
         <div style="flex: 1"></div>
@@ -135,8 +135,10 @@
         </main>
       </mat-tab-nav-panel>
       <footer
+        [ngClass]="{
+          'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
+        }"
         [ngStyle]="{ 'margin-bottom': isSmallViewport ? '48px' : '0' }"
-        style="padding: 16px 16px calc(16px + env(safe-area-inset-bottom)) 16px"
       >
         <jet-footer></jet-footer>
       </footer>
