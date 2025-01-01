@@ -22,7 +22,6 @@ export const routes: Routes = [
     path: 'profile',
   },
   {
-    canActivate: [isNotAuthenticatedGuard],
     loadComponent: () =>
       import(
         '@jet/components/reset-password-page/reset-password-page.component'
