@@ -57,6 +57,7 @@
         }"
       >
         <mat-progress-bar
+          class="jet-progress-bar"
           [bufferValue]="progressBarConfiguration().bufferValue"
           [mode]="progressBarConfiguration().mode"
           [ngStyle]="{
@@ -65,7 +66,6 @@
               : 'hidden',
           }"
           [value]="progressBarConfiguration().value"
-          style="bottom: 0; left: 0; position: absolute; right: 0; z-index: 2"
         >
         </mat-progress-bar>
         @if (!isSmallViewport) {

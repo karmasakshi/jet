@@ -73,7 +73,9 @@
         </mat-action-list>
       </mat-card-content>
     </mat-card>
-    <pre style="text-align: center">{{ t('version', { value: version }) }}</pre>
+    <p style="text-align: center; font: var(--mat-sys-body-small)">
+      {{ t('version', { value: version }) }}
+    </p>
     <mat-menu
       #languageOptionsMenu="matMenu"
       xPosition="before"
