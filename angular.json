@@ -29,7 +29,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/jet-m3.scss", "src/styles.scss"],
+            "styles": ["src/jet.scss", "src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -86,7 +86,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/jet-m3.scss", "src/styles.scss"],
+            "styles": ["src/jet.scss", "src/styles.scss"],
             "scripts": [],
             "builderMode": "browser"
           }

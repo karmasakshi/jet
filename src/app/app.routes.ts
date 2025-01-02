@@ -3,8 +3,7 @@ import { HomePageComponent } from '@jet/components/home-page/home-page.component
 import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
 import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
 
-export const routes: Routes = [
-  { component: HomePageComponent, path: '' },
+const generalRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
     loadComponent: () =>
@@ -73,6 +72,13 @@ export const routes: Routes = [
       ).then((m) => m.UpdatePasswordPageComponent),
     path: 'update-password',
   },
+];
+
+const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
+
+export const routes: Routes = [
+  ...mainRoutes,
+  ...generalRoutes,
   {
     loadComponent: () =>
       import('@jet/components/not-found-page/not-found-page.component').then(

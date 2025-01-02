@@ -409,10 +409,7 @@ img {
   margin-top: 8px;
   width: 100%;
 
-  .mat-mdc-form-field-icon-prefix,
-  [dir='rtl'] .mat-mdc-form-field-icon-suffix,
-  .mat-mdc-form-field-icon-suffix,
-  [dir='rtl'] .mat-mdc-form-field-icon-prefix {
+  .mat-mdc-form-field-icon-suffix {
     padding: 0 8px !important;
   }
 }
