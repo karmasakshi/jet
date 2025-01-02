@@ -1,4 +1,4 @@
-import { NgOptimizedImage, NgStyle } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
@@ -31,14 +30,12 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [
     NgOptimizedImage,
-    NgStyle,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressBarModule,
     MatTooltipModule,
     RouterLink,
     TranslocoModule,
@@ -114,6 +111,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
     this.isSignInPending = true;
     this.signInFormGroup.disable();
+    this._progressBarService.showProgressBar();
     this._userService
       .signIn(email, password)
       .then(({ data, error }): void => {
@@ -122,11 +120,13 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this._alertService.showErrorAlert(error.message);
           this.isSignInPending = false;
           this.signInFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         } else {
           if (data.session === null) {
             this._alertService.showErrorAlert();
             this.isSignInPending = false;
             this.signInFormGroup.enable();
+            this._progressBarService.hideProgressBar();
           } else {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
@@ -144,6 +144,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
         this._alertService.showErrorAlert(error.message);
         this.isSignInPending = false;
         this.signInFormGroup.enable();
+        this._progressBarService.hideProgressBar();
       });
   }
 
@@ -158,6 +159,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
     this.isSignInWithOauthPending = true;
     this.signInFormGroup.disable();
+    this._progressBarService.showProgressBar();
     this._userService
       .signInWithOauth(oauthProvider)
       .then(({ data, error }): void => {
@@ -166,10 +168,14 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this._alertService.showErrorAlert(error.message);
           this.isSignInWithOauthPending = false;
           this.signInFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         } else {
           this.isSignInWithOauthPending = false;
           this.signInFormGroup.enable();
-          window.location.href = data.url;
+          this._progressBarService.hideProgressBar();
+          setTimeout(() => {
+            window.location.href = data.url;
+          });
         }
       })
       .catch((error: Error): void => {
@@ -177,6 +183,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
         this._alertService.showErrorAlert(error.message);
         this.isSignInWithOauthPending = false;
         this.signInFormGroup.enable();
+        this._progressBarService.hideProgressBar();
       });
   }
 
