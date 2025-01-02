@@ -411,6 +411,12 @@ img {
   .mat-mdc-card-actions {
     gap: 8px;
   }
+
+  .mdc-card__media {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
 }
 
 .mat-mdc-form-field {
