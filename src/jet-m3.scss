@@ -352,6 +352,7 @@ body {
     }
 
     .jet-content {
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -390,6 +391,10 @@ img {
 
 .material-symbols-rounded {
   font-variation-settings: 'FILL' 1;
+}
+
+.mat-mdc-button-base {
+  white-space: nowrap;
 }
 
 .mat-mdc-card {

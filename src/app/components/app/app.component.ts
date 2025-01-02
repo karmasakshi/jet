@@ -334,7 +334,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (isPwaMode) {
       this._meta.updateTag({
         content:
-          'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
+          'width=device-width, initial-scale=0.75, viewport-fit=cover, user-scalable=no',
         name: 'viewport',
       });
     }
