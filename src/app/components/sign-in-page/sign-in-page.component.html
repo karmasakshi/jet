@@ -99,36 +99,34 @@
         </mat-card-footer>
       </mat-card>
       <mat-card>
-        <mat-card-content
-          style="
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            padding: 16px;
-          "
-        >
-          <button
-            [disabled]="
-              isGetSessionPending || isSignInWithOauthPending || isSignInPending
-            "
-            (click)="signInWithOauth('google')"
-            mat-stroked-button
-            type="button"
-          >
-            <mat-icon>login</mat-icon>
-            <span>{{ t('sign-in-with-google') }}</span>
-          </button>
-          <a
-            [queryParams]="{ email: signInFormGroup.controls.email.value }"
-            mat-stroked-button
-            routerLink="/sign-up"
-          >
-            <mat-icon>login</mat-icon>
-            <span>{{ t('sign-up') }}</span>
-          </a>
+        <mat-card-content>
+          <div class="jet-stacked-container">
+            <button
+              [disabled]="
+                isGetSessionPending ||
+                isSignInWithOauthPending ||
+                isSignInPending
+              "
+              (click)="signInWithOauth('google')"
+              mat-stroked-button
+              type="button"
+            >
+              <mat-icon>login</mat-icon>
+              <span>{{ t('sign-in-with-google') }}</span>
+            </button>
+            <a
+              [queryParams]="{ email: signInFormGroup.controls.email.value }"
+              mat-stroked-button
+              routerLink="/sign-up"
+            >
+              <mat-icon>login</mat-icon>
+              <span>{{ t('sign-up') }}</span>
+            </a>
+          </div>
         </mat-card-content>
         <mat-card-footer>
           <mat-progress-bar
+            class="jet-card-footer-progress-bar"
             [ngStyle]="{
               visibility: isSignInWithOauthPending ? 'visible' : 'hidden',
             }"

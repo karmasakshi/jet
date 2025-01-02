@@ -92,17 +92,17 @@
         </mat-card-footer>
       </mat-card>
       <mat-card>
-        <mat-card-content
-          style="display: flex; flex-direction: column; gap: 16px"
-        >
-          <a
-            [queryParams]="{ email: signUpFormGroup.controls.email.value }"
-            mat-stroked-button
-            routerLink="/sign-in"
-          >
-            <mat-icon>login</mat-icon>
-            <span>{{ t('sign-in') }}</span>
-          </a>
+        <mat-card-content>
+          <div class="jet-stacked-container">
+            <a
+              [queryParams]="{ email: signUpFormGroup.controls.email.value }"
+              mat-stroked-button
+              routerLink="/sign-in"
+            >
+              <mat-icon>login</mat-icon>
+              <span>{{ t('sign-in') }}</span>
+            </a>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
