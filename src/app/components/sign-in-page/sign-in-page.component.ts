@@ -131,6 +131,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
+            this._progressBarService.hideProgressBar();
             const returnUrl =
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,
@@ -213,6 +214,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._alertService.showAlert(
               this._translocoService.translate('alerts.welcome'),
             );
+            this._progressBarService.hideProgressBar();
             const returnUrl =
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,

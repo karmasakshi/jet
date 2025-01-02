@@ -1,4 +1,4 @@
-import { NgOptimizedImage, NgStyle } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -12,11 +12,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import {
@@ -28,14 +28,12 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [
     NgOptimizedImage,
-    NgStyle,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressBarModule,
     MatTooltipModule,
     RouterLink,
     TranslocoModule,
@@ -50,6 +48,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _progressBarService = inject(ProgressBarService);
   private readonly _userService = inject(UserService);
   private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
@@ -93,6 +92,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
 
     this.isResetPasswordPending = true;
     this.resetPasswordFormGroup.disable();
+    this._progressBarService.showProgressBar();
     this._userService
       .resetPassword(email)
       .then(({ error }): void => {
@@ -101,7 +101,9 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
           this._alertService.showErrorAlert(error.message);
           this.isResetPasswordPending = false;
           this.resetPasswordFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         } else {
+          this._progressBarService.hideProgressBar();
           void this._router.navigateByUrl('/reset-password-email-sent');
         }
       })
@@ -110,6 +112,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
         this._alertService.showErrorAlert(error.message);
         this.isResetPasswordPending = false;
         this.resetPasswordFormGroup.enable();
+        this._progressBarService.hideProgressBar();
       });
   }
 }

@@ -1,4 +1,4 @@
-import { NgOptimizedImage, NgStyle } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -15,11 +15,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
@@ -28,14 +28,12 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [
     NgOptimizedImage,
-    NgStyle,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressBarModule,
     MatTooltipModule,
     TranslocoModule,
     PageComponent,
@@ -49,6 +47,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
+  private readonly _progressBarService = inject(ProgressBarService);
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
@@ -107,6 +106,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
 
     this.isUpdatePasswordPending = true;
     this.updatePasswordFormGroup.disable();
+    this._progressBarService.showProgressBar();
     this._userService
       .updateUser({ password })
       .then(({ error }): void => {
@@ -115,10 +115,12 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
           this._alertService.showErrorAlert(error.message);
           this.isUpdatePasswordPending = false;
           this.updatePasswordFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         } else {
           this._alertService.showAlert(
             this._translocoService.translate('alerts.password-updated'),
           );
+          this._progressBarService.hideProgressBar();
           void this._router.navigateByUrl('/profile');
         }
       })
@@ -127,6 +129,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
         this._alertService.showErrorAlert(error.message);
         this.isUpdatePasswordPending = false;
         this.updatePasswordFormGroup.enable();
+        this._progressBarService.hideProgressBar();
       });
   }
 

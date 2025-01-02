@@ -1,4 +1,4 @@
-import { DatePipe, NgOptimizedImage, NgStyle } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
   Component,
   effect,
@@ -21,7 +21,6 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { Profile } from '@jet/interfaces/profile.interface';
@@ -29,6 +28,7 @@ import { User } from '@jet/interfaces/user.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';
+import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
@@ -37,7 +37,6 @@ import { PageComponent } from '../page/page.component';
   imports: [
     DatePipe,
     NgOptimizedImage,
-    NgStyle,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
@@ -45,7 +44,6 @@ import { PageComponent } from '../page/page.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressBarModule,
     MatProgressSpinnerModule,
     RouterLink,
     TranslocoModule,
@@ -60,6 +58,7 @@ export class ProfilePageComponent {
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _profileService = inject(ProfileService);
+  private readonly _progressBarService = inject(ProgressBarService);
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
@@ -111,6 +110,7 @@ export class ProfilePageComponent {
 
     this.isUpdateProfilePending = true;
     this.profileFormGroup.disable();
+    this._progressBarService.showProgressBar();
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this._profileService
       .updateProfile(partialProfile)
@@ -120,6 +120,7 @@ export class ProfilePageComponent {
           this._alertService.showErrorAlert(error.message);
           this.isUpdateProfilePending = false;
           this.profileFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         } else {
           this._profileService.selectProfile();
           this._alertService.showAlert(
@@ -129,6 +130,7 @@ export class ProfilePageComponent {
           );
           this.isUpdateProfilePending = false;
           this.profileFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         }
       });
   }
@@ -168,6 +170,7 @@ export class ProfilePageComponent {
 
     this.isUpdateProfilePending = true;
     this.profileFormGroup.disable();
+    this._progressBarService.showProgressBar();
     this._profileService
       .uploadAvatar(file)
       .then(({ data, error }) => {
@@ -176,11 +179,13 @@ export class ProfilePageComponent {
           this._alertService.showErrorAlert(error.message);
           this.isUpdateProfilePending = false;
           this.profileFormGroup.enable();
+          this._progressBarService.hideProgressBar();
         } else {
           if (data === null) {
             this._alertService.showErrorAlert();
             this.isUpdateProfilePending = false;
             this.profileFormGroup.enable();
+            this._progressBarService.hideProgressBar();
           } else {
             this._alertService.showAlert(
               this._translocoService.translate(
@@ -188,6 +193,7 @@ export class ProfilePageComponent {
               ),
             );
             this.isUpdateProfilePending = false;
+            this._progressBarService.hideProgressBar();
             this.updateProfile({
               avatar_url: this._profileService.getAvatarPublicUrl(data.path),
             });
@@ -199,6 +205,7 @@ export class ProfilePageComponent {
         this._alertService.showErrorAlert(error.message);
         this.isUpdateProfilePending = false;
         this.profileFormGroup.enable();
+        this._progressBarService.hideProgressBar();
       });
   }
 }
