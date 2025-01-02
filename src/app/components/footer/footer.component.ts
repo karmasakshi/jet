@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  imports: [MatButtonModule, TranslocoModule],
+  imports: [MatButtonModule, MatIconModule, TranslocoModule],
   selector: 'jet-footer',
   styleUrl: './footer.component.scss',
   templateUrl: './footer.component.html',

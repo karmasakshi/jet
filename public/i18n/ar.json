@@ -25,6 +25,10 @@
     "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
+  "jet-footer": {
+    "buy": "شراء",
+    "docs": "الوثائق"
+  },
   "jet-home-page": {
     "seo": {
       "description": "Jet.",

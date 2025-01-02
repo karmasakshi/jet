@@ -25,6 +25,10 @@
     "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
   },
+  "jet-footer": {
+    "buy": "Buy",
+    "docs": "Docs"
+  },
   "jet-home-page": {
     "seo": {
       "description": "Jet.",
