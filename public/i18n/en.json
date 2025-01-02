@@ -111,6 +111,7 @@
   },
   "jet-sign-in-page": {
     "email": "Email",
+    "or": "- or -",
     "password": "Password",
     "reset-password": "Reset password",
     "seo": {

@@ -90,6 +90,9 @@
           </a>
         </mat-card-actions>
       </mat-card>
+      <p style="color: var(--mat-sys-outline-variant); text-align: center">
+        {{ t('or') }}
+      </p>
       <mat-card>
         <mat-card-content>
           <div class="jet-stacked-container">
@@ -100,15 +103,15 @@
                 isSignInPending
               "
               (click)="signInWithOauth('google')"
-              mat-stroked-button
+              mat-button
               type="button"
             >
-              <mat-icon>login</mat-icon>
+              <mat-icon>open_in_new</mat-icon>
               <span>{{ t('sign-in-with-google') }}</span>
             </button>
             <a
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
-              mat-stroked-button
+              mat-button
               routerLink="/sign-up"
             >
               <mat-icon>login</mat-icon>

@@ -27,7 +27,7 @@
                 height: 132px;
                 width: 132px;
                 border-radius: 50%;
-                margin: -100px auto 32px;
+                margin: -76px auto 36px;
               "
             >
               <img
@@ -109,17 +109,15 @@
         </mat-card>
         <mat-card>
           <mat-card-content>
-            <div style="text-align: center">
+            <div class="jet-stacked-container">
               <small
                 ><b>{{ user()?.email }}</b></small
               >
-              <br />
               <small>{{
                 t('last-updated-on', {
                   value: _profile.updated_at | date: 'medium',
                 })
               }}</small>
-              <br />
               <small>
                 {{
                   t('created-on', {
