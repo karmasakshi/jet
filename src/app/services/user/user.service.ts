@@ -71,6 +71,13 @@ export class UserService {
     });
   }
 
+  public signIn(
+    email: string,
+    password: string,
+  ): Promise<AuthTokenResponsePassword> {
+    return this._supabaseClient.auth.signInWithPassword({ email, password });
+  }
+
   public signInWithOauth(
     oauthProvider: AvailableOauthProvider,
   ): Promise<OAuthResponse> {
@@ -87,13 +94,6 @@ export class UserService {
       options: { redirectTo: redirectTo.toString(), skipBrowserRedirect: true },
       provider: oauthProvider,
     });
-  }
-
-  public signIn(
-    email: string,
-    password: string,
-  ): Promise<AuthTokenResponsePassword> {
-    return this._supabaseClient.auth.signInWithPassword({ email, password });
   }
 
   public signOut(): Promise<{ error: AuthError | null }> {
