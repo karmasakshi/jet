@@ -18,12 +18,7 @@
         <mat-card-content>
           <div class="jet-flex-col-centered">
             <button
-              [disabled]="
-                isGetSessionPending ||
-                isSignInWithOauthPending ||
-                isSignInWithOtpPending ||
-                isSignInWithPasswordPending
-              "
+              [disabled]="signInFormGroup.disabled"
               (click)="signInWithOauth('google')"
               mat-button
               type="button"
@@ -32,12 +27,7 @@
               <span>{{ t('sign-in-with-google') }}</span>
             </button>
             <button
-              [disabled]="
-                isGetSessionPending ||
-                isSignInWithOauthPending ||
-                isSignInWithOtpPending ||
-                isSignInWithPasswordPending
-              "
+              [disabled]="signInFormGroup.disabled"
               (click)="signInWithOauth('facebook')"
               mat-button
               type="button"
@@ -96,13 +86,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button
-            [disabled]="
-              isGetSessionPending ||
-              isSignInWithOauthPending ||
-              isSignInWithOtpPending ||
-              isSignInWithPasswordPending ||
-              signInFormGroup.invalid
-            "
+            [disabled]="signInFormGroup.disabled || signInFormGroup.invalid"
             form="sign-in-form"
             mat-flat-button
             type="submit"
@@ -112,15 +96,8 @@
           </button>
           <div style="flex: 1"></div>
           <button
-            [disabled]="
-              isGetSessionPending ||
-              isSignInWithOauthPending ||
-              isSignInWithOtpPending ||
-              isSignInWithPasswordPending ||
-              signInFormGroup.controls.email.invalid
-            "
+            [disabled]="signInFormGroup.disabled"
             (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
-            form="sign-in-form"
             mat-button
             type="button"
           >
@@ -133,12 +110,7 @@
         <mat-card-content>
           <div class="jet-flex-col-centered">
             <a
-              [disabled]="
-                isGetSessionPending ||
-                isSignInWithOauthPending ||
-                isSignInWithOtpPending ||
-                isSignInWithPasswordPending
-              "
+              [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               mat-button
               routerLink="/reset-password"
@@ -147,12 +119,7 @@
               <span>{{ t('reset-password') }}</span>
             </a>
             <a
-              [disabled]="
-                isGetSessionPending ||
-                isSignInWithOauthPending ||
-                isSignInWithOtpPending ||
-                isSignInWithPasswordPending
-              "
+              [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               mat-button
               routerLink="/sign-up"

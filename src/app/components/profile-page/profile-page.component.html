@@ -86,7 +86,7 @@
           <mat-card-actions>
             <button
               [disabled]="
-                isUpdateProfilePending ||
+                profileFormGroup.disabled ||
                 profileFormGroup.invalid ||
                 profileFormGroup.pristine
               "

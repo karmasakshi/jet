@@ -63,7 +63,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button
-            [disabled]="isSignUpPending || signUpFormGroup.invalid"
+            [disabled]="signUpFormGroup.disabled || signUpFormGroup.invalid"
             form="sign-up-form"
             mat-flat-button
             type="submit"
@@ -77,7 +77,7 @@
         <mat-card-content>
           <div class="jet-flex-col-centered">
             <a
-              [disabled]="isSignUpPending"
+              [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               mat-button
               routerLink="/sign-in"
@@ -86,7 +86,7 @@
               <span>{{ t('sign-in') }}</span>
             </a>
             <a
-              [disabled]="isSignUpPending"
+              [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               mat-button
               routerLink="/reset-password"
