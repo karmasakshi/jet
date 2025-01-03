@@ -16,6 +16,39 @@
           width="480"
         />
         <mat-card-content>
+          <div class="jet-stacked-container">
+            <button
+              [disabled]="
+                isGetSessionPending ||
+                isSignInWithOauthPending ||
+                isSignInWithOtpPending ||
+                isSignInWithPasswordPending
+              "
+              (click)="signInWithOauth('google')"
+              mat-button
+              type="button"
+            >
+              <mat-icon>open_in_new</mat-icon>
+              <span>{{ t('sign-in-with-google') }}</span>
+            </button>
+            <button
+              [disabled]="
+                isGetSessionPending ||
+                isSignInWithOauthPending ||
+                isSignInWithOtpPending ||
+                isSignInWithPasswordPending
+              "
+              (click)="signInWithOauth('facebook')"
+              mat-button
+              type="button"
+            >
+              <mat-icon>open_in_new</mat-icon>
+              <span>{{ t('sign-in-with-facebook') }}</span>
+            </button>
+          </div>
+          <p style="color: var(--mat-sys-outline-variant); text-align: center">
+            {{ t('or') }}
+          </p>
           <form
             id="sign-in-form"
             [formGroup]="signInFormGroup"
@@ -78,56 +111,41 @@
             <span>{{ t('sign-in') }}</span>
           </button>
           <div style="flex: 1"></div>
-          <a
+          <button
             [disabled]="
               isGetSessionPending ||
               isSignInWithOauthPending ||
               isSignInWithOtpPending ||
-              isSignInWithPasswordPending
+              isSignInWithPasswordPending ||
+              signInFormGroup.controls.email.invalid
             "
-            [queryParams]="{ email: signInFormGroup.controls.email.value }"
+            (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
+            form="sign-in-form"
             mat-button
-            routerLink="/reset-password"
+            type="button"
           >
-            <mat-icon>lock_reset</mat-icon>
-            <span>{{ t('reset-password') }}</span>
-          </a>
+            <mat-icon>link</mat-icon>
+            <span>{{ t('email-me-a-link-to-sign-in') }}</span>
+          </button>
         </mat-card-actions>
       </mat-card>
-      <p style="color: var(--mat-sys-outline-variant); text-align: center">
-        {{ t('or') }}
-      </p>
       <mat-card>
         <mat-card-content>
           <div class="jet-stacked-container">
-            <button
+            <a
               [disabled]="
                 isGetSessionPending ||
                 isSignInWithOauthPending ||
                 isSignInWithOtpPending ||
                 isSignInWithPasswordPending
               "
-              (click)="signInWithOauth('google')"
+              [queryParams]="{ email: signInFormGroup.controls.email.value }"
               mat-button
-              type="button"
+              routerLink="/reset-password"
             >
-              <mat-icon>open_in_new</mat-icon>
-              <span>{{ t('sign-in-with-google') }}</span>
-            </button>
-            <button
-              [disabled]="
-                isGetSessionPending ||
-                isSignInWithOauthPending ||
-                isSignInWithOtpPending ||
-                isSignInWithPasswordPending
-              "
-              (click)="signInWithOauth('facebook')"
-              mat-button
-              type="button"
-            >
-              <mat-icon>open_in_new</mat-icon>
-              <span>{{ t('sign-in-with-facebook') }}</span>
-            </button>
+              <mat-icon>lock_reset</mat-icon>
+              <span>{{ t('reset-password') }}</span>
+            </a>
             <a
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               mat-button

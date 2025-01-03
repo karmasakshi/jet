@@ -15,22 +15,40 @@
           priority
           width="480"
         />
-        <mat-card-content>
-          @switch (case) {
-            @case ('email-verification-pending') {
-              <p style="font: var(--mat-sys-headline-small)">
-                {{ t('email-verification-pending') }}
-              </p>
-              <p>{{ t('weve-sent-an-email') }}</p>
-            }
-            @case ('reset-password-email-sent') {
-              <p style="font: var(--mat-sys-headline-small)">
-                {{ t('reset-password-email-sent') }}
-              </p>
-              <span>{{ t('sign-in-and-update-password') }}</span>
-            }
+        @switch (case) {
+          @case ('email-verification-pending') {
+            <mat-card-header>
+              <mat-card-title>{{
+                t('email-verification-pending')
+              }}</mat-card-title>
+              <mat-card-subtitle
+                ><p>
+                  {{ t('weve-sent-a-verification-email') }}
+                </p></mat-card-subtitle
+              >
+            </mat-card-header>
           }
-        </mat-card-content>
+          @case ('sign-in-link-sent') {
+            <mat-card-header>
+              <mat-card-title>{{ t('sign-in-link-sent') }}</mat-card-title>
+              <mat-card-subtitle
+                ><p>{{ t('weve-sent-an-email') }}</p></mat-card-subtitle
+              >
+            </mat-card-header>
+          }
+          @case ('reset-password-email-sent') {
+            <mat-card-header>
+              <mat-card-title>{{
+                t('reset-password-email-sent')
+              }}</mat-card-title>
+              <mat-card-subtitle
+                ><p>
+                  {{ t('sign-in-and-update-password') }}
+                </p></mat-card-subtitle
+              >
+            </mat-card-header>
+          }
+        }
       </mat-card>
     </div>
   </jet-page>

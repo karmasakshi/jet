@@ -38,7 +38,7 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "email-verification-pending": "على وشك الانتهاء!",
+    "email-verification-pending": "تم إرسال بريد إلكتروني للتحقق.",
     "message": "رسالة",
     "reset-password-email-sent": "سنرسل بريدًا إلكترونيًا.",
     "seo": {
@@ -47,8 +47,10 @@
       "title": "Jet"
     },
     "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا يمكنك استخدامه لتسجيل الدخول وتحديث كلمة المرور.",
+    "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول.",
     "toolbar-title": "Jet",
-    "weve-sent-an-email": "لقد أرسلنا بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط في البريد الإلكتروني للتحقق."
+    "weve-sent-a-verification-email": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
+    "weve-sent-an-email": "يرجى النقر على الرابط في البريد الإلكتروني لتسجيل الدخول."
   },
   "jet-not-found-page": {
     "page-not-found": "الصفحة غير موجودة.",
@@ -112,6 +114,7 @@
   },
   "jet-sign-in-page": {
     "email": "البريد الإلكتروني",
+    "email-me-a-link-to-sign-in": "Missing value for 'jet-sign-in-page.email-me-a-link-to-sign-in'",
     "or": "- أو -",
     "password": "كلمة المرور",
     "reset-password": "إعادة تعيين كلمة المرور",

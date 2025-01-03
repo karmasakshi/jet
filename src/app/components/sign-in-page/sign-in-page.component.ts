@@ -199,7 +199,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       this.isSignInWithOauthPending ||
       this.isSignInWithOtpPending ||
       this.isSignInWithPasswordPending ||
-      this.signInFormGroup.invalid
+      this.signInFormGroup.controls.email.invalid
     ) {
       return;
     }
@@ -209,7 +209,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this._progressBarService.showProgressBar();
     this._userService
       .signInWithOtp(email)
-      .then(({ data, error }): void => {
+      .then(({ error }): void => {
         if (error) {
           this._loggerService.logError(error);
           this._alertService.showErrorAlert(error.message);
@@ -217,22 +217,8 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this.signInFormGroup.enable();
           this._progressBarService.hideProgressBar();
         } else {
-          if (data.session === null) {
-            this._alertService.showErrorAlert();
-            this.isSignInWithOtpPending = false;
-            this.signInFormGroup.enable();
-            this._progressBarService.hideProgressBar();
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.welcome'),
-            );
-            this._progressBarService.hideProgressBar();
-            const returnUrl =
-              this._activatedRoute.snapshot.queryParamMap.get(
-                QueryParam.ReturnUrl,
-              ) ?? '/';
-            void this._router.navigateByUrl(returnUrl);
-          }
+          this._progressBarService.hideProgressBar();
+          void this._router.navigateByUrl('/sign-in-link-sent');
         }
       })
       .catch((error: Error): void => {

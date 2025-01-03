@@ -31,6 +31,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   public case:
     | 'email-verification-pending'
     | 'reset-password-email-sent'
+    | 'sign-in-link-sent'
     | undefined;
 
   public constructor() {

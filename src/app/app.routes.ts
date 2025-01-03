@@ -51,6 +51,14 @@ const generalRoutes: Routes = [
     path: 'sign-in',
   },
   {
+    data: { case: 'sign-in-link-sent' },
+    loadComponent: () =>
+      import('@jet/components/message-page/message-page.component').then(
+        (m) => m.MessagePageComponent,
+      ),
+    path: 'sign-in-link-sent',
+  },
+  {
     loadComponent: () =>
       import('@jet/components/sign-out-page/sign-out-page.component').then(
         (m) => m.SignOutPageComponent,
