@@ -79,7 +79,6 @@
   },
   "jet-reset-password-page": {
     "email": "Email",
-    "or": "- or -",
     "reset-password": "Reset password",
     "seo": {
       "description": "Reset password.",
@@ -140,7 +139,6 @@
   },
   "jet-sign-up-page": {
     "email": "Email",
-    "or": "- or -",
     "password": "Password",
     "reset-password": "Reset password",
     "seo": {

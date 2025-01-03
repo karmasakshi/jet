@@ -79,7 +79,6 @@
   },
   "jet-reset-password-page": {
     "email": "البريد الإلكتروني",
-    "or": "- أو -",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
       "description": "إعادة تعيين كلمة المرور.",
@@ -140,7 +139,6 @@
   },
   "jet-sign-up-page": {
     "email": "البريد الإلكتروني",
-    "or": "- أو -",
     "password": "كلمة المرور",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {

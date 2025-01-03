@@ -71,21 +71,8 @@
             <mat-icon>right_click</mat-icon>
             <span>{{ t('sign-up') }}</span>
           </button>
-          <div style="flex: 1"></div>
-          <a
-            [disabled]="isSignUpPending"
-            [queryParams]="{ email: signUpFormGroup.controls.email.value }"
-            mat-button
-            routerLink="/reset-password"
-          >
-            <mat-icon>lock_reset</mat-icon>
-            <span>{{ t('reset-password') }}</span>
-          </a>
         </mat-card-actions>
       </mat-card>
-      <p style="color: var(--mat-sys-outline-variant); text-align: center">
-        {{ t('or') }}
-      </p>
       <mat-card>
         <mat-card-content>
           <div class="jet-stacked-container">
@@ -96,6 +83,15 @@
             >
               <mat-icon>login</mat-icon>
               <span>{{ t('sign-in') }}</span>
+            </a>
+            <a
+              [disabled]="isSignUpPending"
+              [queryParams]="{ email: signUpFormGroup.controls.email.value }"
+              mat-button
+              routerLink="/reset-password"
+            >
+              <mat-icon>lock_reset</mat-icon>
+              <span>{{ t('reset-password') }}</span>
             </a>
           </div>
         </mat-card-content>
