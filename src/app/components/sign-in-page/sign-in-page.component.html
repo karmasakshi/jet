@@ -20,7 +20,7 @@
             id="sign-in-form"
             [formGroup]="signInFormGroup"
             (ngSubmit)="
-              signIn(
+              signInWithPassword(
                 signInFormGroup.controls.email.value ?? '',
                 signInFormGroup.controls.password.value ?? ''
               )
@@ -65,9 +65,10 @@
           <button
             [disabled]="
               isGetSessionPending ||
-              isSignInPending ||
-              signInFormGroup.invalid ||
-              isSignInWithOauthPending
+              isSignInWithOauthPending ||
+              isSignInWithOtpPending ||
+              isSignInWithPasswordPending ||
+              signInFormGroup.invalid
             "
             form="sign-in-form"
             mat-flat-button
@@ -79,7 +80,10 @@
           <div style="flex: 1"></div>
           <a
             [disabled]="
-              isGetSessionPending || isSignInPending || isSignInWithOauthPending
+              isGetSessionPending ||
+              isSignInWithOauthPending ||
+              isSignInWithOtpPending ||
+              isSignInWithPasswordPending
             "
             [queryParams]="{ email: signInFormGroup.controls.email.value }"
             mat-button
@@ -100,7 +104,8 @@
               [disabled]="
                 isGetSessionPending ||
                 isSignInWithOauthPending ||
-                isSignInPending
+                isSignInWithOtpPending ||
+                isSignInWithPasswordPending
               "
               (click)="signInWithOauth('google')"
               mat-button

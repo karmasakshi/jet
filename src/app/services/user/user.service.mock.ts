@@ -5,6 +5,7 @@ import { User } from '@jet/interfaces/user.interface';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthError,
+  AuthOtpResponse,
   AuthResponse,
   AuthSession,
   AuthTokenResponsePassword,
@@ -42,7 +43,11 @@ export class UserServiceMock {
     return Promise.resolve({ data: {}, error: null });
   }
 
-  public signIn(
+  public signInWithOtp(_email: string): Promise<AuthOtpResponse> {
+    return Promise.resolve({} as AuthOtpResponse);
+  }
+
+  public signInWithPassword(
     _email: string,
     _password: string,
   ): Promise<AuthTokenResponsePassword> {

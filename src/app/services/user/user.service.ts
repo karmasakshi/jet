@@ -12,6 +12,7 @@ import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type
 import {
   AuthChangeEvent,
   AuthError,
+  AuthOtpResponse,
   AuthResponse,
   AuthSession,
   AuthTokenResponsePassword,
@@ -71,7 +72,17 @@ export class UserService {
     });
   }
 
-  public signIn(
+  public signInWithOtp(email: string): Promise<AuthOtpResponse> {
+    return this._supabaseClient.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: this._getRedirectUrl(),
+        shouldCreateUser: false,
+      },
+    });
+  }
+
+  public signInWithPassword(
     email: string,
     password: string,
   ): Promise<AuthTokenResponsePassword> {
@@ -81,17 +92,11 @@ export class UserService {
   public signInWithOauth(
     oauthProvider: AvailableOauthProvider,
   ): Promise<OAuthResponse> {
-    const redirectTo = new URL('/sign-in', window.location.origin);
-    const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
-      QueryParam.ReturnUrl,
-    );
-
-    if (returnUrl) {
-      redirectTo.searchParams.set(QueryParam.ReturnUrl, returnUrl);
-    }
-
     return this._supabaseClient.auth.signInWithOAuth({
-      options: { redirectTo: redirectTo.toString(), skipBrowserRedirect: true },
+      options: {
+        redirectTo: this._getRedirectUrl(),
+        skipBrowserRedirect: true,
+      },
       provider: oauthProvider,
     });
   }
@@ -101,15 +106,27 @@ export class UserService {
   }
 
   public signUp(email: string, password: string): Promise<AuthResponse> {
-    const redirectTo = new URL('/sign-in', window.location.origin);
     return this._supabaseClient.auth.signUp({
       email,
-      options: { emailRedirectTo: redirectTo.toString() },
+      options: { emailRedirectTo: this._getRedirectUrl() },
       password,
     });
   }
 
   public updateUser(userAttributes: UserAttributes): Promise<UserResponse> {
     return this._supabaseClient.auth.updateUser(userAttributes);
+  }
+
+  private _getRedirectUrl(): string {
+    const redirectTo = new URL('/sign-in', window.location.origin);
+    const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
+      QueryParam.ReturnUrl,
+    );
+
+    if (returnUrl) {
+      redirectTo.searchParams.set(QueryParam.ReturnUrl, returnUrl);
+    }
+
+    return redirectTo.toString();
   }
 }

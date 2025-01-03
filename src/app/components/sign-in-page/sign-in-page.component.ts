@@ -62,8 +62,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
   public isGetSessionPending: boolean;
   public isPasswordHidden: boolean;
-  public isSignInPending: boolean;
   public isSignInWithOauthPending: boolean;
+  public isSignInWithOtpPending: boolean;
+  public isSignInWithPasswordPending: boolean;
   public readonly signInFormGroup: FormGroup<{
     email: FormControl<string | null>;
     password: FormControl<string | null>;
@@ -78,9 +79,11 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
     this.isPasswordHidden = true;
 
-    this.isSignInPending = false;
-
     this.isSignInWithOauthPending = false;
+
+    this.isSignInWithOtpPending = false;
+
+    this.isSignInWithPasswordPending = false;
 
     this.signInFormGroup = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -99,32 +102,33 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this._bindQueryParamsManager.destroy();
   }
 
-  public signIn(email: string, password: string): void {
+  public signInWithPassword(email: string, password: string): void {
     if (
-      this.isSignInPending ||
       this.isGetSessionPending ||
       this.isSignInWithOauthPending ||
+      this.isSignInWithOtpPending ||
+      this.isSignInWithPasswordPending ||
       this.signInFormGroup.invalid
     ) {
       return;
     }
 
-    this.isSignInPending = true;
+    this.isSignInWithPasswordPending = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
     this._userService
-      .signIn(email, password)
+      .signInWithPassword(email, password)
       .then(({ data, error }): void => {
         if (error) {
           this._loggerService.logError(error);
           this._alertService.showErrorAlert(error.message);
-          this.isSignInPending = false;
+          this.isSignInWithPasswordPending = false;
           this.signInFormGroup.enable();
           this._progressBarService.hideProgressBar();
         } else {
           if (data.session === null) {
             this._alertService.showErrorAlert();
-            this.isSignInPending = false;
+            this.isSignInWithPasswordPending = false;
             this.signInFormGroup.enable();
             this._progressBarService.hideProgressBar();
           } else {
@@ -143,7 +147,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       .catch((error: Error): void => {
         this._loggerService.logError(error);
         this._alertService.showErrorAlert(error.message);
-        this.isSignInPending = false;
+        this.isSignInWithPasswordPending = false;
         this.signInFormGroup.enable();
         this._progressBarService.hideProgressBar();
       });
@@ -151,9 +155,10 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
   public signInWithOauth(oauthProvider: AvailableOauthProvider): void {
     if (
-      this.isSignInWithOauthPending ||
       this.isGetSessionPending ||
-      this.isSignInPending
+      this.isSignInWithOauthPending ||
+      this.isSignInWithOtpPending ||
+      this.isSignInWithPasswordPending
     ) {
       return;
     }
@@ -183,6 +188,57 @@ export class SignInPageComponent implements OnInit, OnDestroy {
         this._loggerService.logError(error);
         this._alertService.showErrorAlert(error.message);
         this.isSignInWithOauthPending = false;
+        this.signInFormGroup.enable();
+        this._progressBarService.hideProgressBar();
+      });
+  }
+
+  public signInWithOtp(email: string) {
+    if (
+      this.isGetSessionPending ||
+      this.isSignInWithOauthPending ||
+      this.isSignInWithOtpPending ||
+      this.isSignInWithPasswordPending ||
+      this.signInFormGroup.invalid
+    ) {
+      return;
+    }
+
+    this.isSignInWithOtpPending = true;
+    this.signInFormGroup.disable();
+    this._progressBarService.showProgressBar();
+    this._userService
+      .signInWithOtp(email)
+      .then(({ data, error }): void => {
+        if (error) {
+          this._loggerService.logError(error);
+          this._alertService.showErrorAlert(error.message);
+          this.isSignInWithOtpPending = false;
+          this.signInFormGroup.enable();
+          this._progressBarService.hideProgressBar();
+        } else {
+          if (data.session === null) {
+            this._alertService.showErrorAlert();
+            this.isSignInWithOtpPending = false;
+            this.signInFormGroup.enable();
+            this._progressBarService.hideProgressBar();
+          } else {
+            this._alertService.showAlert(
+              this._translocoService.translate('alerts.welcome'),
+            );
+            this._progressBarService.hideProgressBar();
+            const returnUrl =
+              this._activatedRoute.snapshot.queryParamMap.get(
+                QueryParam.ReturnUrl,
+              ) ?? '/';
+            void this._router.navigateByUrl(returnUrl);
+          }
+        }
+      })
+      .catch((error: Error): void => {
+        this._loggerService.logError(error);
+        this._alertService.showErrorAlert(error.message);
+        this.isSignInWithOtpPending = false;
         this.signInFormGroup.enable();
         this._progressBarService.hideProgressBar();
       });
