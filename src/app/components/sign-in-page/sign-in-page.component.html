@@ -5,8 +5,8 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="jet-centered-container">
-      <mat-card>
+    <div class="jet-flex-col-centered">
+      <mat-card style="width: 100%; max-width: 480px">
         <img
           [alt]="t('sign-in')"
           height="180"
@@ -16,7 +16,7 @@
           width="480"
         />
         <mat-card-content>
-          <div class="jet-stacked-container">
+          <div class="jet-flex-col-centered">
             <button
               [disabled]="
                 isGetSessionPending ||
@@ -129,9 +129,9 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card>
+      <mat-card style="width: 100%; max-width: 480px">
         <mat-card-content>
-          <div class="jet-stacked-container">
+          <div class="jet-flex-col-centered">
             <a
               [disabled]="
                 isGetSessionPending ||
@@ -147,6 +147,12 @@
               <span>{{ t('reset-password') }}</span>
             </a>
             <a
+              [disabled]="
+                isGetSessionPending ||
+                isSignInWithOauthPending ||
+                isSignInWithOtpPending ||
+                isSignInWithPasswordPending
+              "
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               mat-button
               routerLink="/sign-up"

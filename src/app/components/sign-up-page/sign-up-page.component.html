@@ -5,8 +5,8 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="jet-centered-container">
-      <mat-card>
+    <div class="jet-flex-col-centered">
+      <mat-card style="width: 100%; max-width: 480px">
         <img
           [alt]="t('sign-up')"
           height="180"
@@ -73,10 +73,11 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card>
+      <mat-card style="width: 100%; max-width: 480px">
         <mat-card-content>
-          <div class="jet-stacked-container">
+          <div class="jet-flex-col-centered">
             <a
+              [disabled]="isSignUpPending"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               mat-button
               routerLink="/sign-in"

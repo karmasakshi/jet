@@ -152,8 +152,8 @@
     "toolbar-title": "Sign Up"
   },
   "jet-update-password-page": {
-    "confirm-password": "Confirm password",
-    "password": "Password",
+    "confirm-new-password": "Confirm new password",
+    "new-password": "New password",
     "seo": {
       "description": "Update password.",
       "keywords": "jet",

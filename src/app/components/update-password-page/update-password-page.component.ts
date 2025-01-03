@@ -51,28 +51,28 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private _passwordFormControlSubscription: Subscription;
+  private _newPasswordFormControlSubscription: Subscription;
 
-  public isConfirmPasswordHidden: boolean;
-  public isPasswordHidden: boolean;
+  public isConfirmNewPasswordHidden: boolean;
+  public isNewPasswordHidden: boolean;
   public isUpdatePasswordPending: boolean;
   public readonly updatePasswordFormGroup: FormGroup<{
-    password: FormControl<string | null>;
-    confirmPassword: FormControl<string | null>;
+    confirmNewPassword: FormControl<string | null>;
+    newPassword: FormControl<string | null>;
   }>;
 
   public constructor() {
-    this._passwordFormControlSubscription = Subscription.EMPTY;
+    this._newPasswordFormControlSubscription = Subscription.EMPTY;
 
-    this.isConfirmPasswordHidden = true;
+    this.isConfirmNewPasswordHidden = true;
 
-    this.isPasswordHidden = true;
+    this.isNewPasswordHidden = true;
 
     this.isUpdatePasswordPending = false;
 
     this.updatePasswordFormGroup = this._formBuilder.group({
-      confirmPassword: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      confirmNewPassword: ['', [Validators.required, Validators.minLength(6)]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
 
     this._loggerService.logComponentInitialization(
@@ -81,22 +81,22 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.updatePasswordFormGroup.controls.confirmPassword.addValidators(
-      this._confirmPasswordValidator(
-        this.updatePasswordFormGroup.controls.password,
+    this.updatePasswordFormGroup.controls.confirmNewPassword.addValidators(
+      this._matchFormControlValidator(
+        this.updatePasswordFormGroup.controls.newPassword,
       ),
     );
 
-    this._passwordFormControlSubscription =
-      this.updatePasswordFormGroup.controls.password.valueChanges.subscribe(
+    this._newPasswordFormControlSubscription =
+      this.updatePasswordFormGroup.controls.newPassword.valueChanges.subscribe(
         () => {
-          this.updatePasswordFormGroup.controls.confirmPassword.updateValueAndValidity();
+          this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
         },
       );
   }
 
   public ngOnDestroy(): void {
-    this._passwordFormControlSubscription.unsubscribe();
+    this._newPasswordFormControlSubscription.unsubscribe();
   }
 
   public async updatePassword(password: string): Promise<void> {
@@ -134,19 +134,19 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _confirmPasswordValidator(
-    passwordControl: AbstractControl,
+  private _matchFormControlValidator(
+    newPasswordControl: AbstractControl,
   ): ValidatorFn {
     return (
-      confirmPasswordControl: AbstractControl,
+      confirmNewPasswordControl: AbstractControl,
     ): ValidationErrors | null => {
-      if (!confirmPasswordControl.value) {
+      if (!confirmNewPasswordControl.value) {
         return null;
       }
 
-      return confirmPasswordControl.value === passwordControl.value
+      return confirmNewPasswordControl.value === newPasswordControl.value
         ? null
-        : { confirmPasswordMismatch: true };
+        : { mismatch: true };
     };
   }
 }

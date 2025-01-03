@@ -7,8 +7,8 @@
   >
     @let _profile = profile();
     @if (_profile) {
-      <div class="jet-centered-container">
-        <mat-card>
+      <div class="jet-flex-col-centered">
+        <mat-card style="width: 100%; max-width: 480px">
           <img
             [alt]="t('profile')"
             height="180"
@@ -107,9 +107,9 @@
             </a>
           </mat-card-actions>
         </mat-card>
-        <mat-card>
+        <mat-card style="width: 100%; max-width: 480px">
           <mat-card-content>
-            <div class="jet-stacked-container">
+            <div class="jet-flex-col-centered">
               <small
                 ><b>{{ user()?.email }}</b></small
               >

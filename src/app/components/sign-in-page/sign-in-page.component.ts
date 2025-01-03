@@ -88,7 +88,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
 
     this.signInFormGroup = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
 
     this._loggerService.logComponentInitialization('SignInPageComponent');
@@ -109,7 +109,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._activatedRoute.snapshot.queryParamMap.get(
               QueryParam.ReturnUrl,
             ) ?? '/';
-          void this._router.navigateByUrl(returnUrl);
+          setTimeout(() => {
+            void this._router.navigateByUrl(returnUrl);
+          });
         }
       })
       .catch((error: Error) => {

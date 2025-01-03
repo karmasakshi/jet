@@ -152,8 +152,8 @@
     "toolbar-title": "إنشاء حساب"
   },
   "jet-update-password-page": {
-    "confirm-password": "تأكيد كلمة المرور",
-    "password": "كلمة المرور",
+    "confirm-new-password": "تأكيد كلمة المرور الجديدة",
+    "new-password": "كلمة المرور الجديدة",
     "seo": {
       "description": "تحديث كلمة المرور.",
       "keywords": "jet",
