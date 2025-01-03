@@ -94,7 +94,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this._getSession();
+    void this._getSession();
     this._bindQueryParamsManager.connect(this.signInFormGroup);
   }
 
@@ -155,7 +155,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  public signInWithOauth(oauthProvider: AvailableOauthProvider): void {
+  public async signInWithOauth(oauthProvider: AvailableOauthProvider) {
     if (
       this.isGetSessionPending ||
       this.isSignInWithOauthPending ||
@@ -168,34 +168,32 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this.isSignInWithOauthPending = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._userService
-      .signInWithOauth(oauthProvider)
-      .then(({ data, error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isSignInWithOauthPending = false;
-          this.signInFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          this.isSignInWithOauthPending = false;
-          this.signInFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-          setTimeout(() => {
-            window.location.href = data.url;
-          });
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isSignInWithOauthPending = false;
-        this.signInFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { data, error } =
+        await this._userService.signInWithOauth(oauthProvider);
+
+      if (error) {
+        throw error;
+      }
+
+      window.location.href = data.url;
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.signInFormGroup.enable();
+    } finally {
+      this.isSignInWithOauthPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 
-  public signInWithOtp(email: string) {
+  public async signInWithOtp(email: string) {
     if (
       this.isGetSessionPending ||
       this.isSignInWithOauthPending ||
@@ -209,32 +207,31 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this.isSignInWithOtpPending = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._userService
-      .signInWithOtp(email)
-      .then(({ error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isSignInWithOtpPending = false;
-          this.signInFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          this._progressBarService.hideProgressBar();
-          setTimeout(() => {
-            void this._router.navigateByUrl('/sign-in-link-sent');
-          });
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isSignInWithOtpPending = false;
-        this.signInFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { error } = await this._userService.signInWithOtp(email);
+
+      if (error) {
+        throw error;
+      }
+
+      void this._router.navigateByUrl('/sign-in-link-sent');
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.signInFormGroup.enable();
+    } finally {
+      this.isSignInWithOtpPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 
-  private _getSession(): void {
+  private async _getSession() {
     if (this.isGetSessionPending) {
       return;
     }
@@ -242,41 +239,38 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this.isGetSessionPending = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar({ mode: 'query' });
-    this._userService
-      .getSession()
-      .then(({ data, error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isGetSessionPending = false;
-          this.signInFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          if (data.session === null) {
-            this.isGetSessionPending = false;
-            this.signInFormGroup.enable();
-            this._progressBarService.hideProgressBar();
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.welcome'),
-            );
-            this._progressBarService.hideProgressBar();
-            const returnUrl =
-              this._activatedRoute.snapshot.queryParamMap.get(
-                QueryParam.ReturnUrl,
-              ) ?? '/';
-            setTimeout(() => {
-              void this._router.navigateByUrl(returnUrl);
-            });
-          }
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isGetSessionPending = false;
-        this.signInFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { data, error } = await this._userService.getSession();
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.session !== null) {
+        this._alertService.showAlert(
+          this._translocoService.translate('alerts.welcome'),
+        );
+        this.signInFormGroup.reset();
+        const returnUrl =
+          this._activatedRoute.snapshot.queryParamMap.get(
+            QueryParam.ReturnUrl,
+          ) ?? '/';
+        setTimeout(() => {
+          void this._router.navigateByUrl(returnUrl);
+        });
+      }
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+    } finally {
+      this.isGetSessionPending = false;
+      this.signInFormGroup.enable();
+      this._progressBarService.hideProgressBar();
+    }
   }
 }

@@ -30,36 +30,38 @@ export class SignOutPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._signOut();
+    void this._signOut();
   }
 
-  private _signOut(): void {
+  private async _signOut() {
     if (this._isSignOutPending) {
       return;
     }
 
     this._isSignOutPending = true;
     this._progressBarService.showProgressBar();
-    this._userService
-      .signOut()
-      .then(({ error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this._isSignOutPending = false;
-          this._progressBarService.hideProgressBar();
-        } else {
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.signed-out-successfully'),
-          );
-          void this._router.navigateByUrl('/');
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this._isSignOutPending = false;
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { error } = await this._userService.signOut();
+
+      if (error) {
+        throw error;
+      }
+
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.signed-out-successfully'),
+      );
+      void this._router.navigateByUrl('/');
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+    } finally {
+      this._isSignOutPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 }
