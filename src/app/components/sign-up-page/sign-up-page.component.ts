@@ -112,7 +112,9 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
               import.meta.env.NG_APP_SUPABASE_IS_CONFIRM_EMAIL_ON === 'true'
             ) {
               this._progressBarService.hideProgressBar();
-              void this._router.navigateByUrl('/email-verification-pending');
+              setTimeout(() => {
+                void this._router.navigateByUrl('/email-verification-pending');
+              });
             } else {
               this._alertService.showErrorAlert();
               this.isSignUpPending = false;
@@ -124,7 +126,9 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
               this._translocoService.translate('alerts.welcome'),
             );
             this._progressBarService.hideProgressBar();
-            void this._router.navigateByUrl('/');
+            setTimeout(() => {
+              void this._router.navigateByUrl('/');
+            });
           }
         }
       })

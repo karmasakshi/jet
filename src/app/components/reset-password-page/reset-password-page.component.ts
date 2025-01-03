@@ -104,7 +104,9 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
           this._progressBarService.hideProgressBar();
         } else {
           this._progressBarService.hideProgressBar();
-          void this._router.navigateByUrl('/reset-password-email-sent');
+          setTimeout(() => {
+            void this._router.navigateByUrl('/reset-password-email-sent');
+          });
         }
       })
       .catch((error: Error): void => {

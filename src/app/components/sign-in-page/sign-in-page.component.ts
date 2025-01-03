@@ -140,7 +140,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
               this._activatedRoute.snapshot.queryParamMap.get(
                 QueryParam.ReturnUrl,
               ) ?? '/';
-            void this._router.navigateByUrl(returnUrl);
+            setTimeout(() => {
+              void this._router.navigateByUrl(returnUrl);
+            });
           }
         }
       })
@@ -218,7 +220,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
           this._progressBarService.hideProgressBar();
         } else {
           this._progressBarService.hideProgressBar();
-          void this._router.navigateByUrl('/sign-in-link-sent');
+          setTimeout(() => {
+            void this._router.navigateByUrl('/sign-in-link-sent');
+          });
         }
       })
       .catch((error: Error): void => {
