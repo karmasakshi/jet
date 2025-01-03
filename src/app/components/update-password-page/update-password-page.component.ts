@@ -99,7 +99,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
     this._passwordFormControlSubscription.unsubscribe();
   }
 
-  public updatePassword(password: string): void {
+  public async updatePassword(password: string): Promise<void> {
     if (this.isUpdatePasswordPending || this.updatePasswordFormGroup.invalid) {
       return;
     }
@@ -107,30 +107,31 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
     this.isUpdatePasswordPending = true;
     this.updatePasswordFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._userService
-      .updateUser({ password })
-      .then(({ error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isUpdatePasswordPending = false;
-          this.updatePasswordFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.password-updated'),
-          );
-          this._progressBarService.hideProgressBar();
-          void this._router.navigateByUrl('/profile');
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isUpdatePasswordPending = false;
-        this.updatePasswordFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { error } = await this._userService.updateUser({ password });
+
+      if (error) {
+        throw error;
+      }
+
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.password-updated'),
+      );
+      void this._router.navigateByUrl('/profile');
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.updatePasswordFormGroup.enable();
+    } finally {
+      this.isUpdatePasswordPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 
   private _confirmPasswordValidator(

@@ -85,7 +85,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
     this._bindQueryParamsManager.destroy();
   }
 
-  public resetPassword(email: string): void {
+  public async resetPassword(email: string) {
     if (this.isResetPasswordPending || this.resetPasswordFormGroup.invalid) {
       return;
     }
@@ -93,28 +93,27 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
     this.isResetPasswordPending = true;
     this.resetPasswordFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._userService
-      .resetPassword(email)
-      .then(({ error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isResetPasswordPending = false;
-          this.resetPasswordFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          this._progressBarService.hideProgressBar();
-          setTimeout(() => {
-            void this._router.navigateByUrl('/reset-password-email-sent');
-          });
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isResetPasswordPending = false;
-        this.resetPasswordFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { error } = await this._userService.resetPassword(email);
+
+      if (error) {
+        throw error;
+      }
+
+      void this._router.navigateByUrl('/reset-password-email-sent');
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.resetPasswordFormGroup.enable();
+    } finally {
+      this.isResetPasswordPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 }

@@ -89,7 +89,7 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
     this._bindQueryParamsManager.destroy();
   }
 
-  public signUp(email: string, password: string): void {
+  public async signUp(email: string, password: string) {
     if (this.isSignUpPending || this.signUpFormGroup.invalid) {
       return;
     }
@@ -97,47 +97,34 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
     this.isSignUpPending = true;
     this.signUpFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._userService
-      .signUp(email, password)
-      .then(({ data, error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isSignUpPending = false;
-          this.signUpFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          if (data.session === null) {
-            if (
-              import.meta.env.NG_APP_SUPABASE_IS_CONFIRM_EMAIL_ON === 'true'
-            ) {
-              this._progressBarService.hideProgressBar();
-              setTimeout(() => {
-                void this._router.navigateByUrl('/email-verification-pending');
-              });
-            } else {
-              this._alertService.showErrorAlert();
-              this.isSignUpPending = false;
-              this.signUpFormGroup.enable();
-              this._progressBarService.hideProgressBar();
-            }
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.welcome'),
-            );
-            this._progressBarService.hideProgressBar();
-            setTimeout(() => {
-              void this._router.navigateByUrl('/');
-            });
-          }
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isSignUpPending = false;
-        this.signUpFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { data, error } = await this._userService.signUp(email, password);
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.session === null) {
+        void this._router.navigateByUrl('/email-verification-pending');
+      } else {
+        this._alertService.showAlert(
+          this._translocoService.translate('alerts.welcome'),
+        );
+        void this._router.navigateByUrl('/');
+      }
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.signUpFormGroup.enable();
+    } finally {
+      this.isSignUpPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 }

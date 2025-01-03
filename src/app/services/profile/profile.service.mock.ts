@@ -32,8 +32,8 @@ export class ProfileServiceMock {
     return Promise.resolve({ data: [], error: null });
   }
 
-  public selectProfile(): void {
-    // Do nothing
+  public async selectProfile(): Promise<void> {
+    return Promise.resolve();
   }
 
   public updateProfile(_partialProfile: Partial<Profile>) {

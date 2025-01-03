@@ -25,6 +25,7 @@ import {
   BindQueryParamsFactory,
   BindQueryParamsManager,
 } from '@ngneat/bind-query-params';
+import { Session } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -94,15 +95,34 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    void this._getSession();
-    this._bindQueryParamsManager.connect(this.signInFormGroup);
+    this.signInFormGroup.disable();
+    this._getSession()
+      .then((session: Session | null) => {
+        if (session === null) {
+          this.signInFormGroup.enable();
+          this._bindQueryParamsManager.connect(this.signInFormGroup);
+        } else {
+          this._alertService.showAlert(
+            this._translocoService.translate('alerts.welcome'),
+          );
+          const returnUrl =
+            this._activatedRoute.snapshot.queryParamMap.get(
+              QueryParam.ReturnUrl,
+            ) ?? '/';
+          void this._router.navigateByUrl(returnUrl);
+        }
+      })
+      .catch((error: Error) => {
+        this._loggerService.logError(error);
+        this.signInFormGroup.enable();
+      });
   }
 
   public ngOnDestroy(): void {
     this._bindQueryParamsManager.destroy();
   }
 
-  public signInWithPassword(email: string, password: string): void {
+  public async signInWithPassword(email: string, password: string) {
     if (
       this.isGetSessionPending ||
       this.isSignInWithOauthPending ||
@@ -116,43 +136,41 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this.isSignInWithPasswordPending = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._userService
-      .signInWithPassword(email, password)
-      .then(({ data, error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isSignInWithPasswordPending = false;
-          this.signInFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          if (data.session === null) {
-            this._alertService.showErrorAlert();
-            this.isSignInWithPasswordPending = false;
-            this.signInFormGroup.enable();
-            this._progressBarService.hideProgressBar();
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.welcome'),
-            );
-            this._progressBarService.hideProgressBar();
-            const returnUrl =
-              this._activatedRoute.snapshot.queryParamMap.get(
-                QueryParam.ReturnUrl,
-              ) ?? '/';
-            setTimeout(() => {
-              void this._router.navigateByUrl(returnUrl);
-            });
-          }
-        }
-      })
-      .catch((error: Error): void => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isSignInWithPasswordPending = false;
-        this.signInFormGroup.enable();
-        this._progressBarService.hideProgressBar();
-      });
+
+    try {
+      const { data, error } = await this._userService.signInWithPassword(
+        email,
+        password,
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.session === null) {
+        throw new Error();
+      }
+
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.welcome'),
+      );
+      const returnUrl =
+        this._activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl) ??
+        '/';
+      void this._router.navigateByUrl(returnUrl);
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.signInFormGroup.enable();
+    } finally {
+      this.isSignInWithPasswordPending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 
   public async signInWithOauth(oauthProvider: AvailableOauthProvider) {
@@ -231,13 +249,12 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  private async _getSession() {
+  private async _getSession(): Promise<Session | null> {
     if (this.isGetSessionPending) {
-      return;
+      return null;
     }
 
     this.isGetSessionPending = true;
-    this.signInFormGroup.disable();
     this._progressBarService.showProgressBar({ mode: 'query' });
 
     try {
@@ -247,19 +264,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
         throw error;
       }
 
-      if (data.session !== null) {
-        this._alertService.showAlert(
-          this._translocoService.translate('alerts.welcome'),
-        );
-        this.signInFormGroup.reset();
-        const returnUrl =
-          this._activatedRoute.snapshot.queryParamMap.get(
-            QueryParam.ReturnUrl,
-          ) ?? '/';
-        setTimeout(() => {
-          void this._router.navigateByUrl(returnUrl);
-        });
-      }
+      return data.session;
     } catch (exception) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -267,9 +272,10 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
+
+      return null;
     } finally {
       this.isGetSessionPending = false;
-      this.signInFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }

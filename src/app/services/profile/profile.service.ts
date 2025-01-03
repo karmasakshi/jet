@@ -41,7 +41,7 @@ export class ProfileService {
         if (user === null) {
           this._profile.set(undefined);
         } else {
-          this.selectProfile();
+          void this.selectProfile();
         }
       });
     });
@@ -75,22 +75,30 @@ export class ProfileService {
     return this._supabaseClient.storage.from(Buckets.Avatars).remove([path]);
   }
 
-  public selectProfile(): void {
+  public async selectProfile(): Promise<void> {
     const userId = this._userService.user()?.id;
 
-    this._supabaseClient
-      .from(Tables.Profiles)
-      .select('*')
-      .eq('id', userId)
-      .single()
-      .then(({ data, error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-        } else {
-          this._profile.set(data as Profile);
-        }
-      });
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const { data, error } = await this._supabaseClient
+        .from(Tables.Profiles)
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      this._profile.set(data as Profile);
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+    }
   }
 
   public updateProfile(partialProfile: Partial<Profile>) {

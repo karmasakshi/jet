@@ -103,7 +103,7 @@ export class ProfilePageComponent {
     this._loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
-  public updateProfile(partialProfile: Partial<Profile>): void {
+  public async updateProfile(partialProfile: Partial<Profile>): Promise<void> {
     if (this.isUpdateProfilePending) {
       return;
     }
@@ -111,28 +111,32 @@ export class ProfilePageComponent {
     this.isUpdateProfilePending = true;
     this.profileFormGroup.disable();
     this._progressBarService.showProgressBar();
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    this._profileService
-      .updateProfile(partialProfile)
-      .then(({ error }): void => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isUpdateProfilePending = false;
-          this.profileFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          this._profileService.selectProfile();
-          this._alertService.showAlert(
-            this._translocoService.translate(
-              'alerts.profile-updated-successfully',
-            ),
-          );
-          this.isUpdateProfilePending = false;
-          this.profileFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        }
-      });
+
+    try {
+      const { error } =
+        await this._profileService.updateProfile(partialProfile);
+
+      if (error) {
+        throw error;
+      }
+
+      void this._profileService.selectProfile();
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.profile-updated-successfully'),
+      );
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.profileFormGroup.enable();
+    } finally {
+      this.isUpdateProfilePending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 
   public checkAndUploadAvatar(): void {
@@ -160,10 +164,10 @@ export class ProfilePageComponent {
       return;
     }
 
-    this._uploadAvatar(file);
+    void this._uploadAvatar(file);
   }
 
-  private _uploadAvatar(file: File): void {
+  private async _uploadAvatar(file: File): Promise<void> {
     if (this.isUpdateProfilePending) {
       return;
     }
@@ -171,41 +175,38 @@ export class ProfilePageComponent {
     this.isUpdateProfilePending = true;
     this.profileFormGroup.disable();
     this._progressBarService.showProgressBar();
-    this._profileService
-      .uploadAvatar(file)
-      .then(({ data, error }) => {
-        if (error) {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-          this.isUpdateProfilePending = false;
-          this.profileFormGroup.enable();
-          this._progressBarService.hideProgressBar();
-        } else {
-          if (data === null) {
-            this._alertService.showErrorAlert();
-            this.isUpdateProfilePending = false;
-            this.profileFormGroup.enable();
-            this._progressBarService.hideProgressBar();
-          } else {
-            this._alertService.showAlert(
-              this._translocoService.translate(
-                'alerts.upload-successful-saving-to-profile',
-              ),
-            );
-            this.isUpdateProfilePending = false;
-            this._progressBarService.hideProgressBar();
-            this.updateProfile({
-              avatar_url: this._profileService.getAvatarPublicUrl(data.path),
-            });
-          }
-        }
-      })
-      .catch((error: Error) => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-        this.isUpdateProfilePending = false;
-        this.profileFormGroup.enable();
-        this._progressBarService.hideProgressBar();
+
+    try {
+      const { data, error } = await this._profileService.uploadAvatar(file);
+
+      if (error) {
+        throw error;
+      }
+
+      if (data === null) {
+        throw new Error();
+      }
+
+      this._alertService.showAlert(
+        this._translocoService.translate(
+          'alerts.upload-successful-saving-to-profile',
+        ),
+      );
+      void this.updateProfile({
+        avatar_url: this._profileService.getAvatarPublicUrl(data.path),
       });
+    } catch (exception) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+
+      this.profileFormGroup.enable();
+    } finally {
+      this.isUpdateProfilePending = false;
+      this._progressBarService.hideProgressBar();
+    }
   }
 }
