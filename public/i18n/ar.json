@@ -3,21 +3,21 @@
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",
-    "ok": "موافق",
+    "ok": "حسنًا",
     "password-updated": "تم تحديث كلمة المرور.",
-    "please-choose-a-smaller-image": "يرجى اختيار صورة حجمها أقل من 1 ميجابايت.",
+    "please-choose-a-smaller-image": "يرجى اختيار صورة أقل من 1 ميجابايت.",
     "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
     "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح.",
-    "reload": "إعادة التحميل",
-    "reload-to-update": "أعد التحميل للتحديث.",
+    "reload": "إعادة تحميل",
+    "reload-to-update": "قم بإعادة التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
-    "upload-successful-saving-to-profile": "تم التحميل بنجاح، جاري حفظ الصورة في الملف الشخصي.",
-    "welcome": "مرحباً!"
+    "upload-successful-saving-to-profile": "تم التحميل بنجاح، جارٍ الحفظ إلى الملف الشخصي.",
+    "welcome": "مرحبًا!"
   },
   "jet-app": {
-    "home": "الصفحة الرئيسية",
-    "loading": "جاري التحميل...",
+    "home": "الرئيسية",
+    "loading": "جارٍ التحميل...",
     "logo": "الشعار",
     "profile": "الملف الشخصي",
     "settings": "الإعدادات",
@@ -27,7 +27,7 @@
   },
   "jet-footer": {
     "buy": "شراء",
-    "docs": "الوثائق"
+    "docs": "مستندات"
   },
   "jet-home-page": {
     "seo": {
@@ -38,32 +38,32 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "email-verification-pending": "اقتربنا من الوصول!",
+    "email-verification-pending": "على وشك الانتهاء!",
     "message": "رسالة",
-    "reset-password-email-sent": "تم إرسال البريد الإلكتروني.",
+    "reset-password-email-sent": "سنرسل بريدًا إلكترونيًا.",
     "seo": {
       "description": "رسالة.",
       "keywords": "jet",
       "title": "Jet"
     },
-    "sign-in-and-update-password": "استخدم الرابط الموجود في البريد الإلكتروني لتسجيل الدخول وتحديث كلمة المرور.",
+    "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا يمكنك استخدامه لتسجيل الدخول وتحديث كلمة المرور.",
     "toolbar-title": "Jet",
-    "weve-sent-an-email": "لقد أرسلنا بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط الموجود في البريد الإلكتروني للتحقق."
+    "weve-sent-an-email": "لقد أرسلنا بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط في البريد الإلكتروني للتحقق."
   },
   "jet-not-found-page": {
     "page-not-found": "الصفحة غير موجودة.",
     "seo": {
-      "description": "غير موجودة.",
+      "description": "غير موجود.",
       "keywords": "jet",
-      "title": "غير موجودة"
+      "title": "غير موجود"
     },
-    "toolbar-title": "غير موجودة"
+    "toolbar-title": "غير موجود"
   },
   "jet-profile-page": {
-    "avatar": "الصورة الشخصية",
-    "characters": "{{ value }} / {{ maximum }} حرفًا",
+    "avatar": "الصورة الرمزية",
+    "characters": "{{ value }} / {{ maximum }} حروف",
     "created-on": "تم إنشاء الملف الشخصي في {{ value }}",
-    "last-updated-on": "آخر تحديث للملف الشخصي كان في {{ value }}",
+    "last-updated-on": "تم تحديث الملف الشخصي آخر مرة في {{ value }}",
     "profile": "الملف الشخصي",
     "seo": {
       "description": "الملف الشخصي.",
@@ -99,8 +99,8 @@
     "last-checked": "آخر تحقق:",
     "light": "فاتح",
     "reload": "إعادة التحميل",
-    "reload-description": "حفظ الإعدادات وإعادة التحميل",
-    "reset": "إعادة التعيين",
+    "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
+    "reset": "إعادة ضبط",
     "reset-description": "استخدام الإعدادات الافتراضية وإعادة التحميل",
     "seo": {
       "description": "الإعدادات.",
@@ -121,7 +121,8 @@
       "title": "تسجيل الدخول"
     },
     "sign-in": "تسجيل الدخول",
-    "sign-in-with-google": "تسجيل الدخول باستخدام Google",
+    "sign-in-with-facebook": "تسجيل الدخول باستخدام فيسبوك",
+    "sign-in-with-google": "تسجيل الدخول باستخدام جوجل",
     "sign-up": "إنشاء حساب",
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تسجيل الدخول"

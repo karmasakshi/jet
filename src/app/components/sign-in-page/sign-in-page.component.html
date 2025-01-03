@@ -114,6 +114,20 @@
               <mat-icon>open_in_new</mat-icon>
               <span>{{ t('sign-in-with-google') }}</span>
             </button>
+            <button
+              [disabled]="
+                isGetSessionPending ||
+                isSignInWithOauthPending ||
+                isSignInWithOtpPending ||
+                isSignInWithPasswordPending
+              "
+              (click)="signInWithOauth('facebook')"
+              mat-button
+              type="button"
+            >
+              <mat-icon>open_in_new</mat-icon>
+              <span>{{ t('sign-in-with-facebook') }}</span>
+            </button>
             <a
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               mat-button
