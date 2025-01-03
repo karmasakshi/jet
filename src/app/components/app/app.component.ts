@@ -39,6 +39,7 @@ import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { User } from '@jet/interfaces/user.interface';
+import { AlertService } from '@jet/services/alert/alert.service';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -84,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _matIconRegistry = inject(MatIconRegistry);
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
+  private readonly _alertService = inject(AlertService);
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
@@ -201,6 +203,12 @@ export class AppComponent implements OnInit, OnDestroy {
       ) {
         if (event instanceof NavigationEnd) {
           this.activeNavigationMenuItemPath = event.url.split('?')[0];
+        }
+
+        if (event instanceof NavigationError) {
+          const error: Error | undefined = event.error as Error;
+          this._loggerService.logError(error);
+          this._alertService.showErrorAlert(error.message);
         }
 
         this._progressBarService.hideProgressBar();

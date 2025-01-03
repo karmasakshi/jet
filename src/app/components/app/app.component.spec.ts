@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -31,6 +33,7 @@ describe('AppComponent', () => {
         AppComponent,
       ],
       providers: [
+        { provide: AlertService, useClass: AlertServiceMock },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
