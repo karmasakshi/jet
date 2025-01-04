@@ -109,7 +109,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._activatedRoute.snapshot.queryParamMap.get(
               QueryParam.ReturnUrl,
             ) ?? '/';
-          void this._router.navigateByUrl(returnUrl);
+          setTimeout(() => {
+            void this._router.navigateByUrl(returnUrl);
+          });
         }
       })
       .catch((error: Error) => {

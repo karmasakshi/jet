@@ -96,7 +96,9 @@
           </button>
           <div style="flex: 1"></div>
           <button
-            [disabled]="signInFormGroup.disabled"
+            [disabled]="
+              signInFormGroup.disabled || signInFormGroup.controls.email.invalid
+            "
             (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
             mat-button
             type="button"
