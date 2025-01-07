@@ -65,8 +65,8 @@ export class ProfileService {
   ): Promise<
     { data: FileObject[]; error: null } | { data: null; error: StorageError }
   > {
-    const fileExtension = publicUrl.split('.').pop();
-    const path = `${this._userService.user()?.id}/avatar.${fileExtension}`;
+    const fileName = publicUrl.split('/').pop();
+    const path = `${this._userService.user()?.id}/${fileName}`;
     return this._supabaseClient.storage.from(Bucket.Avatars).remove([path]);
   }
 
@@ -115,7 +115,8 @@ export class ProfileService {
     | { data: null; error: StorageError }
   > {
     const fileExtension = file.name.split('.').pop();
-    const path = `${this._userService.user()?.id}/avatar.${fileExtension}`;
+    const timestamp = Date.now();
+    const path = `${this._userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
     return this._supabaseClient.storage
       .from(Bucket.Avatars)
       .upload(path, file, { upsert: true });
