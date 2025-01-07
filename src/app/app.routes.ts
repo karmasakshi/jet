@@ -6,79 +6,75 @@ import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not
 const generalRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
-    loadComponent: () =>
-      import('@jet/components/message-page/message-page.component').then(
-        (m) => m.MessagePageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: 'email-verification-pending',
   },
   {
     canActivate: [isAuthenticatedGuard],
-    loadComponent: () =>
-      import('@jet/components/profile-page/profile-page.component').then(
-        (m) => m.ProfilePageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/profile-page/profile-page.component'))
+        .ProfilePageComponent,
     path: 'profile',
   },
   {
     canActivate: [isNotAuthenticatedGuard],
-    loadComponent: () =>
-      import(
-        '@jet/components/reset-password-page/reset-password-page.component'
-      ).then((m) => m.ResetPasswordPageComponent),
+    loadComponent: async () =>
+      (
+        await import(
+          '@jet/components/reset-password-page/reset-password-page.component'
+        )
+      ).ResetPasswordPageComponent,
     path: 'reset-password',
   },
   {
     data: { case: 'reset-password-email-sent' },
-    loadComponent: () =>
-      import('@jet/components/message-page/message-page.component').then(
-        (m) => m.MessagePageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: 'reset-password-email-sent',
   },
   {
-    loadComponent: () =>
-      import('@jet/components/settings-page/settings-page.component').then(
-        (m) => m.SettingsPageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/settings-page/settings-page.component'))
+        .SettingsPageComponent,
     path: 'settings',
   },
   {
-    loadComponent: () =>
-      import('@jet/components/sign-in-page/sign-in-page.component').then(
-        (m) => m.SignInPageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/sign-in-page/sign-in-page.component'))
+        .SignInPageComponent,
     path: 'sign-in',
   },
   {
     data: { case: 'sign-in-link-sent' },
-    loadComponent: () =>
-      import('@jet/components/message-page/message-page.component').then(
-        (m) => m.MessagePageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: 'sign-in-link-sent',
   },
   {
-    loadComponent: () =>
-      import('@jet/components/sign-out-page/sign-out-page.component').then(
-        (m) => m.SignOutPageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/sign-out-page/sign-out-page.component'))
+        .SignOutPageComponent,
     path: 'sign-out',
   },
   {
     canActivate: [isNotAuthenticatedGuard],
-    loadComponent: () =>
-      import('@jet/components/sign-up-page/sign-up-page.component').then(
-        (m) => m.SignUpPageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/sign-up-page/sign-up-page.component'))
+        .SignUpPageComponent,
     path: 'sign-up',
   },
   {
     canActivate: [isAuthenticatedGuard],
-    loadComponent: () =>
-      import(
-        '@jet/components/update-password-page/update-password-page.component'
-      ).then((m) => m.UpdatePasswordPageComponent),
+    loadComponent: async () =>
+      (
+        await import(
+          '@jet/components/update-password-page/update-password-page.component'
+        )
+      ).UpdatePasswordPageComponent,
     path: 'update-password',
   },
 ];
@@ -89,10 +85,9 @@ export const routes: Routes = [
   ...mainRoutes,
   ...generalRoutes,
   {
-    loadComponent: () =>
-      import('@jet/components/not-found-page/not-found-page.component').then(
-        (m) => m.NotFoundPageComponent,
-      ),
+    loadComponent: async () =>
+      (await import('@jet/components/not-found-page/not-found-page.component'))
+        .NotFoundPageComponent,
     path: '**',
   },
 ];

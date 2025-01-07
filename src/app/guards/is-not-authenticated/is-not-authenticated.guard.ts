@@ -1,26 +1,36 @@
 import { inject } from '@angular/core';
-import {
-  CanActivateFn,
-  GuardResult,
-  MaybeAsync,
-  Router,
-  UrlTree,
-} from '@angular/router';
+import { CanActivateFn, GuardResult, Router } from '@angular/router';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { LoggerService } from '@jet/services/logger/logger.service';
 import { UserService } from '@jet/services/user/user.service';
 
 export const isNotAuthenticatedGuard: CanActivateFn =
-  (): MaybeAsync<GuardResult> => {
+  async (): Promise<GuardResult> => {
     const router = inject(Router);
+    const alertService = inject(AlertService);
+    const loggerService = inject(LoggerService);
     const userService = inject(UserService);
 
-    return userService
-      .getSession()
-      .then(({ data, error }): boolean | UrlTree => {
-        return error || data.session === null
-          ? true
-          : router.createUrlTree(['/']);
-      })
-      .catch((): UrlTree => {
-        return router.createUrlTree(['/']);
-      });
+    try {
+      const { data, error } = await userService.getSession();
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.session === null) {
+        throw new Error();
+      }
+
+      return true;
+    } catch (exception) {
+      if (exception instanceof Error) {
+        loggerService.logError(exception);
+        alertService.showErrorAlert(exception.message);
+      } else {
+        loggerService.logException(exception);
+      }
+
+      return router.createUrlTree(['/']);
+    }
   };

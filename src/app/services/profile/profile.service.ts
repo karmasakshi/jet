@@ -79,18 +79,17 @@ export class ProfileService {
     const userId = this._userService.user()?.id;
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const { data, error } = await this._supabaseClient
         .from(Tables.Profiles)
         .select('*')
         .eq('id', userId)
-        .single();
+        .single<Profile>();
 
       if (error) {
         throw error;
       }
 
-      this._profile.set(data as Profile);
+      this._profile.set(data);
     } catch (exception) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);

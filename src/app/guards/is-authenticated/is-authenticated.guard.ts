@@ -1,33 +1,41 @@
 import { inject } from '@angular/core';
-import {
-  CanActivateFn,
-  GuardResult,
-  MaybeAsync,
-  Router,
-  UrlTree,
-} from '@angular/router';
+import { CanActivateFn, GuardResult, Router } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { LoggerService } from '@jet/services/logger/logger.service';
 import { UserService } from '@jet/services/user/user.service';
 
-export const isAuthenticatedGuard: CanActivateFn = (
+export const isAuthenticatedGuard: CanActivateFn = async (
   _activatedRouteSnapshot,
   routerStateSnapshot,
-): MaybeAsync<GuardResult> => {
+): Promise<GuardResult> => {
   const router = inject(Router);
+  const alertService = inject(AlertService);
+  const loggerService = inject(LoggerService);
   const userService = inject(UserService);
 
-  return userService
-    .getSession()
-    .then(({ data, error }): boolean | UrlTree => {
-      return error || data.session === null
-        ? router.createUrlTree(['/sign-in'], {
-            queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
-          })
-        : true;
-    })
-    .catch((): UrlTree => {
-      return router.createUrlTree(['/sign-in'], {
-        queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
-      });
+  try {
+    const { data, error } = await userService.getSession();
+
+    if (error) {
+      throw error;
+    }
+
+    if (data.session === null) {
+      throw new Error();
+    }
+
+    return true;
+  } catch (exception) {
+    if (exception instanceof Error) {
+      loggerService.logError(exception);
+      alertService.showErrorAlert(exception.message);
+    } else {
+      loggerService.logException(exception);
+    }
+
+    return router.createUrlTree(['/sign-in'], {
+      queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
     });
+  }
 };

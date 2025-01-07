@@ -94,30 +94,22 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this._loggerService.logComponentInitialization('SignInPageComponent');
   }
 
-  public ngOnInit(): void {
-    this.signInFormGroup.disable();
-    this._getSession()
-      .then((session: Session | null) => {
-        if (session === null) {
-          this.signInFormGroup.enable();
-          this._bindQueryParamsManager.connect(this.signInFormGroup);
-        } else {
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.welcome'),
-          );
-          const returnUrl =
-            this._activatedRoute.snapshot.queryParamMap.get(
-              QueryParam.ReturnUrl,
-            ) ?? '/';
-          setTimeout(() => {
-            void this._router.navigateByUrl(returnUrl);
-          });
-        }
-      })
-      .catch((error: Error) => {
-        this._loggerService.logError(error);
-        this.signInFormGroup.enable();
-      });
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  public async ngOnInit(): Promise<void> {
+    const session = await this._getSession();
+
+    if (session === null) {
+      this.signInFormGroup.enable();
+      this._bindQueryParamsManager.connect(this.signInFormGroup);
+    } else {
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.welcome'),
+      );
+      const returnUrl =
+        this._activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl) ??
+        '/';
+      void this._router.navigateByUrl(returnUrl);
+    }
   }
 
   public ngOnDestroy(): void {

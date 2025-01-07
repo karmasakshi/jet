@@ -58,7 +58,7 @@ export class ServiceWorkerService {
     return this._lastUpdateCheckTimestamp.asReadonly();
   }
 
-  public checkForUpdate(): void {
+  public async checkForUpdate(): Promise<void> {
     if (this._isReloadPending) {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.reload-to-update'),
@@ -72,19 +72,23 @@ export class ServiceWorkerService {
         this._translocoService.translate('alerts.checking-for-updates'),
       );
 
-      this._swUpdate
-        .checkForUpdate()
-        .then((isUpdateFoundAndReady: boolean): void => {
-          if (!isUpdateFoundAndReady) {
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.no-update-found'),
-            );
-          }
-        })
-        .catch((error: Error): void => {
-          this._loggerService.logError(error);
-          this._alertService.showErrorAlert(error.message);
-        });
+      try {
+        const isUpdateFoundAndReady: boolean =
+          await this._swUpdate.checkForUpdate();
+
+        if (!isUpdateFoundAndReady) {
+          this._alertService.showAlert(
+            this._translocoService.translate('alerts.no-update-found'),
+          );
+        }
+      } catch (exception) {
+        if (exception instanceof Error) {
+          this._loggerService.logError(exception);
+          this._alertService.showErrorAlert(exception.message);
+        } else {
+          this._loggerService.logException(exception);
+        }
+      }
     }
   }
 
