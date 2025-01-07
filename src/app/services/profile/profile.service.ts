@@ -27,11 +27,11 @@ export class ProfileService {
   private readonly _supabaseService = inject(SupabaseService);
   private readonly _userService = inject(UserService);
 
-  private readonly _profile: WritableSignal<Profile | undefined>;
+  private readonly _profile: WritableSignal<Profile | null>;
   private readonly _supabaseClient: SupabaseClient;
 
   public constructor() {
-    this._profile = signal(undefined);
+    this._profile = signal(null);
 
     this._supabaseClient = this._supabaseService.supabaseClient;
 
@@ -39,7 +39,7 @@ export class ProfileService {
       const user: User | null = this._userService.user();
       untracked(() => {
         if (user === null) {
-          this._profile.set(undefined);
+          this._profile.set(null);
         } else {
           void this.selectProfile();
         }
@@ -49,7 +49,7 @@ export class ProfileService {
     this._loggerService.logServiceInitialization('ProfileService');
   }
 
-  public get profile(): Signal<Profile | undefined> {
+  public get profile(): Signal<Profile | null> {
     return this._profile.asReadonly();
   }
 
@@ -75,7 +75,7 @@ export class ProfileService {
     return this._supabaseClient.storage.from(Buckets.Avatars).remove([path]);
   }
 
-  public async selectProfile(): Promise<void> {
+  public async selectProfile() {
     const userId = this._userService.user()?.id;
 
     try {
@@ -90,7 +90,7 @@ export class ProfileService {
       }
 
       this._profile.set(data);
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);

@@ -5,13 +5,13 @@ import { Profile } from '@jet/interfaces/profile.interface';
 import { FileObject, StorageError } from '@supabase/storage-js/';
 
 export class ProfileServiceMock {
-  private readonly _profile: WritableSignal<Profile | undefined>;
+  private readonly _profile: WritableSignal<Profile | null>;
 
   public constructor() {
-    this._profile = signal(undefined);
+    this._profile = signal(null);
   }
 
-  public get profile(): Signal<Profile | undefined> {
+  public get profile(): Signal<Profile | null> {
     return this._profile.asReadonly();
   }
 

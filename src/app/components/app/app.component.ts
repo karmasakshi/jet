@@ -112,7 +112,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly toolbarTitle: Signal<string | undefined>;
+  public readonly toolbarTitle: Signal<string | null>;
   public readonly user: Signal<User | null>;
 
   public constructor() {

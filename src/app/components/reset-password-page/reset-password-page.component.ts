@@ -102,7 +102,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
       }
 
       void this._router.navigateByUrl('/reset-password-email-sent');
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);

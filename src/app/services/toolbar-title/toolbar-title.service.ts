@@ -13,15 +13,15 @@ import { LoggerService } from '../logger/logger.service';
 export class ToolbarTitleService {
   private readonly _loggerService = inject(LoggerService);
 
-  private readonly _toolbarTitle: WritableSignal<string | undefined>;
+  private readonly _toolbarTitle: WritableSignal<string | null>;
 
   public constructor() {
-    this._toolbarTitle = signal(undefined);
+    this._toolbarTitle = signal(null);
 
     this._loggerService.logServiceInitialization('ToolbarTitleService');
   }
 
-  public get toolbarTitle(): Signal<string | undefined> {
+  public get toolbarTitle(): Signal<string | null> {
     return this._toolbarTitle.asReadonly();
   }
 

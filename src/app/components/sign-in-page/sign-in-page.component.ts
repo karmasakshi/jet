@@ -94,22 +94,27 @@ export class SignInPageComponent implements OnInit, OnDestroy {
     this._loggerService.logComponentInitialization('SignInPageComponent');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  public async ngOnInit(): Promise<void> {
-    const session = await this._getSession();
-
-    if (session === null) {
-      this.signInFormGroup.enable();
-      this._bindQueryParamsManager.connect(this.signInFormGroup);
-    } else {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.welcome'),
-      );
-      const returnUrl =
-        this._activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl) ??
-        '/';
-      void this._router.navigateByUrl(returnUrl);
-    }
+  public ngOnInit(): void {
+    this._getSession()
+      .then((session) => {
+        if (session === null) {
+          this.signInFormGroup.enable();
+          this._bindQueryParamsManager.connect(this.signInFormGroup);
+        } else {
+          this._alertService.showAlert(
+            this._translocoService.translate('alerts.welcome'),
+          );
+          const returnUrl =
+            this._activatedRoute.snapshot.queryParamMap.get(
+              QueryParam.ReturnUrl,
+            ) ?? '/';
+          void this._router.navigateByUrl(returnUrl);
+        }
+      })
+      .catch((error: Error) => {
+        this._loggerService.logError(error);
+        this._alertService.showErrorAlert(error.message);
+      });
   }
 
   public ngOnDestroy(): void {
@@ -152,7 +157,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
         this._activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl) ??
         '/';
       void this._router.navigateByUrl(returnUrl);
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);
@@ -190,7 +195,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       }
 
       window.location.href = data.url;
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);
@@ -228,7 +233,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       }
 
       void this._router.navigateByUrl('/sign-in-link-sent');
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);
@@ -259,7 +264,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       }
 
       return data.session;
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);

@@ -26,7 +26,7 @@ export const isAuthenticatedGuard: CanActivateFn = async (
     }
 
     return true;
-  } catch (exception) {
+  } catch (exception: unknown) {
     if (exception instanceof Error) {
       loggerService.logError(exception);
       alertService.showErrorAlert(exception.message);

@@ -66,7 +66,7 @@ export class ProfilePageComponent {
     viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
 
   public isUpdateProfilePending: boolean;
-  public readonly profile: Signal<Profile | undefined>;
+  public readonly profile: Signal<Profile | null>;
   public readonly profileFormGroup: FormGroup<{
     username: FormControl<string | null>;
   }>;
@@ -92,7 +92,7 @@ export class ProfilePageComponent {
     this.user = this._userService.user;
 
     effect(() => {
-      const profile: Profile | undefined = this.profile();
+      const profile: Profile | null = this.profile();
       untracked(() => {
         if (profile) {
           this.profileFormGroup.controls.username.patchValue(profile.username);
@@ -124,7 +124,7 @@ export class ProfilePageComponent {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.profile-updated-successfully'),
       );
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);
@@ -195,7 +195,7 @@ export class ProfilePageComponent {
       void this.updateProfile({
         avatar_url: this._profileService.getAvatarPublicUrl(data.path),
       });
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);

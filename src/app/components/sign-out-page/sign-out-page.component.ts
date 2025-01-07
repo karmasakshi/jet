@@ -29,13 +29,17 @@ export class SignOutPageComponent implements OnInit {
     this._loggerService.logComponentInitialization('SignOutPageComponent');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  public async ngOnInit(): Promise<void> {
-    const returnUrl: string | null = await this._signOut();
-
-    if (returnUrl) {
-      void this._router.navigateByUrl(returnUrl);
-    }
+  public ngOnInit(): void {
+    this._signOut()
+      .then((returnUrl) => {
+        if (returnUrl) {
+          void this._router.navigateByUrl(returnUrl);
+        }
+      })
+      .catch((error: Error) => {
+        this._loggerService.logError(error);
+        this._alertService.showErrorAlert(error.message);
+      });
   }
 
   private async _signOut(): Promise<string | null> {
@@ -58,7 +62,7 @@ export class SignOutPageComponent implements OnInit {
       );
 
       return '/';
-    } catch (exception) {
+    } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
         this._alertService.showErrorAlert(exception.message);
