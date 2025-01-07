@@ -117,8 +117,6 @@ export class ProfileService {
     const fileExtension = file.name.split('.').pop();
     const timestamp = Date.now();
     const path = `${this._userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
-    return this._supabaseClient.storage
-      .from(Bucket.Avatars)
-      .upload(path, file, { upsert: true });
+    return this._supabaseClient.storage.from(Bucket.Avatars).upload(path, file);
   }
 }

@@ -1,4 +1,4 @@
-import { DatePipe, NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   Component,
   effect,
@@ -35,6 +35,7 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
+    NgStyle,
     DatePipe,
     NgOptimizedImage,
     ReactiveFormsModule,
@@ -103,6 +104,80 @@ export class ProfilePageComponent {
     this._loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
+  public async replaceAvatar(): Promise<void> {
+    const files = this._avatarInput().nativeElement.files;
+
+    if (!files || files.length !== 1) {
+      return;
+    }
+
+    const file = files[0];
+
+    if (!file?.type.startsWith('image/')) {
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.please-choose-a-valid-image'),
+      );
+      return;
+    }
+
+    if (!(file?.size <= 1024 * 1024)) {
+      this._alertService.showAlert(
+        this._translocoService.translate(
+          'alerts.please-choose-a-smaller-image',
+        ),
+      );
+      return;
+    }
+
+    if (this.isUpdateProfilePending) {
+      return;
+    }
+
+    this.isUpdateProfilePending = true;
+    this.profileFormGroup.disable();
+    this._progressBarService.showProgressBar();
+
+    try {
+      let data, error;
+
+      ({ error } = await this._profileService.deleteAvatar(
+        this.profile()?.avatar_url ?? '',
+      ));
+
+      if (error) {
+        throw error;
+      }
+
+      // eslint-disable-next-line prefer-const
+      ({ data, error } = await this._profileService.uploadAvatar(file));
+
+      if (error) {
+        throw error;
+      }
+
+      ({ error } = await this._profileService.updateProfile({
+        avatar_url: this._profileService.getAvatarPublicUrl(data?.path ?? ''),
+      }));
+
+      if (error) {
+        throw error;
+      }
+
+      await this._profileService.selectProfile();
+    } catch (exception: unknown) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+    } finally {
+      this.isUpdateProfilePending = false;
+      this.profileFormGroup.enable();
+      this._progressBarService.hideProgressBar();
+    }
+  }
+
   public async updateProfile(partialProfile: Partial<Profile>): Promise<void> {
     if (this.isUpdateProfilePending) {
       return;
@@ -134,55 +209,6 @@ export class ProfilePageComponent {
     } finally {
       this.isUpdateProfilePending = false;
       this.profileFormGroup.enable();
-      this._progressBarService.hideProgressBar();
-    }
-  }
-
-  public async uploadAvatarAndUpdateProfile(): Promise<void> {
-    const files = this._avatarInput().nativeElement.files;
-
-    if (!files || files.length !== 1) {
-      return;
-    }
-
-    const file = files[0];
-
-    if (!file?.type.startsWith('image/')) {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.please-choose-a-valid-image'),
-      );
-      return;
-    }
-
-    if (!(file?.size <= 1024 * 1024)) {
-      this._alertService.showAlert(
-        this._translocoService.translate(
-          'alerts.please-choose-a-smaller-image',
-        ),
-      );
-      return;
-    }
-
-    this._progressBarService.showProgressBar();
-
-    try {
-      const { data, error } = await this._profileService.uploadAvatar(file);
-
-      if (error) {
-        throw error;
-      }
-
-      await this.updateProfile({
-        avatar_url: this._profileService.getAvatarPublicUrl(data.path),
-      });
-    } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
-      } else {
-        this._loggerService.logException(exception);
-      }
-    } finally {
       this._progressBarService.hideProgressBar();
     }
   }

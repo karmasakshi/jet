@@ -19,11 +19,13 @@
           />
           <mat-card-content>
             <mat-card
+              [ngStyle]="{
+                cursor: profileFormGroup.disabled ? 'not-allowed' : 'pointer',
+              }"
               (click)="avatarInput.click()"
               matRipple
               style="
                 border: 3px solid var(--mat-sys-surface-container-low);
-                cursor: pointer;
                 height: 132px;
                 width: 132px;
                 border-radius: 50%;
@@ -45,7 +47,7 @@
                 <input
                   #avatarInput
                   [disabled]="profileFormGroup.disabled"
-                  (change)="uploadAvatarAndUpdateProfile()"
+                  (change)="replaceAvatar()"
                   accept="image/*"
                   type="file"
                 />
