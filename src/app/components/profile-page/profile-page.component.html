@@ -45,7 +45,7 @@
                 <input
                   #avatarInput
                   [disabled]="profileFormGroup.disabled"
-                  (change)="checkAndUploadAvatar()"
+                  (change)="uploadAvatarAndUpdateProfile()"
                   accept="image/*"
                   type="file"
                 />

@@ -120,10 +120,10 @@ export class ProfilePageComponent {
         throw error;
       }
 
-      void this._profileService.selectProfile();
       this._alertService.showAlert(
         this._translocoService.translate('alerts.profile-updated-successfully'),
       );
+      void this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -131,15 +131,14 @@ export class ProfilePageComponent {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.profileFormGroup.enable();
     } finally {
       this.isUpdateProfilePending = false;
+      this.profileFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }
 
-  public checkAndUploadAvatar(): void {
+  public async uploadAvatarAndUpdateProfile(): Promise<void> {
     const files = this._avatarInput().nativeElement.files;
 
     if (!files || files.length !== 1) {
@@ -164,16 +163,6 @@ export class ProfilePageComponent {
       return;
     }
 
-    void this._uploadAvatar(file);
-  }
-
-  private async _uploadAvatar(file: File): Promise<void> {
-    if (this.isUpdateProfilePending) {
-      return;
-    }
-
-    this.isUpdateProfilePending = true;
-    this.profileFormGroup.disable();
     this._progressBarService.showProgressBar();
 
     try {
@@ -183,16 +172,7 @@ export class ProfilePageComponent {
         throw error;
       }
 
-      if (data === null) {
-        throw new Error();
-      }
-
-      this._alertService.showAlert(
-        this._translocoService.translate(
-          'alerts.upload-successful-saving-to-profile',
-        ),
-      );
-      void this.updateProfile({
+      await this.updateProfile({
         avatar_url: this._profileService.getAvatarPublicUrl(data.path),
       });
     } catch (exception: unknown) {
@@ -202,10 +182,7 @@ export class ProfilePageComponent {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.profileFormGroup.enable();
     } finally {
-      this.isUpdateProfilePending = false;
       this._progressBarService.hideProgressBar();
     }
   }
