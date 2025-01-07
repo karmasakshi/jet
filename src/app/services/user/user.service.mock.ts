@@ -43,6 +43,12 @@ export class UserServiceMock {
     return Promise.resolve({ data: {}, error: null });
   }
 
+  public signInWithOauth(
+    _oauthProvider: AvailableOauthProvider,
+  ): Promise<OAuthResponse> {
+    return Promise.resolve({} as OAuthResponse);
+  }
+
   public signInWithOtp(_email: string): Promise<AuthOtpResponse> {
     return Promise.resolve({} as AuthOtpResponse);
   }
@@ -52,12 +58,6 @@ export class UserServiceMock {
     _password: string,
   ): Promise<AuthTokenResponsePassword> {
     return Promise.resolve({} as AuthTokenResponsePassword);
-  }
-
-  public signInWithOauth(
-    _oauthProvider: AvailableOauthProvider,
-  ): Promise<OAuthResponse> {
-    return Promise.resolve({} as OAuthResponse);
   }
 
   public signOut(): Promise<{ error: AuthError | null }> {

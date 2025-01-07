@@ -19,15 +19,10 @@ export class ProfileServiceMock {
     return '';
   }
 
-  public deleteAvatar(_publicUrl: string): Promise<
-    | {
-        data: FileObject[];
-        error: null;
-      }
-    | {
-        data: null;
-        error: StorageError;
-      }
+  public deleteAvatar(
+    _publicUrl: string,
+  ): Promise<
+    { data: FileObject[]; error: null } | { data: null; error: StorageError }
   > {
     return Promise.resolve({ data: [], error: null });
   }

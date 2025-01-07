@@ -72,6 +72,18 @@ export class UserService {
     });
   }
 
+  public signInWithOauth(
+    oauthProvider: AvailableOauthProvider,
+  ): Promise<OAuthResponse> {
+    return this._supabaseClient.auth.signInWithOAuth({
+      options: {
+        redirectTo: this._getRedirectUrl(),
+        skipBrowserRedirect: true,
+      },
+      provider: oauthProvider,
+    });
+  }
+
   public signInWithOtp(email: string): Promise<AuthOtpResponse> {
     return this._supabaseClient.auth.signInWithOtp({
       email,
@@ -87,18 +99,6 @@ export class UserService {
     password: string,
   ): Promise<AuthTokenResponsePassword> {
     return this._supabaseClient.auth.signInWithPassword({ email, password });
-  }
-
-  public signInWithOauth(
-    oauthProvider: AvailableOauthProvider,
-  ): Promise<OAuthResponse> {
-    return this._supabaseClient.auth.signInWithOAuth({
-      options: {
-        redirectTo: this._getRedirectUrl(),
-        skipBrowserRedirect: true,
-      },
-      provider: oauthProvider,
-    });
   }
 
   public signOut(): Promise<{ error: AuthError | null }> {

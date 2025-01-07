@@ -7,8 +7,8 @@ import {
   untracked,
   WritableSignal,
 } from '@angular/core';
-import { Buckets } from '@jet/enums/buckets.enum';
-import { Tables } from '@jet/enums/tables.enum';
+import { Bucket } from '@jet/enums/bucket.enum';
+import { Table } from '@jet/enums/table.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { User } from '@jet/interfaces/user.interface';
 import { FileObject, StorageError } from '@supabase/storage-js/';
@@ -55,32 +55,27 @@ export class ProfileService {
 
   public getAvatarPublicUrl(path: string): string {
     const { data } = this._supabaseClient.storage
-      .from(Buckets.Avatars)
+      .from(Bucket.Avatars)
       .getPublicUrl(path);
     return data.publicUrl;
   }
 
-  public deleteAvatar(publicUrl: string): Promise<
-    | {
-        data: FileObject[];
-        error: null;
-      }
-    | {
-        data: null;
-        error: StorageError;
-      }
+  public deleteAvatar(
+    publicUrl: string,
+  ): Promise<
+    { data: FileObject[]; error: null } | { data: null; error: StorageError }
   > {
     const fileExtension = publicUrl.split('.').pop();
     const path = `${this._userService.user()?.id}/avatar.${fileExtension}`;
-    return this._supabaseClient.storage.from(Buckets.Avatars).remove([path]);
+    return this._supabaseClient.storage.from(Bucket.Avatars).remove([path]);
   }
 
-  public async selectProfile() {
+  public async selectProfile(): Promise<void> {
     const userId = this._userService.user()?.id;
 
     try {
       const { data, error } = await this._supabaseClient
-        .from(Tables.Profiles)
+        .from(Table.Profiles)
         .select('*')
         .eq('id', userId)
         .single<Profile>();
@@ -108,7 +103,7 @@ export class ProfileService {
     }
 
     return this._supabaseClient
-      .from(Tables.Profiles)
+      .from(Table.Profiles)
       .update(partialProfile)
       .eq('id', userId);
   }
@@ -122,7 +117,7 @@ export class ProfileService {
     const fileExtension = file.name.split('.').pop();
     const path = `${this._userService.user()?.id}/avatar.${fileExtension}`;
     return this._supabaseClient.storage
-      .from(Buckets.Avatars)
+      .from(Bucket.Avatars)
       .upload(path, file, { upsert: true });
   }
 }

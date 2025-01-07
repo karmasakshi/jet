@@ -1,3 +1,3 @@
-export enum Buckets {
+export enum Bucket {
   Avatars = 'avatars',
 }

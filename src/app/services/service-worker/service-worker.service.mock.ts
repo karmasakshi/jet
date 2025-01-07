@@ -16,8 +16,8 @@ export class ServiceWorkerServiceMock {
     return this._lastUpdateCheckTimestamp.asReadonly();
   }
 
-  public checkForUpdate(): void {
-    // Do nothing
+  public async checkForUpdate(): Promise<void> {
+    return Promise.resolve();
   }
 
   private _subscribeToUpdates(): Subscription {

@@ -4,8 +4,8 @@ export class SupabaseServiceMock {
   public get supabaseClient(): SupabaseClient {
     return {
       auth: {
-        onAuthStateChange: () => undefined,
+        onAuthStateChange: (() => undefined) as unknown,
       },
-    } as unknown as SupabaseClient;
+    } as SupabaseClient;
   }
 }

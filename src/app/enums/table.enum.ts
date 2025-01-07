@@ -1,3 +1,3 @@
-export enum Tables {
+export enum Table {
   Profiles = 'profiles',
 }
