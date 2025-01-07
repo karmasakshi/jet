@@ -10,56 +10,50 @@ export class LoggerService {
     this._isLoggingEnabled =
       import.meta.env.NG_APP_IS_LOGGING_ENABLED === 'true';
 
-    if (this._isLoggingEnabled) {
-      this.logServiceInitialization('LoggerService');
-    }
+    this.logServiceInitialization('LoggerService');
   }
 
   public logClassInitialization(className: string): void {
-    if (this._isLoggingEnabled) {
-      console.info(`Class ${className} initialized.`);
-    }
+    this._logIfEnabled(() => console.info(`Class ${className} initialized.`));
   }
 
   public logComponentInitialization(componentName: string): void {
-    if (this._isLoggingEnabled) {
-      console.debug(`Component ${componentName} initialized.`);
-    }
+    this._logIfEnabled(() =>
+      console.debug(`Component ${componentName} initialized.`),
+    );
   }
 
   public logDirectiveInitialization(directiveName: string): void {
-    if (this._isLoggingEnabled) {
-      console.debug(`Directive ${directiveName} initialized.`);
-    }
+    this._logIfEnabled(() =>
+      console.debug(`Directive ${directiveName} initialized.`),
+    );
   }
 
   public logError(error: Error): void {
-    if (this._isLoggingEnabled) {
-      console.error(error);
-    }
+    this._logIfEnabled(() => console.error(error));
   }
 
   public logException(exception: unknown): void {
-    if (this._isLoggingEnabled) {
-      console.error(exception);
-    }
+    this._logIfEnabled(() => console.error(exception));
   }
 
   public logMessages(...messages: string[]): void {
-    if (this._isLoggingEnabled) {
-      console.log(...messages);
-    }
+    this._logIfEnabled(() => console.log(...messages));
   }
 
   public logServiceInitialization(serviceName: string): void {
-    if (this._isLoggingEnabled) {
-      console.info(`Service ${serviceName} initialized.`);
-    }
+    this._logIfEnabled(() =>
+      console.info(`Service ${serviceName} initialized.`),
+    );
   }
 
   public logWarning(warning: string): void {
+    this._logIfEnabled(() => console.warn(warning));
+  }
+
+  private _logIfEnabled(logFunction: () => void): void {
     if (this._isLoggingEnabled) {
-      console.warn(warning);
+      logFunction();
     }
   }
 }

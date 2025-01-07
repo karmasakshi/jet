@@ -20,12 +20,14 @@ export class AnalyticsService {
     eventName: string,
     eventData?: Record<string, string | number | boolean | null | undefined>,
   ): void {
-    if (this._isAnalyticsEnabled) {
-      if (eventData !== undefined) {
-        this._loggerService.logMessages(eventName, JSON.stringify(eventData));
-      } else {
-        this._loggerService.logMessages(eventName);
-      }
+    if (!this._isAnalyticsEnabled) {
+      return;
+    }
+
+    if (eventData === undefined) {
+      this._loggerService.logMessages(eventName);
+    } else {
+      this._loggerService.logMessages(eventName, JSON.stringify(eventData));
     }
   }
 }

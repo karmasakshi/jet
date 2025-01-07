@@ -37,10 +37,10 @@ export class ProgressBarService {
   }
 
   public hideProgressBar(): void {
-    this._progressBarConfiguration.set({
-      ...this._defaultProgressBarConfiguration,
+    this._progressBarConfiguration.update((progressBarConfiguration) => ({
+      ...progressBarConfiguration,
       isVisible: false,
-    });
+    }));
   }
 
   public showProgressBar(

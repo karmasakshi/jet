@@ -19,9 +19,17 @@ export class AlertService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _settingsService = inject(SettingsService);
 
+  private readonly _defaultCta: string;
+  private readonly _defaultErrorMessage: string;
   private readonly _languageOption: Signal<LanguageOption>;
 
   public constructor() {
+    this._defaultCta = this._translocoService.translate('alerts.ok');
+
+    this._defaultErrorMessage = this._translocoService.translate(
+      'alerts.something-went-wrong',
+    );
+
     this._languageOption = this._settingsService.languageOption;
 
     this._loggerService.logServiceInitialization('AlertService');
@@ -29,7 +37,7 @@ export class AlertService {
 
   public showAlert(
     message: string,
-    cta: string = this._translocoService.translate('alerts.ok'),
+    cta: string = this._defaultCta,
     action?: () => void,
   ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
@@ -47,11 +55,7 @@ export class AlertService {
     }
   }
 
-  public showErrorAlert(
-    message: string = this._translocoService.translate(
-      'alerts.something-went-wrong',
-    ),
-  ): void {
+  public showErrorAlert(message: string = this._defaultErrorMessage): void {
     this.showAlert(message);
   }
 }

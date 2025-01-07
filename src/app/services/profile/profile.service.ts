@@ -71,9 +71,13 @@ export class ProfileService {
   }
 
   public async selectProfile(): Promise<void> {
-    const userId = this._userService.user()?.id;
-
     try {
+      const userId = this._userService.user()?.id;
+
+      if (userId === undefined) {
+        throw new Error();
+      }
+
       const { data, error } = await this._supabaseClient
         .from(Table.Profiles)
         .select('*')

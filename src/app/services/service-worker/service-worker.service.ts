@@ -95,43 +95,43 @@ export class ServiceWorkerService {
   private _subscribeToUpdates(): Subscription {
     if (!this._swUpdate.isEnabled) {
       return Subscription.EMPTY;
-    } else {
-      return this._swUpdate.versionUpdates.subscribe(
-        (versionEvent: VersionEvent): void => {
-          switch (versionEvent.type) {
-            case 'NO_NEW_VERSION_DETECTED':
-              this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-              break;
-
-            case 'VERSION_DETECTED':
-              this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-              this._alertService.showAlert(
-                this._translocoService.translate('alerts.downloading-updates'),
-              );
-              break;
-
-            case 'VERSION_INSTALLATION_FAILED':
-              this._loggerService.logError(new Error(versionEvent.error));
-              this._alertService.showErrorAlert(versionEvent.error);
-              break;
-
-            case 'VERSION_READY':
-              this._isReloadPending = true;
-              this._alertService.showAlert(
-                this._translocoService.translate('alerts.reload-to-update'),
-                this._translocoService.translate('alerts.reload'),
-                (): void => {
-                  window.location.reload();
-                },
-              );
-              break;
-
-            default:
-              this._loggerService.logError(new Error());
-              break;
-          }
-        },
-      );
     }
+
+    return this._swUpdate.versionUpdates.subscribe(
+      (versionEvent: VersionEvent): void => {
+        switch (versionEvent.type) {
+          case 'NO_NEW_VERSION_DETECTED':
+            this._lastUpdateCheckTimestamp.set(new Date().toISOString());
+            break;
+
+          case 'VERSION_DETECTED':
+            this._lastUpdateCheckTimestamp.set(new Date().toISOString());
+            this._alertService.showAlert(
+              this._translocoService.translate('alerts.downloading-updates'),
+            );
+            break;
+
+          case 'VERSION_INSTALLATION_FAILED':
+            this._loggerService.logError(new Error(versionEvent.error));
+            this._alertService.showErrorAlert(versionEvent.error);
+            break;
+
+          case 'VERSION_READY':
+            this._isReloadPending = true;
+            this._alertService.showAlert(
+              this._translocoService.translate('alerts.reload-to-update'),
+              this._translocoService.translate('alerts.reload'),
+              (): void => {
+                window.location.reload();
+              },
+            );
+            break;
+
+          default:
+            this._loggerService.logError(new Error());
+            break;
+        }
+      },
+    );
   }
 }
