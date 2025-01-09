@@ -7,6 +7,7 @@ import {
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -37,6 +38,7 @@ export const appConfig: ApplicationConfig = {
         showDelay: 900,
       },
     },
+    provideAnimationsAsync(),
     provideRouter(
       routes,
       withComponentInputBinding(),

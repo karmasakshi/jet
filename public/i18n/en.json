@@ -1,5 +1,6 @@
 {
   "alerts": {
+    "avatar-updated": "Avatar updated.",
     "checking-for-updates": "Checking for updates...",
     "downloading-updates": "Downloading updates...",
     "no-update-found": "You're on the latest version.",

@@ -1,5 +1,6 @@
 {
   "alerts": {
+    "avatar-updated": "تم تحديث الصورة الرمزية.",
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "no-update-found": "أنت على أحدث إصدار.",

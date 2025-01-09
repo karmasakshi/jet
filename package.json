@@ -28,11 +28,6 @@
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
   },
-  "overrides": {
-    "@supabase/supabase-js": {
-      "@supabase/auth-js": "2.61.0"
-    }
-  },
   "dependencies": {
     "@angular/animations": "^19.0.6",
     "@angular/cdk": "^19.0.5",

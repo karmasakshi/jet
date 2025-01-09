@@ -163,6 +163,9 @@ export class ProfilePageComponent {
         throw error;
       }
 
+      this._alertService.showAlert(
+        this._translocoService.translate('alerts.avatar-updated'),
+      );
       await this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {
