@@ -394,7 +394,7 @@ img {
 
 .cdk-overlay-pane {
   margin: env(safe-area-inset-top) env(safe-area-inset-right)
-    calc(48px + env(safe-area-inset-bottom)) env(safe-area-inset-left) !important;
+    env(safe-area-inset-bottom) env(safe-area-inset-left) !important;
 }
 
 .material-symbols-rounded {
