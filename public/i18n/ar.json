@@ -112,7 +112,7 @@
   },
   "jet-sign-in-page": {
     "email": "البريد الإلكتروني",
-    "email-me-a-link-to-sign-in": "Missing value for 'jet-sign-in-page.email-me-a-link-to-sign-in'",
+    "email-me-a-link-to-sign-in": "أرسل لي رابطًا لتسجيل الدخول عبر البريد الإلكتروني",
     "or": "- أو -",
     "password": "كلمة المرور",
     "reset-password": "إعادة تعيين كلمة المرور",
