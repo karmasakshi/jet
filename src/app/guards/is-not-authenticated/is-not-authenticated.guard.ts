@@ -11,6 +11,8 @@ export const isNotAuthenticatedGuard: CanActivateFn =
     const loggerService = inject(LoggerService);
     const userService = inject(UserService);
 
+    let guardResult: GuardResult = router.createUrlTree(['/']);
+
     try {
       const { data, error } = await userService.getSession();
 
@@ -19,10 +21,8 @@ export const isNotAuthenticatedGuard: CanActivateFn =
       }
 
       if (data.session === null) {
-        throw new Error();
+        guardResult = true;
       }
-
-      return true;
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         loggerService.logError(exception);
@@ -30,7 +30,7 @@ export const isNotAuthenticatedGuard: CanActivateFn =
       } else {
         loggerService.logException(exception);
       }
-
-      return router.createUrlTree(['/']);
     }
+
+    return guardResult;
   };

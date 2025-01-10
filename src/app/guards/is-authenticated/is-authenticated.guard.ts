@@ -14,6 +14,10 @@ export const isAuthenticatedGuard: CanActivateFn = async (
   const loggerService = inject(LoggerService);
   const userService = inject(UserService);
 
+  let guardResult: GuardResult = router.createUrlTree(['/sign-in'], {
+    queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
+  });
+
   try {
     const { data, error } = await userService.getSession();
 
@@ -21,11 +25,9 @@ export const isAuthenticatedGuard: CanActivateFn = async (
       throw error;
     }
 
-    if (data.session === null) {
-      throw new Error();
+    if (data.session !== null) {
+      guardResult = true;
     }
-
-    return true;
   } catch (exception: unknown) {
     if (exception instanceof Error) {
       loggerService.logError(exception);
@@ -33,9 +35,7 @@ export const isAuthenticatedGuard: CanActivateFn = async (
     } else {
       loggerService.logException(exception);
     }
-
-    return router.createUrlTree(['/sign-in'], {
-      queryParams: { [QueryParam.ReturnUrl]: routerStateSnapshot.url },
-    });
   }
+
+  return guardResult;
 };
