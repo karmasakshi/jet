@@ -85,7 +85,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
     this._bindQueryParamsManager.destroy();
   }
 
-  public async resetPassword(email: string) {
+  public async resetPasswordForEmail(email: string) {
     if (this.isResetPasswordPending || this.resetPasswordFormGroup.invalid) {
       return;
     }
@@ -95,7 +95,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
     this._progressBarService.showProgressBar();
 
     try {
-      const { error } = await this._userService.resetPassword(email);
+      const { error } = await this._userService.resetPasswordForEmail(email);
 
       if (error) {
         throw error;

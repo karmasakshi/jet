@@ -24,13 +24,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { Profile } from '@jet/interfaces/profile.interface';
-import { User } from '@jet/interfaces/user.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { User } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -138,29 +138,30 @@ export class ProfilePageComponent {
     this._progressBarService.showProgressBar();
 
     try {
-      let data, error;
+      let response;
 
-      ({ error } = await this._profileService.deleteAvatar(
+      response = await this._profileService.deleteAvatar(
         this.profile()?.avatar_url ?? '',
-      ));
+      );
 
-      if (error) {
-        throw error;
+      if (response.error) {
+        throw response.error;
       }
 
-      // eslint-disable-next-line prefer-const
-      ({ data, error } = await this._profileService.uploadAvatar(file));
+      response = await this._profileService.uploadAvatar(file);
 
-      if (error) {
-        throw error;
+      if (response.error) {
+        throw response.error;
       }
 
-      ({ error } = await this._profileService.updateProfile({
-        avatar_url: this._profileService.getAvatarPublicUrl(data?.path ?? ''),
-      }));
+      response = await this._profileService.updateProfile({
+        avatar_url: this._profileService.getAvatarPublicUrl(
+          response.data?.path ?? '',
+        ),
+      });
 
-      if (error) {
-        throw error;
+      if (response.error) {
+        throw response.error;
       }
 
       this._alertService.showAlert(

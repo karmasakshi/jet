@@ -38,7 +38,6 @@ import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
-import { User } from '@jet/interfaces/user.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -51,6 +50,7 @@ import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
 import { AvailableFont } from '@jet/types/available-font.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { User } from '@supabase/supabase-js';
 import packageJson from 'package.json';
 import { Subscription } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';

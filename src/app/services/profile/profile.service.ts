@@ -10,9 +10,8 @@ import {
 import { Bucket } from '@jet/enums/bucket.enum';
 import { Table } from '@jet/enums/table.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
-import { User } from '@jet/interfaces/user.interface';
 import { FileObject, StorageError } from '@supabase/storage-js/';
-import { SupabaseClient } from '@supabase/supabase-js';
+import { SupabaseClient, User } from '@supabase/supabase-js';
 import { AlertService } from '../alert/alert.service';
 import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';

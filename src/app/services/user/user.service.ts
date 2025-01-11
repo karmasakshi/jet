@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
-import { User } from '@jet/interfaces/user.interface';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthChangeEvent,
@@ -18,6 +17,7 @@ import {
   AuthTokenResponsePassword,
   OAuthResponse,
   SupabaseClient,
+  User,
   UserAttributes,
   UserResponse,
 } from '@supabase/supabase-js';
@@ -61,10 +61,9 @@ export class UserService {
     return this._supabaseClient.auth.getSession();
   }
 
-  public resetPassword(
+  public resetPasswordForEmail(
     email: string,
-    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  ): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> {
+  ): Promise<{ data: object; error: null } | { data: null; error: AuthError }> {
     const redirectTo = new URL('/sign-in', window.location.origin);
     redirectTo.searchParams.set(QueryParam.ReturnUrl, 'update-password');
     return this._supabaseClient.auth.resetPasswordForEmail(email, {
@@ -77,7 +76,7 @@ export class UserService {
   ): Promise<OAuthResponse> {
     return this._supabaseClient.auth.signInWithOAuth({
       options: {
-        redirectTo: this._getRedirectUrl(),
+        redirectTo: this._getSupabaseRedirectUrl(),
         skipBrowserRedirect: true,
       },
       provider: oauthProvider,
@@ -88,7 +87,7 @@ export class UserService {
     return this._supabaseClient.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: this._getRedirectUrl(),
+        emailRedirectTo: this._getSupabaseRedirectUrl(),
         shouldCreateUser: false,
       },
     });
@@ -108,7 +107,7 @@ export class UserService {
   public signUp(email: string, password: string): Promise<AuthResponse> {
     return this._supabaseClient.auth.signUp({
       email,
-      options: { emailRedirectTo: this._getRedirectUrl() },
+      options: { emailRedirectTo: this._getSupabaseRedirectUrl() },
       password,
     });
   }
@@ -117,7 +116,7 @@ export class UserService {
     return this._supabaseClient.auth.updateUser(userAttributes);
   }
 
-  private _getRedirectUrl(): string {
+  private _getSupabaseRedirectUrl(): string {
     const redirectTo = new URL('/sign-in', window.location.origin);
     const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
       QueryParam.ReturnUrl,

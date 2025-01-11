@@ -28,11 +28,6 @@
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
   },
-  "overrides": {
-    "@supabase/supabase-js": {
-      "@supabase/auth-js": "2.61.0"
-    }
-  },
   "dependencies": {
     "@angular/animations": "^19.0.6",
     "@angular/cdk": "^19.0.5",
@@ -63,7 +58,7 @@
     "@ngx-env/builder": "^19.0.4",
     "@types/jasmine": "^5.1.5",
     "angular-eslint": "^19.0.2",
-    "eslint": "^9.17.0",
+    "eslint": "^9.18.0",
     "husky": "^9.1.7",
     "jasmine-core": "^5.5.0",
     "karma": "^6.4.4",

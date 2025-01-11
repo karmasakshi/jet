@@ -1,4 +1,4 @@
-import { User } from './user.interface';
+import { User } from '@supabase/supabase-js';
 
 export interface Profile {
   id: User['id'];

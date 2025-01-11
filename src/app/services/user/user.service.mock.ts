@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Signal, WritableSignal, signal } from '@angular/core';
-import { User } from '@jet/interfaces/user.interface';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthError,
@@ -10,6 +9,7 @@ import {
   AuthSession,
   AuthTokenResponsePassword,
   OAuthResponse,
+  User,
   UserAttributes,
   UserResponse,
 } from '@supabase/supabase-js';
@@ -36,10 +36,9 @@ export class UserServiceMock {
     });
   }
 
-  public resetPassword(
+  public resetPasswordForEmail(
     _email: string,
-    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  ): Promise<{ data: {}; error: null } | { data: null; error: AuthError }> {
+  ): Promise<{ data: object; error: null } | { data: null; error: AuthError }> {
     return Promise.resolve({ data: {}, error: null });
   }
 
