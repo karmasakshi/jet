@@ -1,9 +1,10 @@
 import {
   Component,
   InputSignal,
-  OnChanges,
+  effect,
   inject,
   input,
+  untracked,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -15,7 +16,7 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   styleUrl: './page.component.scss',
   templateUrl: './page.component.html',
 })
-export class PageComponent implements OnChanges {
+export class PageComponent {
   private readonly _meta = inject(Meta);
   private readonly _title = inject(Title);
   private readonly _loggerService = inject(LoggerService);
@@ -32,37 +33,46 @@ export class PageComponent implements OnChanges {
   public constructor() {
     this._defaultSeoImageUrl = 'https://jet-tau.vercel.app/og-image.jpg';
 
+    effect(() => {
+      const seoDescription = this.seoDescription();
+      untracked(() => {
+        this._meta.updateTag({ content: seoDescription, name: 'description' });
+        this._meta.updateTag({
+          content: seoDescription,
+          name: 'og:description',
+        });
+      });
+    });
+
+    effect(() => {
+      const seoImageUrl = this.seoImageUrl() ?? this._defaultSeoImageUrl;
+      untracked(() => {
+        this._meta.updateTag({ content: seoImageUrl, name: 'og:image' });
+      });
+    });
+
+    effect(() => {
+      const seoKeywords = this.seoKeywords();
+      untracked(() => {
+        this._meta.updateTag({ content: seoKeywords, name: 'keywords' });
+      });
+    });
+
+    effect(() => {
+      const seoTitle = this.seoTitle();
+      untracked(() => {
+        this._title.setTitle(seoTitle);
+        this._meta.updateTag({ content: seoTitle, name: 'og:title' });
+      });
+    });
+
+    effect(() => {
+      const toolbarTitle = this.toolbarTitle();
+      untracked(() => {
+        this._toolbarTitleService.setToolbarTitle(toolbarTitle);
+      });
+    });
+
     this._loggerService.logComponentInitialization('PageComponent');
-  }
-
-  public ngOnChanges(): void {
-    // Toolbar Title
-    this._toolbarTitleService.setToolbarTitle(this.toolbarTitle());
-
-    // Title
-    this._title.setTitle(this.seoTitle());
-    this._meta.updateTag({ content: this.seoTitle(), name: 'og:title' });
-
-    // Keywords
-    this._meta.updateTag({
-      content: this.seoKeywords(),
-      name: 'keywords',
-    });
-
-    // Description
-    this._meta.updateTag({
-      content: this.seoDescription(),
-      name: 'description',
-    });
-    this._meta.updateTag({
-      content: this.seoDescription(),
-      name: 'og:description',
-    });
-
-    // SEO Image URL
-    this._meta.updateTag({
-      content: this.seoImageUrl() ?? this._defaultSeoImageUrl,
-      name: 'og:image',
-    });
   }
 }
