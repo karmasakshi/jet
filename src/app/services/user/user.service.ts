@@ -64,10 +64,8 @@ export class UserService {
   public resetPasswordForEmail(
     email: string,
   ): Promise<{ data: object; error: null } | { data: null; error: AuthError }> {
-    const redirectTo = new URL('/sign-in', window.location.origin);
-    redirectTo.searchParams.set(QueryParam.ReturnUrl, 'update-password');
     return this._supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: redirectTo.toString(),
+      redirectTo: this._getRedirectUrlWithReturnUrl('/update-password'),
     });
   }
 
@@ -76,7 +74,7 @@ export class UserService {
   ): Promise<OAuthResponse> {
     return this._supabaseClient.auth.signInWithOAuth({
       options: {
-        redirectTo: this._getSupabaseRedirectUrl(),
+        redirectTo: this._getRedirectUrlWithReturnUrl(),
         skipBrowserRedirect: true,
       },
       provider: oauthProvider,
@@ -87,7 +85,7 @@ export class UserService {
     return this._supabaseClient.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: this._getSupabaseRedirectUrl(),
+        emailRedirectTo: this._getRedirectUrlWithReturnUrl(),
         shouldCreateUser: false,
       },
     });
@@ -107,7 +105,7 @@ export class UserService {
   public signUp(email: string, password: string): Promise<AuthResponse> {
     return this._supabaseClient.auth.signUp({
       email,
-      options: { emailRedirectTo: this._getSupabaseRedirectUrl() },
+      options: { emailRedirectTo: this._getRedirectUrlWithReturnUrl() },
       password,
     });
   }
@@ -116,16 +114,17 @@ export class UserService {
     return this._supabaseClient.auth.updateUser(userAttributes);
   }
 
-  private _getSupabaseRedirectUrl(): string {
-    const redirectTo = new URL('/sign-in', window.location.origin);
-    const returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
+  private _getRedirectUrlWithReturnUrl(
+    returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
       QueryParam.ReturnUrl,
-    );
+    ),
+  ): string {
+    const redirectUrl = new URL('/sign-in', window.location.origin);
 
     if (returnUrl) {
-      redirectTo.searchParams.set(QueryParam.ReturnUrl, returnUrl);
+      redirectUrl.searchParams.set(QueryParam.ReturnUrl, returnUrl);
     }
 
-    return redirectTo.toString();
+    return redirectUrl.toString();
   }
 }

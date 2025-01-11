@@ -30,21 +30,12 @@ export class SignOutPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._signOut()
-      .then((returnUrl) => {
-        if (returnUrl) {
-          void this._router.navigateByUrl(returnUrl);
-        }
-      })
-      .catch((error: Error) => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-      });
+    void this._signOut();
   }
 
-  private async _signOut(): Promise<string | null> {
+  private async _signOut(): Promise<void> {
     if (this._isSignOutPending) {
-      return null;
+      return;
     }
 
     this._isSignOutPending = true;
@@ -60,8 +51,7 @@ export class SignOutPageComponent implements OnInit {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.signed-out-successfully'),
       );
-
-      return '/';
+      void this._router.navigateByUrl('/');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -69,8 +59,6 @@ export class SignOutPageComponent implements OnInit {
       } else {
         this._loggerService.logException(exception);
       }
-
-      return null;
     } finally {
       this._isSignOutPending = false;
       this._progressBarService.hideProgressBar();
