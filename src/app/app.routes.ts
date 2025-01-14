@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
-import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
-import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
+import { isAuthenticated } from '@jet/guards/is-authenticated/is-authenticated.guard';
+import { isNotAuthenticated } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
 
 const generalRoutes: Routes = [
   {
@@ -12,14 +12,14 @@ const generalRoutes: Routes = [
     path: 'email-verification-pending',
   },
   {
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [isAuthenticated],
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component'))
         .ProfilePageComponent,
     path: 'profile',
   },
   {
-    canActivate: [isNotAuthenticatedGuard],
+    canActivate: [isNotAuthenticated],
     loadComponent: async () =>
       (
         await import(
@@ -61,14 +61,14 @@ const generalRoutes: Routes = [
     path: 'sign-out',
   },
   {
-    canActivate: [isNotAuthenticatedGuard],
+    canActivate: [isNotAuthenticated],
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component'))
         .SignUpPageComponent,
     path: 'sign-up',
   },
   {
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [isAuthenticated],
     loadComponent: async () =>
       (
         await import(
