@@ -229,40 +229,20 @@ export class AppComponent implements OnInit, OnDestroy {
     this._unsetSystemColorSchemeListener();
   }
 
-  private _setSystemColorSchemeListener(): void {
-    if (this._systemColorSchemeListener) {
+  private _setColorSchemeClass(nextColorScheme: AvailableColorScheme): void {
+    if (nextColorScheme === this._activeColorScheme) {
       return;
     }
 
-    this._systemColorSchemeListener = (
-      mediaQueryListEvent: MediaQueryListEvent,
-    ) => {
-      // This updates `<meta name="theme-color" />` based on system setting.
-      // This needs to run only when `this._activeColorScheme === 'automatic'`, not otherwise.
-      // The listener is set and unset accordingly, so `this._activeColorScheme === 'automatic'` check isn't needed.
-      if (mediaQueryListEvent.matches) {
-        this._setThemeColor('dark');
-      } else {
-        this._setThemeColor('light');
-      }
-    };
+    this._activeColorScheme = nextColorScheme;
+    const prefix = 'jet-color-scheme-';
+    this._document.body.className = this._document.body.classList.value
+      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+      .trim();
 
-    this._darkColorSchemeMediaQuery.addEventListener(
-      'change',
-      this._systemColorSchemeListener,
-    );
-  }
-
-  private _unsetSystemColorSchemeListener(): void {
-    if (!this._systemColorSchemeListener) {
-      return;
+    if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+      this._renderer2.addClass(this._document.body, prefix + nextColorScheme);
     }
-
-    this._darkColorSchemeMediaQuery.removeEventListener(
-      'change',
-      this._systemColorSchemeListener,
-    );
-    this._systemColorSchemeListener = undefined;
   }
 
   private _setFontClass(nextFont: AvailableFont): void {
@@ -301,20 +281,28 @@ export class AppComponent implements OnInit, OnDestroy {
     this._translocoService.setActiveLang(nextLanguageOption.value);
   }
 
-  private _setColorSchemeClass(nextColorScheme: AvailableColorScheme): void {
-    if (nextColorScheme === this._activeColorScheme) {
+  private _setSystemColorSchemeListener(): void {
+    if (this._systemColorSchemeListener) {
       return;
     }
 
-    this._activeColorScheme = nextColorScheme;
-    const prefix = 'jet-color-scheme-';
-    this._document.body.className = this._document.body.classList.value
-      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-      .trim();
+    this._systemColorSchemeListener = (
+      mediaQueryListEvent: MediaQueryListEvent,
+    ) => {
+      // This updates `<meta name="theme-color" />` based on system setting.
+      // This needs to run only when `this._activeColorScheme === 'automatic'`, not otherwise.
+      // The listener is set and unset accordingly, so `this._activeColorScheme === 'automatic'` check isn't needed.
+      if (mediaQueryListEvent.matches) {
+        this._setThemeColor('dark');
+      } else {
+        this._setThemeColor('light');
+      }
+    };
 
-    if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      this._renderer2.addClass(this._document.body, prefix + nextColorScheme);
-    }
+    this._darkColorSchemeMediaQuery.addEventListener(
+      'change',
+      this._systemColorSchemeListener,
+    );
   }
 
   private _setThemeColor(nextColorScheme: AvailableColorScheme): void {
@@ -346,5 +334,17 @@ export class AppComponent implements OnInit, OnDestroy {
         name: 'viewport',
       });
     }
+  }
+
+  private _unsetSystemColorSchemeListener(): void {
+    if (!this._systemColorSchemeListener) {
+      return;
+    }
+
+    this._darkColorSchemeMediaQuery.removeEventListener(
+      'change',
+      this._systemColorSchemeListener,
+    );
+    this._systemColorSchemeListener = undefined;
   }
 }
