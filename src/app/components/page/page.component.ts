@@ -31,7 +31,7 @@ export class PageComponent {
   public readonly toolbarTitle: InputSignal<string> = input.required();
 
   public constructor() {
-    this._defaultSeoImageUrl = 'https://jet-tau.vercel.app/og-image.jpg';
+    this._defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;
 
     effect(() => {
       const seoDescription = this.seoDescription();
