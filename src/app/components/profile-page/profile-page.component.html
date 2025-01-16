@@ -116,13 +116,13 @@
                 ><b>{{ user()?.email }}</b></small
               >
               <small>{{
-                t('last-updated-on', {
+                t('profile-last-updated-on', {
                   value: _profile.updated_at | date: 'medium',
                 })
               }}</small>
               <small>
                 {{
-                  t('created-on', {
+                  t('profile-created-on', {
                     value: _profile.created_at | date: 'medium',
                   })
                 }}

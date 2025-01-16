@@ -19,11 +19,11 @@
           @case ('email-verification-pending') {
             <mat-card-header>
               <mat-card-title>{{
-                t('email-verification-pending')
+                t('verification-email-sent')
               }}</mat-card-title>
               <mat-card-subtitle
                 ><p>
-                  {{ t('weve-sent-a-verification-email') }}
+                  {{ t('click-to-verify') }}
                 </p></mat-card-subtitle
               >
             </mat-card-header>
@@ -32,15 +32,13 @@
             <mat-card-header>
               <mat-card-title>{{ t('sign-in-link-sent') }}</mat-card-title>
               <mat-card-subtitle
-                ><p>{{ t('weve-sent-an-email') }}</p></mat-card-subtitle
+                ><p>{{ t('click-to-sign-in') }}</p></mat-card-subtitle
               >
             </mat-card-header>
           }
           @case ('reset-password-email-sent') {
             <mat-card-header>
-              <mat-card-title>{{
-                t('reset-password-email-sent')
-              }}</mat-card-title>
+              <mat-card-title>{{ t('well-email-you') }}</mat-card-title>
               <mat-card-subtitle
                 ><p>
                   {{ t('sign-in-and-update-password') }}

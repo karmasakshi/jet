@@ -3,17 +3,19 @@
     "avatar-updated": "Avatar updated.",
     "checking-for-updates": "Checking for updates...",
     "downloading-updates": "Downloading updates...",
-    "no-update-found": "You're on the latest version.",
-    "ok": "OK",
     "password-updated": "Password updated.",
-    "please-choose-a-smaller-image": "Please choose an image < 1MB in size.",
+    "please-choose-a-smaller-image": "Please choose a smaller (< 1MB) image.",
     "please-choose-a-valid-image": "Please choose a valid image.",
     "profile-updated-successfully": "Profile updated successfully.",
-    "reload": "RELOAD",
     "reload-to-update": "Reload to update.",
     "signed-out-successfully": "Signed out successfully.",
     "something-went-wrong": "Something went wrong.",
-    "welcome": "Welcome!"
+    "welcome": "Welcome!",
+    "youre-on-the-latest-version": "You're on the latest version."
+  },
+  "cta": {
+    "ok": "OK",
+    "reload": "RELOAD"
   },
   "jet-app": {
     "home": "Home",
@@ -38,19 +40,19 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "email-verification-pending": "Verification email sent.",
+    "click-to-sign-in": "Please click the link in the email to sign in.",
+    "click-to-verify": "Please click the link in the email to verify.",
     "message": "Message",
-    "reset-password-email-sent": "We'll email you.",
     "seo": {
-      "description": "Message.",
+      "description": "Jet.",
       "keywords": "jet",
       "title": "Jet"
     },
     "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",
     "sign-in-link-sent": "Sign in link sent.",
     "toolbar-title": "Jet",
-    "weve-sent-a-verification-email": "Please click the link in the email to verify.",
-    "weve-sent-an-email": "Please click the link in the email to sign in."
+    "verification-email-sent": "Verification email sent.",
+    "well-email-you": "We'll email you."
   },
   "jet-not-found-page": {
     "page-not-found": "Page not found.",
@@ -64,9 +66,9 @@
   "jet-profile-page": {
     "avatar": "Avatar",
     "characters": "{{ value }} / {{ maximum }} characters",
-    "created-on": "Profile created on {{ value }}",
-    "last-updated-on": "Profile last updated on {{ value }}",
     "profile": "Profile",
+    "profile-created-on": "Profile created on {{ value }}",
+    "profile-last-updated-on": "Profile last updated on {{ value }}",
     "seo": {
       "description": "Profile.",
       "keywords": "jet",
@@ -164,12 +166,12 @@
     "update-password": "Update password"
   },
   "paginator": {
-    "first-page": "First Page",
+    "first-page": "First page",
     "items-per-page": "Items per page:",
-    "last-page": "Last Page",
-    "next-page": "Next Page",
+    "last-page": "Last page",
+    "next-page": "Next page",
     "page": "Page {{ active }} / {{ total }}",
     "page-1-of-1": "Page 1 / 1",
-    "previous-page": "Previous Page"
+    "previous-page": "Previous page"
   }
 }

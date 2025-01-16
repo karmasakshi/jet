@@ -3,20 +3,22 @@
     "avatar-updated": "تم تحديث الصورة الرمزية.",
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
-    "no-update-found": "أنت على أحدث إصدار.",
-    "ok": "حسنًا",
     "password-updated": "تم تحديث كلمة المرور.",
-    "please-choose-a-smaller-image": "يرجى اختيار صورة أقل من 1 ميجابايت.",
+    "please-choose-a-smaller-image": "يرجى اختيار صورة أصغر (< 1MB).",
     "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
     "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح.",
-    "reload": "إعادة تحميل",
     "reload-to-update": "قم بإعادة التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
-    "welcome": "مرحبًا!"
+    "welcome": "مرحبًا!",
+    "youre-on-the-latest-version": "أنت على أحدث إصدار."
+  },
+  "cta": {
+    "ok": "موافق",
+    "reload": "إعادة التحميل"
   },
   "jet-app": {
-    "home": "الرئيسية",
+    "home": "الصفحة الرئيسية",
     "loading": "جارٍ التحميل...",
     "logo": "الشعار",
     "profile": "الملف الشخصي",
@@ -27,7 +29,7 @@
   },
   "jet-footer": {
     "buy": "شراء",
-    "docs": "مستندات"
+    "docs": "المستندات"
   },
   "jet-home-page": {
     "seo": {
@@ -38,35 +40,35 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "email-verification-pending": "تم إرسال بريد إلكتروني للتحقق.",
+    "click-to-sign-in": "يرجى النقر على الرابط في البريد الإلكتروني لتسجيل الدخول.",
+    "click-to-verify": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
     "message": "رسالة",
-    "reset-password-email-sent": "سنرسل بريدًا إلكترونيًا.",
     "seo": {
-      "description": "رسالة.",
+      "description": "Jet.",
       "keywords": "jet",
       "title": "Jet"
     },
-    "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا يمكنك استخدامه لتسجيل الدخول وتحديث كلمة المرور.",
+    "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
     "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول.",
     "toolbar-title": "Jet",
-    "weve-sent-a-verification-email": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
-    "weve-sent-an-email": "يرجى النقر على الرابط في البريد الإلكتروني لتسجيل الدخول."
+    "verification-email-sent": "تم إرسال بريد التحقق.",
+    "well-email-you": "سنرسل لك بريدًا إلكترونيًا."
   },
   "jet-not-found-page": {
     "page-not-found": "الصفحة غير موجودة.",
     "seo": {
-      "description": "غير موجود.",
+      "description": "غير موجودة.",
       "keywords": "jet",
-      "title": "غير موجود"
+      "title": "غير موجودة"
     },
-    "toolbar-title": "غير موجود"
+    "toolbar-title": "غير موجودة"
   },
   "jet-profile-page": {
     "avatar": "الصورة الرمزية",
-    "characters": "{{ value }} / {{ maximum }} حروف",
-    "created-on": "تم إنشاء الملف الشخصي في {{ value }}",
-    "last-updated-on": "تم تحديث الملف الشخصي آخر مرة في {{ value }}",
+    "characters": "{{ value }} / {{ maximum }} حرف",
     "profile": "الملف الشخصي",
+    "profile-created-on": "تم إنشاء الملف الشخصي في {{ value }}",
+    "profile-last-updated-on": "آخر تحديث للملف الشخصي في {{ value }}",
     "seo": {
       "description": "الملف الشخصي.",
       "keywords": "jet",
@@ -100,8 +102,8 @@
     "last-checked": "آخر تحقق:",
     "light": "فاتح",
     "reload": "إعادة التحميل",
-    "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
-    "reset": "إعادة ضبط",
+    "reload-description": "حفظ الإعدادات وإعادة التحميل",
+    "reset": "إعادة التعيين",
     "reset-description": "استخدام الإعدادات الافتراضية وإعادة التحميل",
     "seo": {
       "description": "الإعدادات.",
@@ -113,7 +115,7 @@
   },
   "jet-sign-in-page": {
     "email": "البريد الإلكتروني",
-    "email-me-a-link-to-sign-in": "أرسل لي رابطًا لتسجيل الدخول عبر البريد الإلكتروني",
+    "email-me-a-link-to-sign-in": "أرسل لي رابطًا لتسجيل الدخول",
     "or": "- أو -",
     "password": "كلمة المرور",
     "reset-password": "إعادة تعيين كلمة المرور",
@@ -165,7 +167,7 @@
   },
   "paginator": {
     "first-page": "الصفحة الأولى",
-    "items-per-page": "العناصر لكل صفحة:",
+    "items-per-page": "عدد العناصر لكل صفحة:",
     "last-page": "الصفحة الأخيرة",
     "next-page": "الصفحة التالية",
     "page": "الصفحة {{ active }} / {{ total }}",

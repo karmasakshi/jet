@@ -62,7 +62,7 @@ export class ServiceWorkerService {
     if (this._isReloadPending) {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.reload-to-update'),
-        this._translocoService.translate('alerts.reload'),
+        this._translocoService.translate('cta.reload'),
         (): void => {
           window.location.reload();
         },
@@ -78,7 +78,9 @@ export class ServiceWorkerService {
 
         if (!isUpdateFoundAndReady) {
           this._alertService.showAlert(
-            this._translocoService.translate('alerts.no-update-found'),
+            this._translocoService.translate(
+              'alerts.youre-on-the-latest-version',
+            ),
           );
         }
       } catch (exception: unknown) {
@@ -120,7 +122,7 @@ export class ServiceWorkerService {
             this._isReloadPending = true;
             this._alertService.showAlert(
               this._translocoService.translate('alerts.reload-to-update'),
-              this._translocoService.translate('alerts.reload'),
+              this._translocoService.translate('cta.reload'),
               (): void => {
                 window.location.reload();
               },
