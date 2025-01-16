@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build-development": "ng build --configuration development",
+    "clean-imports": "ng generate @angular/core:cleanup-unused-imports",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test-coverage": "ng test --code-coverage --no-watch",
