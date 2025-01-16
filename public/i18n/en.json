@@ -13,6 +13,16 @@
     "welcome": "Welcome!",
     "youre-on-the-latest-version": "You're on the latest version."
   },
+  "constants": {
+    "arabic": "Arabic",
+    "automatic": "Automatic",
+    "dark": "Dark",
+    "english": "English",
+    "home": "Home",
+    "light": "Light",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
   "cta": {
     "ok": "OK",
     "reload": "RELOAD"
@@ -21,8 +31,6 @@
     "home": "Home",
     "loading": "Loading...",
     "logo": "Logo",
-    "profile": "Profile",
-    "settings": "Settings",
     "sign-in": "Sign in",
     "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
@@ -92,15 +100,10 @@
     "toolbar-title": "Reset Password"
   },
   "jet-settings-page": {
-    "arabic": "Arabic",
-    "automatic": "Automatic",
     "change-color-scheme": "Change color scheme",
     "change-language": "Change language",
     "check-for-updates": "Check for updates",
-    "dark": "Dark",
-    "english": "English",
     "last-checked": "Last checked:",
-    "light": "Light",
     "reload": "Reload",
     "reload-description": "Preserve settings and reload",
     "reset": "Reset",

@@ -1,9 +1,9 @@
-<ng-container *transloco="let t; prefix: 'jet-settings-page'">
+<ng-container *transloco="let t">
   <jet-page
-    [seoDescription]="t('seo.description')"
-    [seoKeywords]="t('seo.keywords')"
-    [seoTitle]="t('seo.title')"
-    [toolbarTitle]="t('toolbar-title')"
+    [seoDescription]="t('jet-settings-page.seo.description')"
+    [seoKeywords]="t('jet-settings-page.seo.keywords')"
+    [seoTitle]="t('jet-settings-page.seo.title')"
+    [toolbarTitle]="t('jet-settings-page.toolbar-title')"
   >
     <mat-card>
       <mat-card-content>
@@ -16,7 +16,9 @@
             type="button"
           >
             <mat-icon matListItemIcon>language</mat-icon>
-            <span matListItemTitle>{{ t('change-language') }}</span>
+            <span matListItemTitle>{{
+              t('jet-settings-page.change-language')
+            }}</span>
             <span matListItemLine>{{
               t(settings().languageOption.nameKey)
             }}</span>
@@ -29,7 +31,9 @@
             type="button"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
-            <span matListItemTitle>{{ t('change-color-scheme') }}</span>
+            <span matListItemTitle>{{
+              t('jet-settings-page.change-color-scheme')
+            }}</span>
             <span matListItemLine>{{
               t(settings().colorSchemeOption.nameKey)
             }}</span>
@@ -42,9 +46,11 @@
             type="button"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
-            <span matListItemTitle>{{ t('check-for-updates') }}</span>
+            <span matListItemTitle>{{
+              t('jet-settings-page.check-for-updates')
+            }}</span>
             <span matListItemLine
-              >{{ t('last-checked') }}
+              >{{ t('jet-settings-page.last-checked') }}
               {{ lastUpdateCheckTimestamp() | date: 'medium' }}</span
             >
           </button>
@@ -56,8 +62,10 @@
             type="button"
           >
             <mat-icon matListItemIcon>refresh</mat-icon>
-            <span matListItemTitle>{{ t('reload') }}</span>
-            <span matListItemLine>{{ t('reload-description') }}</span>
+            <span matListItemTitle>{{ t('jet-settings-page.reload') }}</span>
+            <span matListItemLine>{{
+              t('jet-settings-page.reload-description')
+            }}</span>
           </button>
           <button
             (click)="reset()"
@@ -67,14 +75,16 @@
             type="button"
           >
             <mat-icon matListItemIcon>restart_alt</mat-icon>
-            <span matListItemTitle>{{ t('reset') }}</span>
-            <span matListItemLine>{{ t('reset-description') }}</span>
+            <span matListItemTitle>{{ t('jet-settings-page.reset') }}</span>
+            <span matListItemLine>{{
+              t('jet-settings-page.reset-description')
+            }}</span>
           </button>
         </mat-action-list>
       </mat-card-content>
     </mat-card>
     <pre style="text-align: center">
-      {{ t('version', { value: version }) }}
+      {{ t('jet-settings-page.version', { value: version }) }}
     </pre>
     <mat-menu
       #languageOptionsMenu="matMenu"

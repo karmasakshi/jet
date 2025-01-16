@@ -13,6 +13,16 @@
     "welcome": "مرحبًا!",
     "youre-on-the-latest-version": "أنت على أحدث إصدار."
   },
+  "constants": {
+    "arabic": "العربية",
+    "automatic": "تلقائي",
+    "dark": "داكن",
+    "english": "الإنجليزية",
+    "home": "الصفحة الرئيسية",
+    "light": "فاتح",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات"
+  },
   "cta": {
     "ok": "موافق",
     "reload": "إعادة التحميل"
@@ -21,8 +31,6 @@
     "home": "الصفحة الرئيسية",
     "loading": "جارٍ التحميل...",
     "logo": "الشعار",
-    "profile": "الملف الشخصي",
-    "settings": "الإعدادات",
     "sign-in": "تسجيل الدخول",
     "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
@@ -92,15 +100,10 @@
     "toolbar-title": "إعادة تعيين كلمة المرور"
   },
   "jet-settings-page": {
-    "arabic": "العربية",
-    "automatic": "تلقائي",
     "change-color-scheme": "تغيير نظام الألوان",
     "change-language": "تغيير اللغة",
     "check-for-updates": "التحقق من التحديثات",
-    "dark": "داكن",
-    "english": "الإنجليزية",
     "last-checked": "آخر تحقق:",
-    "light": "فاتح",
     "reload": "إعادة التحميل",
     "reload-description": "حفظ الإعدادات وإعادة التحميل",
     "reset": "إعادة التعيين",

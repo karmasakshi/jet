@@ -1,21 +1,22 @@
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
+import { marker } from '@jsverse/transloco-keys-manager/marker';
 
 export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
   {
     icon: 'contrast',
-    nameKey: 'automatic',
+    nameKey: marker('constants.automatic'),
     themeColor: null,
     value: 'automatic',
   },
   {
     icon: 'light_mode',
-    nameKey: 'light',
+    nameKey: marker('constants.light'),
     themeColor: '#fff8f6',
     value: 'light',
   },
   {
     icon: 'dark_mode',
-    nameKey: 'dark',
+    nameKey: marker('constants.dark'),
     themeColor: '#161312',
     value: 'dark',
   },

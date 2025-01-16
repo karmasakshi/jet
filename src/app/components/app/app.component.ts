@@ -145,14 +145,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.languageOption = this._settingsService.languageOption;
 
-    /**
-     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
-     *
-     * t(jet-app.home)
-     * t(jet-app.profile)
-     * t(jet-app.settings)
-     */
-
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
 
     this.progressBarConfiguration =

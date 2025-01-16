@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; prefix: 'jet-app'">
+<ng-container *transloco="let t">
   <mat-sidenav-container
     class="jet-sidenav-container"
     [dir]="languageOption().directionality"
@@ -11,7 +11,7 @@
     >
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
-          [matTooltip]="t('home')"
+          [matTooltip]="t('jet-app.home')"
           jetAnalytics
           jetAnalyticsEventName="Open Home"
           mat-icon-button
@@ -19,7 +19,7 @@
           routerLink="/"
         >
           <img
-            [alt]="t('logo')"
+            [alt]="t('jet-app.logo')"
             height="24"
             ngSrc="./logo.svg"
             priority
@@ -70,8 +70,8 @@
         </mat-progress-bar>
         @if (!isSmallViewport) {
           <button
-            [attr.aria-label]="t('toggle-navigation-menu')"
-            [matTooltip]="t('toggle-navigation-menu')"
+            [attr.aria-label]="t('jet-app.toggle-navigation-menu')"
+            [matTooltip]="t('jet-app.toggle-navigation-menu')"
             (click)="sidenav.toggle()"
             jetAnalytics
             jetAnalyticsEventName="Toggle Sidenav"
@@ -83,7 +83,7 @@
           </button>
         } @else {
           <a
-            [matTooltip]="t('home')"
+            [matTooltip]="t('jet-app.home')"
             jetAnalytics
             jetAnalyticsEventName="Open Home"
             mat-icon-button
@@ -91,7 +91,7 @@
             routerLink="/"
           >
             <img
-              [alt]="t('logo')"
+              [alt]="t('jet-app.logo')"
               height="24"
               ngSrc="./logo.svg"
               priority
@@ -100,7 +100,7 @@
           </a>
         }
         <h1>
-          {{ toolbarTitle() || t('loading') }}
+          {{ toolbarTitle() || t('jet-app.loading') }}
         </h1>
         <div style="flex: 1"></div>
         @if (user() !== null) {
@@ -109,7 +109,7 @@
             routerLink="/sign-out"
           >
             <mat-icon>logout</mat-icon>
-            <span>{{ t('sign-out') }}</span>
+            <span>{{ t('jet-app.sign-out') }}</span>
           </a>
         } @else {
           <a
@@ -117,7 +117,7 @@
             routerLink="/sign-in"
           >
             <mat-icon>login</mat-icon>
-            <span>{{ t('sign-in') }}</span>
+            <span>{{ t('jet-app.sign-in') }}</span>
           </a>
         }
       </mat-toolbar>

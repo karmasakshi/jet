@@ -1,16 +1,16 @@
-<ng-container *transloco="let t; prefix: 'jet-profile-page'">
+<ng-container *transloco="let t">
   <jet-page
-    [seoDescription]="t('seo.description')"
-    [seoKeywords]="t('seo.keywords')"
-    [seoTitle]="t('seo.title')"
-    [toolbarTitle]="t('toolbar-title')"
+    [seoDescription]="t('jet-profile-page.seo.description')"
+    [seoKeywords]="t('jet-profile-page.seo.keywords')"
+    [seoTitle]="t('jet-profile-page.seo.title')"
+    [toolbarTitle]="t('jet-profile-page.toolbar-title')"
   >
     @let _profile = profile();
     @if (_profile) {
       <div class="jet-flex-col-centered">
         <mat-card style="width: 100%; max-width: 480px">
           <img
-            [alt]="t('profile')"
+            [alt]="t('jet-profile-page.profile')"
             height="180"
             mat-card-image
             ngSrc="./card.webp"
@@ -33,7 +33,7 @@
               "
             >
               <img
-                [alt]="t('avatar')"
+                [alt]="t('jet-profile-page.avatar')"
                 [ngSrc]="
                   _profile.avatar_url ??
                   'https://placehold.co/128x128/webp?text=?'
@@ -63,7 +63,7 @@
               "
             >
               <mat-form-field>
-                <mat-label>{{ t('username') }}</mat-label>
+                <mat-label>{{ t('jet-profile-page.username') }}</mat-label>
                 <input
                   autocomplete="off"
                   formControlName="username"
@@ -74,7 +74,7 @@
                 @if (profileFormGroup.controls.username.dirty) {
                   <mat-hint align="end"
                     >{{
-                      t('characters', {
+                      t('jet-profile-page.characters', {
                         maximum: 30,
                         value:
                           profileFormGroup.controls.username.value?.length || 0,
@@ -97,7 +97,7 @@
               type="submit"
             >
               <mat-icon>check</mat-icon>
-              <span>{{ t('update-profile') }}</span>
+              <span>{{ t('jet-profile-page.update-profile') }}</span>
             </button>
             <div style="flex: 1"></div>
             <a
@@ -105,7 +105,7 @@
               routerLink="/update-password"
             >
               <mat-icon>lock_reset</mat-icon>
-              <span>{{ t('update-password') }}</span>
+              <span>{{ t('jet-profile-page.update-password') }}</span>
             </a>
           </mat-card-actions>
         </mat-card>
@@ -116,13 +116,13 @@
                 ><b>{{ user()?.email }}</b></small
               >
               <small>{{
-                t('profile-last-updated-on', {
+                t('jet-profile-page.profile-last-updated-on', {
                   value: _profile.updated_at | date: 'medium',
                 })
               }}</small>
               <small>
                 {{
-                  t('profile-created-on', {
+                  t('jet-profile-page.profile-created-on', {
                     value: _profile.created_at | date: 'medium',
                   })
                 }}

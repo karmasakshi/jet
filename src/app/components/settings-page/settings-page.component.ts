@@ -46,22 +46,7 @@ export class SettingsPageComponent {
   public readonly version: string;
 
   public constructor() {
-    /**
-     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
-     *
-     * t(jet-settings-page.automatic)
-     * t(jet-settings-page.dark)
-     * t(jet-settings-page.light)
-     */
-
     this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
-
-    /**
-     * Dynamic keys to include in translations (https://github.com/jsverse/transloco-keys-manager?tab=readme-ov-file#dynamic-keys):
-     *
-     * t(jet-settings-page.arabic)
-     * t(jet-settings-page.english)
-     */
 
     this.languageOptions = LANGUAGE_OPTIONS;
 

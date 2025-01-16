@@ -1,14 +1,14 @@
-<ng-container *transloco="let t; prefix: 'jet-message-page'">
+<ng-container *transloco="let t">
   <jet-page
-    [seoDescription]="t('seo.description')"
-    [seoKeywords]="t('seo.keywords')"
-    [seoTitle]="t('seo.title')"
-    [toolbarTitle]="t('toolbar-title')"
+    [seoDescription]="t('jet-message-page.seo.description')"
+    [seoKeywords]="t('jet-message-page.seo.keywords')"
+    [seoTitle]="t('jet-message-page.seo.title')"
+    [toolbarTitle]="t('jet-message-page.toolbar-title')"
   >
     <div class="jet-flex-col-centered">
       <mat-card style="width: 100%; max-width: 480px">
         <img
-          [alt]="t('message')"
+          [alt]="t('jet-message-page.message')"
           height="180"
           mat-card-image
           ngSrc="./card.webp"
@@ -19,29 +19,35 @@
           @case ('email-verification-pending') {
             <mat-card-header>
               <mat-card-title>{{
-                t('verification-email-sent')
+                t('jet-message-page.verification-email-sent')
               }}</mat-card-title>
               <mat-card-subtitle
                 ><p>
-                  {{ t('click-to-verify') }}
+                  {{ t('jet-message-page.click-to-verify') }}
                 </p></mat-card-subtitle
               >
             </mat-card-header>
           }
           @case ('sign-in-link-sent') {
             <mat-card-header>
-              <mat-card-title>{{ t('sign-in-link-sent') }}</mat-card-title>
+              <mat-card-title>{{
+                t('jet-message-page.sign-in-link-sent')
+              }}</mat-card-title>
               <mat-card-subtitle
-                ><p>{{ t('click-to-sign-in') }}</p></mat-card-subtitle
+                ><p>
+                  {{ t('jet-message-page.click-to-sign-in') }}
+                </p></mat-card-subtitle
               >
             </mat-card-header>
           }
           @case ('reset-password-email-sent') {
             <mat-card-header>
-              <mat-card-title>{{ t('well-email-you') }}</mat-card-title>
+              <mat-card-title>{{
+                t('jet-message-page.well-email-you')
+              }}</mat-card-title>
               <mat-card-subtitle
                 ><p>
-                  {{ t('sign-in-and-update-password') }}
+                  {{ t('jet-message-page.sign-in-and-update-password') }}
                 </p></mat-card-subtitle
               >
             </mat-card-header>

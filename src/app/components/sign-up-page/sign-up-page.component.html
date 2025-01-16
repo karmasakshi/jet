@@ -1,14 +1,14 @@
-<ng-container *transloco="let t; prefix: 'jet-sign-up-page'">
+<ng-container *transloco="let t">
   <jet-page
-    [seoDescription]="t('seo.description')"
-    [seoKeywords]="t('seo.keywords')"
-    [seoTitle]="t('seo.title')"
-    [toolbarTitle]="t('toolbar-title')"
+    [seoDescription]="t('jet-sign-up-page.seo.description')"
+    [seoKeywords]="t('jet-sign-up-page.seo.keywords')"
+    [seoTitle]="t('jet-sign-up-page.seo.title')"
+    [toolbarTitle]="t('jet-sign-up-page.toolbar-title')"
   >
     <div class="jet-flex-col-centered">
       <mat-card style="width: 100%; max-width: 480px">
         <img
-          [alt]="t('sign-up')"
+          [alt]="t('jet-sign-up-page.sign-up')"
           height="180"
           mat-card-image
           ngSrc="./card.webp"
@@ -27,7 +27,7 @@
             "
           >
             <mat-form-field>
-              <mat-label>{{ t('email') }}</mat-label>
+              <mat-label>{{ t('jet-sign-up-page.email') }}</mat-label>
               <input
                 autocomplete="email"
                 formControlName="email"
@@ -37,7 +37,7 @@
               />
             </mat-form-field>
             <mat-form-field>
-              <mat-label>{{ t('password') }}</mat-label>
+              <mat-label>{{ t('jet-sign-up-page.password') }}</mat-label>
               <input
                 [type]="isPasswordHidden ? 'password' : 'text'"
                 autocomplete="new-password"
@@ -47,7 +47,7 @@
               />
               <button
                 [disabled]="signUpFormGroup.controls.password.disabled"
-                [matTooltip]="t('toggle-visibility')"
+                [matTooltip]="t('jet-sign-up-page.toggle-visibility')"
                 (click)="isPasswordHidden = !isPasswordHidden"
                 mat-icon-button
                 matSuffix
@@ -69,7 +69,7 @@
             type="submit"
           >
             <mat-icon>right_click</mat-icon>
-            <span>{{ t('sign-up') }}</span>
+            <span>{{ t('jet-sign-up-page.sign-up') }}</span>
           </button>
         </mat-card-actions>
       </mat-card>
@@ -83,7 +83,7 @@
               routerLink="/sign-in"
             >
               <mat-icon>login</mat-icon>
-              <span>{{ t('sign-in') }}</span>
+              <span>{{ t('jet-sign-up-page.sign-in') }}</span>
             </a>
             <a
               [disabled]="signUpFormGroup.disabled"
@@ -92,7 +92,7 @@
               routerLink="/reset-password"
             >
               <mat-icon>lock_reset</mat-icon>
-              <span>{{ t('reset-password') }}</span>
+              <span>{{ t('jet-sign-up-page.reset-password') }}</span>
             </a>
           </div>
         </mat-card-content>
