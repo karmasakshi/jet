@@ -3,6 +3,8 @@ import { HomePageComponent } from '@jet/components/home-page/home-page.component
 import { isAuthenticated } from '@jet/guards/is-authenticated/is-authenticated.guard';
 import { isNotAuthenticated } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
 
+const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
+
 const generalRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
@@ -78,8 +80,6 @@ const generalRoutes: Routes = [
     path: 'update-password',
   },
 ];
-
-const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
 
 export const routes: Routes = [
   ...mainRoutes,
