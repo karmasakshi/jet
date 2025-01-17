@@ -160,6 +160,7 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
   @include mat.card-overrides(
     (
       elevated-container-elevation: var(--mat-sys-level0),
+      subtitle-text-color: var(--mat-sys-outline),
     )
   );
 
@@ -359,6 +360,7 @@ body {
       padding-top: env(safe-area-inset-top);
 
       .jet-content-toolbar {
+        background-color: transparent;
         gap: 8px;
         overflow-x: auto;
         position: relative;
@@ -406,6 +408,7 @@ img {
 }
 
 .mat-mdc-card {
+  flex: 0 0 auto;
   overflow: hidden;
 
   .mat-mdc-card-actions {
