@@ -21,36 +21,30 @@
               <mat-card-title>{{
                 t('jet-message-page.verification-email-sent')
               }}</mat-card-title>
-              <mat-card-subtitle
-                ><p>
-                  {{ t('jet-message-page.click-to-verify') }}
-                </p></mat-card-subtitle
-              >
             </mat-card-header>
+            <mat-card-content>
+              <p>{{ t('jet-message-page.click-to-verify') }}</p>
+            </mat-card-content>
           }
           @case ('sign-in-link-sent') {
             <mat-card-header>
               <mat-card-title>{{
                 t('jet-message-page.sign-in-link-sent')
               }}</mat-card-title>
-              <mat-card-subtitle
-                ><p>
-                  {{ t('jet-message-page.click-to-sign-in') }}
-                </p></mat-card-subtitle
-              >
             </mat-card-header>
+            <mat-card-content>
+              <p>{{ t('jet-message-page.click-to-sign-in') }}</p>
+            </mat-card-content>
           }
           @case ('reset-password-email-sent') {
             <mat-card-header>
               <mat-card-title>{{
                 t('jet-message-page.well-email-you')
               }}</mat-card-title>
-              <mat-card-subtitle
-                ><p>
-                  {{ t('jet-message-page.sign-in-and-update-password') }}
-                </p></mat-card-subtitle
-              >
             </mat-card-header>
+            <mat-card-content>
+              <p>{{ t('jet-message-page.sign-in-and-update-password') }}</p>
+            </mat-card-content>
           }
         }
       </mat-card>
