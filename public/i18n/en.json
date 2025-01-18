@@ -50,26 +50,20 @@
   "jet-message-page": {
     "click-to-sign-in": "Please click the link in the email to sign in.",
     "click-to-verify": "Please click the link in the email to verify.",
+    "home": "Home",
     "message": "Message",
+    "not-found": "Not found",
+    "page-doesnt-exist": "That page doesn't exist.",
     "seo": {
       "description": "Jet.",
       "keywords": "jet",
       "title": "Jet"
     },
     "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",
-    "sign-in-link-sent": "Sign in link sent.",
+    "sign-in-link-sent": "Sign in link sent",
     "toolbar-title": "Jet",
-    "verification-email-sent": "Verification email sent.",
-    "well-email-you": "We'll email you."
-  },
-  "jet-not-found-page": {
-    "page-not-found": "Page not found.",
-    "seo": {
-      "description": "Not found.",
-      "keywords": "jet",
-      "title": "Not Found"
-    },
-    "toolbar-title": "Not Found"
+    "verification-email-sent": "Verification email sent",
+    "well-email-you": "We'll email you"
   },
   "jet-profile-page": {
     "avatar": "Avatar",

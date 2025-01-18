@@ -85,9 +85,10 @@ export const routes: Routes = [
   ...mainRoutes,
   ...generalRoutes,
   {
+    data: { case: 'not-found' },
     loadComponent: async () =>
-      (await import('@jet/components/not-found-page/not-found-page.component'))
-        .NotFoundPageComponent,
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: '**',
   },
 ];

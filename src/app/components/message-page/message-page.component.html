@@ -26,6 +26,16 @@
               <p>{{ t('jet-message-page.click-to-verify') }}</p>
             </mat-card-content>
           }
+          @case ('not-found') {
+            <mat-card-header>
+              <mat-card-title>{{
+                t('jet-message-page.not-found')
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ t('jet-message-page.page-doesnt-exist') }}</p>
+            </mat-card-content>
+          }
           @case ('sign-in-link-sent') {
             <mat-card-header>
               <mat-card-title>{{
@@ -47,6 +57,15 @@
             </mat-card-content>
           }
         }
+        <mat-card-actions>
+          <a
+            mat-button
+            routerLink="/"
+          >
+            <mat-icon>home</mat-icon>
+            <span>{{ t('jet-message-page.home') }}</span>
+          </a>
+        </mat-card-actions>
       </mat-card>
     </div>
   </jet-page>

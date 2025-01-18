@@ -3,6 +3,7 @@ import { Component, inject, input, InputSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
@@ -13,6 +14,7 @@ import { PageComponent } from '../page/page.component';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    RouterLink,
     TranslocoModule,
     PageComponent,
   ],
@@ -25,6 +27,7 @@ export class MessagePageComponent {
 
   public readonly case: InputSignal<
     | 'email-verification-pending'
+    | 'not-found'
     | 'reset-password-email-sent'
     | 'sign-in-link-sent'
     | undefined

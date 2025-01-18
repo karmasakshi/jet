@@ -50,26 +50,20 @@
   "jet-message-page": {
     "click-to-sign-in": "يرجى النقر على الرابط في البريد الإلكتروني لتسجيل الدخول.",
     "click-to-verify": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
+    "home": "الرئيسية",
     "message": "رسالة",
+    "not-found": "غير موجود",
+    "page-doesnt-exist": "هذه الصفحة غير موجودة.",
     "seo": {
       "description": "Jet.",
       "keywords": "jet",
       "title": "Jet"
     },
     "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
-    "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول.",
+    "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول",
     "toolbar-title": "Jet",
-    "verification-email-sent": "تم إرسال بريد التحقق.",
-    "well-email-you": "سنرسل لك بريدًا إلكترونيًا."
-  },
-  "jet-not-found-page": {
-    "page-not-found": "الصفحة غير موجودة.",
-    "seo": {
-      "description": "غير موجودة.",
-      "keywords": "jet",
-      "title": "غير موجودة"
-    },
-    "toolbar-title": "غير موجودة"
+    "verification-email-sent": "تم إرسال بريد التحقق",
+    "well-email-you": "سنرسل لك بريدًا إلكترونيًا"
   },
   "jet-profile-page": {
     "avatar": "الصورة الرمزية",
