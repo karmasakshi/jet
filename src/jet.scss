@@ -2,7 +2,7 @@
 @use 'sass:map';
 
 $jet-font-default: ('Noto Sans', sans-serif);
-$jet-font-noto-sans-arabic: ('Noto Sans Arabic', 'Noto Sans', sans-serif);
+$jet-font-noto-sans-arabic: ('Noto Sans Arabic', $jet-font-default);
 
 // Generate custom palette using `ng generate @angular/material:theme-color`
 
@@ -413,7 +413,6 @@ img {
 }
 
 .mat-mdc-card {
-  flex: 0 0 auto;
   overflow: hidden;
 
   .mat-mdc-card-actions {

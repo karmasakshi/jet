@@ -154,19 +154,16 @@ export class ProfilePageComponent {
         throw response.error;
       }
 
-      response = await this._profileService.updateProfile({
+      await this._profileService.updateProfile({
         avatar_url: this._profileService.getAvatarPublicUrl(
           response.data?.path ?? '',
         ),
       });
 
-      if (response.error) {
-        throw response.error;
-      }
-
       this._alertService.showAlert(
         this._translocoService.translate('alerts.avatar-updated'),
       );
+
       await this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {
@@ -192,16 +189,12 @@ export class ProfilePageComponent {
     this._progressBarService.showProgressBar();
 
     try {
-      const { error } =
-        await this._profileService.updateProfile(partialProfile);
-
-      if (error) {
-        throw error;
-      }
+      await this._profileService.updateProfile(partialProfile);
 
       this._alertService.showAlert(
         this._translocoService.translate('alerts.profile-updated-successfully'),
       );
+
       void this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {

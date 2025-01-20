@@ -77,15 +77,12 @@ export class ProfileService {
         throw new Error();
       }
 
-      const { data, error } = await this._supabaseClient
+      const { data } = await this._supabaseClient
         .from(Table.Profiles)
         .select('*')
         .eq('id', userId)
-        .single<Profile>();
-
-      if (error) {
-        throw error;
-      }
+        .single<Profile>()
+        .throwOnError();
 
       this._profile.set(data);
     } catch (exception: unknown) {
@@ -108,7 +105,8 @@ export class ProfileService {
     return this._supabaseClient
       .from(Table.Profiles)
       .update(partialProfile)
-      .eq('id', userId);
+      .eq('id', userId)
+      .throwOnError();
   }
 
   public uploadAvatar(

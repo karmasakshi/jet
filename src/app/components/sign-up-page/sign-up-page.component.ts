@@ -111,6 +111,7 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
         this._alertService.showAlert(
           this._translocoService.translate('alerts.welcome'),
         );
+
         void this._router.navigateByUrl('/');
       }
     } catch (exception: unknown) {

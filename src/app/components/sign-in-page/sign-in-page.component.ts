@@ -108,6 +108,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
             this._activatedRoute.snapshot.queryParamMap.get(
               QueryParam.ReturnUrl,
             ) ?? '/';
+
           void this._router.navigateByUrl(returnUrl);
         }
       })
@@ -156,6 +157,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       const returnUrl =
         this._activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl) ??
         '/';
+
       void this._router.navigateByUrl(returnUrl);
     } catch (exception: unknown) {
       if (exception instanceof Error) {

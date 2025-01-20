@@ -118,6 +118,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.password-updated'),
       );
+
       void this._router.navigateByUrl('/profile');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
