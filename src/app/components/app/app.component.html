@@ -136,9 +136,9 @@
       </mat-tab-nav-panel>
       <footer
         [ngClass]="{
+          'jet-add-bottom-margin': isSmallViewport,
           'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
         }"
-        [ngStyle]="{ 'margin-bottom': isSmallViewport ? '48px' : '0' }"
       >
         <jet-footer></jet-footer>
       </footer>

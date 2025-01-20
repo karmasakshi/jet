@@ -24,7 +24,7 @@
                 cursor: profileFormGroup.disabled ? 'not-allowed' : 'pointer',
               }"
               (click)="avatarInput.click()"
-              matRipple
+              mat-ripple
               style="
                 border: 3px solid var(--mat-sys-surface-container-low);
                 height: 132px;
@@ -40,8 +40,8 @@
                   'https://placehold.co/128x128/webp?text=?'
                 "
                 height="128"
+                mat-card-image
                 priority
-                style="object-fit: cover; object-position: center"
                 width="128"
               />
               <mat-card-content style="display: none">
