@@ -346,7 +346,7 @@ body {
 
         @include mat.toolbar-overrides(
           (
-            container-background-color: var(--mat-sys-surface-container-low),
+            container-background-color: transparent,
           )
         );
       }
@@ -360,10 +360,15 @@ body {
       padding-top: env(safe-area-inset-top);
 
       .jet-content-toolbar {
-        background-color: transparent;
         gap: 8px;
         overflow-x: auto;
         position: relative;
+
+        @include mat.toolbar-overrides(
+          (
+            container-background-color: transparent,
+          )
+        );
 
         .jet-progress-bar {
           bottom: 0;

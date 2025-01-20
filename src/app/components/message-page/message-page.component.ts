@@ -1,9 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, input, InputSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
@@ -22,7 +23,8 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './message-page.component.scss',
   templateUrl: './message-page.component.html',
 })
-export class MessagePageComponent {
+export class MessagePageComponent implements OnInit {
+  private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
 
   public readonly case: InputSignal<
@@ -35,5 +37,9 @@ export class MessagePageComponent {
 
   public constructor() {
     this._loggerService.logComponentInitialization('MessagePageComponent');
+  }
+
+  public ngOnInit(): void {
+    this._analyticsService.logEvent('message-page', { case: this.case() });
   }
 }
