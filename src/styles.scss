@@ -1,4 +1,9 @@
-.jet-flex-col-centered {
+.jet-card-480 {
+  max-width: 480px;
+  width: 100%;
+}
+
+.jet-container-flex-column-center {
   align-items: center;
   display: flex;
   flex-direction: column;

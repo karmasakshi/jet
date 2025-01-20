@@ -5,8 +5,8 @@
     [seoTitle]="t('jet-sign-up-page.seo.title')"
     [toolbarTitle]="t('jet-sign-up-page.toolbar-title')"
   >
-    <div class="jet-flex-col-centered">
-      <mat-card style="width: 100%; max-width: 480px">
+    <div class="jet-container-flex-column-center">
+      <mat-card class="jet-card-480">
         <img
           [alt]="t('jet-sign-up-page.sign-up')"
           height="180"
@@ -74,10 +74,10 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card style="width: 100%; max-width: 480px">
+      <mat-card class="jet-card-480">
         <mat-card-header></mat-card-header>
         <mat-card-content>
-          <div class="jet-flex-col-centered">
+          <div class="jet-container-flex-column-center">
             <a
               [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"

@@ -5,8 +5,8 @@
     [seoTitle]="t('jet-sign-in-page.seo.title')"
     [toolbarTitle]="t('jet-sign-in-page.toolbar-title')"
   >
-    <div class="jet-flex-col-centered">
-      <mat-card style="width: 100%; max-width: 480px">
+    <div class="jet-container-flex-column-center">
+      <mat-card class="jet-card-480">
         <img
           [alt]="t('jet-sign-in-page.sign-in')"
           height="180"
@@ -17,7 +17,7 @@
         />
         <mat-card-header></mat-card-header>
         <mat-card-content>
-          <div class="jet-flex-col-centered">
+          <div class="jet-container-flex-column-center">
             <button
               [disabled]="signInFormGroup.disabled"
               (click)="signInWithOauth('google')"
@@ -109,10 +109,10 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card style="width: 100%; max-width: 480px">
+      <mat-card class="jet-card-480">
         <mat-card-header></mat-card-header>
         <mat-card-content>
-          <div class="jet-flex-col-centered">
+          <div class="jet-container-flex-column-center">
             <a
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
