@@ -1,11 +1,11 @@
-.jet-w-480 {
-  max-width: 480px;
-  width: 100%;
-}
-
 .jet-flex-col-center {
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.jet-w-480 {
+  max-width: 480px;
+  width: 100%;
 }
