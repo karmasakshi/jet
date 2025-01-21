@@ -40,6 +40,6 @@ export class MessagePageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._analyticsService.logEvent('message-page', { case: this.case() });
+    this._analyticsService.logEvent('Message shown', { case: this.case() });
   }
 }

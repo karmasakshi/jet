@@ -1,4 +1,8 @@
 {
+  "alert-ctas": {
+    "ok": "OK",
+    "reload": "RELOAD"
+  },
   "alerts": {
     "avatar-updated": "Avatar updated.",
     "checking-for-updates": "Checking for updates...",
@@ -22,10 +26,6 @@
     "light": "Light",
     "profile": "Profile",
     "settings": "Settings"
-  },
-  "cta": {
-    "ok": "OK",
-    "reload": "RELOAD"
   },
   "jet-app": {
     "home": "Home",
@@ -55,13 +55,13 @@
     "not-found": "Not found",
     "page-doesnt-exist": "That page doesn't exist.",
     "seo": {
-      "description": "Jet.",
+      "description": "Message.",
       "keywords": "jet",
-      "title": "Jet"
+      "title": "Message"
     },
     "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",
     "sign-in-link-sent": "Sign in link sent",
-    "toolbar-title": "Jet",
+    "toolbar-title": "Message",
     "verification-email-sent": "Verification email sent",
     "well-email-you": "We'll email you"
   },

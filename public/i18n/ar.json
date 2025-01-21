@@ -1,4 +1,8 @@
 {
+  "alert-ctas": {
+    "ok": "موافق",
+    "reload": "إعادة التحميل"
+  },
   "alerts": {
     "avatar-updated": "تم تحديث الصورة الرمزية.",
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
@@ -22,10 +26,6 @@
     "light": "فاتح",
     "profile": "الملف الشخصي",
     "settings": "الإعدادات"
-  },
-  "cta": {
-    "ok": "موافق",
-    "reload": "إعادة التحميل"
   },
   "jet-app": {
     "home": "الصفحة الرئيسية",
@@ -55,13 +55,13 @@
     "not-found": "غير موجود",
     "page-doesnt-exist": "هذه الصفحة غير موجودة.",
     "seo": {
-      "description": "Jet.",
+      "description": "الرسالة.",
       "keywords": "jet",
-      "title": "Jet"
+      "title": "الرسالة"
     },
     "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
     "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول",
-    "toolbar-title": "Jet",
+    "toolbar-title": "الرسالة",
     "verification-email-sent": "تم إرسال بريد التحقق",
     "well-email-you": "سنرسل لك بريدًا إلكترونيًا"
   },
