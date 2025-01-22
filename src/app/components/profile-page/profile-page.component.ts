@@ -164,7 +164,7 @@ export class ProfilePageComponent {
         this._translocoService.translate('alerts.avatar-updated'),
       );
 
-      await this._profileService.selectProfile();
+      void this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);

@@ -60,8 +60,8 @@ export class SettingsPageComponent {
     this._loggerService.logComponentInitialization('SettingsPageComponent');
   }
 
-  public async checkForUpdate(): Promise<void> {
-    await this._serviceWorkerService.checkForUpdate();
+  public checkForUpdate(): void {
+    void this._serviceWorkerService.checkForUpdate();
   }
 
   public reload(): void {
