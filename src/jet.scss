@@ -164,6 +164,12 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
     )
   );
 
+  @include mat.icon-button-overrides(
+    (
+      icon-size: 22px,
+    )
+  );
+
   @include mat.list-overrides(
     (
       active-indicator-shape: var(--mat-sys-corner-small),
@@ -408,7 +414,6 @@ img {
 table {
   border-radius: var(--mat-sys-corner-small);
   overflow: hidden;
-  width: 100%;
 }
 
 .cdk-overlay-pane {
