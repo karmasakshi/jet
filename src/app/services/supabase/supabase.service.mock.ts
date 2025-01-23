@@ -6,13 +6,6 @@ export class SupabaseServiceMock {
       auth: {
         onAuthStateChange: (() => undefined) as unknown,
       },
-      from: (() => ({
-        select: () => ({
-          order: () => ({
-            throwOnError: () => Promise.resolve(),
-          }),
-        }),
-      })) as unknown,
     } as SupabaseClient;
   }
 }
