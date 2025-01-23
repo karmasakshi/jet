@@ -70,7 +70,6 @@
         </mat-progress-bar>
         @if (!isSmallViewport) {
           <button
-            [attr.aria-label]="t('jet-app.toggle-navigation-menu')"
             [matTooltip]="t('jet-app.toggle-navigation-menu')"
             (click)="sidenav.toggle()"
             jetAnalytics
