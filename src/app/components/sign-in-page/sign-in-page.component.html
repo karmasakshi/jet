@@ -37,7 +37,7 @@
               <span>{{ t('jet-sign-in-page.sign-in-with-facebook') }}</span>
             </button>
           </div>
-          <p style="color: var(--mat-sys-outline-variant); text-align: center">
+          <p style="text-align: center">
             {{ t('jet-sign-in-page.or') }}
           </p>
           <form
@@ -70,6 +70,7 @@
                 required
               />
               <button
+                [attr.aria-label]="t('jet-sign-in-page.toggle-visibility')"
                 [disabled]="signInFormGroup.controls.password.disabled"
                 [matTooltip]="t('jet-sign-in-page.toggle-visibility')"
                 (click)="isPasswordHidden = !isPasswordHidden"

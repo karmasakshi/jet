@@ -47,6 +47,7 @@
                 required
               />
               <button
+                [attr.aria-label]="t('jet-sign-up-page.toggle-visibility')"
                 [disabled]="signUpFormGroup.controls.password.disabled"
                 [matTooltip]="t('jet-sign-up-page.toggle-visibility')"
                 (click)="isPasswordHidden = !isPasswordHidden"
