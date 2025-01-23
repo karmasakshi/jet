@@ -242,37 +242,41 @@ body {
 
         .jet-sidenav-toolbar,
         .jet-sidenav-content {
-          padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
+          padding-left: calc(16px + env(safe-area-inset-left));
+          padding-right: 16px;
         }
       }
 
       .jet-content {
         .jet-content-toolbar {
-          padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
+          padding-left: 16px;
+          padding-right: calc(16px + env(safe-area-inset-right));
 
           &.jet-add-safe-area {
-            padding: 0 calc(16px + env(safe-area-inset-right)) 0
-              calc(16px + env(safe-area-inset-left));
+            padding-left: calc(16px + env(safe-area-inset-left));
+            padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
 
-        main {
-          padding: 16px calc(16px + env(safe-area-inset-right)) 16px 16px;
+        .mat-mdc-tab-nav-panel {
+          main {
+            padding-left: 16px;
+            padding-right: calc(16px + env(safe-area-inset-right));
 
-          &.jet-add-safe-area {
-            padding: 16px calc(16px + env(safe-area-inset-right)) 16px
-              calc(16px + env(safe-area-inset-left));
+            &.jet-add-safe-area {
+              padding-left: calc(16px + env(safe-area-inset-left));
+              padding-right: calc(16px + env(safe-area-inset-right));
+            }
           }
         }
 
         footer {
-          padding: 16px calc(16px + env(safe-area-inset-right))
-            calc(16px + env(safe-area-inset-bottom)) 16px;
+          padding-left: 16px;
+          padding-right: calc(16px + env(safe-area-inset-right));
 
           &.jet-add-safe-area {
-            padding: 16px calc(16px + env(safe-area-inset-right))
-              calc(16px + env(safe-area-inset-bottom))
-              calc(16px + env(safe-area-inset-left));
+            padding-left: calc(16px + env(safe-area-inset-left));
+            padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
 
@@ -298,37 +302,41 @@ body {
 
         .jet-sidenav-toolbar,
         .jet-sidenav-content {
-          padding: 0 calc(16px + env(safe-area-inset-right)) 0 16px;
+          padding-left: 16px;
+          padding-right: calc(16px + env(safe-area-inset-right));
         }
       }
 
       .jet-content {
         .jet-content-toolbar {
-          padding: 0 16px 0 calc(16px + env(safe-area-inset-left));
+          padding-left: calc(16px + env(safe-area-inset-left));
+          padding-right: 16px;
 
           &.jet-add-safe-area {
-            padding: 0 calc(16px + env(safe-area-inset-right)) 0
-              calc(16px + env(safe-area-inset-left));
+            padding-left: calc(16px + env(safe-area-inset-left));
+            padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
 
-        main {
-          padding: 16px 16px 16px calc(16px + env(safe-area-inset-left));
+        .mat-mdc-tab-nav-panel {
+          main {
+            padding-left: calc(16px + env(safe-area-inset-left));
+            padding-right: 16px;
 
-          &.jet-add-safe-area {
-            padding: 16px calc(16px + env(safe-area-inset-right)) 16px
-              calc(16px + env(safe-area-inset-left));
+            &.jet-add-safe-area {
+              padding-left: calc(16px + env(safe-area-inset-left));
+              padding-right: calc(16px + env(safe-area-inset-right));
+            }
           }
         }
 
         footer {
-          padding: 16px 16px calc(16px + env(safe-area-inset-bottom))
-            calc(16px + env(safe-area-inset-left));
+          padding-left: calc(16px + env(safe-area-inset-left));
+          padding-right: 16px;
 
           &.jet-add-safe-area {
-            padding: 16px calc(16px + env(safe-area-inset-right))
-              calc(16px + env(safe-area-inset-bottom))
-              calc(16px + env(safe-area-inset-left));
+            padding-left: calc(16px + env(safe-area-inset-left));
+            padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
 
@@ -345,7 +353,8 @@ body {
     }
 
     .jet-sidenav {
-      padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-top: env(safe-area-inset-top);
 
       .jet-sidenav-toolbar {
         justify-content: center;
@@ -385,7 +394,19 @@ body {
         }
       }
 
+      .mat-mdc-tab-nav-panel {
+        flex: 1;
+
+        main {
+          padding-bottom: 160px;
+          padding-top: 16px;
+        }
+      }
+
       footer {
+        padding-bottom: calc(16px + env(safe-area-inset-bottom));
+        padding-top: 16px;
+
         &.jet-add-bottom-margin {
           margin-bottom: 48px;
         }
