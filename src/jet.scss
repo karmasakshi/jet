@@ -406,6 +406,8 @@ img {
 }
 
 table {
+  border-radius: var(--mat-sys-corner-small);
+  overflow: hidden;
   width: 100%;
 }
 
@@ -429,7 +431,7 @@ table {
     gap: 8px;
   }
 
-  .mdc-card__media {
+  .mat-mdc-card-image {
     object-fit: cover;
     width: 100%;
   }
@@ -441,4 +443,8 @@ table {
   .mat-mdc-form-field-icon-suffix {
     padding: 0 8px !important;
   }
+}
+
+.mat-mdc-paginator {
+  border-radius: var(--mat-sys-corner-small);
 }
