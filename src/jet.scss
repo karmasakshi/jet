@@ -164,6 +164,12 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
     )
   );
 
+  @include mat.divider-overrides(
+    (
+      color: var(--mat-sys-outline-variant),
+    )
+  );
+
   @include mat.icon-button-overrides(
     (
       icon-size: 22px,
