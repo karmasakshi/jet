@@ -95,6 +95,7 @@ export class SignInPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.signInFormGroup.disable();
     this._getSession()
       .then((session) => {
         if (session === null) {
