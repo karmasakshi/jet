@@ -26,7 +26,7 @@
               (click)="avatarInput.click()"
               mat-ripple
               style="
-                border: 3px solid var(--mat-sys-surface-container-low);
+                border: 3px solid transparent;
                 height: 132px;
                 width: 132px;
                 border-radius: 50%;
@@ -114,21 +114,19 @@
           <mat-card-header></mat-card-header>
           <mat-card-content>
             <div class="jet-flex-col-center">
-              <small
-                ><b>{{ user()?.email }}</b></small
-              >
-              <small>{{
+              <span style="font: var(--mat-sys-body-small)">
+                <b>{{ user()?.email }}</b>
+              </span>
+              <span style="font: var(--mat-sys-body-small)">{{
                 t('jet-profile-page.profile-last-updated-on', {
                   value: _profile.updated_at | date: 'medium',
                 })
-              }}</small>
-              <small>
-                {{
-                  t('jet-profile-page.profile-created-on', {
-                    value: _profile.created_at | date: 'medium',
-                  })
-                }}
-              </small>
+              }}</span>
+              <span style="font: var(--mat-sys-body-small)">{{
+                t('jet-profile-page.profile-created-on', {
+                  value: _profile.created_at | date: 'medium',
+                })
+              }}</span>
             </div>
           </mat-card-content>
         </mat-card>
