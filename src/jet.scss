@@ -172,7 +172,7 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
   @include mat.icon-button-overrides(
     (
-      icon-size: 22px,
+      icon-size: 21px,
     )
   );
 
