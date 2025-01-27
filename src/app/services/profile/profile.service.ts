@@ -78,7 +78,7 @@ export class ProfileService {
       }
 
       const { data } = await this._supabaseClient
-        .from<Table.Profiles, unknown>(Table.Profiles)
+        .from(Table.Profiles)
         .select('*')
         .eq('id', userId)
         .single<Profile>()
@@ -103,7 +103,7 @@ export class ProfileService {
     }
 
     return this._supabaseClient
-      .from<Table.Profiles, unknown>(Table.Profiles)
+      .from(Table.Profiles)
       .update(partialProfile as never)
       .eq('id', userId)
       .throwOnError();
