@@ -40,18 +40,6 @@
               >
             </mat-card-header>
           }
-          @case ('sign-in-link-sent') {
-            <mat-card-header>
-              <mat-card-title>{{
-                t('jet-message-page.sign-in-link-sent')
-              }}</mat-card-title>
-              <mat-card-subtitle
-                ><p>
-                  {{ t('jet-message-page.click-to-sign-in') }}
-                </p></mat-card-subtitle
-              >
-            </mat-card-header>
-          }
           @case ('reset-password-email-sent') {
             <mat-card-header>
               <mat-card-title>{{
@@ -60,6 +48,18 @@
               <mat-card-subtitle
                 ><p>
                   {{ t('jet-message-page.sign-in-and-update-password') }}
+                </p></mat-card-subtitle
+              >
+            </mat-card-header>
+          }
+          @case ('sign-in-link-sent') {
+            <mat-card-header>
+              <mat-card-title>{{
+                t('jet-message-page.sign-in-link-sent')
+              }}</mat-card-title>
+              <mat-card-subtitle
+                ><p>
+                  {{ t('jet-message-page.click-to-sign-in') }}
                 </p></mat-card-subtitle
               >
             </mat-card-header>
