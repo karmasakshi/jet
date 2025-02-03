@@ -117,8 +117,8 @@
             <a
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
+              [routerLink]="['/reset-password']"
               mat-button
-              routerLink="/reset-password"
             >
               <mat-icon>lock_reset</mat-icon>
               <span>{{ t('jet-sign-in-page.reset-password') }}</span>
@@ -126,8 +126,8 @@
             <a
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
+              [routerLink]="['/sign-up']"
               mat-button
-              routerLink="/sign-up"
             >
               <mat-icon>right_click</mat-icon>
               <span>{{ t('jet-sign-in-page.sign-up') }}</span>

@@ -12,11 +12,11 @@
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
           [matTooltip]="t('jet-app.home')"
+          [routerLink]="['/']"
           jetAnalytics
           jetAnalyticsEventName="Open Home"
           mat-icon-button
           matTooltipPosition="after"
-          routerLink="/"
         >
           <img
             [alt]="t('jet-app.logo')"
@@ -84,11 +84,11 @@
         } @else {
           <a
             [matTooltip]="t('jet-app.home')"
+            [routerLink]="['/']"
             jetAnalytics
             jetAnalyticsEventName="Open Home"
             mat-icon-button
             matTooltipPosition="after"
-            routerLink="/"
           >
             <img
               [alt]="t('jet-app.logo')"
@@ -105,16 +105,16 @@
         <div style="flex: 1"></div>
         @if (user() !== null) {
           <a
+            [routerLink]="['/sign-out']"
             mat-button
-            routerLink="/sign-out"
           >
             <mat-icon>logout</mat-icon>
             <span>{{ t('jet-app.sign-out') }}</span>
           </a>
         } @else {
           <a
+            [routerLink]="['/sign-in']"
             mat-button
-            routerLink="/sign-in"
           >
             <mat-icon>login</mat-icon>
             <span>{{ t('jet-app.sign-in') }}</span>
