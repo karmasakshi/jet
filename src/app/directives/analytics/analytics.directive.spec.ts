@@ -9,9 +9,9 @@ import { AnalyticsDirective } from './analytics.directive';
 @Component({
   template: `
     <button
+      [jetAnalyticsEventData]="'eventData'"
+      [jetAnalyticsEventName]="'eventName'"
       jetAnalytics
-      jetAnalyticsEventData="eventData"
-      jetAnalyticsEventName="eventName"
       type="button"
     >
       Click

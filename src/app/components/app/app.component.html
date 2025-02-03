@@ -11,10 +11,10 @@
     >
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
+          [jetAnalyticsEventName]="'Open Home'"
           [matTooltip]="t('jet-app.home')"
           [routerLink]="['/']"
           jetAnalytics
-          jetAnalyticsEventName="Open Home"
           mat-icon-button
           matTooltipPosition="after"
         >
@@ -71,10 +71,10 @@
         @if (!isSmallViewport) {
           <button
             [attr.aria-label]="t('jet-app.toggle-navigation-menu')"
+            [jetAnalyticsEventName]="'Toggle Sidenav'"
             [matTooltip]="t('jet-app.toggle-navigation-menu')"
             (click)="sidenav.toggle()"
             jetAnalytics
-            jetAnalyticsEventName="Toggle Sidenav"
             mat-icon-button
             matTooltipPosition="after"
             type="button"
@@ -83,10 +83,10 @@
           </button>
         } @else {
           <a
+            [jetAnalyticsEventName]="'Open Home'"
             [matTooltip]="t('jet-app.home')"
             [routerLink]="['/']"
             jetAnalytics
-            jetAnalyticsEventName="Open Home"
             mat-icon-button
             matTooltipPosition="after"
           >

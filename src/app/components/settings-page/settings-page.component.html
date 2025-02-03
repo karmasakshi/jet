@@ -9,9 +9,9 @@
       <mat-card-content>
         <mat-action-list>
           <button
+            [jetAnalyticsEventName]="'Open Language Options'"
             [mat-menu-trigger-for]="languageOptionsMenu"
             jetAnalytics
-            jetAnalyticsEventName="Open Language Options"
             mat-list-item
             type="button"
           >
@@ -24,9 +24,9 @@
             }}</span>
           </button>
           <button
+            [jetAnalyticsEventName]="'Open Color Scheme Options'"
             [mat-menu-trigger-for]="colorSchemeOptionsMenu"
             jetAnalytics
-            jetAnalyticsEventName="Open Color Scheme Options"
             mat-list-item
             type="button"
           >
@@ -39,9 +39,9 @@
             }}</span>
           </button>
           <button
+            [jetAnalyticsEventName]="'Check for Updates'"
             (click)="checkForUpdate()"
             jetAnalytics
-            jetAnalyticsEventName="Check for Updates"
             mat-list-item
             type="button"
           >
@@ -55,9 +55,9 @@
             >
           </button>
           <button
+            [jetAnalyticsEventName]="'Reload'"
             (click)="reload()"
             jetAnalytics
-            jetAnalyticsEventName="Reload"
             mat-list-item
             type="button"
           >
@@ -68,9 +68,9 @@
             }}</span>
           </button>
           <button
+            [jetAnalyticsEventName]="'Reset'"
             (click)="reset()"
             jetAnalytics
-            jetAnalyticsEventName="Reset"
             mat-list-item
             type="button"
           >
@@ -94,9 +94,9 @@
         <button
           [disabled]="settings().languageOption.value === languageOption.value"
           [jetAnalyticsEventData]="{ languageOption: languageOption.value }"
+          [jetAnalyticsEventName]="'Select Language Option'"
           (click)="updateSettings({ languageOption })"
           jetAnalytics
-          jetAnalyticsEventName="Select Language Option"
           mat-menu-item
           type="button"
         >
@@ -120,9 +120,9 @@
           [jetAnalyticsEventData]="{
             colorSchemeOption: colorSchemeOption.value,
           }"
+          [jetAnalyticsEventName]="'Select Color Scheme Option'"
           (click)="updateSettings({ colorSchemeOption })"
           jetAnalytics
-          jetAnalyticsEventName="Select Color Scheme Option"
           mat-menu-item
           type="button"
         >
