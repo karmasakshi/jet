@@ -460,6 +460,12 @@ table {
   font-variation-settings: 'FILL' 1;
 }
 
+// Non-Token Overrides
+
+.mat-expansion-panel {
+  box-shadow: none !important;
+}
+
 .mat-mdc-button-base {
   white-space: nowrap;
 }
