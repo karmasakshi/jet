@@ -3,6 +3,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AlertService } from '../alert/alert.service';
 import { AlertServiceMock } from '../alert/alert.service.mock';
+import { AnalyticsService } from '../analytics/analytics.service';
+import { AnalyticsServiceMock } from '../analytics/analytics.service.mock';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { StorageService } from '../storage/storage.service';
@@ -22,6 +24,7 @@ describe('ServiceWorkerService', () => {
       ],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
+        { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: StorageService, useClass: StorageServiceMock },
       ],

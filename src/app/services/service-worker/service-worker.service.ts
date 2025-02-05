@@ -12,6 +12,7 @@ import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { TranslocoService } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
+import { AnalyticsService } from '../analytics/analytics.service';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
@@ -22,6 +23,7 @@ export class ServiceWorkerService {
   private readonly _swUpdate = inject(SwUpdate);
   private readonly _translocoService = inject(TranslocoService);
   private readonly _alertService = inject(AlertService);
+  private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _storageService = inject(StorageService);
 
@@ -103,11 +105,13 @@ export class ServiceWorkerService {
       (versionEvent: VersionEvent): void => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
+            this._analyticsService.logEvent('No New SW Version Detected');
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
             break;
 
           case 'VERSION_DETECTED':
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
+            this._analyticsService.logEvent('SW Version Detected');
             this._alertService.showAlert(
               this._translocoService.translate('alerts.downloading-updates'),
             );
@@ -115,11 +119,13 @@ export class ServiceWorkerService {
 
           case 'VERSION_INSTALLATION_FAILED':
             this._loggerService.logError(new Error(versionEvent.error));
+            this._analyticsService.logEvent('SW Version Installation Failed');
             this._alertService.showErrorAlert(versionEvent.error);
             break;
 
           case 'VERSION_READY':
             this._isReloadPending = true;
+            this._analyticsService.logEvent('SW Version Ready');
             this._alertService.showAlert(
               this._translocoService.translate('alerts.reload-to-update'),
               this._translocoService.translate('alert-ctas.reload'),

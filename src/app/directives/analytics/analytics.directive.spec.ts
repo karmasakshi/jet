@@ -7,6 +7,7 @@ import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { AnalyticsDirective } from './analytics.directive';
 
 @Component({
+  imports: [AnalyticsDirective],
   template: `
     <button
       [jetAnalyticsEventData]="'eventData'"
