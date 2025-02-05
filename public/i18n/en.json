@@ -50,7 +50,7 @@
   "jet-message-page": {
     "click-to-sign-in": "Please click the link in the email to sign in.",
     "click-to-verify": "Please click the link in the email to verify.",
-    "home": "Home",
+    "open-home": "Open home",
     "message": "Message",
     "not-found": "Not found",
     "page-doesnt-exist": "That page doesn't exist.",
