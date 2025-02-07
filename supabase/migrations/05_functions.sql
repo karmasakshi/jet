@@ -14,7 +14,7 @@ $$;
 
 -- public.profiles
 
-create or replace function public.profiles_insert()
+create or replace function public.insert_profile()
 returns trigger
 language plpgsql
 security definer

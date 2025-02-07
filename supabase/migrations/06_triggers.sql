@@ -1,8 +1,8 @@
 -- auth.users
 
-create or replace trigger profiles_insert
+create or replace trigger insert_profile
 after insert on auth.users for each row
-execute function profiles_insert ();
+execute function insert_profile ();
 
 -- public.profiles
 
