@@ -1,8 +1,5 @@
 {
-  "alert-ctas": {
-    "ok": "OK",
-    "reload": "RELOAD"
-  },
+  "alert-ctas": { "ok": "OK", "reload": "RELOAD" },
   "alerts": {
     "avatar-updated": "Avatar updated.",
     "checking-for-updates": "Checking for updates...",
@@ -35,16 +32,9 @@
     "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
   },
-  "jet-footer": {
-    "buy": "Buy",
-    "docs": "Docs"
-  },
+  "jet-footer": { "buy": "Buy", "docs": "Docs" },
   "jet-home-page": {
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "Jet"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
@@ -54,11 +44,7 @@
     "message": "Message",
     "not-found": "Not found",
     "page-doesnt-exist": "That page doesn't exist.",
-    "seo": {
-      "description": "Message.",
-      "keywords": "jet",
-      "title": "Message"
-    },
+    "seo": { "description": "Message.", "keywords": "jet", "title": "Message" },
     "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",
     "sign-in-link-sent": "Sign in link sent",
     "toolbar-title": "Message",
@@ -71,11 +57,7 @@
     "profile": "Profile",
     "profile-created-on": "Profile created on {{ value }}",
     "profile-last-updated-on": "Profile last updated on {{ value }}",
-    "seo": {
-      "description": "Profile.",
-      "keywords": "jet",
-      "title": "Profile"
-    },
+    "seo": { "description": "Profile.", "keywords": "jet", "title": "Profile" },
     "toolbar-title": "Profile",
     "update-password": "Update password",
     "update-profile": "Update profile",
@@ -116,11 +98,7 @@
     "or": "- or -",
     "password": "Password",
     "reset-password": "Reset password",
-    "seo": {
-      "description": "Sign in.",
-      "keywords": "jet",
-      "title": "Sign In"
-    },
+    "seo": { "description": "Sign in.", "keywords": "jet", "title": "Sign In" },
     "sign-in": "Sign in",
     "sign-in-with-facebook": "Sign in with Facebook",
     "sign-in-with-google": "Sign in with Google",
@@ -140,11 +118,7 @@
     "email": "Email",
     "password": "Password",
     "reset-password": "Reset password",
-    "seo": {
-      "description": "Sign up.",
-      "keywords": "jet",
-      "title": "Sign Up"
-    },
+    "seo": { "description": "Sign up.", "keywords": "jet", "title": "Sign Up" },
     "sign-in": "Sign in",
     "sign-up": "Sign up",
     "toggle-visibility": "Toggle visibility",

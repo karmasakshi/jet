@@ -16,9 +16,7 @@ import { AnalyticsService } from '../analytics/analytics.service';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ServiceWorkerService {
   private readonly _swUpdate = inject(SwUpdate);
   private readonly _translocoService = inject(TranslocoService);

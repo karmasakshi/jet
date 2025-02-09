@@ -13,9 +13,7 @@ export class SettingsServiceMock {
   public readonly languageOption: Signal<LanguageOption>;
 
   public constructor() {
-    this._settings = signal({
-      ...DEFAULT_SETTINGS,
-    });
+    this._settings = signal({ ...DEFAULT_SETTINGS });
 
     this.colorSchemeOption = computed(() => this._settings().colorSchemeOption);
 

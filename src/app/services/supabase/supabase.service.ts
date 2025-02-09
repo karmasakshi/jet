@@ -2,9 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class SupabaseService {
   private readonly _loggerService = inject(LoggerService);
 

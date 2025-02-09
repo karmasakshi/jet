@@ -16,34 +16,17 @@ module.exports = tseslint.config(
     rules: {
       '@angular-eslint/directive-selector': [
         'error',
-        {
-          type: 'attribute',
-          prefix: 'jet',
-          style: 'camelCase',
-        },
+        { type: 'attribute', prefix: 'jet', style: 'camelCase' },
       ],
       '@angular-eslint/component-selector': [
         'error',
-        {
-          type: 'element',
-          prefix: 'jet',
-          style: 'kebab-case',
-        },
+        { type: 'element', prefix: 'jet', style: 'kebab-case' },
       ],
       '@typescript-eslint/explicit-member-accessibility': 'error',
-      '@typescript-eslint/unbound-method': [
-        'error',
-        {
-          ignoreStatic: true,
-        },
-      ],
+      '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
       'sort-keys': 'error',
     },
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-      },
-    },
+    languageOptions: { parserOptions: { projectService: true } },
   },
   {
     files: ['**/*.html'],

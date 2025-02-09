@@ -1,8 +1,5 @@
 {
-  "alert-ctas": {
-    "ok": "موافق",
-    "reload": "إعادة التحميل"
-  },
+  "alert-ctas": { "ok": "موافق", "reload": "إعادة التحميل" },
   "alerts": {
     "avatar-updated": "تم تحديث الصورة الرمزية.",
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
@@ -35,16 +32,9 @@
     "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
-  "jet-footer": {
-    "buy": "شراء",
-    "docs": "المستندات"
-  },
+  "jet-footer": { "buy": "شراء", "docs": "المستندات" },
   "jet-home-page": {
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "Jet"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
@@ -54,11 +44,7 @@
     "message": "رسالة",
     "not-found": "غير موجود",
     "page-doesnt-exist": "هذه الصفحة غير موجودة.",
-    "seo": {
-      "description": "الرسالة.",
-      "keywords": "jet",
-      "title": "الرسالة"
-    },
+    "seo": { "description": "الرسالة.", "keywords": "jet", "title": "الرسالة" },
     "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
     "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول",
     "toolbar-title": "الرسالة",

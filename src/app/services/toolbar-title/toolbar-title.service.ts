@@ -7,9 +7,7 @@ import {
 } from '@angular/core';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ToolbarTitleService {
   private readonly _loggerService = inject(LoggerService);
 

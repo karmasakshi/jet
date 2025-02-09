@@ -8,9 +8,7 @@ import {
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProgressBarService {
   private readonly _loggerService = inject(LoggerService);
 

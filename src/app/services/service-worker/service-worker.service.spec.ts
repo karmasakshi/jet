@@ -17,9 +17,7 @@ describe('ServiceWorkerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: false,
-        }),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
         TranslocoTestingModule.forRoot({}),
       ],
       providers: [

@@ -36,10 +36,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
-      useValue: {
-        disableTooltipInteractivity: true,
-        showDelay: 900,
-      },
+      useValue: { disableTooltipInteractivity: true, showDelay: 900 },
     },
     provideAnimationsAsync(),
     provideRouter(

@@ -24,9 +24,7 @@ import {
 import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _loggerService = inject(LoggerService);

@@ -17,9 +17,7 @@ import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
 import { UserService } from '../user/user.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProfileService {
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);

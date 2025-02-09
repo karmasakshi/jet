@@ -5,9 +5,7 @@ import { AvailableLanguage } from '@jet/types/available-language.type';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { Observable, catchError, of } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
   private readonly _httpClient = inject(HttpClient);
   private readonly _loggerService = inject(LoggerService);

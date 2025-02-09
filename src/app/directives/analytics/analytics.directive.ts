@@ -8,9 +8,7 @@ import {
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
-@Directive({
-  selector: '[jetAnalytics]',
-})
+@Directive({ selector: '[jetAnalytics]' })
 export class AnalyticsDirective {
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
@@ -24,7 +22,8 @@ export class AnalyticsDirective {
     this._loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 
-  @HostListener('click') public logClick(): void {
+  @HostListener('click')
+  public logClick(): void {
     this._analyticsService.logEvent(
       this.jetAnalyticsEventName(),
       this.jetAnalyticsEventData(),

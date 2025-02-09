@@ -3,9 +3,7 @@ import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class StorageService {
   private readonly _loggerService = inject(LoggerService);
 

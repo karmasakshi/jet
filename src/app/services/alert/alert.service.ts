@@ -10,9 +10,7 @@ import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AlertService {
   private readonly _matSnackBar = inject(MatSnackBar);
   private readonly _translocoService = inject(TranslocoService);

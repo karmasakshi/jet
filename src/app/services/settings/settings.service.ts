@@ -16,9 +16,7 @@ import { Settings } from '@jet/interfaces/settings.interface';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class SettingsService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _storageService = inject(StorageService);
@@ -33,10 +31,7 @@ export class SettingsService {
       LocalStorageKey.Settings,
     );
 
-    this._settings = signal({
-      ...DEFAULT_SETTINGS,
-      ...storedSettings,
-    });
+    this._settings = signal({ ...DEFAULT_SETTINGS, ...storedSettings });
 
     this.colorSchemeOption = computed(() => this._settings().colorSchemeOption);
 
@@ -60,9 +55,6 @@ export class SettingsService {
   }
 
   public updateSettings(partialSettings: Partial<Settings>): void {
-    this._settings.update((settings) => ({
-      ...settings,
-      ...partialSettings,
-    }));
+    this._settings.update((settings) => ({ ...settings, ...partialSettings }));
   }
 }
