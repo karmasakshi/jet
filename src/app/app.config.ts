@@ -8,11 +8,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {
-  provideRouter,
-  withComponentInputBinding,
-  withInMemoryScrolling,
-} from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { TranslocoHttpLoader } from '@jet/classes/transloco-loader';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
@@ -39,14 +35,7 @@ export const appConfig: ApplicationConfig = {
       useValue: { disableTooltipInteractivity: true, showDelay: 900 },
     },
     provideAnimationsAsync(),
-    provideRouter(
-      routes,
-      withComponentInputBinding(),
-      withInMemoryScrolling({
-        anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled',
-      }),
-    ),
+    provideRouter(routes, withComponentInputBinding()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
