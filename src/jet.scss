@@ -172,6 +172,7 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
   @include mat.expansion-overrides(
     (
+      actions-divider-color: var(--mat-sys-outline-variant),
       container-background-color: var(--mat-sys-surface-container-low),
       container-shape: var(--mat-sys-corner-small),
       header-description-color: var(--mat-sys-outline),
