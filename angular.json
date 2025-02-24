@@ -21,8 +21,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
             "styles": ["src/jet.scss", "src/styles.scss"],
-            "scripts": [],
-            "allowedCommonJsDependencies": ["ws"]
+            "scripts": []
           },
           "configurations": {
             "production": {

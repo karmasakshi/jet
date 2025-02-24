@@ -7,7 +7,6 @@ import {
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { TranslocoHttpLoader } from '@jet/classes/transloco-loader';
@@ -34,7 +33,6 @@ export const appConfig: ApplicationConfig = {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
       useValue: { disableTooltipInteractivity: true, showDelay: 900 },
     },
-    provideAnimationsAsync(),
     provideRouter(routes, withComponentInputBinding()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),

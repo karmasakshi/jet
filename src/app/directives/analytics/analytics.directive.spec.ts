@@ -10,7 +10,7 @@ import { AnalyticsDirective } from './analytics.directive';
   imports: [AnalyticsDirective],
   template: `
     <button
-      [jetAnalyticsEventData]="'eventData'"
+      [jetAnalyticsEventData]="{ data: 'eventData' }"
       [jetAnalyticsEventName]="'eventName'"
       jetAnalytics
       type="button"
