@@ -27,7 +27,6 @@
   "jet-app": {
     "home": "Home",
     "loading": "Loading...",
-    "logo": "Logo",
     "sign-in": "Sign in",
     "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
