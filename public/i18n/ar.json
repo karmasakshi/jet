@@ -39,9 +39,9 @@
   "jet-message-page": {
     "click-to-sign-in": "يرجى النقر على الرابط في البريد الإلكتروني لتسجيل الدخول.",
     "click-to-verify": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
-    "home": "الرئيسية",
     "message": "رسالة",
     "not-found": "غير موجود",
+    "open-home": "Missing value for 'jet-message-page.open-home'",
     "page-doesnt-exist": "هذه الصفحة غير موجودة.",
     "seo": { "description": "الرسالة.", "keywords": "jet", "title": "الرسالة" },
     "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",

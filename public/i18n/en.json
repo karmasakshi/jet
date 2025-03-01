@@ -39,9 +39,9 @@
   "jet-message-page": {
     "click-to-sign-in": "Please click the link in the email to sign in.",
     "click-to-verify": "Please click the link in the email to verify.",
-    "open-home": "Open home",
     "message": "Message",
     "not-found": "Not found",
+    "open-home": "Open home",
     "page-doesnt-exist": "That page doesn't exist.",
     "seo": { "description": "Message.", "keywords": "jet", "title": "Message" },
     "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",

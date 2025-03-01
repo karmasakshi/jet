@@ -11,6 +11,7 @@
     >
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
+          [attr.aria-label]="t('jet-app.home')"
           [jetAnalyticsEventName]="'Open Home'"
           [matTooltip]="t('jet-app.home')"
           [routerLink]="['/']"
@@ -77,6 +78,7 @@
           </button>
         } @else {
           <a
+            [attr.aria-label]="t('jet-app.home')"
             [jetAnalyticsEventName]="'Open Home'"
             [matTooltip]="t('jet-app.home')"
             [routerLink]="['/']"
