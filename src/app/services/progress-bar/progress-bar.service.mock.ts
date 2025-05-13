@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Signal, WritableSignal, signal } from '@angular/core';
+import { Signal, signal, WritableSignal } from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 
 export class ProgressBarServiceMock {
@@ -30,12 +30,6 @@ export class ProgressBarServiceMock {
 
   public showProgressBar(
     _partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
-  ): void {
-    // Do nothing
-  }
-
-  public updateProgressBarConfiguration(
-    _partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
     // Do nothing
   }

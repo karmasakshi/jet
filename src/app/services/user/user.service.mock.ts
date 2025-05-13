@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Signal, WritableSignal, signal } from '@angular/core';
+import { Signal, signal, WritableSignal } from '@angular/core';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthError,
@@ -15,13 +15,13 @@ import {
 } from '@supabase/supabase-js';
 
 export class UserServiceMock {
-  private readonly _user: WritableSignal<User | null>;
+  private readonly _user: WritableSignal<null | User>;
 
   public constructor() {
     this._user = signal(null);
   }
 
-  public get user(): Signal<User | null> {
+  public get user(): Signal<null | User> {
     return this._user.asReadonly();
   }
 
@@ -59,7 +59,7 @@ export class UserServiceMock {
     return Promise.resolve({} as AuthTokenResponsePassword);
   }
 
-  public signOut(): Promise<{ error: AuthError | null }> {
+  public signOut(): Promise<{ error: null | AuthError }> {
     return Promise.resolve({ error: null });
   }
 

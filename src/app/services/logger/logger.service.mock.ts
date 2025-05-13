@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 export class LoggerServiceMock {
+  public log(..._args: unknown[]): void {
+    // Do nothing
+  }
+
   public logClassInitialization(_className: string): void {
     // Do nothing
   }
@@ -13,15 +17,15 @@ export class LoggerServiceMock {
     // Do nothing
   }
 
+  public logEffectRun(_signalName: string): void {
+    // Do nothing
+  }
+
   public logError(_error: Error): void {
     // Do nothing
   }
 
   public logException(_exception: unknown): void {
-    // Do nothing
-  }
-
-  public logMessages(..._messages: string[]): void {
     // Do nothing
   }
 

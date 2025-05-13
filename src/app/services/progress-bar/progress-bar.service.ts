@@ -1,9 +1,9 @@
 import {
+  inject,
   Injectable,
   Signal,
-  WritableSignal,
-  inject,
   signal,
+  WritableSignal,
 } from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { LoggerService } from '../logger/logger.service';
@@ -14,6 +14,7 @@ export class ProgressBarService {
 
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
   private readonly _progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
+  private _queueTimeout: null | NodeJS.Timeout;
 
   public constructor() {
     this._defaultProgressBarConfiguration = {
@@ -27,6 +28,8 @@ export class ProgressBarService {
       ...this._defaultProgressBarConfiguration,
     });
 
+    this._queueTimeout = null;
+
     this._loggerService.logServiceInitialization('ProgressBarService');
   }
 
@@ -35,28 +38,29 @@ export class ProgressBarService {
   }
 
   public hideProgressBar(): void {
-    this._progressBarConfiguration.update((progressBarConfiguration) => ({
-      ...progressBarConfiguration,
-      isVisible: false,
-    }));
+    this._queue({ isVisible: false });
   }
 
   public showProgressBar(
     partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
   ): void {
-    this._progressBarConfiguration.set({
-      ...this._defaultProgressBarConfiguration,
-      ...partialProgressBarConfiguration,
-      isVisible: true,
-    });
+    this._queue({ ...partialProgressBarConfiguration, isVisible: true });
   }
 
-  public updateProgressBarConfiguration(
+  private _queue(
     partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
-    this._progressBarConfiguration.update((progressBarConfiguration) => ({
-      ...progressBarConfiguration,
-      ...partialProgressBarConfiguration,
-    }));
+    if (this._queueTimeout) {
+      clearTimeout(this._queueTimeout);
+    }
+
+    this._queueTimeout = setTimeout(() => {
+      this._progressBarConfiguration.set({
+        ...this._defaultProgressBarConfiguration,
+        ...partialProgressBarConfiguration,
+      });
+
+      this._queueTimeout = null;
+    }, 100);
   }
 }

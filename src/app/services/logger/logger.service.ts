@@ -11,6 +11,10 @@ export class LoggerService {
     this.logServiceInitialization('LoggerService');
   }
 
+  public log(...args: unknown[]): void {
+    this._logIfEnabled(() => console.log(...args));
+  }
+
   public logClassInitialization(className: string): void {
     this._logIfEnabled(() => console.info(`Class ${className} initialized.`));
   }
@@ -27,16 +31,16 @@ export class LoggerService {
     );
   }
 
+  public logEffectRun(signalName: string): void {
+    this._logIfEnabled(() => console.warn(`Running effect for ${signalName}.`));
+  }
+
   public logError(error: Error): void {
     this._logIfEnabled(() => console.error(error));
   }
 
   public logException(exception: unknown): void {
     this._logIfEnabled(() => console.error(exception));
-  }
-
-  public logMessages(...messages: string[]): void {
-    this._logIfEnabled(() => console.log(...messages));
   }
 
   public logServiceInitialization(serviceName: string): void {

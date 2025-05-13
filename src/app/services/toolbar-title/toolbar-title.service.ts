@@ -1,9 +1,9 @@
 import {
+  inject,
   Injectable,
   Signal,
-  WritableSignal,
-  inject,
   signal,
+  WritableSignal,
 } from '@angular/core';
 import { LoggerService } from '../logger/logger.service';
 
@@ -11,7 +11,7 @@ import { LoggerService } from '../logger/logger.service';
 export class ToolbarTitleService {
   private readonly _loggerService = inject(LoggerService);
 
-  private readonly _toolbarTitle: WritableSignal<string | null>;
+  private readonly _toolbarTitle: WritableSignal<null | string>;
 
   public constructor() {
     this._toolbarTitle = signal(null);
@@ -19,7 +19,7 @@ export class ToolbarTitleService {
     this._loggerService.logServiceInitialization('ToolbarTitleService');
   }
 
-  public get toolbarTitle(): Signal<string | null> {
+  public get toolbarTitle(): Signal<null | string> {
     return this._toolbarTitle.asReadonly();
   }
 

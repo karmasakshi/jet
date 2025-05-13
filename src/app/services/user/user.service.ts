@@ -1,9 +1,9 @@
 import {
+  inject,
   Injectable,
   Signal,
-  WritableSignal,
-  inject,
   signal,
+  WritableSignal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
@@ -31,7 +31,7 @@ export class UserService {
   private readonly _supabaseService = inject(SupabaseService);
 
   private readonly _supabaseClient: SupabaseClient;
-  private readonly _user: WritableSignal<User | null>;
+  private readonly _user: WritableSignal<null | User>;
 
   public constructor() {
     this._supabaseClient = this._supabaseService.supabaseClient;
@@ -39,7 +39,10 @@ export class UserService {
     this._user = signal(null);
 
     this._supabaseClient.auth.onAuthStateChange(
-      (_authChangeEvent: AuthChangeEvent, authSession: AuthSession | null) => {
+      (
+        _authChangeEvent: AuthChangeEvent,
+        authSession: null | AuthSession,
+      ): void => {
         this._user.set(authSession?.user ?? null);
       },
     );
@@ -47,7 +50,7 @@ export class UserService {
     this._loggerService.logServiceInitialization('UserService');
   }
 
-  public get user(): Signal<User | null> {
+  public get user(): Signal<null | User> {
     return this._user.asReadonly();
   }
 
@@ -96,7 +99,7 @@ export class UserService {
     return this._supabaseClient.auth.signInWithPassword({ email, password });
   }
 
-  public signOut(): Promise<{ error: AuthError | null }> {
+  public signOut(): Promise<{ error: null | AuthError }> {
     return this._supabaseClient.auth.signOut();
   }
 

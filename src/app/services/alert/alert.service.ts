@@ -1,4 +1,4 @@
-import { Injectable, Signal, inject } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import {
   MatSnackBar,
   MatSnackBarRef,
