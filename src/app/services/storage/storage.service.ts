@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
 import { LoggerService } from '../logger/logger.service';
@@ -39,12 +39,12 @@ export class StorageService {
     let value: null | T = null;
 
     try {
-      const serializedValue: string | null = window.localStorage.getItem(
+      const serializedValue: null | string = window.localStorage.getItem(
         this._prefix + localStorageKey,
       );
 
       if (serializedValue !== null) {
-        value = JSON.parse(serializedValue) as T;
+        value = JSON.parse(serializedValue);
       }
     } catch (exception: unknown) {
       this._loggerService.logException(exception);
@@ -59,12 +59,12 @@ export class StorageService {
     let value: null | T = null;
 
     try {
-      const serializedValue: string | null = window.sessionStorage.getItem(
+      const serializedValue: null | string = window.sessionStorage.getItem(
         this._prefix + sessionStorageKey,
       );
 
       if (serializedValue !== null) {
-        value = JSON.parse(serializedValue) as T;
+        value = JSON.parse(serializedValue);
       }
     } catch (exception: unknown) {
       this._loggerService.logException(exception);
@@ -95,6 +95,7 @@ export class StorageService {
   ): void {
     try {
       const serializedValue: string = JSON.stringify(value);
+
       window.localStorage.setItem(
         this._prefix + localStorageKey,
         serializedValue,
@@ -110,6 +111,7 @@ export class StorageService {
   ): void {
     try {
       const serializedValue: string = JSON.stringify(value);
+
       window.sessionStorage.setItem(
         this._prefix + sessionStorageKey,
         serializedValue,

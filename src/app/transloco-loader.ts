@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
-import { Observable, catchError, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {

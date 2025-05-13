@@ -9,14 +9,7 @@
       <span>{{ t('jet-footer.buy') }}</span>
     </a>
     <a
-      href="https://docs.jetproject.dev"
-      mat-button
-      target="_blank"
-    >
-      <mat-icon>docs</mat-icon>
-      <span>{{ t('jet-footer.docs') }}</span>
-    </a>
-    <a
+      [jetAnalytics]="{ name: 'Open X profile' }"
       href="https://x.com/jetprojectdev"
       mat-button
       target="_blank"

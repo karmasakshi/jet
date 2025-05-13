@@ -1,13 +1,14 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { DOCUMENT, NgClass, NgStyle } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
+  effect,
+  inject,
   OnDestroy,
   OnInit,
   Renderer2,
   Signal,
-  effect,
-  inject,
   untracked,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -47,7 +48,7 @@ import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { UserService } from '@jet/services/user/user.service';
 import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
-import { AvailableFont } from '@jet/types/available-font.type';
+import { AvailableFontPair } from '@jet/types/available-font-pair.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
@@ -56,9 +57,8 @@ import { Subscription } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgClass,
-    NgStyle,
     MatButtonModule,
     MatIconModule,
     MatListModule,
@@ -95,28 +95,28 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private _activeFont: AvailableFont;
+  private _activeFontPair: AvailableFontPair;
   private _activeLanguage: AvailableLanguage;
   private _activeColorScheme: AvailableColorScheme;
   private _activeThemeColor: ColorSchemeOption['themeColor'];
   private readonly _darkColorSchemeMediaQuery: MediaQueryList;
   private _systemColorSchemeListener:
-    | ((mediaQueryListEvent: MediaQueryListEvent) => void)
-    | undefined;
+    | null
+    | ((mediaQueryListEvent: MediaQueryListEvent) => void);
   private readonly _isPwaMode: boolean;
   private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
 
-  public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
+  public activeNavigationMenuItemPath: undefined | NavigationMenuItem['path'];
   public readonly isSmallViewport: boolean;
   public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly toolbarTitle: Signal<string | null>;
-  public readonly user: Signal<User | null>;
+  public readonly toolbarTitle: Signal<null | string>;
+  public readonly user: Signal<null | User>;
 
   public constructor() {
-    this._activeFont = DEFAULT_LANGUAGE_OPTION.font;
+    this._activeFontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
 
     this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
@@ -128,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
       '(prefers-color-scheme: dark)',
     );
 
-    this._systemColorSchemeListener = undefined;
+    this._systemColorSchemeListener = null;
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
@@ -155,16 +155,22 @@ export class AppComponent implements OnInit, OnDestroy {
     this.user = this._userService.user;
 
     effect(() => {
+      this._loggerService.logEffectRun('languageOption');
+
       const languageOption: LanguageOption = this.languageOption();
+
       untracked(() => {
-        this._setFontClass(languageOption.font);
+        this._setFontPairClass(languageOption.fontPair);
         this._setLanguage(languageOption);
       });
     });
 
     effect(() => {
+      this._loggerService.logEffectRun('colorSchemeOption');
+
       const colorScheme: AvailableColorScheme =
         this._settingsService.colorSchemeOption().value;
+
       untracked(() => {
         if (colorScheme === 'automatic') {
           this._setSystemColorSchemeListener();
@@ -187,7 +193,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._routerSubscription = this._router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
-        this._progressBarService.showProgressBar();
+        this._progressBarService.showProgressBar({ mode: 'query' });
       } else if (
         event instanceof NavigationCancel ||
         event instanceof NavigationEnd ||
@@ -198,7 +204,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
 
         if (event instanceof NavigationError) {
-          const error: Error | undefined = event.error as Error;
+          const error: undefined | Error = event.error as Error;
           this._loggerService.logError(error);
           this._alertService.showErrorAlert(error.message);
         }
@@ -211,7 +217,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this._serviceWorkerService.serviceWorkerUpdateSubscription;
 
     this._setIcons();
-
     this._setZoom(this._isPwaMode);
   }
 
@@ -227,7 +232,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     this._activeColorScheme = nextColorScheme;
+
     const prefix = 'jet-color-scheme-';
+
     this._document.body.className = this._document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
@@ -237,19 +244,21 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _setFontClass(nextFont: AvailableFont): void {
-    if (nextFont === this._activeFont) {
+  private _setFontPairClass(nextFontPair: AvailableFontPair): void {
+    if (nextFontPair === this._activeFontPair) {
       return;
     }
 
-    this._activeFont = nextFont;
-    const prefix = 'jet-font-';
+    this._activeFontPair = nextFontPair;
+
+    const prefix = 'jet-font-pair-';
+
     this._document.body.className = this._document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
-    if (nextFont !== DEFAULT_LANGUAGE_OPTION.font) {
-      this._renderer2.addClass(this._document.body, prefix + nextFont);
+    if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+      this._renderer2.addClass(this._document.body, prefix + nextFontPair);
     }
   }
 
@@ -316,6 +325,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (nextColorSchemeOption.themeColor !== this._activeThemeColor) {
       this._activeThemeColor = nextColorSchemeOption.themeColor;
+
       this._meta.updateTag({
         content: nextColorSchemeOption.themeColor ?? '#ffffff',
         name: 'theme-color',
@@ -342,6 +352,7 @@ export class AppComponent implements OnInit, OnDestroy {
       'change',
       this._systemColorSchemeListener,
     );
-    this._systemColorSchemeListener = undefined;
+
+    this._systemColorSchemeListener = null;
   }
 }

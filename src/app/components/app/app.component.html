@@ -1,21 +1,22 @@
 <ng-container *transloco="let t">
+  @let _languageOption = languageOption();
   <mat-sidenav-container
     class="jet-sidenav-container"
-    [dir]="languageOption().directionality"
+    [dir]="_languageOption.directionality"
   >
     <mat-sidenav
       class="jet-sidenav"
       #sidenav
       [mode]="isSmallViewport ? 'over' : 'side'"
+      [opened]="!isSmallViewport"
       fixedInViewport
     >
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
           [attr.aria-label]="t('jet-app.home')"
-          [jetAnalyticsEventName]="'Open Home'"
+          [jetAnalytics]="{ name: 'Open home' }"
           [matTooltip]="t('jet-app.home')"
           [routerLink]="['/']"
-          jetAnalytics
           mat-icon-button
           matTooltipPosition="after"
         >
@@ -32,10 +33,12 @@
               [activated]="
                 activeNavigationMenuItemPath === navigationMenuItem.path
               "
+              [matTooltip]="t(navigationMenuItem.nameKey)"
               [routerLink]="[navigationMenuItem.path]"
               (click)="isSmallViewport && sidenav.close()"
               mat-list-item
               matListItemTitle
+              matTooltipPosition="after"
             >
               <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
               <span>{{ t(navigationMenuItem.nameKey) }}</span>
@@ -47,29 +50,30 @@
     <mat-sidenav-content class="jet-content">
       <mat-toolbar
         class="jet-content-toolbar"
-        [ngClass]="{
+        [class]="{
           'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
         }"
       >
+        @let _progressBarConfiguration = progressBarConfiguration();
         <mat-progress-bar
           class="jet-progress-bar"
-          [bufferValue]="progressBarConfiguration().bufferValue"
-          [mode]="progressBarConfiguration().mode"
-          [ngStyle]="{
-            visibility: progressBarConfiguration().isVisible
+          [bufferValue]="_progressBarConfiguration.bufferValue"
+          [mode]="_progressBarConfiguration.mode"
+          [style]="{
+            visibility: _progressBarConfiguration.isVisible
               ? 'visible'
               : 'hidden',
           }"
-          [value]="progressBarConfiguration().value"
+          [value]="_progressBarConfiguration.value"
         >
         </mat-progress-bar>
+        @let _toolbarTitle = toolbarTitle();
         @if (!isSmallViewport) {
           <button
             [attr.aria-label]="t('jet-app.toggle-navigation-menu')"
-            [jetAnalyticsEventName]="'Toggle Sidenav'"
+            [jetAnalytics]="{ name: 'Toggle sidenav' }"
             [matTooltip]="t('jet-app.toggle-navigation-menu')"
             (click)="sidenav.toggle()"
-            jetAnalytics
             mat-icon-button
             matTooltipPosition="after"
             type="button"
@@ -79,41 +83,45 @@
         } @else {
           <a
             [attr.aria-label]="t('jet-app.home')"
-            [jetAnalyticsEventName]="'Open Home'"
+            [jetAnalytics]="{ name: 'Open home' }"
             [matTooltip]="t('jet-app.home')"
             [routerLink]="['/']"
-            jetAnalytics
             mat-icon-button
             matTooltipPosition="after"
           >
             <mat-icon svgIcon="logo"></mat-icon>
           </a>
         }
-        <h1>
-          {{ toolbarTitle() || t('jet-app.loading') }}
-        </h1>
+        <span>
+          {{ _toolbarTitle || t('jet-app.loading') }}
+        </span>
         <div style="flex: 1"></div>
-        @if (user() !== null) {
+        @let _user = user();
+        @if (_user !== null) {
           <a
+            [attr.aria-label]="t('jet-app.sign-out')"
+            [matTooltip]="t('jet-app.sign-out')"
             [routerLink]="['/sign-out']"
-            mat-button
+            mat-icon-button
+            matTooltipPosition="before"
           >
             <mat-icon>logout</mat-icon>
-            <span>{{ t('jet-app.sign-out') }}</span>
           </a>
         } @else {
           <a
+            [attr.aria-label]="t('jet-app.sign-in')"
+            [matTooltip]="t('jet-app.sign-in')"
             [routerLink]="['/sign-in']"
-            mat-button
+            mat-icon-button
+            matTooltipPosition="before"
           >
             <mat-icon>login</mat-icon>
-            <span>{{ t('jet-app.sign-in') }}</span>
           </a>
         }
       </mat-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
         <main
-          [ngClass]="{
+          [class]="{
             'jet-add-safe-area':
               sidenav.mode === 'over' ? true : !sidenav.opened,
           }"
@@ -122,7 +130,7 @@
         </main>
       </mat-tab-nav-panel>
       <footer
-        [ngClass]="{
+        [class]="{
           'jet-add-bottom-margin': isSmallViewport,
           'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
         }"
@@ -144,11 +152,11 @@
               [active]="
                 activeNavigationMenuItemPath === navigationMenuItem.path
               "
+              [attr.aria-label]="t(navigationMenuItem.nameKey)"
               [routerLink]="[navigationMenuItem.path]"
               mat-tab-link
             >
               <mat-icon>{{ navigationMenuItem.icon }}</mat-icon>
-              <span>&nbsp;{{ t(navigationMenuItem.nameKey) }}</span>
             </a>
           }
         </nav>
