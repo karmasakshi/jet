@@ -1,154 +1,20 @@
 @use '@angular/material' as mat;
-@use 'sass:map';
+@use '../_theme-colors' as mat-theme;
 
-$jet-font-default: ('Noto Sans', sans-serif);
-$jet-font-noto-sans-arabic: ('Noto Sans Arabic', $jet-font-default);
+$ns-font-family: ('Noto Sans', sans-serif);
+$nsa-font-family: ('Noto Sans Arabic', sans-serif);
 
-// Generate custom palette using `ng generate @angular/material:theme-color`
-
-// Note: Color palettes are generated from primary: #74564a
-$_palettes: (
-  primary: (
-    0: #000000,
-    10: #2b160d,
-    20: #432a20,
-    25: #4f352b,
-    30: #5c4035,
-    35: #694c40,
-    40: #76584b,
-    50: #907063,
-    60: #ac897b,
-    70: #c8a395,
-    80: #e5beaf,
-    90: #ffdbcd,
-    95: #ffede7,
-    98: #fff8f6,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  secondary: (
-    0: #000000,
-    10: #241915,
-    20: #3a2e29,
-    25: #463833,
-    30: #52443e,
-    35: #5e4f49,
-    40: #6b5b55,
-    50: #85736d,
-    60: #9f8d86,
-    70: #bba7a0,
-    80: #d7c2bb,
-    90: #f4ded6,
-    95: #ffede7,
-    98: #fff8f6,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  tertiary: (
-    0: #000000,
-    10: #1f1c06,
-    20: #353118,
-    25: #403c22,
-    30: #4c472d,
-    35: #585338,
-    40: #645f43,
-    50: #7d785a,
-    60: #979172,
-    70: #b2ac8b,
-    80: #cec7a5,
-    90: #ebe3bf,
-    95: #f9f1cd,
-    98: #fff9e9,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  neutral: (
-    0: #000000,
-    10: #1e1b1a,
-    20: #33302e,
-    25: #3f3a39,
-    30: #4a4644,
-    35: #565150,
-    40: #625d5c,
-    50: #7b7674,
-    60: #958f8e,
-    70: #b0aaa8,
-    80: #ccc5c3,
-    90: #e9e1df,
-    95: #f7efed,
-    98: #fff8f6,
-    99: #fffbff,
-    100: #ffffff,
-    4: #100e0d,
-    6: #161312,
-    12: #221f1e,
-    17: #2d2928,
-    22: #383433,
-    24: #3c3837,
-    87: #e0d8d6,
-    92: #eee6e4,
-    94: #f4ecea,
-    96: #faf2ef,
-  ),
-  neutral-variant: (
-    0: #000000,
-    10: #221a16,
-    20: #382e2a,
-    25: #443935,
-    30: #504440,
-    35: #5c504b,
-    40: #685c57,
-    50: #82746f,
-    60: #9c8e88,
-    70: #b8a8a2,
-    80: #d4c3bd,
-    90: #f0dfd9,
-    95: #ffede7,
-    98: #fff8f6,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  error: (
-    0: #000000,
-    10: #410002,
-    20: #690005,
-    25: #7e0007,
-    30: #93000a,
-    35: #a80710,
-    40: #ba1a1a,
-    50: #de3730,
-    60: #ff5449,
-    70: #ff897d,
-    80: #ffb4ab,
-    90: #ffdad6,
-    95: #ffedea,
-    98: #fff8f7,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-);
-
-$_rest: (
-  secondary: map.get($_palettes, secondary),
-  neutral: map.get($_palettes, neutral),
-  neutral-variant: map.get($_palettes, neutral-variant),
-  error: map.get($_palettes, error),
-);
-
-$primary-palette: map.merge(map.get($_palettes, primary), $_rest);
-$tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
-
-:root {
+html {
   @include mat.theme(
     (
       color: (
-        primary: $primary-palette,
-        tertiary: $tertiary-palette,
+        primary: mat-theme.$primary-palette,
+        tertiary: mat-theme.$tertiary-palette,
         theme-type: color-scheme,
       ),
       typography: (
-        plain-family: $jet-font-default,
-        brand-family: $jet-font-default,
+        plain-family: $ns-font-family,
+        brand-family: $ns-font-family,
         bold-weight: 700,
         medium-weight: 500,
         regular-weight: 400,
@@ -164,24 +30,9 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
     )
   );
 
-  @include mat.divider-overrides(
-    (
-      color: var(--mat-sys-outline-variant),
-    )
-  );
-
   @include mat.expansion-overrides(
     (
-      actions-divider-color: var(--mat-sys-outline-variant),
       container-background-color: var(--mat-sys-surface-container-low),
-      container-shape: var(--mat-sys-corner-small),
-      header-description-color: var(--mat-sys-outline),
-    )
-  );
-
-  @include mat.icon-button-overrides(
-    (
-      icon-size: 21px,
     )
   );
 
@@ -202,9 +53,10 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
     )
   );
 
-  @include mat.table-overrides(
+  @include mat.stepper-overrides(
     (
-      row-item-outline-color: var(--mat-sys-outline-variant),
+      header-focus-state-layer-shape: var(--mat-sys-corner-none),
+      header-hover-state-layer-shape: var(--mat-sys-corner-none),
     )
   );
 
@@ -221,7 +73,7 @@ body {
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
   color-scheme: light dark;
-  font-family: $jet-font-default;
+  font-family: $ns-font-family;
   margin: 0;
 
   &.jet-color-scheme-dark {
@@ -232,12 +84,12 @@ body {
     color-scheme: light;
   }
 
-  &.jet-font-noto-sans-arabic {
+  &.jet-font-pair-nsa-nsa {
     @include mat.theme(
       (
         typography: (
-          plain-family: $jet-font-noto-sans-arabic,
-          brand-family: $jet-font-noto-sans-arabic,
+          plain-family: $nsa-font-family,
+          brand-family: $nsa-font-family,
           bold-weight: 700,
           medium-weight: 500,
           regular-weight: 400,
@@ -269,7 +121,6 @@ body {
 
           &.jet-add-safe-area {
             padding-left: calc(16px + env(safe-area-inset-left));
-            padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
 
@@ -280,7 +131,6 @@ body {
 
             &.jet-add-safe-area {
               padding-left: calc(16px + env(safe-area-inset-left));
-              padding-right: calc(16px + env(safe-area-inset-right));
             }
           }
         }
@@ -291,7 +141,6 @@ body {
 
           &.jet-add-safe-area {
             padding-left: calc(16px + env(safe-area-inset-left));
-            padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
 
@@ -328,7 +177,6 @@ body {
           padding-right: 16px;
 
           &.jet-add-safe-area {
-            padding-left: calc(16px + env(safe-area-inset-left));
             padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
@@ -339,7 +187,6 @@ body {
             padding-right: 16px;
 
             &.jet-add-safe-area {
-              padding-left: calc(16px + env(safe-area-inset-left));
               padding-right: calc(16px + env(safe-area-inset-right));
             }
           }
@@ -350,7 +197,6 @@ body {
           padding-right: 16px;
 
           &.jet-add-safe-area {
-            padding-left: calc(16px + env(safe-area-inset-left));
             padding-right: calc(16px + env(safe-area-inset-right));
           }
         }
@@ -452,16 +298,9 @@ table {
   overflow: hidden;
 }
 
-.cdk-overlay-pane {
-  margin: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left) !important;
-}
-
 .material-symbols-rounded {
   font-variation-settings: 'FILL' 1;
 }
-
-// Non-Token Overrides
 
 .mat-expansion-panel {
   box-shadow: none !important;
@@ -472,8 +311,6 @@ table {
 }
 
 .mat-mdc-card {
-  overflow: hidden;
-
   .mat-mdc-card-actions {
     gap: 8px;
   }
@@ -492,6 +329,21 @@ table {
   }
 }
 
+.mat-mdc-option {
+  @include mat.list-overrides(
+    (
+      list-item-container-shape: var(--mat-sys-corner-none),
+    )
+  );
+}
+
 .mat-mdc-paginator {
   border-radius: var(--mat-sys-corner-small);
+}
+
+.mat-mdc-snack-bar-container {
+  margin: calc(8px + env(safe-area-inset-top))
+    calc(8px + env(safe-area-inset-right))
+    calc(8px + env(safe-area-inset-bottom))
+    calc(8px + env(safe-area-inset-left)) !important;
 }

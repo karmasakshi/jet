@@ -1,1 +1,1 @@
-export type AvailableFontPair = 'noto-sans' | 'noto-sans-arabic';
+export type AvailableFontPair = 'ns-ns' | 'nsa-nsa';
