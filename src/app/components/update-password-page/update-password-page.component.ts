@@ -1,5 +1,11 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -15,7 +21,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -26,6 +31,7 @@ import { Subscription } from 'rxjs';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgOptimizedImage,
     ReactiveFormsModule,
@@ -34,7 +40,6 @@ import { PageComponent } from '../page/page.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule,
     TranslocoModule,
     PageComponent,
   ],
@@ -51,28 +56,34 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
+  private _isLoading: boolean;
   private _newPasswordFormControlSubscription: Subscription;
 
   public isConfirmNewPasswordHidden: boolean;
   public isNewPasswordHidden: boolean;
-  public isUpdatePasswordPending: boolean;
   public readonly updatePasswordFormGroup: FormGroup<{
-    confirmNewPassword: FormControl<string | null>;
-    newPassword: FormControl<string | null>;
+    confirmNewPassword: FormControl<null | string>;
+    newPassword: FormControl<null | string>;
   }>;
 
   public constructor() {
+    this._isLoading = false;
+
     this._newPasswordFormControlSubscription = Subscription.EMPTY;
 
     this.isConfirmNewPasswordHidden = true;
 
     this.isNewPasswordHidden = true;
 
-    this.isUpdatePasswordPending = false;
-
     this.updatePasswordFormGroup = this._formBuilder.group({
-      confirmNewPassword: ['', [Validators.required, Validators.minLength(6)]],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmNewPassword: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      newPassword: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
 
     this._loggerService.logComponentInitialization(
@@ -100,11 +111,11 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   }
 
   public async updatePassword(password: string): Promise<void> {
-    if (this.isUpdatePasswordPending || this.updatePasswordFormGroup.invalid) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isUpdatePasswordPending = true;
+    this._isLoading = true;
     this.updatePasswordFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -127,10 +138,9 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.updatePasswordFormGroup.enable();
     } finally {
-      this.isUpdatePasswordPending = false;
+      this._isLoading = false;
+      this.updatePasswordFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }
@@ -140,7 +150,7 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   ): ValidatorFn {
     return (
       confirmNewPasswordControl: AbstractControl,
-    ): ValidationErrors | null => {
+    ): null | ValidationErrors => {
       if (!confirmNewPasswordControl.value) {
         return null;
       }

@@ -9,9 +9,9 @@
       <mat-card class="jet-maxw-480">
         <img
           [alt]="t('jet-sign-up-page.sign-up')"
+          [ngSrc]="'./images/card.webp'"
           height="180"
           mat-card-image
-          ngSrc="./card-image.webp"
           priority
           width="480"
         />
@@ -49,15 +49,13 @@
               <button
                 [attr.aria-label]="t('jet-sign-up-page.toggle-visibility')"
                 [disabled]="signUpFormGroup.controls.password.disabled"
-                [matTooltip]="t('jet-sign-up-page.toggle-visibility')"
                 (click)="isPasswordHidden = !isPasswordHidden"
                 mat-icon-button
                 matSuffix
-                tabindex="-1"
                 type="button"
               >
                 <mat-icon>{{
-                  isPasswordHidden ? 'visibility_off' : 'visibility'
+                  isPasswordHidden ? 'visibility' : 'visibility_off'
                 }}</mat-icon>
               </button>
             </mat-form-field>
@@ -70,8 +68,7 @@
             mat-flat-button
             type="submit"
           >
-            <mat-icon>right_click</mat-icon>
-            <span>{{ t('jet-sign-up-page.sign-up') }}</span>
+            {{ t('jet-sign-up-page.sign-up') }}
           </button>
         </mat-card-actions>
       </mat-card>
@@ -84,19 +81,15 @@
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               [routerLink]="['/sign-in']"
               mat-button
+              >{{ t('jet-sign-up-page.sign-in') }}</a
             >
-              <mat-icon>login</mat-icon>
-              <span>{{ t('jet-sign-up-page.sign-in') }}</span>
-            </a>
             <a
               [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               [routerLink]="['/reset-password']"
               mat-button
+              >{{ t('jet-sign-up-page.reset-password') }}</a
             >
-              <mat-icon>lock_reset</mat-icon>
-              <span>{{ t('jet-sign-up-page.reset-password') }}</span>
-            </a>
           </div>
         </mat-card-content>
       </mat-card>

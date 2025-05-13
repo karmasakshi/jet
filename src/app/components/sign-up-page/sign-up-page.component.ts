@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -12,20 +12,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import {
-  BindQueryParamsFactory,
-  BindQueryParamsManager,
-} from '@ngneat/bind-query-params';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgOptimizedImage,
     ReactiveFormsModule,
@@ -34,7 +30,6 @@ import { PageComponent } from '../page/page.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule,
     RouterLink,
     TranslocoModule,
     PageComponent,
@@ -43,7 +38,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './sign-up-page.component.scss',
   templateUrl: './sign-up-page.component.html',
 })
-export class SignUpPageComponent implements OnInit, OnDestroy {
+export class SignUpPageComponent {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -51,50 +46,40 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
-  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
-  private readonly _bindQueryParamsManager: BindQueryParamsManager<{
-    email: string;
-  }>;
+  private _isLoading: boolean;
 
   public isPasswordHidden: boolean;
-  public isSignUpPending: boolean;
   public readonly signUpFormGroup: FormGroup<{
-    email: FormControl<string | null>;
-    password: FormControl<string | null>;
+    email: FormControl<null | string>;
+    password: FormControl<null | string>;
   }>;
 
   public constructor() {
-    this._bindQueryParamsManager = this._bindQueryParamsFactory.create([
-      { queryKey: 'email', type: 'string' },
-    ]);
+    this._isLoading = false;
 
     this.isPasswordHidden = true;
 
-    this.isSignUpPending = false;
-
     this.signUpFormGroup = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      email: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
 
     this._loggerService.logComponentInitialization('SignUpPageComponent');
   }
 
-  public ngOnInit(): void {
-    this._bindQueryParamsManager.connect(this.signUpFormGroup);
-  }
-
-  public ngOnDestroy(): void {
-    this._bindQueryParamsManager.destroy();
-  }
-
   public async signUp(email: string, password: string) {
-    if (this.isSignUpPending || this.signUpFormGroup.invalid) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isSignUpPending = true;
+    this._isLoading = true;
     this.signUpFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -121,10 +106,9 @@ export class SignUpPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.signUpFormGroup.enable();
     } finally {
-      this.isSignUpPending = false;
+      this._isLoading = false;
+      this.signUpFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }

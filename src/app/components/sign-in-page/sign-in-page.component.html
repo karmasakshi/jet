@@ -6,12 +6,18 @@
     [toolbarTitle]="t('jet-sign-in-page.toolbar-title')"
   >
     <div class="jet-flex-col-center">
+      @let _returnUrl = returnUrl() ?? '/';
+      @if (_returnUrl !== '/') {
+        <span style="font: var(--mat-sys-headline-medium)">{{
+          t('jet-sign-in-page.sign-in-to-continue', { returnUrl: _returnUrl })
+        }}</span>
+      }
       <mat-card class="jet-maxw-480">
         <img
           [alt]="t('jet-sign-in-page.sign-in')"
+          [ngSrc]="'./images/card.webp'"
           height="180"
           mat-card-image
-          ngSrc="./card-image.webp"
           priority
           width="480"
         />
@@ -24,17 +30,7 @@
               mat-button
               type="button"
             >
-              <mat-icon>open_in_new</mat-icon>
-              <span>{{ t('jet-sign-in-page.sign-in-with-google') }}</span>
-            </button>
-            <button
-              [disabled]="signInFormGroup.disabled"
-              (click)="signInWithOauth('facebook')"
-              mat-button
-              type="button"
-            >
-              <mat-icon>open_in_new</mat-icon>
-              <span>{{ t('jet-sign-in-page.sign-in-with-facebook') }}</span>
+              {{ t('jet-sign-in-page.sign-in-with-google') }}
             </button>
           </div>
           <p style="text-align: center">
@@ -72,15 +68,13 @@
               <button
                 [attr.aria-label]="t('jet-sign-in-page.toggle-visibility')"
                 [disabled]="signInFormGroup.controls.password.disabled"
-                [matTooltip]="t('jet-sign-in-page.toggle-visibility')"
                 (click)="isPasswordHidden = !isPasswordHidden"
                 mat-icon-button
                 matSuffix
-                tabindex="-1"
                 type="button"
               >
                 <mat-icon>{{
-                  isPasswordHidden ? 'visibility_off' : 'visibility'
+                  isPasswordHidden ? 'visibility' : 'visibility_off'
                 }}</mat-icon>
               </button>
             </mat-form-field>
@@ -93,10 +87,8 @@
             mat-flat-button
             type="submit"
           >
-            <mat-icon>login</mat-icon>
-            <span>{{ t('jet-sign-in-page.sign-in') }}</span>
+            {{ t('jet-sign-in-page.sign-in') }}
           </button>
-          <div style="flex: 1"></div>
           <button
             [disabled]="
               signInFormGroup.disabled || signInFormGroup.controls.email.invalid
@@ -105,8 +97,7 @@
             mat-button
             type="button"
           >
-            <mat-icon>link</mat-icon>
-            <span>{{ t('jet-sign-in-page.email-me-a-link-to-sign-in') }}</span>
+            {{ t('jet-sign-in-page.email-me-a-link-to-sign-in') }}
           </button>
         </mat-card-actions>
       </mat-card>
@@ -119,19 +110,15 @@
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               [routerLink]="['/reset-password']"
               mat-button
+              >{{ t('jet-sign-in-page.reset-password') }}</a
             >
-              <mat-icon>lock_reset</mat-icon>
-              <span>{{ t('jet-sign-in-page.reset-password') }}</span>
-            </a>
             <a
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               [routerLink]="['/sign-up']"
               mat-button
+              >{{ t('jet-sign-in-page.sign-up') }}</a
             >
-              <mat-icon>right_click</mat-icon>
-              <span>{{ t('jet-sign-in-page.sign-up') }}</span>
-            </a>
           </div>
         </mat-card-content>
       </mat-card>

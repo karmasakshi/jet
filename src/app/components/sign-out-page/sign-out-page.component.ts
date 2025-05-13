@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -8,6 +13,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-sign-out-page',
   styleUrl: './sign-out-page.component.scss',
@@ -21,10 +27,10 @@ export class SignOutPageComponent implements OnInit {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private _isSignOutPending: boolean;
+  private _isLoading: boolean;
 
   public constructor() {
-    this._isSignOutPending = false;
+    this._isLoading = false;
 
     this._loggerService.logComponentInitialization('SignOutPageComponent');
   }
@@ -34,11 +40,11 @@ export class SignOutPageComponent implements OnInit {
   }
 
   private async _signOut(): Promise<void> {
-    if (this._isSignOutPending) {
+    if (this._isLoading) {
       return;
     }
 
-    this._isSignOutPending = true;
+    this._isLoading = true;
     this._progressBarService.showProgressBar();
 
     try {
@@ -61,7 +67,7 @@ export class SignOutPageComponent implements OnInit {
         this._loggerService.logException(exception);
       }
     } finally {
-      this._isSignOutPending = false;
+      this._isLoading = false;
       this._progressBarService.hideProgressBar();
     }
   }

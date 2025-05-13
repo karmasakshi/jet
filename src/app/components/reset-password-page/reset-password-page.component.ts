@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -19,13 +19,10 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule } from '@jsverse/transloco';
-import {
-  BindQueryParamsFactory,
-  BindQueryParamsManager,
-} from '@ngneat/bind-query-params';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgOptimizedImage,
     ReactiveFormsModule,
@@ -43,33 +40,28 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './reset-password-page.component.scss',
   templateUrl: './reset-password-page.component.html',
 })
-export class ResetPasswordPageComponent implements OnInit, OnDestroy {
+export class ResetPasswordPageComponent {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _userService = inject(UserService);
-  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
-  private readonly _bindQueryParamsManager: BindQueryParamsManager<{
-    email: string;
-  }>;
+  private _isLoading: boolean;
 
-  public isResetPasswordPending: boolean;
   public readonly resetPasswordFormGroup: FormGroup<{
-    email: FormControl<string | null>;
+    email: FormControl<null | string>;
   }>;
 
   public constructor() {
-    this._bindQueryParamsManager = this._bindQueryParamsFactory.create([
-      { queryKey: 'email', type: 'string' },
-    ]);
-
-    this.isResetPasswordPending = false;
+    this._isLoading = false;
 
     this.resetPasswordFormGroup = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.email,
+      ]),
     });
 
     this._loggerService.logComponentInitialization(
@@ -77,20 +69,12 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
     );
   }
 
-  public ngOnInit(): void {
-    this._bindQueryParamsManager.connect(this.resetPasswordFormGroup);
-  }
-
-  public ngOnDestroy(): void {
-    this._bindQueryParamsManager.destroy();
-  }
-
   public async resetPasswordForEmail(email: string) {
-    if (this.isResetPasswordPending || this.resetPasswordFormGroup.invalid) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isResetPasswordPending = true;
+    this._isLoading = true;
     this.resetPasswordFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -109,10 +93,9 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.resetPasswordFormGroup.enable();
     } finally {
-      this.isResetPasswordPending = false;
+      this._isLoading = false;
+      this.resetPasswordFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }

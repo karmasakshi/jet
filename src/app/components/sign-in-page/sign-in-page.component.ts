@@ -1,5 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  Signal,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -12,23 +19,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { QueryParam } from '@jet/enums/query-param.enum';
+import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import {
-  BindQueryParamsFactory,
-  BindQueryParamsManager,
-} from '@ngneat/bind-query-params';
-import { Session } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgOptimizedImage,
     ReactiveFormsModule,
@@ -37,7 +38,6 @@ import { PageComponent } from '../page/page.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule,
     RouterLink,
     TranslocoModule,
     PageComponent,
@@ -46,95 +46,54 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './sign-in-page.component.scss',
   templateUrl: './sign-in-page.component.html',
 })
-export class SignInPageComponent implements OnInit, OnDestroy {
+export class SignInPageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
-  private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
-  private readonly _bindQueryParamsFactory = inject(BindQueryParamsFactory);
 
-  private readonly _bindQueryParamsManager: BindQueryParamsManager<{
-    email: string;
-  }>;
+  public readonly returnUrl: Signal<undefined | string> = input();
 
-  public isGetSessionPending: boolean;
+  private _isLoading: boolean;
+
   public isPasswordHidden: boolean;
-  public isSignInWithOauthPending: boolean;
-  public isSignInWithOtpPending: boolean;
-  public isSignInWithPasswordPending: boolean;
   public readonly signInFormGroup: FormGroup<{
-    email: FormControl<string | null>;
-    password: FormControl<string | null>;
+    email: FormControl<null | string>;
+    password: FormControl<null | string>;
   }>;
 
   public constructor() {
-    this._bindQueryParamsManager = this._bindQueryParamsFactory.create([
-      { queryKey: 'email', type: 'string' },
-    ]);
-
-    this.isGetSessionPending = false;
+    this._isLoading = false;
 
     this.isPasswordHidden = true;
 
-    this.isSignInWithOauthPending = false;
-
-    this.isSignInWithOtpPending = false;
-
-    this.isSignInWithPasswordPending = false;
-
     this.signInFormGroup = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      email: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
 
     this._loggerService.logComponentInitialization('SignInPageComponent');
   }
 
   public ngOnInit(): void {
-    this.signInFormGroup.disable();
-    this._getSession()
-      .then((session) => {
-        if (session === null) {
-          this.signInFormGroup.enable();
-          this._bindQueryParamsManager.connect(this.signInFormGroup);
-        } else {
-          this._alertService.showAlert(
-            this._translocoService.translate('alerts.welcome'),
-          );
-          const returnUrl =
-            this._activatedRoute.snapshot.queryParamMap.get(
-              QueryParam.ReturnUrl,
-            ) ?? '/';
-
-          void this._router.navigateByUrl(returnUrl);
-        }
-      })
-      .catch((error: Error) => {
-        this._loggerService.logError(error);
-        this._alertService.showErrorAlert(error.message);
-      });
-  }
-
-  public ngOnDestroy(): void {
-    this._bindQueryParamsManager.destroy();
+    void this._getSession();
   }
 
   public async signInWithPassword(email: string, password: string) {
-    if (
-      this.isGetSessionPending ||
-      this.isSignInWithOauthPending ||
-      this.isSignInWithOtpPending ||
-      this.isSignInWithPasswordPending ||
-      this.signInFormGroup.invalid
-    ) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isSignInWithPasswordPending = true;
+    this._isLoading = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -155,11 +114,8 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       this._alertService.showAlert(
         this._translocoService.translate('alerts.welcome'),
       );
-      const returnUrl =
-        this._activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl) ??
-        '/';
 
-      void this._router.navigateByUrl(returnUrl);
+      void this._router.navigateByUrl(this.returnUrl() ?? '/');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -167,25 +123,19 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.signInFormGroup.enable();
     } finally {
-      this.isSignInWithPasswordPending = false;
+      this._isLoading = false;
+      this.signInFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }
 
   public async signInWithOauth(oauthProvider: AvailableOauthProvider) {
-    if (
-      this.isGetSessionPending ||
-      this.isSignInWithOauthPending ||
-      this.isSignInWithOtpPending ||
-      this.isSignInWithPasswordPending
-    ) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isSignInWithOauthPending = true;
+    this._isLoading = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -205,26 +155,19 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.signInFormGroup.enable();
     } finally {
-      this.isSignInWithOauthPending = false;
+      this._isLoading = false;
+      this.signInFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }
 
   public async signInWithOtp(email: string) {
-    if (
-      this.isGetSessionPending ||
-      this.isSignInWithOauthPending ||
-      this.isSignInWithOtpPending ||
-      this.isSignInWithPasswordPending ||
-      this.signInFormGroup.controls.email.invalid
-    ) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isSignInWithOtpPending = true;
+    this._isLoading = true;
     this.signInFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -243,20 +186,20 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      this.signInFormGroup.enable();
     } finally {
-      this.isSignInWithOtpPending = false;
+      this._isLoading = false;
+      this.signInFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }
 
-  private async _getSession(): Promise<Session | null> {
-    if (this.isGetSessionPending) {
-      return null;
+  private async _getSession(): Promise<void> {
+    if (this._isLoading) {
+      return;
     }
 
-    this.isGetSessionPending = true;
+    this._isLoading = true;
+    this.signInFormGroup.disable();
     this._progressBarService.showProgressBar({ mode: 'query' });
 
     try {
@@ -266,7 +209,13 @@ export class SignInPageComponent implements OnInit, OnDestroy {
         throw error;
       }
 
-      return data.session;
+      if (data.session) {
+        this._alertService.showAlert(
+          this._translocoService.translate('alerts.welcome'),
+        );
+
+        void this._router.navigateByUrl(this.returnUrl() ?? '/');
+      }
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -274,10 +223,9 @@ export class SignInPageComponent implements OnInit, OnDestroy {
       } else {
         this._loggerService.logException(exception);
       }
-
-      return null;
     } finally {
-      this.isGetSessionPending = false;
+      this._isLoading = false;
+      this.signInFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }

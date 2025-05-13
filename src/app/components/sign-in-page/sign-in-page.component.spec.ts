@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -19,7 +18,6 @@ describe('SignInPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TranslocoTestingModule.forRoot({}), SignInPageComponent],
       providers: [
-        { provide: ActivatedRoute, useValue: {} },
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
