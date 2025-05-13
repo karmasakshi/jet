@@ -2,29 +2,38 @@ import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   isDevMode,
-  provideZoneChangeDetection,
+  LOCALE_ID,
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+} from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
-import { TranslocoHttpLoader } from '@jet/classes/transloco-loader';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
+import { JetMatPaginatorIntl } from './classes/jet-mat-paginator-intl.class';
+import { TranslocoHttpLoader } from './transloco-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideExperimentalZonelessChangeDetection(),
+    { provide: LOCALE_ID, useValue: window.navigator.language },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
     },
+    { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
       useValue: { duration: 5000, verticalPosition: 'top' },
@@ -33,7 +42,14 @@ export const appConfig: ApplicationConfig = {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
       useValue: { disableTooltipInteractivity: true, showDelay: 900 },
     },
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
@@ -45,6 +61,8 @@ export const appConfig: ApplicationConfig = {
             languageOption.value,
         ),
         defaultLang: DEFAULT_LANGUAGE_OPTION.value,
+        fallbackLang: DEFAULT_LANGUAGE_OPTION.value,
+        missingHandler: { useFallbackTranslation: true },
         prodMode: !isDevMode(),
         reRenderOnLangChange: true,
       },

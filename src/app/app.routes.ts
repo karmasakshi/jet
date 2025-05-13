@@ -5,7 +5,7 @@ import { isNotAuthenticated } from '@jet/guards/is-not-authenticated/is-not-auth
 
 const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
 
-const generalRoutes: Routes = [
+const userRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
     loadComponent: async () =>
@@ -83,7 +83,7 @@ const generalRoutes: Routes = [
 
 export const routes: Routes = [
   ...mainRoutes,
-  ...generalRoutes,
+  ...userRoutes,
   {
     data: { case: 'not-found' },
     loadComponent: async () =>

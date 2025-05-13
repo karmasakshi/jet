@@ -9,7 +9,7 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
   private readonly _loggerService = inject(LoggerService);
   private readonly _translocoService = inject(TranslocoService);
 
-  public changes: Subject<void>;
+  public readonly changes: Subject<void>;
 
   public constructor() {
     this.changes = new Subject<void>();
@@ -38,11 +38,12 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
   }
 
   public getRangeLabel(page: number, pageSize: number, length: number): string {
-    if (length === 0) {
+    if (!length) {
       return this._translocoService.translate('paginator.page-1-of-1');
     }
 
     const pages = Math.ceil(length / pageSize);
+
     return this._translocoService.translate('paginator.page', {
       active: page + 1,
       total: pages,
