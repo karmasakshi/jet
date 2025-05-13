@@ -4,12 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build-development": "ng build --configuration development",
-    "clean-imports": "ng generate @angular/core:cleanup-unused-imports",
+    "build": "ng build --subresource-integrity",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test-coverage": "ng test --code-coverage --no-watch",
     "lint": "ng lint",
     "commit": "git add . && commit",
     "commitlint": "commitlint --edit ./.git/COMMIT_EDITMSG",
@@ -18,13 +15,11 @@
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
     "prepare": "husky",
-    "install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js rxjs tslib",
-    "uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js rxjs tslib",
-    "install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports supabase typescript typescript-eslint zone.js",
-    "uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports supabase typescript typescript-eslint zone.js",
-    "reinstall-dependencies": "npm run uninstall-devDependencies && npm run uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run install-dependencies && npm run install-devDependencies",
-    "prereinstall-dependencies": "npm run build",
-    "postreinstall-dependencies": "npm run prepare && npm run build"
+    "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
+    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js rxjs tslib",
+    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js rxjs tslib",
+    "x:install-devDependencies": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports supabase typescript typescript-eslint zone.js",
+    "x:uninstall-devDependencies": "npm uninstall @angular-devkit/build-angular @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/jasmine angular-eslint eslint husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged ngx-build-plus prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports supabase typescript typescript-eslint zone.js"
   },
   "private": true,
   "lint-staged": {
