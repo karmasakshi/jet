@@ -7,6 +7,8 @@ describe('AnalyticsService', () => {
   let service: AnalyticsService;
 
   beforeEach(() => {
+    window.gtag = jasmine.createSpy('gtag');
+
     TestBed.configureTestingModule({
       providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     });
