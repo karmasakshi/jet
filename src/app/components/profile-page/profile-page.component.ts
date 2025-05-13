@@ -1,11 +1,11 @@
-import { DatePipe, NgOptimizedImage, NgStyle } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
-  effect,
   ElementRef,
   inject,
+  OnInit,
   Signal,
-  untracked,
   viewChild,
 } from '@angular/core';
 import {
@@ -21,8 +21,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
+import { AVATAR_FILE_MAX_SIZE } from '@jet/constants/avatar-file-max-size.constant';
+import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -34,8 +35,8 @@ import { User } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgStyle,
     DatePipe,
     NgOptimizedImage,
     ReactiveFormsModule,
@@ -45,8 +46,8 @@ import { PageComponent } from '../page/page.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressSpinnerModule,
     RouterLink,
+    AnalyticsDirective,
     TranslocoModule,
     PageComponent,
   ],
@@ -54,7 +55,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './profile-page.component.scss',
   templateUrl: './profile-page.component.html',
 })
-export class ProfilePageComponent {
+export class ProfilePageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
@@ -63,77 +64,75 @@ export class ProfilePageComponent {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private readonly _avatarInput =
-    viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
+  private readonly _avatarFileInput: Signal<
+    undefined | ElementRef<HTMLInputElement>
+  > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
 
-  public isUpdateProfilePending: boolean;
-  public readonly profile: Signal<Profile | null>;
+  private _isLoading: boolean;
+
+  public profile: null | Profile;
   public readonly profileFormGroup: FormGroup<{
-    username: FormControl<string | null>;
+    username: FormControl<null | string>;
   }>;
-  public readonly user: Signal<User | null>;
+  public readonly user: null | User;
 
   public constructor() {
-    this.isUpdateProfilePending = false;
+    this._isLoading = false;
 
-    this.profile = this._profileService.profile;
+    this.profile = null;
 
     this.profileFormGroup = this._formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(30),
-          Validators.pattern(/^[a-z0-9_]+$/),
-        ],
-      ],
+      username: this._formBuilder.control<null | string>(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(36),
+        Validators.pattern(/^[a-z0-9_]+$/),
+      ]),
     });
 
-    this.user = this._userService.user;
-
-    effect(() => {
-      const profile: Profile | null = this.profile();
-      untracked(() => {
-        if (profile) {
-          this.profileFormGroup.controls.username.patchValue(profile.username);
-        }
-      });
-    });
+    this.user = this._userService.user();
 
     this._loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
-  public async replaceAvatar(): Promise<void> {
-    const files = this._avatarInput().nativeElement.files;
+  public ngOnInit(): void {
+    void this._selectProfile();
+  }
 
-    if (!files || files.length !== 1) {
+  public async replaceAvatar(): Promise<void> {
+    const files: undefined | null | FileList =
+      this._avatarFileInput()?.nativeElement.files;
+
+    if (files?.length !== 1) {
       return;
     }
 
-    const file = files[0];
+    const file: undefined | File = files[0];
 
     if (!file?.type.startsWith('image/')) {
       this._alertService.showAlert(
-        this._translocoService.translate('alerts.please-choose-a-valid-image'),
+        this._translocoService.translate('alerts.please-select-a-valid-avatar'),
       );
+
       return;
     }
 
-    if (!(file?.size <= 1024 * 1024)) {
+    if (file.size > AVATAR_FILE_MAX_SIZE) {
       this._alertService.showAlert(
         this._translocoService.translate(
-          'alerts.please-choose-a-smaller-image',
+          'alerts.please-select-a-smaller-avatar',
+          { value: AVATAR_FILE_MAX_SIZE / (1024 * 1024) },
         ),
       );
+
       return;
     }
 
-    if (this.isUpdateProfilePending) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isUpdateProfilePending = true;
+    this._isLoading = true;
     this.profileFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -141,7 +140,7 @@ export class ProfilePageComponent {
       let response;
 
       response = await this._profileService.deleteAvatar(
-        this.profile()?.avatar_url ?? '',
+        this.profile?.avatar_url ?? '',
       );
 
       if (response.error) {
@@ -154,17 +153,19 @@ export class ProfilePageComponent {
         throw response.error;
       }
 
-      await this._profileService.updateProfile({
-        avatar_url: this._profileService.getAvatarPublicUrl(
-          response.data?.path ?? '',
-        ),
-      });
+      const avatarUrl: string = this._profileService.getAvatarPublicUrl(
+        response.data.path,
+      );
+
+      await this._profileService.updateProfile({ avatar_url: avatarUrl });
+
+      if (this.profile) {
+        this.profile.avatar_url = avatarUrl;
+      }
 
       this._alertService.showAlert(
         this._translocoService.translate('alerts.avatar-updated'),
       );
-
-      void this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -173,18 +174,18 @@ export class ProfilePageComponent {
         this._loggerService.logException(exception);
       }
     } finally {
-      this.isUpdateProfilePending = false;
+      this._isLoading = false;
       this.profileFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
   }
 
   public async updateProfile(partialProfile: Partial<Profile>): Promise<void> {
-    if (this.isUpdateProfilePending) {
+    if (this._isLoading) {
       return;
     }
 
-    this.isUpdateProfilePending = true;
+    this._isLoading = true;
     this.profileFormGroup.disable();
     this._progressBarService.showProgressBar();
 
@@ -192,10 +193,8 @@ export class ProfilePageComponent {
       await this._profileService.updateProfile(partialProfile);
 
       this._alertService.showAlert(
-        this._translocoService.translate('alerts.profile-updated-successfully'),
+        this._translocoService.translate('alerts.profile-updated'),
       );
-
-      void this._profileService.selectProfile();
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this._loggerService.logError(exception);
@@ -204,7 +203,36 @@ export class ProfilePageComponent {
         this._loggerService.logException(exception);
       }
     } finally {
-      this.isUpdateProfilePending = false;
+      this._isLoading = false;
+      this.profileFormGroup.enable();
+      this._progressBarService.hideProgressBar();
+    }
+  }
+
+  private async _selectProfile(): Promise<void> {
+    if (this._isLoading) {
+      return;
+    }
+
+    this._isLoading = true;
+    this.profileFormGroup.disable();
+    this._progressBarService.showProgressBar({ mode: 'query' });
+
+    try {
+      const { data } = await this._profileService.selectProfile(true);
+
+      this.profile = data;
+
+      this.profileFormGroup.patchValue({ username: data.username });
+    } catch (exception: unknown) {
+      if (exception instanceof Error) {
+        this._loggerService.logError(exception);
+        this._alertService.showErrorAlert(exception.message);
+      } else {
+        this._loggerService.logException(exception);
+      }
+    } finally {
+      this._isLoading = false;
       this.profileFormGroup.enable();
       this._progressBarService.hideProgressBar();
     }
