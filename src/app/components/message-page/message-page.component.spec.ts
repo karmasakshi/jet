@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { AnalyticsService } from '@jet/services/analytics/analytics.service';
+import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { from } from 'rxjs';
 import { MessagePageComponent } from './message-page.component';
 
 describe('MessagePageComponent', () => {
@@ -14,7 +14,7 @@ describe('MessagePageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TranslocoTestingModule.forRoot({}), MessagePageComponent],
       providers: [
-        { provide: ActivatedRoute, useValue: { data: from([]) } },
+        { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
       ],
     }).compileComponents();

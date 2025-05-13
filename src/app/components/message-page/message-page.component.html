@@ -9,13 +9,14 @@
       <mat-card class="jet-maxw-480">
         <img
           [alt]="t('jet-message-page.message')"
+          [ngSrc]="'./images/card.webp'"
           height="180"
           mat-card-image
-          ngSrc="./card-image.webp"
           priority
           width="480"
         />
-        @switch (case()) {
+        @let _case = case();
+        @switch (_case) {
           @case ('email-verification-pending') {
             <mat-card-header>
               <mat-card-title>{{
@@ -69,10 +70,8 @@
           <a
             [routerLink]="['/']"
             mat-button
+            >{{ t('jet-message-page.open-home') }}</a
           >
-            <mat-icon>home</mat-icon>
-            <span>{{ t('jet-message-page.open-home') }}</span>
-          </a>
         </mat-card-actions>
       </mat-card>
     </div>

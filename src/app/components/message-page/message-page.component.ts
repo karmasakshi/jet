@@ -1,5 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, input, InputSignal, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +17,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgOptimizedImage,
     MatButtonModule,
@@ -28,11 +36,11 @@ export class MessagePageComponent implements OnInit {
   private readonly _loggerService = inject(LoggerService);
 
   public readonly case: InputSignal<
+    | undefined
     | 'email-verification-pending'
     | 'not-found'
     | 'reset-password-email-sent'
     | 'sign-in-link-sent'
-    | undefined
   > = input();
 
   public constructor() {
@@ -40,6 +48,6 @@ export class MessagePageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._analyticsService.logEvent('Show Message', { case: this.case() });
+    this._analyticsService.logEvent('Show message', { case: this.case() });
   }
 }
