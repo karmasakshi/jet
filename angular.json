@@ -16,7 +16,7 @@
             "outputPath": "dist/jet",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
@@ -55,7 +55,16 @@
             "development": { "buildTarget": "jet:build:development" }
           },
           "defaultConfiguration": "development",
-          "options": {}
+          "options": {
+            "headers": {
+              "Content-Security-Policy": "default-src 'none'; base-uri 'self'; connect-src 'self' https://www.google-analytics.com https://asjljqbmkctbquhijkbh.supabase.co http://127.0.0.1:54321; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; img-src 'self' https://placehold.co https://asjljqbmkctbquhijkbh.supabase.co http://127.0.0.1:54321; manifest-src 'self'; object-src 'none'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self';",
+              "Cross-Origin-Resource-Policy": "same-origin",
+              "Referrer-Policy": "strict-origin-when-cross-origin",
+              "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+              "X-Content-Type-Options": "nosniff",
+              "X-Frame-Options": "DENY"
+            }
+          }
         },
         "extract-i18n": {
           "builder": "@ngx-env/builder:extract-i18n",
