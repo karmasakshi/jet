@@ -1,11 +1,11 @@
 import {
-  Injectable,
-  Signal,
-  WritableSignal,
   effect,
   inject,
+  Injectable,
+  Signal,
   signal,
   untracked,
+  WritableSignal,
 } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
@@ -25,13 +25,13 @@ export class ServiceWorkerService {
   private readonly _loggerService = inject(LoggerService);
   private readonly _storageService = inject(StorageService);
 
-  private _isReloadPending: boolean;
+  private readonly _isUpdatePending: WritableSignal<boolean>;
   private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
   public readonly serviceWorkerUpdateSubscription: Subscription;
 
   public constructor() {
-    this._isReloadPending = false;
+    this._isUpdatePending = signal(false);
 
     this._lastUpdateCheckTimestamp = signal(
       this._storageService.getLocalStorageItem<string>(
@@ -42,7 +42,10 @@ export class ServiceWorkerService {
     this.serviceWorkerUpdateSubscription = this._subscribeToUpdates();
 
     effect(() => {
+      this._loggerService.logEffectRun('_lastUpdateCheckTimestamp');
+
       const lastUpdateCheckTimestamp: string = this._lastUpdateCheckTimestamp();
+
       untracked(() =>
         this._storageService.setLocalStorageItem(
           LocalStorageKey.LastUpdateCheckTimestamp,
@@ -54,44 +57,26 @@ export class ServiceWorkerService {
     this._loggerService.logServiceInitialization('ServiceWorkerService');
   }
 
+  public get isUpdatePending(): Signal<boolean> {
+    return this._isUpdatePending.asReadonly();
+  }
+
   public get lastUpdateCheckTimestamp(): Signal<string> {
     return this._lastUpdateCheckTimestamp.asReadonly();
   }
 
-  public async checkForUpdate(): Promise<void> {
-    if (this._isReloadPending) {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.reload-to-update'),
-        this._translocoService.translate('alert-ctas.reload'),
-        (): void => {
-          window.location.reload();
-        },
-      );
-    } else {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.checking-for-updates'),
-      );
+  public alertUpdateAvailability(): void {
+    this._alertService.showAlert(
+      this._translocoService.translate('alerts.reload-to-update'),
+      this._translocoService.translate('alert-ctas.reload'),
+      (): void => {
+        window.location.reload();
+      },
+    );
+  }
 
-      try {
-        const isUpdateFoundAndReady: boolean =
-          await this._swUpdate.checkForUpdate();
-
-        if (!isUpdateFoundAndReady) {
-          this._alertService.showAlert(
-            this._translocoService.translate(
-              'alerts.youre-on-the-latest-version',
-            ),
-          );
-        }
-      } catch (exception: unknown) {
-        if (exception instanceof Error) {
-          this._loggerService.logError(exception);
-          this._alertService.showErrorAlert(exception.message);
-        } else {
-          this._loggerService.logException(exception);
-        }
-      }
-    }
+  public checkForUpdate(): Promise<boolean> {
+    return this._swUpdate.checkForUpdate();
   }
 
   private _subscribeToUpdates(): Subscription {
@@ -103,13 +88,13 @@ export class ServiceWorkerService {
       (versionEvent: VersionEvent): void => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
-            this._analyticsService.logEvent('No New SW Version Detected');
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
+            this._analyticsService.logEvent('SW: NO_NEW_VERSION_DETECTED');
             break;
 
           case 'VERSION_DETECTED':
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-            this._analyticsService.logEvent('SW Version Detected');
+            this._analyticsService.logEvent('SW: VERSION_DETECTED');
             this._alertService.showAlert(
               this._translocoService.translate('alerts.downloading-updates'),
             );
@@ -117,24 +102,14 @@ export class ServiceWorkerService {
 
           case 'VERSION_INSTALLATION_FAILED':
             this._loggerService.logError(new Error(versionEvent.error));
-            this._analyticsService.logEvent('SW Version Installation Failed');
+            this._analyticsService.logEvent('SW: VERSION_INSTALLATION_FAILED');
             this._alertService.showErrorAlert(versionEvent.error);
             break;
 
           case 'VERSION_READY':
-            this._isReloadPending = true;
-            this._analyticsService.logEvent('SW Version Ready');
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.reload-to-update'),
-              this._translocoService.translate('alert-ctas.reload'),
-              (): void => {
-                window.location.reload();
-              },
-            );
-            break;
-
-          default:
-            this._loggerService.logError(new Error());
+            this._isUpdatePending.set(true);
+            this._analyticsService.logEvent('SW: VERSION_READY');
+            this.alertUpdateAvailability();
             break;
         }
       },

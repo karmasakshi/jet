@@ -1,60 +1,28 @@
-import {
-  effect,
-  inject,
-  Injectable,
-  Signal,
-  signal,
-  untracked,
-  WritableSignal,
-} from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { Bucket } from '@jet/enums/bucket.enum';
 import { Table } from '@jet/enums/table.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { FileObject, StorageError } from '@supabase/storage-js/';
 import { SupabaseClient, User } from '@supabase/supabase-js';
-import { AlertService } from '../alert/alert.service';
 import { LoggerService } from '../logger/logger.service';
 import { SupabaseService } from '../supabase/supabase.service';
 import { UserService } from '../user/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
-  private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _supabaseService = inject(SupabaseService);
   private readonly _userService = inject(UserService);
 
-  private readonly _profile: WritableSignal<Profile | null>;
   private readonly _supabaseClient: SupabaseClient;
+  private readonly _user: Signal<null | User>;
 
   public constructor() {
-    this._profile = signal(null);
-
     this._supabaseClient = this._supabaseService.supabaseClient;
 
-    effect(() => {
-      const user: User | null = this._userService.user();
-      untracked(() => {
-        if (user === null) {
-          this._profile.set(null);
-        } else {
-          void this.selectProfile();
-        }
-      });
-    });
+    this._user = this._userService.user;
 
     this._loggerService.logServiceInitialization('ProfileService');
-  }
-
-  public get profile(): Signal<Profile | null> {
-    return this._profile.asReadonly();
-  }
-
-  public getAvatarPublicUrl(path: string): string {
-    const { data } = this._supabaseClient.storage
-      .from(Bucket.Avatars)
-      .getPublicUrl(path);
-    return data.publicUrl;
   }
 
   public deleteAvatar(
@@ -62,48 +30,43 @@ export class ProfileService {
   ): Promise<
     { data: FileObject[]; error: null } | { data: null; error: StorageError }
   > {
-    const fileName = publicUrl.split('/').pop();
+    const fileName: undefined | string = publicUrl.split('/').pop();
     const path = `${this._userService.user()?.id}/${fileName}`;
+
     return this._supabaseClient.storage.from(Bucket.Avatars).remove([path]);
   }
 
-  public async selectProfile(): Promise<void> {
-    try {
-      const userId = this._userService.user()?.id;
+  public getAvatarPublicUrl(path: string): string {
+    const { data } = this._supabaseClient.storage
+      .from(Bucket.Avatars)
+      .getPublicUrl(path);
 
-      if (userId === undefined) {
-        throw new Error();
-      }
+    return data.publicUrl;
+  }
 
-      const { data } = await this._supabaseClient
+  public selectProfile(isAllFields: boolean) {
+    if (isAllFields) {
+      return this._supabaseClient
         .from(Table.Profiles)
-        .select('*')
-        .eq('id', userId)
-        .single<Profile>()
+        .select()
+        .eq('id', this._user()?.id)
+        .single()
         .throwOnError();
-
-      this._profile.set(data);
-    } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
-      } else {
-        this._loggerService.logException(exception);
-      }
+    } else {
+      return this._supabaseClient
+        .from(Table.Profiles)
+        .select('birth_year, gender')
+        .eq('id', this._user()?.id)
+        .single()
+        .throwOnError();
     }
   }
 
   public updateProfile(partialProfile: Partial<Profile>) {
-    const userId = this._userService.user()?.id;
-
-    if (userId === undefined) {
-      return Promise.reject(new Error());
-    }
-
     return this._supabaseClient
       .from(Table.Profiles)
-      .update(partialProfile as never)
-      .eq('id', userId)
+      .update(partialProfile)
+      .eq('id', this._user()?.id)
       .throwOnError();
   }
 
@@ -116,6 +79,7 @@ export class ProfileService {
     const fileExtension = file.name.split('.').pop();
     const timestamp = Date.now();
     const path = `${this._userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
+
     return this._supabaseClient.storage.from(Bucket.Avatars).upload(path, file);
   }
 }

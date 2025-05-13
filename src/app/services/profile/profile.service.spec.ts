@@ -1,6 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { AlertService } from '../alert/alert.service';
-import { AlertServiceMock } from '../alert/alert.service.mock';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { SupabaseService } from '../supabase/supabase.service';
@@ -15,7 +13,6 @@ describe('ProfileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SupabaseService, useClass: SupabaseServiceMock },
         { provide: UserService, useClass: UserServiceMock },
