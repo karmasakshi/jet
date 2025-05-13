@@ -5,9 +5,9 @@
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "password-updated": "تم تحديث كلمة المرور.",
-    "please-choose-a-smaller-image": "يرجى اختيار صورة أصغر (< 1MB).",
-    "please-choose-a-valid-image": "يرجى اختيار صورة صالحة.",
-    "profile-updated-successfully": "تم تحديث الملف الشخصي بنجاح.",
+    "please-select-a-smaller-avatar": "يرجى اختيار صورة رمزية لا تزيد عن {{ value }} ميجابايت.",
+    "please-select-a-valid-avatar": "يرجى اختيار صورة رمزية صالحة.",
+    "profile-updated": "تم تحديث الملف الشخصي.",
     "reload-to-update": "قم بإعادة التحميل للتحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
@@ -31,7 +31,7 @@
     "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
-  "jet-footer": { "buy": "شراء", "docs": "المستندات" },
+  "jet-footer": { "buy": "شراء" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
     "toolbar-title": "Jet"
@@ -41,7 +41,7 @@
     "click-to-verify": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
     "message": "رسالة",
     "not-found": "غير موجود",
-    "open-home": "Missing value for 'jet-message-page.open-home'",
+    "open-home": "افتح الصفحة الرئيسية",
     "page-doesnt-exist": "هذه الصفحة غير موجودة.",
     "seo": { "description": "الرسالة.", "keywords": "jet", "title": "الرسالة" },
     "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
@@ -53,9 +53,11 @@
   "jet-profile-page": {
     "avatar": "الصورة الرمزية",
     "characters": "{{ value }} / {{ maximum }} حرف",
+    "clear": "مسح",
     "profile": "الملف الشخصي",
     "profile-created-on": "تم إنشاء الملف الشخصي في {{ value }}",
     "profile-last-updated-on": "آخر تحديث للملف الشخصي في {{ value }}",
+    "save": "حفظ",
     "seo": {
       "description": "الملف الشخصي.",
       "keywords": "jet",
@@ -63,7 +65,6 @@
     },
     "toolbar-title": "الملف الشخصي",
     "update-password": "تحديث كلمة المرور",
-    "update-profile": "تحديث الملف الشخصي",
     "username": "اسم المستخدم"
   },
   "jet-reset-password-page": {
@@ -93,7 +94,7 @@
       "title": "الإعدادات"
     },
     "toolbar-title": "الإعدادات",
-    "version": "الإصدار {{ value }}"
+    "version": "الإصدار {{ version }}"
   },
   "jet-sign-in-page": {
     "email": "البريد الإلكتروني",
@@ -107,6 +108,7 @@
       "title": "تسجيل الدخول"
     },
     "sign-in": "تسجيل الدخول",
+    "sign-in-to-continue": "سجّل الدخول للمتابعة إلى {{ returnUrl }}",
     "sign-in-with-google": "تسجيل الدخول باستخدام جوجل",
     "sign-up": "إنشاء حساب",
     "toggle-visibility": "تبديل الرؤية",
@@ -137,6 +139,7 @@
   "jet-update-password-page": {
     "confirm-new-password": "تأكيد كلمة المرور الجديدة",
     "new-password": "كلمة المرور الجديدة",
+    "save": "حفظ",
     "seo": {
       "description": "تحديث كلمة المرور.",
       "keywords": "jet",

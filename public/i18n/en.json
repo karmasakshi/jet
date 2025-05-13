@@ -5,9 +5,9 @@
     "checking-for-updates": "Checking for updates...",
     "downloading-updates": "Downloading updates...",
     "password-updated": "Password updated.",
-    "please-choose-a-smaller-image": "Please choose a smaller (< 1MB) image.",
-    "please-choose-a-valid-image": "Please choose a valid image.",
-    "profile-updated-successfully": "Profile updated successfully.",
+    "please-select-a-smaller-avatar": "Please select an avatar <= {{ value }}MB.",
+    "please-select-a-valid-avatar": "Please select a valid avatar.",
+    "profile-updated": "Profile updated.",
     "reload-to-update": "Reload to update.",
     "signed-out-successfully": "Signed out successfully.",
     "something-went-wrong": "Something went wrong.",
@@ -31,7 +31,7 @@
     "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
   },
-  "jet-footer": { "buy": "Buy", "docs": "Docs" },
+  "jet-footer": { "buy": "Buy" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
     "toolbar-title": "Jet"
@@ -53,13 +53,14 @@
   "jet-profile-page": {
     "avatar": "Avatar",
     "characters": "{{ value }} / {{ maximum }} characters",
+    "clear": "Clear",
     "profile": "Profile",
     "profile-created-on": "Profile created on {{ value }}",
     "profile-last-updated-on": "Profile last updated on {{ value }}",
+    "save": "Save",
     "seo": { "description": "Profile.", "keywords": "jet", "title": "Profile" },
     "toolbar-title": "Profile",
     "update-password": "Update password",
-    "update-profile": "Update profile",
     "username": "Username"
   },
   "jet-reset-password-page": {
@@ -89,7 +90,7 @@
       "title": "Settings"
     },
     "toolbar-title": "Settings",
-    "version": "v{{ value }}"
+    "version": "v{{ version }}"
   },
   "jet-sign-in-page": {
     "email": "Email",
@@ -99,6 +100,7 @@
     "reset-password": "Reset password",
     "seo": { "description": "Sign in.", "keywords": "jet", "title": "Sign In" },
     "sign-in": "Sign in",
+    "sign-in-to-continue": "Sign in to continue to {{ returnUrl }}",
     "sign-in-with-google": "Sign in with Google",
     "sign-up": "Sign up",
     "toggle-visibility": "Toggle visibility",
@@ -125,6 +127,7 @@
   "jet-update-password-page": {
     "confirm-new-password": "Confirm new password",
     "new-password": "New password",
+    "save": "Save",
     "seo": {
       "description": "Update password.",
       "keywords": "jet",
