@@ -15,5 +15,5 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v4 # https://github.com/marketplace/actions/release-please-action
         with:
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           release-type: node
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
