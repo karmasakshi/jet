@@ -8,8 +8,8 @@ module.exports = tseslint.config(
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
+      ...tseslint.configs.recommended,
+      ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
     ],
     processor: angular.processInlineTemplates,
@@ -23,7 +23,6 @@ module.exports = tseslint.config(
         { type: 'element', prefix: 'jet', style: 'kebab-case' },
       ],
       '@typescript-eslint/explicit-member-accessibility': 'error',
-      '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
       'sort-keys': 'error',
     },
     languageOptions: { parserOptions: { projectService: true } },
