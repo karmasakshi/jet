@@ -5,139 +5,139 @@
     [seoTitle]="t('jet-profile-page.seo.title')"
     [toolbarTitle]="t('jet-profile-page.toolbar-title')"
   >
-    @let _profile = profile();
-    @if (_profile) {
-      <div class="jet-flex-col-center">
-        <mat-card class="jet-maxw-480">
-          <img
-            [alt]="t('jet-profile-page.profile')"
-            height="180"
-            mat-card-image
-            ngSrc="./card-image.webp"
-            priority
-            width="480"
-          />
-          <mat-card-header></mat-card-header>
-          <mat-card-content>
-            <mat-card
-              [ngStyle]="{
-                cursor: profileFormGroup.disabled ? 'not-allowed' : 'pointer',
-              }"
-              (click)="avatarInput.click()"
-              mat-ripple
-              style="
-                border: 3px solid transparent;
-                height: 132px;
-                width: 132px;
-                border-radius: 50%;
-                margin: -92.5px auto 36px;
+    <div class="jet-flex-col-center">
+      <mat-card class="jet-maxw-480">
+        <img
+          [alt]="t('jet-profile-page.profile')"
+          [ngSrc]="'./images/card.webp'"
+          height="180"
+          mat-card-image
+          priority
+          width="480"
+        />
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <mat-card
+            [jetAnalytics]="{ name: 'Update avatar' }"
+            [style]="{
+              cursor: profileFormGroup.disabled ? 'not-allowed' : 'pointer',
+            }"
+            (click)="avatarFileInput.click()"
+            mat-ripple
+            style="
+              border: 3px solid transparent;
+              height: 132px;
+              width: 132px;
+              border-radius: 50%;
+              margin: -92.5px auto 36px;
+            "
+          >
+            <img
+              [alt]="t('jet-profile-page.avatar')"
+              [ngSrc]="
+                profile?.avatar_url ??
+                'https://placehold.co/128x128/webp?text=?'
               "
-            >
-              <img
-                [alt]="t('jet-profile-page.avatar')"
-                [ngSrc]="
-                  _profile.avatar_url ??
-                  'https://placehold.co/128x128/webp?text=?'
-                "
-                height="128"
-                mat-card-image
-                priority
-                width="128"
+              height="128"
+              mat-card-image
+              priority
+              width="128"
+            />
+            <mat-card-content style="display: none">
+              <input
+                #avatarFileInput
+                [disabled]="profileFormGroup.disabled"
+                (change)="replaceAvatar()"
+                accept="image/*"
+                autocomplete="photo"
+                type="file"
               />
-              <mat-card-content style="display: none">
-                <input
-                  #avatarInput
-                  [disabled]="profileFormGroup.disabled"
-                  (change)="replaceAvatar()"
-                  accept="image/*"
-                  type="file"
-                />
-              </mat-card-content>
-            </mat-card>
-            <form
-              id="profile-form"
-              [formGroup]="profileFormGroup"
-              (ngSubmit)="
-                updateProfile({
-                  username: profileFormGroup.controls.username.value ?? '',
-                })
-              "
-            >
-              <mat-form-field>
-                <mat-label>{{ t('jet-profile-page.username') }}</mat-label>
-                <input
-                  autocomplete="off"
-                  formControlName="username"
-                  matInput
-                  required
-                  type="text"
-                />
-                @if (profileFormGroup.controls.username.dirty) {
-                  <mat-hint align="end"
-                    >{{
-                      t('jet-profile-page.characters', {
-                        maximum: 30,
-                        value:
-                          profileFormGroup.controls.username.value?.length || 0,
-                      })
-                    }}
-                  </mat-hint>
-                }
-              </mat-form-field>
-            </form>
-          </mat-card-content>
-          <mat-card-actions>
-            <button
-              [disabled]="
-                profileFormGroup.disabled ||
-                profileFormGroup.invalid ||
-                profileFormGroup.pristine
-              "
-              form="profile-form"
-              mat-flat-button
-              type="submit"
-            >
-              <mat-icon>person</mat-icon>
-              <span>{{ t('jet-profile-page.update-profile') }}</span>
-            </button>
-            <div style="flex: 1"></div>
-            <a
-              [routerLink]="['/update-password']"
-              mat-button
-            >
-              <mat-icon>lock_reset</mat-icon>
-              <span>{{ t('jet-profile-page.update-password') }}</span>
-            </a>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card class="jet-maxw-480">
-          <mat-card-header></mat-card-header>
-          <mat-card-content>
-            <div class="jet-flex-col-center">
-              <span style="font: var(--mat-sys-body-small)">
-                <b>{{ user()?.email }}</b>
-              </span>
-              <span style="font: var(--mat-sys-body-small)">{{
-                t('jet-profile-page.profile-last-updated-on', {
-                  value: _profile.updated_at | date: 'medium',
-                })
-              }}</span>
-              <span style="font: var(--mat-sys-body-small)">{{
-                t('jet-profile-page.profile-created-on', {
-                  value: _profile.created_at | date: 'medium',
-                })
-              }}</span>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    } @else {
-      <div style="display: flex; justify-content: center">
-        <mat-progress-spinner
-          diameter="32"
-          mode="indeterminate"
-        ></mat-progress-spinner>
-      </div>
-    }
+            </mat-card-content>
+          </mat-card>
+          <form
+            id="profile-form"
+            [formGroup]="profileFormGroup"
+            (ngSubmit)="
+              updateProfile({
+                username: profileFormGroup.controls.username.value ?? '',
+              })
+            "
+          >
+            <mat-form-field>
+              <mat-label>{{ t('jet-profile-page.username') }}</mat-label>
+              <input
+                autocomplete="username"
+                formControlName="username"
+                matInput
+                required
+                type="text"
+              />
+              @if (profileFormGroup.controls.username.value !== null) {
+                <button
+                  [attr.aria-label]="t('jet-profile-page.clear')"
+                  [disabled]="profileFormGroup.controls.username.disabled"
+                  (click)="profileFormGroup.controls.username.reset()"
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
+              @if (profileFormGroup.controls.username.dirty) {
+                <mat-hint align="end"
+                  >{{
+                    t('jet-profile-page.characters', {
+                      maximum: 30,
+                      value:
+                        profileFormGroup.controls.username.value?.length || 0,
+                    })
+                  }}
+                </mat-hint>
+              }
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            [disabled]="profileFormGroup.disabled || profileFormGroup.invalid"
+            [jetAnalytics]="{ name: 'Update profile' }"
+            form="profile-form"
+            mat-flat-button
+            type="submit"
+          >
+            {{ t('jet-profile-page.save') }}
+          </button>
+          <div style="flex: 1"></div>
+          <a
+            [routerLink]="['/update-password']"
+            mat-button
+            >{{ t('jet-profile-page.update-password') }}</a
+          >
+        </mat-card-actions>
+      </mat-card>
+      <mat-card class="jet-maxw-480">
+        <mat-card-content>
+          <div
+            class="jet-flex-col-center"
+            style="font: var(--mat-sys-body-small)"
+          >
+            <span>
+              <b>{{ user?.email }}</b>
+            </span>
+            <span>{{
+              t('jet-profile-page.profile-last-updated-on', {
+                value: (profile?.updated_at | date: 'medium') ?? '?',
+              })
+            }}</span>
+            <span>{{
+              t('jet-profile-page.profile-created-on', {
+                value: (profile?.created_at | date: 'medium') ?? '?',
+              })
+            }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </jet-page>
 </ng-container>
