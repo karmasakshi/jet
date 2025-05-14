@@ -13,8 +13,8 @@ html {
         theme-type: color-scheme,
       ),
       typography: (
-        plain-family: $ns-font-family,
         brand-family: $ns-font-family,
+        plain-family: $ns-font-family,
         bold-weight: 700,
         medium-weight: 500,
         regular-weight: 400,
@@ -84,12 +84,12 @@ body {
     color-scheme: light;
   }
 
-  &.jet-font-pair-nsa-nsa {
+  &.jet-font-arabic {
     @include mat.theme(
       (
         typography: (
-          plain-family: $nsa-font-family,
           brand-family: $nsa-font-family,
+          plain-family: $nsa-font-family,
           bold-weight: 700,
           medium-weight: 500,
           regular-weight: 400,
