@@ -14,7 +14,7 @@ export class ProgressBarService {
 
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
   private readonly _progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
-  private _queueTimeout: null | NodeJS.Timeout;
+  private _queueTimeout: null | ReturnType<typeof setTimeout>;
 
   public constructor() {
     this._defaultProgressBarConfiguration = {
