@@ -48,7 +48,7 @@ import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { UserService } from '@jet/services/user/user.service';
 import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
-import { AvailableFontPair } from '@jet/types/available-font-pair.type';
+import { AvailableFontClass } from '@jet/types/available-font-class.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
@@ -94,7 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _userService = inject(UserService);
   private readonly _translocoService = inject(TranslocoService);
 
-  private _activeFontPair: AvailableFontPair;
+  private _activeFontClass: AvailableFontClass;
   private _activeLanguage: AvailableLanguage;
   private _activeColorScheme: AvailableColorScheme;
   private _activeThemeColor: ColorSchemeOption['themeColor'];
@@ -115,7 +115,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly user: Signal<null | User>;
 
   public constructor() {
-    this._activeFontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
+    this._activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
 
     this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
@@ -159,7 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
       const languageOption: LanguageOption = this.languageOption();
 
       untracked(() => {
-        this._setFontPairClass(languageOption.fontPair);
+        this._setFontClass(languageOption.fontClass);
         this._setLanguage(languageOption);
       });
     });
@@ -231,7 +231,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     this._activeColorScheme = nextColorScheme;
-
     const prefix = 'jet-color-scheme-';
 
     this._document.body.className = this._document.body.classList.value
@@ -243,21 +242,20 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _setFontPairClass(nextFontPair: AvailableFontPair): void {
-    if (nextFontPair === this._activeFontPair) {
+  private _setFontClass(nextFontClass: AvailableFontClass): void {
+    if (nextFontClass === this._activeFontClass) {
       return;
     }
 
-    this._activeFontPair = nextFontPair;
-
-    const prefix = 'jet-font-pair-';
+    this._activeFontClass = nextFontClass;
+    const prefix = 'jet-font-';
 
     this._document.body.className = this._document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
-    if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-      this._renderer2.addClass(this._document.body, prefix + nextFontPair);
+    if (nextFontClass !== DEFAULT_LANGUAGE_OPTION.fontClass) {
+      this._renderer2.addClass(this._document.body, prefix + nextFontClass);
     }
   }
 

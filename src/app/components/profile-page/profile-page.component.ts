@@ -219,7 +219,7 @@ export class ProfilePageComponent implements OnInit {
     this._progressBarService.showProgressBar({ mode: 'query' });
 
     try {
-      const { data } = await this._profileService.selectProfile(true);
+      const { data } = await this._profileService.selectProfile();
 
       this.profile = data;
 

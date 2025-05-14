@@ -1,6 +1,6 @@
 import { inject, Injectable, Signal } from '@angular/core';
-import { Bucket } from '@jet/enums/bucket.enum';
-import { Table } from '@jet/enums/table.enum';
+import { SupabaseBucket } from '@jet/enums/supabase-bucket.enum';
+import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { FileObject, StorageError } from '@supabase/storage-js/';
 import { SupabaseClient, User } from '@supabase/supabase-js';
@@ -33,38 +33,31 @@ export class ProfileService {
     const fileName: undefined | string = publicUrl.split('/').pop();
     const path = `${this._userService.user()?.id}/${fileName}`;
 
-    return this._supabaseClient.storage.from(Bucket.Avatars).remove([path]);
+    return this._supabaseClient.storage
+      .from(SupabaseBucket.Avatars)
+      .remove([path]);
   }
 
   public getAvatarPublicUrl(path: string): string {
     const { data } = this._supabaseClient.storage
-      .from(Bucket.Avatars)
+      .from(SupabaseBucket.Avatars)
       .getPublicUrl(path);
 
     return data.publicUrl;
   }
 
-  public selectProfile(isAllFields: boolean) {
-    if (isAllFields) {
-      return this._supabaseClient
-        .from(Table.Profiles)
-        .select()
-        .eq('id', this._user()?.id)
-        .single()
-        .throwOnError();
-    } else {
-      return this._supabaseClient
-        .from(Table.Profiles)
-        .select('birth_year, gender')
-        .eq('id', this._user()?.id)
-        .single()
-        .throwOnError();
-    }
+  public selectProfile() {
+    return this._supabaseClient
+      .from(SupabaseTable.Profiles)
+      .select()
+      .eq('id', this._user()?.id)
+      .single()
+      .throwOnError();
   }
 
   public updateProfile(partialProfile: Partial<Profile>) {
     return this._supabaseClient
-      .from(Table.Profiles)
+      .from(SupabaseTable.Profiles)
       .update(partialProfile)
       .eq('id', this._user()?.id)
       .throwOnError();
@@ -80,6 +73,8 @@ export class ProfileService {
     const timestamp = Date.now();
     const path = `${this._userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
 
-    return this._supabaseClient.storage.from(Bucket.Avatars).upload(path, file);
+    return this._supabaseClient.storage
+      .from(SupabaseBucket.Avatars)
+      .upload(path, file);
   }
 }
