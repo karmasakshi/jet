@@ -1,6 +1,6 @@
 ---
 name: Question
-about: Ask a question
+about: Further information is requested
 title: 'question: '
 labels: question
 assignees: ''
@@ -8,9 +8,9 @@ assignees: ''
 
 ## Description
 
-Provide a clear and concise question.
+Provide a clear and concise description of the request.
 
-## Steps to Reproduce
+## Steps to reproduce
 
 1. Go to '...'
 2. Click on '...'
@@ -23,6 +23,6 @@ Provide a clear and concise question.
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
 
-## Additional Context
+## Additional context
 
 Add any other context or screenshots here.

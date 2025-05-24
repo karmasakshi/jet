@@ -1,22 +1,22 @@
 ---
-name: Bug Report
-about: Report something not working as expected
-title: 'bug: '
+name: Bug
+about: Something isn't working
+title: 'fix: '
 labels: bug
 assignees: ''
 ---
 
 ## Description
 
-Provide a clear and concise description of the bug.
+Provide a clear and concise description of the report.
 
-## Steps to Reproduce
+## Steps to reproduce
 
 1. Go to '...'
 2. Click on '...'
 3. Scroll down to '...'
 
-## Expected Behavior
+## Expected behavior
 
 Describe what you expected to happen.
 
@@ -27,6 +27,6 @@ Describe what you expected to happen.
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
 
-## Additional Context
+## Additional context
 
 Add any other context or screenshots here.
