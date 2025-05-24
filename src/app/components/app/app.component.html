@@ -33,12 +33,10 @@
               [activated]="
                 activeNavigationMenuItemPath === navigationMenuItem.path
               "
-              [matTooltip]="t(navigationMenuItem.nameKey)"
               [routerLink]="[navigationMenuItem.path]"
               (click)="isSmallViewport && sidenav.close()"
               mat-list-item
               matListItemTitle
-              matTooltipPosition="after"
             >
               <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
               <span>{{ t(navigationMenuItem.nameKey) }}</span>
