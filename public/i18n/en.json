@@ -43,7 +43,7 @@
     "not-found": "Not found",
     "open-home": "Open home",
     "page-doesnt-exist": "That page doesn't exist.",
-    "seo": { "description": "Message.", "keywords": "jet", "title": "Message" },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Message" },
     "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",
     "sign-in-link-sent": "Sign in link sent",
     "toolbar-title": "Message",
@@ -58,7 +58,7 @@
     "profile-created-on": "Profile created on {{ value }}",
     "profile-last-updated-on": "Profile last updated on {{ value }}",
     "save": "Save",
-    "seo": { "description": "Profile.", "keywords": "jet", "title": "Profile" },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Profile" },
     "toolbar-title": "Profile",
     "update-password": "Update password",
     "username": "Username"
@@ -67,7 +67,7 @@
     "email": "Email",
     "reset-password": "Reset password",
     "seo": {
-      "description": "Reset password.",
+      "description": "Jet.",
       "keywords": "jet",
       "title": "Reset Password"
     },
@@ -84,11 +84,7 @@
     "reload-description": "Preserve settings and reload",
     "reset": "Reset",
     "reset-description": "Use default settings and reload",
-    "seo": {
-      "description": "Settings.",
-      "keywords": "jet",
-      "title": "Settings"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Settings" },
     "toolbar-title": "Settings",
     "version": "v{{ version }}"
   },
@@ -98,7 +94,7 @@
     "or": "- or -",
     "password": "Password",
     "reset-password": "Reset password",
-    "seo": { "description": "Sign in.", "keywords": "jet", "title": "Sign In" },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign In" },
     "sign-in": "Sign in",
     "sign-in-to-continue": "Sign in to continue to {{ returnUrl }}",
     "sign-in-with-google": "Sign in with Google",
@@ -107,18 +103,14 @@
     "toolbar-title": "Sign In"
   },
   "jet-sign-out-page": {
-    "seo": {
-      "description": "Sign out.",
-      "keywords": "jet",
-      "title": "Sign Out"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign Out" },
     "toolbar-title": "Sign Out"
   },
   "jet-sign-up-page": {
     "email": "Email",
     "password": "Password",
     "reset-password": "Reset password",
-    "seo": { "description": "Sign up.", "keywords": "jet", "title": "Sign Up" },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign Up" },
     "sign-in": "Sign in",
     "sign-up": "Sign up",
     "toggle-visibility": "Toggle visibility",
@@ -129,7 +121,7 @@
     "new-password": "New password",
     "save": "Save",
     "seo": {
-      "description": "Update password.",
+      "description": "Jet.",
       "keywords": "jet",
       "title": "Update Password"
     },
