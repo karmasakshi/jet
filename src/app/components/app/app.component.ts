@@ -264,7 +264,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._matIconRegistry.addSvgIcon(
       'logo',
       this._domSanitizer.bypassSecurityTrustResourceUrl(
-        './paper-plane-solid.svg',
+        './logos/paper-plane-solid.svg',
       ),
     );
 
