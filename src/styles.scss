@@ -1,8 +1,7 @@
-.jet-flex-col-center {
-  align-items: center;
+.jet-flex-row-center {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  justify-content: center;
 }
 
 .jet-maxw-480 {
