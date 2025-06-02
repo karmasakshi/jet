@@ -8,15 +8,15 @@ import { SettingsServiceMock } from '@jet/services/settings/settings.service.moc
 import { StorageService } from '@jet/services/storage/storage.service';
 import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { SettingsPageComponent } from './settings-page.component';
+import { SettingsPage } from './settings-page';
 
-describe('SettingsPageComponent', () => {
-  let component: SettingsPageComponent;
-  let fixture: ComponentFixture<SettingsPageComponent>;
+describe('SettingsPage', () => {
+  let component: SettingsPage;
+  let fixture: ComponentFixture<SettingsPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), SettingsPageComponent],
+      imports: [TranslocoTestingModule.forRoot({}), SettingsPage],
       providers: [
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ServiceWorkerService, useClass: ServiceWorkerServiceMock },
@@ -25,7 +25,7 @@ describe('SettingsPageComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SettingsPageComponent);
+    fixture = TestBed.createComponent(SettingsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

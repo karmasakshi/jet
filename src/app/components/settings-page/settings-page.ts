@@ -38,10 +38,10 @@ import { Page } from '../page/page';
     Page,
   ],
   selector: 'jet-settings-page',
-  styleUrl: './settings-page.component.scss',
-  templateUrl: './settings-page.component.html',
+  styleUrl: './settings-page.scss',
+  templateUrl: './settings-page.html',
 })
-export class SettingsPageComponent {
+export class SettingsPage {
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
   private readonly _progressBarService = inject(ProgressBarService);
@@ -72,7 +72,7 @@ export class SettingsPageComponent {
 
     this.version = packageJson.version;
 
-    this._loggerService.logComponentInitialization('SettingsPageComponent');
+    this._loggerService.logComponentInitialization('SettingsPage');
   }
 
   public async checkForUpdate(): Promise<void> {
