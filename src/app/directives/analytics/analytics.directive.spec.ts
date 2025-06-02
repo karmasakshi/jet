@@ -18,22 +18,22 @@ import { AnalyticsDirective } from './analytics.directive';
     </button>
   `,
 })
-class TestHostComponent {}
+class Host {}
 
 describe('AnalyticsDirective', () => {
-  let component: TestHostComponent;
-  let fixture: ComponentFixture<TestHostComponent>;
+  let component: Host;
+  let fixture: ComponentFixture<Host>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestHostComponent],
+      imports: [Host],
       providers: [
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TestHostComponent);
+    fixture = TestBed.createComponent(Host);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
