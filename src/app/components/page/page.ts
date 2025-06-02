@@ -15,10 +15,10 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   selector: 'jet-page',
-  styleUrl: './page.component.scss',
-  templateUrl: './page.component.html',
+  styleUrl: './page.scss',
+  templateUrl: './page.html',
 })
-export class PageComponent {
+export class Page {
   private readonly _meta = inject(Meta);
   private readonly _title = inject(Title);
   private readonly _loggerService = inject(LoggerService);
@@ -90,6 +90,6 @@ export class PageComponent {
       });
     });
 
-    this._loggerService.logComponentInitialization('PageComponent');
+    this._loggerService.logComponentInitialization('Page');
   }
 }

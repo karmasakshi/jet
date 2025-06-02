@@ -32,7 +32,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
-import { PageComponent } from '../page/page.component';
+import { Page } from '../page/page';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,7 +49,7 @@ import { PageComponent } from '../page/page.component';
     RouterLink,
     AnalyticsDirective,
     TranslocoModule,
-    PageComponent,
+    Page,
   ],
   selector: 'jet-profile-page',
   styleUrl: './profile-page.component.scss',

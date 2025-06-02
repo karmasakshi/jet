@@ -18,7 +18,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { PageComponent } from '../page/page.component';
+import { Page } from '../page/page';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,7 +32,7 @@ import { PageComponent } from '../page/page.component';
     MatInputModule,
     RouterLink,
     TranslocoModule,
-    PageComponent,
+    Page,
   ],
   selector: 'jet-sign-up-page',
   styleUrl: './sign-up-page.component.scss',

@@ -10,11 +10,11 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { PageComponent } from '../page/page.component';
+import { Page } from '../page/page';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, PageComponent],
+  imports: [TranslocoModule, Page],
   selector: 'jet-sign-out-page',
   styleUrl: './sign-out-page.component.scss',
   templateUrl: './sign-out-page.component.html',
