@@ -54,7 +54,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
 import packageJson from 'package.json';
 import { Subscription } from 'rxjs';
-import { FooterComponent } from '../footer/footer.component';
+import { Footer } from '../footer/footer';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -71,7 +71,7 @@ import { FooterComponent } from '../footer/footer.component';
     RouterOutlet,
     AnalyticsDirective,
     TranslocoModule,
-    FooterComponent,
+    Footer,
   ],
   selector: 'jet-root',
   styleUrl: './app.scss',
