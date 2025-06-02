@@ -5,7 +5,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { UserService } from '@jet/services/user/user.service';
 
-export const isAuthenticated: CanActivateFn = async (
+export const isAuthenticatedGuard: CanActivateFn = async (
   _activatedRouteSnapshot,
   routerStateSnapshot,
 ): Promise<GuardResult> => {

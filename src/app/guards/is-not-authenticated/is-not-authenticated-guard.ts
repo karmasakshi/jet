@@ -4,7 +4,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { UserService } from '@jet/services/user/user.service';
 
-export const isNotAuthenticated: CanActivateFn =
+export const isNotAuthenticatedGuard: CanActivateFn =
   async (): Promise<GuardResult> => {
     const router = inject(Router);
     const alertService = inject(AlertService);
