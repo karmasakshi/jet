@@ -7,13 +7,13 @@ import { PageComponent } from '../page/page.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-home-page',
-  styleUrl: './home-page.component.scss',
-  templateUrl: './home-page.component.html',
+  styleUrl: './home-page.scss',
+  templateUrl: './home-page.html',
 })
-export class HomePageComponent {
+export class HomePage {
   private readonly _loggerService = inject(LoggerService);
 
   public constructor() {
-    this._loggerService.logComponentInitialization('HomePageComponent');
+    this._loggerService.logComponentInitialization('HomePage');
   }
 }
