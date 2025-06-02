@@ -74,10 +74,10 @@ import { FooterComponent } from '../footer/footer.component';
     FooterComponent,
   ],
   selector: 'jet-root',
-  styleUrl: './app.component.scss',
-  templateUrl: './app.component.html',
+  styleUrl: './app.scss',
+  templateUrl: './app.html',
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class App implements OnInit, OnDestroy {
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _document = inject(DOCUMENT);
   private readonly _renderer2 = inject(Renderer2);
@@ -183,7 +183,7 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     });
 
-    this._loggerService.logComponentInitialization('AppComponent');
+    this._loggerService.logComponentInitialization('App');
   }
 
   public ngOnInit(): void {
