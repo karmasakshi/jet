@@ -22,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { AVATAR_FILE_MAX_SIZE } from '@jet/constants/avatar-file-max-size.constant';
+import { AVATAR_FILE_MAX_SIZE } from '@jet/constants/avatar-file-max-size';
 import { Analytics } from '@jet/directives/analytics/analytics';
 import { Profile } from '@jet/interfaces/profile';
 import { AlertService } from '@jet/services/alert/alert.service';
