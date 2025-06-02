@@ -4,22 +4,22 @@ import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { MessagePageComponent } from './message-page.component';
+import { MessagePage } from './message-page';
 
-describe('MessagePageComponent', () => {
-  let component: MessagePageComponent;
-  let fixture: ComponentFixture<MessagePageComponent>;
+describe('MessagePage', () => {
+  let component: MessagePage;
+  let fixture: ComponentFixture<MessagePage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), MessagePageComponent],
+      imports: [TranslocoTestingModule.forRoot({}), MessagePage],
       providers: [
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MessagePageComponent);
+    fixture = TestBed.createComponent(MessagePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
