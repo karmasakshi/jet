@@ -24,7 +24,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
-import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
+import { AvailableOauthProvider } from '@jet/types/available-oauth-provider';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Page } from '../page/page';
 

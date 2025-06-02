@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Signal, signal, WritableSignal } from '@angular/core';
-import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
+import { AvailableOauthProvider } from '@jet/types/available-oauth-provider';
 import {
   AuthError,
   AuthOtpResponse,

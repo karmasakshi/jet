@@ -5,7 +5,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
+import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })

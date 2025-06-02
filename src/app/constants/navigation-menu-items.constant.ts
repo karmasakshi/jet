@@ -1,4 +1,4 @@
-import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
+import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item';
 import { marker } from '@jsverse/transloco-keys-manager/marker';
 
 export const NAVIGATION_MENU_ITEMS: NavigationMenuItem[] = [

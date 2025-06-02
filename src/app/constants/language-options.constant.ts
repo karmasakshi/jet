@@ -1,4 +1,4 @@
-import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option';
 import { marker } from '@jsverse/transloco-keys-manager/marker';
 
 export const LANGUAGE_OPTIONS: LanguageOption[] = [
