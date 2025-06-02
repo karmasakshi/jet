@@ -8,7 +8,7 @@ import {
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
-interface JetAnalyticsEvent {
+interface AnalyticsEvent {
   name: string;
   data?: unknown;
 }
@@ -18,8 +18,7 @@ export class Analytics {
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
 
-  public readonly jetAnalytics: InputSignal<JetAnalyticsEvent> =
-    input.required();
+  public readonly jetAnalytics: InputSignal<AnalyticsEvent> = input.required();
 
   public constructor() {
     this._loggerService.logDirectiveInitialization('Analytics');
