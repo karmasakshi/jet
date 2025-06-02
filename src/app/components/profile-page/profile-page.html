@@ -18,11 +18,11 @@
         <mat-card-header></mat-card-header>
         <mat-card-content>
           <mat-card
+            (click)="avatarFileInput.click()"
             [jetAnalytics]="{ name: 'Update avatar' }"
             [style]="{
               cursor: profileFormGroup.disabled ? 'not-allowed' : 'pointer',
             }"
-            (click)="avatarFileInput.click()"
             mat-ripple
             style="
               border: 3px solid transparent;
@@ -45,9 +45,9 @@
             />
             <mat-card-content style="display: none">
               <input
-                #avatarFileInput
-                [disabled]="profileFormGroup.disabled"
                 (change)="replaceAvatar()"
+                [disabled]="profileFormGroup.disabled"
+                #avatarFileInput
                 accept="image/*"
                 autocomplete="photo"
                 type="file"
@@ -56,12 +56,12 @@
           </mat-card>
           <form
             id="profile-form"
-            [formGroup]="profileFormGroup"
             (ngSubmit)="
               updateProfile({
                 username: profileFormGroup.controls.username.value ?? '',
               })
             "
+            [formGroup]="profileFormGroup"
           >
             <mat-form-field>
               <mat-label>{{ t('jet-profile-page.username') }}</mat-label>
@@ -73,27 +73,21 @@
                 type="text"
               />
               @if (profileFormGroup.controls.username.value !== null) {
-                <button
-                  [attr.aria-label]="t('jet-profile-page.clear')"
-                  [disabled]="profileFormGroup.controls.username.disabled"
-                  (click)="profileFormGroup.controls.username.reset()"
-                  mat-icon-button
-                  matSuffix
-                  type="button"
-                >
-                  <mat-icon>close</mat-icon>
-                </button>
-              }
-              @if (profileFormGroup.controls.username.dirty) {
-                <mat-hint align="end"
-                  >{{
-                    t('jet-profile-page.characters', {
-                      maximum: 30,
-                      value:
-                        profileFormGroup.controls.username.value?.length || 0,
-                    })
-                  }}
-                </mat-hint>
+              <button
+                (click)="profileFormGroup.controls.username.reset()"
+                [attr.aria-label]="t('jet-profile-page.clear')"
+                [disabled]="profileFormGroup.controls.username.disabled"
+                mat-icon-button
+                matSuffix
+                type="button"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+              } @if (profileFormGroup.controls.username.dirty) {
+              <mat-hint align="end"
+                >{{ t('jet-profile-page.characters', { maximum: 30, value:
+                profileFormGroup.controls.username.value?.length || 0, }) }}
+              </mat-hint>
               }
             </mat-form-field>
           </form>
@@ -125,16 +119,14 @@
             <span>
               <b>{{ user?.email }}</b>
             </span>
-            <span>{{
-              t('jet-profile-page.profile-last-updated-on', {
-                value: (profile?.updated_at | date: 'medium') ?? '?',
-              })
-            }}</span>
-            <span>{{
-              t('jet-profile-page.profile-created-on', {
-                value: (profile?.created_at | date: 'medium') ?? '?',
-              })
-            }}</span>
+            <span
+              >{{ t('jet-profile-page.profile-last-updated-on', { value:
+              (profile?.updated_at | date: 'medium') ?? '?', }) }}</span
+            >
+            <span
+              >{{ t('jet-profile-page.profile-created-on', { value:
+              (profile?.created_at | date: 'medium') ?? '?', }) }}</span
+            >
           </div>
         </mat-card-content>
       </mat-card>

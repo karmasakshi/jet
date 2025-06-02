@@ -15,8 +15,7 @@ const userRoutes: Routes = [
   {
     canActivate: [isAuthenticated],
     loadComponent: async () =>
-      (await import('@jet/components/profile-page/profile-page.component'))
-        .ProfilePageComponent,
+      (await import('@jet/components/profile-page/profile-page')).ProfilePage,
     path: 'profile',
   },
   {
