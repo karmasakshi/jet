@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
-import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
+import { LocalStorageKey } from '@jet/enums/local-storage-key';
+import { SessionStorageKey } from '@jet/enums/session-storage-key';
 
 export class StorageServiceMock {
   public clearLocalStorage(): void {

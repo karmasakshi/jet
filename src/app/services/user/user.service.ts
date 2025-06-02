@@ -6,7 +6,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QueryParam } from '@jet/enums/query-param.enum';
+import { QueryParam } from '@jet/enums/query-param';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider';
 import {
   AuthChangeEvent,

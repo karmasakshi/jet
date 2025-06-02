@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
-import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
+import { LocalStorageKey } from '@jet/enums/local-storage-key';
+import { SessionStorageKey } from '@jet/enums/session-storage-key';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })

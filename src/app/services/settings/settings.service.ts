@@ -9,7 +9,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
-import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
+import { LocalStorageKey } from '@jet/enums/local-storage-key';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
 import { LanguageOption } from '@jet/interfaces/language-option';
 import { Settings } from '@jet/interfaces/settings';
