@@ -6,11 +6,11 @@
     [toolbarTitle]="t('jet-sign-in-page.toolbar-title')"
   >
     <div class="jet-flex-col-center">
-      @let _returnUrl = returnUrl() ?? '/';
-      @if (_returnUrl !== '/') {
-        <span style="font: var(--mat-sys-headline-medium)">{{
-          t('jet-sign-in-page.sign-in-to-continue', { returnUrl: _returnUrl })
-        }}</span>
+      @let _returnUrl = returnUrl() ?? '/'; @if (_returnUrl !== '/') {
+      <span style="font: var(--mat-sys-headline-medium)"
+        >{{ t('jet-sign-in-page.sign-in-to-continue', { returnUrl: _returnUrl })
+        }}</span
+      >
       }
       <mat-card class="jet-maxw-480">
         <img
@@ -25,26 +25,24 @@
         <mat-card-content>
           <div class="jet-flex-col-center">
             <button
-              [disabled]="signInFormGroup.disabled"
               (click)="signInWithOauth('google')"
+              [disabled]="signInFormGroup.disabled"
               mat-button
               type="button"
             >
               {{ t('jet-sign-in-page.sign-in-with-google') }}
             </button>
           </div>
-          <p style="text-align: center">
-            {{ t('jet-sign-in-page.or') }}
-          </p>
+          <p style="text-align: center">{{ t('jet-sign-in-page.or') }}</p>
           <form
             id="sign-in-form"
-            [formGroup]="signInFormGroup"
             (ngSubmit)="
               signInWithPassword(
                 signInFormGroup.controls.email.value ?? '',
                 signInFormGroup.controls.password.value ?? ''
               )
             "
+            [formGroup]="signInFormGroup"
           >
             <mat-form-field>
               <mat-label>{{ t('jet-sign-in-page.email') }}</mat-label>
@@ -66,16 +64,17 @@
                 required
               />
               <button
+                (click)="isPasswordHidden = !isPasswordHidden"
                 [attr.aria-label]="t('jet-sign-in-page.toggle-visibility')"
                 [disabled]="signInFormGroup.controls.password.disabled"
-                (click)="isPasswordHidden = !isPasswordHidden"
                 mat-icon-button
                 matSuffix
                 type="button"
               >
-                <mat-icon>{{
-                  isPasswordHidden ? 'visibility' : 'visibility_off'
-                }}</mat-icon>
+                <mat-icon
+                  >{{ isPasswordHidden ? 'visibility' : 'visibility_off'
+                  }}</mat-icon
+                >
               </button>
             </mat-form-field>
           </form>
@@ -90,10 +89,10 @@
             {{ t('jet-sign-in-page.sign-in') }}
           </button>
           <button
+            (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
             [disabled]="
               signInFormGroup.disabled || signInFormGroup.controls.email.invalid
             "
-            (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
             mat-button
             type="button"
           >

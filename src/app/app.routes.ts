@@ -39,8 +39,7 @@ const userRoutes: Routes = [
   },
   {
     loadComponent: async () =>
-      (await import('@jet/components/sign-in-page/sign-in-page.component'))
-        .SignInPageComponent,
+      (await import('@jet/components/sign-in-page/sign-in-page')).SignInPage,
     path: 'sign-in',
   },
   {

@@ -43,10 +43,10 @@ import { Page } from '../page/page';
     Page,
   ],
   selector: 'jet-sign-in-page',
-  styleUrl: './sign-in-page.component.scss',
-  templateUrl: './sign-in-page.component.html',
+  styleUrl: './sign-in-page.scss',
+  templateUrl: './sign-in-page.html',
 })
-export class SignInPageComponent implements OnInit {
+export class SignInPage implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -81,7 +81,7 @@ export class SignInPageComponent implements OnInit {
       ]),
     });
 
-    this._loggerService.logComponentInitialization('SignInPageComponent');
+    this._loggerService.logComponentInitialization('SignInPage');
   }
 
   public ngOnInit(): void {
