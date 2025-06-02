@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/karmasakshi/jet/compare/v3.0.0...v3.1.0) (2025-06-02)
+
+
+### Features
+
+* **general:** refactor for angular 20 ([c56790e](https://github.com/karmasakshi/jet/commit/c56790e57751edd4408b818a7dfa7cc27e8ef86c))
+
 ## [3.0.0](https://github.com/karmasakshi/jet/compare/v2.9.0...v3.0.0) (2025-05-14)
 
 
