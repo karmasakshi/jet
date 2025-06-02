@@ -73,7 +73,7 @@ import { FooterComponent } from '../footer/footer.component';
     TranslocoModule,
     FooterComponent,
   ],
-  selector: 'jet-app',
+  selector: 'jet-root',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })
