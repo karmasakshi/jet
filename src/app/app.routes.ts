@@ -56,8 +56,7 @@ const userRoutes: Routes = [
   {
     canActivate: [isNotAuthenticated],
     loadComponent: async () =>
-      (await import('@jet/components/sign-up-page/sign-up-page.component'))
-        .SignUpPageComponent,
+      (await import('@jet/components/sign-up-page/sign-up-page')).SignUpPage,
     path: 'sign-up',
   },
   {

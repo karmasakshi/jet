@@ -35,10 +35,10 @@ import { Page } from '../page/page';
     Page,
   ],
   selector: 'jet-sign-up-page',
-  styleUrl: './sign-up-page.component.scss',
-  templateUrl: './sign-up-page.component.html',
+  styleUrl: './sign-up-page.scss',
+  templateUrl: './sign-up-page.html',
 })
-export class SignUpPageComponent {
+export class SignUpPage {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -71,7 +71,7 @@ export class SignUpPageComponent {
       ]),
     });
 
-    this._loggerService.logComponentInitialization('SignUpPageComponent');
+    this._loggerService.logComponentInitialization('SignUpPage');
   }
 
   public async signUp(email: string, password: string) {

@@ -19,13 +19,13 @@
         <mat-card-content>
           <form
             id="sign-up-form"
-            [formGroup]="signUpFormGroup"
             (ngSubmit)="
               signUp(
                 signUpFormGroup.controls.email.value ?? '',
                 signUpFormGroup.controls.password.value ?? ''
               )
             "
+            [formGroup]="signUpFormGroup"
           >
             <mat-form-field>
               <mat-label>{{ t('jet-sign-up-page.email') }}</mat-label>
@@ -47,16 +47,17 @@
                 required
               />
               <button
+                (click)="isPasswordHidden = !isPasswordHidden"
                 [attr.aria-label]="t('jet-sign-up-page.toggle-visibility')"
                 [disabled]="signUpFormGroup.controls.password.disabled"
-                (click)="isPasswordHidden = !isPasswordHidden"
                 mat-icon-button
                 matSuffix
                 type="button"
               >
-                <mat-icon>{{
-                  isPasswordHidden ? 'visibility' : 'visibility_off'
-                }}</mat-icon>
+                <mat-icon
+                  >{{ isPasswordHidden ? 'visibility' : 'visibility_off'
+                  }}</mat-icon
+                >
               </button>
             </mat-form-field>
           </form>
