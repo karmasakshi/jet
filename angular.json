@@ -19,7 +19,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/jet.scss", "src/additional-styles.scss"]
+            "styles": ["src/styles.scss", "src/additional-styles.scss"]
           },
           "configurations": {
             "production": {
@@ -76,7 +76,7 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/jet.scss", "src/additional-styles.scss"],
+            "styles": ["src/styles.scss", "src/additional-styles.scss"],
             "builderMode": "browser"
           }
         },
