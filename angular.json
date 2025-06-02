@@ -16,12 +16,10 @@
             "outputPath": "dist/jet",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/jet.scss", "src/styles.scss"],
-            "scripts": []
+            "styles": ["src/jet.scss", "src/styles.scss"]
           },
           "configurations": {
             "production": {
@@ -79,7 +77,6 @@
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
             "styles": ["src/jet.scss", "src/styles.scss"],
-            "scripts": [],
             "builderMode": "browser"
           }
         },

@@ -3,7 +3,8 @@ import {
   ApplicationConfig,
   isDevMode,
   LOCALE_ID,
-  provideExperimentalZonelessChangeDetection,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -15,20 +16,21 @@ import {
   withInMemoryScrolling,
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
-import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
-import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
-import { LanguageOption } from '@jet/interfaces/language-option.interface';
-import { AvailableLanguage } from '@jet/types/available-language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
 import { JetMatPaginatorIntl } from './classes/jet-mat-paginator-intl.class';
+import { DEFAULT_LANGUAGE_OPTION } from './constants/default-language-option.constant';
+import { LANGUAGE_OPTIONS } from './constants/language-options.constant';
+import { LanguageOption } from './interfaces/language-option.interface';
 import { TranslocoHttpLoader } from './transloco-loader';
+import { AvailableLanguage } from './types/available-language.type';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    provideExperimentalZonelessChangeDetection(),
     { provide: LOCALE_ID, useValue: window.navigator.language },
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
