@@ -14,7 +14,7 @@ interface JetAnalyticsEvent {
 }
 
 @Directive({ selector: '[jetAnalytics]' })
-export class AnalyticsDirective {
+export class Analytics {
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
 
@@ -22,7 +22,7 @@ export class AnalyticsDirective {
     input.required();
 
   public constructor() {
-    this._loggerService.logDirectiveInitialization('AnalyticsDirective');
+    this._loggerService.logDirectiveInitialization('Analytics');
   }
 
   @HostListener('click')

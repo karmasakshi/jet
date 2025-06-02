@@ -34,7 +34,7 @@ import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.consta
 import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
-import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { Analytics } from '@jet/directives/analytics/analytics';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
@@ -69,7 +69,7 @@ import { Footer } from '../footer/footer';
     MatTooltipModule,
     RouterLink,
     RouterOutlet,
-    AnalyticsDirective,
+    Analytics,
     TranslocoModule,
     Footer,
   ],

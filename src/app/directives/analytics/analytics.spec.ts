@@ -4,11 +4,11 @@ import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
-import { AnalyticsDirective } from './analytics.directive';
+import { Analytics } from './analytics';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AnalyticsDirective],
+  imports: [Analytics],
   template: `
     <button
       [jetAnalytics]="{ data: { key: 'value' }, name: 'name' }"
@@ -20,7 +20,7 @@ import { AnalyticsDirective } from './analytics.directive';
 })
 class Host {}
 
-describe('AnalyticsDirective', () => {
+describe('Analytics', () => {
   let component: Host;
   let fixture: ComponentFixture<Host>;
 

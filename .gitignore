@@ -41,6 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Environment
+# Environment files
 .env*
 !.env.example
