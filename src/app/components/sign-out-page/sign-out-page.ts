@@ -16,10 +16,10 @@ import { Page } from '../page/page';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, Page],
   selector: 'jet-sign-out-page',
-  styleUrl: './sign-out-page.component.scss',
-  templateUrl: './sign-out-page.component.html',
+  styleUrl: './sign-out-page.scss',
+  templateUrl: './sign-out-page.html',
 })
-export class SignOutPageComponent implements OnInit {
+export class SignOutPage implements OnInit {
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
@@ -32,7 +32,7 @@ export class SignOutPageComponent implements OnInit {
   public constructor() {
     this._isLoading = false;
 
-    this._loggerService.logComponentInitialization('SignOutPageComponent');
+    this._loggerService.logComponentInitialization('SignOutPage');
   }
 
   public ngOnInit(): void {

@@ -8,15 +8,15 @@ import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.
 import { UserService } from '@jet/services/user/user.service';
 import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { SignOutPageComponent } from './sign-out-page.component';
+import { SignOutPage } from './sign-out-page';
 
-describe('SignOutPageComponent', () => {
-  let component: SignOutPageComponent;
-  let fixture: ComponentFixture<SignOutPageComponent>;
+describe('SignOutPage', () => {
+  let component: SignOutPage;
+  let fixture: ComponentFixture<SignOutPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), SignOutPageComponent],
+      imports: [TranslocoTestingModule.forRoot({}), SignOutPage],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
@@ -25,7 +25,7 @@ describe('SignOutPageComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SignOutPageComponent);
+    fixture = TestBed.createComponent(SignOutPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

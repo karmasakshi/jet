@@ -50,8 +50,7 @@ const userRoutes: Routes = [
   },
   {
     loadComponent: async () =>
-      (await import('@jet/components/sign-out-page/sign-out-page.component'))
-        .SignOutPageComponent,
+      (await import('@jet/components/sign-out-page/sign-out-page')).SignOutPage,
     path: 'sign-out',
   },
   {
