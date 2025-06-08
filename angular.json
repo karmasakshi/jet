@@ -5,7 +5,10 @@
   "projects": {
     "jet": {
       "projectType": "application",
-      "schematics": { "@schematics/angular:component": { "style": "scss" } },
+      "schematics": {
+        "@schematics/angular:component": { "style": "scss" },
+        "@schematics/angular:service": { "type": "service" }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "jet",
@@ -35,7 +38,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
