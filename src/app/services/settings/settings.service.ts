@@ -10,9 +10,9 @@ import {
 } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
-import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
-import { LanguageOption } from '@jet/interfaces/language-option';
-import { Settings } from '@jet/interfaces/settings';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Settings } from '@jet/interfaces/settings.interface';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 

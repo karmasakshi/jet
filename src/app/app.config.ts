@@ -21,9 +21,9 @@ import { routes } from './app.routes';
 import { JetMatPaginatorIntl } from './classes/jet-mat-paginator-intl/jet-mat-paginator-intl';
 import { DEFAULT_LANGUAGE_OPTION } from './constants/default-language-option.constant';
 import { LANGUAGE_OPTIONS } from './constants/language-options.constant';
-import { LanguageOption } from './interfaces/language-option';
+import { LanguageOption } from './interfaces/language-option.interface';
 import { TranslocoHttpLoader } from './transloco-loader';
-import { AvailableLanguage } from './types/available-language';
+import { AvailableLanguage } from './types/available-language.type';
 
 export const appConfig: ApplicationConfig = {
   providers: [

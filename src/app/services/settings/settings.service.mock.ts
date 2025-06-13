@@ -2,9 +2,9 @@
 
 import { computed, Signal, signal, WritableSignal } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
-import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
-import { LanguageOption } from '@jet/interfaces/language-option';
-import { Settings } from '@jet/interfaces/settings';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Settings } from '@jet/interfaces/settings.interface';
 
 export class SettingsServiceMock {
   private readonly _settings: WritableSignal<Settings>;

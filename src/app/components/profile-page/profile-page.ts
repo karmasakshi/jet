@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { AVATAR_FILE_MAX_SIZE } from '@jet/constants/avatar-file-max-size.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
-import { Profile } from '@jet/interfaces/profile';
+import { Profile } from '@jet/interfaces/profile.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';

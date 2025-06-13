@@ -35,10 +35,10 @@ import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
-import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
-import { LanguageOption } from '@jet/interfaces/language-option';
-import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item';
-import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
+import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -47,9 +47,9 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { UserService } from '@jet/services/user/user.service';
-import { AvailableColorScheme } from '@jet/types/available-color-scheme';
-import { AvailableFontClass } from '@jet/types/available-font-class';
-import { AvailableLanguage } from '@jet/types/available-language';
+import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
+import { AvailableFontClass } from '@jet/types/available-font-class.type';
+import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
 import packageJson from 'package.json';

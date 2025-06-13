@@ -1,5 +1,5 @@
-import { AvailableFontClass } from '@jet/types/available-font-class';
-import { AvailableLanguage } from '@jet/types/available-language';
+import { AvailableFontClass } from '@jet/types/available-font-class.type';
+import { AvailableLanguage } from '@jet/types/available-language.type';
 
 export interface LanguageOption {
   directionality: 'ltr' | 'rtl';

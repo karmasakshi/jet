@@ -1,4 +1,4 @@
-import { AvailableColorScheme } from '@jet/types/available-color-scheme';
+import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
 
 export interface ColorSchemeOption {
   icon: string;

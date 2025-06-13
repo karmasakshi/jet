@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { AvailableLanguage } from '@jet/types/available-language';
+import { AvailableLanguage } from '@jet/types/available-language.type';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { catchError, Observable, of } from 'rxjs';
 
