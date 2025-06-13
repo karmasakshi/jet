@@ -21,7 +21,7 @@ export class AnalyticsDirective {
   public readonly jetAnalytics: InputSignal<AnalyticsEvent> = input.required();
 
   public constructor() {
-    this._loggerService.logDirectiveInitialization('Analytics');
+    this._loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 
   @HostListener('click')
