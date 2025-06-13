@@ -23,8 +23,11 @@ const userRoutes: Routes = [
   {
     canActivate: [isNotAuthenticatedGuard],
     loadComponent: async () =>
-      (await import('@jet/components/reset-password-page/reset-password-page'))
-        .ResetPasswordPage,
+      (
+        await import(
+          '@jet/components/reset-password-page/reset-password-page.component'
+        )
+      ).ResetPasswordPageComponent,
     path: 'reset-password',
   },
   {

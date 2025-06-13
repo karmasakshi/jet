@@ -37,10 +37,10 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-reset-password-page',
-  styleUrl: './reset-password-page.scss',
-  templateUrl: './reset-password-page.html',
+  styleUrl: './reset-password-page.component.scss',
+  templateUrl: './reset-password-page.component.html',
 })
-export class ResetPasswordPage {
+export class ResetPasswordPageComponent {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -64,7 +64,9 @@ export class ResetPasswordPage {
       ]),
     });
 
-    this._loggerService.logComponentInitialization('ResetPasswordPage');
+    this._loggerService.logComponentInitialization(
+      'ResetPasswordPageComponent',
+    );
   }
 
   public async resetPasswordForEmail(email: string) {
