@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated-guard';
-import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not-authenticated-guard';
-import { HomePage } from './components/home-page/home-page';
+import { HomePage } from '@jet/components/home-page/home-page';
+import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
+import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
 
 const mainRoutes: Routes = [{ component: HomePage, path: '' }];
 
