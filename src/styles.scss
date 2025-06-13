@@ -38,7 +38,6 @@ html {
 
   @include mat.list-overrides(
     (
-      active-indicator-shape: var(--mat-sys-corner-small),
       list-item-container-shape: var(--mat-sys-corner-small),
       list-item-leading-icon-color: var(--mat-sys-outline),
       list-item-one-line-container-height: 56px,
@@ -50,13 +49,6 @@ html {
   @include mat.sidenav-overrides(
     (
       container-background-color: var(--mat-sys-surface-container-low),
-    )
-  );
-
-  @include mat.stepper-overrides(
-    (
-      header-focus-state-layer-shape: var(--mat-sys-corner-none),
-      header-hover-state-layer-shape: var(--mat-sys-corner-none),
     )
   );
 
