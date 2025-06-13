@@ -39,8 +39,8 @@ const userRoutes: Routes = [
   },
   {
     loadComponent: async () =>
-      (await import('@jet/components/settings-page/settings-page'))
-        .SettingsPage,
+      (await import('@jet/components/settings-page/settings-page.component'))
+        .SettingsPageComponent,
     path: 'settings',
   },
   {

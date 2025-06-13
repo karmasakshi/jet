@@ -7,8 +7,8 @@
   >
     <mat-card>
       <mat-card-content>
-        @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp(); @let
-        _settings = settings();
+        @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
+        @let _settings = settings();
         <mat-action-list>
           <!-- Open language options -->
           <button
@@ -18,12 +18,12 @@
             type="button"
           >
             <mat-icon matListItemIcon>language</mat-icon>
-            <span matListItemTitle
-              >{{ t('jet-settings-page.change-language') }}</span
-            >
-            <span matListItemLine
-              >{{ t(_settings.languageOption.nameKey) }}</span
-            >
+            <span matListItemTitle>{{
+              t('jet-settings-page.change-language')
+            }}</span>
+            <span matListItemLine>{{
+              t(_settings.languageOption.nameKey)
+            }}</span>
           </button>
 
           <!-- Open color scheme options -->
@@ -34,57 +34,58 @@
             type="button"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
-            <span matListItemTitle
-              >{{ t('jet-settings-page.change-color-scheme') }}</span
-            >
-            <span matListItemLine
-              >{{ t(_settings.colorSchemeOption.nameKey) }}</span
-            >
+            <span matListItemTitle>{{
+              t('jet-settings-page.change-color-scheme')
+            }}</span>
+            <span matListItemLine>{{
+              t(_settings.colorSchemeOption.nameKey)
+            }}</span>
           </button>
 
           <!-- Check for updates -->
           <button
-            (click)="checkForUpdate()"
             [jetAnalytics]="{ name: 'Check for updates' }"
+            (click)="checkForUpdate()"
             mat-list-item
             type="button"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
-            <span matListItemTitle
-              >{{ t('jet-settings-page.check-for-updates') }}</span
-            >
+            <span matListItemTitle>{{
+              t('jet-settings-page.check-for-updates')
+            }}</span>
             <span matListItemLine
               >{{ t('jet-settings-page.last-checked') }}&nbsp;{{
-              _lastUpdateCheckTimestamp | date: 'medium' }}</span
+                _lastUpdateCheckTimestamp | date: 'medium'
+              }}</span
             >
           </button>
 
           <!-- Reload -->
           <button
-            (click)="reload()"
             [jetAnalytics]="{ name: 'Reload' }"
+            (click)="reload()"
             mat-list-item
             type="button"
           >
             <mat-icon matListItemIcon>refresh</mat-icon>
             <span matListItemTitle>{{ t('jet-settings-page.reload') }}</span>
-            <span matListItemLine
-              >{{ t('jet-settings-page.reload-description') }}</span
-            >
+            <span matListItemLine>{{
+              t('jet-settings-page.reload-description')
+            }}</span>
           </button>
 
           <!-- Reset -->
           <button
-            (click)="reset()"
             [jetAnalytics]="{ name: 'Reset' }"
+            (click)="reset()"
             mat-list-item
             type="button"
           >
             <mat-icon matListItemIcon>restart_alt</mat-icon>
             <span matListItemTitle>{{ t('jet-settings-page.reset') }}</span>
-            <span matListItemLine
-              >{{ t('jet-settings-page.reset-description') }}</span
-            >
+            <span matListItemLine>{{
+              t('jet-settings-page.reset-description')
+            }}</span>
           </button>
         </mat-action-list>
       </mat-card-content>
@@ -101,19 +102,19 @@
       xPosition="before"
     >
       @for (languageOption of languageOptions; track languageOption.value) {
-      <button
-        (click)="updateSettings({ languageOption })"
-        [disabled]="_settings.languageOption.value === languageOption.value"
-        [jetAnalytics]="{
+        <button
+          [disabled]="_settings.languageOption.value === languageOption.value"
+          [jetAnalytics]="{
             data: { languageOption: languageOption.value },
             name: 'Select language option',
           }"
-        mat-menu-item
-        type="button"
-      >
-        <mat-icon>{{ languageOption.icon }}</mat-icon>
-        <span>{{ t(languageOption.nameKey) }}</span>
-      </button>
+          (click)="updateSettings({ languageOption })"
+          mat-menu-item
+          type="button"
+        >
+          <mat-icon>{{ languageOption.icon }}</mat-icon>
+          <span>{{ t(languageOption.nameKey) }}</span>
+        </button>
       }
     </mat-menu>
 
@@ -122,23 +123,25 @@
       #colorSchemeOptionsMenu="matMenu"
       xPosition="before"
     >
-      @for ( colorSchemeOption of colorSchemeOptions; track
-      colorSchemeOption.value ) {
-      <button
-        (click)="updateSettings({ colorSchemeOption })"
-        [disabled]="
+      @for (
+        colorSchemeOption of colorSchemeOptions;
+        track colorSchemeOption.value
+      ) {
+        <button
+          [disabled]="
             _settings.colorSchemeOption.value === colorSchemeOption.value
           "
-        [jetAnalytics]="{
+          [jetAnalytics]="{
             data: { colorSchemeOption: colorSchemeOption.value },
             name: 'Select color scheme option',
           }"
-        mat-menu-item
-        type="button"
-      >
-        <mat-icon>{{ colorSchemeOption.icon }}</mat-icon>
-        <span>{{ t(colorSchemeOption.nameKey) }}</span>
-      </button>
+          (click)="updateSettings({ colorSchemeOption })"
+          mat-menu-item
+          type="button"
+        >
+          <mat-icon>{{ colorSchemeOption.icon }}</mat-icon>
+          <span>{{ t(colorSchemeOption.nameKey) }}</span>
+        </button>
       }
     </mat-menu>
   </jet-page>
