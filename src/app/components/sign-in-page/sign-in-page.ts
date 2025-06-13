@@ -26,7 +26,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { UserService } from '@jet/services/user/user.service';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Page } from '../page/page';
+import { PageComponent } from '../page/page.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +40,7 @@ import { Page } from '../page/page';
     MatInputModule,
     RouterLink,
     TranslocoModule,
-    Page,
+    PageComponent,
   ],
   selector: 'jet-sign-in-page',
   styleUrl: './sign-in-page.scss',

@@ -28,7 +28,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
-import { Page } from '../page/page';
+import { PageComponent } from '../page/page.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,7 +41,7 @@ import { Page } from '../page/page';
     MatIconModule,
     MatInputModule,
     TranslocoModule,
-    Page,
+    PageComponent,
   ],
   selector: 'jet-update-password-page',
   styleUrl: './update-password-page.scss',

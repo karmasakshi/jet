@@ -19,7 +19,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Page } from '../page/page';
+import { PageComponent } from '../page/page.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +34,7 @@ import { Page } from '../page/page';
     MatTooltipModule,
     RouterLink,
     TranslocoModule,
-    Page,
+    PageComponent,
   ],
   selector: 'jet-reset-password-page',
   styleUrl: './reset-password-page.scss',

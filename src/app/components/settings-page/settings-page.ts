@@ -23,7 +23,7 @@ import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
-import { Page } from '../page/page';
+import { PageComponent } from '../page/page.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,7 +35,7 @@ import { Page } from '../page/page';
     MatMenuModule,
     AnalyticsDirective,
     TranslocoModule,
-    Page,
+    PageComponent,
   ],
   selector: 'jet-settings-page',
   styleUrl: './settings-page.scss',

@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Page } from '../page/page';
+import { PageComponent } from '../page/page.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +25,7 @@ import { Page } from '../page/page';
     MatIconModule,
     RouterLink,
     TranslocoModule,
-    Page,
+    PageComponent,
   ],
   selector: 'jet-message-page',
   styleUrl: './message-page.component.scss',
