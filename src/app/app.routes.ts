@@ -74,9 +74,9 @@ const userRoutes: Routes = [
     loadComponent: async () =>
       (
         await import(
-          '@jet/components/update-password-page/update-password-page'
+          '@jet/components/update-password-page/update-password-page.component'
         )
-      ).UpdatePasswordPage,
+      ).UpdatePasswordPageComponent,
     path: 'update-password',
   },
 ];

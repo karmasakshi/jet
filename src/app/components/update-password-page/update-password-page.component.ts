@@ -44,10 +44,10 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-update-password-page',
-  styleUrl: './update-password-page.scss',
-  templateUrl: './update-password-page.html',
+  styleUrl: './update-password-page.component.scss',
+  templateUrl: './update-password-page.component.html',
 })
-export class UpdatePasswordPage implements OnInit, OnDestroy {
+export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -86,7 +86,9 @@ export class UpdatePasswordPage implements OnInit, OnDestroy {
       ]),
     });
 
-    this._loggerService.logComponentInitialization('UpdatePasswordPage');
+    this._loggerService.logComponentInitialization(
+      'UpdatePasswordPageComponent',
+    );
   }
 
   public ngOnInit(): void {
