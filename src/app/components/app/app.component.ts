@@ -73,11 +73,11 @@ import { Footer } from '../footer/footer';
     TranslocoModule,
     Footer,
   ],
-  selector: 'jet-root',
-  styleUrl: './app.scss',
-  templateUrl: './app.html',
+  selector: 'jet-app',
+  styleUrl: './app.component.scss',
+  templateUrl: './app.component.html',
 })
-export class App implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _document = inject(DOCUMENT);
   private readonly _renderer2 = inject(Renderer2);
@@ -183,7 +183,7 @@ export class App implements OnInit, OnDestroy {
       });
     });
 
-    this._loggerService.logComponentInitialization('App');
+    this._loggerService.logComponentInitialization('AppComponent');
   }
 
   public ngOnInit(): void {

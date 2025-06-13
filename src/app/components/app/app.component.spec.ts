@@ -17,18 +17,18 @@ import { ToolbarTitleServiceMock } from '@jet/services/toolbar-title/toolbar-tit
 import { UserService } from '@jet/services/user/user.service';
 import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { App } from './app';
+import { AppComponent } from './app.component';
 
-describe('App', () => {
-  let component: App;
-  let fixture: ComponentFixture<App>;
+describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
         TranslocoTestingModule.forRoot({}),
-        App,
+        AppComponent,
       ],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
@@ -42,7 +42,7 @@ describe('App', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(App);
+    fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
