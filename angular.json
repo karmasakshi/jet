@@ -11,12 +11,12 @@
           "type": "component"
         },
         "@schematics/angular:directive": { "type": "directive" },
-        "@schematics/angular:service": { "type": "service" },
         "@schematics/angular:guard": { "typeSeparator": "." },
         "@schematics/angular:interceptor": { "typeSeparator": "." },
         "@schematics/angular:module": { "typeSeparator": "." },
         "@schematics/angular:pipe": { "typeSeparator": "." },
-        "@schematics/angular:resolver": { "typeSeparator": "." }
+        "@schematics/angular:resolver": { "typeSeparator": "." },
+        "@schematics/angular:service": { "type": "service" }
       },
       "root": "",
       "sourceRoot": "src",
@@ -77,10 +77,7 @@
             }
           }
         },
-        "extract-i18n": {
-          "builder": "@ngx-env/builder:extract-i18n",
-          "options": {}
-        },
+        "extract-i18n": { "builder": "@ngx-env/builder:extract-i18n" },
         "test": {
           "builder": "@ngx-env/builder:karma",
           "options": {
@@ -88,8 +85,7 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/additional-styles.scss"],
-            "builderMode": "browser"
+            "styles": ["src/styles.scss", "src/additional-styles.scss"]
           }
         },
         "lint": {
