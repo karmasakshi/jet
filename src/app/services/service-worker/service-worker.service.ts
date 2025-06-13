@@ -8,7 +8,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
-import { LocalStorageKey } from '@jet/enums/local-storage-key';
+import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { TranslocoService } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../alert/alert.service';

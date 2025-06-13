@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, GuardResult, Router } from '@angular/router';
-import { QueryParam } from '@jet/enums/query-param';
+import { QueryParam } from '@jet/enums/query-param.enum';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { UserService } from '@jet/services/user/user.service';

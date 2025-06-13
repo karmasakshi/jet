@@ -1,6 +1,6 @@
 import { inject, Injectable, Signal } from '@angular/core';
-import { SupabaseBucket } from '@jet/enums/supabase-bucket';
-import { SupabaseTable } from '@jet/enums/supabase-table';
+import { SupabaseBucket } from '@jet/enums/supabase-bucket.enum';
+import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { Profile } from '@jet/interfaces/profile';
 import { FileObject, StorageError } from '@supabase/storage-js/';
 import { SupabaseClient, User } from '@supabase/supabase-js';
