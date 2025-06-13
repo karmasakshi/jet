@@ -11,7 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
-import { Analytics } from '@jet/directives/analytics/analytics';
+import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
 import { LanguageOption } from '@jet/interfaces/language-option';
 import { Settings } from '@jet/interfaces/settings';
@@ -33,7 +33,7 @@ import { Page } from '../page/page';
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    Analytics,
+    AnalyticsDirective,
     TranslocoModule,
     Page,
   ],

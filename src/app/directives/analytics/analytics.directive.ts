@@ -14,7 +14,7 @@ interface AnalyticsEvent {
 }
 
 @Directive({ selector: '[jetAnalytics]' })
-export class Analytics {
+export class AnalyticsDirective {
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
 

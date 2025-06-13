@@ -1,13 +1,18 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Analytics } from '@jet/directives/analytics/analytics';
+import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatButtonModule, MatIconModule, Analytics, TranslocoModule],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    AnalyticsDirective,
+    TranslocoModule,
+  ],
   selector: 'jet-footer',
   styleUrl: './footer.scss',
   templateUrl: './footer.html',
