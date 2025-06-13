@@ -14,13 +14,13 @@ import { TranslocoModule } from '@jsverse/transloco';
     TranslocoModule,
   ],
   selector: 'jet-footer',
-  styleUrl: './footer.scss',
-  templateUrl: './footer.html',
+  styleUrl: './footer.component.scss',
+  templateUrl: './footer.component.html',
 })
-export class Footer {
+export class FooterComponent {
   private readonly _loggerService = inject(LoggerService);
 
   public constructor() {
-    this._loggerService.logComponentInitialization('Footer');
+    this._loggerService.logComponentInitialization('FooterComponent');
   }
 }
