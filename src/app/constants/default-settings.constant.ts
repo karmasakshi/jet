@@ -1,6 +1,6 @@
 import { Settings } from '@jet/interfaces/settings';
-import { DEFAULT_COLOR_SCHEME_OPTION } from './default-color-scheme-option';
-import { DEFAULT_LANGUAGE_OPTION } from './default-language-option';
+import { DEFAULT_COLOR_SCHEME_OPTION } from './default-color-scheme-option.constant';
+import { DEFAULT_LANGUAGE_OPTION } from './default-language-option.constant';
 
 export const DEFAULT_SETTINGS: Settings = {
   colorSchemeOption: DEFAULT_COLOR_SCHEME_OPTION,

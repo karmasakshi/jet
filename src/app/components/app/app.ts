@@ -30,10 +30,10 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
-import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options';
-import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option';
-import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option';
-import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items';
+import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
+import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
+import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
 import { Analytics } from '@jet/directives/analytics/analytics';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
 import { LanguageOption } from '@jet/interfaces/language-option';

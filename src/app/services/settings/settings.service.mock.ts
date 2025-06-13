@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { computed, Signal, signal, WritableSignal } from '@angular/core';
-import { DEFAULT_SETTINGS } from '@jet/constants/default-settings';
+import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option';
 import { LanguageOption } from '@jet/interfaces/language-option';
 import { Settings } from '@jet/interfaces/settings';
