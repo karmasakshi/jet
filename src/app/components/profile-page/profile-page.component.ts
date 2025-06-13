@@ -52,10 +52,10 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-profile-page',
-  styleUrl: './profile-page.scss',
-  templateUrl: './profile-page.html',
+  styleUrl: './profile-page.component.scss',
+  templateUrl: './profile-page.component.html',
 })
-export class ProfilePage implements OnInit {
+export class ProfilePageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _alertService = inject(AlertService);
   private readonly _loggerService = inject(LoggerService);
@@ -92,7 +92,7 @@ export class ProfilePage implements OnInit {
 
     this.user = this._userService.user();
 
-    this._loggerService.logComponentInitialization('ProfilePage');
+    this._loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
   public ngOnInit(): void {
