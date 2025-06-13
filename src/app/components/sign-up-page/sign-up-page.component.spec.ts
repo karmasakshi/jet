@@ -8,15 +8,15 @@ import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.
 import { UserService } from '@jet/services/user/user.service';
 import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { SignUpPage } from './sign-up-page';
+import { SignUpPageComponent } from './sign-up-page.component';
 
-describe('SignUpPage', () => {
-  let component: SignUpPage;
-  let fixture: ComponentFixture<SignUpPage>;
+describe('SignUpPageComponent', () => {
+  let component: SignUpPageComponent;
+  let fixture: ComponentFixture<SignUpPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), SignUpPage],
+      imports: [TranslocoTestingModule.forRoot({}), SignUpPageComponent],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
@@ -25,7 +25,7 @@ describe('SignUpPage', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SignUpPage);
+    fixture = TestBed.createComponent(SignUpPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
