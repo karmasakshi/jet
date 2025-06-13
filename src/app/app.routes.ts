@@ -9,7 +9,8 @@ const userRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
     loadComponent: async () =>
-      (await import('@jet/components/message-page/message-page')).MessagePage,
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: 'email-verification-pending',
   },
   {
@@ -28,7 +29,8 @@ const userRoutes: Routes = [
   {
     data: { case: 'reset-password-email-sent' },
     loadComponent: async () =>
-      (await import('@jet/components/message-page/message-page')).MessagePage,
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: 'reset-password-email-sent',
   },
   {
@@ -45,7 +47,8 @@ const userRoutes: Routes = [
   {
     data: { case: 'sign-in-link-sent' },
     loadComponent: async () =>
-      (await import('@jet/components/message-page/message-page')).MessagePage,
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: 'sign-in-link-sent',
   },
   {
@@ -77,7 +80,8 @@ export const routes: Routes = [
   {
     data: { case: 'not-found' },
     loadComponent: async () =>
-      (await import('@jet/components/message-page/message-page')).MessagePage,
+      (await import('@jet/components/message-page/message-page.component'))
+        .MessagePageComponent,
     path: '**',
   },
 ];

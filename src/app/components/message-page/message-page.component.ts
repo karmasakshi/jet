@@ -28,10 +28,10 @@ import { Page } from '../page/page';
     Page,
   ],
   selector: 'jet-message-page',
-  styleUrl: './message-page.scss',
-  templateUrl: './message-page.html',
+  styleUrl: './message-page.component.scss',
+  templateUrl: './message-page.component.html',
 })
-export class MessagePage implements OnInit {
+export class MessagePageComponent implements OnInit {
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _loggerService = inject(LoggerService);
 
@@ -44,7 +44,7 @@ export class MessagePage implements OnInit {
   > = input();
 
   public constructor() {
-    this._loggerService.logComponentInitialization('MessagePage');
+    this._loggerService.logComponentInitialization('MessagePageComponent');
   }
 
   public ngOnInit(): void {
