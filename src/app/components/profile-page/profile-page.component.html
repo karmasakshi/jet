@@ -103,7 +103,7 @@
             [disabled]="profileFormGroup.disabled || profileFormGroup.invalid"
             [jetAnalytics]="{ name: 'Update profile' }"
             form="profile-form"
-            mat-flat-button
+            matButton="filled"
             type="submit"
           >
             {{ t('jet-profile-page.save') }}
@@ -111,7 +111,7 @@
           <div style="flex: 1"></div>
           <a
             [routerLink]="['/update-password']"
-            mat-button
+            matButton
             >{{ t('jet-profile-page.update-password') }}</a
           >
         </mat-card-actions>

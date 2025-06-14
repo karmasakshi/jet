@@ -65,7 +65,7 @@
           <button
             [disabled]="signUpFormGroup.disabled || signUpFormGroup.invalid"
             form="sign-up-form"
-            mat-flat-button
+            matButton="filled"
             type="submit"
           >
             {{ t('jet-sign-up-page.sign-up') }}
@@ -80,14 +80,14 @@
               [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               [routerLink]="['/sign-in']"
-              mat-button
+              matButton
               >{{ t('jet-sign-up-page.sign-in') }}</a
             >
             <a
               [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: signUpFormGroup.controls.email.value }"
               [routerLink]="['/reset-password']"
-              mat-button
+              matButton
               >{{ t('jet-sign-up-page.reset-password') }}</a
             >
           </div>

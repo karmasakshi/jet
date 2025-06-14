@@ -27,7 +27,7 @@
             <button
               [disabled]="signInFormGroup.disabled"
               (click)="signInWithOauth('google')"
-              mat-button
+              matButton
               type="button"
             >
               {{ t('jet-sign-in-page.sign-in-with-google') }}
@@ -82,7 +82,7 @@
           <button
             [disabled]="signInFormGroup.disabled || signInFormGroup.invalid"
             form="sign-in-form"
-            mat-flat-button
+            matButton="filled"
             type="submit"
           >
             {{ t('jet-sign-in-page.sign-in') }}
@@ -92,7 +92,7 @@
               signInFormGroup.disabled || signInFormGroup.controls.email.invalid
             "
             (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
-            mat-button
+            matButton
             type="button"
           >
             {{ t('jet-sign-in-page.email-me-a-link-to-sign-in') }}
@@ -107,14 +107,14 @@
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               [routerLink]="['/reset-password']"
-              mat-button
+              matButton
               >{{ t('jet-sign-in-page.reset-password') }}</a
             >
             <a
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: signInFormGroup.controls.email.value }"
               [routerLink]="['/sign-up']"
-              mat-button
+              matButton
               >{{ t('jet-sign-in-page.sign-up') }}</a
             >
           </div>
