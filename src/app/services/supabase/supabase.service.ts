@@ -10,8 +10,8 @@ export class SupabaseService {
 
   public constructor() {
     this._supabaseClient = createClient(
-      import.meta.env.NGX_SUPABASE_URL,
-      import.meta.env.NGX_SUPABASE_KEY,
+      import.meta.env.NG_APP_SUPABASE_URL,
+      import.meta.env.NG_APP_SUPABASE_KEY,
     );
 
     this._loggerService.logServiceInitialization('SupabaseService');

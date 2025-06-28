@@ -5,7 +5,8 @@ export class LoggerService {
   private readonly _isLoggingEnabled: boolean;
 
   public constructor() {
-    this._isLoggingEnabled = import.meta.env.NGX_IS_LOGGING_ENABLED === 'true';
+    this._isLoggingEnabled =
+      import.meta.env.NG_APP_IS_LOGGING_ENABLED === 'true';
 
     this.logServiceInitialization('LoggerService');
   }
