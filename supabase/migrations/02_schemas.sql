@@ -24,5 +24,3 @@ create table public.profiles (
   ),
   constraint profiles_username_key unique (username)
 ) TABLESPACE pg_default;
-
-alter table public.profiles enable row level security;
