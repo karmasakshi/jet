@@ -15,7 +15,9 @@ export class AnalyticsService {
     this._isAnalyticsEnabled =
       import.meta.env.NG_APP_IS_ANALYTICS_ENABLED === 'true';
 
-    window.gtag('config', this._googleAnalyticsMeasurementId);
+    if (this._isAnalyticsEnabled) {
+      window.gtag('config', this._googleAnalyticsMeasurementId);
+    }
 
     this._loggerService.logServiceInitialization('AnalyticsService');
   }

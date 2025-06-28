@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslocoTestingModule } from '@jsverse/transloco';
@@ -17,10 +18,11 @@ describe('ServiceWorkerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
+        ServiceWorkerModule.register(''),
         TranslocoTestingModule.forRoot({}),
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from '../logger/logger.service';
@@ -12,6 +13,7 @@ describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        provideZonelessChangeDetection(),
         { provide: ActivatedRoute, useValue: {} },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SupabaseService, useClass: SupabaseServiceMock },

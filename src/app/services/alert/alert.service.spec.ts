@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
@@ -13,6 +14,7 @@ describe('AlertService', () => {
     TestBed.configureTestingModule({
       imports: [TranslocoTestingModule.forRoot({})],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
       ],

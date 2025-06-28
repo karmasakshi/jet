@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
@@ -8,7 +9,10 @@ describe('SupabaseService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: LoggerService, useClass: LoggerServiceMock },
+      ],
     });
     service = TestBed.inject(SupabaseService);
   });
