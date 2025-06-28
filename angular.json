@@ -77,7 +77,10 @@
             }
           }
         },
-        "extract-i18n": { "builder": "@ngx-env/builder:extract-i18n" },
+        "extract-i18n": {
+          "builder": "@ngx-env/builder:extract-i18n",
+          "options": {}
+        },
         "test": {
           "builder": "@ngx-env/builder:karma",
           "options": {
@@ -85,7 +88,8 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/additional-styles.scss"]
+            "styles": ["src/styles.scss", "src/additional-styles.scss"],
+            "builderMode": "browser"
           }
         },
         "lint": {
