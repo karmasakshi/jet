@@ -10,10 +10,10 @@ export class AnalyticsService {
 
   public constructor() {
     this._googleAnalyticsMeasurementId =
-      import.meta.env.NG_APP_GOOGLE_ANALYTICS_MEASUREMENT_ID;
+      import.meta.env.NGX_GOOGLE_ANALYTICS_MEASUREMENT_ID;
 
     this._isAnalyticsEnabled =
-      import.meta.env.NG_APP_IS_ANALYTICS_ENABLED === 'true';
+      import.meta.env.NGX_IS_ANALYTICS_ENABLED === 'true';
 
     window.gtag('config', this._googleAnalyticsMeasurementId);
 
