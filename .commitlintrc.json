@@ -3,6 +3,6 @@
   "rules": {
     "scope-case": [2, "always", "lower-case"],
     "scope-empty": [2, "never"],
-    "scope-enum": [2, "always", ["main", "general"]]
+    "scope-enum": [2, "always", ["general", "main"]]
   }
 }

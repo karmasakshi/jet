@@ -1,8 +1,6 @@
--- Enable RLS
+-- public.profiles
 
 alter table public.profiles enable row level security;
-
--- public.profiles
 
 create policy "Allow authenticated to select own profiles"
 on public.profiles
