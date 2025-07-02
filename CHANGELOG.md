@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/karmasakshi/jet/compare/v3.1.1...v3.2.0) (2025-07-02)
+
+
+### Features
+
+* **general:** update assets ([02f84f3](https://github.com/karmasakshi/jet/commit/02f84f31dcecbc5ee1c74ef638ab4d1a6413eefa))
+
 ## [3.1.1](https://github.com/karmasakshi/jet/compare/v3.1.0...v3.1.1) (2025-06-28)
 
 
