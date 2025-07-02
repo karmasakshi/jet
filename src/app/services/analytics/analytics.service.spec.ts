@@ -7,10 +7,6 @@ import { AnalyticsService } from './analytics.service';
 describe('AnalyticsService', () => {
   let service: AnalyticsService;
 
-  beforeAll(() => {
-    window.gtag = jasmine.createSpy('gtag');
-  });
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [

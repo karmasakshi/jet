@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { gtag, install } from 'ga-gtag';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
@@ -16,7 +17,7 @@ export class AnalyticsService {
       import.meta.env.NG_APP_IS_ANALYTICS_ENABLED === 'true';
 
     if (this._isAnalyticsEnabled) {
-      window.gtag('config', this._googleAnalyticsMeasurementId);
+      install(this._googleAnalyticsMeasurementId);
     }
 
     this._loggerService.logServiceInitialization('AnalyticsService');
@@ -27,6 +28,6 @@ export class AnalyticsService {
       return;
     }
 
-    window.gtag('event', eventName, eventData);
+    gtag('event', eventName, eventData as Gtag.CustomParams);
   }
 }
