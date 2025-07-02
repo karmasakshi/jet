@@ -17,7 +17,7 @@ export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
   {
     icon: 'dark_mode',
     nameKey: marker('constants.dark'),
-    themeColor: '#161312',
+    themeColor: '#161311',
     value: 'dark',
   },
 ];

@@ -19,7 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DomSanitizer, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import {
   Event,
   NavigationCancel,
@@ -82,7 +82,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _document = inject(DOCUMENT);
   private readonly _renderer2 = inject(Renderer2);
   private readonly _matIconRegistry = inject(MatIconRegistry);
-  private readonly _domSanitizer = inject(DomSanitizer);
   private readonly _meta = inject(Meta);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -261,11 +260,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _setIcons(): void {
-    this._matIconRegistry.addSvgIcon(
-      'jet',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('./jet.svg'),
-    );
-
     this._matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
   }
 
