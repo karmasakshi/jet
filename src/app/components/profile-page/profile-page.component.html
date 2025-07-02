@@ -108,12 +108,6 @@
           >
             {{ t('jet-profile-page.save') }}
           </button>
-          <div style="flex: 1"></div>
-          <a
-            [routerLink]="['/update-password']"
-            matButton
-            >{{ t('jet-profile-page.update-password') }}</a
-          >
         </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
@@ -137,6 +131,13 @@
             }}</span>
           </div>
         </mat-card-content>
+        <mat-card-actions style="justify-content: center">
+          <a
+            [routerLink]="['/update-password']"
+            matButton
+            >{{ t('jet-profile-page.update-password') }}</a
+          >
+        </mat-card-actions>
       </mat-card>
     </div>
   </jet-page>

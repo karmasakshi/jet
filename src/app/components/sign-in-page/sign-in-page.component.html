@@ -8,7 +8,7 @@
     <div class="jet-flex-col-center">
       @let _returnUrl = returnUrl() ?? '/';
       @if (_returnUrl !== '/') {
-        <span style="font: var(--mat-sys-headline-medium)">{{
+        <span style="font: var(--mat-sys-title-large)">{{
           t('jet-sign-in-page.sign-in-to-continue', { returnUrl: _returnUrl })
         }}</span>
       }
@@ -92,7 +92,7 @@
               signInFormGroup.disabled || signInFormGroup.controls.email.invalid
             "
             (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
-            matButton
+            matButton="tonal"
             type="button"
           >
             {{ t('jet-sign-in-page.email-me-a-link-to-sign-in') }}
