@@ -15,7 +15,6 @@
           priority
           width="480"
         />
-        <mat-card-header></mat-card-header>
         <mat-card-content>
           <mat-card
             [jetAnalytics]="{ name: 'Update avatar' }"
@@ -29,7 +28,7 @@
               height: 132px;
               width: 132px;
               border-radius: 50%;
-              margin: -92.5px auto 36px;
+              margin: -72.5px auto 32px;
             "
           >
             <img
@@ -112,13 +111,22 @@
       </mat-card>
       <mat-card class="jet-maxw-480">
         <mat-card-content>
+          <div class="jet-flex-col-center">
+            <a
+              [routerLink]="['/update-password']"
+              matButton
+              >{{ t('jet-profile-page.update-password') }}</a
+            >
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="jet-maxw-480">
+        <mat-card-content>
           <div
             class="jet-flex-col-center"
             style="font: var(--mat-sys-body-small)"
           >
-            <span>
-              <strong>{{ user?.email }}</strong>
-            </span>
+            <strong>{{ user?.email }}</strong>
             <span>{{
               t('jet-profile-page.profile-last-updated-on', {
                 value: (profile?.updated_at | date: 'medium') ?? '?',
@@ -129,11 +137,6 @@
                 value: (profile?.created_at | date: 'medium') ?? '?',
               })
             }}</span>
-            <a
-              [routerLink]="['/update-password']"
-              matButton
-              >{{ t('jet-profile-page.update-password') }}</a
-            >
           </div>
         </mat-card-content>
       </mat-card>

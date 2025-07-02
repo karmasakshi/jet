@@ -21,19 +21,23 @@
           priority
           width="480"
         />
-        <mat-card-header></mat-card-header>
         <mat-card-content>
+          <p></p>
           <div class="jet-flex-col-center">
             <button
               [disabled]="signInFormGroup.disabled"
               (click)="signInWithOauth('google')"
-              matButton
+              matButton="filled"
               type="button"
             >
               {{ t('jet-sign-in-page.sign-in-with-google') }}
             </button>
           </div>
-          <p style="text-align: center">{{ t('jet-sign-in-page.or') }}</p>
+        </mat-card-content>
+      </mat-card>
+      <span>{{ t('jet-sign-in-page.or') }}</span>
+      <mat-card class="jet-maxw-480">
+        <mat-card-content>
           <form
             id="sign-in-form"
             [formGroup]="signInFormGroup"
@@ -92,7 +96,7 @@
               signInFormGroup.disabled || signInFormGroup.controls.email.invalid
             "
             (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
-            matButton="tonal"
+            matButton
             type="button"
           >
             {{ t('jet-sign-in-page.email-me-a-link-to-sign-in') }}
