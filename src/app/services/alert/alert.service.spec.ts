@@ -12,7 +12,7 @@ describe('AlertService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({})],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
         provideZonelessChangeDetection(),
         { provide: LoggerService, useClass: LoggerServiceMock },

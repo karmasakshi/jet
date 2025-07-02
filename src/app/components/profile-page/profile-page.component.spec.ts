@@ -1,4 +1,6 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -18,8 +20,13 @@ describe('ProfilePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), ProfilePageComponent],
+      imports: [
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
+        ProfilePageComponent,
+      ],
       providers: [
+        provideZonelessChangeDetection(),
+        { provide: ActivatedRoute, useValue: {} },
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProfileService, useClass: ProfileServiceMock },

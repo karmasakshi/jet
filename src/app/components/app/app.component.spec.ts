@@ -1,4 +1,6 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { RouterModule } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
@@ -26,11 +28,13 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        MatIconTestingModule,
         RouterModule.forRoot([]),
-        TranslocoTestingModule.forRoot({}),
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
         AppComponent,
       ],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

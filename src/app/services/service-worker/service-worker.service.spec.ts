@@ -19,7 +19,7 @@ describe('ServiceWorkerService', () => {
     TestBed.configureTestingModule({
       imports: [
         ServiceWorkerModule.register(''),
-        TranslocoTestingModule.forRoot({}),
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
       ],
       providers: [
         provideZonelessChangeDetection(),

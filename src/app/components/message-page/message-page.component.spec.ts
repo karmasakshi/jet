@@ -1,4 +1,6 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -12,8 +14,13 @@ describe('MessagePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), MessagePageComponent],
+      imports: [
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
+        MessagePageComponent,
+      ],
       providers: [
+        provideZonelessChangeDetection(),
+        { provide: ActivatedRoute, useValue: {} },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
       ],

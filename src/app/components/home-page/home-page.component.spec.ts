@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
@@ -10,8 +11,14 @@ describe('HomePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({}), HomePageComponent],
-      providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
+      imports: [
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
+        HomePageComponent,
+      ],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: LoggerService, useClass: LoggerServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomePageComponent);
