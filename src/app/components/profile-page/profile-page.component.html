@@ -117,7 +117,7 @@
             style="font: var(--mat-sys-body-small)"
           >
             <span>
-              <b>{{ user?.email }}</b>
+              <strong>{{ user?.email }}</strong>
             </span>
             <span>{{
               t('jet-profile-page.profile-last-updated-on', {
@@ -129,15 +129,13 @@
                 value: (profile?.created_at | date: 'medium') ?? '?',
               })
             }}</span>
+            <a
+              [routerLink]="['/update-password']"
+              matButton
+              >{{ t('jet-profile-page.update-password') }}</a
+            >
           </div>
         </mat-card-content>
-        <mat-card-actions style="justify-content: center">
-          <a
-            [routerLink]="['/update-password']"
-            matButton
-            >{{ t('jet-profile-page.update-password') }}</a
-          >
-        </mat-card-actions>
       </mat-card>
     </div>
   </jet-page>
