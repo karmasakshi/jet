@@ -40,7 +40,6 @@ html {
     (
       list-item-container-shape: var(--mat-sys-corner-small),
       list-item-leading-icon-color: var(--mat-sys-outline),
-      list-item-one-line-container-height: 56px,
       list-item-supporting-text-color: var(--mat-sys-outline),
       list-item-two-line-container-height: 74px,
     )
@@ -286,7 +285,6 @@ img {
 
 table {
   border-radius: var(--mat-sys-corner-small);
-  overflow: hidden;
 }
 
 .material-symbols-rounded {
@@ -295,10 +293,6 @@ table {
 
 .mat-expansion-panel {
   box-shadow: none !important;
-}
-
-.mat-mdc-button-base {
-  white-space: nowrap;
 }
 
 .mat-mdc-card {
