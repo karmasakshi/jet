@@ -237,10 +237,19 @@ export class AppComponent implements OnInit, OnDestroy {
     this._activeFontUrl = nextFontUrl;
 
     if (nextFontUrl !== DEFAULT_LANGUAGE_OPTION.fontUrl) {
-      const link = this._renderer2.createElement('link');
-      this._renderer2.setAttribute(link, 'rel', 'stylesheet');
-      this._renderer2.setAttribute(link, 'href', nextFontUrl);
-      this._renderer2.appendChild(this._document.head, link);
+      const id = 'jet-font';
+      let link = document.getElementById(id);
+
+      if (!link) {
+        link = this._renderer2.createElement('link');
+        this._renderer2.setAttribute(link, 'href', nextFontUrl);
+        this._renderer2.setAttribute(link, 'id', id);
+        this._renderer2.setAttribute(link, 'rel', 'stylesheet');
+
+        this._renderer2.appendChild(this._document.head, link);
+      } else {
+        this._renderer2.setAttribute(link, 'href', nextFontUrl);
+      }
     }
   }
 
