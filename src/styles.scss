@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 @use '../_theme-colors' as mat-theme;
 
-$bg-font-family: ('Bricolage Grotesque', sans-serif);
 $ns-font-family: ('Noto Sans', sans-serif);
 $nsa-font-family: ('Noto Sans Arabic', sans-serif);
 
@@ -14,7 +13,7 @@ html {
         theme-type: color-scheme,
       ),
       typography: (
-        brand-family: $bg-font-family,
+        brand-family: $ns-font-family,
         plain-family: $ns-font-family,
         bold-weight: 700,
         medium-weight: 500,
