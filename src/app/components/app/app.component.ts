@@ -33,6 +33,7 @@ import {
 import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
 import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { ICONS } from '@jet/constants/icons.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
@@ -288,6 +289,18 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _setIcons(): void {
+    const icons = ICONS.join(',');
+    const link = this._renderer2.createElement('link');
+    this._renderer2.setAttribute(
+      link,
+      'href',
+      'https://fonts.googleapis.com/css2?display=swap&family=Material+Symbols+Rounded:FILL@0..1&icon_names=' +
+        icons,
+    );
+    this._renderer2.setAttribute(link, 'rel', 'stylesheet');
+
+    this._renderer2.appendChild(this._document.head, link);
+
     this._matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
   }
 
