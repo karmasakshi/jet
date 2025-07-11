@@ -95,6 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _translocoService = inject(TranslocoService);
 
   private _activeFontClass: AvailableFontClass;
+  private _activeFontUrl: string;
   private _activeLanguage: AvailableLanguage;
   private _activeColorScheme: AvailableColorScheme;
   private _activeThemeColor: ColorSchemeOption['themeColor'];
@@ -116,6 +117,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public constructor() {
     this._activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
+
+    this._activeFontUrl = DEFAULT_LANGUAGE_OPTION.fontUrl;
 
     this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
@@ -159,6 +162,7 @@ export class AppComponent implements OnInit, OnDestroy {
       const languageOption: LanguageOption = this.languageOption();
 
       untracked(() => {
+        this._loadFont(languageOption.fontUrl);
         this._setFontClass(languageOption.fontClass);
         this._setLanguage(languageOption);
       });
@@ -223,6 +227,21 @@ export class AppComponent implements OnInit, OnDestroy {
     this._routerSubscription.unsubscribe();
     this._serviceWorkerUpdateSubscription.unsubscribe();
     this._unsetSystemColorSchemeListener();
+  }
+
+  private _loadFont(nextFontUrl: string): void {
+    if (nextFontUrl === this._activeFontUrl) {
+      return;
+    }
+
+    this._activeFontUrl = nextFontUrl;
+
+    if (nextFontUrl !== DEFAULT_LANGUAGE_OPTION.fontUrl) {
+      const link = this._renderer2.createElement('link');
+      this._renderer2.setAttribute(link, 'rel', 'stylesheet');
+      this._renderer2.setAttribute(link, 'href', nextFontUrl);
+      this._renderer2.appendChild(this._document.head, link);
+    }
   }
 
   private _setColorSchemeClass(nextColorScheme: AvailableColorScheme): void {
