@@ -45,19 +45,7 @@
         </mat-nav-list>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content
-      class="jet-content"
-      [style]="{
-        'margin-left':
-          _languageOption.directionality === 'ltr' && !isSmallViewport
-            ? '240px'
-            : 0,
-        'margin-right':
-          _languageOption.directionality === 'rtl' && !isSmallViewport
-            ? '240px'
-            : 0,
-      }"
-    >
+    <mat-sidenav-content class="jet-content">
       <mat-toolbar
         class="jet-content-toolbar"
         [class]="{
