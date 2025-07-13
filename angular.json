@@ -67,7 +67,7 @@
           "defaultConfiguration": "development",
           "options": {
             "headers": {
-              "Content-Security-Policy": "default-src 'none'; base-uri 'self'; connect-src 'self' http://localhost:54321 https://*.google-analytics.com https://asjljqbmkctbquhijkbh.supabase.co; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' http://localhost:54321 https://placehold.co https://asjljqbmkctbquhijkbh.supabase.co; manifest-src 'self'; object-src 'none'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self';",
+              "Content-Security-Policy": "default-src 'none'; base-uri 'self'; connect-src 'self' http://localhost:54321 https://*.google-analytics.com https://*.supabase.co; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' http://localhost:54321 https://placehold.co https://*.supabase.co; manifest-src 'self'; object-src 'none'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self';",
               "Cross-Origin-Opener-Policy": "same-origin",
               "Cross-Origin-Resource-Policy": "same-origin",
               "Referrer-Policy": "strict-origin-when-cross-origin",
