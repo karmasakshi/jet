@@ -41,14 +41,8 @@ module.exports = tseslint.config(
       '@angular-eslint/template/prefer-ngsrc': 'error',
       'no-restricted-syntax': [
         'error',
-        {
-          selector: 'BoundAttribute[name="ngClass"]',
-          message: 'Use [class] binding instead.',
-        },
-        {
-          selector: 'BoundAttribute[name="ngStyle"]',
-          message: 'Use [style] binding instead.',
-        },
+        { selector: 'BoundAttribute[name="ngClass"]' },
+        { selector: 'BoundAttribute[name="ngStyle"]' },
       ],
     },
   },
