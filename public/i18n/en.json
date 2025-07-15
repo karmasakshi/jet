@@ -31,7 +31,7 @@
     "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
   },
-  "jet-footer": { "buy": "Buy" },
+  "jet-footer": { "donate": "Donate" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
     "toolbar-title": "Jet"
