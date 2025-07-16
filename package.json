@@ -49,7 +49,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/prompt-cli": "^19.8.1",
     "@jsverse/transloco-keys-manager": "^7.0.0",
-    "@ngx-env/builder": "^20.0.1",
+    "@ngx-env/builder": "^20.1.0",
     "@types/ga-gtag": "^1.2.0",
     "@types/jasmine": "^5.1.8",
     "angular-eslint": "^20.1.1",
