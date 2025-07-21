@@ -374,11 +374,32 @@ Angular starter-kit for building quality web apps fast.
 Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce.
 
 <p align="center">
-  <a href="https://github.com/singhamit089" target="_blank" ><img alt="singhamit089" height="64" src="https://github.com/singhamit089.png" width="64" /></a>
+  <a
+    href="https://github.com/singhamit089"
+    target="_blank"
+  ><img
+    alt="singhamit089"
+    src="https://github.com/singhamit089.png"
+    width="64"
+  /></a>
   &nbsp;
-  <a href="https://github.com/byjokese" target="_blank" ><img alt="byjokese" height="64" src="https://github.com/byjokese.png" width="64" /></a>
+  <a
+    href="https://github.com/byjokese"
+    target="_blank"
+  ><img
+    alt="byjokese"
+    src="https://github.com/byjokese.png"
+    width="64"
+  /></a>
   &nbsp;
-  <a href="https://github.com/dipenpradhan" style="border-radius: 50%; overflow: hidden;" target="_blank" ><img alt="dipenpradhan" height="64" src="https://github.com/dipenpradhan.png" style="border-radius: 50%; overflow: hidden;" width="64" /></a>
+  <a
+    href="https://github.com/dipenpradhan"
+    target="_blank"
+  ><img
+    alt="dipenpradhan"
+    src="https://github.com/dipenpradhan.png"
+    width="64"
+  /></a>
 </p>
 
 <br />
