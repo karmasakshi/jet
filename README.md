@@ -378,7 +378,7 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
   &nbsp;
   <a href="https://github.com/byjokese" target="_blank" ><img alt="byjokese" height="64" src="https://github.com/byjokese.png" width="64" /></a>
   &nbsp;
-  <a href="https://github.com/dipenpradhan" target="_blank" ><img alt="dipenpradhan" height="64" src="https://github.com/dipenpradhan.png" style="border-radius: 50%;" width="64" /></a>
+  <a href="https://github.com/dipenpradhan" style="border-radius: 50%; overflow: hidden;" target="_blank" ><img alt="dipenpradhan" height="64" src="https://github.com/dipenpradhan.png" style="border-radius: 50%; overflow: hidden;" width="64" /></a>
 </p>
 
 <br />
