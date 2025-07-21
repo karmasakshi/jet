@@ -27,16 +27,14 @@ Angular starter-kit for building quality web apps fast.
     - [Add a component](#add-a-component)
     - [Add a page component](#add-a-page-component)
     - [Add a service](#add-a-service)
-  - [Manage changes](#manage-changes)
-    - [Add a commit scope](#add-a-commit-scope)
+  - [Manage code](#manage-code)
     - [Format code](#format-code)
     - [Lint code](#lint-code)
     - [Test code](#test-code)
     - [Commit code](#commit-code)
-    - [Update precommit script](#update-precommit-script)
+    - [Update commit scopes](#update-commit-scopes)
+    - [Update precommit tasks](#update-precommit-tasks)
   - [Manage icons](#manage-icons)
-    - [Add an icon](#add-an-icon)
-    - [Remove an icon](#remove-an-icon)
   - [Manage styles](#manage-styles)
     - [Add styles](#add-styles)
     - [Generate a Material theme](#generate-a-material-theme)
@@ -166,7 +164,7 @@ Angular starter-kit for building quality web apps fast.
 - Delete [FUNDING.yml](./.github/FUNDING.yml)
 - Delete [CHANGELOG.md](./CHANGELOG.md); it will be created automatically on your first release
 - Create a copy of `.env.example` and name it `.env`
-- Set the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
+- Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
 - Run `npm install`
 
 <br />
@@ -249,17 +247,9 @@ In the template, wrap the contents in:
 
 [↑ Back to Contents](#contents)
 
-### Manage changes
+### Manage code
 
 Commit messages that don't follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) will be blocked by [Husky](https://typicode.github.io/husky/) and [Commitlint](https://commitlint.js.org/).
-
-<br />
-
-[↑ Back to Contents](#contents)
-
-#### Add a commit scope
-
-In [.commitlintrc.json](./.commitlintrc.json), set `"scope-enum": [2, "always", ["general", "main", "<your-scope>"]]`.
 
 <br />
 
@@ -299,9 +289,27 @@ Run `npm run commit`, or commit directly with a valid commit message.
 
 [↑ Back to Contents](#contents)
 
-#### Update precommit script
+#### Update commit scopes
 
-Update [pre-commit](./.husky/pre-commit). As a good practice, first define the script in [package.json](./package.json) and then invoke it here.
+In [.commitlintrc.json](./.commitlintrc.json), update `"scope-enum": [2, "always", ["general", "main", "<your-scope-1>", ..., "<your-scope-n>"]]`.
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Update precommit tasks
+
+Update [pre-commit](./.husky/pre-commit). As a good practice, ensure every task is defined [package.json](./package.json) and can be run independently.
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Update dependencies
+
+Run `npm run reinstall-dependencies`. It calls the following subscripts to remove all dependencies, then install their latest versions: `x:uninstall-devDependencies`, `x:uninstall-dependencies`, `x:install-dependencies`, `x:install-devDependencies`.
+
+For this to work, ensure the subscripts are updated every time a dependency is added or removed.
 
 <br />
 
@@ -309,17 +317,13 @@ Update [pre-commit](./.husky/pre-commit). As a good practice, first define the s
 
 ### Manage icons
 
-<br />
+Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for icons. Instead of downloading the entire font, each icon is explicitly specified in [index.html](./src/index.html) and the custom font is preloaded for performance. To add or remove icons:
 
-[↑ Back to Contents](#contents)
+- Update the icon names alphabetically in the `<link>` element, as specified [here](https://developers.google.com/fonts/docs/material_symbols#optimize_the_icon_font)
+- Build the project
+- Copy the custom font URL from `./dist/jet/browser/index.html` to [index.html](./src/index.html) for preloading
 
-#### Add an icon
-
-<br />
-
-[↑ Back to Contents](#contents)
-
-#### Remove an icon
+Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/components/app/app.component.ts).
 
 <br />
 
