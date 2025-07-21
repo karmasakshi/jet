@@ -7,7 +7,7 @@ Angular starter-kit for building quality web apps fast.
 <p align="center">
   <img
     alt="Logo"
-    src="public/icons/jet.svg"
+    src="./public/icons/jet.svg"
     width="64"
   />
 </p>
@@ -26,14 +26,14 @@ Angular starter-kit for building quality web apps fast.
   - [Adding elements](#adding-elements)
     - [Add a component](#add-a-component)
     - [Add a page component](#add-a-page-component)
-    - [Add a directive](#add-a-directive)
     - [Add a service](#add-a-service)
   - [Committing changes](#committing-changes)
-    - [Update precommit script](#update-precommit-script)
-    - [Commit code](#commit-code)
+    - [Add a commit scope](#add-a-commit-scope)
     - [Format code](#format-code)
     - [Lint code](#lint-code)
-    - [Update commit scopes](#update-commit-scopes)
+    - [Test code](#test-code)
+    - [Commit code](#commit-code)
+    - [Update precommit script](#update-precommit-script)
   - [Icons](#icons)
     - [Add an icon](#add-an-icon)
     - [Remove an icon](#remove-an-icon)
@@ -49,6 +49,7 @@ Angular starter-kit for building quality web apps fast.
     - [Add an environment](#add-an-environment)
     - [Add an environment variable](#add-an-environment-variable)
   - [Release](#release)
+    - [Set up Release Please](#set-up-release-please)
     - [Cut a release](#cut-a-release)
     - [Cut a major release](#cut-a-major-release)
   - [Deploy](#deploy)
@@ -65,7 +66,7 @@ Angular starter-kit for building quality web apps fast.
 
 ## Features
 
-- **Modern Angular**: Signals, new templating syntax, Zoneless, Standalone, NgOptimizedImage and more.
+- **Modern Angular**: Signals, new template syntax, Zoneless, Standalone, and more.
 - **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
 - **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
 - **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
@@ -77,8 +78,8 @@ Angular starter-kit for building quality web apps fast.
 
 ### Integrations
 
-- [@angular/components](https://github.com/angular/components) for components and theming support.
-- [@angular/service-worker](https://angular.dev/ecosystem/service-workers) for PWA support.
+- [@angular/material](https://github.com/angular/components) for components and theming support.
+- [@angular/pwa](https://angular.dev/ecosystem/service-workers) for PWA support.
 - [@commitlint/\*](https://github.com/conventional-changelog/commitlint) for semantic versioning.
 - [@jsverse/transloco](https://github.com/jsverse/transloco) for i18n.
 - [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) for .env support.
@@ -91,18 +92,18 @@ Angular starter-kit for building quality web apps fast.
 
 ### Components
 
-- AppComponent
-- FooterComponent
-- HomePageComponent
-- MessagePageComponent
-- PageComponent
-- ProfilePageComponent
-- ResetPasswordPageComponent
-- SettingsPageComponent
-- SignInPageComponent
-- SignOutPageComponent
-- SignUpPageComponent
-- UpdatePasswordPageComponent
+- [AppComponent](./src/app/components/app/app.component.ts)
+- [FooterComponent](./src/app/components/footer/footer.component.ts)
+- [HomePageComponent](./src/app/components/home-page/home-page.component.ts)
+- [MessagePageComponent](./src/app/components/message-page/message-page.component.ts)
+- [PageComponent](./src/app/components/page/page.component.ts)
+- [ProfilePageComponent](./src/app/components/profile-page/profile-page.component.ts)
+- [ResetPasswordPageComponent](./src/app/components/reset-password-page/reset-password-page.component.ts)
+- [SettingsPageComponent](./src/app/components/settings-page/settings-page.component.ts)
+- [SignInPageComponent](./src/app/components/sign-in-page/sign-in-page.component.ts)
+- [SignOutPageComponent](./src/app/components/sign-out-page/sign-out-page.component.ts)
+- [SignUpPageComponent](./src/app/components/sign-up-page/sign-up-page.component.ts)
+- [UpdatePasswordPageComponent](./src/app/components/update-password-page/update-password-page.component.ts)
 
 <br />
 
@@ -110,7 +111,7 @@ Angular starter-kit for building quality web apps fast.
 
 ### Directives
 
-- AnalyticsDirective
+- [AnalyticsDirective](./src/app/directives/analytics/analytics.directive.ts)
 
 <br />
 
@@ -118,8 +119,8 @@ Angular starter-kit for building quality web apps fast.
 
 ### Guards
 
-- isAuthenticatedGuard
-- isNotAuthenticatedGuard
+- [isAuthenticatedGuard](./src/app/guards/is-authenticated/is-authenticated.guard.ts)
+- [isNotAuthenticatedGuard](./src/app/guards/is-not-authenticated/is-not-authenticated.guard.ts)
 
 <br />
 
@@ -127,17 +128,17 @@ Angular starter-kit for building quality web apps fast.
 
 ### Services
 
-- AlertService
-- AnalyticsService
-- LoggerService
-- ProfileService
-- ProgressBarService
-- ServiceWorkerService
-- SettingsService
-- StorageService
-- SupabaseService
-- ToolbarTitleService
-- UserService
+- [AlertService](./src/app/services/alert/alert.service.ts)
+- [AnalyticsService](./src/app/services/analytics/analytics.service.ts)
+- [LoggerService](./src/app/services/logger/logger.service.ts)
+- [ProfileService](./src/app/services/profile/profile.service.ts)
+- [ProgressBarService](./src/app/services/progress-bar/progress-bar.service.ts)
+- [ServiceWorkerService](./src/app/services/service-worker/service-worker.service.ts)
+- [SettingsService](./src/app/services/settings/settings.service.ts)
+- [StorageService](./src/app/services/storage/storage.service.ts)
+- [SupabaseService](./src/app/services/supabase/supabase.service.ts)
+- [ToolbarTitleService](./src/app/services/toolbar-title/toolbar-title.service.ts)
+- [UserService](./src/app/services/user/user.service.ts)
 
 <br />
 
@@ -145,8 +146,8 @@ Angular starter-kit for building quality web apps fast.
 
 ### GitHub Actions
 
-- `release-please`: Automatically cut releases and update changelog.
-- `deploy-supabase-functions`: Automatically deploy Supabase Edge Functions and environment variables.
+- [release-please](./.github/workflows/release-please.yml)
+- [deploy-supabase-functions](./.github/workflows/deploy-supabase-functions.yml)
 
 <br />
 
@@ -160,11 +161,21 @@ Angular starter-kit for building quality web apps fast.
 
 ### Getting started
 
+- Click on the **Use this template** button on the top
+- Create the repository and clone it
+- Delete [FUNDING.yml](./.github/FUNDING.yml)
+- Delete [CHANGELOG.md](./CHANGELOG.md); one will be created automatically on your first release
+- Create a copy of `.env.example` and name it `.env`
+- Set the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
+- Run `npm install`
+
 <br />
 
 [↑ Back to Contents](#contents)
 
 ### Adding elements
+
+Use [ng generate](https://angular.dev/cli/generate) as you would in any other Angular project.
 
 <br />
 
@@ -172,17 +183,52 @@ Angular starter-kit for building quality web apps fast.
 
 #### Add a component
 
+- Run `ng g c components/<component-name>`
+- In the `@Component()` decorator:
+  - Set `changeDetection: ChangeDetectionStrategy.OnPush`
+  - Set `imports: [TranslocoModule]`
+- In the class:
+  - Set `private readonly _loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
+- Update spec
+- Add a parent key in translations
+
+In the template, wrap the contents in:
+
+```html
+<ng-container *transloco="let t"> ... </ng-container>
+```
+
 <br />
 
 [↑ Back to Contents](#contents)
 
 #### Add a page component
 
-<br />
+- Run `ng g c components/<component-name>`
+- In the `@Component()` decorator:
+  - Set `changeDetection: ChangeDetectionStrategy.OnPush`
+  - Set `imports: [TranslocoModule, PageComponent]`
+- In the class:
+  - Set `private readonly _loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
+- Update spec
+- Add a parent key in translations
 
-[↑ Back to Contents](#contents)
+In the template, wrap the contents in:
 
-#### Add a directive
+```html
+<ng-container *transloco="let t">
+  <jet-page
+    [seoDescription]="t('<component-selector>.seo.description')"
+    [seoKeywords]="t('<component-selector>.seo.keywords')"
+    [seoTitle]="t('<component-selector>.seo.title')"
+    [toolbarTitle]="t('<component-selector>.toolbar-title')"
+  >
+    ...
+  </jet-page>
+</ng-container>
+```
 
 <br />
 
@@ -190,23 +236,28 @@ Angular starter-kit for building quality web apps fast.
 
 #### Add a service
 
+- Run `ng g s services/<service-name>/<service-name>`
+- In the class:
+  - Set `private readonly _loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this._loggerService.logServiceInitialization('<ClassName>');`
+- Update spec
+- Add mock
+
 <br />
 
 [↑ Back to Contents](#contents)
 
 ### Committing changes
 
-<br />
-
-[↑ Back to Contents](#contents)
-
-#### Update precommit script
+Commit messages that don't follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) will be blocked by [Husky](https://typicode.github.io/husky/) and [Commitlint](https://commitlint.js.org/).
 
 <br />
 
 [↑ Back to Contents](#contents)
 
-#### Commit code
+#### Add a commit scope
+
+In [.commitlintrc.json](./.commitlintrc.json), set `"scope-enum": [2, "always", ["general", "main", "<your-scope>"]]`.
 
 <br />
 
@@ -214,17 +265,41 @@ Angular starter-kit for building quality web apps fast.
 
 #### Format code
 
+Run `npm run format-staged` to format staged files. This is run automatically before every commit by [Husky](https://typicode.github.io/husky/) and [Lint Staged](https://github.com/lint-staged/lint-staged).
+
+Run `npm run format` to format all files.
+
 <br />
 
 [↑ Back to Contents](#contents)
 
 #### Lint code
 
+Run `ng lint`.
+
 <br />
 
 [↑ Back to Contents](#contents)
 
-#### Update commit scopes
+#### Test code
+
+Run `ng test`.
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Commit code
+
+Run `npm run commit` or commit directly with a valid commit message.
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Update precommit script
+
+Update [pre-commit](./.husky/pre-commit). As a good practice, first define the script in [package.json](./package.json) and then invoke it here.
 
 <br />
 
@@ -315,6 +390,12 @@ Angular starter-kit for building quality web apps fast.
 [↑ Back to Contents](#contents)
 
 ### Release
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Set up Release Please
 
 <br />
 
