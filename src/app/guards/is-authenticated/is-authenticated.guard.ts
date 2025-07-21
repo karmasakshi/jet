@@ -19,13 +19,13 @@ export const isAuthenticatedGuard: CanActivateFn = async (
   });
 
   try {
-    const { data, error } = await userService.getSession();
+    const { data, error } = await userService.getClaims();
 
     if (error) {
       throw error;
     }
 
-    if (data.session !== null) {
+    if (data !== null) {
       guardResult = true;
     }
   } catch (exception: unknown) {

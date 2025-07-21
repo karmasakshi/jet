@@ -6,8 +6,9 @@ import {
   AuthError,
   AuthOtpResponse,
   AuthResponse,
-  AuthSession,
   AuthTokenResponsePassword,
+  JwtHeader,
+  JwtPayload,
   OAuthResponse,
   User,
   UserAttributes,
@@ -25,13 +26,20 @@ export class UserServiceMock {
     return this._user.asReadonly();
   }
 
-  public getSession(): Promise<
-    | { data: { session: AuthSession }; error: null }
-    | { data: { session: null }; error: AuthError }
-    | { data: { session: null }; error: null }
+  public getClaims(): Promise<
+    | {
+        data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array };
+        error: null;
+      }
+    | { data: null; error: AuthError }
+    | { data: null; error: null }
   > {
     return Promise.resolve({
-      data: { session: {} as AuthSession },
+      data: {
+        claims: {} as JwtPayload,
+        header: {} as JwtHeader,
+        signature: {} as Uint8Array,
+      },
       error: null,
     });
   }

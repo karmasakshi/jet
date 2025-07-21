@@ -85,7 +85,7 @@ export class SignInPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    void this._getSession();
+    void this._getClaims();
   }
 
   public async signInWithPassword(email: string, password: string) {
@@ -193,7 +193,7 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  private async _getSession(): Promise<void> {
+  private async _getClaims(): Promise<void> {
     if (this._isLoading) {
       return;
     }
@@ -203,13 +203,13 @@ export class SignInPageComponent implements OnInit {
     this._progressBarService.showProgressBar({ mode: 'query' });
 
     try {
-      const { data, error } = await this._userService.getSession();
+      const { data, error } = await this._userService.getClaims();
 
       if (error) {
         throw error;
       }
 
-      if (data.session) {
+      if (data) {
         this._alertService.showAlert(
           this._translocoService.translate('alerts.welcome'),
         );

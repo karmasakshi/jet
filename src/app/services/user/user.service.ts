@@ -15,6 +15,8 @@ import {
   AuthResponse,
   AuthSession,
   AuthTokenResponsePassword,
+  JwtHeader,
+  JwtPayload,
   OAuthResponse,
   SupabaseClient,
   User,
@@ -54,12 +56,15 @@ export class UserService {
     return this._user.asReadonly();
   }
 
-  public getSession(): Promise<
-    | { data: { session: AuthSession }; error: null }
-    | { data: { session: null }; error: AuthError }
-    | { data: { session: null }; error: null }
+  public getClaims(): Promise<
+    | {
+        data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array };
+        error: null;
+      }
+    | { data: null; error: AuthError }
+    | { data: null; error: null }
   > {
-    return this._supabaseClient.auth.getSession();
+    return this._supabaseClient.auth.getClaims();
   }
 
   public resetPasswordForEmail(
