@@ -65,9 +65,8 @@ Angular starter-kit for building quality web apps fast.
 
 ## Features
 
-- **Built on modern Angular**: Signals, new templating syntax, Zoneless, and more.
-- **Built using Angular CLI**: No learning curve, and all the conveniences.
-- **Enforces strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
+- **Modern Angular**: Signals, new templating syntax, Zoneless, Standalone, NgOptimizedImage and more.
+- **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
 - **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
 - **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
 - **Always up-to-date**: Actively maintained and regularly built from the ground-up.
@@ -78,13 +77,13 @@ Angular starter-kit for building quality web apps fast.
 
 ### Integrations
 
-- [@angular/components](https://github.com/angular/components) for components and theming support
-- [@angular/service-worker](https://angular.dev/ecosystem/service-workers) for PWA support
-- [@commitlint/\*](https://github.com/conventional-changelog/commitlint) for semantic versioning
-- [@jsverse/transloco](https://github.com/jsverse/transloco) for i18n and key management
-- [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) for .env support
-- [@supabase/supabase-js](https://github.com/supabase/supabase-js) for Supabase integration
-- [ga-gtag](https://github.com/idmadj/ga-gtag) for Google Analytics integration
+- [@angular/components](https://github.com/angular/components) for components and theming support.
+- [@angular/service-worker](https://angular.dev/ecosystem/service-workers) for PWA support.
+- [@commitlint/\*](https://github.com/conventional-changelog/commitlint) for semantic versioning.
+- [@jsverse/transloco](https://github.com/jsverse/transloco) for i18n.
+- [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) for .env support.
+- [@supabase/supabase-js](https://github.com/supabase/supabase-js) for Supabase integration.
+- [ga-gtag](https://github.com/idmadj/ga-gtag) for Google Analytics integration.
 
 <br />
 
@@ -92,18 +91,18 @@ Angular starter-kit for building quality web apps fast.
 
 ### Components
 
-- `jet-app`: Root component that sets up layout, navigation, and more.
-- `jet-footer`: Footer component.
-- `jet-home-page`: Eagerly-loaded default page component.
-- `jet-message-page`: Page component for showing static messages.
-- `jet-page`: Component for managing SEO and toolbar title.
-- `jet-profile-page`: Page component for managing profile.
-- `jet-reset-password-page`: Page component for resetting password.
-- `jet-settings-page`: Page component for updating language, color scheme, and more.
-- `jet-sign-in-page`: Page component for signing-in.
-- `jet-sign-out-page`: Page component for signing-out.
-- `jet-sign-up-page`: Page component for signing-up.
-- `jet-update-password-page`: Page component for updating password.
+- AppComponent
+- FooterComponent
+- HomePageComponent
+- MessagePageComponent
+- PageComponent
+- ProfilePageComponent
+- ResetPasswordPageComponent
+- SettingsPageComponent
+- SignInPageComponent
+- SignOutPageComponent
+- SignUpPageComponent
+- UpdatePasswordPageComponent
 
 <br />
 
@@ -371,7 +370,7 @@ Angular starter-kit for building quality web apps fast.
 
 ## Sponsors
 
-Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce.
+Pay what you like; support development of Jet: https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce.
 
 <p align="center">
   <a
