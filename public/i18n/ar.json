@@ -31,7 +31,7 @@
     "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
-  "jet-footer": { "buy": "شراء" },
+  "jet-footer": { "sponsor": "راعي" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
     "toolbar-title": "Jet"

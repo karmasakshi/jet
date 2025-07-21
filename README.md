@@ -1,6 +1,6 @@
 # Jet
 
-> Build quality Angular + Material Design apps fast.
+Angular starter-kit for building quality web apps fast.
 
 <br />
 
@@ -375,17 +375,43 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
 
 <p align="center">
   <a
+    href="https://github.com/singhamit089"
+    target="_blank"
+  >
+    <img
+      alt="dipenpradhan"
+      src="https://github.com/singhamit089.png"
+      style="border-radius: 50%;"
+      width="64"
+    />
+    <br/>
+    singhamit089
+  </a>
+  <a
     href="https://github.com/byjokese"
     target="_blank"
   >
     <img
       alt="byjokese"
       src="https://github.com/byjokese.png"
-      style="border-radius:50%"
+      style="border-radius: 50%;"
       width="64"
     />
     <br/>
     byjokese
+  </a>
+  <a
+    href="https://github.com/dipenpradhan"
+    target="_blank"
+  >
+    <img
+      alt="dipenpradhan"
+      src="https://github.com/dipenpradhan.png"
+      style="border-radius: 50%;"
+      width="64"
+    />
+    <br/>
+    dipenpradhan
   </a>
 </p>
 
