@@ -376,7 +376,7 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
 <p align="center">
   <a
     href="https://github.com/singhamit089"
-    style="margin: 8px;"
+    style="border-radius: 50%;"
     target="_blank"
   >
     <img
@@ -388,7 +388,7 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
   </a>
   <a
     href="https://github.com/byjokese"
-    style="margin: 8px;"
+    style="border-radius: 50%;"
     target="_blank"
   >
     <img
@@ -400,7 +400,7 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
   </a>
   <a
     href="https://github.com/dipenpradhan"
-    style="margin: 8px;"
+    style="border-radius: 50%;"
     target="_blank"
   >
     <img
