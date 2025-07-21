@@ -64,7 +64,7 @@ body {
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
   color-scheme: light dark;
-  font-family: $ns-font-family;
+  font: var(--mat-sys-body-medium);
   margin: 0;
 
   &.jet-color-scheme-dark {
