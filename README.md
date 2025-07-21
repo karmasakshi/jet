@@ -164,7 +164,7 @@ Angular starter-kit for building quality web apps fast.
 - Click on the **Use this template** button on the top
 - Create the repository and clone it
 - Delete [FUNDING.yml](./.github/FUNDING.yml)
-- Delete [CHANGELOG.md](./CHANGELOG.md); one will be created automatically on your first release
+- Delete [CHANGELOG.md](./CHANGELOG.md); it will be created automatically on your first release
 - Create a copy of `.env.example` and name it `.env`
 - Set the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
 - Run `npm install`
@@ -214,6 +214,8 @@ In the template, wrap the contents in:
   - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
 - Update spec
 - Add a parent key in translations
+- Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
+- If required, add an icon and link to it in [navigation-menu-items.constant.ts](./src/app/constants/navigation-menu-items.constant.ts)
 
 In the template, wrap the contents in:
 
@@ -291,7 +293,7 @@ Run `ng test`.
 
 #### Commit code
 
-Run `npm run commit` or commit directly with a valid commit message.
+Run `npm run commit`, or commit directly with a valid commit message.
 
 <br />
 
@@ -455,15 +457,6 @@ Pay what you like; support development of Jet: https://karmasakshi.lemonsqueezy.
 
 <p align="center">
   <a
-    href="https://github.com/singhamit089"
-    target="_blank"
-  ><img
-    alt="singhamit089"
-    src="https://github.com/singhamit089.png"
-    width="64"
-  /></a>
-  &nbsp;
-  <a
     href="https://github.com/byjokese"
     target="_blank"
   ><img
@@ -478,6 +471,24 @@ Pay what you like; support development of Jet: https://karmasakshi.lemonsqueezy.
   ><img
     alt="dipenpradhan"
     src="https://github.com/dipenpradhan.png"
+    width="64"
+  /></a>
+  &nbsp;
+  <a
+    href="https://github.com/lohiaad"
+    target="_blank"
+  ><img
+    alt="lohiaad"
+    src="https://github.com/lohiaad.png"
+    width="64"
+  /></a>
+  &nbsp;
+  <a
+    href="https://github.com/singhamit089"
+    target="_blank"
+  ><img
+    alt="singhamit089"
+    src="https://github.com/singhamit089.png"
     width="64"
   /></a>
 </p>
