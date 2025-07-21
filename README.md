@@ -22,33 +22,33 @@ Angular starter-kit for building quality web apps fast.
   - [Services](#services)
   - [GitHub Actions](#github-actions)
 - [Guides](#guides)
-  - [Getting started](#getting-started)
-  - [Adding elements](#adding-elements)
+  - [Get started](#get-started)
+  - [Add elements](#add-elements)
     - [Add a component](#add-a-component)
     - [Add a page component](#add-a-page-component)
     - [Add a service](#add-a-service)
-  - [Committing changes](#committing-changes)
+  - [Manage changes](#manage-changes)
     - [Add a commit scope](#add-a-commit-scope)
     - [Format code](#format-code)
     - [Lint code](#lint-code)
     - [Test code](#test-code)
     - [Commit code](#commit-code)
     - [Update precommit script](#update-precommit-script)
-  - [Icons](#icons)
+  - [Manage icons](#manage-icons)
     - [Add an icon](#add-an-icon)
     - [Remove an icon](#remove-an-icon)
-  - [Style](#style)
+  - [Manage styles](#manage-styles)
     - [Add styles](#add-styles)
     - [Generate a Material theme](#generate-a-material-theme)
     - [Override Material styles](#override-material-styles)
-  - [Internationalization](#internationalization)
+  - [Manage i18n](#manage-i18n)
     - [Add a language](#add-a-language)
     - [Change the default language](#change-the-default-language)
     - [Remove a language](#remove-a-language)
-  - [Environments](#environments)
+  - [Manage environments](#manage-environments)
     - [Add an environment](#add-an-environment)
     - [Add an environment variable](#add-an-environment-variable)
-  - [Release](#release)
+  - [Manage releases](#manage-releases)
     - [Set up Release Please](#set-up-release-please)
     - [Cut a release](#cut-a-release)
     - [Cut a major release](#cut-a-major-release)
@@ -159,7 +159,7 @@ Angular starter-kit for building quality web apps fast.
 
 [↑ Back to Contents](#contents)
 
-### Getting started
+### Get started
 
 - Click on the **Use this template** button on the top
 - Create the repository and clone it
@@ -173,7 +173,7 @@ Angular starter-kit for building quality web apps fast.
 
 [↑ Back to Contents](#contents)
 
-### Adding elements
+### Add elements
 
 Use [ng generate](https://angular.dev/cli/generate) as you would in any other Angular project.
 
@@ -191,7 +191,7 @@ Use [ng generate](https://angular.dev/cli/generate) as you would in any other An
   - Set `private readonly _loggerService = inject(LoggerService);`
   - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
 - Update spec
-- Add a parent key in translations
+- Add a key in [en.json](./public/i18n/en.json) and other translations
 
 In the template, wrap the contents in:
 
@@ -213,7 +213,7 @@ In the template, wrap the contents in:
   - Set `private readonly _loggerService = inject(LoggerService);`
   - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
 - Update spec
-- Add a parent key in translations
+- Add a key in [en.json](./public/i18n/en.json) and other translations
 - Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
 - If required, add an icon and link to it in [navigation-menu-items.constant.ts](./src/app/constants/navigation-menu-items.constant.ts)
 
@@ -249,7 +249,7 @@ In the template, wrap the contents in:
 
 [↑ Back to Contents](#contents)
 
-### Committing changes
+### Manage changes
 
 Commit messages that don't follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) will be blocked by [Husky](https://typicode.github.io/husky/) and [Commitlint](https://commitlint.js.org/).
 
@@ -307,7 +307,7 @@ Update [pre-commit](./.husky/pre-commit). As a good practice, first define the s
 
 [↑ Back to Contents](#contents)
 
-### Icons
+### Manage icons
 
 <br />
 
@@ -325,7 +325,7 @@ Update [pre-commit](./.husky/pre-commit). As a good practice, first define the s
 
 [↑ Back to Contents](#contents)
 
-### Style
+### Manage styles
 
 <br />
 
@@ -349,7 +349,7 @@ Update [pre-commit](./.husky/pre-commit). As a good practice, first define the s
 
 [↑ Back to Contents](#contents)
 
-### Internationalization
+### Manage i18n
 
 <br />
 
@@ -373,7 +373,7 @@ Update [pre-commit](./.husky/pre-commit). As a good practice, first define the s
 
 [↑ Back to Contents](#contents)
 
-### Environments
+### Manage environments
 
 <br />
 
@@ -391,7 +391,7 @@ Update [pre-commit](./.husky/pre-commit). As a good practice, first define the s
 
 [↑ Back to Contents](#contents)
 
-### Release
+### Manage releases
 
 <br />
 
