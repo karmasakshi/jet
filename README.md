@@ -386,6 +386,7 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
       width="64"
     />
   </a>
+  &nbsp;
   <a
     href="https://github.com/byjokese"
     style="border-radius: 50%;"
@@ -398,6 +399,7 @@ Pay what you like, support development of Jet: https://karmasakshi.lemonsqueezy.
       width="64"
     />
   </a>
+  &nbsp;
   <a
     href="https://github.com/dipenpradhan"
     style="border-radius: 50%;"
