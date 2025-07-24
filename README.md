@@ -235,7 +235,7 @@ If you need help with something not listed here, [create a new issue](https://gi
 - Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
 - Create a copy of `.env.example` and name it `.env`
 - Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
-- Run `npm install`
+- Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
 
 Nice to do:
 
@@ -325,7 +325,7 @@ In the template, wrap the contents in:
 
 ### Manage code
 
-When enabled, quality checks prevent pushing code that fails linting or building.
+When enabled, [Husky](https://typicode.github.io/husky/) prevents pushing code that fails linting or building.
 
 <br />
 
@@ -387,7 +387,7 @@ More tasks mean longer commit times.
 
 #### Update dependencies
 
-Run `npm run reinstall-dependencies`. It runs the following subscripts to remove all dependencies, then install their latest versions: `x:uninstall-devDependencies`, `x:uninstall-dependencies`, `x:install-dependencies`, `x:install-devDependencies`. You shouldn't have to run these subscripts yourself (hence the `x:` prefix.).
+Run `npm run reinstall-dependencies`. It runs the following subscripts to remove all dependencies, then install their latest versions: `x:uninstall-devDependencies`, `x:uninstall-dependencies`, `x:install-dependencies`, `x:install-devDependencies`. You shouldn't have to run these subscripts yourself.
 
 For this to work, ensure the subscripts are updated every time a dependency is added or removed.
 
