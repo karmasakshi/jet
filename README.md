@@ -12,6 +12,36 @@ Angular starter-kit for building quality web apps fast.
   />
 </p>
 
+## Sponsors
+
+Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
+
+<p align="center">
+  <img
+    alt="byjokese"
+    src="https://github.com/byjokese.png"
+    width="64"
+  />
+  &nbsp;
+  <img
+    alt="dipenpradhan"
+    src="https://github.com/dipenpradhan.png"
+    width="64"
+  />
+  &nbsp;
+  <img
+    alt="lohiaad"
+    src="https://github.com/lohiaad.png"
+    width="64"
+  />
+  &nbsp;
+  <img
+    alt="singhamit089"
+    src="https://github.com/singhamit089.png"
+    width="64"
+  />
+</p>
+
 ## Contents
 
 - [Features](#features)
@@ -451,52 +481,6 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 [↑ Back to Contents](#contents)
 
 #### Remove Supabase
-
-<br />
-
-[↑ Back to Contents](#contents)
-
-## Sponsors
-
-Pay what you like; support development of Jet: https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce.
-
-<p align="center">
-  <a
-    href="https://github.com/byjokese"
-    target="_blank"
-  ><img
-    alt="byjokese"
-    src="https://github.com/byjokese.png"
-    width="64"
-  /></a>
-  &nbsp;
-  <a
-    href="https://github.com/dipenpradhan"
-    target="_blank"
-  ><img
-    alt="dipenpradhan"
-    src="https://github.com/dipenpradhan.png"
-    width="64"
-  /></a>
-  &nbsp;
-  <a
-    href="https://github.com/lohiaad"
-    target="_blank"
-  ><img
-    alt="lohiaad"
-    src="https://github.com/lohiaad.png"
-    width="64"
-  /></a>
-  &nbsp;
-  <a
-    href="https://github.com/singhamit089"
-    target="_blank"
-  ><img
-    alt="singhamit089"
-    src="https://github.com/singhamit089.png"
-    width="64"
-  /></a>
-</p>
 
 <br />
 
