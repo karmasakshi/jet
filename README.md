@@ -213,7 +213,8 @@ In the template, wrap the contents in:
 - Update spec
 - Add a key in [en.json](./public/i18n/en.json) and other translations
 - Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
-- If required, add an icon and link to it in [navigation-menu-items.constant.ts](./src/app/constants/navigation-menu-items.constant.ts)
+- Update [sitemap-main.xml](./public/sitemaps/sitemap-main.xml)
+- If required, add an icon and navigation link to it in [navigation-menu-items.constant.ts](./src/app/constants/navigation-menu-items.constant.ts)
 
 In the template, wrap the contents in:
 
