@@ -14,8 +14,6 @@ Angular starter-kit for building quality web apps fast.
 
 ## Sponsors
 
-Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
-
 <p align="center">
   <img
     alt="byjokese"
@@ -42,15 +40,20 @@ Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy
   />
 </p>
 
+Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
+
 ## Contents
 
 - [Features](#features)
   - [Integrations](#integrations)
   - [Components](#components)
+  - [Constants](#constants)
   - [Directives](#directives)
+  - [Enums](#enums)
   - [Guards](#guards)
   - [Services](#services)
   - [GitHub Actions](#github-actions)
+  - [GitHub Issue Templates](#github-issue-templates)
 - [Guides](#guides)
   - [Get started](#get-started)
   - [Add elements](#add-elements)
@@ -98,7 +101,7 @@ Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy
 - **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
 - **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
 - **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
-- **Always up-to-date**: Actively maintained and regularly built from the ground-up.
+- **Always up-to-date**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
 
 <br />
 
@@ -137,9 +140,37 @@ Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy
 
 [↑ Back to Contents](#contents)
 
+### Constants
+
+- [AVATAR_FILE_MAX_SIZE](./src/app/constants/avatar-file-max-size.constant.ts)
+- [COLOR_SCHEME_OPTIONS](./src/app/constants/color-scheme-options.constant.ts)
+- [DEFAULT_COLOR_SCHEME_OPTION](./src/app/constants/default-color-scheme-option.constant.ts)
+- [DEFAULT_LANGUAGE_OPTION](./src/app/constants/default-language-option.constant.ts)
+- [DEFAULT_SETTINGS](./src/app/constants/default-settings.constant.ts)
+- [LANGUAGE_OPTIONS](./src/app/constants/language-options.constant.ts)
+- [NAVIGATION_MENU_ITEMS](./src/app/constants/navigation-menu-items.constant.ts)
+
+<br />
+
+[↑ Back to Contents](#contents)
+
 ### Directives
 
 - [AnalyticsDirective](./src/app/directives/analytics/analytics.directive.ts)
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+### Enums
+
+- [LocalStorageKey](./src/app/enums/local-storage-key.enum.ts)
+- [QueryParam](./src/app/enums/query-param.enum.ts)
+- [SessionStorageKey](./src/app/enums/session-storage-key.enum.ts)
+- [SupabaseBucket](./src/app/enums/supabase-bucket.enum.ts)
+- [SupabaseFunction](./src/app/enums/supabase-function.enum.ts)
+- [SupabaseRpc](./src/app/enums/supabase-rpc.enum.ts)
+- [SupabaseTable](./src/app/enums/supabase-table.enum.ts)
 
 <br />
 
@@ -181,7 +212,16 @@ Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy
 
 [↑ Back to Contents](#contents)
 
+### GitHub Issue Templates
+
+- [Bug](./.github/ISSUE_TEMPLATE/bug.md)
+- [Documentation](./.github/ISSUE_TEMPLATE/documentation.md)
+- [Enhancement](./.github/ISSUE_TEMPLATE/enhancement.md)
+- [Question](./.github/ISSUE_TEMPLATE/question.md)
+
 ## Guides
+
+If you need help with something not listed here, [create a new issue](https://github.com/karmasakshi/jet/issues).
 
 <br />
 
@@ -189,13 +229,18 @@ Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy
 
 ### Get started
 
-- Click on the **Use this template** button on the top
-- Create the repository and clone it
+- Click on **Use this template** > **Create a new repository** at the top of this repository
+- Create the new repository, clone it, then open it
 - Delete [FUNDING.yml](./.github/FUNDING.yml)
-- Delete [CHANGELOG.md](./CHANGELOG.md); it will be created automatically on your first release
+- Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
 - Create a copy of `.env.example` and name it `.env`
 - Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
 - Run `npm install`
+
+Nice to do:
+
+- Clean-up [README.md](./README.md)
+- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) to something unique to the project
 
 <br />
 
@@ -203,7 +248,7 @@ Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy
 
 ### Add elements
 
-Use [ng generate](https://angular.dev/cli/generate) as you would in any other Angular project.
+Use [ng g](https://angular.dev/cli/generate) as you would in any other Angular project.
 
 <br />
 
@@ -218,8 +263,8 @@ Use [ng generate](https://angular.dev/cli/generate) as you would in any other An
 - In the class:
   - Set `private readonly _loggerService = inject(LoggerService);`
   - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
+- As a convention, add the component selector as a key in [en.json](./public/i18n/en.json) and other translation files
 - Update spec
-- Add a key in [en.json](./public/i18n/en.json) and other translations
 
 In the template, wrap the contents in:
 
@@ -240,11 +285,11 @@ In the template, wrap the contents in:
 - In the class:
   - Set `private readonly _loggerService = inject(LoggerService);`
   - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
+- As a convention, add the component selector as a key in [en.json](./public/i18n/en.json) and other translation files
 - Update spec
-- Add a key in [en.json](./public/i18n/en.json) and other translations
 - Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
 - Update [sitemap-main.xml](./public/sitemaps/sitemap-main.xml)
-- If required, add an icon and navigation link to it in [navigation-menu-items.constant.ts](./src/app/constants/navigation-menu-items.constant.ts)
+- If required, add an icon and navigation link to it in [NAVIGATION_MENU_ITEMS](./src/app/constants/navigation-menu-items.constant.ts)
 
 In the template, wrap the contents in:
 
@@ -271,8 +316,8 @@ In the template, wrap the contents in:
 - In the class:
   - Set `private readonly _loggerService = inject(LoggerService);`
   - As a convention, at the end of the constructor, set `this._loggerService.logServiceInitialization('<ClassName>');`
-- Update spec
 - Add mock
+- Update spec
 
 <br />
 
@@ -280,7 +325,7 @@ In the template, wrap the contents in:
 
 ### Manage code
 
-Commit messages that don't follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) will be blocked by [Husky](https://typicode.github.io/husky/) and [Commitlint](https://commitlint.js.org/).
+When enabled, quality checks prevent pushing code that fails linting or building.
 
 <br />
 
@@ -288,7 +333,7 @@ Commit messages that don't follow [Conventional Commits](https://www.conventiona
 
 #### Format code
 
-Run `npm run format-staged` to format staged files. This is run automatically before every commit by [Husky](https://typicode.github.io/husky/) and [Lint Staged](https://github.com/lint-staged/lint-staged).
+Run `npm run format-staged` to format staged files. This runs automatically before every commit via [Husky](https://typicode.github.io/husky/) and [Lint Staged](https://github.com/lint-staged/lint-staged).
 
 Run `npm run format` to format all files.
 
@@ -298,7 +343,7 @@ Run `npm run format` to format all files.
 
 #### Lint code
 
-Run `ng lint`.
+Run `ng lint`. This runs automatically before every commit via [Husky](https://typicode.github.io/husky/) and ESLint.
 
 <br />
 
@@ -316,6 +361,8 @@ Run `ng test`.
 
 Run `npm run commit`, or commit directly with a valid commit message.
 
+Commit messages that don't follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) will be blocked by [Husky](https://typicode.github.io/husky/) and [Commitlint](https://commitlint.js.org/).
+
 <br />
 
 [↑ Back to Contents](#contents)
@@ -332,13 +379,15 @@ In [.commitlintrc.json](./.commitlintrc.json), update `"scope-enum": [2, "always
 
 Update [pre-commit](./.husky/pre-commit). As a good practice, ensure every task is defined [package.json](./package.json) and can be run independently.
 
+More tasks mean longer commit times.
+
 <br />
 
 [↑ Back to Contents](#contents)
 
 #### Update dependencies
 
-Run `npm run reinstall-dependencies`. It calls the following subscripts to remove all dependencies, then install their latest versions: `x:uninstall-devDependencies`, `x:uninstall-dependencies`, `x:install-dependencies`, `x:install-devDependencies`.
+Run `npm run reinstall-dependencies`. It runs the following subscripts to remove all dependencies, then install their latest versions: `x:uninstall-devDependencies`, `x:uninstall-dependencies`, `x:install-dependencies`, `x:install-devDependencies`. You shouldn't have to run these subscripts yourself (hence the `x:` prefix.).
 
 For this to work, ensure the subscripts are updated every time a dependency is added or removed.
 
@@ -348,9 +397,9 @@ For this to work, ensure the subscripts are updated every time a dependency is a
 
 ### Manage icons
 
-Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for icons. Instead of downloading the entire font, each icon is explicitly specified in [index.html](./src/index.html) and the custom font is preloaded for performance. To add or remove icons:
+Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for icons. Instead of downloading the entire font, each icon is explicitly specified in [index.html](./src/index.html) and the resulting custom font is preloaded for performance. To add or remove icons:
 
-- Update the icon names alphabetically in the `<link>` element, as specified [here](https://developers.google.com/fonts/docs/material_symbols#optimize_the_icon_font)
+- Update the icon names **alphabetically** in the `<link>` element (read more about this requirement [here](https://developers.google.com/fonts/docs/material_symbols#optimize_the_icon_font))
 - Build the project
 - Copy the custom font URL from `./dist/jet/browser/index.html` to [index.html](./src/index.html) for preloading
 
