@@ -26,9 +26,11 @@ module.exports = tseslint.config(
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-signals': 'error',
       '@typescript-eslint/explicit-member-accessibility': 'error',
+      '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
       'sort-keys': ['error', 'asc', { caseSensitive: false }],
     },
+    languageOptions: { parserOptions: { projectService: true } },
   },
   {
     files: ['**/*.html'],
