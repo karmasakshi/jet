@@ -42,6 +42,10 @@ Angular starter-kit for building quality web apps fast.
 
 Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
 
+## License
+
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+
 ## Contents
 
 - [Features](#features)
