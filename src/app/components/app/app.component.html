@@ -65,7 +65,6 @@
           [value]="_progressBarConfiguration.value"
         >
         </mat-progress-bar>
-        @let _toolbarTitle = toolbarTitle();
         @if (!isSmallViewport) {
           <button
             [attr.aria-label]="t('jet-app.toggle-navigation-menu')"
@@ -90,6 +89,7 @@
             <mat-icon svgIcon="jet"></mat-icon>
           </a>
         }
+        @let _toolbarTitle = toolbarTitle();
         <span>{{ _toolbarTitle || t('jet-app.loading') }}</span>
         <div style="flex: 1"></div>
         @let _user = user();

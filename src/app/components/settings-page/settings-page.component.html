@@ -5,12 +5,10 @@
     [seoTitle]="t('jet-settings-page.seo.title')"
     [toolbarTitle]="t('jet-settings-page.toolbar-title')"
   >
+    @let _settings = settings();
     <mat-card>
       <mat-card-content>
-        @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
-        @let _settings = settings();
         <mat-action-list>
-          <!-- Open language options -->
           <button
             [jetAnalytics]="{ name: 'Open language options' }"
             [mat-menu-trigger-for]="languageOptionsMenu"
@@ -26,7 +24,6 @@
             }}</span>
           </button>
 
-          <!-- Open color scheme options -->
           <button
             [jetAnalytics]="{ name: 'Open color scheme options' }"
             [mat-menu-trigger-for]="colorSchemeOptionsMenu"
@@ -42,7 +39,7 @@
             }}</span>
           </button>
 
-          <!-- Check for updates -->
+          @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
           <button
             [jetAnalytics]="{ name: 'Check for updates' }"
             (click)="checkForUpdate()"
@@ -60,7 +57,6 @@
             >
           </button>
 
-          <!-- Reload -->
           <button
             [jetAnalytics]="{ name: 'Reload' }"
             (click)="reload()"
@@ -74,7 +70,6 @@
             }}</span>
           </button>
 
-          <!-- Reset -->
           <button
             [jetAnalytics]="{ name: 'Reset' }"
             (click)="reset()"
@@ -91,12 +86,10 @@
       </mat-card-content>
     </mat-card>
 
-    <!-- Version -->
     <p style="font: var(--mat-sys-body-small); text-align: center">
       {{ t('jet-settings-page.version', { version }) }}
     </p>
 
-    <!-- Language options menu -->
     <mat-menu
       #languageOptionsMenu="matMenu"
       xPosition="before"
@@ -118,7 +111,6 @@
       }
     </mat-menu>
 
-    <!-- Color scheme options menu -->
     <mat-menu
       #colorSchemeOptionsMenu="matMenu"
       xPosition="before"
