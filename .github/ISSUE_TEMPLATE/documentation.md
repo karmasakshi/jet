@@ -1,15 +1,15 @@
 ---
 name: Documentation
-about: Improvements or additions to documentation
+about: Something isn't documented
 title: 'docs: '
 labels: documentation
 assignees: ''
 ---
 
-## Description
+### Description
 
-Provide a clear and concise description of the request.
+Describe the request.
 
-## Additional context
+### Additional context
 
 Add any other context or screenshots here.

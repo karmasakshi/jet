@@ -1,32 +1,28 @@
 ---
 name: Bug
-about: Something isn't working
+about: Something isn't working as expected
 title: 'fix: '
 labels: bug
 assignees: ''
 ---
 
-## Description
+### Description
 
-Provide a clear and concise description of the report.
+Describe the bug and the expectation.
 
-## Steps to reproduce
+### Steps to reproduce
 
 1. Go to '...'
 2. Click on '...'
 3. Scroll down to '...'
 
-## Expected behavior
-
-Describe what you expected to happen.
-
-## Environment
+### Your environment
 
 - Operating System (OS): [e.g., Windows, macOS, Ubuntu]
 - OS Version: [e.g., 10.0.0, 11.0.0]
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
 
-## Additional context
+### Additional context
 
 Add any other context or screenshots here.

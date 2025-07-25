@@ -1,23 +1,15 @@
 ---
 name: Enhancement
-about: New feature or request
+about: Something can be added or improved
 title: 'feat: '
 labels: enhancement
 assignees: ''
 ---
 
-## Description
+### Description
 
-Provide a clear and concise description of the request.
+Describe the need and the proposed solution(s).
 
-## Proposed solution
-
-Provide a clear and concise description of the proposed solution.
-
-## Alternative solutions
-
-Provide a clear and concise description of any alternative solutions you've considered.
-
-## Additional context
+### Additional context
 
 Add any other context or screenshots here.
