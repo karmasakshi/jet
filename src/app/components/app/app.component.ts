@@ -153,35 +153,41 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.user = this._userService.user;
 
-    effect(() => {
-      this._loggerService.logEffectRun('languageOption');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('languageOption');
 
-      const languageOption: LanguageOption = this.languageOption();
+        const languageOption: LanguageOption = this.languageOption();
 
-      untracked(() => {
-        this._loadFont(languageOption.fontUrl);
-        this._setFontClass(languageOption.fontClass);
-        this._setLanguage(languageOption);
-      });
-    });
+        untracked(() => {
+          this._loadFont(languageOption.fontUrl);
+          this._setFontClass(languageOption.fontClass);
+          this._setLanguage(languageOption);
+        });
+      },
+      { debugName: 'languageOption' },
+    );
 
-    effect(() => {
-      this._loggerService.logEffectRun('colorSchemeOption');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('colorSchemeOption');
 
-      const colorScheme: AvailableColorScheme =
-        this._settingsService.colorSchemeOption().value;
+        const colorScheme: AvailableColorScheme =
+          this._settingsService.colorSchemeOption().value;
 
-      untracked(() => {
-        if (colorScheme === 'automatic') {
-          this._setSystemColorSchemeListener();
-        } else {
-          this._unsetSystemColorSchemeListener();
-        }
+        untracked(() => {
+          if (colorScheme === 'automatic') {
+            this._setSystemColorSchemeListener();
+          } else {
+            this._unsetSystemColorSchemeListener();
+          }
 
-        this._setColorSchemeClass(colorScheme);
-        this._setThemeColor(colorScheme);
-      });
-    });
+          this._setColorSchemeClass(colorScheme);
+          this._setThemeColor(colorScheme);
+        });
+      },
+      { debugName: 'colorSchemeOption' },
+    );
 
     this._loggerService.logComponentInitialization('AppComponent');
   }

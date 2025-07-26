@@ -35,60 +35,78 @@ export class PageComponent {
   public constructor() {
     this._defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;
 
-    effect(() => {
-      this._loggerService.logEffectRun('seoDescription');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('seoDescription');
 
-      const seoDescription = this.seoDescription();
+        const seoDescription = this.seoDescription();
 
-      untracked(() => {
-        this._meta.updateTag({ content: seoDescription, name: 'description' });
-        this._meta.updateTag({
-          content: seoDescription,
-          name: 'og:description',
+        untracked(() => {
+          this._meta.updateTag({
+            content: seoDescription,
+            name: 'description',
+          });
+          this._meta.updateTag({
+            content: seoDescription,
+            name: 'og:description',
+          });
         });
-      });
-    });
+      },
+      { debugName: 'seoDescription' },
+    );
 
-    effect(() => {
-      this._loggerService.logEffectRun('seoImageUrl');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('seoImageUrl');
 
-      const seoImageUrl = this.seoImageUrl() ?? this._defaultSeoImageUrl;
+        const seoImageUrl = this.seoImageUrl() ?? this._defaultSeoImageUrl;
 
-      untracked(() => {
-        this._meta.updateTag({ content: seoImageUrl, name: 'og:image' });
-      });
-    });
+        untracked(() => {
+          this._meta.updateTag({ content: seoImageUrl, name: 'og:image' });
+        });
+      },
+      { debugName: 'seoImageUrl' },
+    );
 
-    effect(() => {
-      this._loggerService.logEffectRun('seoKeywords');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('seoKeywords');
 
-      const seoKeywords = this.seoKeywords();
+        const seoKeywords = this.seoKeywords();
 
-      untracked(() => {
-        this._meta.updateTag({ content: seoKeywords, name: 'keywords' });
-      });
-    });
+        untracked(() => {
+          this._meta.updateTag({ content: seoKeywords, name: 'keywords' });
+        });
+      },
+      { debugName: 'seoKeywords' },
+    );
 
-    effect(() => {
-      this._loggerService.logEffectRun('seoTitle');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('seoTitle');
 
-      const seoTitle = this.seoTitle();
+        const seoTitle = this.seoTitle();
 
-      untracked(() => {
-        this._title.setTitle(seoTitle);
-        this._meta.updateTag({ content: seoTitle, name: 'og:title' });
-      });
-    });
+        untracked(() => {
+          this._title.setTitle(seoTitle);
+          this._meta.updateTag({ content: seoTitle, name: 'og:title' });
+        });
+      },
+      { debugName: 'seoTitle' },
+    );
 
-    effect(() => {
-      this._loggerService.logEffectRun('toolbarTitle');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('toolbarTitle');
 
-      const toolbarTitle = this.toolbarTitle();
+        const toolbarTitle = this.toolbarTitle();
 
-      untracked(() => {
-        this._toolbarTitleService.setToolbarTitle(toolbarTitle);
-      });
-    });
+        untracked(() => {
+          this._toolbarTitleService.setToolbarTitle(toolbarTitle);
+        });
+      },
+      { debugName: 'toolbarTitle' },
+    );
 
     this._loggerService.logComponentInitialization('PageComponent');
   }

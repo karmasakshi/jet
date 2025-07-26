@@ -16,7 +16,7 @@ export class ProfileServiceMock {
     return '';
   }
 
-  public selectProfile(_isAllFields: boolean) {
+  public selectProfile() {
     return Promise.resolve();
   }
 

@@ -12,50 +12,56 @@ export class LoggerService {
   }
 
   public log(...args: unknown[]): void {
-    this._logIfEnabled(() => console.log(...args));
+    if (this._isLoggingEnabled) {
+      console.log(...args);
+    }
   }
 
   public logClassInitialization(className: string): void {
-    this._logIfEnabled(() => console.info(`Class ${className} initialized.`));
+    if (this._isLoggingEnabled) {
+      console.info(`Class ${className} initialized.`);
+    }
   }
 
   public logComponentInitialization(componentName: string): void {
-    this._logIfEnabled(() =>
-      console.debug(`Component ${componentName} initialized.`),
-    );
+    if (this._isLoggingEnabled) {
+      console.debug(`Component ${componentName} initialized.`);
+    }
   }
 
   public logDirectiveInitialization(directiveName: string): void {
-    this._logIfEnabled(() =>
-      console.debug(`Directive ${directiveName} initialized.`),
-    );
+    if (this._isLoggingEnabled) {
+      console.debug(`Directive ${directiveName} initialized.`);
+    }
   }
 
   public logEffectRun(signalName: string): void {
-    this._logIfEnabled(() => console.warn(`Running effect for ${signalName}.`));
+    if (this._isLoggingEnabled) {
+      console.warn(`Running effect for ${signalName}.`);
+    }
   }
 
   public logError(error: Error): void {
-    this._logIfEnabled(() => console.error(error));
+    if (this._isLoggingEnabled) {
+      console.error(error);
+    }
   }
 
   public logException(exception: unknown): void {
-    this._logIfEnabled(() => console.error(exception));
+    if (this._isLoggingEnabled) {
+      console.error(exception);
+    }
   }
 
   public logServiceInitialization(serviceName: string): void {
-    this._logIfEnabled(() =>
-      console.info(`Service ${serviceName} initialized.`),
-    );
+    if (this._isLoggingEnabled) {
+      console.info(`Service ${serviceName} initialized.`);
+    }
   }
 
   public logWarning(warning: string): void {
-    this._logIfEnabled(() => console.warn(warning));
-  }
-
-  private _logIfEnabled(logFunction: () => void): void {
     if (this._isLoggingEnabled) {
-      logFunction();
+      console.warn(warning);
     }
   }
 }

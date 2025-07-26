@@ -39,18 +39,22 @@ export class ServiceWorkerService {
       ) ?? new Date().toISOString(),
     );
 
-    effect(() => {
-      this._loggerService.logEffectRun('_lastUpdateCheckTimestamp');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('_lastUpdateCheckTimestamp');
 
-      const lastUpdateCheckTimestamp: string = this._lastUpdateCheckTimestamp();
+        const lastUpdateCheckTimestamp: string =
+          this._lastUpdateCheckTimestamp();
 
-      untracked(() =>
-        this._storageService.setLocalStorageItem(
-          LocalStorageKey.LastUpdateCheckTimestamp,
-          lastUpdateCheckTimestamp,
-        ),
-      );
-    });
+        untracked(() =>
+          this._storageService.setLocalStorageItem(
+            LocalStorageKey.LastUpdateCheckTimestamp,
+            lastUpdateCheckTimestamp,
+          ),
+        );
+      },
+      { debugName: '_lastUpdateCheckTimestamp' },
+    );
 
     this._loggerService.logServiceInitialization('ServiceWorkerService');
   }

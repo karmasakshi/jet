@@ -38,18 +38,21 @@ export class SettingsService {
 
     this.languageOption = computed(() => this._settings().languageOption);
 
-    effect(() => {
-      this._loggerService.logEffectRun('_settings');
+    effect(
+      () => {
+        this._loggerService.logEffectRun('_settings');
 
-      const settings: Settings = this._settings();
+        const settings: Settings = this._settings();
 
-      untracked(() =>
-        this._storageService.setLocalStorageItem(
-          LocalStorageKey.Settings,
-          settings,
-        ),
-      );
-    });
+        untracked(() =>
+          this._storageService.setLocalStorageItem(
+            LocalStorageKey.Settings,
+            settings,
+          ),
+        );
+      },
+      { debugName: '_settings' },
+    );
 
     this._loggerService.logServiceInitialization('SettingsService');
   }
