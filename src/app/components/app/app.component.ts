@@ -11,6 +11,7 @@ import {
   Signal,
   untracked,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -105,7 +106,6 @@ export class AppComponent implements OnInit, OnDestroy {
     | null
     | ((mediaQueryListEvent: MediaQueryListEvent) => void);
   private readonly _isPwaMode: boolean;
-  private _routerSubscription: Subscription;
   private _serviceWorkerUpdateSubscription: Subscription;
 
   public activeNavigationMenuItemPath: undefined | NavigationMenuItem['path'];
@@ -134,8 +134,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this._systemColorSchemeListener = null;
 
     this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
-
-    this._routerSubscription = Subscription.EMPTY;
 
     this._serviceWorkerUpdateSubscription = Subscription.EMPTY;
 
@@ -195,7 +193,7 @@ export class AppComponent implements OnInit, OnDestroy {
       version: `v${packageJson.version}`,
     });
 
-    this._routerSubscription = this._router.events.subscribe((event: Event) => {
+    this._router.events.pipe(takeUntilDestroyed()).subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         this._progressBarService.showProgressBar({ mode: 'query' });
       } else if (
@@ -221,11 +219,11 @@ export class AppComponent implements OnInit, OnDestroy {
       this._serviceWorkerService.serviceWorkerUpdateSubscription;
 
     this._setIcons();
+
     this._setZoom(this._isPwaMode);
   }
 
   public ngOnDestroy(): void {
-    this._routerSubscription.unsubscribe();
     this._serviceWorkerUpdateSubscription.unsubscribe();
     this._unsetSystemColorSchemeListener();
   }
