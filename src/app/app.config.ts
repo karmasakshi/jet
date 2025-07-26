@@ -1,4 +1,8 @@
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import {
   ApplicationConfig,
   isDevMode,
@@ -19,6 +23,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { JetMatPaginatorIntl } from '@jet/classes/jet-mat-paginator-intl/jet-mat-paginator-intl';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
+import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-bar.interceptor';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { provideTransloco } from '@jsverse/transloco';
@@ -27,7 +32,7 @@ import { TranslocoHttpLoader } from './transloco-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([progressBarInterceptor])),
     { provide: LOCALE_ID, useValue: window.navigator.language },
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),

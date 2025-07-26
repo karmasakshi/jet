@@ -55,6 +55,7 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
   - [Directives](#directives)
   - [Enums](#enums)
   - [Guards](#guards)
+  - [Interceptors](#interceptors)
   - [Services](#services)
   - [GitHub Actions](#github-actions)
   - [GitHub Issue Templates](#github-issue-templates)
@@ -185,6 +186,14 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 - [isAuthenticatedGuard](./src/app/guards/is-authenticated/is-authenticated.guard.ts)
 - [isNotAuthenticatedGuard](./src/app/guards/is-not-authenticated/is-not-authenticated.guard.ts)
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+### Interceptors
+
+- [progressBarInterceptor](./src/app/interceptors/progress-bar/progress-bar.interceptor.ts)
 
 <br />
 
