@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/karmasakshi/jet/compare/v3.2.0...v3.3.0) (2025-07-26)
+
+
+### Features
+
+* **general:** add progress bar interceptor ([f0bc42e](https://github.com/karmasakshi/jet/commit/f0bc42e623886610877a01dc2ed2d31fa69dc577))
+
 ## [3.2.0](https://github.com/karmasakshi/jet/compare/v3.1.1...v3.2.0) (2025-07-02)
 
 
