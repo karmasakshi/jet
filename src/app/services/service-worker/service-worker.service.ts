@@ -7,10 +7,10 @@ import {
   untracked,
   WritableSignal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { TranslocoService } from '@jsverse/transloco';
+import { Subscription } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
 import { AnalyticsService } from '../analytics/analytics.service';
 import { LoggerService } from '../logger/logger.service';
@@ -28,6 +28,8 @@ export class ServiceWorkerService {
   private readonly _isUpdatePending: WritableSignal<boolean>;
   private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
 
+  public readonly serviceWorkerUpdateSubscription: Subscription;
+
   public constructor() {
     this._isUpdatePending = signal(false);
 
@@ -36,6 +38,8 @@ export class ServiceWorkerService {
         LocalStorageKey.LastUpdateCheckTimestamp,
       ) ?? new Date().toISOString(),
     );
+
+    this.serviceWorkerUpdateSubscription = this._subscribeToUpdates();
 
     effect(() => {
       this._loggerService.logEffectRun('_lastUpdateCheckTimestamp');
@@ -75,14 +79,13 @@ export class ServiceWorkerService {
     return this._swUpdate.checkForUpdate();
   }
 
-  public subscribeToVersionUpdates(): void {
+  private _subscribeToUpdates(): Subscription {
     if (!this._swUpdate.isEnabled) {
-      return;
+      return Subscription.EMPTY;
     }
 
-    this._swUpdate.versionUpdates
-      .pipe(takeUntilDestroyed())
-      .subscribe((versionEvent: VersionEvent): void => {
+    return this._swUpdate.versionUpdates.subscribe(
+      (versionEvent: VersionEvent): void => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
@@ -109,6 +112,7 @@ export class ServiceWorkerService {
             this.alertUpdateAvailability();
             break;
         }
-      });
+      },
+    );
   }
 }
