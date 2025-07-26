@@ -3,9 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
   FormBuilder,
@@ -27,7 +27,6 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Subscription } from 'rxjs';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -47,7 +46,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './update-password-page.component.scss',
   templateUrl: './update-password-page.component.html',
 })
-export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
+export class UpdatePasswordPageComponent implements OnInit {
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _alertService = inject(AlertService);
@@ -57,7 +56,6 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
   private readonly _translocoService = inject(TranslocoService);
 
   private _isLoading: boolean;
-  private _newPasswordFormControlSubscription: Subscription;
 
   public isConfirmNewPasswordHidden: boolean;
   public isNewPasswordHidden: boolean;
@@ -68,8 +66,6 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
 
   public constructor() {
     this._isLoading = false;
-
-    this._newPasswordFormControlSubscription = Subscription.EMPTY;
 
     this.isConfirmNewPasswordHidden = true;
 
@@ -98,16 +94,11 @@ export class UpdatePasswordPageComponent implements OnInit, OnDestroy {
       ),
     );
 
-    this._newPasswordFormControlSubscription =
-      this.updatePasswordFormGroup.controls.newPassword.valueChanges.subscribe(
-        () => {
-          this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
-        },
-      );
-  }
-
-  public ngOnDestroy(): void {
-    this._newPasswordFormControlSubscription.unsubscribe();
+    this.updatePasswordFormGroup.controls.newPassword.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
+      });
   }
 
   public async updatePassword(password: string): Promise<void> {
