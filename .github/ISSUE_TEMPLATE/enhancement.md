@@ -9,7 +9,3 @@ assignees: ''
 ### Description
 
 Describe the need and the proposed solution(s).
-
-### Additional context
-
-Add any other context or screenshots here.

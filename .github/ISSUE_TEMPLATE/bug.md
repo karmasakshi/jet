@@ -22,7 +22,3 @@ Describe the bug and the expectation.
 - OS Version: [e.g., 10.0.0, 11.0.0]
 - Browser: [e.g., Chrome, Firefox, Safari]
 - Browser Version: [e.g., 1.0.0]
-
-### Additional context
-
-Add any other context or screenshots here.
