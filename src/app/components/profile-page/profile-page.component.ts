@@ -134,7 +134,7 @@ export class ProfilePageComponent implements OnInit {
 
     this._isLoading = true;
     this.profileFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       let response;
@@ -187,7 +187,7 @@ export class ProfilePageComponent implements OnInit {
 
     this._isLoading = true;
     this.profileFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       await this._profileService.updateProfile(partialProfile);
@@ -216,7 +216,7 @@ export class ProfilePageComponent implements OnInit {
 
     this._isLoading = true;
     this.profileFormGroup.disable();
-    this._progressBarService.showProgressBar({ mode: 'query' });
+    this._progressBarService.showQueryProgressBar();
 
     try {
       const { data } = await this._profileService.selectProfile();

@@ -38,16 +38,27 @@ export class ProgressBarService {
   }
 
   public hideProgressBar(): void {
-    this._queue({ isVisible: false });
+    this._queueConfiguration({ isVisible: false });
   }
 
-  public showProgressBar(
-    partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
-  ): void {
-    this._queue({ ...partialProgressBarConfiguration, isVisible: true });
+  public showBufferProgressBar(bufferValue: number, value: number): void {
+    this._queueConfiguration({
+      bufferValue,
+      isVisible: true,
+      mode: 'buffer',
+      value,
+    });
   }
 
-  private _queue(
+  public showIndeterminateProgressBar(): void {
+    this._queueConfiguration({ isVisible: true, mode: 'indeterminate' });
+  }
+
+  public showQueryProgressBar(): void {
+    this._queueConfiguration({ isVisible: true, mode: 'query' });
+  }
+
+  private _queueConfiguration(
     partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
     if (this._queueTimeout) {

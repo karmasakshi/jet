@@ -201,7 +201,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
-          this._progressBarService.showProgressBar({ mode: 'query' });
+          this._progressBarService.showQueryProgressBar();
         } else if (
           event instanceof NavigationCancel ||
           event instanceof NavigationEnd ||

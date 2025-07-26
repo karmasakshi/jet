@@ -28,9 +28,15 @@ export class ProgressBarServiceMock {
     // Do nothing
   }
 
-  public showProgressBar(
-    _partialProgressBarConfiguration?: Partial<ProgressBarConfiguration>,
-  ): void {
+  public showBufferProgressBar(_bufferValue: number, _value: number): void {
+    // Do nothing
+  }
+
+  public showIndeterminateProgressBar(): void {
+    // Do nothing
+  }
+
+  public showQueryProgressBar(): void {
     // Do nothing
   }
 }

@@ -95,7 +95,7 @@ export class SignInPageComponent implements OnInit {
 
     this._isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { data, error } = await this._userService.signInWithPassword(
@@ -137,7 +137,7 @@ export class SignInPageComponent implements OnInit {
 
     this._isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { data, error } =
@@ -169,7 +169,7 @@ export class SignInPageComponent implements OnInit {
 
     this._isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { error } = await this._userService.signInWithOtp(email);
@@ -200,7 +200,7 @@ export class SignInPageComponent implements OnInit {
 
     this._isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showProgressBar({ mode: 'query' });
+    this._progressBarService.showQueryProgressBar();
 
     try {
       const { data, error } = await this._userService.getClaims();

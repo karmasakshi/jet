@@ -110,7 +110,7 @@ export class UpdatePasswordPageComponent implements OnInit {
 
     this._isLoading = true;
     this.updatePasswordFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { error } = await this._userService.updateUser({ password });

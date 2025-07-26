@@ -45,7 +45,7 @@ export class SignOutPageComponent implements OnInit {
     }
 
     this._isLoading = true;
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { error } = await this._userService.signOut();

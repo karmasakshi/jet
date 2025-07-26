@@ -79,7 +79,7 @@ export class SettingsPageComponent {
     if (this._isUpdatePending()) {
       this._serviceWorkerService.alertUpdateAvailability();
     } else {
-      this._progressBarService.showProgressBar({ mode: 'query' });
+      this._progressBarService.showQueryProgressBar();
 
       this._alertService.showAlert(
         this._translocoService.translate('alerts.checking-for-updates'),

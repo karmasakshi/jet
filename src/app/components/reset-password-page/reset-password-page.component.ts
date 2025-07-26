@@ -76,7 +76,7 @@ export class ResetPasswordPageComponent {
 
     this._isLoading = true;
     this.resetPasswordFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { error } = await this._userService.resetPasswordForEmail(email);

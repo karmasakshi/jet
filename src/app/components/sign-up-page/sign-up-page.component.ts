@@ -81,7 +81,7 @@ export class SignUpPageComponent {
 
     this._isLoading = true;
     this.signUpFormGroup.disable();
-    this._progressBarService.showProgressBar();
+    this._progressBarService.showIndeterminateProgressBar();
 
     try {
       const { data, error } = await this._userService.signUp(email, password);
