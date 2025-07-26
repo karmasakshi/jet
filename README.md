@@ -90,6 +90,7 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
   - [Deploy](#deploy)
     - [Vercel](#vercel)
   - [Supabase](#supabase)
+    - [Set up Supabase](#set-up-supabase)
     - [Link a Supabase project](#link-a-supabase-project)
     - [Run Supabase locally](#run-supabase-locally)
     - [Remove Supabase](#remove-supabase)
@@ -237,13 +238,15 @@ If you need help with something not listed here, [create a new issue](https://gi
 - Create the new repository, clone it, then open it
 - Delete [FUNDING.yml](./.github/FUNDING.yml)
 - Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
+- Delete [LICENSE](./LICENSE)
 - Create a copy of `.env.example` and name it `.env`
+- Update the `license` property in [package.json](./package.json)
 - Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
 - Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
 
 Nice to do:
 
-- Clean-up [README.md](./README.md)
+- Update [README.md](./README.md)
 - Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) to something unique to the project
 
 <br />
@@ -516,6 +519,14 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 [↑ Back to Contents](#contents)
 
 ### Supabase
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Set up Supabase
+
+- Set `project_id` in [config.toml](./supabase/config.toml) to something unique to the project
 
 <br />
 

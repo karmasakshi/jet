@@ -76,10 +76,6 @@ export class ServiceWorkerService {
   }
 
   public subscribeToVersionUpdates(): void {
-    if (!this._swUpdate.isEnabled) {
-      return;
-    }
-
     this._swUpdate.versionUpdates
       .pipe(takeUntilDestroyed())
       .subscribe((versionEvent: VersionEvent): void => {
