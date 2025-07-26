@@ -80,10 +80,6 @@ export class ServiceWorkerService {
   }
 
   private _subscribeToUpdates(): Subscription {
-    if (!this._swUpdate.isEnabled) {
-      return Subscription.EMPTY;
-    }
-
     return this._swUpdate.versionUpdates.subscribe(
       (versionEvent: VersionEvent): void => {
         switch (versionEvent.type) {
