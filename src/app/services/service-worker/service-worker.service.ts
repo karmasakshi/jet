@@ -33,10 +33,13 @@ export class ServiceWorkerService {
   public constructor() {
     this._isUpdatePending = signal(false);
 
-    this._lastUpdateCheckTimestamp = signal(
+    const storedLastUpdateCheckTimestamp: null | string =
       this._storageService.getLocalStorageItem<string>(
         LocalStorageKey.LastUpdateCheckTimestamp,
-      ) ?? new Date().toISOString(),
+      );
+
+    this._lastUpdateCheckTimestamp = signal(
+      storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
     );
 
     effect(
@@ -88,12 +91,12 @@ export class ServiceWorkerService {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-            this._analyticsService.logEvent('SW: NO_NEW_VERSION_DETECTED');
+            this._analyticsService.logEvent('NO_NEW_VERSION_DETECTED');
             break;
 
           case 'VERSION_DETECTED':
             this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-            this._analyticsService.logEvent('SW: VERSION_DETECTED');
+            this._analyticsService.logEvent('VERSION_DETECTED');
             this._alertService.showAlert(
               this._translocoService.translate('alerts.downloading-updates'),
             );
@@ -101,13 +104,13 @@ export class ServiceWorkerService {
 
           case 'VERSION_INSTALLATION_FAILED':
             this._loggerService.logError(new Error(versionEvent.error));
-            this._analyticsService.logEvent('SW: VERSION_INSTALLATION_FAILED');
+            this._analyticsService.logEvent('VERSION_INSTALLATION_FAILED');
             this._alertService.showErrorAlert(versionEvent.error);
             break;
 
           case 'VERSION_READY':
             this._isUpdatePending.set(true);
-            this._analyticsService.logEvent('SW: VERSION_READY');
+            this._analyticsService.logEvent('VERSION_READY');
             this.alertUpdateAvailability();
             break;
         }
