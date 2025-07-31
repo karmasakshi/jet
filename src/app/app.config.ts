@@ -10,7 +10,6 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
@@ -36,10 +35,6 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: window.navigator.language },
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline' },
-    },
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
