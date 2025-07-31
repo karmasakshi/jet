@@ -14,7 +14,7 @@ export class ProgressBarService {
 
   private readonly _defaultProgressBarConfiguration: ProgressBarConfiguration;
   private readonly _progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
-  private _queueTimeout: null | ReturnType<typeof setTimeout>;
+  private _queueTimeout: undefined | ReturnType<typeof setTimeout>;
 
   public constructor() {
     this._defaultProgressBarConfiguration = {
@@ -28,7 +28,7 @@ export class ProgressBarService {
       ...this._defaultProgressBarConfiguration,
     });
 
-    this._queueTimeout = null;
+    this._queueTimeout = undefined;
 
     this._loggerService.logServiceInitialization('ProgressBarService');
   }
@@ -61,17 +61,12 @@ export class ProgressBarService {
   private _queueConfiguration(
     partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
-    if (this._queueTimeout) {
-      clearTimeout(this._queueTimeout);
-    }
-
+    clearTimeout(this._queueTimeout);
     this._queueTimeout = setTimeout(() => {
       this._progressBarConfiguration.set({
         ...this._defaultProgressBarConfiguration,
         ...partialProgressBarConfiguration,
       });
-
-      this._queueTimeout = null;
     }, 100);
   }
 }
