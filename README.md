@@ -247,7 +247,7 @@ If you need help with something not listed here, [create a new issue](https://gi
 - Create the new repository, clone it, then open it
 - Delete [FUNDING.yml](./.github/FUNDING.yml)
 - Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
-- Delete [LICENSE](./LICENSE)
+- Delete [LICENSE](./LICENSE) and `license` in [package.json](./package.json)
 - Create a copy of `.env.example` and name it `.env`
 - Update the `license` property in [package.json](./package.json)
 - Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
@@ -420,6 +420,8 @@ Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) f
 - Copy the custom font URL from `./dist/jet/browser/index.html` to [index.html](./src/index.html) for preloading
 
 Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/components/app/app.component.ts).
+
+WARNING: Browser will download two icon files if preload URL is different from the resolved URL.
 
 <br />
 

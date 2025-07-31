@@ -98,7 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _translocoService = inject(TranslocoService);
 
   private _activeFontClass: AvailableFontClass;
-  private _activeFontUrl: string;
+  private _activeFontsUrl: string;
   private _activeLanguage: AvailableLanguage;
   private _activeColorScheme: AvailableColorScheme;
   private _activeThemeColor: ColorSchemeOption['themeColor'];
@@ -119,7 +119,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public constructor() {
     this._activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
 
-    this._activeFontUrl = DEFAULT_LANGUAGE_OPTION.fontUrl;
+    this._activeFontsUrl = DEFAULT_LANGUAGE_OPTION.fontsUrl;
 
     this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
@@ -160,7 +160,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const languageOption: LanguageOption = this.languageOption();
 
         untracked(() => {
-          this._loadFont(languageOption.fontUrl);
+          this._loadFont(languageOption.fontsUrl);
           this._setFontClass(languageOption.fontClass);
           this._setLanguage(languageOption);
         });
@@ -232,26 +232,26 @@ export class AppComponent implements OnInit, OnDestroy {
     this._unsetSystemColorSchemeListener();
   }
 
-  private _loadFont(nextFontUrl: string): void {
-    if (nextFontUrl === this._activeFontUrl) {
+  private _loadFont(nextFontsUrl: string): void {
+    if (nextFontsUrl === this._activeFontsUrl) {
       return;
     }
 
-    this._activeFontUrl = nextFontUrl;
+    this._activeFontsUrl = nextFontsUrl;
 
-    if (nextFontUrl !== DEFAULT_LANGUAGE_OPTION.fontUrl) {
+    if (nextFontsUrl !== DEFAULT_LANGUAGE_OPTION.fontsUrl) {
       const id = 'jet-font';
       let link = document.getElementById(id);
 
       if (!link) {
         link = this._renderer2.createElement('link');
-        this._renderer2.setAttribute(link, 'href', nextFontUrl);
+        this._renderer2.setAttribute(link, 'href', nextFontsUrl);
         this._renderer2.setAttribute(link, 'id', id);
         this._renderer2.setAttribute(link, 'rel', 'stylesheet');
 
         this._renderer2.appendChild(this._document.head, link);
       } else {
-        this._renderer2.setAttribute(link, 'href', nextFontUrl);
+        this._renderer2.setAttribute(link, 'href', nextFontsUrl);
       }
     }
   }

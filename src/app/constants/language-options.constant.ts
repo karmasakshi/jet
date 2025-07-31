@@ -5,7 +5,7 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
   {
     directionality: 'ltr',
     fontClass: 'default',
-    fontUrl:
+    fontsUrl:
       'https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@100..900',
     icon: 'translate',
     nameKey: marker('constants.english'),
@@ -14,7 +14,7 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
   {
     directionality: 'rtl',
     fontClass: 'arabic',
-    fontUrl:
+    fontsUrl:
       'https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans+Arabic:wght@100..900',
     icon: 'translate',
     nameKey: marker('constants.arabic'),

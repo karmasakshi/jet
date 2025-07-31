@@ -4,7 +4,7 @@ import { AvailableLanguage } from '@jet/types/available-language.type';
 export interface LanguageOption {
   directionality: 'ltr' | 'rtl';
   fontClass: AvailableFontClass;
-  fontUrl: string;
+  fontsUrl: string;
   icon: string;
   nameKey: string;
   value: AvailableLanguage;
