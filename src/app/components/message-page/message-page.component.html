@@ -1,14 +1,14 @@
-<ng-container *transloco="let t">
+<ng-container *transloco="let t; prefix: 'jet-message-page'">
   <jet-page
-    [seoDescription]="t('jet-message-page.seo.description')"
-    [seoKeywords]="t('jet-message-page.seo.keywords')"
-    [seoTitle]="t('jet-message-page.seo.title')"
-    [toolbarTitle]="t('jet-message-page.toolbar-title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [seoTitle]="t('seo.title')"
+    [toolbarTitle]="t('toolbar-title')"
   >
     <div class="jet-flex-col-center">
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('jet-message-page.message')"
+          [alt]="t('message')"
           [ngSrc]="'./images/card.webp'"
           height="180"
           mat-card-image
@@ -20,49 +20,44 @@
           @case ('email-verification-pending') {
             <mat-card-header>
               <mat-card-title>{{
-                t('jet-message-page.verification-email-sent')
+                t('verification-email-sent')
               }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('jet-message-page.click-to-verify') }}</p>
+                <p>{{ t('click-to-verify') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
           @case ('not-found') {
             <mat-card-header>
-              <mat-card-title>{{
-                t('jet-message-page.not-found')
-              }}</mat-card-title>
+              <mat-card-title>{{ t('not-found') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('jet-message-page.page-doesnt-exist') }}</p>
+                <p>{{ t('page-doesnt-exist') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
           @case ('reset-password-email-sent') {
             <mat-card-header>
-              <mat-card-title>{{
-                t('jet-message-page.well-email-you')
-              }}</mat-card-title>
+              <mat-card-title>{{ t('well-email-you') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('jet-message-page.sign-in-and-update-password') }}</p>
+                <p>{{ t('sign-in-and-update-password') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
           @case ('sign-in-link-sent') {
             <mat-card-header>
-              <mat-card-title>{{
-                t('jet-message-page.sign-in-link-sent')
-              }}</mat-card-title>
+              <mat-card-title>{{ t('sign-in-link-sent') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('jet-message-page.click-to-sign-in') }}</p>
+                <p>{{ t('click-to-sign-in') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
         }
+        <mat-card-content></mat-card-content>
         <mat-card-actions>
           <a
             [routerLink]="['/']"
             matButton="filled"
-            >{{ t('jet-message-page.open-home') }}</a
+            >{{ t('open-home') }}</a
           >
         </mat-card-actions>
       </mat-card>

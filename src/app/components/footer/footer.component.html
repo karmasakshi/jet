@@ -1,4 +1,4 @@
-<ng-container *transloco="let t">
+<ng-container *transloco="let t; prefix: 'jet-footer'">
   <div style="display: flex; gap: 8px; justify-content: center">
     <a
       [jetAnalytics]="{ name: 'Sponsor' }"
@@ -7,7 +7,7 @@
       target="_blank"
     >
       <mat-icon>attach_money</mat-icon>
-      <span>{{ t('jet-footer.sponsor') }}</span>
+      <span>{{ t('sponsor') }}</span>
     </a>
     <a
       [jetAnalytics]="{ name: 'Open X profile' }"
