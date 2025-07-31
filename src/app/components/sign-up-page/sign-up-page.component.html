@@ -98,22 +98,25 @@
         </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
-        <mat-card-actions style="justify-content: center">
-          <a
-            [disabled]="signUpFormGroup.disabled"
-            [queryParams]="{ email: _emailControl.value }"
-            [routerLink]="['/sign-in']"
-            matButton
-            >{{ t('sign-in') }}</a
-          >
-          <a
-            [disabled]="signUpFormGroup.disabled"
-            [queryParams]="{ email: _emailControl.value }"
-            [routerLink]="['/reset-password']"
-            matButton
-            >{{ t('reset-password') }}</a
-          >
-        </mat-card-actions>
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <div class="jet-flex-col-center">
+            <a
+              [disabled]="signUpFormGroup.disabled"
+              [queryParams]="{ email: _emailControl.value }"
+              [routerLink]="['/sign-in']"
+              matButton
+              >{{ t('sign-in') }}</a
+            >
+            <a
+              [disabled]="signUpFormGroup.disabled"
+              [queryParams]="{ email: _emailControl.value }"
+              [routerLink]="['/reset-password']"
+              matButton
+              >{{ t('reset-password') }}</a
+            >
+          </div>
+        </mat-card-content>
       </mat-card>
     </div>
   </jet-page>

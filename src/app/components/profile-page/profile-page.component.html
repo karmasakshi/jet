@@ -6,7 +6,6 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <div class="jet-flex-col-center">
-      @let _usernameControl = profileFormGroup.controls.username;
       <mat-card class="jet-maxw-480">
         <img
           [alt]="t('profile')"
@@ -56,6 +55,7 @@
               />
             </mat-card-content>
           </mat-card>
+          @let _usernameControl = profileFormGroup.controls.username;
           <form
             id="profile-form"
             [formGroup]="profileFormGroup"
@@ -131,7 +131,8 @@
         </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
-        <mat-card-actions style="justify-content: center">
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
           <div class="jet-flex-col-center">
             <a
               [routerLink]="['/update-password']"
@@ -139,7 +140,7 @@
               >{{ t('update-password') }}</a
             >
           </div>
-        </mat-card-actions>
+        </mat-card-content>
       </mat-card>
       <mat-card class="jet-maxw-480">
         <mat-card-header></mat-card-header>
