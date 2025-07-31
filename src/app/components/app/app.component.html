@@ -1,4 +1,4 @@
-<ng-container *transloco="let t">
+<ng-container *transloco="let t; prefix: 'jet-app'">
   @let _languageOption = languageOption();
   <mat-sidenav-container
     class="jet-sidenav-container"
@@ -13,9 +13,9 @@
     >
       <mat-toolbar class="jet-sidenav-toolbar">
         <a
-          [attr.aria-label]="t('jet-app.home')"
+          [attr.aria-label]="t('home')"
           [jetAnalytics]="{ name: 'Open home' }"
-          [matTooltip]="t('jet-app.home')"
+          [matTooltip]="t('home')"
           [routerLink]="['/']"
           matIconButton
           matTooltipPosition="after"
@@ -39,7 +39,7 @@
               matListItemTitle
             >
               <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
-              <span>{{ t(navigationMenuItem.nameKey) }}</span>
+              <span>{{ navigationMenuItem.nameKey | transloco }}</span>
             </a>
           }
         </mat-nav-list>
@@ -67,9 +67,9 @@
         </mat-progress-bar>
         @if (!isSmallViewport) {
           <button
-            [attr.aria-label]="t('jet-app.toggle-navigation-menu')"
+            [attr.aria-label]="t('toggle-navigation-menu')"
             [jetAnalytics]="{ name: 'Toggle sidenav' }"
-            [matTooltip]="t('jet-app.toggle-navigation-menu')"
+            [matTooltip]="t('toggle-navigation-menu')"
             (click)="sidenav.toggle()"
             matIconButton
             matTooltipPosition="after"
@@ -79,9 +79,9 @@
           </button>
         } @else {
           <a
-            [attr.aria-label]="t('jet-app.home')"
+            [attr.aria-label]="t('home')"
             [jetAnalytics]="{ name: 'Open home' }"
-            [matTooltip]="t('jet-app.home')"
+            [matTooltip]="t('home')"
             [routerLink]="['/']"
             matIconButton
             matTooltipPosition="after"
@@ -90,13 +90,15 @@
           </a>
         }
         @let _toolbarTitle = toolbarTitle();
-        <span>{{ _toolbarTitle || t('jet-app.loading') }}</span>
+        <span style="font: var(--mat-sys-title-medium)">{{
+          _toolbarTitle || t('loading')
+        }}</span>
         <div style="flex: 1"></div>
         @let _user = user();
         @if (_user !== null) {
           <a
-            [attr.aria-label]="t('jet-app.sign-out')"
-            [matTooltip]="t('jet-app.sign-out')"
+            [attr.aria-label]="t('sign-out')"
+            [matTooltip]="t('sign-out')"
             [routerLink]="['/sign-out']"
             matIconButton
             matTooltipPosition="before"
@@ -105,8 +107,8 @@
           </a>
         } @else {
           <a
-            [attr.aria-label]="t('jet-app.sign-in')"
-            [matTooltip]="t('jet-app.sign-in')"
+            [attr.aria-label]="t('sign-in')"
+            [matTooltip]="t('sign-in')"
             [routerLink]="['/sign-in']"
             matIconButton
             matTooltipPosition="before"
@@ -148,7 +150,7 @@
               [active]="
                 activeNavigationMenuItemPath === navigationMenuItem.path
               "
-              [attr.aria-label]="t(navigationMenuItem.nameKey)"
+              [attr.aria-label]="navigationMenuItem.nameKey | transloco"
               [routerLink]="[navigationMenuItem.path]"
               mat-tab-link
             >

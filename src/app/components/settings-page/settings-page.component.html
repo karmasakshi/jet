@@ -1,9 +1,9 @@
-<ng-container *transloco="let t">
+<ng-container *transloco="let t; prefix: 'jet-settings-page'">
   <jet-page
-    [seoDescription]="t('jet-settings-page.seo.description')"
-    [seoKeywords]="t('jet-settings-page.seo.keywords')"
-    [seoTitle]="t('jet-settings-page.seo.title')"
-    [toolbarTitle]="t('jet-settings-page.toolbar-title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [seoTitle]="t('seo.title')"
+    [toolbarTitle]="t('toolbar-title')"
   >
     @let _settings = settings();
     <mat-card>
@@ -17,11 +17,9 @@
             type="button"
           >
             <mat-icon matListItemIcon>language</mat-icon>
-            <span matListItemTitle>{{
-              t('jet-settings-page.change-language')
-            }}</span>
+            <span matListItemTitle>{{ t('change-language') }}</span>
             <span matListItemLine>{{
-              t(_settings.languageOption.nameKey)
+              _settings.languageOption.nameKey | transloco
             }}</span>
           </button>
 
@@ -32,11 +30,9 @@
             type="button"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
-            <span matListItemTitle>{{
-              t('jet-settings-page.change-color-scheme')
-            }}</span>
+            <span matListItemTitle>{{ t('change-color-scheme') }}</span>
             <span matListItemLine>{{
-              t(_settings.colorSchemeOption.nameKey)
+              _settings.colorSchemeOption.nameKey | transloco
             }}</span>
           </button>
 
@@ -48,11 +44,9 @@
             type="button"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
-            <span matListItemTitle>{{
-              t('jet-settings-page.check-for-updates')
-            }}</span>
+            <span matListItemTitle>{{ t('check-for-updates') }}</span>
             <span matListItemLine
-              >{{ t('jet-settings-page.last-checked') }}&nbsp;{{
+              >{{ t('last-checked') }}&nbsp;{{
                 _lastUpdateCheckTimestamp | date: 'medium'
               }}</span
             >
@@ -65,10 +59,8 @@
             type="button"
           >
             <mat-icon matListItemIcon>refresh</mat-icon>
-            <span matListItemTitle>{{ t('jet-settings-page.reload') }}</span>
-            <span matListItemLine>{{
-              t('jet-settings-page.reload-description')
-            }}</span>
+            <span matListItemTitle>{{ t('reload') }}</span>
+            <span matListItemLine>{{ t('reload-description') }}</span>
           </button>
 
           <button
@@ -78,17 +70,15 @@
             type="button"
           >
             <mat-icon matListItemIcon>restart_alt</mat-icon>
-            <span matListItemTitle>{{ t('jet-settings-page.reset') }}</span>
-            <span matListItemLine>{{
-              t('jet-settings-page.reset-description')
-            }}</span>
+            <span matListItemTitle>{{ t('reset') }}</span>
+            <span matListItemLine>{{ t('reset-description') }}</span>
           </button>
         </mat-action-list>
       </mat-card-content>
     </mat-card>
 
     <p style="font: var(--mat-sys-body-small); text-align: center">
-      {{ t('jet-settings-page.version', { version }) }}
+      {{ t('version', { version }) }}
     </p>
 
     <mat-menu
@@ -107,7 +97,7 @@
           type="button"
         >
           <mat-icon>{{ languageOption.icon }}</mat-icon>
-          <span>{{ t(languageOption.nameKey) }}</span>
+          <span>{{ languageOption.nameKey | transloco }}</span>
         </button>
       }
     </mat-menu>
@@ -133,7 +123,7 @@
           type="button"
         >
           <mat-icon>{{ colorSchemeOption.icon }}</mat-icon>
-          <span>{{ t(colorSchemeOption.nameKey) }}</span>
+          <span>{{ colorSchemeOption.nameKey | transloco }}</span>
         </button>
       }
     </mat-menu>
