@@ -1,20 +1,22 @@
-<ng-container *transloco="let t">
+<ng-container *transloco="let t; prefix: 'jet-profile-page'">
   <jet-page
-    [seoDescription]="t('jet-profile-page.seo.description')"
-    [seoKeywords]="t('jet-profile-page.seo.keywords')"
-    [seoTitle]="t('jet-profile-page.seo.title')"
-    [toolbarTitle]="t('jet-profile-page.toolbar-title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [seoTitle]="t('seo.title')"
+    [toolbarTitle]="t('toolbar-title')"
   >
     <div class="jet-flex-col-center">
+      @let _usernameControl = profileFormGroup.controls.username;
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('jet-profile-page.profile')"
+          [alt]="t('profile')"
           [ngSrc]="'./images/card.webp'"
           height="180"
           mat-card-image
           priority
           width="480"
         />
+        <mat-card-header></mat-card-header>
         <mat-card-content>
           <mat-card
             [jetAnalytics]="{ name: 'Update avatar' }"
@@ -28,11 +30,11 @@
               height: 132px;
               width: 132px;
               border-radius: 50%;
-              margin: -72.5px auto 32px;
+              margin: -88.5px auto 40px;
             "
           >
             <img
-              [alt]="t('jet-profile-page.avatar')"
+              [alt]="t('avatar')"
               [ngSrc]="
                 profile?.avatar_url ??
                 'https://placehold.co/128x128/webp?text=?'
@@ -42,6 +44,7 @@
               priority
               width="128"
             />
+            <mat-card-header></mat-card-header>
             <mat-card-content style="display: none">
               <input
                 #avatarFileInput
@@ -57,13 +60,11 @@
             id="profile-form"
             [formGroup]="profileFormGroup"
             (ngSubmit)="
-              updateProfile({
-                username: profileFormGroup.controls.username.value ?? '',
-              })
+              updateProfile({ username: _usernameControl.value ?? '' })
             "
           >
             <mat-form-field>
-              <mat-label>{{ t('jet-profile-page.username') }}</mat-label>
+              <mat-label>{{ t('username') }}</mat-label>
               <input
                 autocomplete="username"
                 formControlName="username"
@@ -71,11 +72,11 @@
                 required
                 type="text"
               />
-              @if (profileFormGroup.controls.username.value !== null) {
+              @if (_usernameControl.value !== null) {
                 <button
-                  [attr.aria-label]="t('jet-profile-page.clear')"
-                  [disabled]="profileFormGroup.controls.username.disabled"
-                  (click)="profileFormGroup.controls.username.reset()"
+                  [attr.aria-label]="t('clear')"
+                  [disabled]="_usernameControl.disabled"
+                  (click)="_usernameControl.reset()"
                   matIconButton
                   matSuffix
                   type="button"
@@ -83,16 +84,36 @@
                   <mat-icon>close</mat-icon>
                 </button>
               }
-              @if (profileFormGroup.controls.username.dirty) {
+              @if (_usernameControl.dirty) {
                 <mat-hint align="end"
                   >{{
-                    t('jet-profile-page.characters', {
-                      maximum: 30,
-                      value:
-                        profileFormGroup.controls.username.value?.length || 0,
+                    t('characters', {
+                      maximum: 36,
+                      value: _usernameControl.value?.length || 0,
                     })
                   }}
                 </mat-hint>
+              }
+              @if (
+                _usernameControl.touched &&
+                _usernameControl.errors?.['required']
+              ) {
+                <mat-error>{{ t('username-is-required') }}</mat-error>
+              }
+              @if (
+                _usernameControl.touched &&
+                (_usernameControl.errors?.['maxlength'] ||
+                  _usernameControl.errors?.['minlength'] ||
+                  _usernameControl.errors?.['pattern'])
+              ) {
+                <mat-error>{{
+                  t('username-validations', {
+                    maximum:
+                      _usernameControl.errors?.['maxlength'].requiredLength,
+                    minimum:
+                      _usernameControl.errors?.['minlength'].requiredLength,
+                  })
+                }}</mat-error>
               }
             </mat-form-field>
           </form>
@@ -105,22 +126,23 @@
             matButton="filled"
             type="submit"
           >
-            {{ t('jet-profile-page.save') }}
+            {{ t('save') }}
           </button>
         </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
-        <mat-card-content>
+        <mat-card-actions style="justify-content: center">
           <div class="jet-flex-col-center">
             <a
               [routerLink]="['/update-password']"
               matButton
-              >{{ t('jet-profile-page.update-password') }}</a
+              >{{ t('update-password') }}</a
             >
           </div>
-        </mat-card-content>
+        </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
+        <mat-card-header></mat-card-header>
         <mat-card-content>
           <div
             class="jet-flex-col-center"
@@ -128,12 +150,12 @@
           >
             <strong>{{ user?.email }}</strong>
             <span>{{
-              t('jet-profile-page.profile-last-updated-on', {
+              t('profile-last-updated-on', {
                 value: (profile?.updated_at | date: 'medium') ?? '?',
               })
             }}</span>
             <span>{{
-              t('jet-profile-page.profile-created-on', {
+              t('profile-created-on', {
                 value: (profile?.created_at | date: 'medium') ?? '?',
               })
             }}</span>

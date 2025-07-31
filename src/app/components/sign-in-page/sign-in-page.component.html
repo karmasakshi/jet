@@ -1,55 +1,55 @@
-<ng-container *transloco="let t">
+<ng-container *transloco="let t; prefix: 'jet-sign-in-page'">
   <jet-page
-    [seoDescription]="t('jet-sign-in-page.seo.description')"
-    [seoKeywords]="t('jet-sign-in-page.seo.keywords')"
-    [seoTitle]="t('jet-sign-in-page.seo.title')"
-    [toolbarTitle]="t('jet-sign-in-page.toolbar-title')"
+    [seoDescription]="t('seo.description')"
+    [seoKeywords]="t('seo.keywords')"
+    [seoTitle]="t('seo.title')"
+    [toolbarTitle]="t('toolbar-title')"
   >
     <div class="jet-flex-col-center">
       @let _returnUrl = returnUrl() ?? '/';
       @if (_returnUrl !== '/') {
         <span style="font: var(--mat-sys-title-large)">{{
-          t('jet-sign-in-page.sign-in-to-continue', { returnUrl: _returnUrl })
+          t('sign-in-to-continue', { returnUrl: _returnUrl })
         }}</span>
       }
+      @let _emailControl = signInFormGroup.controls.email;
+      @let _passwordControl = signInFormGroup.controls.password;
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('jet-sign-in-page.sign-in')"
+          [alt]="t('sign-in')"
           [ngSrc]="'./images/card.webp'"
           height="180"
           mat-card-image
           priority
           width="480"
         />
-        <mat-card-content>
-          <p></p>
-          <div class="jet-flex-col-center">
-            <button
-              [disabled]="signInFormGroup.disabled"
-              (click)="signInWithOauth('google')"
-              matButton="filled"
-              type="button"
-            >
-              {{ t('jet-sign-in-page.sign-in-with-google') }}
-            </button>
-          </div>
-        </mat-card-content>
+        <mat-card-actions style="justify-content: center">
+          <button
+            [disabled]="signInFormGroup.disabled"
+            (click)="signInWithOauth('google')"
+            matButton="filled"
+            type="button"
+          >
+            {{ t('sign-in-with-google') }}
+          </button>
+        </mat-card-actions>
       </mat-card>
-      <span>{{ t('jet-sign-in-page.or') }}</span>
+      <span style="color: var(--mat-sys-outline)">{{ t('or') }}</span>
       <mat-card class="jet-maxw-480">
+        <mat-card-header></mat-card-header>
         <mat-card-content>
           <form
             id="sign-in-form"
             [formGroup]="signInFormGroup"
             (ngSubmit)="
               signInWithPassword(
-                signInFormGroup.controls.email.value ?? '',
-                signInFormGroup.controls.password.value ?? ''
+                _emailControl.value ?? '',
+                _passwordControl.value ?? ''
               )
             "
           >
             <mat-form-field>
-              <mat-label>{{ t('jet-sign-in-page.email') }}</mat-label>
+              <mat-label>{{ t('email') }}</mat-label>
               <input
                 autocomplete="email"
                 formControlName="email"
@@ -57,9 +57,17 @@
                 required
                 type="email"
               />
+              @if (_emailControl.touched && _emailControl.errors?.['email']) {
+                <mat-error>{{ t('enter-a-valid-email') }}</mat-error>
+              }
+              @if (
+                _emailControl.touched && _emailControl.errors?.['required']
+              ) {
+                <mat-error>{{ t('email-is-required') }}</mat-error>
+              }
             </mat-form-field>
             <mat-form-field>
-              <mat-label>{{ t('jet-sign-in-page.password') }}</mat-label>
+              <mat-label>{{ t('password') }}</mat-label>
               <input
                 [type]="isPasswordHidden ? 'password' : 'text'"
                 autocomplete="current-password"
@@ -68,17 +76,35 @@
                 required
               />
               <button
-                [attr.aria-label]="t('jet-sign-in-page.toggle-visibility')"
-                [disabled]="signInFormGroup.controls.password.disabled"
+                [attr.aria-label]="t('toggle-visibility')"
+                [disabled]="_passwordControl.disabled"
                 (click)="isPasswordHidden = !isPasswordHidden"
                 matIconButton
                 matSuffix
+                tabindex="-1"
                 type="button"
               >
                 <mat-icon>{{
                   isPasswordHidden ? 'visibility' : 'visibility_off'
                 }}</mat-icon>
               </button>
+              @if (
+                _passwordControl.touched &&
+                _passwordControl.errors?.['minlength']
+              ) {
+                <mat-error>{{
+                  t('password-length', {
+                    minimum:
+                      _passwordControl.errors?.['minlength'].requiredLength,
+                  })
+                }}</mat-error>
+              }
+              @if (
+                _passwordControl.touched &&
+                _passwordControl.errors?.['required']
+              ) {
+                <mat-error>{{ t('password-is-required') }}</mat-error>
+              }
             </mat-form-field>
           </form>
         </mat-card-content>
@@ -89,40 +115,35 @@
             matButton="filled"
             type="submit"
           >
-            {{ t('jet-sign-in-page.sign-in') }}
+            {{ t('sign-in') }}
           </button>
           <button
-            [disabled]="
-              signInFormGroup.disabled || signInFormGroup.controls.email.invalid
-            "
-            (click)="signInWithOtp(signInFormGroup.controls.email.value ?? '')"
+            [disabled]="signInFormGroup.disabled || _emailControl.invalid"
+            (click)="signInWithOtp(_emailControl.value ?? '')"
             matButton
             type="button"
           >
-            {{ t('jet-sign-in-page.email-me-a-link-to-sign-in') }}
+            {{ t('email-sign-in-link') }}
           </button>
         </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
-        <mat-card-header></mat-card-header>
-        <mat-card-content>
-          <div class="jet-flex-col-center">
-            <a
-              [disabled]="signInFormGroup.disabled"
-              [queryParams]="{ email: signInFormGroup.controls.email.value }"
-              [routerLink]="['/reset-password']"
-              matButton
-              >{{ t('jet-sign-in-page.reset-password') }}</a
-            >
-            <a
-              [disabled]="signInFormGroup.disabled"
-              [queryParams]="{ email: signInFormGroup.controls.email.value }"
-              [routerLink]="['/sign-up']"
-              matButton
-              >{{ t('jet-sign-in-page.sign-up') }}</a
-            >
-          </div>
-        </mat-card-content>
+        <mat-card-actions style="justify-content: center">
+          <a
+            [disabled]="signInFormGroup.disabled"
+            [queryParams]="{ email: _emailControl.value }"
+            [routerLink]="['/reset-password']"
+            matButton
+            >{{ t('reset-password') }}</a
+          >
+          <a
+            [disabled]="signInFormGroup.disabled"
+            [queryParams]="{ email: _emailControl.value }"
+            [routerLink]="['/sign-up']"
+            matButton
+            >{{ t('sign-up') }}</a
+          >
+        </mat-card-actions>
       </mat-card>
     </div>
   </jet-page>
