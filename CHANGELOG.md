@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/karmasakshi/jet/compare/v3.4.0...v3.5.0) (2025-08-01)
+
+
+### Features
+
+* **general:** add naming-convention eslint rule ([d063fdf](https://github.com/karmasakshi/jet/commit/d063fdfb6b4c0029dad56a17e766c87e4b8cb666))
+
 ## [3.4.0](https://github.com/karmasakshi/jet/compare/v3.3.0...v3.4.0) (2025-07-31)
 
 
