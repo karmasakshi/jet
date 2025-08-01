@@ -26,6 +26,45 @@ module.exports = tseslint.config(
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-signals': 'error',
       '@typescript-eslint/explicit-member-accessibility': 'error',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'class',
+          format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'enum',
+          format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'enumMember',
+          format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'interface',
+          format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'parameter',
+          modifiers: ['unused'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
+        {
+          selector: 'parameter',
+          format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'typeAlias',
+          format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+      ],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
       'sort-keys': ['error', 'asc', { caseSensitive: false }],
