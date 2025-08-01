@@ -100,6 +100,7 @@ module.exports = tseslint.config(
       ],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
+      'no-console': ['warn', { allow: ['error'] }],
       'sort-keys': ['error', 'asc', { caseSensitive: false }],
     },
     languageOptions: { parserOptions: { projectService: true } },
