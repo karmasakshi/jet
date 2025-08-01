@@ -34,6 +34,11 @@ module.exports = tseslint.config(
           leadingUnderscore: 'forbid',
         },
         {
+          selector: 'enumMember',
+          format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
           selector: 'function',
           format: ['camelCase'],
           leadingUnderscore: 'forbid',
@@ -43,12 +48,6 @@ module.exports = tseslint.config(
           modifiers: ['private'],
           format: ['camelCase'],
           leadingUnderscore: 'require',
-        },
-        {
-          selector: 'method',
-          modifiers: ['#private'],
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
         },
         {
           selector: 'method',
@@ -64,6 +63,28 @@ module.exports = tseslint.config(
         {
           selector: 'parameter',
           format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'parameterProperty',
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
+        {
+          selector: 'parameterProperty',
+          format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'property',
+          modifiers: ['private'],
+          format: ['camelCase', 'snake_case', 'UPPER_CASE'],
+          leadingUnderscore: 'require',
+        },
+        {
+          selector: 'property',
+          format: ['camelCase', 'snake_case', 'UPPER_CASE'],
           leadingUnderscore: 'forbid',
         },
         {
@@ -86,6 +107,11 @@ module.exports = tseslint.config(
         },
         {
           selector: 'variable',
+          format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'default',
           format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
