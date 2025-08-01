@@ -19,12 +19,12 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   templateUrl: './page.component.html',
 })
 export class PageComponent {
-  private readonly _meta = inject(Meta);
-  private readonly _title = inject(Title);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _toolbarTitleService = inject(ToolbarTitleService);
+  readonly #meta = inject(Meta);
+  readonly #title = inject(Title);
+  readonly #loggerService = inject(LoggerService);
+  readonly #toolbarTitleService = inject(ToolbarTitleService);
 
-  private readonly _defaultSeoImageUrl: string;
+  readonly #defaultSeoImageUrl: string;
 
   public readonly seoDescription: InputSignal<string> = input.required();
   public readonly seoImageUrl: InputSignal<undefined | string> = input();
@@ -33,20 +33,20 @@ export class PageComponent {
   public readonly toolbarTitle: InputSignal<string> = input.required();
 
   public constructor() {
-    this._defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;
+    this.#defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;
 
     effect(
       () => {
-        this._loggerService.logEffectRun('seoDescription');
+        this.#loggerService.logEffectRun('seoDescription');
 
         const seoDescription = this.seoDescription();
 
         untracked(() => {
-          this._meta.updateTag({
+          this.#meta.updateTag({
             content: seoDescription,
             name: 'description',
           });
-          this._meta.updateTag({
+          this.#meta.updateTag({
             content: seoDescription,
             name: 'og:description',
           });
@@ -57,12 +57,12 @@ export class PageComponent {
 
     effect(
       () => {
-        this._loggerService.logEffectRun('seoImageUrl');
+        this.#loggerService.logEffectRun('seoImageUrl');
 
-        const seoImageUrl = this.seoImageUrl() ?? this._defaultSeoImageUrl;
+        const seoImageUrl = this.seoImageUrl() ?? this.#defaultSeoImageUrl;
 
         untracked(() => {
-          this._meta.updateTag({ content: seoImageUrl, name: 'og:image' });
+          this.#meta.updateTag({ content: seoImageUrl, name: 'og:image' });
         });
       },
       { debugName: 'seoImageUrl' },
@@ -70,12 +70,12 @@ export class PageComponent {
 
     effect(
       () => {
-        this._loggerService.logEffectRun('seoKeywords');
+        this.#loggerService.logEffectRun('seoKeywords');
 
         const seoKeywords = this.seoKeywords();
 
         untracked(() => {
-          this._meta.updateTag({ content: seoKeywords, name: 'keywords' });
+          this.#meta.updateTag({ content: seoKeywords, name: 'keywords' });
         });
       },
       { debugName: 'seoKeywords' },
@@ -83,13 +83,13 @@ export class PageComponent {
 
     effect(
       () => {
-        this._loggerService.logEffectRun('seoTitle');
+        this.#loggerService.logEffectRun('seoTitle');
 
         const seoTitle = this.seoTitle();
 
         untracked(() => {
-          this._title.setTitle(seoTitle);
-          this._meta.updateTag({ content: seoTitle, name: 'og:title' });
+          this.#title.setTitle(seoTitle);
+          this.#meta.updateTag({ content: seoTitle, name: 'og:title' });
         });
       },
       { debugName: 'seoTitle' },
@@ -97,17 +97,17 @@ export class PageComponent {
 
     effect(
       () => {
-        this._loggerService.logEffectRun('toolbarTitle');
+        this.#loggerService.logEffectRun('toolbarTitle');
 
         const toolbarTitle = this.toolbarTitle();
 
         untracked(() => {
-          this._toolbarTitleService.setToolbarTitle(toolbarTitle);
+          this.#toolbarTitleService.setToolbarTitle(toolbarTitle);
         });
       },
       { debugName: 'toolbarTitle' },
     );
 
-    this._loggerService.logComponentInitialization('PageComponent');
+    this.#loggerService.logComponentInitialization('PageComponent');
   }
 }

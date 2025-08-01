@@ -16,14 +16,14 @@ import {
 } from '@supabase/supabase-js';
 
 export class UserServiceMock {
-  private readonly _user: WritableSignal<null | User>;
+  readonly #user: WritableSignal<null | User>;
 
   public constructor() {
-    this._user = signal(null);
+    this.#user = signal(null);
   }
 
   public get user(): Signal<null | User> {
-    return this._user.asReadonly();
+    return this.#user.asReadonly();
   }
 
   public getClaims(): Promise<

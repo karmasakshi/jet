@@ -19,61 +19,61 @@ import { StorageService } from '../storage/storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceWorkerService {
-  private readonly _destroyRef = inject(DestroyRef);
-  private readonly _swUpdate = inject(SwUpdate);
-  private readonly _translocoService = inject(TranslocoService);
-  private readonly _alertService = inject(AlertService);
-  private readonly _analyticsService = inject(AnalyticsService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _storageService = inject(StorageService);
+  readonly #destroyRef = inject(DestroyRef);
+  readonly #swUpdate = inject(SwUpdate);
+  readonly #translocoService = inject(TranslocoService);
+  readonly #alertService = inject(AlertService);
+  readonly #analyticsService = inject(AnalyticsService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #storageService = inject(StorageService);
 
-  private readonly _isUpdatePending: WritableSignal<boolean>;
-  private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
+  readonly #isUpdatePending: WritableSignal<boolean>;
+  readonly #lastUpdateCheckTimestamp: WritableSignal<string>;
 
   public constructor() {
-    this._isUpdatePending = signal(false);
+    this.#isUpdatePending = signal(false);
 
     const storedLastUpdateCheckTimestamp: null | string =
-      this._storageService.getLocalStorageItem<string>(
+      this.#storageService.getLocalStorageItem<string>(
         LocalStorageKey.LastUpdateCheckTimestamp,
       );
 
-    this._lastUpdateCheckTimestamp = signal(
+    this.#lastUpdateCheckTimestamp = signal(
       storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
     );
 
     effect(
       () => {
-        this._loggerService.logEffectRun('_lastUpdateCheckTimestamp');
+        this.#loggerService.logEffectRun('#lastUpdateCheckTimestamp');
 
         const lastUpdateCheckTimestamp: string =
-          this._lastUpdateCheckTimestamp();
+          this.#lastUpdateCheckTimestamp();
 
         untracked(() =>
-          this._storageService.setLocalStorageItem(
+          this.#storageService.setLocalStorageItem(
             LocalStorageKey.LastUpdateCheckTimestamp,
             lastUpdateCheckTimestamp,
           ),
         );
       },
-      { debugName: '_lastUpdateCheckTimestamp' },
+      { debugName: '#lastUpdateCheckTimestamp' },
     );
 
-    this._loggerService.logServiceInitialization('ServiceWorkerService');
+    this.#loggerService.logServiceInitialization('ServiceWorkerService');
   }
 
   public get isUpdatePending(): Signal<boolean> {
-    return this._isUpdatePending.asReadonly();
+    return this.#isUpdatePending.asReadonly();
   }
 
   public get lastUpdateCheckTimestamp(): Signal<string> {
-    return this._lastUpdateCheckTimestamp.asReadonly();
+    return this.#lastUpdateCheckTimestamp.asReadonly();
   }
 
   public alertUpdateAvailability(): void {
-    this._alertService.showAlert(
-      this._translocoService.translate('alerts.reload-to-update'),
-      this._translocoService.translate('alert-ctas.reload'),
+    this.#alertService.showAlert(
+      this.#translocoService.translate('alerts.reload-to-update'),
+      this.#translocoService.translate('alert-ctas.reload'),
       (): void => {
         window.location.reload();
       },
@@ -81,36 +81,36 @@ export class ServiceWorkerService {
   }
 
   public checkForUpdate(): Promise<boolean> {
-    return this._swUpdate.checkForUpdate();
+    return this.#swUpdate.checkForUpdate();
   }
 
   public subscribeToVersionUpdates(): void {
-    this._swUpdate.versionUpdates
-      .pipe(takeUntilDestroyed(this._destroyRef))
+    this.#swUpdate.versionUpdates
+      .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((versionEvent: VersionEvent): void => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
-            this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-            this._analyticsService.logEvent('NO_NEW_VERSION_DETECTED');
+            this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
+            this.#analyticsService.logEvent('NO_NEW_VERSION_DETECTED');
             break;
 
           case 'VERSION_DETECTED':
-            this._lastUpdateCheckTimestamp.set(new Date().toISOString());
-            this._analyticsService.logEvent('VERSION_DETECTED');
-            this._alertService.showAlert(
-              this._translocoService.translate('alerts.downloading-updates'),
+            this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
+            this.#analyticsService.logEvent('VERSION_DETECTED');
+            this.#alertService.showAlert(
+              this.#translocoService.translate('alerts.downloading-updates'),
             );
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
-            this._loggerService.logError(new Error(versionEvent.error));
-            this._analyticsService.logEvent('VERSION_INSTALLATION_FAILED');
-            this._alertService.showErrorAlert(versionEvent.error);
+            this.#loggerService.logError(new Error(versionEvent.error));
+            this.#analyticsService.logEvent('VERSION_INSTALLATION_FAILED');
+            this.#alertService.showErrorAlert(versionEvent.error);
             break;
 
           case 'VERSION_READY':
-            this._isUpdatePending.set(true);
-            this._analyticsService.logEvent('VERSION_READY');
+            this.#isUpdatePending.set(true);
+            this.#analyticsService.logEvent('VERSION_READY');
             this.alertUpdateAvailability();
             break;
         }

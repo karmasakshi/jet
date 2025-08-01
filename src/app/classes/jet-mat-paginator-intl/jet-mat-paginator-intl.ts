@@ -6,45 +6,45 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class JetMatPaginatorIntl implements MatPaginatorIntl {
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #translocoService = inject(TranslocoService);
 
   public readonly changes: Subject<void>;
 
   public constructor() {
     this.changes = new Subject<void>();
 
-    this._loggerService.logClassInitialization('JetMatPaginatorIntl');
+    this.#loggerService.logClassInitialization('JetMatPaginatorIntl');
   }
 
   public get firstPageLabel(): string {
-    return this._translocoService.translate('paginator.first-page');
+    return this.#translocoService.translate('paginator.first-page');
   }
 
   public get itemsPerPageLabel(): string {
-    return this._translocoService.translate('paginator.items-per-page');
+    return this.#translocoService.translate('paginator.items-per-page');
   }
 
   public get lastPageLabel(): string {
-    return this._translocoService.translate('paginator.last-page');
+    return this.#translocoService.translate('paginator.last-page');
   }
 
   public get nextPageLabel(): string {
-    return this._translocoService.translate('paginator.next-page');
+    return this.#translocoService.translate('paginator.next-page');
   }
 
   public get previousPageLabel(): string {
-    return this._translocoService.translate('paginator.previous-page');
+    return this.#translocoService.translate('paginator.previous-page');
   }
 
   public getRangeLabel(page: number, pageSize: number, length: number): string {
     if (!length) {
-      return this._translocoService.translate('paginator.page-1-of-1');
+      return this.#translocoService.translate('paginator.page-1-of-1');
     }
 
     const pages = Math.ceil(length / pageSize);
 
-    return this._translocoService.translate('paginator.page', {
+    return this.#translocoService.translate('paginator.page', {
       active: page + 1,
       total: pages,
     });

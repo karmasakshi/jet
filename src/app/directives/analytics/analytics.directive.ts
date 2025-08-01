@@ -15,18 +15,18 @@ interface AnalyticsEvent {
 
 @Directive({ selector: '[jetAnalytics]' })
 export class AnalyticsDirective {
-  private readonly _analyticsService = inject(AnalyticsService);
-  private readonly _loggerService = inject(LoggerService);
+  readonly #analyticsService = inject(AnalyticsService);
+  readonly #loggerService = inject(LoggerService);
 
   public readonly jetAnalytics: InputSignal<AnalyticsEvent> = input.required();
 
   public constructor() {
-    this._loggerService.logDirectiveInitialization('AnalyticsDirective');
+    this.#loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 
   @HostListener('click')
   public logClick(): void {
     const { data, name } = this.jetAnalytics();
-    this._analyticsService.logEvent(name, data);
+    this.#analyticsService.logEvent(name, data);
   }
 }

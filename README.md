@@ -277,8 +277,8 @@ Use [ng g](https://angular.dev/cli/generate) as you would in any other Angular p
   - Set `changeDetection: ChangeDetectionStrategy.OnPush`
   - Set `imports: [TranslocoModule]`
 - In the class:
-  - Set `private readonly _loggerService = inject(LoggerService);`
-  - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
+  - Set `readonly #loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this.#loggerService.logComponentInitialization('<ClassName>');`
 - As a convention, add the component selector as a key in [en.json](./public/i18n/en.json) and other translation files
 - Update spec
 
@@ -299,8 +299,8 @@ In the template, wrap the contents in:
   - Set `changeDetection: ChangeDetectionStrategy.OnPush`
   - Set `imports: [TranslocoModule, PageComponent]`
 - In the class:
-  - Set `private readonly _loggerService = inject(LoggerService);`
-  - As a convention, at the end of the constructor, set `this._loggerService.logComponentInitialization('<ClassName>');`
+  - Set `readonly #loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this.#loggerService.logComponentInitialization('<ClassName>');`
 - As a convention, add the component selector as a key in [en.json](./public/i18n/en.json) and other translation files
 - Update spec
 - Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
@@ -330,8 +330,8 @@ In the template, wrap the contents in:
 
 - Run `ng g s services/<service-name>/<service-name>`
 - In the class:
-  - Set `private readonly _loggerService = inject(LoggerService);`
-  - As a convention, at the end of the constructor, set `this._loggerService.logServiceInitialization('<ClassName>');`
+  - Set `readonly #loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this.#loggerService.logServiceInitialization('<ClassName>');`
 - Add mock
 - Update spec
 

@@ -79,34 +79,34 @@ import { FooterComponent } from '../footer/footer.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private readonly _breakpointObserver = inject(BreakpointObserver);
-  private readonly _document = inject(DOCUMENT);
-  private readonly _destroyRef = inject(DestroyRef);
-  private readonly _renderer2 = inject(Renderer2);
-  private readonly _matIconRegistry = inject(MatIconRegistry);
-  private readonly _domSanitizer = inject(DomSanitizer);
-  private readonly _meta = inject(Meta);
-  private readonly _router = inject(Router);
-  private readonly _alertService = inject(AlertService);
-  private readonly _analyticsService = inject(AnalyticsService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _serviceWorkerService = inject(ServiceWorkerService);
-  private readonly _settingsService = inject(SettingsService);
-  private readonly _toolbarTitleService = inject(ToolbarTitleService);
-  private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #breakpointObserver = inject(BreakpointObserver);
+  readonly #document = inject(DOCUMENT);
+  readonly #destroyRef = inject(DestroyRef);
+  readonly #renderer2 = inject(Renderer2);
+  readonly #matIconRegistry = inject(MatIconRegistry);
+  readonly #domSanitizer = inject(DomSanitizer);
+  readonly #meta = inject(Meta);
+  readonly #router = inject(Router);
+  readonly #alertService = inject(AlertService);
+  readonly #analyticsService = inject(AnalyticsService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #serviceWorkerService = inject(ServiceWorkerService);
+  readonly #settingsService = inject(SettingsService);
+  readonly #toolbarTitleService = inject(ToolbarTitleService);
+  readonly #userService = inject(UserService);
+  readonly #translocoService = inject(TranslocoService);
 
-  private _activeFontClass: AvailableFontClass;
-  private _activeFontsUrl: string;
-  private _activeLanguage: AvailableLanguage;
-  private _activeColorScheme: AvailableColorScheme;
-  private _activeThemeColor: ColorSchemeOption['themeColor'];
-  private readonly _darkColorSchemeMediaQuery: MediaQueryList;
-  private _systemColorSchemeListener:
+  #activeFontClass: AvailableFontClass;
+  #activeFontsUrl: string;
+  #activeLanguage: AvailableLanguage;
+  #activeColorScheme: AvailableColorScheme;
+  #activeThemeColor: ColorSchemeOption['themeColor'];
+  readonly #darkColorSchemeMediaQuery: MediaQueryList;
+  #systemColorSchemeListener:
     | null
     | ((mediaQueryListEvent: MediaQueryListEvent) => void);
-  private readonly _isPwaMode: boolean;
+  readonly #isPwaMode: boolean;
 
   public activeNavigationMenuItemPath: undefined | NavigationMenuItem['path'];
   public readonly isSmallViewport: boolean;
@@ -117,52 +117,52 @@ export class AppComponent implements OnInit, OnDestroy {
   public readonly user: Signal<null | User>;
 
   public constructor() {
-    this._activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
+    this.#activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
 
-    this._activeFontsUrl = DEFAULT_LANGUAGE_OPTION.fontsUrl;
+    this.#activeFontsUrl = DEFAULT_LANGUAGE_OPTION.fontsUrl;
 
-    this._activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
+    this.#activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
-    this._activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
+    this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
-    this._activeThemeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
+    this.#activeThemeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
 
-    this._darkColorSchemeMediaQuery = window.matchMedia(
+    this.#darkColorSchemeMediaQuery = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
 
-    this._systemColorSchemeListener = null;
+    this.#systemColorSchemeListener = null;
 
-    this._isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
+    this.#isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
     this.activeNavigationMenuItemPath = undefined;
 
-    this.isSmallViewport = this._breakpointObserver.isMatched([
+    this.isSmallViewport = this.#breakpointObserver.isMatched([
       Breakpoints.Handset,
       Breakpoints.Tablet,
     ]);
 
-    this.languageOption = this._settingsService.languageOption;
+    this.languageOption = this.#settingsService.languageOption;
 
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
 
     this.progressBarConfiguration =
-      this._progressBarService.progressBarConfiguration;
+      this.#progressBarService.progressBarConfiguration;
 
-    this.toolbarTitle = this._toolbarTitleService.toolbarTitle;
+    this.toolbarTitle = this.#toolbarTitleService.toolbarTitle;
 
-    this.user = this._userService.user;
+    this.user = this.#userService.user;
 
     effect(
       () => {
-        this._loggerService.logEffectRun('languageOption');
+        this.#loggerService.logEffectRun('languageOption');
 
         const languageOption: LanguageOption = this.languageOption();
 
         untracked(() => {
-          this._loadFont(languageOption.fontsUrl);
-          this._setFontClass(languageOption.fontClass);
-          this._setLanguage(languageOption);
+          this.#loadFont(languageOption.fontsUrl);
+          this.#setFontClass(languageOption.fontClass);
+          this.#setLanguage(languageOption);
         });
       },
       { debugName: 'languageOption' },
@@ -170,38 +170,38 @@ export class AppComponent implements OnInit, OnDestroy {
 
     effect(
       () => {
-        this._loggerService.logEffectRun('colorSchemeOption');
+        this.#loggerService.logEffectRun('colorSchemeOption');
 
         const colorScheme: AvailableColorScheme =
-          this._settingsService.colorSchemeOption().value;
+          this.#settingsService.colorSchemeOption().value;
 
         untracked(() => {
           if (colorScheme === 'automatic') {
-            this._setSystemColorSchemeListener();
+            this.#setSystemColorSchemeListener();
           } else {
-            this._unsetSystemColorSchemeListener();
+            this.#unsetSystemColorSchemeListener();
           }
 
-          this._setColorSchemeClass(colorScheme);
-          this._setThemeColor(colorScheme);
+          this.#setColorSchemeClass(colorScheme);
+          this.#setThemeColor(colorScheme);
         });
       },
       { debugName: 'colorSchemeOption' },
     );
 
-    this._loggerService.logComponentInitialization('AppComponent');
+    this.#loggerService.logComponentInitialization('AppComponent');
   }
 
   public ngOnInit(): void {
-    this._analyticsService.logEvent('Start', {
+    this.#analyticsService.logEvent('Start', {
       version: `v${packageJson.version}`,
     });
 
-    this._router.events
-      .pipe(takeUntilDestroyed(this._destroyRef))
+    this.#router.events
+      .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
-          this._progressBarService.showQueryProgressBar();
+          this.#progressBarService.showQueryProgressBar();
         } else if (
           event instanceof NavigationCancel ||
           event instanceof NavigationEnd ||
@@ -213,135 +213,135 @@ export class AppComponent implements OnInit, OnDestroy {
 
           if (event instanceof NavigationError) {
             const error: undefined | Error = event.error as Error;
-            this._loggerService.logError(error);
-            this._alertService.showErrorAlert(error.message);
+            this.#loggerService.logError(error);
+            this.#alertService.showErrorAlert(error.message);
           }
 
-          this._progressBarService.hideProgressBar();
+          this.#progressBarService.hideProgressBar();
         }
       });
 
-    this._serviceWorkerService.subscribeToVersionUpdates();
+    this.#serviceWorkerService.subscribeToVersionUpdates();
 
-    this._setIcons();
+    this.#setIcons();
 
-    this._setZoom(this._isPwaMode);
+    this.#setZoom(this.#isPwaMode);
   }
 
   public ngOnDestroy(): void {
-    this._unsetSystemColorSchemeListener();
+    this.#unsetSystemColorSchemeListener();
   }
 
-  private _loadFont(nextFontsUrl: string): void {
-    if (nextFontsUrl === this._activeFontsUrl) {
+  #loadFont(nextFontsUrl: string): void {
+    if (nextFontsUrl === this.#activeFontsUrl) {
       return;
     }
 
-    this._activeFontsUrl = nextFontsUrl;
+    this.#activeFontsUrl = nextFontsUrl;
 
     if (nextFontsUrl !== DEFAULT_LANGUAGE_OPTION.fontsUrl) {
       const id = 'jet-font';
       let link = document.getElementById(id);
 
       if (!link) {
-        link = this._renderer2.createElement('link');
-        this._renderer2.setAttribute(link, 'href', nextFontsUrl);
-        this._renderer2.setAttribute(link, 'id', id);
-        this._renderer2.setAttribute(link, 'rel', 'stylesheet');
+        link = this.#renderer2.createElement('link');
+        this.#renderer2.setAttribute(link, 'href', nextFontsUrl);
+        this.#renderer2.setAttribute(link, 'id', id);
+        this.#renderer2.setAttribute(link, 'rel', 'stylesheet');
 
-        this._renderer2.appendChild(this._document.head, link);
+        this.#renderer2.appendChild(this.#document.head, link);
       } else {
-        this._renderer2.setAttribute(link, 'href', nextFontsUrl);
+        this.#renderer2.setAttribute(link, 'href', nextFontsUrl);
       }
     }
   }
 
-  private _setColorSchemeClass(nextColorScheme: AvailableColorScheme): void {
-    if (nextColorScheme === this._activeColorScheme) {
+  #setColorSchemeClass(nextColorScheme: AvailableColorScheme): void {
+    if (nextColorScheme === this.#activeColorScheme) {
       return;
     }
 
-    this._activeColorScheme = nextColorScheme;
+    this.#activeColorScheme = nextColorScheme;
     const prefix = 'jet-color-scheme-';
 
-    this._document.body.className = this._document.body.classList.value
+    this.#document.body.className = this.#document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
     if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      this._renderer2.addClass(this._document.body, prefix + nextColorScheme);
+      this.#renderer2.addClass(this.#document.body, prefix + nextColorScheme);
     }
   }
 
-  private _setFontClass(nextFontClass: AvailableFontClass): void {
-    if (nextFontClass === this._activeFontClass) {
+  #setFontClass(nextFontClass: AvailableFontClass): void {
+    if (nextFontClass === this.#activeFontClass) {
       return;
     }
 
-    this._activeFontClass = nextFontClass;
+    this.#activeFontClass = nextFontClass;
     const prefix = 'jet-font-';
 
-    this._document.body.className = this._document.body.classList.value
+    this.#document.body.className = this.#document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
       .trim();
 
     if (nextFontClass !== DEFAULT_LANGUAGE_OPTION.fontClass) {
-      this._renderer2.addClass(this._document.body, prefix + nextFontClass);
+      this.#renderer2.addClass(this.#document.body, prefix + nextFontClass);
     }
   }
 
-  private _setIcons(): void {
-    this._matIconRegistry.addSvgIcon(
+  #setIcons(): void {
+    this.#matIconRegistry.addSvgIcon(
       'jet',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('./icons/jet.svg'),
+      this.#domSanitizer.bypassSecurityTrustResourceUrl('./icons/jet.svg'),
     );
 
-    this._matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
+    this.#matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
   }
 
-  private _setLanguage(nextLanguageOption: LanguageOption): void {
-    if (nextLanguageOption.value === this._activeLanguage) {
+  #setLanguage(nextLanguageOption: LanguageOption): void {
+    if (nextLanguageOption.value === this.#activeLanguage) {
       return;
     }
 
-    this._activeLanguage = nextLanguageOption.value;
+    this.#activeLanguage = nextLanguageOption.value;
 
-    this._renderer2.setAttribute(
-      this._document.documentElement,
+    this.#renderer2.setAttribute(
+      this.#document.documentElement,
       'lang',
       nextLanguageOption.value,
     );
 
-    this._translocoService.setActiveLang(nextLanguageOption.value);
+    this.#translocoService.setActiveLang(nextLanguageOption.value);
   }
 
-  private _setSystemColorSchemeListener(): void {
-    if (this._systemColorSchemeListener) {
+  #setSystemColorSchemeListener(): void {
+    if (this.#systemColorSchemeListener) {
       return;
     }
 
-    this._systemColorSchemeListener = (
+    this.#systemColorSchemeListener = (
       mediaQueryListEvent: MediaQueryListEvent,
     ) => {
       // This updates `<meta name="theme-color" />` based on system setting.
-      // This needs to run only when `this._activeColorScheme === 'automatic'`, not otherwise.
-      // The listener is set and unset accordingly, so `this._activeColorScheme === 'automatic'` check isn't needed.
+      // This needs to run only when `this.#activeColorScheme === 'automatic'`, not otherwise.
+      // The listener is set and unset accordingly, so `this.#activeColorScheme === 'automatic'` check isn't needed.
       if (mediaQueryListEvent.matches) {
-        this._setThemeColor('dark');
+        this.#setThemeColor('dark');
       } else {
-        this._setThemeColor('light');
+        this.#setThemeColor('light');
       }
     };
 
-    this._darkColorSchemeMediaQuery.addEventListener(
+    this.#darkColorSchemeMediaQuery.addEventListener(
       'change',
-      this._systemColorSchemeListener,
+      this.#systemColorSchemeListener,
     );
   }
 
-  private _setThemeColor(nextColorScheme: AvailableColorScheme): void {
+  #setThemeColor(nextColorScheme: AvailableColorScheme): void {
     if (nextColorScheme === 'automatic') {
-      nextColorScheme = this._darkColorSchemeMediaQuery.matches
+      nextColorScheme = this.#darkColorSchemeMediaQuery.matches
         ? 'dark'
         : 'light';
     }
@@ -351,19 +351,19 @@ export class AppComponent implements OnInit, OnDestroy {
         (colorSchemeOption) => colorSchemeOption.value === nextColorScheme,
       ) ?? DEFAULT_COLOR_SCHEME_OPTION;
 
-    if (nextColorSchemeOption.themeColor !== this._activeThemeColor) {
-      this._activeThemeColor = nextColorSchemeOption.themeColor;
+    if (nextColorSchemeOption.themeColor !== this.#activeThemeColor) {
+      this.#activeThemeColor = nextColorSchemeOption.themeColor;
 
-      this._meta.updateTag({
+      this.#meta.updateTag({
         content: nextColorSchemeOption.themeColor ?? '#ffffff',
         name: 'theme-color',
       });
     }
   }
 
-  private _setZoom(isPwaMode: boolean): void {
+  #setZoom(isPwaMode: boolean): void {
     if (isPwaMode) {
-      this._meta.updateTag({
+      this.#meta.updateTag({
         content:
           'width=device-width, initial-scale=0.75, viewport-fit=cover, user-scalable=no',
         name: 'viewport',
@@ -371,16 +371,16 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _unsetSystemColorSchemeListener(): void {
-    if (!this._systemColorSchemeListener) {
+  #unsetSystemColorSchemeListener(): void {
+    if (!this.#systemColorSchemeListener) {
       return;
     }
 
-    this._darkColorSchemeMediaQuery.removeEventListener(
+    this.#darkColorSchemeMediaQuery.removeEventListener(
       'change',
-      this._systemColorSchemeListener,
+      this.#systemColorSchemeListener,
     );
 
-    this._systemColorSchemeListener = null;
+    this.#systemColorSchemeListener = null;
   }
 }

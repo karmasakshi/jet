@@ -11,9 +11,9 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
-  private readonly _loggerService = inject(LoggerService);
+  readonly #loggerService = inject(LoggerService);
 
   public constructor() {
-    this._loggerService.logComponentInitialization('HomePageComponent');
+    this.#loggerService.logComponentInitialization('HomePageComponent');
   }
 }

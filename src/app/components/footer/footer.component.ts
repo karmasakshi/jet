@@ -18,9 +18,9 @@ import { TranslocoModule } from '@jsverse/transloco';
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-  private readonly _loggerService = inject(LoggerService);
+  readonly #loggerService = inject(LoggerService);
 
   public constructor() {
-    this._loggerService.logComponentInitialization('FooterComponent');
+    this.#loggerService.logComponentInitialization('FooterComponent');
   }
 }

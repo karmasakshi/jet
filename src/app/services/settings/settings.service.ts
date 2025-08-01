@@ -18,50 +18,50 @@ import { StorageService } from '../storage/storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _storageService = inject(StorageService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #storageService = inject(StorageService);
 
-  private readonly _settings: WritableSignal<Settings>;
+  readonly #settings: WritableSignal<Settings>;
 
   public readonly colorSchemeOption: Signal<ColorSchemeOption>;
   public readonly languageOption: Signal<LanguageOption>;
 
   public constructor() {
     const storedSettings: null | Settings =
-      this._storageService.getLocalStorageItem<Settings>(
+      this.#storageService.getLocalStorageItem<Settings>(
         LocalStorageKey.Settings,
       );
 
-    this._settings = signal({ ...DEFAULT_SETTINGS, ...storedSettings });
+    this.#settings = signal({ ...DEFAULT_SETTINGS, ...storedSettings });
 
-    this.colorSchemeOption = computed(() => this._settings().colorSchemeOption);
+    this.colorSchemeOption = computed(() => this.#settings().colorSchemeOption);
 
-    this.languageOption = computed(() => this._settings().languageOption);
+    this.languageOption = computed(() => this.#settings().languageOption);
 
     effect(
       () => {
-        this._loggerService.logEffectRun('_settings');
+        this.#loggerService.logEffectRun('#settings');
 
-        const settings: Settings = this._settings();
+        const settings: Settings = this.#settings();
 
         untracked(() =>
-          this._storageService.setLocalStorageItem(
+          this.#storageService.setLocalStorageItem(
             LocalStorageKey.Settings,
             settings,
           ),
         );
       },
-      { debugName: '_settings' },
+      { debugName: '#settings' },
     );
 
-    this._loggerService.logServiceInitialization('SettingsService');
+    this.#loggerService.logServiceInitialization('SettingsService');
   }
 
   public get settings(): Signal<Settings> {
-    return this._settings.asReadonly();
+    return this.#settings.asReadonly();
   }
 
   public updateSettings(partialSettings: Partial<Settings>): void {
-    this._settings.update((settings) => ({ ...settings, ...partialSettings }));
+    this.#settings.update((settings) => ({ ...settings, ...partialSettings }));
   }
 }

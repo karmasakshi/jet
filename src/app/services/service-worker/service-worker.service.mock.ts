@@ -1,21 +1,21 @@
 import { Signal, signal, WritableSignal } from '@angular/core';
 
 export class ServiceWorkerServiceMock {
-  private readonly _isUpdatePending: WritableSignal<boolean>;
-  private readonly _lastUpdateCheckTimestamp: WritableSignal<string>;
+  readonly #isUpdatePending: WritableSignal<boolean>;
+  readonly #lastUpdateCheckTimestamp: WritableSignal<string>;
 
   public constructor() {
-    this._isUpdatePending = signal(false);
+    this.#isUpdatePending = signal(false);
 
-    this._lastUpdateCheckTimestamp = signal(new Date().toISOString());
+    this.#lastUpdateCheckTimestamp = signal(new Date().toISOString());
   }
 
   public get isUpdatePending(): Signal<boolean> {
-    return this._isUpdatePending.asReadonly();
+    return this.#isUpdatePending.asReadonly();
   }
 
   public get lastUpdateCheckTimestamp(): Signal<string> {
-    return this._lastUpdateCheckTimestamp.asReadonly();
+    return this.#lastUpdateCheckTimestamp.asReadonly();
   }
 
   public alertUpdateAvailability(): void {

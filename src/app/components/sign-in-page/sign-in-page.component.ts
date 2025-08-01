@@ -47,17 +47,17 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './sign-in-page.component.html',
 })
 export class SignInPageComponent implements OnInit {
-  private readonly _formBuilder = inject(FormBuilder);
-  private readonly _router = inject(Router);
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #formBuilder = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #userService = inject(UserService);
+  readonly #translocoService = inject(TranslocoService);
 
   public readonly returnUrl: Signal<undefined | string> = input();
 
-  private _isLoading: boolean;
+  #isLoading: boolean;
 
   public isPasswordHidden: boolean;
   public readonly signInFormGroup: FormGroup<{
@@ -66,39 +66,39 @@ export class SignInPageComponent implements OnInit {
   }>;
 
   public constructor() {
-    this._isLoading = false;
+    this.#isLoading = false;
 
     this.isPasswordHidden = true;
 
-    this.signInFormGroup = this._formBuilder.group({
-      email: this._formBuilder.control<null | string>(null, [
+    this.signInFormGroup = this.#formBuilder.group({
+      email: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.email,
       ]),
-      password: this._formBuilder.control<null | string>(null, [
+      password: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
     });
 
-    this._loggerService.logComponentInitialization('SignInPageComponent');
+    this.#loggerService.logComponentInitialization('SignInPageComponent');
   }
 
   public ngOnInit(): void {
-    void this._getClaims();
+    void this.#getClaims();
   }
 
   public async signInWithPassword(email: string, password: string) {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data, error } = await this._userService.signInWithPassword(
+      const { data, error } = await this.#userService.signInWithPassword(
         email,
         password,
       );
@@ -111,37 +111,37 @@ export class SignInPageComponent implements OnInit {
         throw new Error();
       }
 
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.welcome'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.welcome'),
       );
 
-      void this._router.navigateByUrl(this.returnUrl() ?? '/');
+      void this.#router.navigateByUrl(this.returnUrl() ?? '/');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.signInFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 
   public async signInWithOauth(oauthProvider: AvailableOauthProvider) {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
       const { data, error } =
-        await this._userService.signInWithOauth(oauthProvider);
+        await this.#userService.signInWithOauth(oauthProvider);
 
       if (error) {
         throw error;
@@ -150,83 +150,83 @@ export class SignInPageComponent implements OnInit {
       window.location.href = data.url;
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.signInFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 
   public async signInWithOtp(email: string) {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this._userService.signInWithOtp(email);
+      const { error } = await this.#userService.signInWithOtp(email);
 
       if (error) {
         throw error;
       }
 
-      void this._router.navigateByUrl('/sign-in-link-sent');
+      void this.#router.navigateByUrl('/sign-in-link-sent');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.signInFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 
-  private async _getClaims(): Promise<void> {
-    if (this._isLoading) {
+  async #getClaims(): Promise<void> {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.signInFormGroup.disable();
-    this._progressBarService.showQueryProgressBar();
+    this.#progressBarService.showQueryProgressBar();
 
     try {
-      const { data, error } = await this._userService.getClaims();
+      const { data, error } = await this.#userService.getClaims();
 
       if (error) {
         throw error;
       }
 
       if (data) {
-        this._alertService.showAlert(
-          this._translocoService.translate('alerts.welcome'),
+        this.#alertService.showAlert(
+          this.#translocoService.translate('alerts.welcome'),
         );
 
-        void this._router.navigateByUrl(this.returnUrl() ?? '/');
+        void this.#router.navigateByUrl(this.returnUrl() ?? '/');
       }
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.signInFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 }

@@ -41,62 +41,62 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './reset-password-page.component.html',
 })
 export class ResetPasswordPageComponent {
-  private readonly _formBuilder = inject(FormBuilder);
-  private readonly _router = inject(Router);
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _userService = inject(UserService);
+  readonly #formBuilder = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #userService = inject(UserService);
 
-  private _isLoading: boolean;
+  #isLoading: boolean;
 
   public readonly resetPasswordFormGroup: FormGroup<{
     email: FormControl<null | string>;
   }>;
 
   public constructor() {
-    this._isLoading = false;
+    this.#isLoading = false;
 
-    this.resetPasswordFormGroup = this._formBuilder.group({
-      email: this._formBuilder.control<null | string>(null, [
+    this.resetPasswordFormGroup = this.#formBuilder.group({
+      email: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.email,
       ]),
     });
 
-    this._loggerService.logComponentInitialization(
+    this.#loggerService.logComponentInitialization(
       'ResetPasswordPageComponent',
     );
   }
 
   public async resetPasswordForEmail(email: string) {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.resetPasswordFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this._userService.resetPasswordForEmail(email);
+      const { error } = await this.#userService.resetPasswordForEmail(email);
 
       if (error) {
         throw error;
       }
 
-      void this._router.navigateByUrl('/reset-password-email-sent');
+      void this.#router.navigateByUrl('/reset-password-email-sent');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.resetPasswordFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 }

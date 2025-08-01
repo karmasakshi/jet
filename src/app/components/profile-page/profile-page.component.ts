@@ -56,19 +56,19 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './profile-page.component.html',
 })
 export class ProfilePageComponent implements OnInit {
-  private readonly _formBuilder = inject(FormBuilder);
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _profileService = inject(ProfileService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #formBuilder = inject(FormBuilder);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #profileService = inject(ProfileService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #userService = inject(UserService);
+  readonly #translocoService = inject(TranslocoService);
 
-  private readonly _avatarFileInput: Signal<
+  #isLoading: boolean;
+
+  public readonly avatarFileInput: Signal<
     undefined | ElementRef<HTMLInputElement>
   > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
-
-  private _isLoading: boolean;
 
   public profile: null | Profile;
   public readonly profileFormGroup: FormGroup<{
@@ -77,12 +77,12 @@ export class ProfilePageComponent implements OnInit {
   public readonly user: null | User;
 
   public constructor() {
-    this._isLoading = false;
+    this.#isLoading = false;
 
     this.profile = null;
 
-    this.profileFormGroup = this._formBuilder.group({
-      username: this._formBuilder.control<null | string>(null, [
+    this.profileFormGroup = this.#formBuilder.group({
+      username: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(36),
@@ -90,18 +90,18 @@ export class ProfilePageComponent implements OnInit {
       ]),
     });
 
-    this.user = this._userService.user();
+    this.user = this.#userService.user();
 
-    this._loggerService.logComponentInitialization('ProfilePageComponent');
+    this.#loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
   public ngOnInit(): void {
-    void this._selectProfile();
+    void this.#selectProfile();
   }
 
   public async replaceAvatar(): Promise<void> {
     const files: undefined | null | FileList =
-      this._avatarFileInput()?.nativeElement.files;
+      this.avatarFileInput()?.nativeElement.files;
 
     if (files?.length !== 1) {
       return;
@@ -110,16 +110,16 @@ export class ProfilePageComponent implements OnInit {
     const file: undefined | File = files[0];
 
     if (!file?.type.startsWith('image/')) {
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.please-select-a-valid-avatar'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.please-select-a-valid-avatar'),
       );
 
       return;
     }
 
     if (file.size > AVATAR_FILE_MAX_SIZE) {
-      this._alertService.showAlert(
-        this._translocoService.translate(
+      this.#alertService.showAlert(
+        this.#translocoService.translate(
           'alerts.please-select-a-smaller-avatar',
           { value: AVATAR_FILE_MAX_SIZE / (1024 * 1024) },
         ),
@@ -128,18 +128,18 @@ export class ProfilePageComponent implements OnInit {
       return;
     }
 
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.profileFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
       let response;
 
-      response = await this._profileService.deleteAvatar(
+      response = await this.#profileService.deleteAvatar(
         this.profile?.avatar_url ?? '',
       );
 
@@ -147,94 +147,94 @@ export class ProfilePageComponent implements OnInit {
         throw response.error;
       }
 
-      response = await this._profileService.uploadAvatar(file);
+      response = await this.#profileService.uploadAvatar(file);
 
       if (response.error) {
         throw response.error;
       }
 
-      const avatarUrl: string = this._profileService.getAvatarPublicUrl(
+      const avatarUrl: string = this.#profileService.getAvatarPublicUrl(
         response.data.path,
       );
 
-      await this._profileService.updateProfile({ avatar_url: avatarUrl });
+      await this.#profileService.updateProfile({ avatar_url: avatarUrl });
 
       if (this.profile) {
         this.profile.avatar_url = avatarUrl;
       }
 
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.avatar-updated'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.avatar-updated'),
       );
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.profileFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 
   public async updateProfile(partialProfile: Partial<Profile>): Promise<void> {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.profileFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      await this._profileService.updateProfile(partialProfile);
+      await this.#profileService.updateProfile(partialProfile);
 
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.profile-updated'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.profile-updated'),
       );
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.profileFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 
-  private async _selectProfile(): Promise<void> {
-    if (this._isLoading) {
+  async #selectProfile(): Promise<void> {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.profileFormGroup.disable();
-    this._progressBarService.showQueryProgressBar();
+    this.#progressBarService.showQueryProgressBar();
 
     try {
-      const { data } = await this._profileService.selectProfile();
+      const { data } = await this.#profileService.selectProfile();
 
       this.profile = data;
 
       this.profileFormGroup.patchValue({ username: data.username });
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.profileFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 }

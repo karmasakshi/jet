@@ -4,27 +4,27 @@ import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
-  private readonly _loggerService = inject(LoggerService);
+  readonly #loggerService = inject(LoggerService);
 
-  private readonly _googleAnalyticsMeasurementId: string;
-  private readonly _isAnalyticsEnabled: boolean;
+  readonly #googleAnalyticsMeasurementId: string;
+  readonly #isAnalyticsEnabled: boolean;
 
   public constructor() {
-    this._googleAnalyticsMeasurementId =
+    this.#googleAnalyticsMeasurementId =
       import.meta.env.NG_APP_GOOGLE_ANALYTICS_MEASUREMENT_ID;
 
-    this._isAnalyticsEnabled =
+    this.#isAnalyticsEnabled =
       import.meta.env.NG_APP_IS_ANALYTICS_ENABLED === 'true';
 
-    if (this._isAnalyticsEnabled) {
-      install(this._googleAnalyticsMeasurementId);
+    if (this.#isAnalyticsEnabled) {
+      install(this.#googleAnalyticsMeasurementId);
     }
 
-    this._loggerService.logServiceInitialization('AnalyticsService');
+    this.#loggerService.logServiceInitialization('AnalyticsService');
   }
 
   public logEvent(eventName: string, eventData?: unknown): void {
-    if (!this._isAnalyticsEnabled) {
+    if (!this.#isAnalyticsEnabled) {
       return;
     }
 

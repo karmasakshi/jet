@@ -20,55 +20,55 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './sign-out-page.component.html',
 })
 export class SignOutPageComponent implements OnInit {
-  private readonly _router = inject(Router);
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #router = inject(Router);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #userService = inject(UserService);
+  readonly #translocoService = inject(TranslocoService);
 
-  private _isLoading: boolean;
+  #isLoading: boolean;
 
   public constructor() {
-    this._isLoading = false;
+    this.#isLoading = false;
 
-    this._loggerService.logComponentInitialization('SignOutPageComponent');
+    this.#loggerService.logComponentInitialization('SignOutPageComponent');
   }
 
   public ngOnInit(): void {
-    void this._signOut();
+    void this.#signOut();
   }
 
-  private async _signOut(): Promise<void> {
-    if (this._isLoading) {
+  async #signOut(): Promise<void> {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#isLoading = true;
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this._userService.signOut();
+      const { error } = await this.#userService.signOut();
 
       if (error) {
         throw error;
       }
 
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.signed-out-successfully'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.signed-out-successfully'),
       );
 
-      void this._router.navigateByUrl('/');
+      void this.#router.navigateByUrl('/');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
-      this._progressBarService.hideProgressBar();
+      this.#isLoading = false;
+      this.#progressBarService.hideProgressBar();
     }
   }
 }

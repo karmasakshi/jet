@@ -28,32 +28,32 @@ import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _supabaseService = inject(SupabaseService);
+  readonly #activatedRoute = inject(ActivatedRoute);
+  readonly #loggerService = inject(LoggerService);
+  readonly #supabaseService = inject(SupabaseService);
 
-  private readonly _supabaseClient: SupabaseClient;
-  private readonly _user: WritableSignal<null | User>;
+  readonly #supabaseClient: SupabaseClient;
+  readonly #user: WritableSignal<null | User>;
 
   public constructor() {
-    this._supabaseClient = this._supabaseService.supabaseClient;
+    this.#supabaseClient = this.#supabaseService.supabaseClient;
 
-    this._user = signal(null);
+    this.#user = signal(null);
 
-    this._supabaseClient.auth.onAuthStateChange(
+    this.#supabaseClient.auth.onAuthStateChange(
       (
         _authChangeEvent: AuthChangeEvent,
         authSession: null | AuthSession,
       ): void => {
-        this._user.set(authSession?.user ?? null);
+        this.#user.set(authSession?.user ?? null);
       },
     );
 
-    this._loggerService.logServiceInitialization('UserService');
+    this.#loggerService.logServiceInitialization('UserService');
   }
 
   public get user(): Signal<null | User> {
-    return this._user.asReadonly();
+    return this.#user.asReadonly();
   }
 
   public getClaims(): Promise<
@@ -64,23 +64,23 @@ export class UserService {
     | { data: null; error: AuthError }
     | { data: null; error: null }
   > {
-    return this._supabaseClient.auth.getClaims();
+    return this.#supabaseClient.auth.getClaims();
   }
 
   public resetPasswordForEmail(
     email: string,
   ): Promise<{ data: object; error: null } | { data: null; error: AuthError }> {
-    return this._supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: this._getRedirectUrlWithReturnUrl('/update-password'),
+    return this.#supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: this.#getRedirectUrlWithReturnUrl('/update-password'),
     });
   }
 
   public signInWithOauth(
     oauthProvider: AvailableOauthProvider,
   ): Promise<OAuthResponse> {
-    return this._supabaseClient.auth.signInWithOAuth({
+    return this.#supabaseClient.auth.signInWithOAuth({
       options: {
-        redirectTo: this._getRedirectUrlWithReturnUrl(),
+        redirectTo: this.#getRedirectUrlWithReturnUrl(),
         skipBrowserRedirect: true,
       },
       provider: oauthProvider,
@@ -88,10 +88,10 @@ export class UserService {
   }
 
   public signInWithOtp(email: string): Promise<AuthOtpResponse> {
-    return this._supabaseClient.auth.signInWithOtp({
+    return this.#supabaseClient.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: this._getRedirectUrlWithReturnUrl(),
+        emailRedirectTo: this.#getRedirectUrlWithReturnUrl(),
         shouldCreateUser: false,
       },
     });
@@ -101,27 +101,27 @@ export class UserService {
     email: string,
     password: string,
   ): Promise<AuthTokenResponsePassword> {
-    return this._supabaseClient.auth.signInWithPassword({ email, password });
+    return this.#supabaseClient.auth.signInWithPassword({ email, password });
   }
 
   public signOut(): Promise<{ error: null | AuthError }> {
-    return this._supabaseClient.auth.signOut();
+    return this.#supabaseClient.auth.signOut();
   }
 
   public signUp(email: string, password: string): Promise<AuthResponse> {
-    return this._supabaseClient.auth.signUp({
+    return this.#supabaseClient.auth.signUp({
       email,
-      options: { emailRedirectTo: this._getRedirectUrlWithReturnUrl() },
+      options: { emailRedirectTo: this.#getRedirectUrlWithReturnUrl() },
       password,
     });
   }
 
   public updateUser(userAttributes: UserAttributes): Promise<UserResponse> {
-    return this._supabaseClient.auth.updateUser(userAttributes);
+    return this.#supabaseClient.auth.updateUser(userAttributes);
   }
 
-  private _getRedirectUrlWithReturnUrl(
-    returnUrl = this._activatedRoute.snapshot.queryParamMap.get(
+  #getRedirectUrlWithReturnUrl(
+    returnUrl = this.#activatedRoute.snapshot.queryParamMap.get(
       QueryParam.ReturnUrl,
     ),
   ): string {

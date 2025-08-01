@@ -48,16 +48,16 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './update-password-page.component.html',
 })
 export class UpdatePasswordPageComponent implements OnInit {
-  private readonly _destroyRef = inject(DestroyRef);
-  private readonly _formBuilder = inject(FormBuilder);
-  private readonly _router = inject(Router);
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #destroyRef = inject(DestroyRef);
+  readonly #formBuilder = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #userService = inject(UserService);
+  readonly #translocoService = inject(TranslocoService);
 
-  private _isLoading: boolean;
+  #isLoading: boolean;
 
   public isConfirmNewPasswordHidden: boolean;
   public isNewPasswordHidden: boolean;
@@ -67,80 +67,78 @@ export class UpdatePasswordPageComponent implements OnInit {
   }>;
 
   public constructor() {
-    this._isLoading = false;
+    this.#isLoading = false;
 
     this.isConfirmNewPasswordHidden = true;
 
     this.isNewPasswordHidden = true;
 
-    this.updatePasswordFormGroup = this._formBuilder.group({
-      confirmNewPassword: this._formBuilder.control<null | string>(null, [
+    this.updatePasswordFormGroup = this.#formBuilder.group({
+      confirmNewPassword: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      newPassword: this._formBuilder.control<null | string>(null, [
+      newPassword: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
     });
 
-    this._loggerService.logComponentInitialization(
+    this.#loggerService.logComponentInitialization(
       'UpdatePasswordPageComponent',
     );
   }
 
   public ngOnInit(): void {
     this.updatePasswordFormGroup.controls.confirmNewPassword.addValidators(
-      this._matchFormControlValidator(
+      this.#matchFormControlValidator(
         this.updatePasswordFormGroup.controls.newPassword,
       ),
     );
 
     this.updatePasswordFormGroup.controls.newPassword.valueChanges
-      .pipe(takeUntilDestroyed(this._destroyRef))
+      .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => {
         this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
       });
   }
 
   public async updatePassword(password: string): Promise<void> {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.updatePasswordFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this._userService.updateUser({ password });
+      const { error } = await this.#userService.updateUser({ password });
 
       if (error) {
         throw error;
       }
 
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.password-updated'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.password-updated'),
       );
 
-      void this._router.navigateByUrl('/profile');
+      void this.#router.navigateByUrl('/profile');
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.updatePasswordFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 
-  private _matchFormControlValidator(
-    newPasswordControl: AbstractControl,
-  ): ValidatorFn {
+  #matchFormControlValidator(newPasswordControl: AbstractControl): ValidatorFn {
     return (
       confirmNewPasswordControl: AbstractControl,
     ): null | ValidationErrors => {

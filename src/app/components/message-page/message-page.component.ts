@@ -32,8 +32,8 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './message-page.component.html',
 })
 export class MessagePageComponent implements OnInit {
-  private readonly _analyticsService = inject(AnalyticsService);
-  private readonly _loggerService = inject(LoggerService);
+  readonly #analyticsService = inject(AnalyticsService);
+  readonly #loggerService = inject(LoggerService);
 
   public readonly case: InputSignal<
     | undefined
@@ -44,10 +44,10 @@ export class MessagePageComponent implements OnInit {
   > = input();
 
   public constructor() {
-    this._loggerService.logComponentInitialization('MessagePageComponent');
+    this.#loggerService.logComponentInitialization('MessagePageComponent');
   }
 
   public ngOnInit(): void {
-    this._analyticsService.logEvent('Show message', { case: this.case() });
+    this.#analyticsService.logEvent('Show message', { case: this.case() });
   }
 }

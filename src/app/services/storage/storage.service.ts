@@ -5,33 +5,33 @@ import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
-  private readonly _loggerService = inject(LoggerService);
+  readonly #loggerService = inject(LoggerService);
 
-  private readonly _prefix: string;
+  readonly #prefix: string;
 
   public constructor() {
-    this._prefix = 'jet-';
+    this.#prefix = 'jet-';
 
-    this._loggerService.logServiceInitialization('StorageService');
+    this.#loggerService.logServiceInitialization('StorageService');
   }
 
   public clearLocalStorage(): void {
     try {
       Object.values(LocalStorageKey).forEach((key) => {
-        window.localStorage.removeItem(this._prefix + key);
+        window.localStorage.removeItem(this.#prefix + key);
       });
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
   }
 
   public clearSessionStorage(): void {
     try {
       Object.values(SessionStorageKey).forEach((key) => {
-        window.sessionStorage.removeItem(this._prefix + key);
+        window.sessionStorage.removeItem(this.#prefix + key);
       });
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
   }
 
@@ -40,14 +40,14 @@ export class StorageService {
 
     try {
       const serializedValue: null | string = window.localStorage.getItem(
-        this._prefix + localStorageKey,
+        this.#prefix + localStorageKey,
       );
 
       if (serializedValue !== null) {
         value = JSON.parse(serializedValue);
       }
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
 
     return value;
@@ -60,14 +60,14 @@ export class StorageService {
 
     try {
       const serializedValue: null | string = window.sessionStorage.getItem(
-        this._prefix + sessionStorageKey,
+        this.#prefix + sessionStorageKey,
       );
 
       if (serializedValue !== null) {
         value = JSON.parse(serializedValue);
       }
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
 
     return value;
@@ -75,17 +75,17 @@ export class StorageService {
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
     try {
-      window.localStorage.removeItem(this._prefix + localStorageKey);
+      window.localStorage.removeItem(this.#prefix + localStorageKey);
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
     try {
-      window.sessionStorage.removeItem(this._prefix + sessionStorageKey);
+      window.sessionStorage.removeItem(this.#prefix + sessionStorageKey);
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
   }
 
@@ -97,11 +97,11 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       window.localStorage.setItem(
-        this._prefix + localStorageKey,
+        this.#prefix + localStorageKey,
         serializedValue,
       );
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
   }
 
@@ -113,11 +113,11 @@ export class StorageService {
       const serializedValue: string = JSON.stringify(value);
 
       window.sessionStorage.setItem(
-        this._prefix + sessionStorageKey,
+        this.#prefix + sessionStorageKey,
         serializedValue,
       );
     } catch (exception: unknown) {
-      this._loggerService.logException(exception);
+      this.#loggerService.logException(exception);
     }
   }
 }

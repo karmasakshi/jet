@@ -42,15 +42,15 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './settings-page.component.html',
 })
 export class SettingsPageComponent {
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _serviceWorkerService = inject(ServiceWorkerService);
-  private readonly _settingsService = inject(SettingsService);
-  private readonly _storageService = inject(StorageService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #serviceWorkerService = inject(ServiceWorkerService);
+  readonly #settingsService = inject(SettingsService);
+  readonly #storageService = inject(StorageService);
+  readonly #translocoService = inject(TranslocoService);
 
-  private readonly _isUpdatePending: Signal<boolean>;
+  readonly #isUpdatePending: Signal<boolean>;
 
   public readonly colorSchemeOptions: ColorSchemeOption[];
   public readonly languageOptions: LanguageOption[];
@@ -59,52 +59,52 @@ export class SettingsPageComponent {
   public readonly version: string;
 
   public constructor() {
-    this._isUpdatePending = this._serviceWorkerService.isUpdatePending;
+    this.#isUpdatePending = this.#serviceWorkerService.isUpdatePending;
 
     this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
     this.lastUpdateCheckTimestamp =
-      this._serviceWorkerService.lastUpdateCheckTimestamp;
+      this.#serviceWorkerService.lastUpdateCheckTimestamp;
 
-    this.settings = this._settingsService.settings;
+    this.settings = this.#settingsService.settings;
 
     this.version = packageJson.version;
 
-    this._loggerService.logComponentInitialization('SettingsPageComponent');
+    this.#loggerService.logComponentInitialization('SettingsPageComponent');
   }
 
   public async checkForUpdate(): Promise<void> {
-    if (this._isUpdatePending()) {
-      this._serviceWorkerService.alertUpdateAvailability();
+    if (this.#isUpdatePending()) {
+      this.#serviceWorkerService.alertUpdateAvailability();
     } else {
-      this._progressBarService.showQueryProgressBar();
+      this.#progressBarService.showQueryProgressBar();
 
-      this._alertService.showAlert(
-        this._translocoService.translate('alerts.checking-for-updates'),
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.checking-for-updates'),
       );
 
       try {
         const isUpdateFoundAndReady: boolean =
-          await this._serviceWorkerService.checkForUpdate();
+          await this.#serviceWorkerService.checkForUpdate();
 
         if (!isUpdateFoundAndReady) {
-          this._alertService.showAlert(
-            this._translocoService.translate(
+          this.#alertService.showAlert(
+            this.#translocoService.translate(
               'alerts.youre-on-the-latest-version',
             ),
           );
         }
       } catch (exception: unknown) {
         if (exception instanceof Error) {
-          this._loggerService.logError(exception);
-          this._alertService.showErrorAlert(exception.message);
+          this.#loggerService.logError(exception);
+          this.#alertService.showErrorAlert(exception.message);
         } else {
-          this._loggerService.logException(exception);
+          this.#loggerService.logException(exception);
         }
       } finally {
-        this._progressBarService.hideProgressBar();
+        this.#progressBarService.hideProgressBar();
       }
     }
   }
@@ -114,12 +114,12 @@ export class SettingsPageComponent {
   }
 
   public reset(): void {
-    this._storageService.clearLocalStorage();
-    this._storageService.clearSessionStorage();
+    this.#storageService.clearLocalStorage();
+    this.#storageService.clearSessionStorage();
     this.reload();
   }
 
   public updateSettings(partialSettings: Partial<Settings>): void {
-    this._settingsService.updateSettings(partialSettings);
+    this.#settingsService.updateSettings(partialSettings);
   }
 }

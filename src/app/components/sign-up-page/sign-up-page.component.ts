@@ -39,15 +39,15 @@ import { PageComponent } from '../page/page.component';
   templateUrl: './sign-up-page.component.html',
 })
 export class SignUpPageComponent {
-  private readonly _formBuilder = inject(FormBuilder);
-  private readonly _router = inject(Router);
-  private readonly _alertService = inject(AlertService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _progressBarService = inject(ProgressBarService);
-  private readonly _userService = inject(UserService);
-  private readonly _translocoService = inject(TranslocoService);
+  readonly #formBuilder = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #alertService = inject(AlertService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #progressBarService = inject(ProgressBarService);
+  readonly #userService = inject(UserService);
+  readonly #translocoService = inject(TranslocoService);
 
-  private _isLoading: boolean;
+  #isLoading: boolean;
 
   public isPasswordHidden: boolean;
   public readonly signUpFormGroup: FormGroup<{
@@ -56,60 +56,60 @@ export class SignUpPageComponent {
   }>;
 
   public constructor() {
-    this._isLoading = false;
+    this.#isLoading = false;
 
     this.isPasswordHidden = true;
 
-    this.signUpFormGroup = this._formBuilder.group({
-      email: this._formBuilder.control<null | string>(null, [
+    this.signUpFormGroup = this.#formBuilder.group({
+      email: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.email,
       ]),
-      password: this._formBuilder.control<null | string>(null, [
+      password: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
     });
 
-    this._loggerService.logComponentInitialization('SignUpPageComponent');
+    this.#loggerService.logComponentInitialization('SignUpPageComponent');
   }
 
   public async signUp(email: string, password: string) {
-    if (this._isLoading) {
+    if (this.#isLoading) {
       return;
     }
 
-    this._isLoading = true;
+    this.#isLoading = true;
     this.signUpFormGroup.disable();
-    this._progressBarService.showIndeterminateProgressBar();
+    this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data, error } = await this._userService.signUp(email, password);
+      const { data, error } = await this.#userService.signUp(email, password);
 
       if (error) {
         throw error;
       }
 
       if (data.session === null) {
-        void this._router.navigateByUrl('/email-verification-pending');
+        void this.#router.navigateByUrl('/email-verification-pending');
       } else {
-        this._alertService.showAlert(
-          this._translocoService.translate('alerts.welcome'),
+        this.#alertService.showAlert(
+          this.#translocoService.translate('alerts.welcome'),
         );
 
-        void this._router.navigateByUrl('/');
+        void this.#router.navigateByUrl('/');
       }
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        this._loggerService.logError(exception);
-        this._alertService.showErrorAlert(exception.message);
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
       } else {
-        this._loggerService.logException(exception);
+        this.#loggerService.logException(exception);
       }
     } finally {
-      this._isLoading = false;
+      this.#isLoading = false;
       this.signUpFormGroup.enable();
-      this._progressBarService.hideProgressBar();
+      this.#progressBarService.hideProgressBar();
     }
   }
 }

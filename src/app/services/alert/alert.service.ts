@@ -12,27 +12,27 @@ import { SettingsService } from '../settings/settings.service';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
-  private readonly _matSnackBar = inject(MatSnackBar);
-  private readonly _translocoService = inject(TranslocoService);
-  private readonly _loggerService = inject(LoggerService);
-  private readonly _settingsService = inject(SettingsService);
+  readonly #matSnackBar = inject(MatSnackBar);
+  readonly #translocoService = inject(TranslocoService);
+  readonly #loggerService = inject(LoggerService);
+  readonly #settingsService = inject(SettingsService);
 
-  private readonly _languageOption: Signal<LanguageOption>;
+  readonly #languageOption: Signal<LanguageOption>;
 
   public constructor() {
-    this._languageOption = this._settingsService.languageOption;
+    this.#languageOption = this.#settingsService.languageOption;
 
-    this._loggerService.logServiceInitialization('AlertService');
+    this.#loggerService.logServiceInitialization('AlertService');
   }
 
   public showAlert(
     message: string,
-    cta: string = this._translocoService.translate('alert-ctas.ok'),
+    cta: string = this.#translocoService.translate('alert-ctas.ok'),
     action?: () => void,
   ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
-      this._matSnackBar.open(message, cta, {
-        direction: this._languageOption().directionality,
+      this.#matSnackBar.open(message, cta, {
+        direction: this.#languageOption().directionality,
       });
 
     if (action) {
@@ -46,7 +46,7 @@ export class AlertService {
   }
 
   public showErrorAlert(
-    message: string = this._translocoService.translate(
+    message: string = this.#translocoService.translate(
       'alerts.something-went-wrong',
     ),
   ): void {
