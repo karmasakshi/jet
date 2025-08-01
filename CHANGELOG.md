@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.0](https://github.com/karmasakshi/jet/compare/v3.5.0...v3.6.0) (2025-08-01)
+
+
+### Features
+
+* **general:** replace ts private with es private ([2fac73d](https://github.com/karmasakshi/jet/commit/2fac73d0afa3e474e464f89feae840ac2e874b58))
+
 ## [3.5.0](https://github.com/karmasakshi/jet/compare/v3.4.0...v3.5.0) (2025-08-01)
 
 
