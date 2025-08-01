@@ -29,23 +29,30 @@ module.exports = tseslint.config(
       '@typescript-eslint/naming-convention': [
         'error',
         {
-          selector: 'class',
-          format: ['PascalCase'],
+          selector: 'accessor',
+          format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
         {
-          selector: 'enum',
-          format: ['PascalCase'],
+          selector: 'function',
+          format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
         {
-          selector: 'enumMember',
-          format: ['PascalCase'],
+          selector: 'method',
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
+        {
+          selector: 'method',
+          modifiers: ['#private'],
+          format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
         {
-          selector: 'interface',
-          format: ['PascalCase'],
+          selector: 'method',
+          format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
         {
@@ -60,8 +67,26 @@ module.exports = tseslint.config(
           leadingUnderscore: 'forbid',
         },
         {
-          selector: 'typeAlias',
+          selector: 'typeLike',
           format: ['PascalCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'variable',
+          modifiers: ['const'],
+          types: ['function'],
+          format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'variable',
+          modifiers: ['const'],
+          format: ['camelCase', 'UPPER_CASE'],
+          leadingUnderscore: 'forbid',
+        },
+        {
+          selector: 'variable',
+          format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
       ],
