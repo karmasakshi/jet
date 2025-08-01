@@ -25,11 +25,23 @@ module.exports = tseslint.config(
       '@angular-eslint/prefer-inject': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-signals': 'error',
+      '@typescript-eslint/member-ordering': [
+        'error',
+        {
+          classes: [
+            'private-instance-field',
+            'public-instance-field',
+            'constructor',
+            'public-instance-method',
+            'private-instance-method',
+          ],
+        },
+      ],
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/naming-convention': [
         'error',
         {
-          selector: 'accessor',
+          selector: 'default',
           format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
@@ -39,20 +51,10 @@ module.exports = tseslint.config(
           leadingUnderscore: 'forbid',
         },
         {
-          selector: 'function',
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
-        },
-        {
           selector: 'method',
           modifiers: ['private'],
           format: ['camelCase'],
           leadingUnderscore: 'require',
-        },
-        {
-          selector: 'method',
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
         },
         {
           selector: 'parameter',
@@ -61,20 +63,10 @@ module.exports = tseslint.config(
           leadingUnderscore: 'require',
         },
         {
-          selector: 'parameter',
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
-        },
-        {
           selector: 'parameterProperty',
           modifiers: ['private'],
           format: ['camelCase'],
           leadingUnderscore: 'require',
-        },
-        {
-          selector: 'parameterProperty',
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
         },
         {
           selector: 'property',
@@ -103,16 +95,6 @@ module.exports = tseslint.config(
           selector: 'variable',
           modifiers: ['const'],
           format: ['camelCase', 'UPPER_CASE'],
-          leadingUnderscore: 'forbid',
-        },
-        {
-          selector: 'variable',
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
-        },
-        {
-          selector: 'default',
-          format: ['camelCase'],
           leadingUnderscore: 'forbid',
         },
       ],
