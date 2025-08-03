@@ -6,7 +6,7 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
     directionality: 'ltr',
     fontClass: 'default',
     fontsUrl:
-      'https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@100..900',
+      'https://fonts.googleapis.com/css2?display=swap&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Noto+Sans:wght@100..900',
     icon: 'translate',
     nameKey: marker('constants.english'),
     value: 'en',

@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use '../_theme-colors' as mat-theme;
 
+$bg-font-family: ('Bricolage Grotesque', serif);
 $ns-font-family: ('Noto Sans', sans-serif);
 $nsa-font-family: ('Noto Sans Arabic', sans-serif);
 
@@ -13,7 +14,7 @@ html {
         theme-type: color-scheme,
       ),
       typography: (
-        brand-family: $ns-font-family,
+        brand-family: $bg-font-family,
         plain-family: $ns-font-family,
         bold-weight: 700,
         medium-weight: 500,
@@ -40,7 +41,6 @@ html {
   @include mat.list-overrides(
     (
       list-item-container-shape: var(--mat-sys-corner-small),
-      list-item-leading-icon-color: var(--mat-sys-outline),
       list-item-supporting-text-color: var(--mat-sys-outline),
       list-item-two-line-container-height: 74px,
     )
