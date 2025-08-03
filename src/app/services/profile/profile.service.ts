@@ -30,7 +30,7 @@ export class ProfileService {
   ): Promise<
     { data: FileObject[]; error: null } | { data: null; error: StorageError }
   > {
-    const fileName: undefined | string = publicUrl.split('/').pop();
+    const fileName: string | undefined = publicUrl.split('/').pop();
     const path = `${this.#userService.user()?.id}/${fileName}`;
 
     return this.#supabaseClient.storage

@@ -36,11 +36,11 @@ export class MessagePageComponent implements OnInit {
   readonly #loggerService = inject(LoggerService);
 
   public readonly case: InputSignal<
-    | undefined
     | 'email-verification-pending'
     | 'not-found'
     | 'reset-password-email-sent'
     | 'sign-in-link-sent'
+    | undefined
   > = input();
 
   public constructor() {

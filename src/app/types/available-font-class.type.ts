@@ -1,1 +1,1 @@
-export type AvailableFontClass = 'default' | 'arabic';
+export type AvailableFontClass = 'arabic' | 'default';

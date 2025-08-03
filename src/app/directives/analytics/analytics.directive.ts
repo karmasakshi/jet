@@ -9,8 +9,8 @@ import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
 interface AnalyticsEvent {
-  name: string;
   data?: unknown;
+  name: string;
 }
 
 @Directive({ selector: '[jetAnalytics]' })

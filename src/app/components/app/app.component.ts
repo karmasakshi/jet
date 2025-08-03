@@ -104,11 +104,11 @@ export class AppComponent implements OnInit, OnDestroy {
   #activeThemeColor: ColorSchemeOption['themeColor'];
   readonly #darkColorSchemeMediaQuery: MediaQueryList;
   #systemColorSchemeListener:
-    | null
-    | ((mediaQueryListEvent: MediaQueryListEvent) => void);
+    | ((mediaQueryListEvent: MediaQueryListEvent) => void)
+    | null;
   readonly #isPwaMode: boolean;
 
-  public activeNavigationMenuItemPath: undefined | NavigationMenuItem['path'];
+  public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly isSmallViewport: boolean;
   public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
@@ -212,7 +212,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
 
           if (event instanceof NavigationError) {
-            const error: undefined | Error = event.error as Error;
+            const error: Error | undefined = event.error as Error;
             this.#loggerService.logError(error);
             this.#alertService.showErrorAlert(error.message);
           }

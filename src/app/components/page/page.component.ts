@@ -27,7 +27,7 @@ export class PageComponent {
   readonly #defaultSeoImageUrl: string;
 
   public readonly seoDescription: InputSignal<string> = input.required();
-  public readonly seoImageUrl: InputSignal<undefined | string> = input();
+  public readonly seoImageUrl: InputSignal<string | undefined> = input();
   public readonly seoKeywords: InputSignal<string> = input.required();
   public readonly seoTitle: InputSignal<string> = input.required();
   public readonly toolbarTitle: InputSignal<string> = input.required();

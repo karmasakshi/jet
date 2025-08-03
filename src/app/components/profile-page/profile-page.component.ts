@@ -67,7 +67,7 @@ export class ProfilePageComponent implements OnInit {
   #isLoading: boolean;
 
   public readonly avatarFileInput: Signal<
-    undefined | ElementRef<HTMLInputElement>
+    ElementRef<HTMLInputElement> | undefined
   > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
 
   public profile: null | Profile;
@@ -100,14 +100,14 @@ export class ProfilePageComponent implements OnInit {
   }
 
   public async replaceAvatar(): Promise<void> {
-    const files: undefined | null | FileList =
+    const files: FileList | null | undefined =
       this.avatarFileInput()?.nativeElement.files;
 
     if (files?.length !== 1) {
       return;
     }
 
-    const file: undefined | File = files[0];
+    const file: File | undefined = files[0];
 
     if (!file?.type.startsWith('image/')) {
       this.#alertService.showAlert(

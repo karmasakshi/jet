@@ -46,7 +46,7 @@ export class UserServiceMock {
 
   public resetPasswordForEmail(
     _email: string,
-  ): Promise<{ data: object; error: null } | { data: null; error: AuthError }> {
+  ): Promise<{ data: null; error: AuthError } | { data: object; error: null }> {
     return Promise.resolve({ data: {}, error: null });
   }
 
@@ -67,7 +67,7 @@ export class UserServiceMock {
     return Promise.resolve({} as AuthTokenResponsePassword);
   }
 
-  public signOut(): Promise<{ error: null | AuthError }> {
+  public signOut(): Promise<{ error: AuthError | null }> {
     return Promise.resolve({ error: null });
   }
 

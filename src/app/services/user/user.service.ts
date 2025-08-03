@@ -43,7 +43,7 @@ export class UserService {
     this.#supabaseClient.auth.onAuthStateChange(
       (
         _authChangeEvent: AuthChangeEvent,
-        authSession: null | AuthSession,
+        authSession: AuthSession | null,
       ): void => {
         this.#user.set(authSession?.user ?? null);
       },
@@ -69,7 +69,7 @@ export class UserService {
 
   public resetPasswordForEmail(
     email: string,
-  ): Promise<{ data: object; error: null } | { data: null; error: AuthError }> {
+  ): Promise<{ data: null; error: AuthError } | { data: object; error: null }> {
     return this.#supabaseClient.auth.resetPasswordForEmail(email, {
       redirectTo: this.#getRedirectUrlWithReturnUrl('/update-password'),
     });
@@ -104,7 +104,7 @@ export class UserService {
     return this.#supabaseClient.auth.signInWithPassword({ email, password });
   }
 
-  public signOut(): Promise<{ error: null | AuthError }> {
+  public signOut(): Promise<{ error: AuthError | null }> {
     return this.#supabaseClient.auth.signOut();
   }
 

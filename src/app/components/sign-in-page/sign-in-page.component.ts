@@ -55,7 +55,7 @@ export class SignInPageComponent implements OnInit {
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
-  public readonly returnUrl: Signal<undefined | string> = input();
+  public readonly returnUrl: Signal<string | undefined> = input();
 
   #isLoading: boolean;
 

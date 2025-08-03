@@ -2,6 +2,7 @@
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
+const perfectionist = require('eslint-plugin-perfectionist');
 
 module.exports = tseslint.config(
   {
@@ -25,6 +26,7 @@ module.exports = tseslint.config(
       '@angular-eslint/prefer-inject': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-signals': 'error',
+
       '@typescript-eslint/member-ordering': [
         'error',
         {
@@ -100,10 +102,17 @@ module.exports = tseslint.config(
       ],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
+
+      'perfectionist/sort-enums': ['error'],
+      'perfectionist/sort-interfaces': ['error'],
+      'perfectionist/sort-intersection-types': ['error'],
+      'perfectionist/sort-union-types': ['error'],
+
       'no-console': ['warn', { allow: ['error'] }],
       'sort-keys': ['error', 'asc', { caseSensitive: false }],
     },
     languageOptions: { parserOptions: { projectService: true } },
+    plugins: { perfectionist },
   },
   {
     files: ['**/*.html'],

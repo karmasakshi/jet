@@ -14,7 +14,7 @@ export class ProgressBarService {
 
   readonly #defaultProgressBarConfiguration: ProgressBarConfiguration;
   readonly #progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
-  #queueTimeout: undefined | ReturnType<typeof setTimeout>;
+  #queueTimeout: ReturnType<typeof setTimeout> | undefined;
 
   public constructor() {
     this.#defaultProgressBarConfiguration = {

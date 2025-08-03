@@ -1,9 +1,9 @@
 import { User } from '@supabase/supabase-js';
 
 export interface Profile {
-  id: User['id'];
   avatar_url: null | string;
-  username: string;
   created_at: string;
+  id: User['id'];
   updated_at: string;
+  username: string;
 }
