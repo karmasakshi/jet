@@ -27,7 +27,7 @@ export class ProfileServiceMock {
   public uploadAvatar(
     _file: File,
   ): Promise<
-    | { data: { id: string; path: string; fullPath: string }; error: null }
+    | { data: { fullPath: string; id: string; path: string }; error: null }
     | { data: null; error: StorageError }
   > {
     return Promise.resolve({

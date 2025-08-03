@@ -106,6 +106,8 @@ module.exports = tseslint.config(
       'perfectionist/sort-enums': ['error'],
       'perfectionist/sort-interfaces': ['error'],
       'perfectionist/sort-intersection-types': ['error'],
+      'perfectionist/sort-objects': ['error'],
+      'perfectionist/sort-object-types': ['error'],
       'perfectionist/sort-union-types': ['error'],
 
       'no-console': ['warn', { allow: ['error'] }],
