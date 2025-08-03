@@ -130,6 +130,7 @@
   },
   "jet-update-password-page": {
     "confirm-new-password": "Confirm new password",
+    "email": "Email",
     "new-password": "New password",
     "password-is-required": "Password is required",
     "password-length": "Password is at least {{ minimum }} characters long",
@@ -142,8 +143,7 @@
     },
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Update Password",
-    "update-password": "Update password",
-    "username": "Username"
+    "update-password": "Update password"
   },
   "paginator": {
     "first-page": "First page",

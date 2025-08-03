@@ -142,6 +142,7 @@
   },
   "jet-update-password-page": {
     "confirm-new-password": "تأكيد كلمة المرور الجديدة",
+    "email": "البريد الإلكتروني",
     "new-password": "كلمة المرور الجديدة",
     "password-is-required": "كلمة المرور مطلوبة",
     "password-length": "يجب أن تكون كلمة المرور {{ minimum }} حرفًا على الأقل",
@@ -154,8 +155,7 @@
     },
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تحديث كلمة المرور",
-    "update-password": "تحديث كلمة المرور",
-    "username": "اسم المستخدم"
+    "update-password": "تحديث كلمة المرور"
   },
   "paginator": {
     "first-page": "الصفحة الأولى",

@@ -5,6 +5,7 @@ import {
   DestroyRef,
   inject,
   OnInit,
+  Signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -25,10 +26,10 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { ProfileService } from '@jet/services/profile/profile.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { User } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -54,23 +55,25 @@ export class UpdatePasswordPageComponent implements OnInit {
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
   readonly #loggerService = inject(LoggerService);
-  readonly #profileService = inject(ProfileService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
   #isLoading: boolean;
+  readonly #user: Signal<null | User>;
 
   public isConfirmNewPasswordHidden: boolean;
   public isNewPasswordHidden: boolean;
   public readonly updatePasswordFormGroup: FormGroup<{
     confirmNewPassword: FormControl<null | string>;
+    email: FormControl<null | string>;
     newPassword: FormControl<null | string>;
-    username: FormControl<null | string>;
   }>;
 
   public constructor() {
     this.#isLoading = false;
+
+    this.#user = this.#userService.user;
 
     this.isConfirmNewPasswordHidden = true;
 
@@ -81,11 +84,14 @@ export class UpdatePasswordPageComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
+      email: this.#formBuilder.control<null | string>({
+        disabled: true,
+        value: null,
+      }),
       newPassword: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      username: this.#formBuilder.control<null | string>(null),
     });
 
     this.#loggerService.logComponentInitialization(
@@ -106,7 +112,9 @@ export class UpdatePasswordPageComponent implements OnInit {
         this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
       });
 
-    void this.#selectProfile();
+    this.updatePasswordFormGroup.patchValue({
+      email: this.#user()?.email ?? null,
+    });
   }
 
   public async updatePassword(password: string): Promise<void> {
@@ -156,33 +164,5 @@ export class UpdatePasswordPageComponent implements OnInit {
         ? null
         : { mismatch: true };
     };
-  }
-
-  async #selectProfile(): Promise<void> {
-    if (this.#isLoading) {
-      return;
-    }
-
-    this.#isLoading = true;
-    this.updatePasswordFormGroup.disable();
-    this.#progressBarService.showQueryProgressBar();
-
-    try {
-      const { data } = await this.#profileService.selectProfile();
-
-      this.updatePasswordFormGroup.patchValue({ username: data.username });
-    } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this.#loggerService.logError(exception);
-        this.#alertService.showErrorAlert(exception.message);
-      } else {
-        this.#loggerService.logException(exception);
-      }
-    } finally {
-      this.#isLoading = false;
-      this.updatePasswordFormGroup.enable();
-      this.updatePasswordFormGroup.controls.username.disable();
-      this.#progressBarService.hideProgressBar();
-    }
   }
 }
