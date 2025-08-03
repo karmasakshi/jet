@@ -142,7 +142,8 @@
     },
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Update Password",
-    "update-password": "Update password"
+    "update-password": "Update password",
+    "username": "Username"
   },
   "paginator": {
     "first-page": "First page",

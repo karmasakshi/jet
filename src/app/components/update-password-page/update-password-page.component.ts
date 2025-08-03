@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
+import { ProfileService } from '@jet/services/profile/profile.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -53,6 +54,7 @@ export class UpdatePasswordPageComponent implements OnInit {
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
   readonly #loggerService = inject(LoggerService);
+  readonly #profileService = inject(ProfileService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
@@ -64,6 +66,7 @@ export class UpdatePasswordPageComponent implements OnInit {
   public readonly updatePasswordFormGroup: FormGroup<{
     confirmNewPassword: FormControl<null | string>;
     newPassword: FormControl<null | string>;
+    username: FormControl<null | string>;
   }>;
 
   public constructor() {
@@ -82,6 +85,7 @@ export class UpdatePasswordPageComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
+      username: this.#formBuilder.control<null | string>(null),
     });
 
     this.#loggerService.logComponentInitialization(
@@ -101,6 +105,8 @@ export class UpdatePasswordPageComponent implements OnInit {
       .subscribe(() => {
         this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
       });
+
+    void this.#selectProfile();
   }
 
   public async updatePassword(password: string): Promise<void> {
@@ -150,5 +156,33 @@ export class UpdatePasswordPageComponent implements OnInit {
         ? null
         : { mismatch: true };
     };
+  }
+
+  async #selectProfile(): Promise<void> {
+    if (this.#isLoading) {
+      return;
+    }
+
+    this.#isLoading = true;
+    this.updatePasswordFormGroup.disable();
+    this.#progressBarService.showQueryProgressBar();
+
+    try {
+      const { data } = await this.#profileService.selectProfile();
+
+      this.updatePasswordFormGroup.patchValue({ username: data.username });
+    } catch (exception: unknown) {
+      if (exception instanceof Error) {
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
+      } else {
+        this.#loggerService.logException(exception);
+      }
+    } finally {
+      this.#isLoading = false;
+      this.updatePasswordFormGroup.enable();
+      this.updatePasswordFormGroup.controls.username.disable();
+      this.#progressBarService.hideProgressBar();
+    }
   }
 }

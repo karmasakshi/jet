@@ -154,7 +154,8 @@
     },
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تحديث كلمة المرور",
-    "update-password": "تحديث كلمة المرور"
+    "update-password": "تحديث كلمة المرور",
+    "username": "اسم المستخدم"
   },
   "paginator": {
     "first-page": "الصفحة الأولى",
