@@ -6,6 +6,8 @@ $ns-font-family: ('Noto Sans', sans-serif);
 $nsa-font-family: ('Noto Sans Arabic', sans-serif);
 
 html {
+  text-size-adjust: none;
+
   @include mat.theme(
     (
       color: (
@@ -91,192 +93,192 @@ body {
 
     font-family: $nsa-font-family;
   }
+}
 
-  .jet-sidenav-container {
-    &[dir='ltr'] {
-      .jet-sidenav {
-        @include mat.sidenav-overrides(
-          (
-            container-width: calc(240px + env(safe-area-inset-left)),
-          )
-        );
-
-        .jet-sidenav-toolbar,
-        .jet-sidenav-content {
-          padding-left: calc(16px + env(safe-area-inset-left));
-          padding-right: 16px;
-        }
-      }
-
-      .jet-content {
-        .jet-content-toolbar {
-          padding-left: 16px;
-          padding-right: calc(16px + env(safe-area-inset-right));
-
-          &.jet-add-safe-area {
-            padding-left: calc(16px + env(safe-area-inset-left));
-          }
-        }
-
-        .mat-mdc-tab-nav-panel {
-          main {
-            padding-left: 16px;
-            padding-right: calc(16px + env(safe-area-inset-right));
-
-            &.jet-add-safe-area {
-              padding-left: calc(16px + env(safe-area-inset-left));
-            }
-          }
-        }
-
-        footer {
-          padding-left: 16px;
-          padding-right: calc(16px + env(safe-area-inset-right));
-
-          &.jet-add-safe-area {
-            padding-left: calc(16px + env(safe-area-inset-left));
-          }
-        }
-
-        .jet-tab-nav-bar {
-          .mat-mdc-tab-header-pagination-before {
-            padding-left: calc(env(safe-area-inset-left) + 8px);
-          }
-
-          .mat-mdc-tab-header-pagination-after {
-            padding-right: calc(env(safe-area-inset-right) + 8px);
-          }
-        }
-      }
-    }
-
-    &[dir='rtl'] {
-      .jet-sidenav {
-        @include mat.sidenav-overrides(
-          (
-            container-width: calc(240px + env(safe-area-inset-right)),
-          )
-        );
-
-        .jet-sidenav-toolbar,
-        .jet-sidenav-content {
-          padding-left: 16px;
-          padding-right: calc(16px + env(safe-area-inset-right));
-        }
-      }
-
-      .jet-content {
-        .jet-content-toolbar {
-          padding-left: calc(16px + env(safe-area-inset-left));
-          padding-right: 16px;
-
-          &.jet-add-safe-area {
-            padding-right: calc(16px + env(safe-area-inset-right));
-          }
-        }
-
-        .mat-mdc-tab-nav-panel {
-          main {
-            padding-left: calc(16px + env(safe-area-inset-left));
-            padding-right: 16px;
-
-            &.jet-add-safe-area {
-              padding-right: calc(16px + env(safe-area-inset-right));
-            }
-          }
-        }
-
-        footer {
-          padding-left: calc(16px + env(safe-area-inset-left));
-          padding-right: 16px;
-
-          &.jet-add-safe-area {
-            padding-right: calc(16px + env(safe-area-inset-right));
-          }
-        }
-
-        .jet-tab-nav-bar {
-          .mat-mdc-tab-header-pagination-before {
-            padding-right: calc(env(safe-area-inset-right) + 8px);
-          }
-
-          .mat-mdc-tab-header-pagination-after {
-            padding-left: calc(env(safe-area-inset-left) + 8px);
-          }
-        }
-      }
-    }
-
+.jet-sidenav-container {
+  &[dir='ltr'] {
     .jet-sidenav {
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-top: env(safe-area-inset-top);
+      @include mat.sidenav-overrides(
+        (
+          container-width: calc(240px + env(safe-area-inset-left)),
+        )
+      );
 
-      .jet-sidenav-toolbar {
-        justify-content: center;
-
-        @include mat.toolbar-overrides(
-          (
-            container-background-color: transparent,
-          )
-        );
+      .jet-sidenav-toolbar,
+      .jet-sidenav-content {
+        padding-left: calc(16px + env(safe-area-inset-left));
+        padding-right: 16px;
       }
     }
 
     .jet-content {
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding-top: env(safe-area-inset-top);
-
       .jet-content-toolbar {
-        gap: 8px;
-        overflow-x: auto;
-        position: relative;
+        padding-left: 16px;
+        padding-right: calc(16px + env(safe-area-inset-right));
 
-        @include mat.toolbar-overrides(
-          (
-            container-background-color: transparent,
-          )
-        );
-
-        .jet-progress-bar {
-          bottom: 0;
-          left: 0;
-          position: absolute;
-          right: 0;
-          z-index: 2;
+        &.jet-add-safe-area {
+          padding-left: calc(16px + env(safe-area-inset-left));
         }
       }
 
       .mat-mdc-tab-nav-panel {
-        flex: 1;
-
         main {
-          padding-bottom: 160px;
-          padding-top: 16px;
+          padding-left: 16px;
+          padding-right: calc(16px + env(safe-area-inset-right));
+
+          &.jet-add-safe-area {
+            padding-left: calc(16px + env(safe-area-inset-left));
+          }
         }
       }
 
       footer {
-        padding-bottom: calc(16px + env(safe-area-inset-bottom));
-        padding-top: 16px;
+        padding-left: 16px;
+        padding-right: calc(16px + env(safe-area-inset-right));
 
-        &.jet-add-bottom-margin {
-          margin-bottom: 48px;
+        &.jet-add-safe-area {
+          padding-left: calc(16px + env(safe-area-inset-left));
         }
       }
 
       .jet-tab-nav-bar {
+        .mat-mdc-tab-header-pagination-before {
+          padding-left: calc(env(safe-area-inset-left) + 8px);
+        }
+
+        .mat-mdc-tab-header-pagination-after {
+          padding-right: calc(env(safe-area-inset-right) + 8px);
+        }
+      }
+    }
+  }
+
+  &[dir='rtl'] {
+    .jet-sidenav {
+      @include mat.sidenav-overrides(
+        (
+          container-width: calc(240px + env(safe-area-inset-right)),
+        )
+      );
+
+      .jet-sidenav-toolbar,
+      .jet-sidenav-content {
+        padding-left: 16px;
+        padding-right: calc(16px + env(safe-area-inset-right));
+      }
+    }
+
+    .jet-content {
+      .jet-content-toolbar {
+        padding-left: calc(16px + env(safe-area-inset-left));
+        padding-right: 16px;
+
+        &.jet-add-safe-area {
+          padding-right: calc(16px + env(safe-area-inset-right));
+        }
+      }
+
+      .mat-mdc-tab-nav-panel {
+        main {
+          padding-left: calc(16px + env(safe-area-inset-left));
+          padding-right: 16px;
+
+          &.jet-add-safe-area {
+            padding-right: calc(16px + env(safe-area-inset-right));
+          }
+        }
+      }
+
+      footer {
+        padding-left: calc(16px + env(safe-area-inset-left));
+        padding-right: 16px;
+
+        &.jet-add-safe-area {
+          padding-right: calc(16px + env(safe-area-inset-right));
+        }
+      }
+
+      .jet-tab-nav-bar {
+        .mat-mdc-tab-header-pagination-before {
+          padding-right: calc(env(safe-area-inset-right) + 8px);
+        }
+
+        .mat-mdc-tab-header-pagination-after {
+          padding-left: calc(env(safe-area-inset-left) + 8px);
+        }
+      }
+    }
+  }
+
+  .jet-sidenav {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-top: env(safe-area-inset-top);
+
+    .jet-sidenav-toolbar {
+      justify-content: center;
+
+      @include mat.toolbar-overrides(
+        (
+          container-background-color: transparent,
+        )
+      );
+    }
+  }
+
+  .jet-content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: env(safe-area-inset-top);
+
+    .jet-content-toolbar {
+      gap: 8px;
+      overflow-x: auto;
+      position: relative;
+
+      @include mat.toolbar-overrides(
+        (
+          container-background-color: transparent,
+        )
+      );
+
+      .jet-progress-bar {
         bottom: 0;
         left: 0;
-        position: fixed;
+        position: absolute;
         right: 0;
         z-index: 2;
+      }
+    }
 
-        .mat-mdc-tab-link-container {
-          padding-bottom: env(safe-area-inset-bottom);
-        }
+    .mat-mdc-tab-nav-panel {
+      flex: 1;
+
+      main {
+        padding-bottom: 160px;
+        padding-top: 16px;
+      }
+    }
+
+    footer {
+      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      padding-top: 16px;
+
+      &.jet-add-bottom-margin {
+        margin-bottom: 48px;
+      }
+    }
+
+    .jet-tab-nav-bar {
+      bottom: 0;
+      left: 0;
+      position: fixed;
+      right: 0;
+      z-index: 2;
+
+      .mat-mdc-tab-link-container {
+        padding-bottom: env(safe-area-inset-bottom);
       }
     }
   }
