@@ -8,7 +8,7 @@
     <div class="jet-flex-col-center">
       @let _returnUrl = returnUrl() ?? '/';
       @if (_returnUrl !== '/') {
-        <span style="font: var(--mat-sys-title-medium)">{{
+        <span style="font: var(--mat-sys-label-large)">{{
           t('sign-in-to-continue', { returnUrl: _returnUrl })
         }}</span>
       }
