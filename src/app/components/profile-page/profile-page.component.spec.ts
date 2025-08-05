@@ -1,3 +1,4 @@
+import { PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -25,6 +26,10 @@ describe('ProfilePageComponent', () => {
         ProfilePageComponent,
       ],
       providers: [
+        {
+          provide: PRECONNECT_CHECK_BLOCKLIST,
+          useValue: 'https://placehold.co',
+        },
         provideZonelessChangeDetection(),
         { provide: ActivatedRoute, useValue: {} },
         { provide: AlertService, useClass: AlertServiceMock },
