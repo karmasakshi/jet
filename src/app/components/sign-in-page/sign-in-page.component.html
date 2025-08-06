@@ -12,8 +12,6 @@
           t('sign-in-to-continue', { returnUrl: _returnUrl })
         }}</span>
       }
-      @let _emailControl = signInFormGroup.controls.email;
-      @let _passwordControl = signInFormGroup.controls.password;
       <mat-card class="jet-maxw-480">
         <img
           [alt]="t('sign-in')"
@@ -38,9 +36,11 @@
         </mat-card-content>
       </mat-card>
       <span style="color: var(--mat-sys-outline)">{{ t('or') }}</span>
+      @let _emailControl = signInFormGroup.controls.email;
       <mat-card class="jet-maxw-480">
         <mat-card-header></mat-card-header>
         <mat-card-content>
+          @let _passwordControl = signInFormGroup.controls.password;
           <form
             id="sign-in-form"
             [formGroup]="signInFormGroup"

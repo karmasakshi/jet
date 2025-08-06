@@ -22,7 +22,6 @@
               _settings.languageOption.nameKey | transloco
             }}</span>
           </button>
-
           <button
             [jetAnalytics]="{ name: 'Open color scheme options' }"
             [mat-menu-trigger-for]="colorSchemeOptionsMenu"
@@ -35,7 +34,6 @@
               _settings.colorSchemeOption.nameKey | transloco
             }}</span>
           </button>
-
           @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
           <button
             [jetAnalytics]="{ name: 'Check for updates' }"
@@ -51,7 +49,6 @@
               }}</span
             >
           </button>
-
           <button
             [jetAnalytics]="{ name: 'Reload' }"
             (click)="reload()"
@@ -62,7 +59,6 @@
             <span matListItemTitle>{{ t('reload') }}</span>
             <span matListItemLine>{{ t('reload-description') }}</span>
           </button>
-
           <button
             [jetAnalytics]="{ name: 'Reset' }"
             (click)="reset()"
@@ -76,7 +72,6 @@
         </mat-action-list>
       </mat-card-content>
     </mat-card>
-
     <p
       style="
         color: var(--mat-sys-outline);
@@ -86,7 +81,6 @@
     >
       {{ t('version', { version }) }}
     </p>
-
     <mat-menu
       #languageOptionsMenu="matMenu"
       xPosition="before"
@@ -107,7 +101,6 @@
         </button>
       }
     </mat-menu>
-
     <mat-menu
       #colorSchemeOptionsMenu="matMenu"
       xPosition="before"
