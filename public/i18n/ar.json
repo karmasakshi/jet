@@ -112,7 +112,7 @@
       "title": "تسجيل الدخول"
     },
     "sign-in": "تسجيل الدخول",
-    "sign-in-to-continue": "سجل الدخول للمتابعة إلى {{ returnUrl }}",
+    "sign-in-to-continue-to": "سجل الدخول للمتابعة إلى {{ returnUrl }}",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",
     "toggle-visibility": "تبديل الرؤية",

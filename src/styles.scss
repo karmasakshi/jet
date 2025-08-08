@@ -296,6 +296,7 @@ img {
 
 table {
   border-radius: var(--mat-sys-corner-small);
+  overflow: hidden;
 }
 
 .material-symbols-rounded {
@@ -334,4 +335,9 @@ table {
     calc(8px + env(safe-area-inset-right))
     calc(8px + env(safe-area-inset-bottom))
     calc(8px + env(safe-area-inset-left)) !important;
+}
+
+.mat-mdc-table {
+  border-radius: var(--mat-sys-corner-small);
+  overflow: hidden;
 }

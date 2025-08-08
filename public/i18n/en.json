@@ -104,7 +104,7 @@
     "reset-password": "Reset password",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign In" },
     "sign-in": "Sign in",
-    "sign-in-to-continue": "Sign in to continue to {{ returnUrl }}",
+    "sign-in-to-continue-to": "Sign in to continue to {{ returnUrl }}",
     "sign-in-with-google": "Sign in with Google",
     "sign-up": "Sign up",
     "toggle-visibility": "Toggle visibility",
