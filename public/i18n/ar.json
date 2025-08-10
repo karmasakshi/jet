@@ -70,6 +70,7 @@
     "username-validations": "{{ minimum }}-{{ maximum }} حرفًا؛ يُسمح فقط بالأحرف a-z، الأرقام 0-9، و _"
   },
   "jet-reset-password-page": {
+    "clear": "مسح",
     "email": "البريد الإلكتروني",
     "email-is-required": "البريد الإلكتروني مطلوب",
     "enter-a-valid-email": "أدخل بريدًا إلكترونيًا صالحًا",
@@ -97,6 +98,7 @@
     "version": "الإصدار {{ version }}"
   },
   "jet-sign-in-page": {
+    "clear": "مسح",
     "email": "البريد الإلكتروني",
     "email-is-required": "البريد الإلكتروني مطلوب",
     "email-sign-in-link": "رابط تسجيل الدخول عبر البريد الإلكتروني",
@@ -127,6 +129,7 @@
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-sign-up-page": {
+    "clear": "مسح",
     "email": "البريد الإلكتروني",
     "email-is-required": "البريد الإلكتروني مطلوب",
     "enter-a-valid-email": "أدخل بريدًا إلكترونيًا صالحًا",

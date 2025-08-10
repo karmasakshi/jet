@@ -66,6 +66,7 @@
     "username-validations": "{{ minimum }}-{{ maximum }} characters; only a-z, 0-9 and _ allowed"
   },
   "jet-reset-password-page": {
+    "clear": "Clear",
     "email": "Email",
     "email-is-required": "Email is required",
     "enter-a-valid-email": "Enter a valid email",
@@ -93,6 +94,7 @@
     "version": "v{{ version }}"
   },
   "jet-sign-in-page": {
+    "clear": "Clear",
     "email": "Email",
     "email-is-required": "Email is required",
     "email-sign-in-link": "Email sign in link",
@@ -115,6 +117,7 @@
     "toolbar-title": "Sign Out"
   },
   "jet-sign-up-page": {
+    "clear": "Clear",
     "email": "Email",
     "email-is-required": "Email is required",
     "enter-a-valid-email": "Enter a valid email",
