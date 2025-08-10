@@ -60,6 +60,19 @@
                 required
                 type="email"
               />
+              @if (_emailControl.value !== null) {
+                <button
+                  [attr.aria-label]="t('clear')"
+                  [disabled]="_emailControl.disabled"
+                  (click)="_emailControl.reset()"
+                  matIconButton
+                  matSuffix
+                  tabindex="-1"
+                  type="button"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
               @if (_emailControl.touched && _emailControl.errors?.['email']) {
                 <mat-error>{{ t('enter-a-valid-email') }}</mat-error>
               }
