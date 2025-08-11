@@ -5,10 +5,17 @@ import { TranslocoService } from '@jsverse/transloco';
 
 export const unsavedChangesGuard: CanDeactivateFn<CanComponentDeactivate> = (
   component,
+  _activatedRouteSnapshot,
+  _currentRouterStateSnapshot,
+  nextRouterStateSnapshot,
 ): GuardResult => {
   const translocoService = inject(TranslocoService);
 
-  if (!component.hasUnsavedChanges()) {
+  if (nextRouterStateSnapshot.url.startsWith('/sign-in')) {
+    return true;
+  }
+
+  if (component.hasUnsavedChanges()) {
     return confirm(
       translocoService.translate('confirmations.youll-lose-unsaved-changes'),
     );

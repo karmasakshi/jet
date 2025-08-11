@@ -101,7 +101,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   }
 
   public hasUnsavedChanges(): boolean {
-    return !this.profileFormGroup.dirty;
+    return this.profileFormGroup.dirty;
   }
 
   public async replaceAvatar(): Promise<void> {

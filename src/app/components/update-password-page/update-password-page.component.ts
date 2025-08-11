@@ -121,7 +121,7 @@ export class UpdatePasswordPageComponent
   }
 
   public hasUnsavedChanges(): boolean {
-    return !this.updatePasswordFormGroup.dirty;
+    return this.updatePasswordFormGroup.dirty;
   }
 
   public async updatePassword(password: string): Promise<void> {
