@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { AVATAR_FILE_MAX_SIZE } from '@jet/constants/avatar-file-max-size.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -55,7 +56,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './profile-page.component.scss',
   templateUrl: './profile-page.component.html',
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   readonly #formBuilder = inject(FormBuilder);
   readonly #alertService = inject(AlertService);
   readonly #loggerService = inject(LoggerService);
@@ -97,6 +98,10 @@ export class ProfilePageComponent implements OnInit {
 
   public ngOnInit(): void {
     void this.#selectProfile();
+  }
+
+  public hasUnsavedChanges(): boolean {
+    return !this.profileFormGroup.dirty;
   }
 
   public async replaceAvatar(): Promise<void> {
@@ -191,6 +196,8 @@ export class ProfilePageComponent implements OnInit {
 
     try {
       await this.#profileService.updateProfile(partialProfile);
+
+      this.profileFormGroup.markAsPristine();
 
       this.#alertService.showAlert(
         this.#translocoService.translate('alerts.profile-updated'),

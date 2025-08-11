@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
 import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
 import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
+import { unsavedChangesGuard } from './guards/unsaved-changes/unsaved-changes.guard';
 
 const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
 
@@ -15,6 +16,7 @@ const userRoutes: Routes = [
   },
   {
     canActivate: [isAuthenticatedGuard],
+    canDeactivate: [unsavedChangesGuard],
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component'))
         .ProfilePageComponent,
@@ -71,6 +73,7 @@ const userRoutes: Routes = [
   },
   {
     canActivate: [isAuthenticatedGuard],
+    canDeactivate: [unsavedChangesGuard],
     loadComponent: async () =>
       (
         await import(

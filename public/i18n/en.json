@@ -14,6 +14,9 @@
     "welcome": "Welcome!",
     "youre-on-the-latest-version": "You're on the latest version."
   },
+  "confirmations": {
+    "youll-lose-unsaved-changes": "You'll lose unsaved changes. Continue?"
+  },
   "constants": {
     "arabic": "العربية",
     "automatic": "Automatic",

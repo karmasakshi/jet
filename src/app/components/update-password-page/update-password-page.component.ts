@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -49,7 +50,9 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './update-password-page.component.scss',
   templateUrl: './update-password-page.component.html',
 })
-export class UpdatePasswordPageComponent implements OnInit {
+export class UpdatePasswordPageComponent
+  implements CanComponentDeactivate, OnInit
+{
   readonly #destroyRef = inject(DestroyRef);
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
@@ -117,6 +120,10 @@ export class UpdatePasswordPageComponent implements OnInit {
     });
   }
 
+  public hasUnsavedChanges(): boolean {
+    return !this.updatePasswordFormGroup.dirty;
+  }
+
   public async updatePassword(password: string): Promise<void> {
     if (this.#isLoading) {
       return;
@@ -132,6 +139,8 @@ export class UpdatePasswordPageComponent implements OnInit {
       if (error) {
         throw error;
       }
+
+      this.updatePasswordFormGroup.markAsPristine();
 
       this.#alertService.showAlert(
         this.#translocoService.translate('alerts.password-updated'),
