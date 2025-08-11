@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
-import { isAuthenticatedGuard } from '@jet/guards/is-authenticated/is-authenticated.guard';
-import { isNotAuthenticatedGuard } from '@jet/guards/is-not-authenticated/is-not-authenticated.guard';
-import { unsavedChangesGuard } from './guards/unsaved-changes/unsaved-changes.guard';
+import { unsavedChangesGuard } from '@jet/guards/unsaved-changes/unsaved-changes.guard';
+import { signedInGuard } from './guards/signed-in/signed-in.guard';
+import { signedOutGuard } from './guards/signed-out/signed-out.guard';
 
 const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
 
@@ -15,7 +15,7 @@ const userRoutes: Routes = [
     path: 'email-verification-pending',
   },
   {
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [signedInGuard],
     canDeactivate: [unsavedChangesGuard],
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component'))
@@ -23,7 +23,7 @@ const userRoutes: Routes = [
     path: 'profile',
   },
   {
-    canActivate: [isNotAuthenticatedGuard],
+    canActivate: [signedOutGuard],
     loadComponent: async () =>
       (
         await import(
@@ -65,14 +65,14 @@ const userRoutes: Routes = [
     path: 'sign-out',
   },
   {
-    canActivate: [isNotAuthenticatedGuard],
+    canActivate: [signedOutGuard],
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component'))
         .SignUpPageComponent,
     path: 'sign-up',
   },
   {
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [signedInGuard],
     canDeactivate: [unsavedChangesGuard],
     loadComponent: async () =>
       (

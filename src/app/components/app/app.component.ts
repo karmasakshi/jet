@@ -78,7 +78,7 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy, OnInit {
   readonly #breakpointObserver = inject(BreakpointObserver);
   readonly #document = inject(DOCUMENT);
   readonly #destroyRef = inject(DestroyRef);
@@ -192,6 +192,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.#loggerService.logComponentInitialization('AppComponent');
   }
 
+  public ngOnDestroy(): void {
+    this.#unsetSystemColorSchemeListener();
+  }
+
   public ngOnInit(): void {
     this.#analyticsService.logEvent('Start', {
       version: `v${packageJson.version}`,
@@ -226,10 +230,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.#setIcons();
 
     this.#setZoom(this.#isPwaMode);
-  }
-
-  public ngOnDestroy(): void {
-    this.#unsetSystemColorSchemeListener();
   }
 
   #loadFont(nextFontsUrl: string): void {

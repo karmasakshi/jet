@@ -48,6 +48,7 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ## Contents
 
+- [Sponsors](#sponsors)
 - [Features](#features)
   - [Integrations](#integrations)
   - [Components](#components)
@@ -95,7 +96,6 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
     - [Link a Supabase project](#link-a-supabase-project)
     - [Run Supabase locally](#run-supabase-locally)
     - [Remove Supabase](#remove-supabase)
-- [Sponsors](#sponsors)
 
 <br />
 
@@ -184,8 +184,9 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ### Guards
 
-- [isAuthenticatedGuard](./src/app/guards/is-authenticated/is-authenticated.guard.ts)
-- [isNotAuthenticatedGuard](./src/app/guards/is-not-authenticated/is-not-authenticated.guard.ts)
+- [signedInGuard](./src/app/guards/signed-in/signed-in.guard.ts)
+- [signedOutGuard](./src/app/guards/signed-out/signed-out.guard.ts)
+- [unsavedChangesGuard](./src/app/guards/unsaved-changes/unsaved-changes.guard.ts)
 
 <br />
 
@@ -244,7 +245,9 @@ If you need help with something not listed here, [create a new issue](https://gi
 ### Get started
 
 - Click on **Use this template** > **Create a new repository** at the top of this repository
-- Create the new repository, clone it, then open it
+- Create the new repository
+- Go to repository settings, add Actions > Secrets
+- Clone it, then open it
 - Delete [FUNDING.yml](./.github/FUNDING.yml)
 - Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
 - Delete [LICENSE](./LICENSE) and `license` in [package.json](./package.json)
@@ -252,6 +255,7 @@ If you need help with something not listed here, [create a new issue](https://gi
 - Update the `license` property in [package.json](./package.json)
 - Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
 - Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
+- Replace `jet-tau.vercel.app` with your domain
 
 Nice to do:
 
