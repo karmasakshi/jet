@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.0](https://github.com/karmasakshi/jet/compare/v3.6.0...v3.7.0) (2025-08-11)
+
+
+### Features
+
+* **general:** add unsaved changes guard ([a7eb617](https://github.com/karmasakshi/jet/commit/a7eb6176e759deb6c6115d385583f4cfbdf379bf))
+
 ## [3.6.0](https://github.com/karmasakshi/jet/compare/v3.5.0...v3.6.0) (2025-08-01)
 
 
