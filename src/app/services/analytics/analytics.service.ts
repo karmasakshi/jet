@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, isDevMode } from '@angular/core';
 import { gtag, install } from 'ga-gtag';
 import { LoggerService } from '../logger/logger.service';
 
@@ -23,11 +23,17 @@ export class AnalyticsService {
     this.#loggerService.logServiceInitialization('AnalyticsService');
   }
 
-  public logEvent(eventName: string, eventData?: unknown): void {
+  public logEvent(
+    eventName: string,
+    eventData?: Record<string, boolean | null | number | string | undefined>,
+  ): void {
     if (!this.#isAnalyticsEnabled) {
       return;
     }
 
-    gtag('event', eventName, eventData as Gtag.CustomParams);
+    gtag('event', eventName, {
+      ...(eventData as Gtag.CustomParams),
+      debug_mode: isDevMode(),
+    });
   }
 }

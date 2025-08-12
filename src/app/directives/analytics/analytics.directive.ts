@@ -9,7 +9,7 @@ import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
 interface AnalyticsEvent {
-  data?: unknown;
+  data?: Record<string, boolean | null | number | string | undefined>;
   name: string;
 }
 
