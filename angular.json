@@ -74,7 +74,10 @@
             }
           }
         },
-        "extract-i18n": { "builder": "@ngx-env/builder:extract-i18n" },
+        "extract-i18n": {
+          "builder": "@ngx-env/builder:extract-i18n",
+          "options": {}
+        },
         "test": {
           "builder": "@ngx-env/builder:karma",
           "options": {
