@@ -417,15 +417,9 @@ For this to work, ensure the subscripts are updated every time a dependency is a
 
 ### Manage icons
 
-Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for icons. Instead of downloading the entire font, each icon is explicitly specified in [index.html](./src/index.html) and the resulting custom font is preloaded for performance. To add or remove icons:
-
-- Update the icon names **alphabetically** in the `<link>` element (read more about this requirement [here](https://developers.google.com/fonts/docs/material_symbols#optimize_the_icon_font))
-- Build the project
-- Copy the custom font URL from `./dist/jet/browser/index.html` to [index.html](./src/index.html) for preloading
+Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for icons. Instead of downloading the entire font, each icon is explicitly specified in [index.html](./src/index.html). To add or remove icons, update the icon names **alphabetically** in the `<link>` element (read more about this requirement [here](https://developers.google.com/fonts/docs/material_symbols#optimize_the_icon_font)).
 
 Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/components/app/app.component.ts).
-
-WARNING: Browser will download two icon files if preload URL is different from the resolved URL.
 
 <br />
 
