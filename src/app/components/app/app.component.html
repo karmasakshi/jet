@@ -57,11 +57,7 @@
           class="jet-progress-bar"
           [bufferValue]="_progressBarConfiguration.bufferValue"
           [mode]="_progressBarConfiguration.mode"
-          [style]="{
-            visibility: _progressBarConfiguration.isVisible
-              ? 'visible'
-              : 'hidden',
-          }"
+          [style]="{ opacity: _progressBarConfiguration.isVisible ? 1 : 0 }"
           [value]="_progressBarConfiguration.value"
         >
         </mat-progress-bar>
