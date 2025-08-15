@@ -27,13 +27,7 @@
     "profile": "Profile",
     "settings": "Settings"
   },
-  "jet-app": {
-    "home": "Home",
-    "loading": "Loading...",
-    "sign-in": "Sign in",
-    "sign-out": "Sign out",
-    "toggle-navigation-menu": "Toggle navigation menu"
-  },
+  "jet-app": { "home": "Home" },
   "jet-footer": { "sponsor": "Sponsor" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
@@ -133,6 +127,13 @@
     "sign-up": "Sign up",
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Sign Up"
+  },
+  "jet-toolbar": {
+    "home": "Home",
+    "loading": "Loading...",
+    "sign-in": "Sign in",
+    "sign-out": "Sign out",
+    "toggle-navigation-menu": "Toggle navigation menu"
   },
   "jet-update-password-page": {
     "confirm-new-password": "Confirm new password",

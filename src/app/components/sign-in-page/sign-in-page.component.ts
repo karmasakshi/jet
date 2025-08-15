@@ -4,8 +4,8 @@ import {
   Component,
   inject,
   input,
+  InputSignal,
   OnInit,
-  Signal,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -55,7 +55,7 @@ export class SignInPageComponent implements OnInit {
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
-  public readonly returnUrl: Signal<string | undefined> = input();
+  public readonly returnUrl: InputSignal<string | undefined> = input();
 
   #isLoading: boolean;
 

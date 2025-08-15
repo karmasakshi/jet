@@ -27,13 +27,7 @@
     "profile": "الملف الشخصي",
     "settings": "الإعدادات"
   },
-  "jet-app": {
-    "home": "الرئيسية",
-    "loading": "جارٍ التحميل...",
-    "sign-in": "تسجيل الدخول",
-    "sign-out": "تسجيل الخروج",
-    "toggle-navigation-menu": "تبديل قائمة التنقل"
-  },
+  "jet-app": { "home": "الرئيسية" },
   "jet-footer": { "sponsor": "راعي" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
@@ -145,6 +139,13 @@
     "sign-up": "إنشاء حساب",
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "إنشاء حساب"
+  },
+  "jet-toolbar": {
+    "home": "الرئيسية",
+    "loading": "جارٍ التحميل...",
+    "sign-in": "تسجيل الدخول",
+    "sign-out": "تسجيل الخروج",
+    "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-update-password-page": {
     "confirm-new-password": "تأكيد كلمة المرور الجديدة",
