@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -22,7 +21,6 @@ import { PageComponent } from '../page/page.component';
     NgOptimizedImage,
     MatButtonModule,
     MatCardModule,
-    MatIconModule,
     RouterLink,
     TranslocoModule,
     PageComponent,

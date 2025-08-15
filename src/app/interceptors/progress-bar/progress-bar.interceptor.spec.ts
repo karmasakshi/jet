@@ -1,6 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-
 import { progressBarInterceptor } from './progress-bar.interceptor';
 
 describe('progressBarInterceptor', () => {

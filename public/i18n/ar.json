@@ -27,7 +27,6 @@
     "profile": "الملف الشخصي",
     "settings": "الإعدادات"
   },
-  "jet-app": { "home": "الرئيسية" },
   "jet-footer": { "sponsor": "راعي" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
@@ -94,6 +93,7 @@
     "toolbar-title": "الإعدادات",
     "version": "الإصدار {{ version }}"
   },
+  "jet-sidenav": { "home": "الرئيسية" },
   "jet-sign-in-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",

@@ -27,7 +27,6 @@
     "profile": "Profile",
     "settings": "Settings"
   },
-  "jet-app": { "home": "Home" },
   "jet-footer": { "sponsor": "Sponsor" },
   "jet-home-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
@@ -90,6 +89,7 @@
     "toolbar-title": "Settings",
     "version": "v{{ version }}"
   },
+  "jet-sidenav": { "home": "Home" },
   "jet-sign-in-page": {
     "clear": "Clear",
     "email": "Email",

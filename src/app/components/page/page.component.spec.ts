@@ -24,10 +24,10 @@ describe('PageComponent', () => {
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('seoDescription', '');
-    componentRef.setInput('seoKeywords', '');
-    componentRef.setInput('seoTitle', '');
-    componentRef.setInput('toolbarTitle', '');
+    componentRef.setInput('seoDescription', undefined);
+    componentRef.setInput('seoKeywords', undefined);
+    componentRef.setInput('seoTitle', undefined);
+    componentRef.setInput('toolbarTitle', undefined);
     fixture.detectChanges();
   });
 

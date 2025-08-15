@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -31,7 +30,6 @@ import { PageComponent } from '../page/page.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule,
     RouterLink,
     TranslocoModule,
     PageComponent,

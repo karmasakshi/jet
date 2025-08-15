@@ -1,7 +1,7 @@
 <ng-container *transloco="let t; prefix: 'jet-toolbar'">
   @let _sidenav = sidenav();
   <mat-toolbar
-    class="jet-content-toolbar"
+    class="jet-sidenav-content-toolbar"
     [class]="{
       'jet-add-safe-area': _sidenav.mode === 'over' ? true : !_sidenav.opened,
     }"
@@ -9,6 +9,7 @@
     @let _progressBarConfiguration = progressBarConfiguration();
     <mat-progress-bar
       class="jet-progress-bar"
+      [attr.aria-label]="t('loading')"
       [bufferValue]="_progressBarConfiguration.bufferValue"
       [mode]="_progressBarConfiguration.mode"
       [style]="{ opacity: _progressBarConfiguration.isVisible ? 1 : 0 }"
