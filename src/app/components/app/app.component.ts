@@ -13,13 +13,9 @@ import {
   untracked,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import {
   Event,
@@ -35,7 +31,6 @@ import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.consta
 import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
-import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
@@ -51,23 +46,20 @@ import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { FooterComponent } from '../footer/footer.component';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    MatButtonModule,
     MatIconModule,
-    MatListModule,
     MatSidenavModule,
     MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
     RouterLink,
     RouterOutlet,
-    AnalyticsDirective,
     TranslocoModule,
     FooterComponent,
+    SidenavComponent,
     ToolbarComponent,
   ],
   selector: 'jet-app',

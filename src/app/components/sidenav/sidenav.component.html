@@ -1,0 +1,38 @@
+<ng-container *transloco="let t; prefix: 'jet-sidenav'">
+  <mat-toolbar class="jet-sidenav-toolbar">
+    <a
+      [attr.aria-label]="t('home')"
+      [jetAnalytics]="{ name: 'Open home' }"
+      [matTooltip]="t('home')"
+      [routerLink]="['/']"
+      matIconButton
+      matTooltipPosition="after"
+    >
+      <mat-icon svgIcon="jet"></mat-icon>
+    </a>
+  </mat-toolbar>
+  <div class="jet-sidenav-content">
+    @let _activeNavigationMenuItemPath = activeNavigationMenuItemPath();
+    @let _isSmallViewport = isSmallViewport();
+    @let _sidenav = sidenav();
+    <mat-nav-list>
+      @for (
+        navigationMenuItem of navigationMenuItems;
+        track navigationMenuItem.path
+      ) {
+        <a
+          [activated]="
+            _activeNavigationMenuItemPath === navigationMenuItem.path
+          "
+          [routerLink]="[navigationMenuItem.path]"
+          (click)="_isSmallViewport && _sidenav.close()"
+          mat-list-item
+          matListItemTitle
+        >
+          <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
+          <span>{{ navigationMenuItem.nameKey | transloco }}</span>
+        </a>
+      }
+    </mat-nav-list>
+  </div>
+</ng-container>

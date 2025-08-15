@@ -11,39 +11,11 @@
       [opened]="!isSmallViewport"
       fixedInViewport
     >
-      <mat-toolbar class="jet-sidenav-toolbar">
-        <a
-          [attr.aria-label]="t('home')"
-          [jetAnalytics]="{ name: 'Open home' }"
-          [matTooltip]="t('home')"
-          [routerLink]="['/']"
-          matIconButton
-          matTooltipPosition="after"
-        >
-          <mat-icon svgIcon="jet"></mat-icon>
-        </a>
-      </mat-toolbar>
-      <div class="jet-sidenav-content">
-        <mat-nav-list>
-          @for (
-            navigationMenuItem of navigationMenuItems;
-            track navigationMenuItem.path
-          ) {
-            <a
-              [activated]="
-                activeNavigationMenuItemPath === navigationMenuItem.path
-              "
-              [routerLink]="[navigationMenuItem.path]"
-              (click)="isSmallViewport && sidenav.close()"
-              mat-list-item
-              matListItemTitle
-            >
-              <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
-              <span>{{ navigationMenuItem.nameKey | transloco }}</span>
-            </a>
-          }
-        </mat-nav-list>
-      </div>
+      <jet-sidenav
+        [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
+        [isSmallViewport]="isSmallViewport"
+        [sidenav]="sidenav"
+      ></jet-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="jet-content">
       <jet-toolbar
