@@ -14,10 +14,6 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { ServiceWorkerServiceMock } from '@jet/services/service-worker/service-worker.service.mock';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
-import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
-import { ToolbarTitleServiceMock } from '@jet/services/toolbar-title/toolbar-title.service.mock';
-import { UserService } from '@jet/services/user/user.service';
-import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AppComponent } from './app.component';
 
@@ -41,8 +37,6 @@ describe('AppComponent', () => {
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: ServiceWorkerService, useClass: ServiceWorkerServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
-        { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },
-        { provide: UserService, useClass: UserServiceMock },
       ],
     }).compileComponents();
 

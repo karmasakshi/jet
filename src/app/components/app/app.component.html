@@ -46,73 +46,10 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content class="jet-content">
-      <mat-toolbar
-        class="jet-content-toolbar"
-        [class]="{
-          'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
-        }"
-      >
-        @let _progressBarConfiguration = progressBarConfiguration();
-        <mat-progress-bar
-          class="jet-progress-bar"
-          [bufferValue]="_progressBarConfiguration.bufferValue"
-          [mode]="_progressBarConfiguration.mode"
-          [style]="{ opacity: _progressBarConfiguration.isVisible ? 1 : 0 }"
-          [value]="_progressBarConfiguration.value"
-        >
-        </mat-progress-bar>
-        @if (!isSmallViewport) {
-          <button
-            [attr.aria-label]="t('toggle-navigation-menu')"
-            [jetAnalytics]="{ name: 'Toggle sidenav' }"
-            [matTooltip]="t('toggle-navigation-menu')"
-            (click)="sidenav.toggle()"
-            matIconButton
-            matTooltipPosition="after"
-            type="button"
-          >
-            <mat-icon>short_text</mat-icon>
-          </button>
-        } @else {
-          <a
-            [attr.aria-label]="t('home')"
-            [jetAnalytics]="{ name: 'Open home' }"
-            [matTooltip]="t('home')"
-            [routerLink]="['/']"
-            matIconButton
-            matTooltipPosition="after"
-          >
-            <mat-icon svgIcon="jet"></mat-icon>
-          </a>
-        }
-        @let _toolbarTitle = toolbarTitle();
-        <span style="font: var(--mat-sys-headline-small)">{{
-          _toolbarTitle || t('loading')
-        }}</span>
-        <div style="flex: 1"></div>
-        @let _user = user();
-        @if (_user !== null) {
-          <a
-            [attr.aria-label]="t('sign-out')"
-            [matTooltip]="t('sign-out')"
-            [routerLink]="['/sign-out']"
-            matIconButton
-            matTooltipPosition="before"
-          >
-            <mat-icon>logout</mat-icon>
-          </a>
-        } @else {
-          <a
-            [attr.aria-label]="t('sign-in')"
-            [matTooltip]="t('sign-in')"
-            [routerLink]="['/sign-in']"
-            matIconButton
-            matTooltipPosition="before"
-          >
-            <mat-icon>login</mat-icon>
-          </a>
-        }
-      </mat-toolbar>
+      <jet-toolbar
+        [isSmallViewport]="isSmallViewport"
+        [sidenav]="sidenav"
+      ></jet-toolbar>
       <mat-tab-nav-panel #tabNavPanel>
         <main
           [class]="{

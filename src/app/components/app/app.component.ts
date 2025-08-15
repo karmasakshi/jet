@@ -16,7 +16,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -40,22 +39,19 @@ import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directiv
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
-import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
-import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
-import { UserService } from '@jet/services/user/user.service';
 import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
 import { AvailableFontClass } from '@jet/types/available-font-class.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { User } from '@supabase/supabase-js';
 import packageJson from 'package.json';
 import { FooterComponent } from '../footer/footer.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,7 +59,6 @@ import { FooterComponent } from '../footer/footer.component';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatProgressBarModule,
     MatSidenavModule,
     MatTabsModule,
     MatToolbarModule,
@@ -73,6 +68,7 @@ import { FooterComponent } from '../footer/footer.component';
     AnalyticsDirective,
     TranslocoModule,
     FooterComponent,
+    ToolbarComponent,
   ],
   selector: 'jet-app',
   styleUrl: './app.component.scss',
@@ -93,8 +89,6 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #progressBarService = inject(ProgressBarService);
   readonly #serviceWorkerService = inject(ServiceWorkerService);
   readonly #settingsService = inject(SettingsService);
-  readonly #toolbarTitleService = inject(ToolbarTitleService);
-  readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
   #activeFontClass: AvailableFontClass;
@@ -112,9 +106,6 @@ export class AppComponent implements OnDestroy, OnInit {
   public readonly isSmallViewport: boolean;
   public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
-  public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly toolbarTitle: Signal<null | string>;
-  public readonly user: Signal<null | User>;
 
   public constructor() {
     this.#activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
@@ -145,13 +136,6 @@ export class AppComponent implements OnDestroy, OnInit {
     this.languageOption = this.#settingsService.languageOption;
 
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
-
-    this.progressBarConfiguration =
-      this.#progressBarService.progressBarConfiguration;
-
-    this.toolbarTitle = this.#toolbarTitleService.toolbarTitle;
-
-    this.user = this.#userService.user;
 
     effect(
       () => {
