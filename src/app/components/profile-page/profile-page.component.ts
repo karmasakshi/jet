@@ -65,11 +65,11 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
-  #isLoading: boolean;
-
   public readonly avatarFileInput: Signal<
     ElementRef<HTMLInputElement> | undefined
   > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
+
+  #isLoading: boolean;
 
   public profile: null | Profile;
   public readonly profileFormGroup: FormGroup<{

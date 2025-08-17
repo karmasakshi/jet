@@ -31,7 +31,7 @@ describe('SidenavComponent', () => {
     componentRef = fixture.componentRef;
     componentRef.setInput('activeNavigationMenuItemPath', undefined);
     componentRef.setInput('isSmallViewport', undefined);
-    componentRef.setInput('sidenav', undefined);
+    componentRef.setInput('matSidenav', undefined);
     fixture.detectChanges();
   });
 

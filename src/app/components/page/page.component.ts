@@ -24,13 +24,13 @@ export class PageComponent {
   readonly #loggerService = inject(LoggerService);
   readonly #toolbarTitleService = inject(ToolbarTitleService);
 
-  readonly #defaultSeoImageUrl: string;
-
   public readonly seoDescription: InputSignal<string> = input.required();
   public readonly seoImageUrl: InputSignal<string | undefined> = input();
   public readonly seoKeywords: InputSignal<string> = input.required();
   public readonly seoTitle: InputSignal<string> = input.required();
   public readonly toolbarTitle: InputSignal<string> = input.required();
+
+  readonly #defaultSeoImageUrl: string;
 
   public constructor() {
     this.#defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;

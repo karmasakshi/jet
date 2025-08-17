@@ -45,7 +45,7 @@ export class ToolbarComponent {
   readonly #userService = inject(UserService);
 
   public readonly isSmallViewport: InputSignal<boolean> = input.required();
-  public readonly sidenav: InputSignal<MatSidenav> = input.required();
+  public readonly matSidenav: InputSignal<MatSidenav> = input.required();
 
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly toolbarTitle: Signal<null | string>;

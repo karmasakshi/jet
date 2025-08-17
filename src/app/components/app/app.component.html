@@ -6,7 +6,7 @@
   >
     <mat-sidenav
       class="jet-sidenav"
-      #sidenav
+      #matSidenav
       [mode]="isSmallViewport ? 'over' : 'side'"
       [opened]="!isSmallViewport"
       fixedInViewport
@@ -14,19 +14,19 @@
       <jet-sidenav
         [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
         [isSmallViewport]="isSmallViewport"
-        [sidenav]="sidenav"
+        [matSidenav]="matSidenav"
       ></jet-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="jet-sidenav-content">
       <jet-toolbar
         [isSmallViewport]="isSmallViewport"
-        [sidenav]="sidenav"
+        [matSidenav]="matSidenav"
       ></jet-toolbar>
       <mat-tab-nav-panel #tabPanel>
         <main
           [class]="{
             'jet-add-safe-area':
-              sidenav.mode === 'over' ? true : !sidenav.opened,
+              matSidenav.mode === 'over' ? true : !matSidenav.opened,
           }"
         >
           <router-outlet />
@@ -35,7 +35,8 @@
       <footer
         [class]="{
           'jet-add-bottom-margin': isSmallViewport,
-          'jet-add-safe-area': sidenav.mode === 'over' ? true : !sidenav.opened,
+          'jet-add-safe-area':
+            matSidenav.mode === 'over' ? true : !matSidenav.opened,
         }"
       >
         <jet-footer></jet-footer>

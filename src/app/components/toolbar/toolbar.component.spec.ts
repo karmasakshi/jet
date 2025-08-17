@@ -37,7 +37,7 @@ describe('ToolbarComponent', () => {
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
     componentRef.setInput('isSmallViewport', undefined);
-    componentRef.setInput('sidenav', { mode: undefined });
+    componentRef.setInput('matSidenav', { mode: undefined });
     fixture.detectChanges();
   });
 

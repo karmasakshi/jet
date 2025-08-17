@@ -14,7 +14,7 @@
   <div class="jet-sidenav-nav-list">
     @let _activeNavigationMenuItemPath = activeNavigationMenuItemPath();
     @let _isSmallViewport = isSmallViewport();
-    @let _sidenav = sidenav();
+    @let _matSidenav = matSidenav();
     <mat-nav-list>
       @for (
         navigationMenuItem of navigationMenuItems;
@@ -25,7 +25,7 @@
             _activeNavigationMenuItemPath === navigationMenuItem.path
           "
           [routerLink]="[navigationMenuItem.path]"
-          (click)="_isSmallViewport && _sidenav.close()"
+          (click)="_isSmallViewport && _matSidenav.close()"
           mat-list-item
           matListItemTitle
         >

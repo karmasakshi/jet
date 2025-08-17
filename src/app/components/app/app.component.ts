@@ -83,16 +83,16 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
-  #activeFontClass: AvailableFontClass;
-  #activeFontsUrl: string;
-  #activeLanguage: AvailableLanguage;
   #activeColorScheme: AvailableColorScheme;
+  #activeFontClass: AvailableFontClass;
+  #activeFontsUrl: LanguageOption['fontsUrl'];
+  #activeLanguage: AvailableLanguage;
   #activeThemeColor: ColorSchemeOption['themeColor'];
-  readonly #darkColorSchemeMediaQuery: MediaQueryList;
+  readonly #darkColorSchemeMediaQueryList: MediaQueryList;
+  readonly #isPwaMode: boolean;
   #systemColorSchemeListener:
     | ((mediaQueryListEvent: MediaQueryListEvent) => void)
     | null;
-  readonly #isPwaMode: boolean;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly isSmallViewport: boolean;
@@ -100,23 +100,23 @@ export class AppComponent implements OnDestroy, OnInit {
   public readonly navigationMenuItems: NavigationMenuItem[];
 
   public constructor() {
+    this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
+
     this.#activeFontClass = DEFAULT_LANGUAGE_OPTION.fontClass;
 
     this.#activeFontsUrl = DEFAULT_LANGUAGE_OPTION.fontsUrl;
 
     this.#activeLanguage = DEFAULT_LANGUAGE_OPTION.value;
 
-    this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
-
     this.#activeThemeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
 
-    this.#darkColorSchemeMediaQuery = window.matchMedia(
+    this.#darkColorSchemeMediaQueryList = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
 
-    this.#systemColorSchemeListener = null;
-
     this.#isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
+
+    this.#systemColorSchemeListener = null;
 
     this.activeNavigationMenuItemPath = undefined;
 
@@ -128,21 +128,6 @@ export class AppComponent implements OnDestroy, OnInit {
     this.languageOption = this.#settingsService.languageOption;
 
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
-
-    effect(
-      () => {
-        this.#loggerService.logEffectRun('languageOption');
-
-        const languageOption: LanguageOption = this.languageOption();
-
-        untracked(() => {
-          this.#loadFont(languageOption.fontsUrl);
-          this.#setFontClass(languageOption.fontClass);
-          this.#setLanguage(languageOption);
-        });
-      },
-      { debugName: 'languageOption' },
-    );
 
     effect(
       () => {
@@ -163,6 +148,21 @@ export class AppComponent implements OnDestroy, OnInit {
         });
       },
       { debugName: 'colorSchemeOption' },
+    );
+
+    effect(
+      () => {
+        this.#loggerService.logEffectRun('languageOption');
+
+        const languageOption: LanguageOption = this.languageOption();
+
+        untracked(() => {
+          this.#loadFont(languageOption.fontsUrl);
+          this.#setFontClass(languageOption.fontClass);
+          this.#setLanguage(languageOption);
+        });
+      },
+      { debugName: 'languageOption' },
     );
 
     this.#loggerService.logComponentInitialization('AppComponent');
@@ -221,6 +221,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
       if (!link) {
         link = this.#renderer2.createElement('link');
+
         this.#renderer2.setAttribute(link, 'href', nextFontsUrl);
         this.#renderer2.setAttribute(link, 'id', id);
         this.#renderer2.setAttribute(link, 'rel', 'stylesheet');
@@ -309,7 +310,7 @@ export class AppComponent implements OnDestroy, OnInit {
       }
     };
 
-    this.#darkColorSchemeMediaQuery.addEventListener(
+    this.#darkColorSchemeMediaQueryList.addEventListener(
       'change',
       this.#systemColorSchemeListener,
     );
@@ -317,7 +318,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   #setThemeColor(nextColorScheme: AvailableColorScheme): void {
     if (nextColorScheme === 'automatic') {
-      nextColorScheme = this.#darkColorSchemeMediaQuery.matches
+      nextColorScheme = this.#darkColorSchemeMediaQueryList.matches
         ? 'dark'
         : 'light';
     }
@@ -352,7 +353,7 @@ export class AppComponent implements OnDestroy, OnInit {
       return;
     }
 
-    this.#darkColorSchemeMediaQuery.removeEventListener(
+    this.#darkColorSchemeMediaQueryList.removeEventListener(
       'change',
       this.#systemColorSchemeListener,
     );

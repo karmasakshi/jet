@@ -1,9 +1,10 @@
 <ng-container *transloco="let t; prefix: 'jet-toolbar'">
-  @let _sidenav = sidenav();
+  @let _matSidenav = matSidenav();
   <mat-toolbar
     class="jet-sidenav-content-toolbar"
     [class]="{
-      'jet-add-safe-area': _sidenav.mode === 'over' ? true : !_sidenav.opened,
+      'jet-add-safe-area':
+        _matSidenav.mode === 'over' ? true : !_matSidenav.opened,
     }"
   >
     @let _progressBarConfiguration = progressBarConfiguration();
@@ -22,7 +23,7 @@
         [attr.aria-label]="t('toggle-navigation-menu')"
         [jetAnalytics]="{ name: 'Toggle sidenav' }"
         [matTooltip]="t('toggle-navigation-menu')"
-        (click)="_sidenav.toggle()"
+        (click)="_matSidenav.toggle()"
         matIconButton
         matTooltipPosition="after"
         type="button"

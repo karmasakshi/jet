@@ -41,7 +41,7 @@ export class SidenavComponent {
     string | undefined
   > = input.required();
   public readonly isSmallViewport: InputSignal<boolean> = input.required();
-  public readonly sidenav: InputSignal<MatSidenav> = input.required();
+  public readonly matSidenav: InputSignal<MatSidenav> = input.required();
 
   public readonly navigationMenuItems: NavigationMenuItem[];
 
