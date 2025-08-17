@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.0](https://github.com/karmasakshi/jet/compare/v3.7.0...v3.8.0) (2025-08-17)
+
+
+### Features
+
+* **general:** dynamically update layout based on viewport size ([a8878dc](https://github.com/karmasakshi/jet/commit/a8878dc691fe82d84f75ea6f6202e19d4272a446))
+
 ## [3.7.0](https://github.com/karmasakshi/jet/compare/v3.6.0...v3.7.0) (2025-08-11)
 
 
