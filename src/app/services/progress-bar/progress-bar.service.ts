@@ -64,10 +64,10 @@ export class ProgressBarService {
     clearTimeout(this.#queueTimeout);
 
     this.#queueTimeout = setTimeout(() => {
-      this.#progressBarConfiguration.set({
-        ...this.#defaultProgressBarConfiguration,
+      this.#progressBarConfiguration.update((progressBarConfiguration) => ({
+        ...progressBarConfiguration,
         ...partialProgressBarConfiguration,
-      });
+      }));
     }, 100);
   }
 }
