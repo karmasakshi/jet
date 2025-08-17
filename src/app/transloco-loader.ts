@@ -11,7 +11,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   readonly #loggerService = inject(LoggerService);
 
   public constructor() {
-    this.#loggerService.logServiceInitialization('TranslocoHttpLoader');
+    this.#loggerService.logClassInitialization('TranslocoHttpLoader');
   }
 
   public getTranslation(language: AvailableLanguage): Observable<Translation> {

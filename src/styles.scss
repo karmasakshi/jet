@@ -78,7 +78,7 @@ body {
     color-scheme: light;
   }
 
-  &.jet-font-arabic {
+  &.jet-font-pair-arabic {
     @include mat.theme(
       (
         typography: (

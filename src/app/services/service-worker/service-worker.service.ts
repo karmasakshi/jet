@@ -44,7 +44,7 @@ export class ServiceWorkerService {
 
     effect(
       () => {
-        this.#loggerService.logEffectRun('#lastUpdateCheckTimestamp');
+        this.#loggerService.logEffectRun('lastUpdateCheckTimestamp');
 
         const lastUpdateCheckTimestamp: string =
           this.#lastUpdateCheckTimestamp();
@@ -56,7 +56,7 @@ export class ServiceWorkerService {
           ),
         );
       },
-      { debugName: '#lastUpdateCheckTimestamp' },
+      { debugName: 'lastUpdateCheckTimestamp' },
     );
 
     this.#loggerService.logServiceInitialization('ServiceWorkerService');

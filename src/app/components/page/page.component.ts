@@ -46,6 +46,7 @@ export class PageComponent {
             content: seoDescription,
             name: 'description',
           });
+
           this.#meta.updateTag({
             content: seoDescription,
             name: 'og:description',

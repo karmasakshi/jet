@@ -40,7 +40,7 @@ export class SettingsService {
 
     effect(
       () => {
-        this.#loggerService.logEffectRun('#settings');
+        this.#loggerService.logEffectRun('settings');
 
         const settings: Settings = this.#settings();
 
@@ -51,7 +51,7 @@ export class SettingsService {
           ),
         );
       },
-      { debugName: '#settings' },
+      { debugName: 'settings' },
     );
 
     this.#loggerService.logServiceInitialization('SettingsService');
