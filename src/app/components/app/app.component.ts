@@ -3,18 +3,21 @@ import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   effect,
   inject,
+  linkedSignal,
   OnDestroy,
   OnInit,
   Renderer2,
   Signal,
   untracked,
+  WritableSignal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import {
@@ -96,9 +99,12 @@ export class AppComponent implements OnDestroy, OnInit {
     | null;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
-  public readonly isSmallViewport: Signal<boolean>;
+  public readonly isLargeViewport: Signal<boolean>;
+  public readonly isMatSidenavOpen: WritableSignal<boolean>;
   public readonly languageOption: Signal<LanguageOption>;
+  public readonly matSidenavMode: Signal<MatDrawerMode>;
   public readonly navigationMenuItems: NavigationMenuItem[];
+  public readonly shouldAddSafeArea: Signal<boolean>;
 
   public constructor() {
     this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
@@ -121,16 +127,26 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.activeNavigationMenuItemPath = undefined;
 
-    this.isSmallViewport = toSignal(
+    this.isLargeViewport = toSignal(
       this.#breakpointObserver
         .observe(Breakpoints.Web)
-        .pipe(map((result) => !result.matches)),
-      { initialValue: true },
+        .pipe(map((result) => result.matches)),
+      { initialValue: false },
     );
+
+    this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport());
 
     this.languageOption = this.#settingsService.languageOption;
 
+    this.matSidenavMode = computed(() => {
+      return this.isLargeViewport() ? 'side' : 'over';
+    });
+
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
+
+    this.shouldAddSafeArea = computed(() => {
+      return this.matSidenavMode() === 'over' ? true : !this.isMatSidenavOpen();
+    });
 
     effect(
       () => {

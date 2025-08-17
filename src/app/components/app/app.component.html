@@ -4,45 +4,41 @@
     class="jet-sidenav-container"
     [dir]="_languageOption.directionality"
   >
-    @let _isSmallViewport = isSmallViewport();
+    @let _isLargeViewport = isLargeViewport();
+    @let _matSidenavMode = matSidenavMode();
+    @let _shouldAddSafeArea = shouldAddSafeArea();
     <mat-sidenav
       class="jet-sidenav"
       #matSidenav
-      [mode]="_isSmallViewport ? 'over' : 'side'"
-      [opened]="!_isSmallViewport"
+      [(opened)]="isMatSidenavOpen"
+      [mode]="_matSidenavMode"
       fixedInViewport
     >
       <jet-sidenav
         [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
-        [isSmallViewport]="_isSmallViewport"
+        [isSmallViewport]="!_isLargeViewport"
         [matSidenav]="matSidenav"
       ></jet-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="jet-sidenav-content">
       <jet-toolbar
-        [isSmallViewport]="_isSmallViewport"
+        [isSmallViewport]="!_isLargeViewport"
         [matSidenav]="matSidenav"
       ></jet-toolbar>
       <mat-tab-nav-panel #tabPanel>
-        <main
-          [class]="{
-            'jet-add-safe-area':
-              matSidenav.mode === 'over' ? true : !matSidenav.opened,
-          }"
-        >
+        <main [class]="{ 'jet-add-safe-area': _shouldAddSafeArea }">
           <router-outlet />
         </main>
       </mat-tab-nav-panel>
       <footer
         [class]="{
-          'jet-add-bottom-margin': _isSmallViewport,
-          'jet-add-safe-area':
-            matSidenav.mode === 'over' ? true : !matSidenav.opened,
+          'jet-add-bottom-margin': !_isLargeViewport,
+          'jet-add-safe-area': _shouldAddSafeArea,
         }"
       >
         <jet-footer></jet-footer>
       </footer>
-      @if (_isSmallViewport) {
+      @if (!_isLargeViewport) {
         <nav
           class="jet-tab-nav-bar"
           [tabPanel]="tabPanel"
