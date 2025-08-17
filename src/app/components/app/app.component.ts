@@ -12,7 +12,7 @@ import {
   Signal,
   untracked,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -45,6 +45,7 @@ import { AvailableFontClass } from '@jet/types/available-font-class.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
+import { map } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -95,7 +96,7 @@ export class AppComponent implements OnDestroy, OnInit {
     | null;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
-  public readonly isSmallViewport: boolean;
+  public readonly isSmallViewport: Signal<boolean>;
   public readonly languageOption: Signal<LanguageOption>;
   public readonly navigationMenuItems: NavigationMenuItem[];
 
@@ -120,10 +121,12 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.activeNavigationMenuItemPath = undefined;
 
-    this.isSmallViewport = this.#breakpointObserver.isMatched([
-      Breakpoints.Handset,
-      Breakpoints.Tablet,
-    ]);
+    this.isSmallViewport = toSignal(
+      this.#breakpointObserver
+        .observe(Breakpoints.Web)
+        .pipe(map((result) => !result.matches)),
+      { initialValue: true },
+    );
 
     this.languageOption = this.#settingsService.languageOption;
 
