@@ -16,14 +16,16 @@
     >
       <jet-sidenav
         [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
-        [isSmallViewport]="!_isLargeViewport"
-        [matSidenav]="matSidenav"
+        (clickNavigationMenuItem)="
+          _matSidenavMode === 'over' && matSidenav.close()
+        "
       ></jet-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="jet-sidenav-content">
       <jet-toolbar
-        [isSmallViewport]="!_isLargeViewport"
-        [matSidenav]="matSidenav"
+        [isLargeViewport]="_isLargeViewport"
+        [shouldAddSafeArea]="_shouldAddSafeArea"
+        (toggleMatSidenav)="matSidenav.toggle()"
       ></jet-toolbar>
       <mat-tab-nav-panel #tabPanel>
         <main [class]="{ 'jet-add-safe-area': _shouldAddSafeArea }">

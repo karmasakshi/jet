@@ -4,11 +4,12 @@ import {
   inject,
   input,
   InputSignal,
+  output,
+  OutputEmitterRef,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
@@ -40,8 +41,7 @@ export class SidenavComponent {
   public readonly activeNavigationMenuItemPath: InputSignal<
     string | undefined
   > = input.required();
-  public readonly isSmallViewport: InputSignal<boolean> = input.required();
-  public readonly matSidenav: InputSignal<MatSidenav> = input.required();
+  public readonly clickNavigationMenuItem: OutputEmitterRef<void> = output();
 
   public readonly navigationMenuItems: NavigationMenuItem[];
 

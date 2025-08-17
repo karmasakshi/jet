@@ -1,5 +1,6 @@
 import { ComponentRef, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
@@ -20,6 +21,7 @@ describe('ToolbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        MatIconTestingModule,
         TranslocoTestingModule.forRoot({ langs: { en: {} } }),
         ToolbarComponent,
       ],
@@ -36,8 +38,8 @@ describe('ToolbarComponent', () => {
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('isSmallViewport', undefined);
-    componentRef.setInput('matSidenav', { mode: undefined });
+    componentRef.setInput('isLargeViewport', undefined);
+    componentRef.setInput('shouldAddSafeArea', undefined);
     fixture.detectChanges();
   });
 

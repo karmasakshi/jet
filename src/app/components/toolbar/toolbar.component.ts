@@ -4,12 +4,13 @@ import {
   inject,
   input,
   InputSignal,
+  output,
+  OutputEmitterRef,
   Signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
@@ -44,8 +45,10 @@ export class ToolbarComponent {
   readonly #toolbarTitleService = inject(ToolbarTitleService);
   readonly #userService = inject(UserService);
 
-  public readonly isSmallViewport: InputSignal<boolean> = input.required();
-  public readonly matSidenav: InputSignal<MatSidenav> = input.required();
+  public readonly isLargeViewport: InputSignal<boolean> = input.required();
+  public readonly shouldAddSafeArea: InputSignal<boolean> = input.required();
+
+  public readonly toggleMatSidenav: OutputEmitterRef<void> = output();
 
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly toolbarTitle: Signal<null | string>;
