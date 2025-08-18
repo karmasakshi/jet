@@ -235,19 +235,20 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#fontPairUrl = nextFontPairUrl;
 
     if (nextFontPairUrl !== DEFAULT_LANGUAGE_OPTION.fontPairUrl) {
-      const id = 'jet-non-default-font-pair';
-      let link = document.getElementById(id);
+      const id: string = 'jet-non-default-font-pair';
 
-      if (!link) {
-        link = this.#renderer2.createElement('link');
+      let linkElement: HTMLElement | null = document.getElementById(id);
 
-        this.#renderer2.setAttribute(link, 'href', nextFontPairUrl);
-        this.#renderer2.setAttribute(link, 'id', id);
-        this.#renderer2.setAttribute(link, 'rel', 'stylesheet');
+      if (!linkElement) {
+        linkElement = this.#renderer2.createElement('link');
 
-        this.#renderer2.appendChild(this.#document.head, link);
+        this.#renderer2.setAttribute(linkElement, 'href', nextFontPairUrl);
+        this.#renderer2.setAttribute(linkElement, 'id', id);
+        this.#renderer2.setAttribute(linkElement, 'rel', 'stylesheet');
+
+        this.#renderer2.appendChild(this.#document.head, linkElement);
       } else {
-        this.#renderer2.setAttribute(link, 'href', nextFontPairUrl);
+        this.#renderer2.setAttribute(linkElement, 'href', nextFontPairUrl);
       }
     }
   }
@@ -258,7 +259,8 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     this.#colorScheme = nextColorScheme;
-    const prefix = 'jet-color-scheme-';
+
+    const prefix: string = 'jet-color-scheme-';
 
     this.#document.body.className = this.#document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
@@ -275,7 +277,8 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     this.#fontPairClass = nextFontPairClass;
-    const prefix = 'jet-font-pair-';
+
+    const prefix: string = 'jet-font-pair-';
 
     this.#document.body.className = this.#document.body.classList.value
       .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
@@ -287,12 +290,12 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   #setIcons(): void {
+    this.#matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
+
     this.#matIconRegistry.addSvgIcon(
       'jet',
       this.#domSanitizer.bypassSecurityTrustResourceUrl('./icons/jet.svg'),
     );
-
-    this.#matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
   }
 
   #setLanguage(nextLanguageOption: LanguageOption): void {
@@ -342,9 +345,10 @@ export class AppComponent implements OnDestroy, OnInit {
         : 'light';
     }
 
-    const nextColorSchemeOption =
+    const nextColorSchemeOption: ColorSchemeOption =
       COLOR_SCHEME_OPTIONS.find(
-        (colorSchemeOption) => colorSchemeOption.value === nextColorScheme,
+        (colorSchemeOption: ColorSchemeOption): boolean =>
+          colorSchemeOption.value === nextColorScheme,
       ) ?? DEFAULT_COLOR_SCHEME_OPTION;
 
     if (nextColorSchemeOption.themeColor !== this.#themeColor) {

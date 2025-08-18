@@ -1,12 +1,16 @@
+@let _isLargeViewport = isLargeViewport();
+@let _progressBarConfiguration = progressBarConfiguration();
+@let _shouldAddSafeArea = shouldAddSafeArea();
+@let _toolbarTitle = toolbarTitle();
+@let _user = user();
+
 <ng-container *transloco="let t; prefix: 'jet-toolbar'">
-  @let _shouldAddSafeArea = shouldAddSafeArea();
   <mat-toolbar
     [class]="{
       'jet-add-safe-area': _shouldAddSafeArea,
       'jet-sidenav-content-toolbar': true,
     }"
   >
-    @let _progressBarConfiguration = progressBarConfiguration();
     <mat-progress-bar
       class="jet-progress-bar"
       [attr.aria-label]="t('loading')"
@@ -16,7 +20,6 @@
       [value]="_progressBarConfiguration.value"
     >
     </mat-progress-bar>
-    @let _isLargeViewport = isLargeViewport();
     @if (_isLargeViewport) {
       <button
         [attr.aria-label]="t('toggle-navigation-menu')"
@@ -41,12 +44,10 @@
         <mat-icon svgIcon="jet"></mat-icon>
       </a>
     }
-    @let _toolbarTitle = toolbarTitle();
     <span style="font: var(--mat-sys-headline-small)">{{
       _toolbarTitle || t('loading')
     }}</span>
     <div style="flex: 1"></div>
-    @let _user = user();
     @if (_user !== null) {
       <a
         [attr.aria-label]="t('sign-out')"

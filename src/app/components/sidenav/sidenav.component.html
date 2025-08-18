@@ -1,3 +1,5 @@
+@let _activeNavigationMenuItemPath = activeNavigationMenuItemPath();
+
 <ng-container *transloco="let t; prefix: 'jet-sidenav'">
   <mat-toolbar class="jet-sidenav-toolbar">
     <a
@@ -13,7 +15,6 @@
     </a>
   </mat-toolbar>
   <div class="jet-sidenav-nav-list">
-    @let _activeNavigationMenuItemPath = activeNavigationMenuItemPath();
     <mat-nav-list>
       @for (
         navigationMenuItem of navigationMenuItems;

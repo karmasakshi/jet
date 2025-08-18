@@ -39,7 +39,7 @@ export class AlertService {
       matSnackBarRef
         .onAction()
         .pipe(take(1))
-        .subscribe((): void => {
+        .subscribe(() => {
           action();
         });
     }

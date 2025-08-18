@@ -87,7 +87,7 @@ export class ServiceWorkerService {
   public subscribeToVersionUpdates(): void {
     this.#swUpdate.versionUpdates
       .pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe((versionEvent: VersionEvent): void => {
+      .subscribe((versionEvent: VersionEvent) => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
             this.#lastUpdateCheckTimestamp.set(new Date().toISOString());

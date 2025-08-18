@@ -1,3 +1,6 @@
+@let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
+@let _settings = settings();
+
 <ng-container *transloco="let t; prefix: 'jet-settings-page'">
   <jet-page
     [seoDescription]="t('seo.description')"
@@ -5,7 +8,6 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    @let _settings = settings();
     <mat-card>
       <mat-card-header></mat-card-header>
       <mat-card-content>
@@ -34,7 +36,6 @@
               _settings.colorSchemeOption.nameKey | transloco
             }}</span>
           </button>
-          @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
           <button
             [jetAnalytics]="{ name: 'Check for updates' }"
             (click)="checkForUpdate()"

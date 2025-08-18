@@ -1,3 +1,5 @@
+@let _case = case();
+
 <ng-container *transloco="let t; prefix: 'jet-message-page'">
   <jet-page
     [seoDescription]="t('seo.description')"
@@ -15,7 +17,6 @@
           priority
           width="480"
         />
-        @let _case = case();
         @switch (_case) {
           @case ('email-verification-pending') {
             <mat-card-header>

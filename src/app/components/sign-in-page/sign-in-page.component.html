@@ -1,3 +1,7 @@
+@let _emailControl = signInFormGroup.controls.email;
+@let _passwordControl = signInFormGroup.controls.password;
+@let _returnUrl = returnUrl() ?? '/';
+
 <ng-container *transloco="let t; prefix: 'jet-sign-in-page'">
   <jet-page
     [seoDescription]="t('seo.description')"
@@ -6,7 +10,6 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <div class="jet-flexc-centered">
-      @let _returnUrl = returnUrl() ?? '/';
       @if (_returnUrl !== '/') {
         <span style="font: var(--mat-sys-label-large)">{{
           t('sign-in-to-continue-to', { returnUrl: _returnUrl })
@@ -36,11 +39,9 @@
         </mat-card-content>
       </mat-card>
       <span style="color: var(--mat-sys-outline)">{{ t('or') }}</span>
-      @let _emailControl = signInFormGroup.controls.email;
       <mat-card class="jet-maxw-480">
         <mat-card-header></mat-card-header>
         <mat-card-content>
-          @let _passwordControl = signInFormGroup.controls.password;
           <form
             id="sign-in-form"
             [formGroup]="signInFormGroup"

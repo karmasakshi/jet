@@ -1,3 +1,5 @@
+@let _usernameControl = profileFormGroup.controls.username;
+
 <ng-container *transloco="let t; prefix: 'jet-profile-page'">
   <jet-page
     [seoDescription]="t('seo.description')"
@@ -55,7 +57,6 @@
               />
             </mat-card-content>
           </mat-card>
-          @let _usernameControl = profileFormGroup.controls.username;
           <form
             id="profile-form"
             [formGroup]="profileFormGroup"

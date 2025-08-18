@@ -1,12 +1,13 @@
+@let _isLargeViewport = isLargeViewport();
+@let _languageOption = languageOption();
+@let _matSidenavMode = matSidenavMode();
+@let _shouldAddSafeArea = shouldAddSafeArea();
+
 <ng-container *transloco="let t; prefix: 'jet-app'">
-  @let _languageOption = languageOption();
   <mat-sidenav-container
     class="jet-sidenav-container"
     [dir]="_languageOption.directionality"
   >
-    @let _isLargeViewport = isLargeViewport();
-    @let _matSidenavMode = matSidenavMode();
-    @let _shouldAddSafeArea = shouldAddSafeArea();
     <mat-sidenav
       class="jet-sidenav"
       #matSidenav

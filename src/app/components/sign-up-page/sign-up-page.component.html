@@ -1,3 +1,6 @@
+@let _emailControl = signUpFormGroup.controls.email;
+@let _passwordControl = signUpFormGroup.controls.password;
+
 <ng-container *transloco="let t; prefix: 'jet-sign-up-page'">
   <jet-page
     [seoDescription]="t('seo.description')"
@@ -6,7 +9,6 @@
     [toolbarTitle]="t('toolbar-title')"
   >
     <div class="jet-flexc-centered">
-      @let _emailControl = signUpFormGroup.controls.email;
       <mat-card class="jet-maxw-480">
         <img
           [alt]="t('sign-up')"
@@ -18,7 +20,6 @@
         />
         <mat-card-header></mat-card-header>
         <mat-card-content>
-          @let _passwordControl = signUpFormGroup.controls.password;
           <form
             id="sign-up-form"
             [formGroup]="signUpFormGroup"
