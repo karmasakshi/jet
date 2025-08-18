@@ -22,7 +22,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import {
   Event,
-  NavigationCancel,
   NavigationEnd,
   NavigationError,
   NavigationStart,
@@ -99,6 +98,7 @@ export class AppComponent implements OnDestroy, OnInit {
     | null;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
+  public readonly colorSchemeOption: Signal<ColorSchemeOption>;
   public readonly isLargeViewport: Signal<boolean>;
   public readonly isMatSidenavOpen: WritableSignal<boolean>;
   public readonly languageOption: Signal<LanguageOption>;
@@ -127,6 +127,8 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.activeNavigationMenuItemPath = undefined;
 
+    this.colorSchemeOption = this.#settingsService.colorSchemeOption;
+
     this.isLargeViewport = toSignal(
       this.#breakpointObserver
         .observe(Breakpoints.Web)
@@ -153,7 +155,7 @@ export class AppComponent implements OnDestroy, OnInit {
         this.#loggerService.logEffectRun('colorSchemeOption');
 
         const colorScheme: AvailableColorScheme =
-          this.#settingsService.colorSchemeOption().value;
+          this.colorSchemeOption().value;
 
         untracked(() => {
           if (colorScheme === 'automatic') {
@@ -201,25 +203,21 @@ export class AppComponent implements OnDestroy, OnInit {
       .subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
           this.#progressBarService.showQueryProgressBar();
-        } else if (
-          event instanceof NavigationCancel ||
-          event instanceof NavigationEnd ||
-          event instanceof NavigationError
-        ) {
-          if (event instanceof NavigationEnd) {
-            this.activeNavigationMenuItemPath = event.url.split('?')[0];
-          }
-
-          if (event instanceof NavigationError) {
-            const error = event.error;
-            const message: string | undefined =
-              error instanceof Error ? error.message : undefined;
-
-            this.#loggerService.logError(error);
-            this.#alertService.showErrorAlert(message);
-          }
-
+        } else {
           this.#progressBarService.hideProgressBar();
+        }
+
+        if (event instanceof NavigationEnd) {
+          this.activeNavigationMenuItemPath = event.url.split('?')[0];
+        }
+
+        if (event instanceof NavigationError) {
+          const error = event.error;
+          const message: string | undefined =
+            error instanceof Error ? error.message : undefined;
+
+          this.#loggerService.logError(error);
+          this.#alertService.showErrorAlert(message);
         }
       });
 
