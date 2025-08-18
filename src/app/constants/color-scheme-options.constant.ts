@@ -5,7 +5,7 @@ export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
   {
     icon: 'contrast',
     nameKey: marker('constants.automatic'),
-    themeColor: null,
+    themeColor: '#ffffff',
     value: 'automatic',
   },
   {

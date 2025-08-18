@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 import { inject } from '@angular/core';
 import { CanDeactivateFn, GuardResult } from '@angular/router';
 import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';

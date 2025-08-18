@@ -87,15 +87,15 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #translocoService = inject(TranslocoService);
 
   #colorScheme: AvailableColorScheme;
+  readonly #darkColorSchemeMediaQueryList: MediaQueryList;
   #fontPair: AvailableFontPair;
   #fontPairUrl: LanguageOption['fontPairUrl'];
-  #language: AvailableLanguage;
-  #themeColor: ColorSchemeOption['themeColor'];
-  readonly #darkColorSchemeMediaQueryList: MediaQueryList;
   readonly #isPwaMode: boolean;
+  #language: AvailableLanguage;
   #systemColorSchemeListener:
     | ((mediaQueryListEvent: MediaQueryListEvent) => void)
     | null;
+  #themeColor: ColorSchemeOption['themeColor'];
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   public readonly colorSchemeOption: Signal<ColorSchemeOption>;
@@ -109,21 +109,21 @@ export class AppComponent implements OnDestroy, OnInit {
   public constructor() {
     this.#colorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
-    this.#fontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
-
-    this.#fontPairUrl = DEFAULT_LANGUAGE_OPTION.fontPairUrl;
-
-    this.#language = DEFAULT_LANGUAGE_OPTION.value;
-
-    this.#themeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
-
     this.#darkColorSchemeMediaQueryList = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
 
+    this.#fontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
+
+    this.#fontPairUrl = DEFAULT_LANGUAGE_OPTION.fontPairUrl;
+
     this.#isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
+    this.#language = DEFAULT_LANGUAGE_OPTION.value;
+
     this.#systemColorSchemeListener = null;
+
+    this.#themeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
 
     this.activeNavigationMenuItemPath = undefined;
 
@@ -271,7 +271,7 @@ export class AppComponent implements OnDestroy, OnInit {
         .trim();
 
       if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-        this.#renderer2.addClass(body, prefix + nextColorScheme);
+        body.classList.add(prefix + nextColorScheme);
       }
     });
   }
@@ -293,7 +293,7 @@ export class AppComponent implements OnDestroy, OnInit {
         .trim();
 
       if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-        this.#renderer2.addClass(body, prefix + nextFontPair);
+        body.classList.add(prefix + nextFontPair);
       }
     });
   }

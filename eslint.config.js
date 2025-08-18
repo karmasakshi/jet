@@ -111,7 +111,8 @@ module.exports = tseslint.config(
       'perfectionist/sort-switch-case': ['error'],
       'perfectionist/sort-union-types': ['error'],
 
-      'no-console': ['warn', { allow: ['error'] }],
+      'no-alert': 'error',
+      'no-console': 'error',
       'sort-keys': ['error', 'asc', { caseSensitive: false }],
     },
     languageOptions: { parserOptions: { projectService: true } },
