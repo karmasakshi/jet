@@ -240,7 +240,7 @@ export class AppComponent implements OnDestroy, OnInit {
     if (nextFontPairUrl !== DEFAULT_LANGUAGE_OPTION.fontPairUrl) {
       const id: string = 'jet-non-default-font-pair';
 
-      let linkElement: HTMLElement | null = document.getElementById(id);
+      let linkElement: HTMLElement | null = this.#document.getElementById(id);
 
       if (!linkElement) {
         linkElement = this.#renderer2.createElement('link');
@@ -266,12 +266,14 @@ export class AppComponent implements OnDestroy, OnInit {
     const prefix: string = 'jet-color-scheme-';
 
     requestAnimationFrame(() => {
-      this.#document.body.className = this.#document.body.classList.value
+      const body: HTMLElement = this.#document.body;
+
+      body.className = body.classList.value
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
 
       if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-        this.#renderer2.addClass(this.#document.body, prefix + nextColorScheme);
+        this.#renderer2.addClass(body, prefix + nextColorScheme);
       }
     });
   }
@@ -286,12 +288,14 @@ export class AppComponent implements OnDestroy, OnInit {
     const prefix: string = 'jet-font-pair-';
 
     requestAnimationFrame(() => {
-      this.#document.body.className = this.#document.body.classList.value
+      const body: HTMLElement = this.#document.body;
+
+      body.className = body.classList.value
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
 
       if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-        this.#renderer2.addClass(this.#document.body, prefix + nextFontPair);
+        this.#renderer2.addClass(body, prefix + nextFontPair);
       }
     });
   }
@@ -354,8 +358,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     const nextColorSchemeOption: ColorSchemeOption =
       COLOR_SCHEME_OPTIONS.find(
-        (colorSchemeOption: ColorSchemeOption): boolean =>
-          colorSchemeOption.value === nextColorScheme,
+        (colorSchemeOption) => colorSchemeOption.value === nextColorScheme,
       ) ?? DEFAULT_COLOR_SCHEME_OPTION;
 
     if (nextColorSchemeOption.themeColor !== this.#themeColor) {
