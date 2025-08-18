@@ -44,7 +44,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
-import { AvailableFontPairClass } from '@jet/types/available-font-pair-class.type';
+import { AvailableFontPair } from '@jet/types/available-font-pair.type';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
@@ -88,7 +88,7 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #translocoService = inject(TranslocoService);
 
   #colorScheme: AvailableColorScheme;
-  #fontPairClass: AvailableFontPairClass;
+  #fontPair: AvailableFontPair;
   #fontPairUrl: LanguageOption['fontPairUrl'];
   #language: AvailableLanguage;
   #themeColor: ColorSchemeOption['themeColor'];
@@ -109,7 +109,7 @@ export class AppComponent implements OnDestroy, OnInit {
   public constructor() {
     this.#colorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
-    this.#fontPairClass = DEFAULT_LANGUAGE_OPTION.fontPairClass;
+    this.#fontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
 
     this.#fontPairUrl = DEFAULT_LANGUAGE_OPTION.fontPairUrl;
 
@@ -162,8 +162,10 @@ export class AppComponent implements OnDestroy, OnInit {
             this.#unsetSystemColorSchemeListener();
           }
 
-          this.#setColorScheme(colorScheme);
-          this.#setThemeColor(colorScheme);
+          requestAnimationFrame(() => {
+            this.#setColorScheme(colorScheme);
+            this.#setThemeColor(colorScheme);
+          });
         });
       },
       { debugName: 'colorSchemeOption' },
@@ -177,8 +179,11 @@ export class AppComponent implements OnDestroy, OnInit {
 
         untracked(() => {
           this.#loadFontPair(languageOption.fontPairUrl);
-          this.#setFontPairClass(languageOption.fontPairClass);
-          this.#setLanguage(languageOption);
+
+          requestAnimationFrame(() => {
+            this.#setFontPair(languageOption.fontPair);
+            this.#setLanguage(languageOption);
+          });
         });
       },
       { debugName: 'languageOption' },
@@ -262,30 +267,40 @@ export class AppComponent implements OnDestroy, OnInit {
 
     const prefix: string = 'jet-color-scheme-';
 
-    this.#document.body.className = this.#document.body.classList.value
-      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-      .trim();
+    const body: HTMLElement = this.#document.body;
+    const currentClass: string | undefined = Array.from(body.classList).find(
+      (c) => c.startsWith(prefix),
+    );
+
+    if (currentClass) {
+      body.classList.remove(currentClass);
+    }
 
     if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      this.#renderer2.addClass(this.#document.body, prefix + nextColorScheme);
+      body.classList.add(prefix + nextColorScheme);
     }
   }
 
-  #setFontPairClass(nextFontPairClass: AvailableFontPairClass): void {
-    if (nextFontPairClass === this.#fontPairClass) {
+  #setFontPair(nextFontPair: AvailableFontPair): void {
+    if (nextFontPair === this.#fontPair) {
       return;
     }
 
-    this.#fontPairClass = nextFontPairClass;
+    this.#fontPair = nextFontPair;
 
     const prefix: string = 'jet-font-pair-';
 
-    this.#document.body.className = this.#document.body.classList.value
-      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-      .trim();
+    const body: HTMLElement = this.#document.body;
+    const currentClass: string | undefined = Array.from(body.classList).find(
+      (c) => c.startsWith(prefix),
+    );
 
-    if (nextFontPairClass !== DEFAULT_LANGUAGE_OPTION.fontPairClass) {
-      this.#renderer2.addClass(this.#document.body, prefix + nextFontPairClass);
+    if (currentClass) {
+      body.classList.remove(currentClass);
+    }
+
+    if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+      body.classList.add(prefix + nextFontPair);
     }
   }
 
