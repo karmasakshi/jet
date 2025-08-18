@@ -42,9 +42,6 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
-import { AvailableColorScheme } from '@jet/types/available-color-scheme.type';
-import { AvailableFontPair } from '@jet/types/available-font-pair.type';
-import { AvailableLanguage } from '@jet/types/available-language.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
 import { map } from 'rxjs';
@@ -86,48 +83,50 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
-  #colorScheme: AvailableColorScheme;
+  readonly #colorSchemeOption: Signal<ColorSchemeOption>;
   readonly #darkColorSchemeMediaQueryList: MediaQueryList;
-  #fontPair: AvailableFontPair;
-  #fontPairUrl: LanguageOption['fontPairUrl'];
+  readonly #darkColorSchemeEventListener: () => void;
   readonly #isPwaMode: boolean;
-  #language: AvailableLanguage;
-  #systemColorSchemeListener:
-    | ((mediaQueryListEvent: MediaQueryListEvent) => void)
-    | null;
-  #themeColor: ColorSchemeOption['themeColor'];
+  readonly #languageOption: Signal<LanguageOption>;
 
   public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
-  public readonly colorSchemeOption: Signal<ColorSchemeOption>;
+  public readonly directionality: Signal<LanguageOption['directionality']>;
   public readonly isLargeViewport: Signal<boolean>;
   public readonly isMatSidenavOpen: WritableSignal<boolean>;
-  public readonly languageOption: Signal<LanguageOption>;
   public readonly matSidenavMode: Signal<MatDrawerMode>;
   public readonly navigationMenuItems: NavigationMenuItem[];
   public readonly shouldAddSafeArea: Signal<boolean>;
 
   public constructor() {
-    this.#colorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
+    this.#colorSchemeOption = computed(
+      () => this.#settingsService.settings().colorSchemeOption,
+    );
 
     this.#darkColorSchemeMediaQueryList = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
 
-    this.#fontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
-
-    this.#fontPairUrl = DEFAULT_LANGUAGE_OPTION.fontPairUrl;
+    this.#darkColorSchemeEventListener = this.#renderer2.listen(
+      this.#darkColorSchemeMediaQueryList,
+      'change',
+      (darkColorSchemeMediaQueryList: MediaQueryListEvent) => {
+        if (this.#colorSchemeOption().value === 'automatic') {
+          this.#setThemeColor(
+            darkColorSchemeMediaQueryList.matches ? 'dark' : 'light',
+          );
+        }
+      },
+    );
 
     this.#isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
-    this.#language = DEFAULT_LANGUAGE_OPTION.value;
-
-    this.#systemColorSchemeListener = null;
-
-    this.#themeColor = DEFAULT_COLOR_SCHEME_OPTION.themeColor;
+    this.#languageOption = computed(
+      () => this.#settingsService.settings().languageOption,
+    );
 
     this.activeNavigationMenuItemPath = undefined;
 
-    this.colorSchemeOption = this.#settingsService.colorSchemeOption;
+    this.directionality = this.#settingsService.directionality;
 
     this.isLargeViewport = toSignal(
       this.#breakpointObserver
@@ -137,8 +136,6 @@ export class AppComponent implements OnDestroy, OnInit {
     );
 
     this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport());
-
-    this.languageOption = this.#settingsService.languageOption;
 
     this.matSidenavMode = computed(() => {
       return this.isLargeViewport() ? 'side' : 'over';
@@ -154,18 +151,18 @@ export class AppComponent implements OnDestroy, OnInit {
       () => {
         this.#loggerService.logEffectRun('colorSchemeOption');
 
-        const colorScheme: AvailableColorScheme =
-          this.colorSchemeOption().value;
+        const colorSchemeOption: ColorSchemeOption = this.#colorSchemeOption();
 
         untracked(() => {
-          if (colorScheme === 'automatic') {
-            this.#setSystemColorSchemeListener();
-          } else {
-            this.#unsetSystemColorSchemeListener();
-          }
+          this.#setColorScheme(colorSchemeOption.value);
 
-          this.#setColorScheme(colorScheme);
-          this.#setThemeColor(colorScheme);
+          if (colorSchemeOption.value === 'automatic') {
+            this.#setThemeColor(
+              this.#darkColorSchemeMediaQueryList.matches ? 'dark' : 'light',
+            );
+          } else {
+            this.#setThemeColor(colorSchemeOption.value);
+          }
         });
       },
       { debugName: 'colorSchemeOption' },
@@ -175,12 +172,12 @@ export class AppComponent implements OnDestroy, OnInit {
       () => {
         this.#loggerService.logEffectRun('languageOption');
 
-        const languageOption: LanguageOption = this.languageOption();
+        const languageOption: LanguageOption = this.#languageOption();
 
         untracked(() => {
           this.#loadFontPair(languageOption.fontPairUrl);
           this.#setFontPair(languageOption.fontPair);
-          this.#setLanguage(languageOption);
+          this.#setLanguage(languageOption.value);
         });
       },
       { debugName: 'languageOption' },
@@ -190,7 +187,7 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   public ngOnDestroy(): void {
-    this.#unsetSystemColorSchemeListener();
+    this.#darkColorSchemeEventListener();
   }
 
   public ngOnInit(): void {
@@ -228,72 +225,52 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#setZoom(this.#isPwaMode);
   }
 
-  #loadFontPair(nextFontPairUrl: string): void {
-    if (nextFontPairUrl === this.#fontPairUrl) {
-      return;
+  #loadFontPair(fontPairUrl: LanguageOption['fontPairUrl']): void {
+    const id: string = 'jet-non-default-font-pair';
+
+    let linkElement: HTMLElement | null = document.getElementById(id);
+
+    if (linkElement) {
+      this.#renderer2.removeChild(this.#document.head, linkElement);
     }
 
-    this.#fontPairUrl = nextFontPairUrl;
-
-    if (nextFontPairUrl !== DEFAULT_LANGUAGE_OPTION.fontPairUrl) {
-      const id: string = 'jet-non-default-font-pair';
-
-      let linkElement: HTMLElement | null = this.#document.getElementById(id);
-
-      if (!linkElement) {
-        linkElement = this.#renderer2.createElement('link');
-
-        this.#renderer2.setAttribute(linkElement, 'href', nextFontPairUrl);
-        this.#renderer2.setAttribute(linkElement, 'id', id);
-        this.#renderer2.setAttribute(linkElement, 'rel', 'stylesheet');
-
-        this.#renderer2.appendChild(this.#document.head, linkElement);
-      } else {
-        this.#renderer2.setAttribute(linkElement, 'href', nextFontPairUrl);
-      }
+    if (fontPairUrl !== DEFAULT_LANGUAGE_OPTION.fontPairUrl) {
+      linkElement = this.#renderer2.createElement('link');
+      this.#renderer2.setAttribute(linkElement, 'href', fontPairUrl);
+      this.#renderer2.setAttribute(linkElement, 'id', id);
+      this.#renderer2.setAttribute(linkElement, 'rel', 'stylesheet');
+      this.#renderer2.appendChild(this.#document.head, linkElement);
     }
   }
 
-  #setColorScheme(nextColorScheme: AvailableColorScheme): void {
-    if (nextColorScheme === this.#colorScheme) {
-      return;
-    }
-
-    this.#colorScheme = nextColorScheme;
-
+  #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
     const prefix: string = 'jet-color-scheme-';
 
     requestAnimationFrame(() => {
       const body: HTMLElement = this.#document.body;
 
-      body.className = body.classList.value
+      body.className = body.className
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
 
-      if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-        body.classList.add(prefix + nextColorScheme);
+      if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+        body.classList.add(prefix + colorScheme);
       }
     });
   }
 
-  #setFontPair(nextFontPair: AvailableFontPair): void {
-    if (nextFontPair === this.#fontPair) {
-      return;
-    }
-
-    this.#fontPair = nextFontPair;
-
+  #setFontPair(fontPair: LanguageOption['fontPair']): void {
     const prefix: string = 'jet-font-pair-';
 
     requestAnimationFrame(() => {
       const body: HTMLElement = this.#document.body;
 
-      body.className = body.classList.value
+      body.className = body.className
         .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
         .trim();
 
-      if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-        body.classList.add(prefix + nextFontPair);
+      if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+        body.classList.add(prefix + fontPair);
       }
     });
   }
@@ -307,66 +284,28 @@ export class AppComponent implements OnDestroy, OnInit {
     );
   }
 
-  #setLanguage(nextLanguageOption: LanguageOption): void {
-    if (nextLanguageOption.value === this.#language) {
-      return;
-    }
-
-    this.#language = nextLanguageOption.value;
-
+  #setLanguage(language: LanguageOption['value']): void {
     this.#renderer2.setAttribute(
       this.#document.documentElement,
       'lang',
-      nextLanguageOption.value,
+      language,
     );
 
-    this.#translocoService.setActiveLang(nextLanguageOption.value);
+    this.#translocoService.setActiveLang(language);
   }
 
-  #setSystemColorSchemeListener(): void {
-    if (this.#systemColorSchemeListener) {
-      return;
-    }
-
-    this.#systemColorSchemeListener = (
-      mediaQueryListEvent: MediaQueryListEvent,
-    ) => {
-      // This updates `<meta name="theme-color" />` based on system setting.
-      // This needs to run only when `this.#colorScheme === 'automatic'`, not otherwise.
-      // The listener is set and unset accordingly, so `this.#colorScheme === 'automatic'` check isn't needed.
-      if (mediaQueryListEvent.matches) {
-        this.#setThemeColor('dark');
-      } else {
-        this.#setThemeColor('light');
-      }
-    };
-
-    this.#darkColorSchemeMediaQueryList.addEventListener(
-      'change',
-      this.#systemColorSchemeListener,
-    );
-  }
-
-  #setThemeColor(nextColorScheme: AvailableColorScheme): void {
-    if (nextColorScheme === 'automatic') {
-      nextColorScheme = this.#darkColorSchemeMediaQueryList.matches
-        ? 'dark'
-        : 'light';
-    }
-
-    const nextColorSchemeOption: ColorSchemeOption =
+  #setThemeColor(
+    colorScheme: Omit<ColorSchemeOption['value'], 'automatic'>,
+  ): void {
+    const colorSchemeOption: ColorSchemeOption =
       COLOR_SCHEME_OPTIONS.find(
-        (colorSchemeOption) => colorSchemeOption.value === nextColorScheme,
+        (colorSchemeOption) => colorSchemeOption.value === colorScheme,
       ) ?? DEFAULT_COLOR_SCHEME_OPTION;
 
-    if (nextColorSchemeOption.themeColor !== this.#themeColor) {
-      this.#themeColor = nextColorSchemeOption.themeColor;
-
-      this.#meta.updateTag({
-        content: nextColorSchemeOption.themeColor ?? '#ffffff',
-        name: 'theme-color',
-      });
-    }
+    this.#meta.updateTag({
+      content: colorSchemeOption.themeColor,
+      name: 'theme-color',
+    });
   }
 
   #setZoom(isPwaMode: boolean): void {
@@ -377,18 +316,5 @@ export class AppComponent implements OnDestroy, OnInit {
         name: 'viewport',
       });
     }
-  }
-
-  #unsetSystemColorSchemeListener(): void {
-    if (!this.#systemColorSchemeListener) {
-      return;
-    }
-
-    this.#darkColorSchemeMediaQueryList.removeEventListener(
-      'change',
-      this.#systemColorSchemeListener,
-    );
-
-    this.#systemColorSchemeListener = null;
   }
 }

@@ -17,10 +17,10 @@ export class AlertService {
   readonly #loggerService = inject(LoggerService);
   readonly #settingsService = inject(SettingsService);
 
-  readonly #languageOption: Signal<LanguageOption>;
+  readonly #directionality: Signal<LanguageOption['directionality']>;
 
   public constructor() {
-    this.#languageOption = this.#settingsService.languageOption;
+    this.#directionality = this.#settingsService.directionality;
 
     this.#loggerService.logServiceInitialization('AlertService');
   }
@@ -32,7 +32,7 @@ export class AlertService {
   ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
       this.#matSnackBar.open(message, cta, {
-        direction: this.#languageOption().directionality,
+        direction: this.#directionality(),
       });
 
     if (action) {

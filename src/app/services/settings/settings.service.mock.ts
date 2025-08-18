@@ -2,22 +2,20 @@
 
 import { computed, Signal, signal, WritableSignal } from '@angular/core';
 import { DEFAULT_SETTINGS } from '@jet/constants/default-settings.constant';
-import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { Settings } from '@jet/interfaces/settings.interface';
 
 export class SettingsServiceMock {
   readonly #settings: WritableSignal<Settings>;
 
-  public readonly colorSchemeOption: Signal<ColorSchemeOption>;
-  public readonly languageOption: Signal<LanguageOption>;
+  public readonly directionality: Signal<LanguageOption['directionality']>;
 
   public constructor() {
     this.#settings = signal({ ...DEFAULT_SETTINGS });
 
-    this.colorSchemeOption = computed(() => this.#settings().colorSchemeOption);
-
-    this.languageOption = computed(() => this.#settings().languageOption);
+    this.directionality = computed(
+      () => this.#settings().languageOption.directionality,
+    );
   }
 
   public get settings(): Signal<Settings> {
