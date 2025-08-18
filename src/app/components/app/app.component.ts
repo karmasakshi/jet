@@ -162,10 +162,8 @@ export class AppComponent implements OnDestroy, OnInit {
             this.#unsetSystemColorSchemeListener();
           }
 
-          requestAnimationFrame(() => {
-            this.#setColorScheme(colorScheme);
-            this.#setThemeColor(colorScheme);
-          });
+          this.#setColorScheme(colorScheme);
+          this.#setThemeColor(colorScheme);
         });
       },
       { debugName: 'colorSchemeOption' },
@@ -179,11 +177,8 @@ export class AppComponent implements OnDestroy, OnInit {
 
         untracked(() => {
           this.#loadFontPair(languageOption.fontPairUrl);
-
-          requestAnimationFrame(() => {
-            this.#setFontPair(languageOption.fontPair);
-            this.#setLanguage(languageOption);
-          });
+          this.#setFontPair(languageOption.fontPair);
+          this.#setLanguage(languageOption);
         });
       },
       { debugName: 'languageOption' },
@@ -216,9 +211,12 @@ export class AppComponent implements OnDestroy, OnInit {
           }
 
           if (event instanceof NavigationError) {
-            const error: Error | undefined = event.error as Error;
+            const error = event.error;
+            const message: string | undefined =
+              error instanceof Error ? error.message : undefined;
+
             this.#loggerService.logError(error);
-            this.#alertService.showErrorAlert(error.message);
+            this.#alertService.showErrorAlert(message);
           }
 
           this.#progressBarService.hideProgressBar();
@@ -267,18 +265,15 @@ export class AppComponent implements OnDestroy, OnInit {
 
     const prefix: string = 'jet-color-scheme-';
 
-    const body: HTMLElement = this.#document.body;
-    const currentClass: string | undefined = Array.from(body.classList).find(
-      (c) => c.startsWith(prefix),
-    );
+    requestAnimationFrame(() => {
+      this.#document.body.className = this.#document.body.classList.value
+        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+        .trim();
 
-    if (currentClass) {
-      body.classList.remove(currentClass);
-    }
-
-    if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      body.classList.add(prefix + nextColorScheme);
-    }
+      if (nextColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+        this.#renderer2.addClass(this.#document.body, prefix + nextColorScheme);
+      }
+    });
   }
 
   #setFontPair(nextFontPair: AvailableFontPair): void {
@@ -290,18 +285,15 @@ export class AppComponent implements OnDestroy, OnInit {
 
     const prefix: string = 'jet-font-pair-';
 
-    const body: HTMLElement = this.#document.body;
-    const currentClass: string | undefined = Array.from(body.classList).find(
-      (c) => c.startsWith(prefix),
-    );
+    requestAnimationFrame(() => {
+      this.#document.body.className = this.#document.body.classList.value
+        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+        .trim();
 
-    if (currentClass) {
-      body.classList.remove(currentClass);
-    }
-
-    if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-      body.classList.add(prefix + nextFontPair);
-    }
+      if (nextFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+        this.#renderer2.addClass(this.#document.body, prefix + nextFontPair);
+      }
+    });
   }
 
   #setIcons(): void {
