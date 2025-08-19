@@ -15,15 +15,16 @@ Angular starter-kit for building quality web apps fast.
 <br />
 
 <div align="center">
-  <img alt="GitHub License" src="https://img.shields.io/github/license/karmasakshi/jet?link=https%3A%2F%2Fopensource.org%2Flicense%2Fmit">
-  <img alt="Mozilla HTTP Observatory Grade" src="https://img.shields.io/mozilla-observatory/grade/jet-tau.vercel.app?link=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fobservatory%2Fanalyze%3Fhost%3Djet-tau.vercel.app">
+  <img alt="GitHub License" src="https://img.shields.io/github/license/karmasakshi/jet?color=brightgreen&link=https%3A%2F%2Fopensource.org%2Flicense%2Fmit">
+  <img alt="Mozilla HTTP Observatory Grade" src="https://img.shields.io/mozilla-observatory/grade/jet-tau.vercel.app?color=brightgreen&link=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fobservatory%2Fanalyze%3Fhost%3Djet-tau.vercel.app">
   <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fjet-tau.vercel.app%2F&label=demo&link=https%3A%2F%2Fjet-tau.vercel.app%2F">
 </div>
 
 <div align="center">
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/t/karmasakshi/jet?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/karmasakshi/jet?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
-  <img alt="GitHub Issues or Pull Requests by label" src="https://img.shields.io/github/issues/karmasakshi/jet/enhancement?label=feature%20requests&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fissues%3Fq%3Dis%253Aissue%2520state%253Aopen%2520label%253Aenhancement">
+  <img alt="GitHub Issues or Pull Requests by label" src="https://img.shields.io/github/issues/karmasakshi/jet/enhancement?color=blue&label=feature%20requests&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fissues%3Fq%3Dis%253Aissue%2520state%253Aopen%2520label%253Aenhancement">
+  <img alt="Static Badge" src="https://img.shields.io/badge/prs-welcome-blue?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fpulls">
 </div>
 
 <div align="center">
@@ -34,51 +35,14 @@ Angular starter-kit for building quality web apps fast.
 </div>
 
 <div align="center">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/karmasakshi/jet?color=%236e4b3a&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet">
-  <img alt="GitHub forks" src="https://img.shields.io/github/forks/karmasakshi/jet?color=%236e4b3a&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Ffork">
-  <img alt="GitHub watchers" src="https://img.shields.io/github/watchers/karmasakshi/jet?color=%236e4b3a&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet">
+  <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=%236e4b3a&style=flat" /></a>
   <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?link=https%3A%2F%2Fx.com%2Fjetprojectdev">
-  <img alt="GitHub followers" src="https://img.shields.io/github/followers/karmasakshi?color=%236e4b3a&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2F">
-  <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/karmasakshi?link=https%3A%2F%2Fx.com%2Fkarmasakshi">
 </div>
 
-## Sponsors
-
-<p align="center">
-  <img
-    alt="byjokese"
-    src="https://github.com/byjokese.png"
-    width="64"
-  />
-  &nbsp;
-  <img
-    alt="dipenpradhan"
-    src="https://github.com/dipenpradhan.png"
-    width="64"
-  />
-  &nbsp;
-  <img
-    alt="lohiaad"
-    src="https://github.com/lohiaad.png"
-    width="64"
-  />
-  &nbsp;
-  <img
-    alt="singhamit089"
-    src="https://github.com/singhamit089.png"
-    width="64"
-  />
-</p>
-
-Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+<br />
 
 ## Contents
 
-- [Sponsors](#sponsors)
 - [Features](#features)
   - [Integrations](#integrations)
   - [Components](#components)
@@ -126,6 +90,8 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
     - [Link a Supabase project](#link-a-supabase-project)
     - [Run Supabase locally](#run-supabase-locally)
     - [Remove Supabase](#remove-supabase)
+  - [Sponsors](#sponsors)
+  - [License](#license)
 
 <br />
 
@@ -588,3 +554,37 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 <br />
 
 [↑ Back to Contents](#contents)
+
+## Sponsors
+
+<p align="center">
+  <img
+    alt="byjokese"
+    src="https://github.com/byjokese.png"
+    width="64"
+  />
+  &nbsp;
+  <img
+    alt="dipenpradhan"
+    src="https://github.com/dipenpradhan.png"
+    width="64"
+  />
+  &nbsp;
+  <img
+    alt="lohiaad"
+    src="https://github.com/lohiaad.png"
+    width="64"
+  />
+  &nbsp;
+  <img
+    alt="singhamit089"
+    src="https://github.com/singhamit089.png"
+    width="64"
+  />
+</p>
+
+Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
