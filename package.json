@@ -71,6 +71,6 @@
     "prettier-plugin-organize-imports": "^4.2.0",
     "supabase": "^2.34.3",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.39.1"
+    "typescript-eslint": "^8.40.0"
   }
 }
