@@ -22,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import {
   Event,
+  NavigationCancel,
   NavigationEnd,
   NavigationError,
   NavigationStart,
@@ -44,7 +45,7 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
-import { map } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -196,12 +197,20 @@ export class AppComponent implements OnDestroy, OnInit {
     });
 
     this.#router.events
-      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .pipe(
+        filter(
+          (event: Event) =>
+            event instanceof NavigationStart ||
+            event instanceof NavigationCancel ||
+            event instanceof NavigationEnd ||
+            event instanceof NavigationError,
+        ),
+        takeUntilDestroyed(this.#destroyRef),
+      )
       .subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
           this.#progressBarService.showQueryProgressBar();
-        } else {
-          this.#progressBarService.hideProgressBar();
+          return;
         }
 
         if (event instanceof NavigationEnd) {
@@ -216,6 +225,8 @@ export class AppComponent implements OnDestroy, OnInit {
           this.#loggerService.logError(error);
           this.#alertService.showErrorAlert(message);
         }
+
+        this.#progressBarService.hideProgressBar();
       });
 
     this.#serviceWorkerService.subscribeToVersionUpdates();
