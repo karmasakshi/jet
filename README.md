@@ -17,26 +17,24 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <div align="center">
   <img alt="GitHub License" src="https://img.shields.io/github/license/karmasakshi/jet?color=brightgreen&link=https%3A%2F%2Fopensource.org%2Flicense%2Fmit">
   <img alt="Mozilla HTTP Observatory Grade" src="https://img.shields.io/mozilla-observatory/grade/jet-tau.vercel.app?color=brightgreen&link=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fobservatory%2Fanalyze%3Fhost%3Djet-tau.vercel.app">
-  <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fjet-tau.vercel.app%2F&label=demo&link=https%3A%2F%2Fjet-tau.vercel.app%2F">
 </div>
 
 <div align="center">
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/t/karmasakshi/jet?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/karmasakshi/jet?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
-  <img alt="GitHub Issues or Pull Requests by label" src="https://img.shields.io/github/issues/karmasakshi/jet/enhancement?color=blue&label=feature%20requests&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fissues%3Fq%3Dis%253Aissue%2520state%253Aopen%2520label%253Aenhancement">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/karmasakshi/jet?color=blue&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
   <img alt="Static Badge" src="https://img.shields.io/badge/prs-welcome-blue?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fpulls">
 </div>
 
 <div align="center">
-  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/karmasakshi/jet?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Freleases">
-  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fcore?link=https%3A%2F%2Fgithub.com%2Fangular%2Fangular%2Freleases%2F">
-  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fmaterial?link=https%3A%2F%2Fgithub.com%2Fangular%2Fcomponents%2Freleases%2F">
-  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40supabase%2Fsupabase-js?link=https%3A%2F%2Fgithub.com%2Fsupabase%2Fsupabase-js%2Freleases">
+  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/karmasakshi/jet?color=red&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Freleases">
+  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fcore?color=red&link=https%3A%2F%2Fgithub.com%2Fangular%2Fangular%2Freleases%2F">
+  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fmaterial?color=red&link=https%3A%2F%2Fgithub.com%2Fangular%2Fcomponents%2Freleases%2F">
+  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40supabase%2Fsupabase-js?color=red&link=https%3A%2F%2Fgithub.com%2Fsupabase%2Fsupabase-js%2Freleases">
 </div>
 
 <div align="center">
-  <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=%236e4b3a&style=flat" /></a>
-  <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?link=https%3A%2F%2Fx.com%2Fjetprojectdev">
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=%236e4b3a&style=flat">
+  <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?style=plastic&logo=X&label=%40jetprojectdev&color=%236e4b3a&link=https%3A%2F%2Fx.com%2Fjetprojectdev">
 </div>
 
 <br />
