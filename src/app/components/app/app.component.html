@@ -13,6 +13,12 @@
       #matSidenav
       [(opened)]="isMatSidenavOpen"
       [mode]="_matSidenavMode"
+      [style]="{
+        width:
+          _directionality === 'ltr'
+            ? 'calc(240px + env(safe-area-inset-left))'
+            : 'calc(240px + env(safe-area-inset-right)),',
+      }"
       fixedInViewport
     >
       <jet-sidenav
