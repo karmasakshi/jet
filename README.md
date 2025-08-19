@@ -15,26 +15,52 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <br />
 
 <div align="center">
-  <img alt="GitHub License" src="https://img.shields.io/github/license/karmasakshi/jet?color=brightgreen&link=https%3A%2F%2Fopensource.org%2Flicense%2Fmit">
-  <img alt="Mozilla HTTP Observatory Grade" src="https://img.shields.io/mozilla-observatory/grade/jet-tau.vercel.app?color=brightgreen&link=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fobservatory%2Fanalyze%3Fhost%3Djet-tau.vercel.app">
+  <a href="https://opensource.org/license/mit">
+    <img alt="GitHub License" src="https://img.shields.io/github/license/karmasakshi/jet?color=brightgreen">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/observatory/analyze?host=jet-tau.vercel.app">
+    <img alt="Mozilla HTTP Observatory Grade" src="https://img.shields.io/mozilla-observatory/grade/jet-tau.vercel.app?color=brightgreen">
+  </a>
 </div>
 
 <div align="center">
-  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/t/karmasakshi/jet?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/karmasakshi/jet?color=blue&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fcommits%2Fmain%2F">
-  <img alt="Static Badge" src="https://img.shields.io/badge/prs-welcome-blue?link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Fpulls">
+  <a href="https://github.com/karmasakshi/jet/commits/main">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/t/karmasakshi/jet?color=brightgreen">
+  </a>
+  <a href="https://github.com/karmasakshi/jet/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/karmasakshi/jet?color=brightgreen">
+  </a>
+  <a href="https://github.com/karmasakshi/jet/pulls">
+    <img alt="Static Badge" src="https://img.shields.io/badge/prs-welcome-brightgreen">
+  </a>
 </div>
 
 <div align="center">
-  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/karmasakshi/jet?color=red&link=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet%2Freleases">
-  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fcore?color=red&link=https%3A%2F%2Fgithub.com%2Fangular%2Fangular%2Freleases%2F">
-  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fmaterial?color=red&link=https%3A%2F%2Fgithub.com%2Fangular%2Fcomponents%2Freleases%2F">
-  <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40supabase%2Fsupabase-js?color=red&link=https%3A%2F%2Fgithub.com%2Fsupabase%2Fsupabase-js%2Freleases">
+  <a href="https://github.com/karmasakshi/jet/releases">
+    <img alt="GitHub Release" src="https://img.shields.io/github/v/release/karmasakshi/jet?color=blue">
+  </a>
+  <a href="https://github.com/angular/angular/releases">
+    <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fcore?color=blue">
+  </a>
+  <a href="https://github.com/angular/components/releases">
+    <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40angular%2Fmaterial?color=blue">
+  </a>
+  <a href="https://github.com/supabase/supabase-js/releases">
+    <img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/karmasakshi/jet/%40supabase%2Fsupabase-js?color=blue">
+  </a>
 </div>
 
 <div align="center">
-  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=%236e4b3a&style=flat">
-  <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?style=plastic&logo=X&label=%40jetprojectdev&color=%236e4b3a&link=https%3A%2F%2Fx.com%2Fjetprojectdev">
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=white&style=plastic">
+  <a href="https://x.com/jetprojectdev">
+    <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?style=plastic&logo=X&label=%40jetprojectdev&color=white">
+  </a>
+  <a href="https://github.dev/karmasakshi/jet">
+    <img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-maroon?style=plastic">
+  </a>
+  <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi">
+    <img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-maroon?style=plastic">
+  </a>
 </div>
 
 <br />
