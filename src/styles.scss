@@ -6,6 +6,8 @@ $ns-font-family: ('Noto Sans', sans-serif);
 $nsa-font-family: ('Noto Sans Arabic', sans-serif);
 
 html {
+  --jet-sidenav-width: 240px;
+
   text-size-adjust: none;
 
   @include mat.theme(
@@ -98,6 +100,14 @@ body {
 .jet-sidenav-container {
   &[dir='ltr'] {
     .jet-sidenav {
+      @include mat.sidenav-overrides(
+        (
+          container-width: calc(
+              var(--jet-sidenav-width) + env(safe-area-inset-left)
+            ),
+        )
+      );
+
       .jet-sidenav-toolbar,
       .jet-sidenav-nav-list {
         padding-left: calc(16px + env(safe-area-inset-left));
@@ -149,6 +159,14 @@ body {
 
   &[dir='rtl'] {
     .jet-sidenav {
+      @include mat.sidenav-overrides(
+        (
+          container-width: calc(
+              var(--jet-sidenav-width) + env(safe-area-inset-right)
+            ),
+        )
+      );
+
       .jet-sidenav-toolbar,
       .jet-sidenav-nav-list {
         padding-left: 16px;

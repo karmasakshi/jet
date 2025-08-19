@@ -1,6 +1,5 @@
 @let _directionality = directionality();
 @let _isLargeViewport = isLargeViewport();
-@let _isMatSidenavOpen = isMatSidenavOpen();
 @let _matSidenavMode = matSidenavMode();
 @let _shouldAddSafeArea = shouldAddSafeArea();
 
@@ -14,12 +13,6 @@
       #matSidenav
       [(opened)]="isMatSidenavOpen"
       [mode]="_matSidenavMode"
-      [style]="{
-        width:
-          _directionality === 'ltr'
-            ? 'calc(240px + env(safe-area-inset-left))'
-            : 'calc(240px + env(safe-area-inset-right)),',
-      }"
       fixedInViewport
     >
       <jet-sidenav
@@ -29,15 +22,7 @@
         "
       ></jet-sidenav>
     </mat-sidenav>
-    <mat-sidenav-content
-      class="jet-sidenav-content"
-      [style]="{
-        'margin-left':
-          _isMatSidenavOpen && _directionality === 'ltr' ? '240px' : 0,
-        'margin-right':
-          _isMatSidenavOpen && _directionality === 'rtl' ? '240px' : 0,
-      }"
-    >
+    <mat-sidenav-content class="jet-sidenav-content">
       <jet-toolbar
         [isLargeViewport]="_isLargeViewport"
         [shouldAddSafeArea]="_shouldAddSafeArea"
