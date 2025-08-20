@@ -45,19 +45,18 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-6e4b3a?style=plastic"></a>
 
 - Click the button, create the repository, then clone it
-- Delete [FUNDING.yml](./.github/FUNDING.yml)
-- Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
-- Delete [LICENSE](./LICENSE) and `license` in [package.json](./package.json)
 - Create a copy of `.env.example` and name it `.env`
-- Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
+- Delete `./.github/FUNDING.yml`, `./CHANGELOG.md` (a fresh one will be created on your first release), and `./LICENSE`
+- Delete `license` property in `./package.json`
+- Update the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
 - Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
 - Run `ng serve`
 
 Nice to do:
 
-- Find and replace `jet-tau.vercel.app` with your domain
+- Delete or update `./README.md`
+- Find and replace `jet-tau.vercel.app` with the URL of your app
 - Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in [config.toml](./supabase/config.toml) to something unique to the project
-- Update [README.md](./README.md)
 - [Set up Release Please](#set-up-release-please)
 
 <br />
