@@ -35,9 +35,31 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <div align="center">
   <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=white&style=plastic">
   <a href="https://x.com/jetprojectdev"><img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?style=plastic&logo=X&label=%40jetprojectdev&color=white"></a>
-  <a href="https://github.dev/karmasakshi/jet"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-maroon?style=plastic"></a>
-  <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-maroon?style=plastic"></a>
+  <a href="https://github.dev/karmasakshi/jet"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-6e4b3a?style=plastic"></a>
+  <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-6e4b3a?style=plastic"></a>
 </div>
+
+<br />
+
+### Get started in 30 seconds
+
+- Click on **Use this template** > **Create a new repository** at the top of this repository
+- Create the new repository
+- Go to repository settings, add Actions > Secrets
+- Clone it, then open it
+- Delete [FUNDING.yml](./.github/FUNDING.yml)
+- Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
+- Delete [LICENSE](./LICENSE) and `license` in [package.json](./package.json)
+- Create a copy of `.env.example` and name it `.env`
+- Update the `license` property in [package.json](./package.json)
+- Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
+- Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
+- Replace `jet-tau.vercel.app` with your domain
+
+Nice to do:
+
+- Update [README.md](./README.md)
+- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) to something unique to the project
 
 <br />
 
@@ -55,7 +77,6 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
   - [GitHub Actions](#github-actions)
   - [GitHub Issue Templates](#github-issue-templates)
 - [Guides](#guides)
-  - [Get started](#get-started)
   - [Add elements](#add-elements)
     - [Add a component](#add-a-component)
     - [Add a page component](#add-a-page-component)
@@ -233,30 +254,6 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 ## Guides
 
 If you need help with something not listed here, [create a new issue](https://github.com/karmasakshi/jet/issues).
-
-<br />
-
-[↑ Back to Contents](#contents)
-
-### Get started
-
-- Click on **Use this template** > **Create a new repository** at the top of this repository
-- Create the new repository
-- Go to repository settings, add Actions > Secrets
-- Clone it, then open it
-- Delete [FUNDING.yml](./.github/FUNDING.yml)
-- Delete [CHANGELOG.md](./CHANGELOG.md); a fresh one will be created automatically on your first release
-- Delete [LICENSE](./LICENSE) and `license` in [package.json](./package.json)
-- Create a copy of `.env.example` and name it `.env`
-- Update the `license` property in [package.json](./package.json)
-- Update the `version` property to `0.0.0` in [package.json](./package.json) and [package-lock.json](./package-lock.json)
-- Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
-- Replace `jet-tau.vercel.app` with your domain
-
-Nice to do:
-
-- Update [README.md](./README.md)
-- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) to something unique to the project
 
 <br />
 
