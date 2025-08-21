@@ -38,7 +38,7 @@
               />
               @if (_emailControl.value !== null) {
                 <button
-                  [attr.aria-label]="t('clear')"
+                  [aria-label]="t('clear')"
                   [disabled]="_emailControl.disabled"
                   (click)="_emailControl.reset()"
                   matIconButton
@@ -68,7 +68,7 @@
                 required
               />
               <button
-                [attr.aria-label]="t('toggle-visibility')"
+                [aria-label]="t('toggle-visibility')"
                 [disabled]="_passwordControl.disabled"
                 (click)="isPasswordHidden = !isPasswordHidden"
                 matIconButton

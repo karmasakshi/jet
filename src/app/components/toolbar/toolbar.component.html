@@ -13,7 +13,7 @@
   >
     <mat-progress-bar
       class="jet-progress-bar"
-      [attr.aria-label]="t('loading')"
+      [aria-label]="t('loading')"
       [bufferValue]="_progressBarConfiguration.bufferValue"
       [mode]="_progressBarConfiguration.mode"
       [style]="{ opacity: _progressBarConfiguration.isVisible ? 1 : 0 }"
@@ -22,7 +22,7 @@
     </mat-progress-bar>
     @if (_isLargeViewport) {
       <button
-        [attr.aria-label]="t('toggle-navigation-menu')"
+        [aria-label]="t('toggle-navigation-menu')"
         [jetAnalytics]="{ name: 'Toggle sidenav' }"
         [matTooltip]="t('toggle-navigation-menu')"
         (click)="toggleMatSidenav.emit()"
@@ -34,7 +34,7 @@
       </button>
     } @else {
       <a
-        [attr.aria-label]="t('home')"
+        [aria-label]="t('home')"
         [jetAnalytics]="{ name: 'Open home' }"
         [matTooltip]="t('home')"
         [routerLink]="['/']"
@@ -50,7 +50,7 @@
     <div style="flex: 1"></div>
     @if (_user !== null) {
       <a
-        [attr.aria-label]="t('sign-out')"
+        [aria-label]="t('sign-out')"
         [matTooltip]="t('sign-out')"
         [routerLink]="['/sign-out']"
         matIconButton
@@ -60,7 +60,7 @@
       </a>
     } @else {
       <a
-        [attr.aria-label]="t('sign-in')"
+        [aria-label]="t('sign-in')"
         [matTooltip]="t('sign-in')"
         [routerLink]="['/sign-in']"
         matIconButton

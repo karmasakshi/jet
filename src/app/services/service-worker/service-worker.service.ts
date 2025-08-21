@@ -96,10 +96,18 @@ export class ServiceWorkerService {
 
           case 'VERSION_DETECTED':
             this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
-            this.#analyticsService.logEvent('VERSION_DETECTED');
+            this.#analyticsService.logEvent('VERSION_DETECTED', {
+              version: versionEvent.version.hash,
+            });
             this.#alertService.showAlert(
               this.#translocoService.translate('alerts.downloading-updates'),
             );
+            break;
+
+          case 'VERSION_FAILED':
+            this.#loggerService.logError(new Error(versionEvent.error));
+            this.#analyticsService.logEvent('VERSION_FAILED');
+            this.#alertService.showErrorAlert(versionEvent.error);
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
@@ -110,7 +118,10 @@ export class ServiceWorkerService {
 
           case 'VERSION_READY':
             this.#isUpdatePending.set(true);
-            this.#analyticsService.logEvent('VERSION_READY');
+            this.#analyticsService.logEvent('VERSION_READY', {
+              currentVersion: versionEvent.currentVersion.hash,
+              latestVersion: versionEvent.latestVersion.hash,
+            });
             this.alertUpdateAvailability();
             break;
         }

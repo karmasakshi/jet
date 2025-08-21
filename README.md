@@ -61,6 +61,10 @@ Nice to do:
 
 <br />
 
+[![Star History Chart](https://api.star-history.com/svg?repos=karmasakshi/jet&type=Date)](https://www.star-history.com/#karmasakshi/jet&Date)
+
+<br />
+
 ## Contents
 
 - [Features](#features)
