@@ -29,7 +29,8 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/classes.scss"]
+            "styles": ["src/styles.scss", "src/classes.scss"],
+            "optimization": { "styles": { "inlineCritical": false } }
           },
           "configurations": {
             "production": {
