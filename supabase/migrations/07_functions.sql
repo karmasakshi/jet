@@ -6,29 +6,30 @@ language plpgsql
 security definer
 set search_path = '' as
 $$
-  begin
-    insert into public.profiles (id, avatar_url, username)
-    values (
-      new.id,
-      null,
-      replace(new.id::text, '-', '_')
-    );
+begin
+  insert into public.profiles (id, avatar_url, username)
+  values (
+    new.id,
+    null,
+    replace(new.id::text, '-', '_')
+  );
 
-    return new;
-  end;
+  return new;
+end;
 $$;
 
 -- security invoker
 
-create or replace function public.update_updated_at()
+create or replace function public.update_timestamps()
 returns trigger
 language plpgsql
 security invoker
 set search_path = '' as
 $$
-  begin
-    new.updated_at = now();
+begin
+  new.created_at := old.created_at;
+  new.updated_at := now();
 
-    return new;
-  end;
+  return new;
+end;
 $$;
