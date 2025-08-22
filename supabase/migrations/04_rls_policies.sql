@@ -2,7 +2,7 @@
 
 alter table public.profiles enable row level security;
 
-create policy "Allow authenticated to select own profiles"
+create policy "Allow authenticated to select own"
 on public.profiles
 as permissive
 for select
@@ -11,7 +11,7 @@ using (
   (select auth.uid()) = id
 );
 
-create policy "Allow authenticated to update own profiles"
+create policy "Allow authenticated to update own"
 on public.profiles
 as permissive
 for update
