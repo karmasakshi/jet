@@ -27,6 +27,7 @@ module.exports = tseslint.config(
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-signals': 'error',
 
+      '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/member-ordering': [
         'error',
         {
@@ -39,7 +40,6 @@ module.exports = tseslint.config(
           ],
         },
       ],
-      '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/naming-convention': [
         'error',
         {
