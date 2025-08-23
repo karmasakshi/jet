@@ -11,12 +11,11 @@ create table public.profiles (
         and avatar_url ~* '^https?://.+$'
       )
     ),
-  username text not null
+  username text not null unique
     check (
       length(username) between 3 and 36
       and username ~ '^[a-z0-9_]+$'
-    )
-    unique,
+    ),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
