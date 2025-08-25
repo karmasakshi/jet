@@ -42,7 +42,7 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 ## Demo
 
-[https://jet-tau.vercel.app](https://jet-tau.vercel.app)
+<a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-view-6e4b3a?style=plastic"></a>
 
 <br />
 
