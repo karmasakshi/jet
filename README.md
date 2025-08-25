@@ -40,24 +40,30 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 <br />
 
+## Demo
+
+[https://jet-tau.vercel.app](https://jet-tau.vercel.app)
+
+<br />
+
 ## Get started in 30 seconds
 
 <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-6e4b3a?style=plastic"></a>
 
 - Click the button, create the repository, then clone it
 - Create a copy of `.env.example` and name it `.env`
-- Delete `./.github/FUNDING.yml`, `./CHANGELOG.md` (a fresh one will be created on your first release), and `./LICENSE`
-- Delete `license` property in `./package.json`
-- Update the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
+- Delete `./.github/FUNDING.yml` and `./LICENSE`
+- Delete `./CHANGELOG.md` - a fresh one will be created on first release
+- Delete the `license` property in `./package.json` and `./package-lock.json`
+- Reset the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
 - Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
-- Run `ng serve`
+- Run `ng serve` and start building!
 
 Nice to do:
 
 - Delete or update `./README.md`
-- Find and replace `jet-tau.vercel.app` with the URL of your app
-- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in [config.toml](./supabase/config.toml) to something unique to the project
-- [Set up Release Please](#set-up-release-please)
+- Find and replace `https://jet-tau.vercel.app` with the base URL of your app
+- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to the project
 
 <br />
 
@@ -113,8 +119,9 @@ Nice to do:
     - [Link a Supabase project](#link-a-supabase-project)
     - [Run Supabase locally](#run-supabase-locally)
     - [Remove Supabase](#remove-supabase)
-  - [Sponsors](#sponsors)
-  - [License](#license)
+  - [Squeeze out more performance](#squeeze-out-more-performance)
+- [Sponsors](#sponsors)
+- [License](#license)
 
 <br />
 
@@ -135,7 +142,7 @@ Nice to do:
 ### Integrations
 
 - [@angular/material](https://github.com/angular/components) for components and theming support.
-- [@angular/pwa](https://angular.dev/ecosystem/service-workers) for PWA support.
+- [@angular/service-worker](https://angular.dev/ecosystem/service-workers) for PWA support.
 - [@commitlint/\*](https://github.com/conventional-changelog/commitlint) for semantic versioning.
 - [@jsverse/transloco](https://github.com/jsverse/transloco) for i18n.
 - [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) for .env support.
@@ -156,9 +163,11 @@ Nice to do:
 - [ProfilePageComponent](./src/app/components/profile-page/profile-page.component.ts)
 - [ResetPasswordPageComponent](./src/app/components/reset-password-page/reset-password-page.component.ts)
 - [SettingsPageComponent](./src/app/components/settings-page/settings-page.component.ts)
+- [SidenavComponent](./src/app/components/sidenav/sidenav.component.ts)
 - [SignInPageComponent](./src/app/components/sign-in-page/sign-in-page.component.ts)
 - [SignOutPageComponent](./src/app/components/sign-out-page/sign-out-page.component.ts)
 - [SignUpPageComponent](./src/app/components/sign-up-page/sign-up-page.component.ts)
+- [ToolbarComponent](./src/app/components/toolbar/toolbar.component.ts)
 - [UpdatePasswordPageComponent](./src/app/components/update-password-page/update-password-page.component.ts)
 
 <br />
@@ -193,8 +202,8 @@ Nice to do:
 - [QueryParam](./src/app/enums/query-param.enum.ts)
 - [SessionStorageKey](./src/app/enums/session-storage-key.enum.ts)
 - [SupabaseBucket](./src/app/enums/supabase-bucket.enum.ts)
-- [SupabaseFunction](./src/app/enums/supabase-function.enum.ts)
-- [SupabaseRpc](./src/app/enums/supabase-rpc.enum.ts)
+- [SupabaseEdgeFunction](./src/app/enums/supabase-edge-function.enum.ts)
+- [SupabaseRpcFunction](./src/app/enums/supabase-rpc-function.enum.ts)
 - [SupabaseTable](./src/app/enums/supabase-table.enum.ts)
 
 <br />
@@ -251,7 +260,6 @@ Nice to do:
 - [Bug](./.github/ISSUE_TEMPLATE/bug.md)
 - [Documentation](./.github/ISSUE_TEMPLATE/documentation.md)
 - [Enhancement](./.github/ISSUE_TEMPLATE/enhancement.md)
-- [Question](./.github/ISSUE_TEMPLATE/question.md)
 
 ## Guides
 
@@ -552,6 +560,12 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 [↑ Back to Contents](#contents)
 
 #### Remove Supabase
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+### Squeeze out more performance
 
 <br />
 
