@@ -85,8 +85,8 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #translocoService = inject(TranslocoService);
 
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
-  readonly #darkColorSchemeMediaQueryList: MediaQueryList;
   readonly #darkColorSchemeEventListener: () => void;
+  readonly #darkColorSchemeMediaQueryList: MediaQueryList;
   readonly #isPwaMode: boolean;
   readonly #languageOption: Signal<LanguageOption>;
 

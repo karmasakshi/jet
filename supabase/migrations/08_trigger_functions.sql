@@ -19,7 +19,7 @@ $$;
 
 -- security invoker
 
-create or replace function public.set_timestamps()
+create or replace function public.set_created_at()
 returns trigger
 language plpgsql
 security invoker
@@ -30,8 +30,6 @@ begin
     raise warning 'Cannot modify % in %.%', 'created_at', TG_TABLE_SCHEMA, TG_TABLE_NAME;
     new.created_at := old.created_at;
   end if;
-
-  new.updated_at := now();
 
   return new;
 end;
