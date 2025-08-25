@@ -120,13 +120,16 @@ module.exports = tseslint.config(
   },
   {
     files: ['**/*.html'],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
+    extends: [...angular.configs.templateAll],
     rules: {
-      '@angular-eslint/template/prefer-control-flow': 'error',
-      '@angular-eslint/template/prefer-ngsrc': 'error',
+      '@angular-eslint/template/attributes-order': 'off',
+      '@angular-eslint/template/cyclomatic-complexity': [
+        'error',
+        { maxComplexity: 6 },
+      ],
+      '@angular-eslint/template/i18n': 'off',
+      '@angular-eslint/template/no-call-expression': 'off',
+      '@angular-eslint/template/no-inline-styles': 'off',
       'no-restricted-syntax': [
         'error',
         { selector: 'BoundAttribute[name="ngClass"]' },
