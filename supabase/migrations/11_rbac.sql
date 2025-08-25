@@ -2,7 +2,7 @@
 
 create type public.role as enum ('admin');
 
--- tables and rls policies
+-- tables, indexes and rls policies
 
 -- public.permissions
 
@@ -117,3 +117,28 @@ before update
 on public.role_permissions
 for each row
 execute function public.set_timestamps();
+
+-- seed
+
+insert into public.permissions (name)
+values ('profiles.delete'), ('profiles.select'), ('profiles.update');
+
+-- auth hook
+
+create or replace function public.custom_access_token_hook(event jsonb)
+returns jsonb
+language plpgsql
+security definer
+set search_path = '' as
+$$
+declare
+  -- Insert variables here
+begin
+  -- Insert logic here
+  return event;
+end;
+$$;
+
+grant execute on function public.custom_access_token_hook to supabase_auth_admin;
+
+revoke execute on function public.custom_access_token_hook from authenticated, anon, public;
