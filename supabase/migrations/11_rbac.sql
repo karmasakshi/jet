@@ -133,7 +133,7 @@ execute procedure moddatetime(updated_at);
 -- seed
 
 insert into public.permissions (name)
-values ('profiles.delete'), ('profiles.select'), ('profiles.update');
+values ('profiles.select'), ('profiles.update'), ('profiles.delete');
 
 -- auth hook
 
@@ -145,21 +145,19 @@ set search_path = '' as
 $$
 declare
   claims jsonb;
-  is_admin boolean;
+  xrole public.role;
 begin
-  select is_admin into is_admin from profiles where user_id = (event->>'user_id')::uuid;
+  select role into xrole from public.profiles where user_id = (event->>'user_id')::uuid;
 
-  if is_admin then
-    claims := event->'claims';
+  claims := event->'claims';
 
-    if jsonb_typeof(claims->'user_metadata') is null then
-      claims := jsonb_set(claims, '{user_metadata}', '{}');
-    end if;
-
-    claims := jsonb_set(claims, '{user_metadata, admin}', 'true');
-
-    event := jsonb_set(event, '{claims}', claims);
+  if xrole is null then
+    claims := jsonb_set(claims, '{role}', 'null');
+  else
+    claims := jsonb_set(claims, '{role}', to_jsonb(xrole));
   end if;
+
+  event := jsonb_set(event, '{claims}', claims);
 
   return event;
 end;
