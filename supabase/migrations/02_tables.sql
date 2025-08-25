@@ -1,7 +1,7 @@
 -- public.profiles
 
 create table public.profiles (
-  id uuid primary key
+  user_id uuid primary key
     references auth.users (id),
   avatar_url text
     check (

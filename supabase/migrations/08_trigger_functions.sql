@@ -7,10 +7,9 @@ security definer
 set search_path = '' as
 $$
 begin
-  insert into public.profiles (id, avatar_url, username)
+  insert into public.profiles (user_id, username)
   values (
     new.id,
-    null,
     replace(new.id::text, '-', '_')
   );
 

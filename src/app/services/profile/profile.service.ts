@@ -50,7 +50,7 @@ export class ProfileService {
     return this.#supabaseClient
       .from(SupabaseTable.Profiles)
       .select()
-      .eq('id', this.#user()?.id)
+      .eq('user_id', this.#user()?.id)
       .single()
       .throwOnError();
   }
@@ -59,7 +59,7 @@ export class ProfileService {
     return this.#supabaseClient
       .from(SupabaseTable.Profiles)
       .update(partialProfile)
-      .eq('id', this.#user()?.id)
+      .eq('user_id', this.#user()?.id)
       .throwOnError();
   }
 
