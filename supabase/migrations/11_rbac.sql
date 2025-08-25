@@ -144,9 +144,23 @@ security definer
 set search_path = '' as
 $$
 declare
-  -- Insert variables here
+  claims jsonb;
+  is_admin boolean;
 begin
-  -- Insert logic here
+  select is_admin into is_admin from profiles where user_id = (event->>'user_id')::uuid;
+
+  if is_admin then
+    claims := event->'claims';
+
+    if jsonb_typeof(claims->'user_metadata') is null then
+      claims := jsonb_set(claims, '{user_metadata}', '{}');
+    end if;
+
+    claims := jsonb_set(claims, '{user_metadata, admin}', 'true');
+
+    event := jsonb_set(event, '{claims}', claims);
+  end if;
+
   return event;
 end;
 $$;
