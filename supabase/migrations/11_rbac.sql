@@ -17,8 +17,7 @@ alter table public.permissions enable row level security;
 
 -- public.profiles
 
-alter table public.profiles
-  add column role public.role;
+alter table public.profiles add column role public.role;
 
 -- public.role_permissions
 
@@ -92,29 +91,29 @@ $$;
 -- public.permissions
 
 create or replace trigger set_name
-  before update
-  on public.permissions
-  for each row
-  execute function public.set_name();
+before update
+on public.permissions
+for each row
+execute function public.set_name();
 
 create or replace trigger set_timestamps
-  before update
-  on public.permissions
-  for each row
-  execute function public.set_timestamps();
+before update
+on public.permissions
+for each row
+execute function public.set_timestamps();
 
 -- public.profiles
 
 create or replace trigger set_role
-  before update
-  on public.profiles
-  for each row
-  execute function public.set_role();
+before update
+on public.profiles
+for each row
+execute function public.set_role();
 
 -- public.role_permissions
 
 create or replace trigger set_timestamps
-  before update
-  on public.role_permissions
-  for each row
-  execute function public.set_timestamps();
+before update
+on public.role_permissions
+for each row
+execute function public.set_timestamps();
