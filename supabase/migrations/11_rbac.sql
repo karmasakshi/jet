@@ -34,12 +34,12 @@ alter table public.role_permissions enable row level security;
 
 -- trigger functions
 
--- security definer
+-- security invoker
 
 create or replace function public.set_name()
 returns trigger
 language plpgsql
-security definer
+security invoker
 set search_path = '' as
 $$
 declare
@@ -64,7 +64,7 @@ $$;
 create or replace function public.set_role()
 returns trigger
 language plpgsql
-security definer
+security invoker
 set search_path = '' as
 $$
 declare
