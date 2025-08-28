@@ -63,6 +63,7 @@ Nice to do:
 
 - Delete or update `./README.md`
 - Find and replace `https://jet-tau.vercel.app` with the base URL of your app
+- Empty the footer template
 - Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to the project
 
 <br />
