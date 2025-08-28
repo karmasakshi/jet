@@ -2,7 +2,7 @@
 
 create type public.role as enum ('admin');
 
--- tables, indexes and rls policies
+-- tables and rls policies
 
 -- public.permissions
 
@@ -43,14 +43,14 @@ security invoker
 set search_path = '' as
 $$
 declare
-  xrole public.role;
+  _role public.role;
 begin
   select role
-  into xrole
+  into _role
   from public.profiles
   where user_id = auth.uid();
 
-  if auth.uid() is null or xrole = 'admin' then
+  if auth.uid() is null or _role = 'admin' then
     return new;
   end if;
 
@@ -68,14 +68,14 @@ security invoker
 set search_path = '' as
 $$
 declare
-  xrole public.role;
+  _role public.role;
 begin
   select role
-  into xrole
+  into _role
   from public.profiles
   where user_id = auth.uid();
 
-  if auth.uid() is null or xrole = 'admin' then
+  if auth.uid() is null or _role = 'admin' then
     return new;
   end if;
 
@@ -145,16 +145,16 @@ set search_path = '' as
 $$
 declare
   claims jsonb;
-  xrole public.role;
+  _role public.role;
 begin
-  select role into xrole from public.profiles where user_id = (event->>'user_id')::uuid;
+  select role into _role from public.profiles where user_id = (event->>'user_id')::uuid;
 
   claims := event->'claims';
 
-  if xrole is null then
+  if _role is null then
     claims := jsonb_set(claims, '{role}', 'null');
   else
-    claims := jsonb_set(claims, '{role}', to_jsonb(xrole));
+    claims := jsonb_set(claims, '{role}', to_jsonb(_role));
   end if;
 
   event := jsonb_set(event, '{claims}', claims);
