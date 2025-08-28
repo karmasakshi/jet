@@ -8,8 +8,14 @@ execute function public.insert_profile();
 
 -- public.profiles
 
-create or replace trigger set_timestamps
+create or replace trigger set_created_at
 before update
 on public.profiles
 for each row
-execute function public.set_timestamps();
+execute function public.set_created_at();
+
+create or replace trigger set_updated_at
+before update
+on public.profiles
+for each row
+execute procedure moddatetime(updated_at);

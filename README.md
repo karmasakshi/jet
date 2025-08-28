@@ -42,7 +42,7 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 ## Demo
 
-[https://jet-tau.vercel.app](https://jet-tau.vercel.app)
+<a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-view-6e4b3a?style=plastic"></a>
 
 <br />
 
@@ -63,6 +63,7 @@ Nice to do:
 
 - Delete or update `./README.md`
 - Find and replace `https://jet-tau.vercel.app` with the base URL of your app
+- Empty the footer template
 - Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to the project
 
 <br />
