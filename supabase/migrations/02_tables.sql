@@ -11,10 +11,10 @@ create table public.profiles (
         and avatar_url ~* '^https?://[[:print:]]+$'
       )
     ),
-  name text
+  full_name text
     check (
-      name is null
-      or length(name) <= 36
+      full_name is null
+      or length(full_name) <= 36
     ),
   username text not null unique
     check (
