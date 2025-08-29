@@ -170,7 +170,3 @@ begin
   return event;
 end;
 $$;
-
-grant all on table public.profiles to supabase_auth_admin;
-
-revoke all on table public.profiles from authenticated, anon, public;
