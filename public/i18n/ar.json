@@ -50,6 +50,8 @@
     "avatar": "الصورة الرمزية",
     "characters": "{{ value }} من {{ maximum }} حرفًا",
     "clear": "مسح",
+    "name": "الاسم",
+    "name-validations": "مسموح بما يصل إلى {{ maximum }} حرفًا",
     "profile": "الملف الشخصي",
     "profile-created-on": "تم إنشاء الملف الشخصي في {{ value }}",
     "profile-last-updated-on": "آخر تحديث للملف الشخصي في {{ value }}",

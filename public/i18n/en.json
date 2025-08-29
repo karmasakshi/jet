@@ -50,6 +50,8 @@
     "avatar": "Avatar",
     "characters": "{{ value }} of {{ maximum }} characters",
     "clear": "Clear",
+    "name": "Name",
+    "name-validations": "Up to {{ maximum }} characters allowed",
     "profile": "Profile",
     "profile-created-on": "Profile created on {{ value }}",
     "profile-last-updated-on": "Profile last updated on {{ value }}",

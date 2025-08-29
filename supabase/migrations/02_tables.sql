@@ -7,9 +7,14 @@ create table public.profiles (
     check (
       avatar_url is null
       or (
-        length(avatar_url) between 10 and 300
-        and avatar_url ~* '^https?://.+$'
+        length(avatar_url) <= 300
+        and avatar_url ~* '^https?://[[:print:]]+$'
       )
+    ),
+  name text
+    check (
+      name is null
+      or length(name) <= 36
     ),
   username text not null unique
     check (
