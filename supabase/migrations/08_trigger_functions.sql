@@ -6,10 +6,27 @@ language plpgsql
 security definer
 set search_path = '' as
 $$
+declare
+  avatar_url text;
+  name text;
 begin
-  insert into public.profiles (user_id, username)
+  name := nullif(new.raw_user_meta_data->>'name', '');
+
+  if name is not null then
+    name := left(name, 36);
+  end if;
+
+  avatar_url := new.raw_user_meta_data->>'avatar_url';
+
+  if length(avatar_url) > 300 then
+    avatar_url := null;
+  end if;
+
+  insert into public.profiles (user_id, avatar_url, name, username)
   values (
     new.id,
+    avatar_url,
+    name,
     replace(new.id::text, '-', '_')
   );
 

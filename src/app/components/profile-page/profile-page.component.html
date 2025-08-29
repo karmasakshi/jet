@@ -1,3 +1,4 @@
+@let _nameControl = profileFormGroup.controls.name;
 @let _usernameControl = profileFormGroup.controls.username;
 
 <ng-container *transloco="let t; prefix: 'jet-profile-page'">
@@ -59,9 +60,51 @@
             id="profile-form"
             [formGroup]="profileFormGroup"
             (ngSubmit)="
-              updateProfile({ username: _usernameControl.value ?? '' })
+              updateProfile({
+                name: _nameControl.value?.trim() ?? '',
+                username: _usernameControl.value?.trim() ?? '',
+              })
             "
           >
+            <mat-form-field>
+              <mat-label>{{ t('name') }}</mat-label>
+              <input
+                autocomplete="name"
+                formControlName="name"
+                matInput
+                type="text"
+              />
+              @if (_nameControl.value !== null) {
+                <button
+                  [aria-label]="t('clear')"
+                  [disabled]="_nameControl.disabled"
+                  (click)="_nameControl.reset()"
+                  matIconButton
+                  matSuffix
+                  tabindex="-1"
+                  type="button"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
+              @if (_nameControl.dirty) {
+                <mat-hint align="end"
+                  >{{
+                    t('characters', {
+                      maximum: 36,
+                      value: _nameControl.value?.length || 0,
+                    })
+                  }}
+                </mat-hint>
+              }
+              @if (_nameControl.touched && _nameControl.errors?.['maxlength']) {
+                <mat-error>{{
+                  t('name-validations', {
+                    maximum: _nameControl.errors?.['maxlength'].requiredLength,
+                  })
+                }}</mat-error>
+              }
+            </mat-form-field>
             <mat-form-field>
               <mat-label>{{ t('username') }}</mat-label>
               <input
