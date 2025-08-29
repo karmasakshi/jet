@@ -159,10 +159,14 @@ begin
 
   claims := event->'claims';
 
+  if jsonb_typeof(claims->'app_metadata') is null then
+    claims := jsonb_set(claims, '{app_metadata}', '{}');
+  end if;
+
   if _app_role is not null then
-    claims := jsonb_set(claims, '{app_role}', to_jsonb(_app_role));
+    claims := jsonb_set(claims, '{app_metadata,app_role}', to_jsonb(_app_role));
   else
-    claims := jsonb_set(claims, '{app_role}', 'null');
+    claims := jsonb_set(claims, '{app_metadata,app_role}', 'null');
   end if;
 
   event := jsonb_set(event, '{claims}', claims);
@@ -170,3 +174,7 @@ begin
   return event;
 end;
 $$;
+
+grant select on table public.profiles to supabase_auth_admin;
+
+select auth.set_access_token_hook('public.custom_access_token_hook');
