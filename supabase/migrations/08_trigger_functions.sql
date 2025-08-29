@@ -8,12 +8,12 @@ set search_path = '' as
 $$
 declare
   avatar_url text;
-  name text;
+  full_name text;
 begin
-  name := nullif(new.raw_user_meta_data->>'name', '');
+  full_name := nullif(new.raw_user_meta_data->>'full_name', '');
 
-  if name is not null then
-    name := left(name, 36);
+  if full_name is not null then
+    full_name := left(full_name, 36);
   end if;
 
   avatar_url := new.raw_user_meta_data->>'avatar_url';
@@ -22,11 +22,11 @@ begin
     avatar_url := null;
   end if;
 
-  insert into public.profiles (user_id, avatar_url, name, username)
+  insert into public.profiles (user_id, avatar_url, full_name, username)
   values (
     new.id,
     avatar_url,
-    name,
+    full_name,
     replace(new.id::text, '-', '_')
   );
 

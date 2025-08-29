@@ -73,7 +73,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
   public profile: null | Profile;
   public readonly profileFormGroup: FormGroup<{
-    name: FormControl<null | string>;
+    full_name: FormControl<null | string>;
     username: FormControl<null | string>;
   }>;
   public readonly user: null | User;
@@ -84,7 +84,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     this.profile = null;
 
     this.profileFormGroup = this.#formBuilder.group({
-      name: this.#formBuilder.control<null | string>(null, [
+      full_name: this.#formBuilder.control<null | string>(null, [
         Validators.maxLength(36),
       ]),
       username: this.#formBuilder.control<null | string>(null, [
@@ -235,7 +235,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       this.profile = data;
 
       this.profileFormGroup.patchValue({
-        name: data.name,
+        full_name: data.full_name,
         username: data.username,
       });
     } catch (exception: unknown) {

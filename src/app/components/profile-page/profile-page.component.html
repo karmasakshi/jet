@@ -1,4 +1,4 @@
-@let _nameControl = profileFormGroup.controls.name;
+@let _fullNameControl = profileFormGroup.controls.full_name;
 @let _usernameControl = profileFormGroup.controls.username;
 
 <ng-container *transloco="let t; prefix: 'jet-profile-page'">
@@ -61,24 +61,24 @@
             [formGroup]="profileFormGroup"
             (ngSubmit)="
               updateProfile({
-                name: _nameControl.value?.trim() ?? '',
+                full_name: _fullNameControl.value?.trim() ?? '',
                 username: _usernameControl.value?.trim() ?? '',
               })
             "
           >
             <mat-form-field>
-              <mat-label>{{ t('name') }}</mat-label>
+              <mat-label>{{ t('full-name') }}</mat-label>
               <input
                 autocomplete="name"
-                formControlName="name"
+                formControlName="full_name"
                 matInput
                 type="text"
               />
-              @if (_nameControl.value !== null) {
+              @if (_fullNameControl.value !== null) {
                 <button
                   [aria-label]="t('clear')"
-                  [disabled]="_nameControl.disabled"
-                  (click)="_nameControl.reset()"
+                  [disabled]="_fullNameControl.disabled"
+                  (click)="_fullNameControl.reset()"
                   matIconButton
                   matSuffix
                   tabindex="-1"
@@ -87,20 +87,24 @@
                   <mat-icon>close</mat-icon>
                 </button>
               }
-              @if (_nameControl.dirty) {
+              @if (_fullNameControl.dirty) {
                 <mat-hint align="end"
                   >{{
                     t('characters', {
                       maximum: 36,
-                      value: _nameControl.value?.length || 0,
+                      value: _fullNameControl.value?.length || 0,
                     })
                   }}
                 </mat-hint>
               }
-              @if (_nameControl.touched && _nameControl.errors?.['maxlength']) {
+              @if (
+                _fullNameControl.touched &&
+                _fullNameControl.errors?.['maxlength']
+              ) {
                 <mat-error>{{
-                  t('name-validations', {
-                    maximum: _nameControl.errors?.['maxlength'].requiredLength,
+                  t('full-name-validations', {
+                    maximum:
+                      _fullNameControl.errors?.['maxlength'].requiredLength,
                   })
                 }}</mat-error>
               }
