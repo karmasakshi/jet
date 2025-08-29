@@ -1,8 +1,8 @@
 -- types
 
-create type public.role as enum ('admin');
+create type public.app_role as enum ('admin');
 
--- tables and rls policies
+-- tables
 
 -- public.permissions
 
@@ -13,24 +13,32 @@ create table public.permissions (
   updated_at timestamptz not null default now()
 );
 
-alter table public.permissions enable row level security;
-
 -- public.profiles
 
-alter table public.profiles add column role public.role;
+alter table public.profiles add column app_role public.app_role;
 
--- public.role_permissions
+-- public.app_role_permissions
 
-create table public.role_permissions (
+create table public.app_role_permissions (
   permission_id uuid not null
     references public.permissions(id) on delete cascade,
-  role public.role not null,
+  app_role public.app_role not null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  primary key (role, permission_id)
+  primary key (app_role, permission_id)
 );
 
-alter table public.role_permissions enable row level security;
+-- indexes
+
+-- rls policies
+
+-- public.permissions
+
+alter table public.permissions enable row level security;
+
+-- public.app_role_permissions
+
+alter table public.app_role_permissions enable row level security;
 
 -- trigger functions
 
@@ -43,14 +51,14 @@ security invoker
 set search_path = '' as
 $$
 declare
-  _role public.role;
+  _app_role public.app_role;
 begin
-  select role
-  into _role
+  select app_role
+  into _app_role
   from public.profiles
   where user_id = auth.uid();
 
-  if auth.uid() is null or _role = 'admin' then
+  if auth.uid() is null or _app_role = 'admin' then
     return new;
   end if;
 
@@ -61,26 +69,26 @@ begin
 end;
 $$;
 
-create or replace function public.set_role()
+create or replace function public.set_app_role()
 returns trigger
 language plpgsql
 security invoker
 set search_path = '' as
 $$
 declare
-  _role public.role;
+  _app_role public.app_role;
 begin
-  select role
-  into _role
+  select app_role
+  into _app_role
   from public.profiles
   where user_id = auth.uid();
 
-  if auth.uid() is null or _role = 'admin' then
+  if auth.uid() is null or _app_role = 'admin' then
     return new;
   end if;
 
-  raise warning 'Cannot modify % in %.%', 'role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-  new.role := old.role;
+  raise warning 'Cannot modify % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  new.app_role := old.app_role;
 
   return new;
 end;
@@ -110,23 +118,23 @@ execute procedure moddatetime(updated_at);
 
 -- public.profiles
 
-create or replace trigger set_role
+create or replace trigger set_app_role
 before update
 on public.profiles
 for each row
-execute function public.set_role();
+execute function public.set_app_role();
 
--- public.role_permissions
+-- public.app_role_permissions
 
 create or replace trigger set_created_at
 before update
-on public.role_permissions
+on public.app_role_permissions
 for each row
 execute function public.set_created_at();
 
 create or replace trigger set_updated_at
 before update
-on public.role_permissions
+on public.app_role_permissions
 for each row
 execute procedure moddatetime(updated_at);
 
@@ -145,9 +153,9 @@ set search_path = '' as
 $$
 declare
   claims jsonb;
-  _role public.role;
+  _app_role public.app_role;
 begin
-  select role into _role from public.profiles where user_id = (event->>'user_id')::uuid;
+  select app_role into _app_role from public.profiles where user_id = (event->>'user_id')::uuid;
 
   claims := event->'claims';
 
@@ -155,7 +163,7 @@ begin
     claims := jsonb_set(claims, '{app_metadata}', '{}');
   end if;
 
-  claims := jsonb_set(claims, '{app_metadata, role}', _role);
+  claims := jsonb_set(claims, '{app_metadata, app_role}', _app_role);
 
   event := jsonb_set(event, '{claims}', claims);
 
