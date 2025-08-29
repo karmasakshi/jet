@@ -75,12 +75,12 @@
                 </button>
               }
               @if (_emailControl.touched && _emailControl.errors?.['email']) {
-                <mat-error>{{ t('enter-a-valid-email') }}</mat-error>
+                <mat-error>{{ t('email-error-email') }}</mat-error>
               }
               @if (
                 _emailControl.touched && _emailControl.errors?.['required']
               ) {
-                <mat-error>{{ t('email-is-required') }}</mat-error>
+                <mat-error>{{ t('email-error-required') }}</mat-error>
               }
             </mat-form-field>
             <mat-form-field>
@@ -110,7 +110,7 @@
                 _passwordControl.errors?.['minlength']
               ) {
                 <mat-error>{{
-                  t('password-length', {
+                  t('password-error-minlength', {
                     minimum:
                       _passwordControl.errors?.['minlength'].requiredLength,
                   })
@@ -120,7 +120,7 @@
                 _passwordControl.touched &&
                 _passwordControl.errors?.['required']
               ) {
-                <mat-error>{{ t('password-is-required') }}</mat-error>
+                <mat-error>{{ t('password-error-required') }}</mat-error>
               }
             </mat-form-field>
           </form>

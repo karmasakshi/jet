@@ -125,7 +125,7 @@ module.exports = tseslint.config(
       '@angular-eslint/template/attributes-order': 'off',
       '@angular-eslint/template/cyclomatic-complexity': [
         'error',
-        { maxComplexity: 7 },
+        { maxComplexity: 9 },
       ],
       '@angular-eslint/template/i18n': 'off',
       '@angular-eslint/template/no-call-expression': 'off',

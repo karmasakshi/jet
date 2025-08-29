@@ -102,7 +102,7 @@
                 _fullNameControl.errors?.['maxlength']
               ) {
                 <mat-error>{{
-                  t('full-name-validations', {
+                  t('full-name-error-maxlength', {
                     maximum:
                       _fullNameControl.errors?.['maxlength'].requiredLength,
                   })
@@ -145,22 +145,34 @@
                 _usernameControl.touched &&
                 _usernameControl.errors?.['required']
               ) {
-                <mat-error>{{ t('username-is-required') }}</mat-error>
+                <mat-error>{{ t('username-error-required') }}</mat-error>
               }
               @if (
                 _usernameControl.touched &&
-                (_usernameControl.errors?.['maxlength'] ||
-                  _usernameControl.errors?.['minlength'] ||
-                  _usernameControl.errors?.['pattern'])
+                _usernameControl.errors?.['maxlength']
               ) {
                 <mat-error>{{
-                  t('username-validations', {
+                  t('username-error-maxlength', {
                     maximum:
                       _usernameControl.errors?.['maxlength'].requiredLength,
+                  })
+                }}</mat-error>
+              }
+              @if (
+                _usernameControl.touched &&
+                _usernameControl.errors?.['minlength']
+              ) {
+                <mat-error>{{
+                  t('username-error-minlength', {
                     minimum:
                       _usernameControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>
+              }
+              @if (
+                _usernameControl.touched && _usernameControl.errors?.['pattern']
+              ) {
+                <mat-error>{{ t('username-error-pattern') }}</mat-error>
               }
             </mat-form-field>
           </form>
