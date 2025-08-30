@@ -56,13 +56,11 @@ security invoker
 set search_path = ''
 volatile
 as $$
-declare
-  _app_role public.app_role;
 begin
-  select app_role into _app_role from public.profiles where user_id = auth.uid();
-
-  if current_user <> 'postgres'
-    raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  if new.permission <> old.permission then
+    if current_user <> 'postgres'
+      raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+    end if;
   end if;
 
   return new;
@@ -76,13 +74,11 @@ security invoker
 set search_path = ''
 volatile
 as $$
-declare
-  _app_role public.app_role;
 begin
-  select app_role into _app_role from public.profiles where user_id = auth.uid();
-
-  if current_user <> 'postgres'
-    raise exception 'Cannot update % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  if new.app_role <> old.app_role then
+    if current_user <> 'postgres'
+      raise exception 'Cannot update % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+    end if;
   end if;
 
   return new;
