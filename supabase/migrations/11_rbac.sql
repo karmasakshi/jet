@@ -159,6 +159,10 @@ begin
 
   claims := event->'claims';
 
+  if jsonb_typeof(claims->'app_metadata') is null then
+    claims := jsonb_set(claims, '{app_metadata}', '{}');
+  end if;
+
   claims := jsonb_set(claims, '{app_metadata,app_role}', coalesce(to_jsonb(_app_role), 'null'::jsonb));
 
   event := jsonb_set(event, '{claims}', claims);
