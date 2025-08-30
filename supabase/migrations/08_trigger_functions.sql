@@ -5,6 +5,7 @@ returns trigger
 language plpgsql
 security definer
 set search_path = ''
+volatile
 as $$
 declare
   avatar_url text;
@@ -41,6 +42,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = ''
+volatile
 as $$
 begin
   if new.created_at <> old.created_at then
