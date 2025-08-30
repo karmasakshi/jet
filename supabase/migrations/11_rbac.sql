@@ -54,6 +54,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = ''
+volatile
 as $$
 declare
   _app_role public.app_role;
@@ -79,6 +80,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = ''
+volatile
 as $$
 declare
   _app_role public.app_role;
@@ -155,6 +157,7 @@ returns jsonb
 language plpgsql
 security invoker
 set search_path = ''
+stable
 as $$
 declare
   claims jsonb;
