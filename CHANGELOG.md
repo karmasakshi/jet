@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/karmasakshi/jet/compare/v3.8.0...v3.9.0) (2025-08-30)
+
+
+### Features
+
+* **general:** add rbac ([7802cde](https://github.com/karmasakshi/jet/commit/7802cdefeb2d56383815270f0040a8d431e01b85))
+
 ## [3.8.0](https://github.com/karmasakshi/jet/compare/v3.7.0...v3.8.0) (2025-08-17)
 
 
