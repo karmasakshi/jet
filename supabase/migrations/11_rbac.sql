@@ -59,17 +59,11 @@ as $$
 declare
   _app_role public.app_role;
 begin
-  select app_role
-  into _app_role
-  from public.profiles
-  where user_id = auth.uid();
+  select app_role into _app_role from public.profiles where user_id = auth.uid();
 
-  if current_user = 'postgres' or _app_role = 'admin' then
-    return new;
+  if current_user <> 'postgres'
+    raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   end if;
-
-  raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-  new.permission := old.permission;
 
   return new;
 end;
@@ -85,17 +79,11 @@ as $$
 declare
   _app_role public.app_role;
 begin
-  select app_role
-  into _app_role
-  from public.profiles
-  where user_id = auth.uid();
+  select app_role into _app_role from public.profiles where user_id = auth.uid();
 
-  if current_user = 'postgres' or _app_role = 'admin' then
-    return new;
+  if current_user <> 'postgres'
+    raise exception 'Cannot update % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   end if;
-
-  raise exception 'Cannot update % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-  new.app_role := old.app_role;
 
   return new;
 end;
@@ -157,7 +145,7 @@ returns jsonb
 language plpgsql
 security invoker
 set search_path = ''
-stable
+volatile
 as $$
 declare
   claims jsonb;

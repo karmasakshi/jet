@@ -46,8 +46,7 @@ volatile
 as $$
 begin
   if new.created_at <> old.created_at then
-    raise warning 'Cannot modify % in %.%', 'created_at', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-    new.created_at := old.created_at;
+    raise exception 'Cannot update % in %.%', 'created_at', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   end if;
 
   return new;

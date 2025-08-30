@@ -119,6 +119,7 @@ Nice to do:
     - [Set up Supabase](#set-up-supabase)
     - [Link a Supabase project](#link-a-supabase-project)
     - [Run Supabase locally](#run-supabase-locally)
+    - [Remove RBAC](#remove-rbac)
     - [Remove Supabase](#remove-supabase)
   - [Squeeze out more performance](#squeeze-out-more-performance)
 - [Sponsors](#sponsors)
@@ -555,6 +556,12 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 [↑ Back to Contents](#contents)
 
 #### Run Supabase locally
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Remove RBAC
 
 <br />
 
