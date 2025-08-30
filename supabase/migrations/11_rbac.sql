@@ -58,7 +58,7 @@ volatile
 as $$
 begin
   if new.permission <> old.permission then
-    if current_user <> 'postgres'
+    if current_user <> 'postgres' then
       raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
     end if;
   end if;
@@ -76,7 +76,7 @@ volatile
 as $$
 begin
   if new.app_role <> old.app_role then
-    if current_user <> 'postgres'
+    if current_user <> 'postgres' then
       raise exception 'Cannot update % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
     end if;
   end if;
