@@ -63,11 +63,11 @@ begin
   from public.profiles
   where user_id = auth.uid();
 
-  if auth.uid() is null or _app_role = 'admin' then
+  if current_user = 'postgres' or _app_role = 'admin' then
     return new;
   end if;
 
-  raise warning 'Cannot modify % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   new.permission := old.permission;
 
   return new;
@@ -88,11 +88,11 @@ begin
   from public.profiles
   where user_id = auth.uid();
 
-  if auth.uid() is null or _app_role = 'admin' then
+  if current_user = 'postgres' or _app_role = 'admin' then
     return new;
   end if;
 
-  raise warning 'Cannot modify % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  raise exception 'Cannot update % in %.%', 'app_role', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   new.app_role := old.app_role;
 
   return new;
@@ -163,10 +163,6 @@ begin
   select app_role into _app_role from public.profiles where user_id = (event->>'user_id')::uuid;
 
   claims := event->'claims';
-
-  if jsonb_typeof(claims->'app_metadata') is null then
-    claims := jsonb_set(claims, '{app_metadata}', '{}');
-  end if;
 
   claims := jsonb_set(claims, '{app_metadata,app_role}', coalesce(to_jsonb(_app_role), 'null'::jsonb));
 
