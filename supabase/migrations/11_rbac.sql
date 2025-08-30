@@ -147,7 +147,11 @@ declare
   claims jsonb;
   _app_role public.app_role;
 begin
-  select app_role into _app_role from public.profiles where user_id = (event->>'user_id')::uuid;
+  select app_role
+  into _app_role
+  from public.profiles
+  where user_id = (event->>'user_id')::uuid;
+
   claims := event->'claims';
   claims := jsonb_set(claims, '{app_metadata,app_role}', coalesce(to_jsonb(_app_role), 'null'::jsonb));
   event := jsonb_set(event, '{claims}', claims);

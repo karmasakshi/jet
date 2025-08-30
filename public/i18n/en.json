@@ -50,6 +50,7 @@
     "avatar": "Avatar",
     "characters": "{{ value }} of {{ maximum }} characters",
     "clear": "Clear",
+    "email": "Email",
     "full-name": "Full name",
     "full-name-error-maxlength": "Full name is up to {{ maximum }} characters long",
     "profile": "Profile",

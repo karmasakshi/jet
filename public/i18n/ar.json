@@ -50,6 +50,7 @@
     "avatar": "الصورة الرمزية",
     "characters": "{{ value }} من {{ maximum }} حرفًا",
     "clear": "مسح",
+    "email": "البريد الإلكتروني",
     "full-name": "الاسم الكامل",
     "full-name-error-maxlength": "الاسم الكامل لا يزيد عن {{ maximum }} حرفًا",
     "profile": "الملف الشخصي",
