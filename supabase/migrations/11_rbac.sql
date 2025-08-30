@@ -32,6 +32,13 @@ create table public.app_role_permissions (
 
 -- rls policies
 
+create policy "Allow supabase_auth_admin to select all"
+on public.profiles
+as permissive
+for select
+to supabase_auth_admin
+using (true);
+
 -- public.permissions
 
 alter table public.permissions enable row level security;
@@ -48,8 +55,8 @@ create or replace function public.set_permission()
 returns trigger
 language plpgsql
 security invoker
-set search_path = '' as
-$$
+set search_path = ''
+as $$
 declare
   _app_role public.app_role;
 begin
@@ -73,8 +80,8 @@ create or replace function public.set_app_role()
 returns trigger
 language plpgsql
 security invoker
-set search_path = '' as
-$$
+set search_path = ''
+as $$
 declare
   _app_role public.app_role;
 begin
@@ -148,9 +155,9 @@ values ('profiles.select'), ('profiles.update'), ('profiles.delete');
 create or replace function public.custom_access_token_hook(event jsonb)
 returns jsonb
 language plpgsql
-security definer
-set search_path = '' as
-$$
+security invoker
+set search_path = ''
+as $$
 declare
   claims jsonb;
   _app_role public.app_role;
@@ -170,9 +177,3 @@ begin
   return event;
 end;
 $$;
-
-grant select on public.profiles to supabase_auth_admin;
-
-grant execute on function public.custom_access_token_hook to supabase_auth_admin;
-
-revoke execute on function public.custom_access_token_hook from authenticated, anon, public;
