@@ -70,18 +70,27 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
 
   #isLoading: boolean;
+  readonly #user: Signal<null | User>;
 
-  public profile: null | Profile;
+  public readonly emailFormGroup: FormGroup<{
+    email: FormControl<null | string>;
+  }>;
+  public profile: Profile | undefined;
   public readonly profileFormGroup: FormGroup<{
     full_name: FormControl<null | string>;
     username: FormControl<null | string>;
   }>;
-  public readonly user: null | User;
 
   public constructor() {
     this.#isLoading = false;
 
-    this.profile = null;
+    this.#user = this.#userService.user;
+
+    this.emailFormGroup = this.#formBuilder.group({
+      email: this.#formBuilder.control<null | string>(null),
+    });
+
+    this.profile = undefined;
 
     this.profileFormGroup = this.#formBuilder.group({
       full_name: this.#formBuilder.control<null | string>(null, [
@@ -95,12 +104,14 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       ]),
     });
 
-    this.user = this.#userService.user();
-
     this.#loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
   public ngOnInit(): void {
+    this.emailFormGroup.disable();
+
+    this.emailFormGroup.patchValue({ email: this.#user()?.email ?? null });
+
     void this.#selectProfile();
   }
 

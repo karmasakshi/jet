@@ -57,6 +57,22 @@
             </mat-card-content>
           </mat-card>
           <form
+            id="email-form"
+            [formGroup]="emailFormGroup"
+            style="margin-bottom: 8px"
+          >
+            <mat-form-field>
+              <mat-label>{{ t('email') }}</mat-label>
+              <input
+                autocomplete="email"
+                formControlName="email"
+                matInput
+                readonly
+                type="text"
+              />
+            </mat-form-field>
+          </form>
+          <form
             id="profile-form"
             [formGroup]="profileFormGroup"
             (ngSubmit)="
@@ -208,7 +224,6 @@
             class="jet-flexc-centered"
             style="font: var(--mat-sys-body-small)"
           >
-            <strong>{{ user?.email }}</strong>
             <span>{{
               t('profile-last-updated-on', {
                 value: (profile?.updated_at | date: 'medium') ?? '?',

@@ -65,11 +65,13 @@ export class UpdatePasswordPageComponent
   #isLoading: boolean;
   readonly #user: Signal<null | User>;
 
+  public readonly emailFormGroup: FormGroup<{
+    email: FormControl<null | string>;
+  }>;
   public isConfirmNewPasswordHidden: boolean;
   public isNewPasswordHidden: boolean;
   public readonly updatePasswordFormGroup: FormGroup<{
     confirmNewPassword: FormControl<null | string>;
-    email: FormControl<null | string>;
     newPassword: FormControl<null | string>;
   }>;
 
@@ -77,6 +79,10 @@ export class UpdatePasswordPageComponent
     this.#isLoading = false;
 
     this.#user = this.#userService.user;
+
+    this.emailFormGroup = this.#formBuilder.group({
+      email: this.#formBuilder.control<null | string>(null),
+    });
 
     this.isConfirmNewPasswordHidden = true;
 
@@ -87,10 +93,6 @@ export class UpdatePasswordPageComponent
         Validators.required,
         Validators.minLength(6),
       ]),
-      email: this.#formBuilder.control<null | string>({
-        disabled: true,
-        value: null,
-      }),
       newPassword: this.#formBuilder.control<null | string>(null, [
         Validators.required,
         Validators.minLength(6),
@@ -103,6 +105,10 @@ export class UpdatePasswordPageComponent
   }
 
   public ngOnInit(): void {
+    this.emailFormGroup.disable();
+
+    this.emailFormGroup.patchValue({ email: this.#user()?.email ?? null });
+
     this.updatePasswordFormGroup.controls.confirmNewPassword.addValidators(
       this.#matchFormControlValidator(
         this.updatePasswordFormGroup.controls.newPassword,
@@ -114,10 +120,6 @@ export class UpdatePasswordPageComponent
       .subscribe(() => {
         this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
       });
-
-    this.updatePasswordFormGroup.patchValue({
-      email: this.#user()?.email ?? null,
-    });
   }
 
   public hasUnsavedChanges(): boolean {
