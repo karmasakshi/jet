@@ -5,8 +5,10 @@ import {
   ElementRef,
   inject,
   OnInit,
+  signal,
   Signal,
   viewChild,
+  WritableSignal,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -75,7 +77,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   public readonly emailFormGroup: FormGroup<{
     email: FormControl<null | string>;
   }>;
-  public profile: Profile | undefined;
+  public readonly profile: WritableSignal<Profile | undefined>;
   public readonly profileFormGroup: FormGroup<{
     full_name: FormControl<null | string>;
     username: FormControl<null | string>;
@@ -90,7 +92,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       email: this.#formBuilder.control<null | string>(null),
     });
 
-    this.profile = undefined;
+    this.profile = signal(undefined);
 
     this.profileFormGroup = this.#formBuilder.group({
       full_name: this.#formBuilder.control<null | string>(null, [
@@ -160,7 +162,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       let response;
 
       response = await this.#profileService.deleteAvatar(
-        this.profile?.avatar_url ?? '',
+        this.profile()?.avatar_url ?? '',
       );
 
       if (response.error) {
@@ -177,11 +179,11 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
         response.data.path,
       );
 
-      await this.#profileService.updateProfile({ avatar_url: avatarUrl });
+      const { data } = await this.#profileService.updateAndSelectProfile({
+        avatar_url: avatarUrl,
+      });
 
-      if (this.profile) {
-        this.profile.avatar_url = avatarUrl;
-      }
+      this.profile.set(data);
 
       this.#alertService.showAlert(
         this.#translocoService.translate('alerts.avatar-updated'),
@@ -210,7 +212,10 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      await this.#profileService.updateProfile(partialProfile);
+      const { data } =
+        await this.#profileService.updateAndSelectProfile(partialProfile);
+
+      this.profile.set(data);
 
       this.profileFormGroup.markAsPristine();
 
@@ -243,7 +248,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     try {
       const { data } = await this.#profileService.selectProfile();
 
-      this.profile = data;
+      this.profile.set(data);
 
       this.profileFormGroup.patchValue({
         full_name: data.full_name,

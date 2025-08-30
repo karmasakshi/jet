@@ -55,11 +55,13 @@ export class ProfileService {
       .throwOnError();
   }
 
-  public updateProfile(partialProfile: Partial<Profile>) {
+  public updateAndSelectProfile(partialProfile: Partial<Profile>) {
     return this.#supabaseClient
       .from(SupabaseTable.Profiles)
       .update(partialProfile)
       .eq('user_id', this.#user()?.id)
+      .select()
+      .single()
       .throwOnError();
   }
 

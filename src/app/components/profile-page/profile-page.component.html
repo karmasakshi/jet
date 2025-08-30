@@ -1,4 +1,5 @@
 @let _fullNameControl = profileFormGroup.controls.full_name;
+@let _profile = profile();
 @let _usernameControl = profileFormGroup.controls.username;
 
 <ng-container *transloco="let t; prefix: 'jet-profile-page'">
@@ -35,7 +36,7 @@
             <img
               [alt]="t('avatar')"
               [ngSrc]="
-                profile?.avatar_url ??
+                _profile?.avatar_url ??
                 'https://placehold.co/128x128/webp?text=?'
               "
               height="128"
@@ -226,12 +227,12 @@
           >
             <span>{{
               t('profile-last-updated-on', {
-                value: (profile?.updated_at | date: 'medium') ?? '?',
+                value: (_profile?.updated_at | date: 'medium') ?? '?',
               })
             }}</span>
             <span>{{
               t('profile-created-on', {
-                value: (profile?.created_at | date: 'medium') ?? '?',
+                value: (_profile?.created_at | date: 'medium') ?? '?',
               })
             }}</span>
           </div>
