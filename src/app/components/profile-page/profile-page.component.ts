@@ -217,6 +217,8 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
       this.profile.set(data);
 
+      this.#patchProfileFormGroup(data);
+
       this.profileFormGroup.markAsPristine();
 
       this.#alertService.showAlert(
@@ -236,6 +238,13 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     }
   }
 
+  #patchProfileFormGroup(profile: Profile): void {
+    this.profileFormGroup.patchValue({
+      full_name: profile.full_name,
+      username: profile.username,
+    });
+  }
+
   async #selectProfile(): Promise<void> {
     if (this.#isLoading) {
       return;
@@ -250,10 +259,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
       this.profile.set(data);
 
-      this.profileFormGroup.patchValue({
-        full_name: data.full_name,
-        username: data.username,
-      });
+      this.#patchProfileFormGroup(data);
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this.#loggerService.logError(exception);
