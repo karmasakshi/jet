@@ -17,10 +17,12 @@ begin
     full_name := left(full_name, 36);
   end if;
 
-  avatar_url := new.raw_user_meta_data->>'avatar_url';
+  avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
 
-  if length(avatar_url) > 300 then
-    avatar_url := null;
+  if avatar_url is not null then
+    if length(avatar_url) > 300 then
+      avatar_url := null;
+    end if;
   end if;
 
   insert into public.profiles (user_id, avatar_url, full_name, username)
