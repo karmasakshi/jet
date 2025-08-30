@@ -28,8 +28,6 @@ create table public.app_role_permissions (
   primary key (app_role, permission_id)
 );
 
--- indexes
-
 -- rls policies
 
 create policy "Allow supabase_auth_admin to select all"
