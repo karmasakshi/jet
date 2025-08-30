@@ -152,7 +152,7 @@ values ('profiles.select'), ('profiles.update'), ('profiles.delete');
 
 -- auth hook
 
-create or replace function public.custom_access_token_hook(event jsonb)
+create or replace function public.custom_access_token(event jsonb)
 returns jsonb
 language plpgsql
 security invoker
@@ -177,3 +177,5 @@ begin
   return event;
 end;
 $$;
+
+grant select on table public.profiles to supabase_auth_admin;
