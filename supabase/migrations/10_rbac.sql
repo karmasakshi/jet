@@ -127,13 +127,13 @@ on public.permissions
 for each row
 execute function public.set_permission();
 
-create or replace trigger set_created_at
+create or replace trigger preserve_created_at
 before update
 on public.permissions
 for each row
-execute function public.set_created_at();
+execute function public.preserve_created_at();
 
-create or replace trigger set_updated_at
+create or replace trigger update_updated_at
 before update
 on public.permissions
 for each row
@@ -141,13 +141,13 @@ execute procedure moddatetime(updated_at);
 
 -- public.app_role_permissions
 
-create or replace trigger set_created_at
+create or replace trigger preserve_created_at
 before update
 on public.app_role_permissions
 for each row
-execute function public.set_created_at();
+execute function public.preserve_created_at();
 
-create or replace trigger set_updated_at
+create or replace trigger update_updated_at
 before update
 on public.app_role_permissions
 for each row
