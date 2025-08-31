@@ -218,5 +218,12 @@ using (
 -- seed
 --
 
+-- public.permissions
+
 insert into public.permissions (permission)
 values ('profiles.select'), ('profiles.update');
+
+-- public.app_role_permissions
+
+insert into public.app_role_permissions (app_role, permission_id)
+select 'admin', id from public.permissions where permission in ('profiles.select', 'profiles.update');
