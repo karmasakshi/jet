@@ -28,24 +28,24 @@ create table public.app_role_permissions (
   primary key (app_role, permission_id)
 );
 
--- rls policies
-
-create policy "Allow supabase_auth_admin to select all"
-on public.profiles
-as permissive
-for select
-to supabase_auth_admin
-using (true);
-
--- public.permissions
-
-alter table public.permissions enable row level security;
-
--- public.app_role_permissions
-
-alter table public.app_role_permissions enable row level security;
-
 -- trigger functions
+
+-- security definer
+
+create or replace function public.authorize(_permission text)
+returns boolean
+language sql
+security definer
+set search_path = ''
+stable
+as $$
+  select exists (
+    select 1
+    from public.app_role_permissions
+    where app_role = (auth.jwt() -> 'app_metadata' ->> 'app_role')::public.app_role
+      and permission = _permission
+  );
+$$;
 
 -- security invoker
 
@@ -132,7 +132,7 @@ execute procedure moddatetime(updated_at);
 -- seed
 
 insert into public.permissions (permission)
-values ('profiles.select'), ('profiles.update'), ('profiles.delete');
+values ('profiles.select'), ('profiles.update');
 
 -- auth hook
 
@@ -161,3 +161,40 @@ end;
 $$;
 
 grant select on table public.profiles to supabase_auth_admin;
+
+-- rls policies
+
+-- public.profiles
+
+create policy "Allow supabase_auth_admin to select all"
+on public.profiles
+as permissive
+for select
+to supabase_auth_admin
+using (true);
+
+create policy "Allow admins to select"
+on public.profiles
+as permissive
+for select
+to authenticated
+using (
+  public.authorize('profiles.select')
+);
+
+create policy "Allow admins to update"
+on public.profiles
+as permissive
+for insert, update
+to authenticated
+using (
+  public.authorize('profiles.update')
+);
+
+-- public.permissions
+
+alter table public.permissions enable row level security;
+
+-- public.app_role_permissions
+
+alter table public.app_role_permissions enable row level security;
