@@ -1,8 +1,8 @@
--- types
+-- 01_types
 
 create type public.app_role as enum ('admin');
 
--- tables
+-- 02_tables
 
 -- public.permissions
 
@@ -28,7 +28,7 @@ create table public.app_role_permissions (
   primary key (app_role, permission_id)
 );
 
--- trigger functions
+-- 08_trigger_functions
 
 -- security definer
 
@@ -41,9 +41,14 @@ stable
 as $$
   select exists (
     select 1
-    from public.app_role_permissions
-    where app_role = (auth.jwt() -> 'app_metadata' ->> 'app_role')::public.app_role
-      and permission = _permission
+    from public.app_role_permissions arp
+    where arp.app_role = (auth.jwt() -> 'app_metadata' ->> 'app_role')::public.app_role
+      and arp.permission_id = (
+        select id
+        from public.permissions
+        where permission = _permission
+        limit 1
+      )
   );
 $$;
 
@@ -85,7 +90,7 @@ begin
 end;
 $$;
 
--- triggers
+-- 09_triggers
 
 -- public.permissions
 
@@ -162,7 +167,7 @@ $$;
 
 grant select on table public.profiles to supabase_auth_admin;
 
--- rls policies
+-- 04_rls_policies
 
 -- public.profiles
 
@@ -185,7 +190,7 @@ using (
 create policy "Allow admins to update"
 on public.profiles
 as permissive
-for insert, update
+for update
 to authenticated
 using (
   public.authorize('profiles.update')
