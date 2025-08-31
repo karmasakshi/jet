@@ -8,28 +8,28 @@ set search_path = ''
 volatile
 as $$
 declare
-  avatar_url text;
-  full_name text;
+  _avatar_url text;
+  _full_name text;
 begin
-  full_name := nullif(new.raw_user_meta_data->>'full_name', '');
+  _full_name := nullif(new.raw_user_meta_data->>'full_name', '');
 
-  if full_name is not null then
-    full_name := left(full_name, 36);
+  if _full_name is not null then
+    _full_name := left(_full_name, 36);
   end if;
 
-  avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
+  _avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
 
-  if avatar_url is not null then
-    if length(avatar_url) > 300 then
-      avatar_url := null;
+  if _avatar_url is not null then
+    if length(_avatar_url) > 300 then
+      _avatar_url := null;
     end if;
   end if;
 
   insert into public.profiles (user_id, avatar_url, full_name, username)
   values (
     new.id,
-    avatar_url,
-    full_name,
+    _avatar_url,
+    _full_name,
     replace(new.id::text, '-', '_')
   );
 

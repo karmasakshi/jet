@@ -1,8 +1,16 @@
--- 01_types
+--
+-- types
+--
 
 create type public.app_role as enum ('admin');
 
--- 02_tables
+--
+-- tables
+--
+
+-- public.profiles
+
+alter table public.profiles add column app_role public.app_role;
 
 -- public.permissions
 
@@ -12,10 +20,6 @@ create table public.permissions (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
-
--- public.profiles
-
-alter table public.profiles add column app_role public.app_role;
 
 -- public.app_role_permissions
 
@@ -28,7 +32,21 @@ create table public.app_role_permissions (
   primary key (app_role, permission_id)
 );
 
--- 08_trigger_functions
+--
+-- rls_policies
+--
+
+-- public.permissions
+
+alter table public.permissions enable row level security;
+
+-- public.app_role_permissions
+
+alter table public.app_role_permissions enable row level security;
+
+--
+-- functions
+--
 
 -- security definer
 
@@ -40,15 +58,14 @@ set search_path = ''
 stable
 as $$
   select exists (
-    select 1
-    from public.app_role_permissions arp
+    select 1 from public.app_role_permissions arp
     where arp.app_role = (auth.jwt() -> 'app_metadata' ->> 'app_role')::public.app_role
-      and arp.permission_id = (
-        select id
-        from public.permissions
-        where permission = _permission
-        limit 1
-      )
+    and arp.permission_id = (
+      select id
+      from public.permissions
+      where permission = _permission
+      limit 1
+    )
   );
 $$;
 
@@ -90,7 +107,17 @@ begin
 end;
 $$;
 
--- 09_triggers
+--
+-- triggers
+--
+
+-- public.profiles
+
+create or replace trigger set_app_role
+before update
+on public.profiles
+for each row
+execute function public.set_app_role();
 
 -- public.permissions
 
@@ -112,14 +139,6 @@ on public.permissions
 for each row
 execute procedure moddatetime(updated_at);
 
--- public.profiles
-
-create or replace trigger set_app_role
-before update
-on public.profiles
-for each row
-execute function public.set_app_role();
-
 -- public.app_role_permissions
 
 create or replace trigger set_created_at
@@ -134,14 +153,11 @@ on public.app_role_permissions
 for each row
 execute procedure moddatetime(updated_at);
 
--- seed
+--
+-- custom_access_token_hook
+--
 
-insert into public.permissions (permission)
-values ('profiles.select'), ('profiles.update');
-
--- auth hook
-
-create or replace function public.custom_access_token(event jsonb)
+create or replace function public.custom_access_token(_event jsonb)
 returns jsonb
 language plpgsql
 security invoker
@@ -149,27 +165,23 @@ set search_path = ''
 volatile
 as $$
 declare
-  claims jsonb;
   _app_role public.app_role;
+  _claims jsonb;
 begin
   select app_role
   into _app_role
   from public.profiles
-  where user_id = (event->>'user_id')::uuid;
+  where user_id = (_event->>'user_id')::uuid;
 
-  claims := event->'claims';
-  claims := jsonb_set(claims, '{app_metadata,app_role}', coalesce(to_jsonb(_app_role), 'null'::jsonb));
-  event := jsonb_set(event, '{claims}', claims);
+  _claims := _event->'claims';
+  _claims := jsonb_set(_claims, '{app_metadata,app_role}', coalesce(to_jsonb(_app_role), 'null'::jsonb));
+  _event := jsonb_set(_event, '{claims}', _claims);
 
-  return event;
+  return _event;
 end;
 $$;
 
 grant select on table public.profiles to supabase_auth_admin;
-
--- 04_rls_policies
-
--- public.profiles
 
 create policy "Allow supabase_auth_admin to select all"
 on public.profiles
@@ -177,6 +189,12 @@ as permissive
 for select
 to supabase_auth_admin
 using (true);
+
+--
+-- rbac_rls_policies
+--
+
+-- public.profiles
 
 create policy "Allow admins to select"
 on public.profiles
@@ -196,10 +214,9 @@ using (
   public.authorize('profiles.update')
 );
 
--- public.permissions
+--
+-- seed
+--
 
-alter table public.permissions enable row level security;
-
--- public.app_role_permissions
-
-alter table public.app_role_permissions enable row level security;
+insert into public.permissions (permission)
+values ('profiles.select'), ('profiles.update');
