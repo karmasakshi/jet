@@ -71,7 +71,7 @@ $$;
 
 -- security invoker
 
-create or replace function public.set_permission()
+create or replace function public.preserve_or_update_permission()
 returns trigger
 language plpgsql
 security invoker
@@ -89,7 +89,7 @@ begin
 end;
 $$;
 
-create or replace function public.set_app_role()
+create or replace function public.preserve_or_update_app_role()
 returns trigger
 language plpgsql
 security invoker
@@ -113,19 +113,19 @@ $$;
 
 -- public.profiles
 
-create or replace trigger set_app_role
+create or replace trigger preserve_or_update_app_role
 before update
 on public.profiles
 for each row
-execute function public.set_app_role();
+execute function public.preserve_or_update_app_role();
 
 -- public.permissions
 
-create or replace trigger set_permission
+create or replace trigger preserve_or_update_permission
 before update
 on public.permissions
 for each row
-execute function public.set_permission();
+execute function public.preserve_or_update_permission();
 
 create or replace trigger preserve_created_at
 before update
