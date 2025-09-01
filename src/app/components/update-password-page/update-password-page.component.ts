@@ -5,7 +5,6 @@ import {
   DestroyRef,
   inject,
   OnInit,
-  Signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -63,7 +62,7 @@ export class UpdatePasswordPageComponent
   readonly #translocoService = inject(TranslocoService);
 
   #isLoading: boolean;
-  readonly #user: Signal<null | User>;
+  readonly #user: null | User;
 
   public readonly emailFormGroup: FormGroup<{
     email: FormControl<null | string>;
@@ -78,7 +77,7 @@ export class UpdatePasswordPageComponent
   public constructor() {
     this.#isLoading = false;
 
-    this.#user = this.#userService.user;
+    this.#user = this.#userService.user();
 
     this.emailFormGroup = this.#formBuilder.group({
       email: this.#formBuilder.control<null | string>(null),
@@ -107,7 +106,7 @@ export class UpdatePasswordPageComponent
   public ngOnInit(): void {
     this.emailFormGroup.disable();
 
-    this.emailFormGroup.patchValue({ email: this.#user()?.email ?? null });
+    this.emailFormGroup.patchValue({ email: this.#user?.email ?? null });
 
     this.updatePasswordFormGroup.controls.confirmNewPassword.addValidators(
       this.#matchFormControlValidator(
