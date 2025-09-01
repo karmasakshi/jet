@@ -21,6 +21,8 @@ create table public.permissions (
   updated_at timestamptz not null default now()
 );
 
+alter table public.permissions enable row level security;
+
 -- public.app_role_permissions
 
 create table public.app_role_permissions (
@@ -31,16 +33,6 @@ create table public.app_role_permissions (
   updated_at timestamptz not null default now(),
   primary key (app_role, permission_id)
 );
-
---
--- rls_policies
---
-
--- public.permissions
-
-alter table public.permissions enable row level security;
-
--- public.app_role_permissions
 
 alter table public.app_role_permissions enable row level security;
 
@@ -226,4 +218,6 @@ values ('profiles.select'), ('profiles.update');
 -- public.app_role_permissions
 
 insert into public.app_role_permissions (app_role, permission_id)
-select 'admin', id from public.permissions where permission in ('profiles.select', 'profiles.update');
+select 'admin', id
+from public.permissions
+where permission in ('profiles.select', 'profiles.update');
