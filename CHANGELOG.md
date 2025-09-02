@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.10.0](https://github.com/karmasakshi/jet/compare/v3.9.0...v3.10.0) (2025-09-02)
+
+
+### Features
+
+* **general:** persist email between authentication forms ([ef886f6](https://github.com/karmasakshi/jet/commit/ef886f60c4802847ef08d724c0264f5107e6bfc9))
+
 ## [3.9.0](https://github.com/karmasakshi/jet/compare/v3.8.0...v3.9.0) (2025-08-30)
 
 
