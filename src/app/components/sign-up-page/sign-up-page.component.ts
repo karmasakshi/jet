@@ -1,5 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -38,7 +45,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './sign-up-page.component.scss',
   templateUrl: './sign-up-page.component.html',
 })
-export class SignUpPageComponent {
+export class SignUpPageComponent implements OnInit {
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
@@ -46,6 +53,8 @@ export class SignUpPageComponent {
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
+
+  public readonly email: InputSignal<string | undefined> = input();
 
   #isLoading: boolean;
 
@@ -72,6 +81,10 @@ export class SignUpPageComponent {
     });
 
     this.#loggerService.logComponentInitialization('SignUpPageComponent');
+  }
+
+  public ngOnInit(): void {
+    this.signUpFormGroup.patchValue({ email: this.email() ?? null });
   }
 
   public async signUp(email: string, password: string) {

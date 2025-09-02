@@ -41,6 +41,7 @@ export class SidenavComponent {
   public readonly activeNavigationMenuItemPath: InputSignal<
     string | undefined
   > = input.required();
+
   public readonly clickNavigationMenuItem: OutputEmitterRef<void> = output();
 
   public readonly navigationMenuItems: NavigationMenuItem[];

@@ -55,6 +55,7 @@ export class SignInPageComponent implements OnInit {
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
+  public readonly email: InputSignal<string | undefined> = input();
   public readonly returnUrl: InputSignal<string | undefined> = input();
 
   #isLoading: boolean;
@@ -85,6 +86,8 @@ export class SignInPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.signInFormGroup.patchValue({ email: this.email() ?? null });
+
     void this.#getClaims();
   }
 

@@ -1,5 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -38,13 +45,15 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './reset-password-page.component.scss',
   templateUrl: './reset-password-page.component.html',
 })
-export class ResetPasswordPageComponent {
+export class ResetPasswordPageComponent implements OnInit {
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
+
+  public readonly email: InputSignal<string | undefined> = input();
 
   #isLoading: boolean;
 
@@ -65,6 +74,10 @@ export class ResetPasswordPageComponent {
     this.#loggerService.logComponentInitialization(
       'ResetPasswordPageComponent',
     );
+  }
+
+  public ngOnInit(): void {
+    this.resetPasswordFormGroup.patchValue({ email: this.email() ?? null });
   }
 
   public async resetPasswordForEmail(email: string) {
