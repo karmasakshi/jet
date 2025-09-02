@@ -11,7 +11,7 @@ export class SupabaseService {
   public constructor() {
     this.#supabaseClient = createClient(
       import.meta.env.NG_APP_SUPABASE_URL,
-      import.meta.env.NG_APP_SUPABASE_ANON_KEY,
+      import.meta.env.NG_APP_SUPABASE_PUBLISHABLE_OR_ANON_KEY,
     );
 
     this.#loggerService.logServiceInitialization('SupabaseService');
