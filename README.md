@@ -116,6 +116,7 @@ Nice to do:
   - [Deploy](#deploy)
     - [Vercel](#vercel)
   - [Supabase](#supabase)
+    - [Cheat sheet](#cheat-sheet)
     - [Set up Supabase](#set-up-supabase)
     - [Link a Supabase project](#link-a-supabase-project)
     - [Run Supabase locally](#run-supabase-locally)
@@ -536,6 +537,20 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 [↑ Back to Contents](#contents)
 
 ### Supabase
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+#### Cheat sheet
+
+- `npx supabase status`
+- `npx supabase start`
+- `npx supabase stop`
+- `npx supabase functions new <function-name>`
+- `npx supabase functions serve`
+- `npx supabase migrations new`
+- `npx supabase db reset`
 
 <br />
 
