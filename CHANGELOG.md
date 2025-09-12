@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.11.0](https://github.com/karmasakshi/jet/compare/v3.10.0...v3.11.0) (2025-09-12)
+
+
+### Features
+
+* **general:** add injection tokens ([257fbb2](https://github.com/karmasakshi/jet/commit/257fbb2cb84c452ebd42391507b0dd1775d088f5))
+
 ## [3.10.0](https://github.com/karmasakshi/jet/compare/v3.9.0...v3.10.0) (2025-09-02)
 
 
