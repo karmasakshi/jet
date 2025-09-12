@@ -1,25 +1,22 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { SupabaseBucket } from '@jet/enums/supabase-bucket.enum';
 import { SupabaseTable } from '@jet/enums/supabase-table.enum';
+import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { FileObject, StorageError } from '@supabase/storage-js/';
-import { SupabaseClient, User } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
-import { SupabaseService } from '../supabase/supabase.service';
 import { UserService } from '../user/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
+  readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);
-  readonly #supabaseService = inject(SupabaseService);
   readonly #userService = inject(UserService);
 
-  readonly #supabaseClient: SupabaseClient;
   readonly #user: Signal<null | User>;
 
   public constructor() {
-    this.#supabaseClient = this.#supabaseService.supabaseClient;
-
     this.#user = this.#userService.user;
 
     this.#loggerService.logServiceInitialization('ProfileService');

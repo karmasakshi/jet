@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
+import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
 import {
   AuthChangeEvent,
@@ -18,26 +19,21 @@ import {
   JwtHeader,
   JwtPayload,
   OAuthResponse,
-  SupabaseClient,
   User,
   UserAttributes,
   UserResponse,
 } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
-import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   readonly #activatedRoute = inject(ActivatedRoute);
+  readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);
-  readonly #supabaseService = inject(SupabaseService);
 
-  readonly #supabaseClient: SupabaseClient;
   readonly #user: WritableSignal<null | User>;
 
   public constructor() {
-    this.#supabaseClient = this.#supabaseService.supabaseClient;
-
     this.#user = signal(null);
 
     this.#supabaseClient.auth.onAuthStateChange(

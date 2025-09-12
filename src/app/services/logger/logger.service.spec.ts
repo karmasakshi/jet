@@ -1,5 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { IS_LOGGING_ENABLED } from '@jet/injection-tokens/is-logging-enabled.injection-token';
 import { LoggerService } from './logger.service';
 
 describe('LoggerService', () => {
@@ -7,7 +8,10 @@ describe('LoggerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection()],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: IS_LOGGING_ENABLED, useValue: false },
+      ],
     });
     service = TestBed.inject(LoggerService);
   });

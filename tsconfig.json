@@ -28,6 +28,7 @@
       "@jet/directives/*": ["src/app/directives/*"],
       "@jet/enums/*": ["src/app/enums/*"],
       "@jet/guards/*": ["src/app/guards/*"],
+      "@jet/injection-tokens/*": ["src/app/injection-tokens/*"],
       "@jet/interceptors/*": ["src/app/interceptors/*"],
       "@jet/interfaces/*": ["src/app/interfaces/*"],
       "@jet/services/*": ["src/app/services/*"],

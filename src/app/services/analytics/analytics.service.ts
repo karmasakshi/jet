@@ -1,21 +1,18 @@
 import { inject, Injectable } from '@angular/core';
+import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from '@jet/injection-tokens/google-analytics-measurement-id.injection-token';
+import { IS_ANALYTICS_ENABLED } from '@jet/injection-tokens/is-analytics-enabled.injection-token';
 import { gtag, install } from 'ga-gtag';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
+  readonly #googleAnalyticsMeasurementId = inject(
+    GOOGLE_ANALYTICS_MEASUREMENT_ID,
+  );
+  readonly #isAnalyticsEnabled = inject(IS_ANALYTICS_ENABLED);
   readonly #loggerService = inject(LoggerService);
 
-  readonly #googleAnalyticsMeasurementId: string;
-  readonly #isAnalyticsEnabled: boolean;
-
   public constructor() {
-    this.#googleAnalyticsMeasurementId =
-      import.meta.env.NG_APP_GOOGLE_ANALYTICS_MEASUREMENT_ID;
-
-    this.#isAnalyticsEnabled =
-      import.meta.env.NG_APP_IS_ANALYTICS_ENABLED === 'true';
-
     if (this.#isAnalyticsEnabled) {
       install(this.#googleAnalyticsMeasurementId);
     }

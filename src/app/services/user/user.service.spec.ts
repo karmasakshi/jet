@@ -1,10 +1,9 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
-import { SupabaseService } from '../supabase/supabase.service';
-import { SupabaseServiceMock } from '../supabase/supabase.service.mock';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
@@ -15,8 +14,11 @@ describe('UserService', () => {
       providers: [
         provideZonelessChangeDetection(),
         { provide: ActivatedRoute, useValue: {} },
+        {
+          provide: SUPABASE_CLIENT,
+          useValue: { auth: { onAuthStateChange: () => undefined } },
+        },
         { provide: LoggerService, useClass: LoggerServiceMock },
-        { provide: SupabaseService, useClass: SupabaseServiceMock },
       ],
     });
     service = TestBed.inject(UserService);

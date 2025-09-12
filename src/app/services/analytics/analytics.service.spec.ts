@@ -1,5 +1,7 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from '@jet/injection-tokens/google-analytics-measurement-id.injection-token';
+import { IS_ANALYTICS_ENABLED } from '@jet/injection-tokens/is-analytics-enabled.injection-token';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { AnalyticsService } from './analytics.service';
@@ -11,6 +13,8 @@ describe('AnalyticsService', () => {
     TestBed.configureTestingModule({
       providers: [
         provideZonelessChangeDetection(),
+        { provide: GOOGLE_ANALYTICS_MEASUREMENT_ID, useValue: '' },
+        { provide: IS_ANALYTICS_ENABLED, useValue: false },
         { provide: LoggerService, useClass: LoggerServiceMock },
       ],
     });

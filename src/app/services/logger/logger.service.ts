@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { IS_LOGGING_ENABLED } from '@jet/injection-tokens/is-logging-enabled.injection-token';
 
 @Injectable({ providedIn: 'root' })
 export class LoggerService {
-  readonly #isLoggingEnabled: boolean;
+  readonly #isLoggingEnabled = inject(IS_LOGGING_ENABLED);
 
   public constructor() {
-    this.#isLoggingEnabled =
-      import.meta.env.NG_APP_IS_LOGGING_ENABLED === 'true';
-
     this.logServiceInitialization('LoggerService');
   }
 
