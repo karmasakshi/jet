@@ -35,10 +35,7 @@
           >
             <img
               [alt]="t('avatar')"
-              [ngSrc]="
-                _profile?.avatar_url ??
-                'https://placehold.co/128x128/webp?text=?'
-              "
+              [ngSrc]="_profile?.avatar_url ?? './images/placeholder.svg'"
               height="128"
               mat-card-image
               priority
