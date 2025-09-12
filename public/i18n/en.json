@@ -29,7 +29,11 @@
   },
   "jet-footer": { "sponsor": "Sponsor" },
   "jet-home-page": {
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Jet - Angular starter-kit for building quality web apps fast. Now with Supabase."
+    },
     "toolbar-title": "Jet"
   },
   "jet-message-page": {

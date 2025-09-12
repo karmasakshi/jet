@@ -29,7 +29,11 @@
   },
   "jet-footer": { "sponsor": "راعي" },
   "jet-home-page": {
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Jet" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Jet - حزمة انطلاق لـ Angular لبناء تطبيقات ويب عالية الجودة بسرعة. الآن مع Supabase."
+    },
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
