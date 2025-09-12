@@ -89,12 +89,12 @@ export class UpdatePasswordPageComponent
 
     this.updatePasswordFormGroup = this.#formBuilder.group({
       confirmNewPassword: this.#formBuilder.control<null | string>(null, [
-        Validators.required,
         Validators.minLength(6),
+        Validators.required,
       ]),
       newPassword: this.#formBuilder.control<null | string>(null, [
-        Validators.required,
         Validators.minLength(6),
+        Validators.required,
       ]),
     });
 

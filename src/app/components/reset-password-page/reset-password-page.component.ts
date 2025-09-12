@@ -66,8 +66,8 @@ export class ResetPasswordPageComponent implements OnInit {
 
     this.resetPasswordFormGroup = this.#formBuilder.group({
       email: this.#formBuilder.control<null | string>(null, [
-        Validators.required,
         Validators.email,
+        Validators.required,
       ]),
     });
 

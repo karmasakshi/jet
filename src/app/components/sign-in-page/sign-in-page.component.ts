@@ -73,12 +73,12 @@ export class SignInPageComponent implements OnInit {
 
     this.signInFormGroup = this.#formBuilder.group({
       email: this.#formBuilder.control<null | string>(null, [
-        Validators.required,
         Validators.email,
+        Validators.required,
       ]),
       password: this.#formBuilder.control<null | string>(null, [
-        Validators.required,
         Validators.minLength(6),
+        Validators.required,
       ]),
     });
 
