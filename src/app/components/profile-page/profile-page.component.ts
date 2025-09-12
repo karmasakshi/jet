@@ -24,7 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { AVATAR_FILE_MAX_SIZE } from '@jet/constants/avatar-file-max-size.constant';
+import { AVATAR_FILE_MAX_SIZE_MB } from '@jet/constants/avatar-file-max-size-mb.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
 import { Profile } from '@jet/interfaces/profile.interface';
@@ -99,10 +99,10 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
         Validators.maxLength(36),
       ]),
       username: this.#formBuilder.control<null | string>(null, [
-        Validators.required,
-        Validators.minLength(3),
         Validators.maxLength(36),
+        Validators.minLength(3),
         Validators.pattern(/^[a-z0-9_]+$/),
+        Validators.required,
       ]),
     });
 
@@ -139,11 +139,11 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       return;
     }
 
-    if (file.size > AVATAR_FILE_MAX_SIZE) {
+    if (file.size > AVATAR_FILE_MAX_SIZE_MB * 1024 * 1024) {
       this.#alertService.showAlert(
         this.#translocoService.translate(
           'alerts.please-select-a-smaller-avatar',
-          { value: AVATAR_FILE_MAX_SIZE / (1024 * 1024) },
+          { value: AVATAR_FILE_MAX_SIZE_MB },
         ),
       );
 

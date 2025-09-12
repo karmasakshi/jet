@@ -179,7 +179,7 @@ Nice to do:
 
 ### Constants
 
-- [AVATAR_FILE_MAX_SIZE](./src/app/constants/avatar-file-max-size.constant.ts)
+- [AVATAR_FILE_MAX_SIZE_MB](./src/app/constants/avatar-file-max-size-mb.constant.ts)
 - [COLOR_SCHEME_OPTIONS](./src/app/constants/color-scheme-options.constant.ts)
 - [DEFAULT_COLOR_SCHEME_OPTION](./src/app/constants/default-color-scheme-option.constant.ts)
 - [DEFAULT_LANGUAGE_OPTION](./src/app/constants/default-language-option.constant.ts)
