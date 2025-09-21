@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
+import { signedInGuard } from '@jet/guards/signed-in/signed-in.guard';
+import { signedOutGuard } from '@jet/guards/signed-out/signed-out.guard';
 import { unsavedChangesGuard } from '@jet/guards/unsaved-changes/unsaved-changes.guard';
-import { signedInGuard } from './guards/signed-in/signed-in.guard';
-import { signedOutGuard } from './guards/signed-out/signed-out.guard';
 
 const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
 

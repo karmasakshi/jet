@@ -13,7 +13,7 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
   },
   {
     directionality: 'rtl',
-    fontPair: 'arabic',
+    fontPair: 'nsa-nsa',
     fontPairUrl:
       'https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans+Arabic:wght@100..900',
     icon: 'translate',

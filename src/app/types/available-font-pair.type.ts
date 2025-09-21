@@ -1,1 +1,1 @@
-export type AvailableFontPair = 'arabic' | 'default';
+export type AvailableFontPair = 'default' | 'nsa-nsa';
