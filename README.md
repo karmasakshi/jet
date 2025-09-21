@@ -7,7 +7,7 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <p align="center">
   <img
     alt="Logo"
-    src="./public/icons/jet.svg"
+    src="./public/images/logo.svg"
     width="64"
   />
 </p>
