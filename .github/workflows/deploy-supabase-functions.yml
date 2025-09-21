@@ -23,6 +23,9 @@ jobs:
       - name: create-env
         run: |
           echo "ACCESS_CONTROL_ALLOW_ORIGIN=${{ secrets.ACCESS_CONTROL_ALLOW_ORIGIN }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "UPSTASH_REDIS_REST_TOKEN=${{ secrets.UPSTASH_REDIS_REST_TOKEN }}" >> .env
+          echo "UPSTASH_REDIS_REST_URL=${{ secrets.UPSTASH_REDIS_REST_URL }}" >> .env
 
       - name: set-env
         run: |

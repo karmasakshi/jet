@@ -1,5 +1,5 @@
-import { AppRole } from '@jet/enums/app-role.enum';
 import { User } from '@supabase/supabase-js';
+import { AppRole } from '../enums/app-role.enum.ts';
 
 export interface Profile {
   app_role: AppRole;
