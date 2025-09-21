@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.13.0](https://github.com/karmasakshi/jet/compare/v3.12.0...v3.13.0) (2025-09-21)
+
+
+### Features
+
+* **general:** add utilities for supabase edge functions ([4900b21](https://github.com/karmasakshi/jet/commit/4900b21b33513868be878d3ec1c3512879851f3c))
+
 ## [3.12.0](https://github.com/karmasakshi/jet/compare/v3.11.0...v3.12.0) (2025-09-18)
 
 
