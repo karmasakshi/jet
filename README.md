@@ -1,6 +1,6 @@
 # Jet
 
-Angular starter-kit for building quality web apps fast. Now with Supabase.
+> Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 <br />
 
@@ -40,6 +40,21 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 <br />
 
+## Highlights
+
+- **0% fat**: Defaults unless necessary, tree-shakeable and modular.
+- **Modern Angular**: Signals, new template syntax, Zoneless, Standalone, and more.
+- **PWA-ready**: Native-like edge-to-edge content - portrait and landscape, background updating, caching, and more.
+- **Customizable**: Supports light/dark/automatic color schemes, themes and theme generation via [Angular Material](https://material.angular.dev/guide/theming#custom-color-palettes), multiple languages and language tools via [Transloco](https://jsverse.gitbook.io/transloco), custom fonts per language, and more.
+- **Components**: Production-ready, responsive components for layout, authentication, and more.
+- **Services**: Production-ready services for managing alerts, analytics, PWA updates, progress bar, browser storage, and more.
+- **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
+- **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
+- **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
+- **Always up-to-date**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
+
+<br />
+
 ## Demo
 
 <a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-view-6e4b3a?style=plastic"></a>
@@ -52,9 +67,9 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 - Click the button, create the repository, then clone it
 - Create a copy of `.env.example` and name it `.env`
-- Delete `./.github/FUNDING.yml` and `./LICENSE`
+- Delete `./.github/FUNDING.yml`
 - Delete `./CHANGELOG.md` - a fresh one will be created on first release
-- Delete the `license` property in `./package.json` and `./package-lock.json`
+- Delete `./LICENSE` and the `license` property in `./package.json` and `./package-lock.json`
 - Reset the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
 - Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
 - Run `ng serve` and start building!
@@ -81,6 +96,7 @@ Nice to do:
   - [Directives](#directives)
   - [Enums](#enums)
   - [Guards](#guards)
+  - [Injection Tokens](#injection-tokens)
   - [Interceptors](#interceptors)
   - [Services](#services)
   - [GitHub Actions](#github-actions)
@@ -131,12 +147,6 @@ Nice to do:
 [↑ Back to Contents](#contents)
 
 ## Features
-
-- **Modern Angular**: Signals, new template syntax, Zoneless, Standalone, and more.
-- **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
-- **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
-- **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
-- **Always up-to-date**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
 
 <br />
 
@@ -201,6 +211,7 @@ Nice to do:
 
 ### Enums
 
+- [AppRole](./src/app/enums/app-role.enum.ts)
 - [LocalStorageKey](./src/app/enums/local-storage-key.enum.ts)
 - [QueryParam](./src/app/enums/query-param.enum.ts)
 - [SessionStorageKey](./src/app/enums/session-storage-key.enum.ts)
@@ -218,6 +229,17 @@ Nice to do:
 - [signedInGuard](./src/app/guards/signed-in/signed-in.guard.ts)
 - [signedOutGuard](./src/app/guards/signed-out/signed-out.guard.ts)
 - [unsavedChangesGuard](./src/app/guards/unsaved-changes/unsaved-changes.guard.ts)
+
+<br />
+
+[↑ Back to Contents](#contents)
+
+### Injection Tokens
+
+- [GOOGLE_ANALYTICS_MEASUREMENT_ID](./src/app/injection-tokens/google-analytics-measurement-id.injection-token.ts)
+- [IS_ANALYTICS_ENABLED](./src/app/injection-tokens/is-analytics-enabled.injection-token.ts)
+- [IS_LOGGING_ENABLED](./src/app/injection-tokens/is-logging-enabled.injection-token.ts)
+- [SUPABASE_CLIENT](./src/app/injection-tokens/supabase-client.injection-token.ts)
 
 <br />
 
@@ -241,7 +263,6 @@ Nice to do:
 - [ServiceWorkerService](./src/app/services/service-worker/service-worker.service.ts)
 - [SettingsService](./src/app/services/settings/settings.service.ts)
 - [StorageService](./src/app/services/storage/storage.service.ts)
-- [SupabaseService](./src/app/services/supabase/supabase.service.ts)
 - [ToolbarTitleService](./src/app/services/toolbar-title/toolbar-title.service.ts)
 - [UserService](./src/app/services/user/user.service.ts)
 
@@ -251,8 +272,8 @@ Nice to do:
 
 ### GitHub Actions
 
-- [release-please](./.github/workflows/release-please.yml)
 - [deploy-supabase-functions](./.github/workflows/deploy-supabase-functions.yml)
+- [release-please](./.github/workflows/release-please.yml)
 
 <br />
 
