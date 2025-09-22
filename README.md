@@ -1,6 +1,6 @@
 # Jet
 
-> Angular starter-kit for building quality web apps fast. Now with Supabase.
+Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 <br />
 
@@ -42,15 +42,16 @@
 
 ## Highlights
 
-- **0% fat**: Defaults unless necessary, tree-shakeable and modular.
-- **Modern Angular**: Signals, new template syntax, Zoneless, Standalone, and more.
-- **PWA-ready**: Native-like edge-to-edge content - portrait and landscape, background updating, caching, and more.
-- **Customizable**: Supports light/dark/automatic color schemes, themes and theme generation via [Angular Material](https://material.angular.dev/guide/theming#custom-color-palettes), multiple languages and language tools via [Transloco](https://jsverse.gitbook.io/transloco), custom fonts per language, and more.
-- **Components**: Production-ready, responsive components for layout, authentication, and more.
+- **Modern Angular**: Signals, new template syntax, Zoneless, Standalone, lazy-loaded routes, and more.
+- **PWA-ready**: Safe-area styles for native-like edge-to-edge content - in both portrait and landscape. Background updating and offline support via [@angular/service-worker](https://angular.dev/ecosystem/service-workers).
+- **Customizable**: Support for light/dark/automatic color schemes. Theme generation via [Angular Material](https://material.angular.dev/guide/theming#custom-color-palettes). Support for multiple languages and language tools via [Transloco](https://jsverse.gitbook.io/transloco). Custom fonts per language, RTL support, and more.
+- **Pre-built features**: Production-ready, responsive components for authentication and profile management. Authentication, profile management and RBAC flows integrated with [Supabase](https://supabase.com/docs/guides/auth). Easily swap Supabase with your own back-end using migrations.
 - **Services**: Production-ready services for managing alerts, analytics, PWA updates, progress bar, browser storage, and more.
 - **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
 - **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
 - **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
+- **Release management**: Commit linting via [@commitlint/\*](https://github.com/conventional-changelog/commitlint). Automatic versioning and changelog generation via [Release Please](https://github.com/marketplace/actions/release-please-action).
+- **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
 - **Always up-to-date**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
 
 <br />
@@ -90,7 +91,6 @@ Nice to do:
 ## Contents
 
 - [Features](#features)
-  - [Integrations](#integrations)
   - [Components](#components)
   - [Constants](#constants)
   - [Directives](#directives)
@@ -147,24 +147,6 @@ Nice to do:
 [↑ Back to Contents](#contents)
 
 ## Features
-
-<br />
-
-[↑ Back to Contents](#contents)
-
-### Integrations
-
-- [@angular/material](https://github.com/angular/components) for components and theming support.
-- [@angular/service-worker](https://angular.dev/ecosystem/service-workers) for PWA support.
-- [@commitlint/\*](https://github.com/conventional-changelog/commitlint) for semantic versioning.
-- [@jsverse/transloco](https://github.com/jsverse/transloco) for i18n.
-- [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) for .env support.
-- [@supabase/supabase-js](https://github.com/supabase/supabase-js) for Supabase integration.
-- [ga-gtag](https://github.com/idmadj/ga-gtag) for Google Analytics integration.
-
-<br />
-
-[↑ Back to Contents](#contents)
 
 ### Components
 
