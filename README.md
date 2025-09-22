@@ -35,30 +35,30 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <div align="center">
   <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fkarmasakshi%2Fjet&countColor=white&style=plastic">
   <a href="https://x.com/jetprojectdev"><img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/jetprojectdev?style=plastic&logo=X&label=%40jetprojectdev&color=white"></a>
-  <a href="https://github.dev/karmasakshi/jet"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-6e4b3a?style=plastic"></a>
+  <a href="https://github.dev/karmasakshi/jet"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-code-6e4b3a?style=plastic"></a>
 </div>
 
 <br />
 
 ## Highlights
 
-- **Modern Angular**: Signals, new template syntax, Zoneless, Standalone, lazy-loaded routes, and more.
-- **PWA-ready**: Safe-area styles for native-like edge-to-edge content - in both portrait and landscape. Background updating and offline support via [@angular/service-worker](https://angular.dev/ecosystem/service-workers).
-- **Customizable**: Support for light/dark/automatic color schemes. Theme generation via [Angular Material](https://material.angular.dev/guide/theming#custom-color-palettes). Support for multiple languages and language tools via [Transloco](https://jsverse.gitbook.io/transloco). Custom fonts per language, RTL support, and more.
-- **Pre-built features**: Production-ready, responsive components for authentication and profile management. Authentication, profile management and RBAC flows integrated with [Supabase](https://supabase.com/docs/guides/auth). Easily swap Supabase with your own back-end using migrations.
-- **Services**: Production-ready services for managing alerts, analytics, PWA updates, progress bar, browser storage, and more.
-- **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
-- **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
-- **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
-- **Release management**: Commit linting via [@commitlint/\*](https://github.com/conventional-changelog/commitlint). Automatic versioning and changelog generation via [Release Please](https://github.com/marketplace/actions/release-please-action).
-- **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
-- **Always up-to-date**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
+- 🆕 **Modern Angular**: Uses Signals, new template syntax, Zoneless, Standalone, lazy-loaded routes, and more.
+- 📲 **PWA-ready**: Has safe-area styles for native-like edge-to-edge content in both portrait and landscape. Has background updating and offline support via [@angular/service-worker](https://angular.dev/ecosystem/service-workers).
+- 🎨 **Customizable**: Support for light/dark/automatic color schemes. Theme generation via [Angular Material](https://material.angular.dev/guide/theming#custom-color-palettes). Support for multiple languages and language tools via [Transloco](https://jsverse.gitbook.io/transloco). Custom fonts per language, RTL support, and more.
+- 🌿 **Pre-built features**: Production-ready, responsive components for authentication and profile management. Authentication, profile management and RBAC flows integrated with [Supabase](https://supabase.com/docs/guides/auth). Easily set up your own back-end using migrations and swap out Supabase.
+- 🚂 **Services**: Production-ready services for managing alerts, analytics, PWA updates, progress bar, browser storage, and more.
+- 🚀 **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
+- 🔒 **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
+- 📏 **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
+- 🎁 **Release management**: Commit linting via [@commitlint/\*](https://github.com/conventional-changelog/commitlint). Automatic versioning and changelog generation via [Release Please](https://github.com/marketplace/actions/release-please-action).
+- 🌻 **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
+- 🗻 **Always updated**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
 
 <br />
 
 ## Demo
 
-<a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-view-6e4b3a?style=plastic"></a>
+<a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-6e4b3a?style=plastic"></a>
 
 <br />
 
