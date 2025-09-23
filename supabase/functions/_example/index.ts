@@ -48,12 +48,12 @@ Deno.serve(async (request: Request): Promise<Response> => {
 
     await checkIsAdmin(userId, supabaseUserClient);
 
-    const { file, userProfile }: RequestFormData =
+    const { exampleFile, exampleObject }: RequestFormData =
       await getValidatedRequestFormData(request);
 
-    const dataUrl: string = await convertFileToDataUrl(file);
+    const dataUrl: string = await convertFileToDataUrl(exampleFile);
 
-    return new Response(JSON.stringify(dataUrl ?? null), {
+    return new Response(JSON.stringify({ dataUrl, exampleObject }), {
       headers: COMMON_HEADERS,
     });
   } catch (exception: unknown) {
