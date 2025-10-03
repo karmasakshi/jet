@@ -29,7 +29,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/classes.scss"],
+            "styles": ["src/styles.scss", "src/additional-styles.scss"],
             "optimization": { "styles": { "inlineCritical": false } }
           },
           "configurations": {
@@ -85,7 +85,7 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/classes.scss"]
+            "styles": ["src/styles.scss", "src/additional-styles.scss"]
           }
         },
         "lint": {
