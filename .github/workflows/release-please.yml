@@ -7,13 +7,14 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v4 # https://github.com/marketplace/actions/release-please-action
+      - uses: googleapis/release-please-action@v4.3.0 # https://github.com/marketplace/actions/release-please-action
         with:
           release-type: node
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
