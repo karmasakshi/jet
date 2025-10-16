@@ -137,6 +137,7 @@ body {
       }
 
       footer {
+        background-color: var(--mat-sys-surface-container-low);
         padding-left: 16px;
         padding-right: calc(16px + env(safe-area-inset-right));
 
