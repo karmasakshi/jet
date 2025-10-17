@@ -32,7 +32,7 @@
     {
       "name": "jet-analytics",
       "urls": ["https://www.google-analytics.com/**"],
-      "cacheConfig": { "maxAge": "0u", "maxSize": 0 }
+      "cacheConfig": { "maxAge": "0u", "maxSize": 0, "strategy": "freshness" }
     }
   ]
 }
