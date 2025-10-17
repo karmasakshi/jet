@@ -14,7 +14,7 @@ export class AnalyticsService {
 
   public constructor() {
     if (this.#isAnalyticsEnabled) {
-      install(this.#googleAnalyticsMeasurementId);
+      install(this.#googleAnalyticsMeasurementId, { transport_type: 'beacon' });
     }
 
     this.#loggerService.logServiceInitialization('AnalyticsService');

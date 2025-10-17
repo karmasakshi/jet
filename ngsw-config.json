@@ -27,17 +27,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "jet-analytics",
-      "urls": ["https://www.google-analytics.com/**"],
-      "cacheConfig": {
-        "maxAge": "0s",
-        "maxSize": 0,
-        "strategy": "freshness",
-        "timeout": "0s"
-      }
-    }
   ]
 }
