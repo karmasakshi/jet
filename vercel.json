@@ -23,7 +23,10 @@
     {
       "source": "/ngsw-worker.js",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'none';" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; connect-src 'self';"
+        }
       ]
     }
   ]
