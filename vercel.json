@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; base-uri 'self'; connect-src 'self' https://*.google-analytics.com https://*.supabase.co; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' data: https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; manifest-src 'self'; object-src 'none'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self' blob:;"
+          "value": "default-src 'none'; base-uri 'self'; connect-src 'self' https://*.google-analytics.com https://*.supabase.co; font-src https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' data: https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; manifest-src 'self'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self' blob:;"
         },
         { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
         { "key": "Cross-Origin-Resource-Policy", "value": "same-origin" },
@@ -23,10 +23,7 @@
     {
       "source": "/ngsw-worker.js",
       "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'none'; connect-src 'self' https:;"
-        }
+        { "key": "Content-Security-Policy", "value": "default-src 'none';" }
       ]
     }
   ]
