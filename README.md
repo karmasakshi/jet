@@ -62,29 +62,29 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 <br />
 
+[![Star History Chart](https://api.star-history.com/svg?repos=karmasakshi/jet&type=Date)](https://www.star-history.com/#karmasakshi/jet&Date)
+
+<br />
+
 ## Get started in 30 seconds
 
 <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-6e4b3a?style=plastic"></a>
 
-- Click the button, create the repository, then clone it
+- Click the button above, create your repository, then clone it
 - Create a copy of `.env.example` and name it `.env`
 - Delete `./.github/FUNDING.yml`
 - Delete `./CHANGELOG.md` - a fresh one will be created on first release
 - Delete `./LICENSE` and the `license` property in `./package.json` and `./package-lock.json`
 - Reset the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
-- Run `npm install` - this will also enable [Husky](https://typicode.github.io/husky/)
+- Run `npm install`; this will also enable [Husky](https://typicode.github.io/husky/)
+- Find and replace `https://jet-tau.vercel.app` with the base URL of your app
 - Run `ng serve` and start building!
 
 Nice to do:
 
-- Delete or update `./README.md`
-- Find and replace `https://jet-tau.vercel.app` with the base URL of your app
-- Empty the footer template
 - Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to the project
-
-<br />
-
-[![Star History Chart](https://api.star-history.com/svg?repos=karmasakshi/jet&type=Date)](https://www.star-history.com/#karmasakshi/jet&Date)
+- Empty the footer template
+- Delete or update `./README.md` (this file) explaining your project
 
 <br />
 
