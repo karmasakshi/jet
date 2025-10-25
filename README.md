@@ -82,9 +82,9 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 Nice to do:
 
-- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to the project
+- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to your app
 - Empty the footer template
-- Delete or update `./README.md` (this file) explaining your project
+- Delete or update `./README.md` (this file)
 
 <br />
 
