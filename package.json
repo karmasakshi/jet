@@ -37,7 +37,7 @@
     "@angular/router": "^20.3.9",
     "@angular/service-worker": "^20.3.9",
     "@jsverse/transloco": "^8.1.0",
-    "@supabase/supabase-js": "^2.78.0",
+    "@supabase/supabase-js": "^2.79.0",
     "ga-gtag": "^1.2.0",
     "rxjs": "^7.8.2",
     "tslib": "^2.8.1"
@@ -53,8 +53,8 @@
     "@ngx-env/builder": "^20.1.1",
     "@types/ga-gtag": "^1.2.0",
     "@types/jasmine": "^5.1.12",
-    "angular-eslint": "^20.5.0",
-    "eslint": "^9.39.0",
+    "angular-eslint": "^20.5.1",
+    "eslint": "^9.39.1",
     "eslint-plugin-perfectionist": "^4.15.1",
     "husky": "^9.1.7",
     "jasmine-core": "^5.12.1",
@@ -70,6 +70,6 @@
     "prettier-plugin-organize-imports": "^4.3.0",
     "supabase": "^2.54.11",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.2"
+    "typescript-eslint": "^8.46.3"
   }
 }
