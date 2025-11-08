@@ -7,9 +7,13 @@ export class ServiceWorkerServiceMock {
   public constructor() {
     this.#isUpdatePending = signal(false);
 
-    this._subscribeToVersionUpdates();
+    const storedLastUpdateCheckTimestamp: null | string = null;
 
-    this.#lastUpdateCheckTimestamp = signal(new Date().toISOString());
+    this.#lastUpdateCheckTimestamp = signal(
+      storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
+    );
+
+    this._subscribeToVersionUpdates();
   }
 
   public get isUpdatePending(): Signal<boolean> {
