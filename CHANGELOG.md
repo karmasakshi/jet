@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.14.0](https://github.com/karmasakshi/jet/compare/v3.13.0...v3.14.0) (2025-11-08)
+
+
+### Features
+
+* **general:** use provideEnvironmentInitializer ([2118242](https://github.com/karmasakshi/jet/commit/21182420112617d5121d01671dc16236ec1c5ebd))
+
 ## [3.13.0](https://github.com/karmasakshi/jet/compare/v3.12.0...v3.13.0) (2025-09-21)
 
 
