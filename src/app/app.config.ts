@@ -5,9 +5,11 @@ import {
 } from '@angular/common/http';
 import {
   ApplicationConfig,
+  inject,
   isDevMode,
   LOCALE_ID,
   provideBrowserGlobalErrorListeners,
+  provideEnvironmentInitializer,
   provideZonelessChangeDetection,
 } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -27,6 +29,7 @@ import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
+import { ServiceWorkerService } from './services/service-worker/service-worker.service';
 import { TranslocoHttpLoader } from './transloco-loader';
 
 export const appConfig: ApplicationConfig = {
@@ -34,6 +37,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([progressBarInterceptor])),
     { provide: LOCALE_ID, useValue: window.navigator.language },
     provideBrowserGlobalErrorListeners(),
+    provideEnvironmentInitializer(() => {
+      inject(ServiceWorkerService);
+    }),
     provideZonelessChangeDetection(),
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {

@@ -7,6 +7,8 @@ export class ServiceWorkerServiceMock {
   public constructor() {
     this.#isUpdatePending = signal(false);
 
+    this._subscribeToVersionUpdates();
+
     this.#lastUpdateCheckTimestamp = signal(new Date().toISOString());
   }
 
@@ -26,7 +28,7 @@ export class ServiceWorkerServiceMock {
     return Promise.resolve(true);
   }
 
-  public subscribeToVersionUpdates(): void {
+  private _subscribeToVersionUpdates(): void {
     // Do nothing
   }
 }

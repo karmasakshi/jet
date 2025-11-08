@@ -41,7 +41,6 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
-import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
@@ -80,7 +79,6 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #analyticsService = inject(AnalyticsService);
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
-  readonly #serviceWorkerService = inject(ServiceWorkerService);
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
@@ -228,8 +226,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
         this.#progressBarService.hideProgressBar();
       });
-
-    this.#serviceWorkerService.subscribeToVersionUpdates();
 
     this.#setIcons();
 
