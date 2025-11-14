@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.15.0](https://github.com/karmasakshi/jet/compare/v3.14.0...v3.15.0) (2025-11-14)
+
+
+### Features
+
+* **supabase:** enable throwing auth errors ([6049695](https://github.com/karmasakshi/jet/commit/6049695e535df860027ad8892beb0674eede5a66))
+
 ## [3.14.0](https://github.com/karmasakshi/jet/compare/v3.13.0...v3.14.0) (2025-11-08)
 
 
