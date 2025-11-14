@@ -106,12 +106,6 @@ export class ServiceWorkerService {
             );
             break;
 
-          case 'VERSION_FAILED':
-            this.#loggerService.logError(new Error(versionEvent.error));
-            this.#analyticsService.logEvent('VERSION_FAILED');
-            this.#alertService.showErrorAlert(versionEvent.error);
-            break;
-
           case 'VERSION_INSTALLATION_FAILED':
             this.#loggerService.logError(new Error(versionEvent.error));
             this.#analyticsService.logEvent('VERSION_INSTALLATION_FAILED');
