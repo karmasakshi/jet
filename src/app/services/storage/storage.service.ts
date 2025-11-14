@@ -1,123 +1,58 @@
 import { inject, Injectable } from '@angular/core';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
+import store2, { StoreType } from 'store2';
 import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
   readonly #loggerService = inject(LoggerService);
 
-  readonly #prefix: string;
+  readonly #store2: StoreType;
 
   public constructor() {
-    this.#prefix = 'jet-';
+    this.#store2 = store2.namespace('jet', undefined, '-');
 
     this.#loggerService.logServiceInitialization('StorageService');
   }
 
   public clearLocalStorage(): void {
-    try {
-      Object.values(LocalStorageKey).forEach((key) => {
-        window.localStorage.removeItem(this.#prefix + key);
-      });
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
+    store2.clearAll();
   }
 
   public clearSessionStorage(): void {
-    try {
-      Object.values(SessionStorageKey).forEach((key) => {
-        window.sessionStorage.removeItem(this.#prefix + key);
-      });
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
+    store2.session.clearAll();
   }
 
   public getLocalStorageItem<T>(localStorageKey: LocalStorageKey): null | T {
-    let value: null | T = null;
-
-    try {
-      const serializedValue: null | string = window.localStorage.getItem(
-        this.#prefix + localStorageKey,
-      );
-
-      if (serializedValue !== null) {
-        value = JSON.parse(serializedValue);
-      }
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
-
-    return value;
+    return this.#store2.get(localStorageKey);
   }
 
   public getSessionStorageItem<T>(
     sessionStorageKey: SessionStorageKey,
   ): null | T {
-    let value: null | T = null;
-
-    try {
-      const serializedValue: null | string = window.sessionStorage.getItem(
-        this.#prefix + sessionStorageKey,
-      );
-
-      if (serializedValue !== null) {
-        value = JSON.parse(serializedValue);
-      }
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
-
-    return value;
+    return this.#store2.session.get(sessionStorageKey);
   }
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    try {
-      window.localStorage.removeItem(this.#prefix + localStorageKey);
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
+    this.#store2.remove(localStorageKey);
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    try {
-      window.sessionStorage.removeItem(this.#prefix + sessionStorageKey);
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
+    this.#store2.session.remove(sessionStorageKey);
   }
 
-  public setLocalStorageItem(
+  public setLocalStorageItem<T>(
     localStorageKey: LocalStorageKey,
-    value: unknown,
+    data: T,
   ): void {
-    try {
-      const serializedValue: string = JSON.stringify(value);
-
-      window.localStorage.setItem(
-        this.#prefix + localStorageKey,
-        serializedValue,
-      );
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
+    this.#store2.set(localStorageKey, data);
   }
 
-  public setSessionStorageItem(
+  public setSessionStorageItem<T>(
     sessionStorageKey: SessionStorageKey,
-    value: unknown,
+    data: T,
   ): void {
-    try {
-      const serializedValue: string = JSON.stringify(value);
-
-      window.sessionStorage.setItem(
-        this.#prefix + sessionStorageKey,
-        serializedValue,
-      );
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-    }
+    this.#store2.session.set(sessionStorageKey, data);
   }
 }

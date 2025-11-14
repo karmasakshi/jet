@@ -18,9 +18,9 @@
     "i18n:find": "transloco-keys-manager find",
     "prepare": "husky",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
-    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs tslib",
+    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
     "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/ga-gtag @types/jasmine angular-eslint eslint eslint-plugin-perfectionist husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports supabase typescript typescript-eslint",
-    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs tslib",
+    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
     "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/ga-gtag @types/jasmine angular-eslint eslint eslint-plugin-perfectionist husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-attributes prettier-plugin-organize-imports supabase typescript typescript-eslint"
   },
   "lint-staged": {
@@ -40,6 +40,7 @@
     "@supabase/supabase-js": "^2.81.1",
     "ga-gtag": "^1.2.0",
     "rxjs": "^7.8.2",
+    "store2": "^2.14.4",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
