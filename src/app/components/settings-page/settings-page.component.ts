@@ -50,8 +50,6 @@ export class SettingsPageComponent {
   readonly #storageService = inject(StorageService);
   readonly #translocoService = inject(TranslocoService);
 
-  readonly #isUpdatePending: Signal<boolean>;
-
   public readonly colorSchemeOptions: ColorSchemeOption[];
   public readonly languageOptions: LanguageOption[];
   public readonly lastUpdateCheckTimestamp: Signal<string>;
@@ -59,8 +57,6 @@ export class SettingsPageComponent {
   public readonly version: string;
 
   public constructor() {
-    this.#isUpdatePending = this.#serviceWorkerService.isUpdatePending;
-
     this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
 
     this.languageOptions = LANGUAGE_OPTIONS;
@@ -76,36 +72,32 @@ export class SettingsPageComponent {
   }
 
   public async checkForUpdate(): Promise<void> {
-    if (this.#isUpdatePending()) {
-      this.#serviceWorkerService.alertUpdateAvailability();
-    } else {
-      this.#progressBarService.showQueryProgressBar();
+    this.#progressBarService.showQueryProgressBar();
 
-      this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.checking-for-updates'),
-      );
+    this.#alertService.showAlert(
+      this.#translocoService.translate('alerts.checking-for-updates'),
+    );
 
-      try {
-        const isUpdateFoundAndReady: boolean =
-          await this.#serviceWorkerService.checkForUpdate();
+    try {
+      const isUpdateFoundAndReady: boolean =
+        await this.#serviceWorkerService.checkForUpdate();
 
-        if (!isUpdateFoundAndReady) {
-          this.#alertService.showAlert(
-            this.#translocoService.translate(
-              'alerts.youre-on-the-latest-version',
-            ),
-          );
-        }
-      } catch (exception: unknown) {
-        if (exception instanceof Error) {
-          this.#loggerService.logError(exception);
-          this.#alertService.showErrorAlert(exception.message);
-        } else {
-          this.#loggerService.logException(exception);
-        }
-      } finally {
-        this.#progressBarService.hideProgressBar();
+      if (!isUpdateFoundAndReady) {
+        this.#alertService.showAlert(
+          this.#translocoService.translate(
+            'alerts.youre-on-the-latest-version',
+          ),
+        );
       }
+    } catch (exception: unknown) {
+      if (exception instanceof Error) {
+        this.#loggerService.logError(exception);
+        this.#alertService.showErrorAlert(exception.message);
+      } else {
+        this.#loggerService.logException(exception);
+      }
+    } finally {
+      this.#progressBarService.hideProgressBar();
     }
   }
 

@@ -27,12 +27,9 @@ export class ServiceWorkerService {
   readonly #loggerService = inject(LoggerService);
   readonly #storageService = inject(StorageService);
 
-  readonly #isUpdatePending: WritableSignal<boolean>;
   readonly #lastUpdateCheckTimestamp: WritableSignal<string>;
 
   public constructor() {
-    this.#isUpdatePending = signal(false);
-
     const storedLastUpdateCheckTimestamp: null | string =
       this.#storageService.getLocalStorageItem<string>(
         LocalStorageKey.LastUpdateCheckTimestamp,
@@ -64,22 +61,8 @@ export class ServiceWorkerService {
     this.#loggerService.logServiceInitialization('ServiceWorkerService');
   }
 
-  public get isUpdatePending(): Signal<boolean> {
-    return this.#isUpdatePending.asReadonly();
-  }
-
   public get lastUpdateCheckTimestamp(): Signal<string> {
     return this.#lastUpdateCheckTimestamp.asReadonly();
-  }
-
-  public alertUpdateAvailability(): void {
-    this.#alertService.showAlert(
-      this.#translocoService.translate('alerts.reload-to-update'),
-      this.#translocoService.translate('alert-ctas.reload'),
-      (): void => {
-        window.location.reload();
-      },
-    );
   }
 
   public checkForUpdate(): Promise<boolean> {
@@ -92,33 +75,48 @@ export class ServiceWorkerService {
       .subscribe((versionEvent: VersionEvent) => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
-            this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
             this.#analyticsService.logEvent('NO_NEW_VERSION_DETECTED');
+
+            this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
+
             break;
 
           case 'VERSION_DETECTED':
-            this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
             this.#analyticsService.logEvent('VERSION_DETECTED', {
               version: versionEvent.version.hash,
             });
+
+            this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
+
             this.#alertService.showAlert(
               this.#translocoService.translate('alerts.downloading-updates'),
             );
+
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
-            this.#loggerService.logError(new Error(versionEvent.error));
             this.#analyticsService.logEvent('VERSION_INSTALLATION_FAILED');
+
+            this.#loggerService.logError(new Error(versionEvent.error));
+
             this.#alertService.showErrorAlert(versionEvent.error);
+
             break;
 
           case 'VERSION_READY':
-            this.#isUpdatePending.set(true);
             this.#analyticsService.logEvent('VERSION_READY', {
               currentVersion: versionEvent.currentVersion.hash,
               latestVersion: versionEvent.latestVersion.hash,
             });
-            this.alertUpdateAvailability();
+
+            this.#alertService.showAlert(
+              this.#translocoService.translate('alerts.reload-to-update'),
+              this.#translocoService.translate('alert-ctas.reload'),
+              (): void => {
+                window.location.reload();
+              },
+            );
+
             break;
         }
       });
