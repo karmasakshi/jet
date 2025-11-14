@@ -121,7 +121,7 @@ export class UserService {
       QueryParam.ReturnUrl,
     ),
   ): string {
-    const redirectUrl = new URL('/sign-in', window.location.origin);
+    const redirectUrl: URL = new URL('/sign-in', window.location.origin);
 
     if (returnUrl) {
       redirectUrl.searchParams.set(QueryParam.ReturnUrl, returnUrl);

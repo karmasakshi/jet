@@ -3,7 +3,7 @@ import { SupabaseBucket } from '@jet/enums/supabase-bucket.enum';
 import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { Profile } from '@jet/interfaces/profile.interface';
-import { FileObject, StorageError } from '@supabase/storage-js/';
+import { FileObject, StorageError } from '@supabase/storage-js';
 import { User } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { UserService } from '../user/user.service';
@@ -28,7 +28,7 @@ export class ProfileService {
     { data: FileObject[]; error: null } | { data: null; error: StorageError }
   > {
     const fileName: string | undefined = publicUrl.split('/').pop();
-    const path = `${this.#userService.user()?.id}/${fileName}`;
+    const path: string = `${this.#userService.user()?.id}/${fileName}`;
 
     return this.#supabaseClient.storage
       .from(SupabaseBucket.Avatars)
@@ -68,9 +68,9 @@ export class ProfileService {
     | { data: { fullPath: string; id: string; path: string }; error: null }
     | { data: null; error: StorageError }
   > {
-    const fileExtension = file.name.split('.').pop();
-    const timestamp = Date.now();
-    const path = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
+    const fileExtension: string | undefined = file.name.split('.').pop();
+    const timestamp: number = Date.now();
+    const path: string = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
 
     return this.#supabaseClient.storage
       .from(SupabaseBucket.Avatars)

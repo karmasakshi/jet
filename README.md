@@ -54,6 +54,8 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 - 🌻 **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
 - 🗻 **Always updated**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
 
+<br />
+
 [![Star History Chart](https://api.star-history.com/svg?repos=karmasakshi/jet&type=Date)](https://www.star-history.com/#karmasakshi/jet&Date)
 
 <br />
