@@ -34,14 +34,7 @@ export class UserServiceMock {
     | { data: null; error: AuthError }
     | { data: null; error: null }
   > {
-    return Promise.resolve({
-      data: {
-        claims: {} as JwtPayload,
-        header: {} as JwtHeader,
-        signature: {} as Uint8Array,
-      },
-      error: null,
-    });
+    return Promise.resolve({ data: null, error: null });
   }
 
   public resetPasswordForEmail(
