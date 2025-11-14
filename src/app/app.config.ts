@@ -32,7 +32,7 @@ import { routes } from './app.routes';
 import { ServiceWorkerService } from './services/service-worker/service-worker.service';
 import { TranslocoHttpLoader } from './transloco-loader';
 
-export const appConfig: ApplicationConfig = {
+export const applicationConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withFetch(), withInterceptors([progressBarInterceptor])),
     { provide: LOCALE_ID, useValue: window.navigator.language },
