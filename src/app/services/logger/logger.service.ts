@@ -12,56 +12,74 @@ export class LoggerService {
   }
 
   public log(...args: unknown[]): void {
-    if (this.#isLoggingEnabled) {
-      console.log(...args);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.log(...args);
   }
 
   public logClassInitialization(className: string): void {
-    if (this.#isLoggingEnabled) {
-      console.info(`Class ${className} initialized.`);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.info(`Class ${className} initialized.`);
   }
 
   public logComponentInitialization(componentName: string): void {
-    if (this.#isLoggingEnabled) {
-      console.debug(`Component ${componentName} initialized.`);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.debug(`Component ${componentName} initialized.`);
   }
 
   public logDirectiveInitialization(directiveName: string): void {
-    if (this.#isLoggingEnabled) {
-      console.debug(`Directive ${directiveName} initialized.`);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.debug(`Directive ${directiveName} initialized.`);
   }
 
   public logEffectRun(signalName: string): void {
-    if (this.#isLoggingEnabled) {
-      console.warn(`Running effect for ${signalName}.`);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.warn(`Running effect for ${signalName}.`);
   }
 
   public logError(error: Error): void {
-    if (this.#isLoggingEnabled) {
-      console.error(error);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.error(error);
   }
 
   public logException(exception: unknown): void {
-    if (this.#isLoggingEnabled) {
-      console.error(exception);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.error(exception);
   }
 
   public logServiceInitialization(serviceName: string): void {
-    if (this.#isLoggingEnabled) {
-      console.info(`Service ${serviceName} initialized.`);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.info(`Service ${serviceName} initialized.`);
   }
 
   public logWarning(warning: string): void {
-    if (this.#isLoggingEnabled) {
-      console.warn(warning);
+    if (!this.#isLoggingEnabled) {
+      return;
     }
+
+    console.warn(warning);
   }
 }
