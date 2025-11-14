@@ -101,14 +101,10 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data, error } = await this.#userService.signInWithPassword(
+      const { data } = await this.#userService.signInWithPassword(
         email,
         password,
       );
-
-      if (error) {
-        throw error;
-      }
 
       if (data.session === null) {
         throw new Error();
@@ -143,14 +139,9 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data, error } =
-        await this.#userService.signInWithOauth(oauthProvider);
+      const { data } = await this.#userService.signInWithOauth(oauthProvider);
 
-      if (error) {
-        throw error;
-      }
-
-      window.location.href = data.url;
+      window.location.href = data.url ?? '/';
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this.#loggerService.logError(exception);
@@ -175,11 +166,7 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this.#userService.signInWithOtp(email);
-
-      if (error) {
-        throw error;
-      }
+      await this.#userService.signInWithOtp(email);
 
       void this.#router.navigateByUrl('/sign-in-link-sent');
     } catch (exception: unknown) {
@@ -206,11 +193,7 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showQueryProgressBar();
 
     try {
-      const { data, error } = await this.#userService.getClaims();
-
-      if (error) {
-        throw error;
-      }
+      const { data } = await this.#userService.getClaims();
 
       if (data) {
         this.#alertService.showAlert(

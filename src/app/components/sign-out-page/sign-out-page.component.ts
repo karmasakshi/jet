@@ -48,11 +48,7 @@ export class SignOutPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this.#userService.signOut();
-
-      if (error) {
-        throw error;
-      }
+      await this.#userService.signOut();
 
       this.#alertService.showAlert(
         this.#translocoService.translate('alerts.signed-out-successfully'),

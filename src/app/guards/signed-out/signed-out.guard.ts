@@ -13,11 +13,7 @@ export const signedOutGuard: CanActivateFn = async (): Promise<GuardResult> => {
   let guardResult: GuardResult = router.createUrlTree(['/']);
 
   try {
-    const { data, error } = await userService.getClaims();
-
-    if (error) {
-      throw error;
-    }
+    const { data } = await userService.getClaims();
 
     if (data === null) {
       guardResult = true;

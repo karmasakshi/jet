@@ -19,11 +19,7 @@ export const signedInGuard: CanActivateFn = async (
   });
 
   try {
-    const { data, error } = await userService.getClaims();
-
-    if (error) {
-      throw error;
-    }
+    const { data } = await userService.getClaims();
 
     if (data !== null) {
       guardResult = true;

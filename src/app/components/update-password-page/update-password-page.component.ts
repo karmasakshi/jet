@@ -135,11 +135,7 @@ export class UpdatePasswordPageComponent
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this.#userService.updateUser({ password });
-
-      if (error) {
-        throw error;
-      }
+      await this.#userService.updateUser({ password });
 
       this.updatePasswordFormGroup.markAsPristine();
 

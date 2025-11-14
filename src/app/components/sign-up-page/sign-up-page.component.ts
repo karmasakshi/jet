@@ -97,11 +97,7 @@ export class SignUpPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data, error } = await this.#userService.signUp(email, password);
-
-      if (error) {
-        throw error;
-      }
+      const { data } = await this.#userService.signUp(email, password);
 
       if (data.session === null) {
         void this.#router.navigateByUrl('/email-verification-pending');

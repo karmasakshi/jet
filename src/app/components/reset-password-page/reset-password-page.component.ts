@@ -90,11 +90,7 @@ export class ResetPasswordPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { error } = await this.#userService.resetPasswordForEmail(email);
-
-      if (error) {
-        throw error;
-      }
+      await this.#userService.resetPasswordForEmail(email);
 
       void this.#router.navigateByUrl('/reset-password-email-sent');
     } catch (exception: unknown) {
