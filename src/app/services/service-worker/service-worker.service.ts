@@ -59,7 +59,7 @@ export class ServiceWorkerService {
       { debugName: 'lastUpdateCheckTimestamp' },
     );
 
-    this._subscribeToVersionUpdates();
+    this.#subscribeToVersionUpdates();
 
     this.#loggerService.logServiceInitialization('ServiceWorkerService');
   }
@@ -84,7 +84,7 @@ export class ServiceWorkerService {
     return this.#swUpdate.checkForUpdate();
   }
 
-  private _subscribeToVersionUpdates(): void {
+  #subscribeToVersionUpdates(): void {
     this.#swUpdate.versionUpdates
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((versionEvent: VersionEvent) => {

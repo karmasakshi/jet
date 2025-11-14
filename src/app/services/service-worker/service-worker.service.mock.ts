@@ -10,7 +10,7 @@ export class ServiceWorkerServiceMock {
       storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
     );
 
-    this._subscribeToVersionUpdates();
+    this.#subscribeToVersionUpdates();
   }
 
   public get lastUpdateCheckTimestamp(): Signal<string> {
@@ -21,7 +21,7 @@ export class ServiceWorkerServiceMock {
     return Promise.resolve(true);
   }
 
-  private _subscribeToVersionUpdates(): void {
+  #subscribeToVersionUpdates(): void {
     // Do nothing
   }
 }
