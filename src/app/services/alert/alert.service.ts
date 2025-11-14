@@ -4,7 +4,7 @@ import {
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
-import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Settings } from '@jet/interfaces/settings.interface';
 import { TranslocoService } from '@jsverse/transloco';
 import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
@@ -17,7 +17,9 @@ export class AlertService {
   readonly #loggerService = inject(LoggerService);
   readonly #settingsService = inject(SettingsService);
 
-  readonly #directionality: Signal<LanguageOption['directionality']>;
+  readonly #directionality: Signal<
+    Settings['languageOption']['directionality']
+  >;
 
   public constructor() {
     this.#directionality = this.#settingsService.directionality;
