@@ -54,17 +54,13 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 - 🌻 **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
 - 🗻 **Always updated**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
 
+[![Star History Chart](https://api.star-history.com/svg?repos=karmasakshi/jet&type=Date)](https://www.star-history.com/#karmasakshi/jet&Date)
+
 <br />
 
 ## Demo
 
 <a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-6e4b3a?style=plastic"></a>
-
-<br />
-
-[![Star History Chart](https://api.star-history.com/svg?repos=karmasakshi/jet&type=Date)](https://www.star-history.com/#karmasakshi/jet&Date)
-
-<br />
 
 ## Get started in 30 seconds
 
@@ -73,7 +69,7 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 - Click the button above, create your repository, then clone it
 - Create a copy of `.env.example` and name it `.env`
 - Delete `./.github/FUNDING.yml`
-- Delete `./CHANGELOG.md` - a fresh one will be created on first release
+- Delete `./CHANGELOG.md`; a fresh one will be created on first release
 - Delete `./LICENSE` and the `license` property in `./package.json` and `./package-lock.json`
 - Reset the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
 - Run `npm install`; this will also enable [Husky](https://typicode.github.io/husky/)
@@ -82,11 +78,8 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 
 Nice to do:
 
-- Set `this._prefix` in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to your app
-- Empty the footer template
-- Delete or update `./README.md` (this file)
-
-<br />
+- Set namespace name in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to your app
+- Update `./README.md` (this file)
 
 ## Contents
 
