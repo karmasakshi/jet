@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.17.2](https://github.com/karmasakshi/jet/compare/v3.17.1...v3.17.2) (2025-11-14)
+
+
+### Reverts
+
+* **general:** allow checking for service worker updates after new version is downloaded ([e984868](https://github.com/karmasakshi/jet/commit/e9848687e40822319ac16b13244b8855c80c8204))
+
 ## [3.17.1](https://github.com/karmasakshi/jet/compare/v3.17.0...v3.17.1) (2025-11-14)
 
 
