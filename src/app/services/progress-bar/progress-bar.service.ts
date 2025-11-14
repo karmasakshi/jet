@@ -12,23 +12,18 @@ import { LoggerService } from '../logger/logger.service';
 export class ProgressBarService {
   readonly #loggerService = inject(LoggerService);
 
-  readonly #defaultProgressBarConfiguration: ProgressBarConfiguration;
   readonly #progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
-  #queueTimeout: ReturnType<typeof setTimeout> | undefined;
+  #queueTimeoutId: number | undefined;
 
   public constructor() {
-    this.#defaultProgressBarConfiguration = {
+    this.#progressBarConfiguration = signal({
       bufferValue: 0,
       isVisible: false,
       mode: 'indeterminate',
       value: 0,
-    };
-
-    this.#progressBarConfiguration = signal({
-      ...this.#defaultProgressBarConfiguration,
     });
 
-    this.#queueTimeout = undefined;
+    this.#queueTimeoutId = undefined;
 
     this.#loggerService.logServiceInitialization('ProgressBarService');
   }
@@ -61,13 +56,13 @@ export class ProgressBarService {
   #queueConfiguration(
     partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
   ): void {
-    clearTimeout(this.#queueTimeout);
+    clearTimeout(this.#queueTimeoutId);
 
-    this.#queueTimeout = setTimeout(() => {
+    this.#queueTimeoutId = setTimeout(() => {
       this.#progressBarConfiguration.update((progressBarConfiguration) => ({
         ...progressBarConfiguration,
         ...partialProgressBarConfiguration,
       }));
-    }, 100);
+    }, 90);
   }
 }

@@ -4,19 +4,14 @@ import { Signal, signal, WritableSignal } from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 
 export class ProgressBarServiceMock {
-  readonly #defaultProgressBarConfiguration: ProgressBarConfiguration;
   readonly #progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
 
   public constructor() {
-    this.#defaultProgressBarConfiguration = {
+    this.#progressBarConfiguration = signal({
       bufferValue: 0,
       isVisible: false,
       mode: 'indeterminate',
       value: 0,
-    };
-
-    this.#progressBarConfiguration = signal({
-      ...this.#defaultProgressBarConfiguration,
     });
   }
 
