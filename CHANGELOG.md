@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.16.0](https://github.com/karmasakshi/jet/compare/v3.15.0...v3.16.0) (2025-11-14)
+
+
+### Features
+
+* **general:** use store2 for browser storage ([baec31b](https://github.com/karmasakshi/jet/commit/baec31b33e5949a45865cca082f028ae55b87675))
+
 ## [3.15.0](https://github.com/karmasakshi/jet/compare/v3.14.0...v3.15.0) (2025-11-14)
 
 
