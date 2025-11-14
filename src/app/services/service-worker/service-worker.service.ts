@@ -27,9 +27,12 @@ export class ServiceWorkerService {
   readonly #loggerService = inject(LoggerService);
   readonly #storageService = inject(StorageService);
 
+  #isUpdateReady: boolean;
   readonly #lastUpdateCheckTimestamp: WritableSignal<string>;
 
   public constructor() {
+    this.#isUpdateReady = false;
+
     const storedLastUpdateCheckTimestamp: null | string =
       this.#storageService.getLocalStorageItem<string>(
         LocalStorageKey.LastUpdateCheckTimestamp,
@@ -65,8 +68,11 @@ export class ServiceWorkerService {
     return this.#lastUpdateCheckTimestamp.asReadonly();
   }
 
-  public checkForUpdate(): Promise<boolean> {
-    return this.#swUpdate.checkForUpdate();
+  public async checkForUpdate(): Promise<boolean> {
+    const isUpdateFoundAndReady: boolean =
+      await this.#swUpdate.checkForUpdate();
+
+    return this.#isUpdateReady ? true : isUpdateFoundAndReady;
   }
 
   private _subscribeToVersionUpdates(): void {
@@ -108,6 +114,8 @@ export class ServiceWorkerService {
               currentVersion: versionEvent.currentVersion.hash,
               latestVersion: versionEvent.latestVersion.hash,
             });
+
+            this.#isUpdateReady = true;
 
             this.#alertService.showAlert(
               this.#translocoService.translate('alerts.reload-to-update'),
