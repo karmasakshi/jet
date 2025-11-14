@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.17.1](https://github.com/karmasakshi/jet/compare/v3.17.0...v3.17.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **general:** alert if service worker update is ready ([92bccc2](https://github.com/karmasakshi/jet/commit/92bccc28b6230bc700a2519f7fe8100483a67079))
+
 ## [3.17.0](https://github.com/karmasakshi/jet/compare/v3.16.0...v3.17.0) (2025-11-14)
 
 
