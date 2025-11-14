@@ -69,10 +69,19 @@ export class ServiceWorkerService {
   }
 
   public async checkForUpdate(): Promise<boolean> {
-    const isUpdateFoundAndReady: boolean =
-      await this.#swUpdate.checkForUpdate();
+    if (this.#isUpdateReady) {
+      this.#alertService.showAlert(
+        this.#translocoService.translate('alerts.reload-to-update'),
+        this.#translocoService.translate('alert-ctas.reload'),
+        (): void => {
+          window.location.reload();
+        },
+      );
 
-    return this.#isUpdateReady ? true : isUpdateFoundAndReady;
+      return true;
+    }
+
+    return this.#swUpdate.checkForUpdate();
   }
 
   private _subscribeToVersionUpdates(): void {
