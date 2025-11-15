@@ -12,16 +12,17 @@
     <div class="jet-flexc-centered">
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('profile')"
           height="180"
           mat-card-image
           ngSrc="./images/card.webp"
           priority
           width="480"
+          [alt]="t('profile')"
         />
         <mat-card-header />
         <mat-card-content>
           <mat-card
+            mat-ripple
             [style]="{
               border: '3px solid transparent',
               height: '132px',
@@ -31,33 +32,32 @@
               cursor: profileFormGroup.disabled ? 'not-allowed' : 'pointer',
             }"
             (click)="avatarFileInput.click()"
-            mat-ripple
           >
             <img
-              [alt]="t('avatar')"
-              [ngSrc]="_profile?.avatar_url ?? './images/placeholder.svg'"
               height="128"
               mat-card-image
               priority
               width="128"
+              [alt]="t('avatar')"
+              [ngSrc]="_profile?.avatar_url ?? './images/placeholder.svg'"
             />
             <mat-card-header />
             <mat-card-content style="display: none">
               <input
                 #avatarFileInput
-                [disabled]="profileFormGroup.disabled"
-                [jetAnalytics]="{ name: 'Update avatar' }"
-                (change)="replaceAvatar()"
                 accept="image/*"
                 autocomplete="photo"
                 type="file"
+                [disabled]="profileFormGroup.disabled"
+                [jetAnalytics]="{ name: 'Update avatar' }"
+                (change)="replaceAvatar()"
               />
             </mat-card-content>
           </mat-card>
           <form
             id="email-form"
-            [formGroup]="emailFormGroup"
             style="margin-bottom: 8px"
+            [formGroup]="emailFormGroup"
           >
             <mat-form-field>
               <mat-label>{{ t('email') }}</mat-label>
@@ -90,13 +90,13 @@
               />
               @if (_fullNameControl.value !== null) {
                 <button
-                  [aria-label]="t('clear')"
-                  [disabled]="_fullNameControl.disabled"
-                  (click)="_fullNameControl.reset()"
                   matIconButton
                   matSuffix
                   tabindex="-1"
                   type="button"
+                  [aria-label]="t('clear')"
+                  [disabled]="_fullNameControl.disabled"
+                  (click)="_fullNameControl.reset()"
                 >
                   <mat-icon>close</mat-icon>
                 </button>
@@ -134,13 +134,13 @@
               />
               @if (_usernameControl.value !== null) {
                 <button
-                  [aria-label]="t('clear')"
-                  [disabled]="_usernameControl.disabled"
-                  (click)="_usernameControl.reset()"
                   matIconButton
                   matSuffix
                   tabindex="-1"
                   type="button"
+                  [aria-label]="t('clear')"
+                  [disabled]="_usernameControl.disabled"
+                  (click)="_usernameControl.reset()"
                 >
                   <mat-icon>close</mat-icon>
                 </button>
@@ -193,11 +193,11 @@
         </mat-card-content>
         <mat-card-actions>
           <button
-            [disabled]="profileFormGroup.disabled || profileFormGroup.invalid"
-            [jetAnalytics]="{ name: 'Update profile' }"
             form="profile-form"
             matButton="filled"
             type="submit"
+            [disabled]="profileFormGroup.disabled || profileFormGroup.invalid"
+            [jetAnalytics]="{ name: 'Update profile' }"
           >
             {{ t('save') }}
           </button>
@@ -208,8 +208,8 @@
         <mat-card-content>
           <div class="jet-flexc-centered">
             <a
-              [routerLink]="['/update-password']"
               matButton
+              [routerLink]="['/update-password']"
               >{{ t('update-password') }}</a
             >
           </div>

@@ -3,13 +3,13 @@
 <ng-container *transloco="let t; prefix: 'jet-sidenav'">
   <mat-toolbar class="jet-sidenav-toolbar">
     <a
+      matIconButton
+      matTooltipPosition="after"
       [aria-label]="t('home')"
       [jetAnalytics]="{ name: 'Open home' }"
       [matTooltip]="t('home')"
       [routerLink]="['/']"
       (click)="clickNavigationMenuItem.emit()"
-      matIconButton
-      matTooltipPosition="after"
     >
       <mat-icon svgIcon="logo" />
     </a>
@@ -21,13 +21,13 @@
         track navigationMenuItem.path
       ) {
         <a
+          mat-list-item
+          matListItemTitle
           [activated]="
             _activeNavigationMenuItemPath === navigationMenuItem.path
           "
           [routerLink]="[navigationMenuItem.path]"
           (click)="clickNavigationMenuItem.emit()"
-          mat-list-item
-          matListItemTitle
         >
           <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
           <span>{{ navigationMenuItem.nameKey | transloco }}</span>

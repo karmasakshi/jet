@@ -11,12 +11,12 @@
     <div class="jet-flexc-centered">
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('sign-up')"
           height="180"
           mat-card-image
           ngSrc="./images/card.webp"
           priority
           width="480"
+          [alt]="t('sign-up')"
         />
         <mat-card-header />
         <mat-card-content>
@@ -38,13 +38,13 @@
               />
               @if (_emailControl.value !== null) {
                 <button
-                  [aria-label]="t('clear')"
-                  [disabled]="_emailControl.disabled"
-                  (click)="_emailControl.reset()"
                   matIconButton
                   matSuffix
                   tabindex="-1"
                   type="button"
+                  [aria-label]="t('clear')"
+                  [disabled]="_emailControl.disabled"
+                  (click)="_emailControl.reset()"
                 >
                   <mat-icon>close</mat-icon>
                 </button>
@@ -61,20 +61,20 @@
             <mat-form-field>
               <mat-label>{{ t('password') }}</mat-label>
               <input
-                [type]="isPasswordHidden ? 'password' : 'text'"
                 autocomplete="new-password"
                 formControlName="password"
                 matInput
                 required
+                [type]="isPasswordHidden ? 'password' : 'text'"
               />
               <button
-                [aria-label]="t('toggle-visibility')"
-                [disabled]="_passwordControl.disabled"
-                (click)="isPasswordHidden = !isPasswordHidden"
                 matIconButton
                 matSuffix
                 tabindex="-1"
                 type="button"
+                [aria-label]="t('toggle-visibility')"
+                [disabled]="_passwordControl.disabled"
+                (click)="isPasswordHidden = !isPasswordHidden"
               >
                 <mat-icon>{{
                   isPasswordHidden ? 'visibility' : 'visibility_off'
@@ -102,10 +102,10 @@
         </mat-card-content>
         <mat-card-actions>
           <button
-            [disabled]="signUpFormGroup.disabled || signUpFormGroup.invalid"
             form="sign-up-form"
             matButton="filled"
             type="submit"
+            [disabled]="signUpFormGroup.disabled || signUpFormGroup.invalid"
           >
             {{ t('sign-up') }}
           </button>
@@ -116,17 +116,17 @@
         <mat-card-content>
           <div class="jet-flexc-centered">
             <a
+              matButton
               [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: _emailControl.value }"
               [routerLink]="['/sign-in']"
-              matButton
               >{{ t('sign-in') }}</a
             >
             <a
+              matButton
               [disabled]="signUpFormGroup.disabled"
               [queryParams]="{ email: _emailControl.value }"
               [routerLink]="['/reset-password']"
-              matButton
               >{{ t('reset-password') }}</a
             >
           </div>

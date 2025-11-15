@@ -17,21 +17,21 @@
       }
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('sign-in')"
           height="180"
           mat-card-image
           ngSrc="./images/card.webp"
           priority
           width="480"
+          [alt]="t('sign-in')"
         />
         <mat-card-header />
         <mat-card-content>
           <div class="jet-flexc-centered">
             <button
-              [disabled]="signInFormGroup.disabled"
-              (click)="signInWithOauth('google')"
               matButton="filled"
               type="button"
+              [disabled]="signInFormGroup.disabled"
+              (click)="signInWithOauth('google')"
             >
               {{ t('sign-in-with-google') }}
             </button>
@@ -63,13 +63,13 @@
               />
               @if (_emailControl.value !== null) {
                 <button
-                  [aria-label]="t('clear')"
-                  [disabled]="_emailControl.disabled"
-                  (click)="_emailControl.reset()"
                   matIconButton
                   matSuffix
                   tabindex="-1"
                   type="button"
+                  [aria-label]="t('clear')"
+                  [disabled]="_emailControl.disabled"
+                  (click)="_emailControl.reset()"
                 >
                   <mat-icon>close</mat-icon>
                 </button>
@@ -86,20 +86,20 @@
             <mat-form-field>
               <mat-label>{{ t('password') }}</mat-label>
               <input
-                [type]="isPasswordHidden ? 'password' : 'text'"
                 autocomplete="current-password"
                 formControlName="password"
                 matInput
                 required
+                [type]="isPasswordHidden ? 'password' : 'text'"
               />
               <button
-                [aria-label]="t('toggle-visibility')"
-                [disabled]="_passwordControl.disabled"
-                (click)="isPasswordHidden = !isPasswordHidden"
                 matIconButton
                 matSuffix
                 tabindex="-1"
                 type="button"
+                [aria-label]="t('toggle-visibility')"
+                [disabled]="_passwordControl.disabled"
+                (click)="isPasswordHidden = !isPasswordHidden"
               >
                 <mat-icon>{{
                   isPasswordHidden ? 'visibility' : 'visibility_off'
@@ -127,18 +127,18 @@
         </mat-card-content>
         <mat-card-actions>
           <button
-            [disabled]="signInFormGroup.disabled || signInFormGroup.invalid"
             form="sign-in-form"
             matButton="filled"
             type="submit"
+            [disabled]="signInFormGroup.disabled || signInFormGroup.invalid"
           >
             {{ t('sign-in') }}
           </button>
           <button
-            [disabled]="signInFormGroup.disabled || _emailControl.invalid"
-            (click)="signInWithOtp(_emailControl.value ?? '')"
             matButton
             type="button"
+            [disabled]="signInFormGroup.disabled || _emailControl.invalid"
+            (click)="signInWithOtp(_emailControl.value ?? '')"
           >
             {{ t('email-sign-in-link') }}
           </button>
@@ -149,17 +149,17 @@
         <mat-card-content>
           <div class="jet-flexc-centered">
             <a
+              matButton
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: _emailControl.value }"
               [routerLink]="['/reset-password']"
-              matButton
               >{{ t('reset-password') }}</a
             >
             <a
+              matButton
               [disabled]="signInFormGroup.disabled"
               [queryParams]="{ email: _emailControl.value }"
               [routerLink]="['/sign-up']"
-              matButton
               >{{ t('sign-up') }}</a
             >
           </div>

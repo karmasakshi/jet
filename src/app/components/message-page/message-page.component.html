@@ -10,12 +10,12 @@
     <div class="jet-flexc-centered">
       <mat-card class="jet-maxw-480">
         <img
-          [alt]="t('message')"
           height="180"
           mat-card-image
           ngSrc="./images/card.webp"
           priority
           width="480"
+          [alt]="t('message')"
         />
         @switch (_case) {
           @case ('email-verification-pending') {
@@ -56,8 +56,8 @@
         <mat-card-content />
         <mat-card-actions>
           <a
-            [routerLink]="['/']"
             matButton="filled"
+            [routerLink]="['/']"
             >{{ t('open-home') }}</a
           >
         </mat-card-actions>

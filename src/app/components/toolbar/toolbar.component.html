@@ -21,24 +21,24 @@
     />
     @if (_isLargeViewport) {
       <button
+        matIconButton
+        matTooltipPosition="after"
+        type="button"
         [aria-label]="t('toggle-navigation-menu')"
         [jetAnalytics]="{ name: 'Toggle sidenav' }"
         [matTooltip]="t('toggle-navigation-menu')"
         (click)="toggleMatSidenav.emit()"
-        matIconButton
-        matTooltipPosition="after"
-        type="button"
       >
         <mat-icon>short_text</mat-icon>
       </button>
     } @else {
       <a
+        matIconButton
+        matTooltipPosition="after"
         [aria-label]="t('home')"
         [jetAnalytics]="{ name: 'Open home' }"
         [matTooltip]="t('home')"
         [routerLink]="['/']"
-        matIconButton
-        matTooltipPosition="after"
       >
         <mat-icon svgIcon="logo" />
       </a>
@@ -49,21 +49,21 @@
     <div style="flex: 1"></div>
     @if (_user !== null) {
       <a
+        matIconButton
+        matTooltipPosition="before"
         [aria-label]="t('sign-out')"
         [matTooltip]="t('sign-out')"
         [routerLink]="['/sign-out']"
-        matIconButton
-        matTooltipPosition="before"
       >
         <mat-icon>logout</mat-icon>
       </a>
     } @else {
       <a
+        matIconButton
+        matTooltipPosition="before"
         [aria-label]="t('sign-in')"
         [matTooltip]="t('sign-in')"
         [routerLink]="['/sign-in']"
-        matIconButton
-        matTooltipPosition="before"
       >
         <mat-icon>login</mat-icon>
       </a>
