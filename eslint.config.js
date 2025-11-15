@@ -102,6 +102,14 @@ module.exports = tseslint.config(
       ],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            "PropertyDefinition[accessibility='private'], MethodDefinition[accessibility='private'], TSParameterProperty[accessibility='private']",
+          message: 'Use ECMAScript private (#) instead of TypeScript private.',
+        },
+      ],
 
       'perfectionist/sort-enums': ['error'],
       'perfectionist/sort-interfaces': ['error'],
