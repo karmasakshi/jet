@@ -55,10 +55,10 @@ export class SignInPageComponent implements OnInit {
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
+  #isLoading: boolean;
+
   public readonly email: InputSignal<string | undefined> = input();
   public readonly returnUrl: InputSignal<string | undefined> = input();
-
-  #isLoading: boolean;
 
   public isPasswordHidden: boolean;
   public readonly signInFormGroup: FormGroup<{

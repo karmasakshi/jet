@@ -54,9 +54,9 @@ export class SignUpPageComponent implements OnInit {
   readonly #userService = inject(UserService);
   readonly #translocoService = inject(TranslocoService);
 
-  public readonly email: InputSignal<string | undefined> = input();
-
   #isLoading: boolean;
+
+  public readonly email: InputSignal<string | undefined> = input();
 
   public isPasswordHidden: boolean;
   public readonly signUpFormGroup: FormGroup<{

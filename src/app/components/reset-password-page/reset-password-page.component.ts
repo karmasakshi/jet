@@ -53,9 +53,9 @@ export class ResetPasswordPageComponent implements OnInit {
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
 
-  public readonly email: InputSignal<string | undefined> = input();
-
   #isLoading: boolean;
+
+  public readonly email: InputSignal<string | undefined> = input();
 
   public readonly resetPasswordFormGroup: FormGroup<{
     email: FormControl<null | string>;
