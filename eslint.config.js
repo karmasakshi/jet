@@ -122,7 +122,6 @@ module.exports = tseslint.config(
     files: ['**/*.html'],
     extends: [...angular.configs.templateAll],
     rules: {
-      '@angular-eslint/template/attributes-order': 'off',
       '@angular-eslint/template/cyclomatic-complexity': 'off',
       '@angular-eslint/template/i18n': 'off',
       '@angular-eslint/template/no-call-expression': 'off',

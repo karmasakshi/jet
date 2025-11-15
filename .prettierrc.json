@@ -2,11 +2,7 @@
   "attributeSort": "ASC",
   "cssDeclarationSorterOrder": "alphabetical",
   "objectWrap": "collapse",
-  "plugins": [
-    "prettier-plugin-css-order",
-    "prettier-plugin-organize-attributes",
-    "prettier-plugin-organize-imports"
-  ],
+  "plugins": ["prettier-plugin-css-order", "prettier-plugin-organize-imports"],
   "singleAttributePerLine": true,
   "singleQuote": true
 }
