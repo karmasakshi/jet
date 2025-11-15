@@ -41,7 +41,7 @@
     "strictInputAccessModifiers": true,
     "typeCheckHostBindings": true,
     "strictTemplates": true,
-    "defaultCategory": "error" // https://angular.dev/extended-diagnostics
+    "defaultCategory": "error"
   },
   "files": [],
   "references": [
