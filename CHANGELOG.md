@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.18.0](https://github.com/karmasakshi/jet/compare/v3.17.2...v3.18.0) (2025-11-15)
+
+
+### Features
+
+* **general:** use angular-eslint attribute organizer ([f81edd2](https://github.com/karmasakshi/jet/commit/f81edd286183cd720bcd28dddd40cd548f30049e))
+
 ## [3.17.2](https://github.com/karmasakshi/jet/compare/v3.17.1...v3.17.2) (2025-11-14)
 
 
