@@ -6,13 +6,13 @@ const angular = require('angular-eslint');
 const perfectionist = require('eslint-plugin-perfectionist');
 
 const selectorRules = {
-  '@angular-eslint/directive-selector': [
-    'error',
-    { type: 'attribute', prefix: 'jet', style: 'camelCase' },
-  ],
   '@angular-eslint/component-selector': [
     'error',
     { type: 'element', prefix: 'jet', style: 'kebab-case' },
+  ],
+  '@angular-eslint/directive-selector': [
+    'error',
+    { type: 'attribute', prefix: 'jet', style: 'camelCase' },
   ],
 };
 
@@ -20,6 +20,23 @@ const modernAngularRules = {
   '@angular-eslint/prefer-inject': 'error',
   '@angular-eslint/prefer-on-push-component-change-detection': 'error',
   '@angular-eslint/prefer-signals': 'error',
+};
+
+const classRules = {
+  '@typescript-eslint/explicit-member-accessibility': 'error',
+  '@typescript-eslint/member-ordering': [
+    'error',
+    {
+      classes: [
+        '#private-instance-field',
+        'public-instance-field',
+        'constructor',
+        'public-instance-method',
+        '#private-instance-method',
+      ],
+    },
+  ],
+  '@typescript-eslint/prefer-readonly': 'error',
 };
 
 const namingRules = {
@@ -116,19 +133,7 @@ module.exports = tseslint.config(
     rules: {
       ...selectorRules,
       ...modernAngularRules,
-      '@typescript-eslint/explicit-member-accessibility': 'error',
-      '@typescript-eslint/member-ordering': [
-        'error',
-        {
-          classes: [
-            'private-instance-field',
-            'public-instance-field',
-            'constructor',
-            'public-instance-method',
-            'private-instance-method',
-          ],
-        },
-      ],
+      ...classRules,
       ...namingRules,
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
