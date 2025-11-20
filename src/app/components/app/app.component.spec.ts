@@ -19,6 +19,18 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      value: () => ({
+        addEventListener: () => undefined,
+        addListener: () => undefined,
+        matches: false,
+        removeEventListener: () => undefined,
+      }),
+      writable: true,
+    });
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
