@@ -19,10 +19,10 @@
     "prepare": "husky",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
     "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/ga-gtag @types/jasmine angular-eslint eslint eslint-plugin-perfectionist husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint",
+    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/ga-gtag @types/jasmine angular-eslint eslint eslint-plugin-perfectionist husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint",
     "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
     "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/ga-gtag @types/jasmine angular-eslint eslint eslint-plugin-perfectionist husky jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint",
-    "postreinstall-dependencies": "npm install --save-dev @ngx-env/builder --force"
+    "postinstall": "npm install --save-dev @ngx-env/builder --force"
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
@@ -52,7 +52,6 @@
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/prompt-cli": "^20.1.0",
     "@jsverse/transloco-keys-manager": "^7.0.2",
-    "@ngx-env/builder": "^20.1.1",
     "@types/ga-gtag": "^1.2.0",
     "@types/jasmine": "^5.1.13",
     "angular-eslint": "^20.6.0",
