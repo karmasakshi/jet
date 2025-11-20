@@ -1,4 +1,3 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { LoggerService } from '../logger/logger.service';
@@ -13,7 +12,6 @@ describe('ProfileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideZonelessChangeDetection(),
         { provide: SUPABASE_CLIENT, useValue: {} },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: UserService, useClass: UserServiceMock },

@@ -1,4 +1,4 @@
-import { ComponentRef, provideZonelessChangeDetection } from '@angular/core';
+import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
@@ -15,7 +15,6 @@ describe('PageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PageComponent],
       providers: [
-        provideZonelessChangeDetection(),
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },
       ],

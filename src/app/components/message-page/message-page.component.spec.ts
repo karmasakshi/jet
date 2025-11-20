@@ -1,4 +1,3 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
@@ -19,7 +18,6 @@ describe('MessagePageComponent', () => {
         MessagePageComponent,
       ],
       providers: [
-        provideZonelessChangeDetection(),
         { provide: ActivatedRoute, useValue: {} },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

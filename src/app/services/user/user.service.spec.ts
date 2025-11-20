@@ -1,4 +1,3 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
@@ -12,7 +11,6 @@ describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideZonelessChangeDetection(),
         { provide: ActivatedRoute, useValue: {} },
         {
           provide: SUPABASE_CLIENT,

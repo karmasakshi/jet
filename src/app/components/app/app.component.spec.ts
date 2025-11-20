@@ -1,4 +1,3 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { RouterModule } from '@angular/router';
@@ -40,7 +39,6 @@ describe('AppComponent', () => {
         AppComponent,
       ],
       providers: [
-        provideZonelessChangeDetection(),
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

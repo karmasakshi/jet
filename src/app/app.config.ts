@@ -10,7 +10,6 @@ import {
   LOCALE_ID,
   provideBrowserGlobalErrorListeners,
   provideEnvironmentInitializer,
-  provideZonelessChangeDetection,
 } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
@@ -40,7 +39,6 @@ export const applicationConfig: ApplicationConfig = {
     provideEnvironmentInitializer(() => {
       inject(ServiceWorkerService);
     }),
-    provideZonelessChangeDetection(),
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,

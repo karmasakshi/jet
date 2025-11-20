@@ -1,4 +1,3 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
@@ -15,10 +14,7 @@ describe('FooterComponent', () => {
         TranslocoTestingModule.forRoot({ langs: { en: {} } }),
         FooterComponent,
       ],
-      providers: [
-        provideZonelessChangeDetection(),
-        { provide: LoggerService, useClass: LoggerServiceMock },
-      ],
+      providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);

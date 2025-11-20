@@ -1,4 +1,3 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
@@ -26,7 +25,6 @@ describe('SettingsPageComponent', () => {
         SettingsPageComponent,
       ],
       providers: [
-        provideZonelessChangeDetection(),
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },

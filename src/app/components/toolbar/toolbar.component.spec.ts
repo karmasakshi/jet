@@ -1,4 +1,4 @@
-import { ComponentRef, provideZonelessChangeDetection } from '@angular/core';
+import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -26,7 +26,6 @@ describe('ToolbarComponent', () => {
         ToolbarComponent,
       ],
       providers: [
-        provideZonelessChangeDetection(),
         { provide: ActivatedRoute, useValue: {} },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
