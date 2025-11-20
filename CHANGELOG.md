@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/karmasakshi/jet/compare/v3.18.0...v4.0.0) (2025-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **angular:** upgrade to v21
+
+### Features
+
+* **angular:** upgrade to v21 ([c04c591](https://github.com/karmasakshi/jet/commit/c04c59126c8112a8508a27888f2912f4bd1f6881))
+
 ## [3.18.0](https://github.com/karmasakshi/jet/compare/v3.17.2...v3.18.0) (2025-11-15)
 
 
