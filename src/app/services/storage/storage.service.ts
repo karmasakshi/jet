@@ -11,7 +11,7 @@ export class StorageService {
   readonly #store2: StoreType;
 
   public constructor() {
-    this.#store2 = store2.namespace('jet', undefined, '-');
+    this.#store2 = store2.namespace('jet');
 
     this.#loggerService.logServiceInitialization('StorageService');
   }
