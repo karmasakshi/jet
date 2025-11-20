@@ -34,7 +34,7 @@ describe('SignUpPageComponent', () => {
 
     fixture = TestBed.createComponent(SignUpPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

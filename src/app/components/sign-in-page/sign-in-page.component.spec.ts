@@ -34,7 +34,7 @@ describe('SignInPageComponent', () => {
 
     fixture = TestBed.createComponent(SignInPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

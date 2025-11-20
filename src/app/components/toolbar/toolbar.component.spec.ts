@@ -40,7 +40,7 @@ describe('ToolbarComponent', () => {
     componentRef = fixture.componentRef;
     componentRef.setInput('isLargeViewport', undefined);
     componentRef.setInput('shouldAddSafeArea', undefined);
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

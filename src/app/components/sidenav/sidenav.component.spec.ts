@@ -30,7 +30,7 @@ describe('SidenavComponent', () => {
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
     componentRef.setInput('activeNavigationMenuItemPath', undefined);
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

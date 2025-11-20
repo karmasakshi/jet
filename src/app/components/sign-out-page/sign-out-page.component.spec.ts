@@ -32,7 +32,7 @@ describe('SignOutPageComponent', () => {
 
     fixture = TestBed.createComponent(SignOutPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

@@ -32,7 +32,7 @@ describe('UpdatePasswordPageComponent', () => {
 
     fixture = TestBed.createComponent(UpdatePasswordPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

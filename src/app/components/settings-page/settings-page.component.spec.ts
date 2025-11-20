@@ -38,7 +38,7 @@ describe('SettingsPageComponent', () => {
 
     fixture = TestBed.createComponent(SettingsPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

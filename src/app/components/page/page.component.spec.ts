@@ -28,7 +28,7 @@ describe('PageComponent', () => {
     componentRef.setInput('seoKeywords', undefined);
     componentRef.setInput('seoTitle', undefined);
     componentRef.setInput('toolbarTitle', undefined);
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

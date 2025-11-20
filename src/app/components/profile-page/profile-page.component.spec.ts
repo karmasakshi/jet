@@ -37,7 +37,7 @@ describe('ProfilePageComponent', () => {
 
     fixture = TestBed.createComponent(ProfilePageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

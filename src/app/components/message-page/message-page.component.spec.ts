@@ -28,7 +28,7 @@ describe('MessagePageComponent', () => {
 
     fixture = TestBed.createComponent(MessagePageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

@@ -23,7 +23,7 @@ describe('HomePageComponent', () => {
 
     fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
