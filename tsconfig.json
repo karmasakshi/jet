@@ -39,9 +39,9 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
     "strictTemplates": true,
-    "defaultCategory": "error"
+    "defaultCategory": "error",
+    "typeCheckHostBindings": true
   },
   "files": [],
   "references": [

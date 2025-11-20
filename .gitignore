@@ -42,6 +42,6 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Environments
+# Environment files
 .env*
 !.env.example
