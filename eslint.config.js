@@ -99,16 +99,17 @@ const namingRules = {
 };
 
 const perfectionistRules = {
-  'perfectionist/sort-enums': ['error'],
-  'perfectionist/sort-interfaces': ['error'],
-  'perfectionist/sort-intersection-types': ['error'],
-  'perfectionist/sort-objects': ['error'],
-  'perfectionist/sort-object-types': ['error'],
-  'perfectionist/sort-switch-case': ['error'],
-  'perfectionist/sort-union-types': ['error'],
+  'perfectionist/sort-enums': 'warn',
+  'perfectionist/sort-interfaces': 'warn',
+  'perfectionist/sort-intersection-types': 'warn',
+  'perfectionist/sort-objects': 'warn',
+  'perfectionist/sort-object-types': 'warn',
+  'perfectionist/sort-switch-case': 'warn',
+  'perfectionist/sort-union-types': 'warn',
 };
 
 const templateRules = {
+  '@angular-eslint/template/attributes-order': 'warn',
   '@angular-eslint/template/cyclomatic-complexity': 'off',
   '@angular-eslint/template/i18n': 'off',
   '@angular-eslint/template/no-call-expression': 'off',
