@@ -18,10 +18,9 @@
     "prepare": "husky",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
     "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint vitest",
+    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint vitest",
     "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint vitest",
-    "postinstall": "npm install @ngx-env/builder --force --save-dev --no-save"
+    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports supabase typescript typescript-eslint vitest"
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
@@ -53,8 +52,9 @@
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/prompt-cli": "^20.1.0",
     "@jsverse/transloco-keys-manager": "^7.0.2",
+    "@ngx-env/builder": "^20.1.1",
     "@types/ga-gtag": "^1.2.0",
-    "angular-eslint": "^20.6.0",
+    "angular-eslint": "^21.0.0",
     "eslint": "^9.39.1",
     "eslint-plugin-perfectionist": "^4.15.1",
     "husky": "^9.1.7",
@@ -66,6 +66,6 @@
     "supabase": "^2.58.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0",
-    "vitest": "^4.0.12"
+    "vitest": "^4.0.13"
   }
 }
