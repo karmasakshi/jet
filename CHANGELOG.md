@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/karmasakshi/jet/compare/v4.0.0...v4.1.0) (2025-11-25)
+
+
+### Features
+
+* **general:** add empty-card and skeleton-card components ([ff817fc](https://github.com/karmasakshi/jet/commit/ff817fccab8e89c3cdc65f0245d87254273d272c))
+
 ## [4.0.0](https://github.com/karmasakshi/jet/compare/v3.18.0...v4.0.0) (2025-11-20)
 
 
