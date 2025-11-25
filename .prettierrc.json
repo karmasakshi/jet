@@ -1,5 +1,4 @@
 {
-  "attributeSort": "ASC",
   "cssDeclarationSorterOrder": "alphabetical",
   "objectWrap": "collapse",
   "plugins": ["prettier-plugin-css-order", "prettier-plugin-organize-imports"],
