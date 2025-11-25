@@ -9,8 +9,8 @@ import { SidenavComponent } from './sidenav.component';
 
 describe('SidenavComponent', () => {
   let component: SidenavComponent;
-  let componentRef: ComponentRef<SidenavComponent>;
   let fixture: ComponentFixture<SidenavComponent>;
+  let componentRef: ComponentRef<SidenavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

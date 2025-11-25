@@ -8,8 +8,8 @@ import { PageComponent } from './page.component';
 
 describe('PageComponent', () => {
   let component: PageComponent;
-  let componentRef: ComponentRef<PageComponent>;
   let fixture: ComponentFixture<PageComponent>;
+  let componentRef: ComponentRef<PageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -15,8 +15,8 @@ import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
-  let componentRef: ComponentRef<ToolbarComponent>;
   let fixture: ComponentFixture<ToolbarComponent>;
+  let componentRef: ComponentRef<ToolbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
