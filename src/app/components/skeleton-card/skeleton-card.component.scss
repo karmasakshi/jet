@@ -1,0 +1,20 @@
+mat-card {
+  animation: shimmer 1.2s ease-in-out infinite;
+  background: linear-gradient(
+    90deg,
+    var(--mat-sys-surface-container) 0%,
+    var(--mat-sys-surface-container-low) 50%,
+    var(--mat-sys-surface-container) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}

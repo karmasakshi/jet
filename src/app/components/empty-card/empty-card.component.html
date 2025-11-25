@@ -1,0 +1,16 @@
+@let _height = height();
+@let _message = message();
+
+<mat-card [style]="{ height: `${_height}px`, margin: '16px' }">
+  <mat-card-content
+    style="
+      color: var(--mat-sys-outline);
+      justify-content: center;
+      display: flex;
+      height: 100%;
+      align-items: center;
+    "
+  >
+    <span>{{ _message }}</span>
+  </mat-card-content>
+</mat-card>
