@@ -24,19 +24,16 @@
           width="480"
           [alt]="t('sign-in')"
         />
-        <mat-card-header />
-        <mat-card-content>
-          <div class="jet-flexc-centered">
-            <button
-              matButton="filled"
-              type="button"
-              [disabled]="signInFormGroup.disabled"
-              (click)="signInWithOauth('google')"
-            >
-              {{ t('sign-in-with-google') }}
-            </button>
-          </div>
-        </mat-card-content>
+        <mat-card-actions style="justify-content: center">
+          <button
+            matButton="filled"
+            type="button"
+            [disabled]="signInFormGroup.disabled"
+            (click)="signInWithOauth('google')"
+          >
+            {{ t('sign-in-with-google') }}
+          </button>
+        </mat-card-actions>
       </mat-card>
       <span style="color: var(--mat-sys-outline)">{{ t('or') }}</span>
       <mat-card class="jet-maxw-480">
@@ -145,7 +142,6 @@
         </mat-card-actions>
       </mat-card>
       <mat-card class="jet-maxw-480">
-        <mat-card-header />
         <mat-card-content>
           <div class="jet-flexc-centered">
             <a
