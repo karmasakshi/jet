@@ -108,12 +108,8 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#darkColorSchemeEventListener = this.#renderer2.listen(
       this.#darkColorSchemeMediaQueryList,
       'change',
-      (darkColorSchemeMediaQueryList: MediaQueryListEvent) => {
-        if (this.#colorSchemeOption().value === 'automatic') {
-          this.#setThemeColor(
-            darkColorSchemeMediaQueryList.matches ? 'dark' : 'light',
-          );
-        }
+      () => {
+        this.#setThemeColorMeta(this.#colorSchemeOption().value);
       },
     );
 
@@ -154,14 +150,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
         untracked(() => {
           this.#setColorScheme(colorSchemeOption.value);
-
-          if (colorSchemeOption.value === 'automatic') {
-            this.#setThemeColor(
-              this.#darkColorSchemeMediaQueryList.matches ? 'dark' : 'light',
-            );
-          } else {
-            this.#setThemeColor(colorSchemeOption.value);
-          }
+          this.#setThemeColorMeta(colorSchemeOption.value);
         });
       },
       { debugName: 'colorSchemeOption' },
@@ -252,34 +241,28 @@ export class AppComponent implements OnDestroy, OnInit {
 
   #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
     const prefix: string = 'jet-color-scheme-';
+    const body: HTMLElement = this.#document.body;
 
-    requestAnimationFrame(() => {
-      const body: HTMLElement = this.#document.body;
+    body.className = body.className
+      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+      .trim();
 
-      body.className = body.className
-        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-        .trim();
-
-      if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-        body.classList.add(prefix + colorScheme);
-      }
-    });
+    if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+      body.classList.add(prefix + colorScheme);
+    }
   }
 
   #setFontPair(fontPair: LanguageOption['fontPair']): void {
     const prefix: string = 'jet-font-pair-';
+    const body: HTMLElement = this.#document.body;
 
-    requestAnimationFrame(() => {
-      const body: HTMLElement = this.#document.body;
+    body.className = body.className
+      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
+      .trim();
 
-      body.className = body.className
-        .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-        .trim();
-
-      if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-        body.classList.add(prefix + fontPair);
-      }
-    });
+    if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+      body.classList.add(prefix + fontPair);
+    }
   }
 
   #setIcons(): void {
@@ -301,9 +284,13 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#translocoService.setActiveLang(language);
   }
 
-  #setThemeColor(
-    colorScheme: Omit<ColorSchemeOption['value'], 'automatic'>,
-  ): void {
+  #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
+    if (colorScheme === 'automatic') {
+      colorScheme = this.#darkColorSchemeMediaQueryList.matches
+        ? 'dark'
+        : 'light';
+    }
+
     const colorSchemeOption: ColorSchemeOption =
       COLOR_SCHEME_OPTIONS.find(
         (colorSchemeOption) => colorSchemeOption.value === colorScheme,
