@@ -31,7 +31,14 @@ html {
   @include mat.card-overrides(
     (
       elevated-container-elevation: var(--mat-sys-level0),
-      subtitle-text-color: var(--mat-sys-outline),
+      subtitle-text-color: var(--mat-sys-on-surface-variant),
+    )
+  );
+
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: var(--mat-sys-surface-container-low),
+      elevated-disabled-container-color: var(--mat-sys-surface-container-lowest),
     )
   );
 
