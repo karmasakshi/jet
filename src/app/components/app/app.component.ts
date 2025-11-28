@@ -132,15 +132,15 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport());
 
-    this.matSidenavMode = computed(() => {
-      return this.isLargeViewport() ? 'side' : 'over';
-    });
+    this.matSidenavMode = computed(() =>
+      this.isLargeViewport() ? 'side' : 'over',
+    );
 
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
 
-    this.shouldAddSafeArea = computed(() => {
-      return this.matSidenavMode() === 'over' ? true : !this.isMatSidenavOpen();
-    });
+    this.shouldAddSafeArea = computed(() =>
+      this.matSidenavMode() === 'over' ? true : !this.isMatSidenavOpen(),
+    );
 
     effect(
       () => {

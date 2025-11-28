@@ -311,6 +311,12 @@ img {
 table {
   border-radius: var(--mat-sys-corner-small);
   overflow: hidden;
+
+  tbody {
+    tr:hover {
+      background-color: var(--mat-sys-surface-container);
+    }
+  }
 }
 
 .material-symbols-rounded {

@@ -70,7 +70,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   #isLoading: boolean;
   readonly #user: null | User;
 
-  public readonly avatarFileInput: Signal<
+  protected readonly avatarFileInputRef: Signal<
     ElementRef<HTMLInputElement> | undefined
   > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
 
@@ -123,7 +123,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
   public async replaceAvatar(): Promise<void> {
     const files: FileList | null | undefined =
-      this.avatarFileInput()?.nativeElement.files;
+      this.avatarFileInputRef()?.nativeElement.files;
 
     if (files?.length !== 1) {
       return;

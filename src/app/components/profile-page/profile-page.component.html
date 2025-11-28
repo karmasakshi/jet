@@ -216,11 +216,8 @@
         </mat-card-content>
       </mat-card>
       <mat-card class="jet-maxw-480">
-        <mat-card-content>
-          <div
-            class="jet-flexc-centered"
-            style="font: var(--mat-sys-body-small)"
-          >
+        <mat-card-content style="font: var(--mat-sys-body-small)">
+          <div class="jet-flexc-centered">
             <span>{{
               t('profile-last-updated-on', {
                 value: (_profile?.updated_at | date: 'medium') ?? '?',
