@@ -1,10 +1,10 @@
 @let _height = height();
 @let _message = message();
+@let _width = width();
 
-<mat-card [style]="{ height: `${_height}px`, margin: '16px' }">
+<mat-card [style]="{ height: `${_height}px`, width: `${_width}px` }">
   <mat-card-content
     style="
-      color: var(--mat-sys-outline);
       justify-content: center;
       display: flex;
       height: 100%;

@@ -20,6 +20,7 @@ export class EmptyCardComponent {
 
   public readonly height: InputSignal<number> = input.required();
   public readonly message: InputSignal<string> = input.required();
+  public readonly width: InputSignal<number> = input.required();
 
   public constructor() {
     this.#loggerService.logComponentInitialization('EmptyCardComponent');
