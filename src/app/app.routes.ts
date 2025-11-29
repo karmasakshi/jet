@@ -26,9 +26,7 @@ const userRoutes: Routes = [
     canActivate: [signedOutGuard],
     loadComponent: async () =>
       (
-        await import(
-          '@jet/components/reset-password-page/reset-password-page.component'
-        )
+        await import('@jet/components/reset-password-page/reset-password-page.component')
       ).ResetPasswordPageComponent,
     path: 'reset-password',
   },
@@ -76,9 +74,7 @@ const userRoutes: Routes = [
     canDeactivate: [unsavedChangesGuard],
     loadComponent: async () =>
       (
-        await import(
-          '@jet/components/update-password-page/update-password-page.component'
-        )
+        await import('@jet/components/update-password-page/update-password-page.component')
       ).UpdatePasswordPageComponent,
     path: 'update-password',
   },
