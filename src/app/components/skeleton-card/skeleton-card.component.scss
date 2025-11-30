@@ -11,10 +11,10 @@ mat-card {
 
 @keyframes shimmer {
   0% {
-    background-position: 200% 0;
+    background-position: calc(var(--jet-animation-multiplier) * 200%) 0;
   }
 
   100% {
-    background-position: -200% 0;
+    background-position: calc(var(--jet-animation-multiplier) * -200%) 0;
   }
 }

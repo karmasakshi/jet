@@ -106,6 +106,8 @@ body {
 
 .jet-sidenav-container {
   &[dir='ltr'] {
+    --jet-animation-multiplier: 1;
+
     .jet-sidenav {
       @include mat.sidenav-overrides(
         (
@@ -166,6 +168,8 @@ body {
   }
 
   &[dir='rtl'] {
+    --jet-animation-multiplier: -1;
+
     .jet-sidenav {
       @include mat.sidenav-overrides(
         (
@@ -332,6 +336,10 @@ table {
     object-fit: cover;
     width: 100%;
   }
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: flex-end;
 }
 
 .mat-mdc-form-field-icon-suffix {
