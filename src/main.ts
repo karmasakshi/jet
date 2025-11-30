@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from '@jet/components/app/app.component';
-import { applicationConfig } from './app/app.config';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/components/app/app.component';
 
-bootstrapApplication(AppComponent, applicationConfig).catch((err) =>
+bootstrapApplication(AppComponent, appConfig).catch((err) =>
   console.error(err),
 );

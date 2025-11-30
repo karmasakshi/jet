@@ -1,6 +1,6 @@
 // @ts-check
-
 const eslint = require('@eslint/js');
+const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const perfectionist = require('eslint-plugin-perfectionist');
@@ -121,14 +121,14 @@ const templateRules = {
   ],
 };
 
-module.exports = tseslint.config(
+module.exports = defineConfig([
   {
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
+      tseslint.configs.recommended,
+      tseslint.configs.stylistic,
+      angular.configs.tsRecommended,
     ],
     processor: angular.processInlineTemplates,
     rules: {
@@ -156,7 +156,7 @@ module.exports = tseslint.config(
   },
   {
     files: ['**/*.html'],
-    extends: [...angular.configs.templateAll],
+    extends: [angular.configs.templateAll],
     rules: templateRules,
   },
-);
+]);

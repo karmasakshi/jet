@@ -31,7 +31,7 @@ import { routes } from './app.routes';
 import { ServiceWorkerService } from './services/service-worker/service-worker.service';
 import { TranslocoHttpLoader } from './transloco-loader';
 
-export const applicationConfig: ApplicationConfig = {
+export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withFetch(), withInterceptors([progressBarInterceptor])),
     { provide: LOCALE_ID, useValue: window.navigator.language },
@@ -59,7 +59,6 @@ export const applicationConfig: ApplicationConfig = {
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
-      type: 'module',
     }),
     provideTransloco({
       config: {

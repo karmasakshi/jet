@@ -33,7 +33,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/additional-styles.scss"],
+            "styles": ["src/styles.scss", "src/app-styles.scss"],
             "optimization": { "styles": { "inlineCritical": false } }
           },
           "configurations": {

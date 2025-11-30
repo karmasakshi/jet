@@ -20,6 +20,7 @@ describe('EmptyCardComponent', () => {
     componentRef = fixture.componentRef;
     componentRef.setInput('height', undefined);
     componentRef.setInput('message', undefined);
+    componentRef.setInput('width', undefined);
     await fixture.whenStable();
   });
 
