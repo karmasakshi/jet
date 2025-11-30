@@ -1,9 +1,6 @@
 {
-  "editor.codeActionsOnSave": { "source.organizeImports": "always" },
   "editor.renderWhitespace": "all",
+  "editor.scrollBeyondLastLine": false,
   "editor.tabSize": 2,
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
-  "html.format.wrapAttributes": "force-expand-multiline"
+  "explorer.compactFolders": false
 }
