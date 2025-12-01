@@ -1,4 +1,5 @@
 {
+  "editor.codeActionsOnSave": { "source.organizeImports": "always" },
   "editor.renderWhitespace": "all",
   "editor.scrollBeyondLastLine": false,
   "editor.tabSize": 2,
