@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/karmasakshi/jet/compare/v4.1.0...v4.2.0) (2025-12-01)
+
+
+### Features
+
+* **general:** remove sign-in and sign-out buttons from toolbar for performance ([ab245e7](https://github.com/karmasakshi/jet/commit/ab245e748c2958056b34e88b352ac06caf187a09))
+
 ## [4.1.0](https://github.com/karmasakshi/jet/compare/v4.0.0...v4.1.0) (2025-11-25)
 
 
