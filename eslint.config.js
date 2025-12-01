@@ -5,17 +5,6 @@ const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const perfectionist = require('eslint-plugin-perfectionist');
 
-const selectorRules = {
-  '@angular-eslint/component-selector': [
-    'error',
-    { type: 'element', prefix: 'jet', style: 'kebab-case' },
-  ],
-  '@angular-eslint/directive-selector': [
-    'error',
-    { type: 'attribute', prefix: 'jet', style: 'camelCase' },
-  ],
-};
-
 const modernAngularRules = {
   '@angular-eslint/prefer-inject': 'error',
   '@angular-eslint/prefer-on-push-component-change-detection': 'error',
@@ -131,8 +120,15 @@ module.exports = defineConfig([
       angular.configs.tsRecommended,
     ],
     processor: angular.processInlineTemplates,
-    rules: {
-      ...selectorRules,
+    rules: /** @type {any} */ ({
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'jet', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'jet', style: 'kebab-case' },
+      ],
       ...modernAngularRules,
       ...classRules,
       ...namingRules,
@@ -149,14 +145,18 @@ module.exports = defineConfig([
       ...perfectionistRules,
       'no-alert': 'error',
       'no-console': 'error',
-      'sort-keys': ['error', 'asc', { caseSensitive: false }],
+      'sort-keys': ['warn', 'asc', { caseSensitive: false }],
+    }),
+    languageOptions: {
+      parserOptions: {
+        projectService: { allowDefaultProject: ['transloco.config.ts'] },
+      },
     },
-    languageOptions: { parserOptions: { projectService: true } },
     plugins: { perfectionist },
   },
   {
     files: ['**/*.html'],
     extends: [angular.configs.templateAll],
-    rules: templateRules,
+    rules: /** @type {any} */ (templateRules),
   },
 ]);
