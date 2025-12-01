@@ -82,6 +82,8 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
+  #activeColorSchemeClass: null | string;
+  #activeFontPairClass: null | string;
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
   readonly #darkColorSchemeEventListener: () => void;
   readonly #darkColorSchemeMediaQueryList: MediaQueryList;
@@ -97,6 +99,10 @@ export class AppComponent implements OnDestroy, OnInit {
   public readonly shouldAddSafeArea: Signal<boolean>;
 
   public constructor() {
+    this.#activeColorSchemeClass = null;
+
+    this.#activeFontPairClass = null;
+
     this.#colorSchemeOption = computed(
       () => this.#settingsService.settings().colorSchemeOption,
     );
@@ -240,28 +246,32 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
-    const prefix: string = 'jet-color-scheme-';
     const body: HTMLElement = this.#document.body;
 
-    body.className = body.className
-      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-      .trim();
+    if (this.#activeColorSchemeClass) {
+      body.classList.remove(this.#activeColorSchemeClass);
+    }
 
     if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      body.classList.add(prefix + colorScheme);
+      this.#activeColorSchemeClass = `jet-color-scheme-${colorScheme}`;
+      body.classList.add(this.#activeColorSchemeClass);
+    } else {
+      this.#activeColorSchemeClass = null;
     }
   }
 
   #setFontPair(fontPair: LanguageOption['fontPair']): void {
-    const prefix: string = 'jet-font-pair-';
     const body: HTMLElement = this.#document.body;
 
-    body.className = body.className
-      .replace(new RegExp(`${prefix}\\S+`, 'g'), '')
-      .trim();
+    if (this.#activeFontPairClass) {
+      body.classList.remove(this.#activeFontPairClass);
+    }
 
     if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-      body.classList.add(prefix + fontPair);
+      this.#activeFontPairClass = `jet-font-pair-${fontPair}`;
+      body.classList.add(this.#activeFontPairClass);
+    } else {
+      this.#activeFontPairClass = null;
     }
   }
 
