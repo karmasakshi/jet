@@ -25,10 +25,10 @@ import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-bar.interceptor';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { AvailableLanguage } from '@jet/types/available-language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
-import { ServiceWorkerService } from './services/service-worker/service-worker.service';
 import { TranslocoHttpLoader } from './transloco-loader';
 
 export const appConfig: ApplicationConfig = {
