@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from '@jet/components/home-page/home-page.component';
-import { signedInGuard } from '@jet/guards/signed-in/signed-in.guard';
-import { signedOutGuard } from '@jet/guards/signed-out/signed-out.guard';
-import { unsavedChangesGuard } from '@jet/guards/unsaved-changes/unsaved-changes.guard';
 
 const mainRoutes: Routes = [{ component: HomePageComponent, path: '' }];
 
@@ -15,15 +12,26 @@ const userRoutes: Routes = [
     path: 'email-verification-pending',
   },
   {
-    canActivate: [signedInGuard],
-    canDeactivate: [unsavedChangesGuard],
+    canActivate: [
+      async () =>
+        (await import('@jet/guards/signed-in/signed-in.guard')).signedInGuard,
+    ],
+    canDeactivate: [
+      async () =>
+        (await import('@jet/guards/unsaved-changes/unsaved-changes.guard'))
+          .unsavedChangesGuard,
+    ],
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component'))
         .ProfilePageComponent,
     path: 'profile',
   },
   {
-    canActivate: [signedOutGuard],
+    canActivate: [
+      async () =>
+        (await import('@jet/guards/signed-out/signed-out.guard'))
+          .signedOutGuard,
+    ],
     loadComponent: async () =>
       (
         await import('@jet/components/reset-password-page/reset-password-page.component')
@@ -63,15 +71,26 @@ const userRoutes: Routes = [
     path: 'sign-out',
   },
   {
-    canActivate: [signedOutGuard],
+    canActivate: [
+      async () =>
+        (await import('@jet/guards/signed-out/signed-out.guard'))
+          .signedOutGuard,
+    ],
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component'))
         .SignUpPageComponent,
     path: 'sign-up',
   },
   {
-    canActivate: [signedInGuard],
-    canDeactivate: [unsavedChangesGuard],
+    canActivate: [
+      async () =>
+        (await import('@jet/guards/signed-in/signed-in.guard')).signedInGuard,
+    ],
+    canDeactivate: [
+      async () =>
+        (await import('@jet/guards/unsaved-changes/unsaved-changes.guard'))
+          .unsavedChangesGuard,
+    ],
     loadComponent: async () =>
       (
         await import('@jet/components/update-password-page/update-password-page.component')
