@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0](https://github.com/karmasakshi/jet/compare/v4.2.0...v4.3.0) (2025-12-01)
+
+
+### Features
+
+* **general:** make guards async ([be91230](https://github.com/karmasakshi/jet/commit/be912305ca5ccc3fca43915b3749f4f1b3b5c125))
+
 ## [4.2.0](https://github.com/karmasakshi/jet/compare/v4.1.0...v4.2.0) (2025-12-01)
 
 
