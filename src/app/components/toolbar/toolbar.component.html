@@ -2,7 +2,6 @@
 @let _progressBarConfiguration = progressBarConfiguration();
 @let _shouldAddSafeArea = shouldAddSafeArea();
 @let _toolbarTitle = toolbarTitle();
-@let _user = user();
 
 <ng-container *transloco="let t; prefix: 'jet-toolbar'">
   <mat-toolbar
@@ -46,27 +45,5 @@
     <span style="font: var(--mat-sys-headline-small)">{{
       _toolbarTitle || t('loading')
     }}</span>
-    <div style="flex: 1"></div>
-    @if (_user !== null) {
-      <a
-        matIconButton
-        matTooltipPosition="before"
-        [aria-label]="t('sign-out')"
-        [matTooltip]="t('sign-out')"
-        [routerLink]="['/sign-out']"
-      >
-        <mat-icon>logout</mat-icon>
-      </a>
-    } @else {
-      <a
-        matIconButton
-        matTooltipPosition="before"
-        [aria-label]="t('sign-in')"
-        [matTooltip]="t('sign-in')"
-        [routerLink]="['/sign-in']"
-      >
-        <mat-icon>login</mat-icon>
-      </a>
-    }
   </mat-toolbar>
 </ng-container>

@@ -62,6 +62,7 @@
     "profile-last-updated-on": "Profile last updated on {{ value }}",
     "save": "Save",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Profile" },
+    "sign-out": "Sign out",
     "toolbar-title": "Profile",
     "update-password": "Update password",
     "username": "Username",
@@ -140,8 +141,6 @@
   "jet-toolbar": {
     "home": "Home",
     "loading": "Loading...",
-    "sign-in": "Sign in",
-    "sign-out": "Sign out",
     "toggle-navigation-menu": "Toggle navigation menu"
   },
   "jet-update-password-page": {

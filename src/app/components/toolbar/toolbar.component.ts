@@ -19,9 +19,7 @@ import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configura
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
-import { UserService } from '@jet/services/user/user.service';
 import { TranslocoModule } from '@jsverse/transloco';
-import { User } from '@supabase/supabase-js';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,7 +41,6 @@ export class ToolbarComponent {
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #toolbarTitleService = inject(ToolbarTitleService);
-  readonly #userService = inject(UserService);
 
   public readonly isLargeViewport: InputSignal<boolean> = input.required();
   public readonly shouldAddSafeArea: InputSignal<boolean> = input.required();
@@ -52,15 +49,12 @@ export class ToolbarComponent {
 
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   public readonly toolbarTitle: Signal<string | undefined>;
-  public readonly user: Signal<null | User>;
 
   public constructor() {
     this.progressBarConfiguration =
       this.#progressBarService.progressBarConfiguration;
 
     this.toolbarTitle = this.#toolbarTitleService.toolbarTitle;
-
-    this.user = this.#userService.user;
 
     this.#loggerService.logComponentInitialization('ToolbarComponent');
   }

@@ -66,6 +66,7 @@
       "keywords": "jet",
       "title": "الملف الشخصي"
     },
+    "sign-out": "تسجيل الخروج",
     "toolbar-title": "الملف الشخصي",
     "update-password": "تحديث كلمة المرور",
     "username": "اسم المستخدم",
@@ -152,8 +153,6 @@
   "jet-toolbar": {
     "home": "الرئيسية",
     "loading": "جارٍ التحميل...",
-    "sign-in": "تسجيل الدخول",
-    "sign-out": "تسجيل الخروج",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
   "jet-update-password-page": {

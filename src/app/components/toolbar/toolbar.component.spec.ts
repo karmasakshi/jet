@@ -8,8 +8,6 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.service.mock';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { ToolbarTitleServiceMock } from '@jet/services/toolbar-title/toolbar-title.service.mock';
-import { UserService } from '@jet/services/user/user.service';
-import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { ToolbarComponent } from './toolbar.component';
 
@@ -30,7 +28,6 @@ describe('ToolbarComponent', () => {
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },
-        { provide: UserService, useClass: UserServiceMock },
       ],
     }).compileComponents();
 
