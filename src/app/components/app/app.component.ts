@@ -7,10 +7,10 @@ import {
   DestroyRef,
   effect,
   inject,
-  linkedSignal,
   OnDestroy,
   OnInit,
   Renderer2,
+  signal,
   Signal,
   untracked,
   WritableSignal,
@@ -130,7 +130,7 @@ export class AppComponent implements OnDestroy, OnInit {
       { initialValue: false },
     );
 
-    this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport());
+    this.isMatSidenavOpen = signal(false);
 
     this.matSidenavMode = computed(() =>
       this.isLargeViewport() ? 'side' : 'over',
