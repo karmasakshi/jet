@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.7.0](https://github.com/karmasakshi/jet/compare/v4.6.0...v4.7.0) (2025-12-02)
+
+
+### Features
+
+* **general:** lazy-load supabase dependent services ([6ff8cc8](https://github.com/karmasakshi/jet/commit/6ff8cc889d03950292d49314a97987b136f1b482))
+
 ## [4.6.0](https://github.com/karmasakshi/jet/compare/v4.5.0...v4.6.0) (2025-12-02)
 
 
