@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.0](https://github.com/karmasakshi/jet/compare/v4.3.0...v4.4.0) (2025-12-02)
+
+
+### Features
+
+* **general:** add script to add icon font preload tag ([927038d](https://github.com/karmasakshi/jet/commit/927038da7db8fa57a3c1206e0e5a3a0dbf0b9965))
+
 ## [4.3.0](https://github.com/karmasakshi/jet/compare/v4.2.0...v4.3.0) (2025-12-01)
 
 
