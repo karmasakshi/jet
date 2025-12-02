@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.6.0](https://github.com/karmasakshi/jet/compare/v4.5.0...v4.6.0) (2025-12-02)
+
+
+### Features
+
+* **general:** remove listening to viewport changes ([4f6718d](https://github.com/karmasakshi/jet/commit/4f6718dca03557e3bcb4292f740d076b5d3738f8))
+
 ## [4.5.0](https://github.com/karmasakshi/jet/compare/v4.4.1...v4.5.0) (2025-12-02)
 
 
