@@ -10,8 +10,8 @@ const INDEX_PATH = join(DIST_PATH, 'index.html');
 const NGSW_PATH = join(DIST_PATH, 'ngsw.json');
 
 try {
-  const originalHtml = readFileSync(INDEX_PATH, 'utf-8');
   const ngsw = JSON.parse(readFileSync(NGSW_PATH, 'utf-8'));
+  const originalHtml = readFileSync(INDEX_PATH, 'utf-8');
 
   const fontUrlRegex =
     /@font-face\{[^}]*src:url\(([^)]+)\)[^}]*format\(['"]woff2['"]\)/g;
@@ -51,7 +51,7 @@ try {
   writeFileSync(NGSW_PATH, JSON.stringify(ngsw));
 
   console.log(
-    'Added icon font preload tag to index.html and updated ngsw.json hash.',
+    'Added icon font preload tag to index.html and updated hash in ngsw.json.',
   );
 } catch (error) {
   console.warn('Failed to add icon font preload tag:', error.message);
