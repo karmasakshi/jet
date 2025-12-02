@@ -35,23 +35,16 @@
           <router-outlet />
         </main>
       </mat-tab-nav-panel>
-      @defer (on viewport) {
-        <footer
-          [class]="{
-            'jet-add-bottom-margin': !_isLargeViewport,
-            'jet-add-safe-area': _shouldAddSafeArea,
-          }"
-        >
+      <footer
+        [class]="{
+          'jet-add-bottom-margin': !_isLargeViewport,
+          'jet-add-safe-area': _shouldAddSafeArea,
+        }"
+      >
+        @defer (on idle) {
           <jet-footer />
-        </footer>
-      } @placeholder {
-        <footer
-          [class]="{
-            'jet-add-bottom-margin': !_isLargeViewport,
-            'jet-add-safe-area': _shouldAddSafeArea,
-          }"
-        ></footer>
-      }
+        }
+      </footer>
       @if (!_isLargeViewport) {
         <nav
           class="jet-tab-nav-bar"
