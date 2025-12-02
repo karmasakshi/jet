@@ -15,7 +15,7 @@ import {
   untracked,
   WritableSignal,
 } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -44,7 +44,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import packageJson from 'package.json';
-import { filter, map } from 'rxjs';
+import { filter } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -129,14 +129,21 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.directionality = this.#settingsService.directionality;
 
-    this.isLargeViewport = toSignal(
-      this.#breakpointObserver
-        .observe(Breakpoints.Web)
-        .pipe(map((result) => result.matches)),
-      { initialValue: false },
+    // To continuously listen to viewport changes, set
+    // this.isLargeViewport = toSignal(
+    //   this.#breakpointObserver
+    //     .observe(Breakpoints.Web)
+    //     .pipe(map((result) => result.matches)),
+    //   { initialValue: false },
+    // );
+    this.isLargeViewport = signal(
+      this.#breakpointObserver.isMatched(Breakpoints.Web),
     );
 
-    this.isMatSidenavOpen = signal(false); // Remove @defer and set to `linkedSignal(() => this.isLargeViewport())` to open by default.
+    // To keep MatSidenav open by default on large viewports, set
+    // this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport())
+    // and remove @defer in template.
+    this.isMatSidenavOpen = signal(false);
 
     this.matSidenavMode = computed(() =>
       this.isLargeViewport() ? 'side' : 'over',
