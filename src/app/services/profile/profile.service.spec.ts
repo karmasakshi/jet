@@ -15,6 +15,7 @@ describe('ProfileService', () => {
         { provide: SUPABASE_CLIENT, useValue: {} },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: UserService, useClass: UserServiceMock },
+        ProfileService,
       ],
     });
     service = TestBed.inject(ProfileService);

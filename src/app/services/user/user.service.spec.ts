@@ -17,6 +17,7 @@ describe('UserService', () => {
           useValue: { auth: { onAuthStateChange: () => undefined } },
         },
         { provide: LoggerService, useClass: LoggerServiceMock },
+        UserService,
       ],
     });
     service = TestBed.inject(UserService);
