@@ -31,7 +31,6 @@
       "@jet/injection-tokens/*": ["src/app/injection-tokens/*"],
       "@jet/interceptors/*": ["src/app/interceptors/*"],
       "@jet/interfaces/*": ["src/app/interfaces/*"],
-      "@jet/routes/*": ["src/app/routes/*"],
       "@jet/services/*": ["src/app/services/*"],
       "@jet/types/*": ["src/app/types/*"]
     }

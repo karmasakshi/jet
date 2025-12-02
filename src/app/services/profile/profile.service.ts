@@ -8,7 +8,7 @@ import { User } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { UserService } from '../user/user.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ProfileService {
   readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);

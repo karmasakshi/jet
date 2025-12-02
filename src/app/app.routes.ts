@@ -4,10 +4,7 @@ import { HomePageComponent } from '@jet/components/home-page/home-page.component
 export const routes: Routes = [
   { component: HomePageComponent, path: '' },
   {
-    loadChildren: async () => [
-      ...(await import('@jet/routes/main.routes')).mainRoutes,
-      ...(await import('@jet/routes/user.routes')).userRoutes,
-    ],
+    loadChildren: async () => (await import('./lazy.routes')).lazyRoutes,
     path: '',
   },
   {

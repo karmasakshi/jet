@@ -25,7 +25,7 @@ import {
 } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class UserService {
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #supabaseClient = inject(SUPABASE_CLIENT);

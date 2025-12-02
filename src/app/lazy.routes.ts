@@ -2,8 +2,12 @@ import { Routes } from '@angular/router';
 import { signedInGuard } from '@jet/guards/signed-in/signed-in.guard';
 import { signedOutGuard } from '@jet/guards/signed-out/signed-out.guard';
 import { unsavedChangesGuard } from '@jet/guards/unsaved-changes/unsaved-changes.guard';
+import { ProfileService } from '@jet/services/profile/profile.service';
+import { UserService } from '@jet/services/user/user.service';
 
-export const userRoutes: Routes = [
+const mainRoutes: Routes = [];
+
+const userRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
     loadComponent: async () =>
@@ -74,5 +78,13 @@ export const userRoutes: Routes = [
         await import('@jet/components/update-password-page/update-password-page.component')
       ).UpdatePasswordPageComponent,
     path: 'update-password',
+  },
+];
+
+export const lazyRoutes: Routes = [
+  {
+    children: [...mainRoutes, ...userRoutes],
+    path: '',
+    providers: [UserService, ProfileService],
   },
 ];
