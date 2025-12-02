@@ -78,7 +78,7 @@ export class ServiceWorkerService {
         },
       );
 
-      return true;
+      return Promise.resolve(true);
     }
 
     return this.#swUpdate.checkForUpdate();

@@ -1,1 +1,1 @@
-export type AvailableFontPair = 'default' | 'nsa-nsa';
+export type AvailableFontPair = 'ns-bg' | 'nsa-nsa';

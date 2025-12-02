@@ -48,7 +48,7 @@ export class ToolbarComponent {
   public readonly toggleMatSidenav: OutputEmitterRef<void> = output();
 
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  public readonly toolbarTitle: Signal<string | undefined>;
+  public readonly toolbarTitle: Signal<null | string>;
 
   public constructor() {
     this.progressBarConfiguration =
