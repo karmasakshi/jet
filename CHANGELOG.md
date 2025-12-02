@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.1](https://github.com/karmasakshi/jet/compare/v4.4.0...v4.4.1) (2025-12-02)
+
+
+### Bug Fixes
+
+* **general:** update index.html hash after modification ([8d74647](https://github.com/karmasakshi/jet/commit/8d74647de2a5a601564d87d83f4e5da8ca8b6e75))
+
 ## [4.4.0](https://github.com/karmasakshi/jet/compare/v4.3.0...v4.4.0) (2025-12-02)
 
 
