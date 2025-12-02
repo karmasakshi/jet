@@ -15,7 +15,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   }
 
   public getTranslation(language: AvailableLanguage): Observable<Translation> {
-    return this.#httpClient.get<Translation>(`/i18n/${language}.json`).pipe(
+    return this.#httpClient.get<Translation>(`./i18n/${language}.json`).pipe(
       catchError((error: Error): Observable<Translation> => {
         this.#loggerService.logError(error);
         const emptyTranslation: Translation = {};
