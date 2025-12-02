@@ -8,7 +8,7 @@ $nsa-font-family: ('Noto Sans Arabic', sans-serif);
 html {
   --jet-sidenav-width: 240px;
 
-  text-size-adjust: none;
+  text-size-adjust: 100%;
 
   @include mat.theme(
     (
