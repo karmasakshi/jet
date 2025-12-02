@@ -136,7 +136,7 @@ export class AppComponent implements OnDestroy, OnInit {
       { initialValue: false },
     );
 
-    this.isMatSidenavOpen = signal(false);
+    this.isMatSidenavOpen = signal(false); // Remove @defer and set to `linkedSignal(() => this.isLargeViewport())` to open by default.
 
     this.matSidenavMode = computed(() =>
       this.isLargeViewport() ? 'side' : 'over',
@@ -156,6 +156,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
         untracked(() => {
           this.#setColorScheme(colorSchemeOption.value);
+
           this.#setThemeColorMeta(colorSchemeOption.value);
         });
       },
@@ -170,7 +171,9 @@ export class AppComponent implements OnDestroy, OnInit {
 
         untracked(() => {
           this.#loadFontPair(languageOption.fontPairUrl);
+
           this.#setFontPair(languageOption.fontPair);
+
           this.#setLanguage(languageOption.value);
         });
       },
@@ -216,6 +219,7 @@ export class AppComponent implements OnDestroy, OnInit {
             error instanceof Error ? error.message : undefined;
 
           this.#loggerService.logError(error);
+
           this.#alertService.showErrorAlert(message);
         }
 
@@ -238,9 +242,13 @@ export class AppComponent implements OnDestroy, OnInit {
 
     if (fontPairUrl !== DEFAULT_LANGUAGE_OPTION.fontPairUrl) {
       linkElement = this.#renderer2.createElement('link');
+
       this.#renderer2.setAttribute(linkElement, 'href', fontPairUrl);
+
       this.#renderer2.setAttribute(linkElement, 'id', id);
+
       this.#renderer2.setAttribute(linkElement, 'rel', 'stylesheet');
+
       this.#renderer2.appendChild(this.#document.head, linkElement);
     }
   }
@@ -269,6 +277,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
       this.#activeFontPairClass = `jet-font-pair-${fontPair}`;
+
       body.classList.add(this.#activeFontPairClass);
     } else {
       this.#activeFontPairClass = null;

@@ -86,7 +86,9 @@ export class ResetPasswordPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.resetPasswordFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {

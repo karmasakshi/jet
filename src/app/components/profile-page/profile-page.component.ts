@@ -155,7 +155,9 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     }
 
     this.#isLoading = true;
+
     this.profileFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
@@ -208,7 +210,9 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     }
 
     this.#isLoading = true;
+
     this.profileFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
@@ -251,7 +255,9 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     }
 
     this.#isLoading = true;
+
     this.profileFormGroup.disable();
+
     this.#progressBarService.showQueryProgressBar();
 
     try {

@@ -131,7 +131,9 @@ export class UpdatePasswordPageComponent
     }
 
     this.#isLoading = true;
+
     this.updatePasswordFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {

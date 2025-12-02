@@ -97,7 +97,9 @@ export class SignInPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.signInFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
@@ -135,7 +137,9 @@ export class SignInPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.signInFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
@@ -162,7 +166,9 @@ export class SignInPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.signInFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
@@ -189,7 +195,9 @@ export class SignInPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.signInFormGroup.disable();
+
     this.#progressBarService.showQueryProgressBar();
 
     try {

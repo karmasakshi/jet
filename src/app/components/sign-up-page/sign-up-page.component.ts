@@ -93,7 +93,9 @@ export class SignUpPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.signUpFormGroup.disable();
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {

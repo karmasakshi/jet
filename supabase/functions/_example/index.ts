@@ -64,9 +64,7 @@ Deno.serve(async (request: Request): Promise<Response> => {
       message = exception.message;
       httpStatusCode = exception.httpStatusCode;
     } else if (exception instanceof z.ZodError) {
-      message = `Bad request. ${exception.issues
-        .map((i) => `${i.path.join('.')}: ${i.message}`)
-        .join('. ')}.`;
+      message = `Bad request. ${exception.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('. ')}.`;
 
       httpStatusCode = 400;
     } else {

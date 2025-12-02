@@ -45,6 +45,7 @@ export class SignOutPageComponent implements OnInit {
     }
 
     this.#isLoading = true;
+
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {

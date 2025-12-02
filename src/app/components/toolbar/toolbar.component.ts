@@ -44,7 +44,6 @@ export class ToolbarComponent {
 
   public readonly isLargeViewport: InputSignal<boolean> = input.required();
   public readonly shouldAddSafeArea: InputSignal<boolean> = input.required();
-
   public readonly toggleMatSidenav: OutputEmitterRef<void> = output();
 
   public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
