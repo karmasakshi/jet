@@ -52,7 +52,7 @@ html {
   @include mat.list-overrides(
     (
       list-item-container-shape: var(--mat-sys-corner-small),
-      list-item-supporting-text-color: var(--mat-sys-outline),
+      list-item-supporting-text-color: var(--mat-sys-on-surface-variant),
       list-item-two-line-container-height: 74px,
     )
   );
@@ -65,9 +65,7 @@ html {
 
   @include mat.tabs-overrides(
     (
-      background-color: var(--mat-sys-primary),
       divider-height: 0,
-      foreground-color: var(--mat-sys-on-primary),
     )
   );
 }
