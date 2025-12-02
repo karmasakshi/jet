@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.5.0](https://github.com/karmasakshi/jet/compare/v4.4.1...v4.5.0) (2025-12-02)
+
+
+### Features
+
+* **general:** add script to optimize translations ([016c968](https://github.com/karmasakshi/jet/commit/016c9681a385a1c7278569ea1b156b90404a6712))
+
 ## [4.4.1](https://github.com/karmasakshi/jet/compare/v4.4.0...v4.4.1) (2025-12-02)
 
 
