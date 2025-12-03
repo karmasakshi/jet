@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.7.1](https://github.com/karmasakshi/jet/compare/v4.7.0...v4.7.1) (2025-12-03)
+
+
+### Reverts
+
+* **general:** add preloading default translation for performance ([9b5dcbf](https://github.com/karmasakshi/jet/commit/9b5dcbf8030c9a1beff8ddfdbb302ba0f4c43db2))
+
 ## [4.7.0](https://github.com/karmasakshi/jet/compare/v4.6.0...v4.7.0) (2025-12-02)
 
 
