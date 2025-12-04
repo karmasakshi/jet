@@ -269,6 +269,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
       this.#activeColorSchemeClass = `jet-color-scheme-${colorScheme}`;
+
       body.classList.add(this.#activeColorSchemeClass);
     } else {
       this.#activeColorSchemeClass = null;
