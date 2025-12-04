@@ -107,130 +107,27 @@ body {
 .jet-sidenav-container {
   &[dir='ltr'] {
     --jet-animation-multiplier: 1;
-
-    .jet-sidenav {
-      @include mat.sidenav-overrides(
-        (
-          container-width: calc(
-              var(--jet-sidenav-width) + env(safe-area-inset-left)
-            ),
-        )
-      );
-
-      .jet-sidenav-toolbar,
-      .jet-sidenav-nav-list {
-        padding-left: calc(16px + env(safe-area-inset-left));
-        padding-right: 16px;
-      }
-    }
-
-    .jet-sidenav-content {
-      .jet-sidenav-content-toolbar {
-        padding-left: 16px;
-        padding-right: calc(16px + env(safe-area-inset-right));
-
-        &.jet-add-safe-area {
-          padding-left: calc(16px + env(safe-area-inset-left));
-        }
-      }
-
-      .mat-mdc-tab-nav-panel {
-        main {
-          padding-left: 16px;
-          padding-right: calc(16px + env(safe-area-inset-right));
-
-          &.jet-add-safe-area {
-            padding-left: calc(16px + env(safe-area-inset-left));
-          }
-        }
-      }
-
-      footer {
-        background-color: var(--mat-sys-surface-container-low);
-        padding-left: 16px;
-        padding-right: calc(16px + env(safe-area-inset-right));
-
-        &.jet-add-safe-area {
-          padding-left: calc(16px + env(safe-area-inset-left));
-        }
-      }
-
-      .jet-tab-nav-bar {
-        .mat-mdc-tab-header-pagination-before {
-          padding-left: calc(env(safe-area-inset-left) + 8px);
-        }
-
-        .mat-mdc-tab-header-pagination-after {
-          padding-right: calc(env(safe-area-inset-right) + 8px);
-        }
-      }
-    }
+    --jet-safe-area-start: env(safe-area-inset-left);
+    --jet-safe-area-end: env(safe-area-inset-right);
   }
 
   &[dir='rtl'] {
     --jet-animation-multiplier: -1;
-
-    .jet-sidenav {
-      @include mat.sidenav-overrides(
-        (
-          container-width: calc(
-              var(--jet-sidenav-width) + env(safe-area-inset-right)
-            ),
-        )
-      );
-
-      .jet-sidenav-toolbar,
-      .jet-sidenav-nav-list {
-        padding-left: 16px;
-        padding-right: calc(16px + env(safe-area-inset-right));
-      }
-    }
-
-    .jet-sidenav-content {
-      .jet-sidenav-content-toolbar {
-        padding-left: calc(16px + env(safe-area-inset-left));
-        padding-right: 16px;
-
-        &.jet-add-safe-area {
-          padding-right: calc(16px + env(safe-area-inset-right));
-        }
-      }
-
-      .mat-mdc-tab-nav-panel {
-        main {
-          padding-left: calc(16px + env(safe-area-inset-left));
-          padding-right: 16px;
-
-          &.jet-add-safe-area {
-            padding-right: calc(16px + env(safe-area-inset-right));
-          }
-        }
-      }
-
-      footer {
-        padding-left: calc(16px + env(safe-area-inset-left));
-        padding-right: 16px;
-
-        &.jet-add-safe-area {
-          padding-right: calc(16px + env(safe-area-inset-right));
-        }
-      }
-
-      .jet-tab-nav-bar {
-        .mat-mdc-tab-header-pagination-before {
-          padding-right: calc(env(safe-area-inset-right) + 8px);
-        }
-
-        .mat-mdc-tab-header-pagination-after {
-          padding-left: calc(env(safe-area-inset-left) + 8px);
-        }
-      }
-    }
+    --jet-safe-area-start: env(safe-area-inset-right);
+    --jet-safe-area-end: env(safe-area-inset-left);
   }
 
   .jet-sidenav {
     padding-bottom: env(safe-area-inset-bottom);
     padding-top: env(safe-area-inset-top);
+
+    @include mat.sidenav-overrides(
+      (
+        container-width: calc(
+            var(--jet-sidenav-width) + var(--jet-safe-area-start)
+          ),
+      )
+    );
 
     .jet-sidenav-toolbar {
       justify-content: center;
@@ -240,6 +137,13 @@ body {
           container-background-color: transparent,
         )
       );
+    }
+
+    .jet-sidenav-toolbar,
+    .jet-sidenav-nav-list {
+      padding: unset;
+      padding-inline-end: 16px;
+      padding-inline-start: calc(16px + var(--jet-safe-area-start));
     }
   }
 
@@ -253,6 +157,9 @@ body {
     .jet-sidenav-content-toolbar {
       gap: 8px;
       overflow-x: auto;
+      padding: unset;
+      padding-inline-end: calc(16px + var(--jet-safe-area-end));
+      padding-inline-start: 16px;
       position: relative;
 
       @include mat.toolbar-overrides(
@@ -260,6 +167,10 @@ body {
           container-background-color: transparent,
         )
       );
+
+      &.jet-add-safe-area {
+        padding-inline-start: calc(16px + var(--jet-safe-area-start));
+      }
     }
 
     .mat-mdc-tab-nav-panel {
@@ -267,13 +178,26 @@ body {
 
       main {
         padding-bottom: 160px;
+        padding-inline-end: calc(16px + var(--jet-safe-area-end));
+        padding-inline-start: 16px;
         padding-top: 16px;
+
+        &.jet-add-safe-area {
+          padding-inline-start: calc(16px + var(--jet-safe-area-start));
+        }
       }
     }
 
     footer {
+      background-color: var(--mat-sys-surface-container-low);
       padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      padding-inline-end: calc(16px + var(--jet-safe-area-end));
+      padding-inline-start: 16px;
       padding-top: 16px;
+
+      &.jet-add-safe-area {
+        padding-inline-start: calc(16px + var(--jet-safe-area-start));
+      }
 
       &.jet-add-bottom-margin {
         margin-bottom: 48px;
@@ -289,6 +213,14 @@ body {
 
       .mat-mdc-tab-link-container {
         padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .mat-mdc-tab-header-pagination-before {
+        padding-inline-start: calc(var(--jet-safe-area-start) + 4px);
+      }
+
+      .mat-mdc-tab-header-pagination-after {
+        padding-inline-end: calc(var(--jet-safe-area-end) + 4px);
       }
     }
   }
@@ -334,8 +266,10 @@ table {
   justify-content: flex-end;
 }
 
-.mat-mdc-form-field-icon-suffix {
-  padding: 0 8px !important;
+.mat-mdc-form-field {
+  .mat-mdc-form-field-icon-suffix {
+    padding: 0 8px;
+  }
 }
 
 .mat-mdc-option {
