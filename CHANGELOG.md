@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.8.0](https://github.com/karmasakshi/jet/compare/v4.7.1...v4.8.0) (2025-12-04)
+
+
+### Features
+
+* **general:** optimize styles using css variables ([1d6f129](https://github.com/karmasakshi/jet/commit/1d6f129f7d460b522a10f4ed2570e5545976c32d))
+
 ## [4.7.1](https://github.com/karmasakshi/jet/compare/v4.7.0...v4.7.1) (2025-12-03)
 
 
