@@ -1,27 +1,27 @@
 {
-  "alert-ctas": { "ok": "حسنًا", "reload": "إعادة التحميل" },
+  "alert-ctas": { "ok": "حسناً", "reload": "إعادة التحميل" },
   "alerts": {
     "avatar-updated": "تم تحديث الصورة الرمزية.",
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
     "password-updated": "تم تحديث كلمة المرور.",
-    "please-select-a-smaller-avatar": "يرجى اختيار صورة رمزية ≤ {{ value }} ميغابايت.",
     "please-select-a-valid-avatar": "يرجى اختيار صورة رمزية صالحة.",
+    "please-select-an-avatar-lte-x-mb": "يرجى اختيار صورة رمزية ≤ {{ value }}MB.",
     "profile-updated": "تم تحديث الملف الشخصي.",
-    "reload-to-update": "أعد التحميل للتحديث.",
+    "reload-to-update": "أعد التحميل للحصول على التحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",
-    "welcome": "مرحبًا!",
+    "welcome": "مرحباً!",
     "youre-on-the-latest-version": "أنت على أحدث إصدار."
   },
   "confirmations": {
-    "youll-lose-unsaved-changes": "سوف تفقد التغييرات غير المحفوظة. هل تريد المتابعة؟"
+    "youll-lose-unsaved-changes-continue": "ستفقد التغييرات غير المحفوظة. هل تريد المتابعة؟"
   },
   "constants": {
     "arabic": "العربية",
     "automatic": "تلقائي",
     "dark": "داكن",
-    "english": "English",
+    "english": "الإنجليزية",
     "home": "الرئيسية",
     "light": "فاتح",
     "profile": "الملف الشخصي",
@@ -32,34 +32,33 @@
     "seo": {
       "description": "Jet.",
       "keywords": "jet",
-      "title": "Jet - حزمة انطلاق لـ Angular لبناء تطبيقات ويب عالية الجودة بسرعة. الآن مع Supabase."
+      "title": "Jet - حزمة Angular لبدء بناء تطبيقات ويب عالية الجودة بسرعة. الآن مع Supabase."
     },
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "click-to-sign-in": "يرجى النقر على الرابط في البريد الإلكتروني لتسجيل الدخول.",
-    "click-to-verify": "يرجى النقر على الرابط في البريد الإلكتروني للتحقق.",
+    "click-link-in-email-to-sign-in": "يرجى الضغط على الرابط في البريد الإلكتروني لتسجيل الدخول.",
+    "click-link-in-email-to-verify": "يرجى الضغط على الرابط في البريد الإلكتروني للتحقق.",
     "message": "رسالة",
     "not-found": "غير موجود",
-    "open-home": "فتح الصفحة الرئيسية",
-    "page-doesnt-exist": "هذه الصفحة غير موجودة.",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "الرسالة" },
-    "sign-in-and-update-password": "إذا وجدنا حسابًا بهذا البريد الإلكتروني، سنرسل لك رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
+    "open-home": "فتح الرئيسية",
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "رسالة" },
     "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول",
-    "toolbar-title": "الرسالة",
+    "that-page-doesnt-exist": "هذه الصفحة غير موجودة.",
+    "toolbar-title": "رسالة",
     "verification-email-sent": "تم إرسال بريد التحقق",
-    "well-email-you": "سنرسل لك بريدًا إلكترونيًا"
+    "well-email-you": "سوف نرسل لك بريداً إلكترونياً",
+    "well-send-you-a-link": "إذا وجدنا حساباً مرتبطاً بهذا البريد الإلكتروني، سنرسل لك رابطاً لتسجيل الدخول وتحديث كلمة المرور."
   },
   "jet-profile-page": {
     "avatar": "الصورة الرمزية",
-    "characters": "{{ value }} من {{ maximum }} حرفًا",
     "clear": "مسح",
     "email": "البريد الإلكتروني",
     "full-name": "الاسم الكامل",
-    "full-name-error-maxlength": "الاسم الكامل لا يزيد عن {{ maximum }} حرفًا",
+    "full-name-error-maxlength": "يصل طول الاسم الكامل إلى {{ value }} حرفاً",
     "profile": "الملف الشخصي",
-    "profile-created-on": "تم إنشاء الملف الشخصي في {{ value }}",
-    "profile-last-updated-on": "آخر تحديث للملف الشخصي في {{ value }}",
+    "profile-created-on-x": "تم إنشاء الملف الشخصي في {{ value }}",
+    "profile-last-updated-on-x": "آخر تحديث للملف الشخصي في {{ value }}",
     "save": "حفظ",
     "seo": {
       "description": "Jet.",
@@ -70,15 +69,16 @@
     "toolbar-title": "الملف الشخصي",
     "update-password": "تحديث كلمة المرور",
     "username": "اسم المستخدم",
-    "username-error-maxlength": "اسم المستخدم لا يزيد عن {{ maximum }} حرفًا",
-    "username-error-minlength": "اسم المستخدم لا يقل عن {{ minimum }} حرفًا",
-    "username-error-pattern": "اسم المستخدم يحتوي فقط على الحروف a-z، والأرقام 0-9، و _",
-    "username-error-required": "اسم المستخدم مطلوب"
+    "username-error-maxlength": "يصل طول اسم المستخدم إلى {{ value }} حرفاً",
+    "username-error-minlength": "يجب ألا يقل اسم المستخدم عن {{ value }} حرفاً",
+    "username-error-pattern": "يمكن أن يحتوي اسم المستخدم فقط على a-z و0-9 و _",
+    "username-error-required": "اسم المستخدم مطلوب",
+    "x-of-y-characters": "{{ length }} من {{ maximum }} حرفاً"
   },
   "jet-reset-password-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
-    "email-error-email": "أدخل بريدًا إلكترونيًا صالحًا",
+    "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
     "email-error-required": "البريد الإلكتروني مطلوب",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
@@ -94,25 +94,25 @@
     "change-color-scheme": "تغيير نظام الألوان",
     "change-language": "تغيير اللغة",
     "check-for-updates": "التحقق من التحديثات",
-    "last-checked": "آخر تحقق:",
+    "last-checked-x": "آخر تحقق: {{ value }}",
     "reload": "إعادة التحميل",
-    "reload-description": "الحفاظ على الإعدادات وإعادة التحميل",
-    "reset": "إعادة التعيين",
-    "reset-description": "استخدام الإعدادات الافتراضية وإعادة التحميل",
+    "reload-description": "احتفظ بالإعدادات وأعد التحميل",
+    "reset": "إعادة الضبط",
+    "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "الإعدادات" },
     "toolbar-title": "الإعدادات",
-    "version": "الإصدار {{ version }}"
+    "version-x": "الإصدار {{ value }}v"
   },
   "jet-sidenav": { "home": "الرئيسية" },
   "jet-sign-in-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
-    "email-error-email": "أدخل بريدًا إلكترونيًا صالحًا",
+    "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
     "email-error-required": "البريد الإلكتروني مطلوب",
     "email-sign-in-link": "رابط تسجيل الدخول عبر البريد الإلكتروني",
     "or": "- أو -",
     "password": "كلمة المرور",
-    "password-error-minlength": "يجب أن تكون كلمة المرور {{ minimum }} حرفًا على الأقل",
+    "password-error-minlength": "يجب ألا تقل كلمة المرور عن {{ value }} حرفاً",
     "password-error-required": "كلمة المرور مطلوبة",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
@@ -121,7 +121,7 @@
       "title": "تسجيل الدخول"
     },
     "sign-in": "تسجيل الدخول",
-    "sign-in-to-continue-to": "سجل الدخول للمتابعة إلى {{ returnUrl }}",
+    "sign-in-to-continue-to-x": "سجل الدخول للمتابعة إلى {{ value }}",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",
     "toggle-visibility": "تبديل الرؤية",
@@ -138,10 +138,10 @@
   "jet-sign-up-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
-    "email-error-email": "أدخل بريدًا إلكترونيًا صالحًا",
+    "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
     "email-error-required": "البريد الإلكتروني مطلوب",
     "password": "كلمة المرور",
-    "password-error-minlength": "يجب أن تكون كلمة المرور {{ minimum }} حرفًا على الأقل",
+    "password-error-minlength": "يجب ألا تقل كلمة المرور عن {{ value }} حرفاً",
     "password-error-required": "كلمة المرور مطلوبة",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "إنشاء حساب" },
@@ -157,11 +157,13 @@
   },
   "jet-update-password-page": {
     "confirm-new-password": "تأكيد كلمة المرور الجديدة",
+    "confirm-new-password-error-minlength": "يجب أن تكون كلمة المرور مكوّنة من {{ value }} أحرف على الأقل",
+    "confirm-new-password-error-mismatch": "تأكيد كلمة المرور غير متطابق",
+    "confirm-new-password-error-required": "تأكيد كلمة المرور مطلوب",
     "email": "البريد الإلكتروني",
     "new-password": "كلمة المرور الجديدة",
-    "password-error-minlength": "يجب أن تكون كلمة المرور {{ minimum }} حرفًا على الأقل",
-    "password-error-mismatch": "كلمتا المرور غير متطابقتين",
-    "password-error-required": "كلمة المرور مطلوبة",
+    "new-password-error-minlength": "يجب أن تكون كلمة المرور مكوّنة من {{ value }} أحرف على الأقل",
+    "new-password-error-required": "كلمة المرور مطلوبة",
     "save": "حفظ",
     "seo": {
       "description": "Jet.",
@@ -174,11 +176,11 @@
   },
   "paginator": {
     "first-page": "الصفحة الأولى",
-    "items-per-page": "عدد العناصر في الصفحة:",
+    "items-per-page": "العناصر لكل صفحة:",
     "last-page": "الصفحة الأخيرة",
     "next-page": "الصفحة التالية",
-    "page": "الصفحة {{ active }} من {{ total }}",
     "page-1-of-1": "الصفحة 1 من 1",
+    "page-x-of-y": "الصفحة {{ active }} من {{ total }}",
     "previous-page": "الصفحة السابقة"
   }
 }

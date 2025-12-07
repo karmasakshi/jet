@@ -12,7 +12,7 @@
     <div class="jet-flexc-centered">
       @if (_returnUrl !== '/') {
         <span style="font: var(--mat-sys-headline-small)">{{
-          t('sign-in-to-continue-to', { returnUrl: _returnUrl })
+          t('sign-in-to-continue-to-x', { value: _returnUrl })
         }}</span>
       }
       <mat-card class="jet-maxw-480">
@@ -110,7 +110,7 @@
               ) {
                 <mat-error>{{
                   t('password-error-minlength', {
-                    minimum:
+                    value:
                       _passwordControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>

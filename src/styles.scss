@@ -79,6 +79,10 @@ body {
   font: var(--mat-sys-body-medium);
   margin: 0;
 
+  &.jet-color-scheme-automatic {
+    color-scheme: light dark;
+  }
+
   &.jet-color-scheme-dark {
     color-scheme: dark;
   }

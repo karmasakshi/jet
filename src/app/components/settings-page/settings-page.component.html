@@ -43,11 +43,11 @@
           >
             <mat-icon matListItemIcon>sync</mat-icon>
             <span matListItemTitle>{{ t('check-for-updates') }}</span>
-            <span matListItemLine
-              >{{ t('last-checked') }}&nbsp;{{
-                _lastUpdateCheckTimestamp | date: 'medium'
-              }}</span
-            >
+            <span matListItemLine>{{
+              t('last-checked-x', {
+                value: _lastUpdateCheckTimestamp | date: 'medium',
+              })
+            }}</span>
           </button>
           <button
             mat-list-item
@@ -79,7 +79,7 @@
         text-align: center;
       "
     >
-      {{ t('version', { version }) }}
+      {{ t('version-x', { value: version }) }}
     </p>
     <mat-menu
       #languageOptionsMenu="matMenu"

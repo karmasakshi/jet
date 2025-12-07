@@ -5,8 +5,8 @@
     "checking-for-updates": "Checking for updates...",
     "downloading-updates": "Downloading updates...",
     "password-updated": "Password updated.",
-    "please-select-a-smaller-avatar": "Please select an avatar <= {{ value }}MB.",
     "please-select-a-valid-avatar": "Please select a valid avatar.",
+    "please-select-an-avatar-lte-x-mb": "Please select an avatar <= {{ value }}MB.",
     "profile-updated": "Profile updated.",
     "reload-to-update": "Reload to update.",
     "signed-out-successfully": "Signed out successfully.",
@@ -15,7 +15,7 @@
     "youre-on-the-latest-version": "You're on the latest version."
   },
   "confirmations": {
-    "youll-lose-unsaved-changes": "You'll lose unsaved changes. Continue?"
+    "youll-lose-unsaved-changes-continue": "You'll lose unsaved changes. Continue?"
   },
   "constants": {
     "arabic": "العربية",
@@ -37,39 +37,39 @@
     "toolbar-title": "Jet"
   },
   "jet-message-page": {
-    "click-to-sign-in": "Please click the link in the email to sign in.",
-    "click-to-verify": "Please click the link in the email to verify.",
+    "click-link-in-email-to-sign-in": "Please click the link in the email to sign in.",
+    "click-link-in-email-to-verify": "Please click the link in the email to verify.",
     "message": "Message",
     "not-found": "Not found",
     "open-home": "Open Home",
-    "page-doesnt-exist": "That page doesn't exist.",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Message" },
-    "sign-in-and-update-password": "If we find an account with that email, we'll send you a link you can use to sign in and update your password.",
     "sign-in-link-sent": "Sign in link sent",
+    "that-page-doesnt-exist": "That page doesn't exist.",
     "toolbar-title": "Message",
     "verification-email-sent": "Verification email sent",
-    "well-email-you": "We'll email you"
+    "well-email-you": "We'll email you",
+    "well-send-you-a-link": "If we find an account with that email, we'll send you a link you can use to sign in and update your password."
   },
   "jet-profile-page": {
     "avatar": "Avatar",
-    "characters": "{{ value }} of {{ maximum }} characters",
     "clear": "Clear",
     "email": "Email",
     "full-name": "Full name",
-    "full-name-error-maxlength": "Full name is up to {{ maximum }} characters long",
+    "full-name-error-maxlength": "Full name is up to {{ value }} characters long",
     "profile": "Profile",
-    "profile-created-on": "Profile created on {{ value }}",
-    "profile-last-updated-on": "Profile last updated on {{ value }}",
+    "profile-created-on-x": "Profile created on {{ value }}",
+    "profile-last-updated-on-x": "Profile last updated on {{ value }}",
     "save": "Save",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Profile" },
     "sign-out": "Sign out",
     "toolbar-title": "Profile",
     "update-password": "Update password",
     "username": "Username",
-    "username-error-maxlength": "Username is up to {{ maximum }} characters long",
-    "username-error-minlength": "Username is at least {{ minimum }} characters long",
+    "username-error-maxlength": "Username is up to {{ value }} characters long",
+    "username-error-minlength": "Username is at least {{ value }} characters long",
     "username-error-pattern": "Username only has a-z, 0-9 and _",
-    "username-error-required": "Username is required"
+    "username-error-required": "Username is required",
+    "x-of-y-characters": "{{ length }} of {{ maximum }} characters"
   },
   "jet-reset-password-page": {
     "clear": "Clear",
@@ -90,14 +90,14 @@
     "change-color-scheme": "Change color scheme",
     "change-language": "Change language",
     "check-for-updates": "Check for updates",
-    "last-checked": "Last checked:",
+    "last-checked-x": "Last checked: {{ value }}",
     "reload": "Reload",
     "reload-description": "Preserve settings and reload",
     "reset": "Reset",
     "reset-description": "Use default settings and reload",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Settings" },
     "toolbar-title": "Settings",
-    "version": "v{{ version }}"
+    "version-x": "v{{ value }}"
   },
   "jet-sidenav": { "home": "Home" },
   "jet-sign-in-page": {
@@ -108,12 +108,12 @@
     "email-sign-in-link": "Email sign in link",
     "or": "- or -",
     "password": "Password",
-    "password-error-minlength": "Password is at least {{ minimum }} characters long",
+    "password-error-minlength": "Password is at least {{ value }} characters long",
     "password-error-required": "Password is required",
     "reset-password": "Reset password",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign In" },
     "sign-in": "Sign in",
-    "sign-in-to-continue-to": "Sign in to continue to {{ returnUrl }}",
+    "sign-in-to-continue-to-x": "Sign in to continue to {{ value }}",
     "sign-in-with-google": "Sign in with Google",
     "sign-up": "Sign up",
     "toggle-visibility": "Toggle visibility",
@@ -129,7 +129,7 @@
     "email-error-email": "Enter a valid email",
     "email-error-required": "Email is required",
     "password": "Password",
-    "password-error-minlength": "Password is at least {{ minimum }} characters long",
+    "password-error-minlength": "Password is at least {{ value }} characters long",
     "password-error-required": "Password is required",
     "reset-password": "Reset password",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign Up" },
@@ -145,11 +145,13 @@
   },
   "jet-update-password-page": {
     "confirm-new-password": "Confirm new password",
+    "confirm-new-password-error-minlength": "Password is at least {{ value }} characters long",
+    "confirm-new-password-error-mismatch": "Password confirmation doesn't match",
+    "confirm-new-password-error-required": "Password confirmation is required",
     "email": "Email",
     "new-password": "New password",
-    "password-error-minlength": "Password is at least {{ minimum }} characters long",
-    "password-error-mismatch": "Passwords don't match",
-    "password-error-required": "Password is required",
+    "new-password-error-minlength": "Password is at least {{ value }} characters long",
+    "new-password-error-required": "Password is required",
     "save": "Save",
     "seo": {
       "description": "Jet.",
@@ -165,8 +167,8 @@
     "items-per-page": "Items per page:",
     "last-page": "Last page",
     "next-page": "Next page",
-    "page": "Page {{ active }} of {{ total }}",
     "page-1-of-1": "Page 1 of 1",
+    "page-x-of-y": "Page {{ active }} of {{ total }}",
     "previous-page": "Previous page"
   }
 }

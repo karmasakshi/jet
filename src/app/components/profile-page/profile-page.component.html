@@ -105,9 +105,9 @@
               @if (_fullNameControl.dirty) {
                 <mat-hint align="end"
                   >{{
-                    t('characters', {
+                    t('x-of-y-characters', {
                       maximum: 36,
-                      value: _fullNameControl.value?.length || 0,
+                      length: _fullNameControl.value?.length || 0,
                     })
                   }}
                 </mat-hint>
@@ -118,7 +118,7 @@
               ) {
                 <mat-error>{{
                   t('full-name-error-maxlength', {
-                    maximum:
+                    value:
                       _fullNameControl.errors?.['maxlength'].requiredLength,
                   })
                 }}</mat-error>
@@ -149,7 +149,7 @@
               @if (_usernameControl.dirty) {
                 <mat-hint align="end"
                   >{{
-                    t('characters', {
+                    t('x-of-y-characters', {
                       maximum: 36,
                       value: _usernameControl.value?.length || 0,
                     })
@@ -168,7 +168,7 @@
               ) {
                 <mat-error>{{
                   t('username-error-maxlength', {
-                    maximum:
+                    value:
                       _usernameControl.errors?.['maxlength'].requiredLength,
                   })
                 }}</mat-error>
@@ -179,7 +179,7 @@
               ) {
                 <mat-error>{{
                   t('username-error-minlength', {
-                    minimum:
+                    value:
                       _usernameControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>
@@ -224,12 +224,12 @@
         <mat-card-content style="font: var(--mat-sys-body-small)">
           <div class="jet-flexc-centered">
             <span>{{
-              t('profile-last-updated-on', {
+              t('profile-last-updated-on-x', {
                 value: (_profile?.updated_at | date: 'medium') ?? '?',
               })
             }}</span>
             <span>{{
-              t('profile-created-on', {
+              t('profile-created-on-x', {
                 value: (_profile?.created_at | date: 'medium') ?? '?',
               })
             }}</span>
