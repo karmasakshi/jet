@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
-import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
+import { OauthProvider } from '@jet/types/oauth-provider.type';
 import {
   AuthChangeEvent,
   AuthError,
@@ -71,9 +71,7 @@ export class UserService {
     });
   }
 
-  public signInWithOauth(
-    oauthProvider: AvailableOauthProvider,
-  ): Promise<OAuthResponse> {
+  public signInWithOauth(oauthProvider: OauthProvider): Promise<OAuthResponse> {
     return this.#supabaseClient.auth.signInWithOAuth({
       options: {
         redirectTo: this.#getRedirectUrlWithReturnUrl(),

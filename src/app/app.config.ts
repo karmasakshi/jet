@@ -26,7 +26,7 @@ import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-bar.interceptor';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
-import { AvailableLanguage } from '@jet/types/available-language.type';
+import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
 import { TranslocoHttpLoader } from './transloco-loader';
@@ -63,8 +63,7 @@ export const appConfig: ApplicationConfig = {
     provideTransloco({
       config: {
         availableLangs: LANGUAGE_OPTIONS.map(
-          (languageOption: LanguageOption): AvailableLanguage =>
-            languageOption.value,
+          (languageOption: LanguageOption): Language => languageOption.value,
         ),
         defaultLang: DEFAULT_LANGUAGE_OPTION.value,
         prodMode: !isDevMode(),

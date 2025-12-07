@@ -24,7 +24,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
-import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
+import { OauthProvider } from '@jet/types/oauth-provider.type';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -131,7 +131,7 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  public async signInWithOauth(oauthProvider: AvailableOauthProvider) {
+  public async signInWithOauth(oauthProvider: OauthProvider) {
     if (this.#isLoading) {
       return;
     }

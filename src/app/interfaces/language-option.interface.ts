@@ -1,11 +1,11 @@
-import { AvailableFontPair } from '@jet/types/available-font-pair.type';
-import { AvailableLanguage } from '@jet/types/available-language.type';
+import { FontPair } from '@jet/types/font-pair.type';
+import { Language } from '@jet/types/language.type';
 
 export interface LanguageOption {
   directionality: 'ltr' | 'rtl';
-  fontPair: AvailableFontPair;
+  fontPair: FontPair;
   fontPairUrl: string;
   icon: string;
   nameKey: string;
-  value: AvailableLanguage;
+  value: Language;
 }

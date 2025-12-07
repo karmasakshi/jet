@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Signal, signal, WritableSignal } from '@angular/core';
-import { AvailableOauthProvider } from '@jet/types/available-oauth-provider.type';
+import { OauthProvider } from '@jet/types/oauth-provider.type';
 import {
   AuthError,
   AuthOtpResponse,
@@ -44,7 +44,7 @@ export class UserServiceMock {
   }
 
   public signInWithOauth(
-    _oauthProvider: AvailableOauthProvider,
+    _oauthProvider: OauthProvider,
   ): Promise<OAuthResponse> {
     return Promise.resolve({} as OAuthResponse);
   }
