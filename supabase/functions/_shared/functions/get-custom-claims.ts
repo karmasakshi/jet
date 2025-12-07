@@ -1,6 +1,6 @@
 import { createRemoteJWKSet, jwtVerify } from '@panva/jose';
-import { CustomError } from '../classes/custom-error.class.ts';
-import { CustomErrorMessage } from '../enums/custom-error-message.enum.ts';
+import { JetError } from '../classes/jet-error.class.ts';
+import { JET_ERROR_MESSAGES } from '../constants/jet-error-messages.constant.ts';
 import { CustomClaims } from '../interfaces/custom-claims.interface.ts';
 
 export async function getCustomClaims(
@@ -9,7 +9,7 @@ export async function getCustomClaims(
   const jwt: string = authorizationHeader.replace(/^Bearer\s+/i, '').trim();
 
   if (jwt.split('.').length !== 3) {
-    throw new CustomError(401, CustomErrorMessage.UnauthorizedHeaderInvalid);
+    throw new JetError(401, JET_ERROR_MESSAGES.UNAUTHORIZED_HEADER_INVALID);
   }
 
   const { payload } = await jwtVerify(

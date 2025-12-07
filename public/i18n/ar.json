@@ -101,7 +101,7 @@
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "الإعدادات" },
     "toolbar-title": "الإعدادات",
-    "version-x": "الإصدار {{ value }}v"
+    "version-x": "v{{ value }}"
   },
   "jet-sidenav": { "home": "الرئيسية" },
   "jet-sign-in-page": {

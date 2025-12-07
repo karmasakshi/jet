@@ -1,7 +1,7 @@
 // deno-lint-ignore no-import-prefix no-unversioned-import
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
-import { CustomError } from '@shared/classes/custom-error.class.ts';
+import { JetError } from '@shared/classes/jet-error.class.ts';
 import { COMMON_HEADERS } from '@shared/constants/common-headers.constant.ts';
 import { checkIsAdmin } from '@shared/functions/check-is-admin.ts';
 import { checkIsBelowRateLimit } from '@shared/functions/check-is-below-rate-limit.ts';
@@ -60,7 +60,7 @@ Deno.serve(async (request: Request): Promise<Response> => {
     let message = 'Something went wrong.';
     let httpStatusCode = 500;
 
-    if (exception instanceof CustomError) {
+    if (exception instanceof JetError) {
       message = exception.message;
       httpStatusCode = exception.httpStatusCode;
     } else if (exception instanceof z.ZodError) {
