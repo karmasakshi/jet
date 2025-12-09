@@ -26,6 +26,7 @@ module.exports = defineConfig([
       ],
       '@angular-eslint/prefer-inject': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+      '@angular-eslint/prefer-signal-model': 'error',
       '@angular-eslint/prefer-signals': 'error',
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/member-ordering': [
