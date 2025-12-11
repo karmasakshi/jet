@@ -65,7 +65,7 @@
     "prettier": "^3.7.4",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "supabase": "^2.65.10",
+    "supabase": "^2.66.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.49.0",
     "vitest": "^4.0.15"
