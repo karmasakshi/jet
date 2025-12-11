@@ -1,12 +1,12 @@
 {
   "imports": {
-    "@ai-sdk/openai": "npm:@ai-sdk/openai@2.0.32",
-    "@panva/jose": "jsr:@panva/jose@6.1.0",
-    "@supabase/supabase-js": "jsr:@supabase/supabase-js@2.57.4",
-    "@upstash/ratelimit": "npm:@upstash/ratelimit@2.0.6",
-    "@upstash/redis": "npm:@upstash/redis@1.35.3",
-    "@zod/zod": "jsr:@zod/zod@4.1.9",
-    "ai": "npm:ai@5.0.45",
+    "@ai-sdk/openai": "npm:@ai-sdk/openai@2.0.80",
+    "@panva/jose": "jsr:@panva/jose@6.1.3",
+    "@supabase/supabase-js": "jsr:@supabase/supabase-js@2.87.1",
+    "@upstash/ratelimit": "npm:@upstash/ratelimit@2.0.7",
+    "@upstash/redis": "npm:@upstash/redis@1.35.7",
+    "@zod/zod": "jsr:@zod/zod@4.1.13",
+    "ai": "npm:ai@5.0.110",
 
     "@shared/": "../_shared/"
   }
