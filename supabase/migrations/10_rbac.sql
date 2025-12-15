@@ -50,14 +50,12 @@ set search_path = ''
 stable
 as $$
   select exists (
-    select 1 from public.app_role_permissions arp
-    where arp.app_role = (auth.jwt() -> 'app_metadata' ->> 'app_role')::public.app_role
-    and arp.permission_id = (
-      select id
-      from public.permissions
-      where permission = _permission
-      limit 1
-    )
+    select 1
+    from public.app_role_permissions arp
+    join public.permissions p on p.id = arp.permission_id
+    where arp.app_role::text =
+      auth.jwt() -> 'app_metadata' ->> 'app_role'
+      and p.permission = _permission
   );
 $$;
 
