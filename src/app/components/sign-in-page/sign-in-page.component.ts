@@ -217,6 +217,8 @@ export class SignInPageComponent implements OnInit {
       } else {
         this.#loggerService.logException(exception);
       }
+
+      void this.#router.navigateByUrl('/sign-out');
     } finally {
       this.#isLoading = false;
       this.signInFormGroup.enable();
