@@ -186,22 +186,34 @@ using (true);
 
 -- public.profiles
 
-create policy "Allow admins to select"
+drop policy if exists "Allow authenticated to select own"
+on public.profiles;
+
+create policy "Allow admins to select and authenticated to select own"
 on public.profiles
 as permissive
 for select
 to authenticated
 using (
-  public.authorize('profiles.select')
+  (select auth.uid()) = user_id
+  or public.authorize('profiles.select')
 );
 
-create policy "Allow admins to update"
+drop policy if exists "Allow authenticated to update own"
+on public.profiles;
+
+create policy "Allow admins to update and authenticated to update own"
 on public.profiles
 as permissive
 for update
 to authenticated
 using (
-  public.authorize('profiles.update')
+  (select auth.uid()) = user_id
+  or public.authorize('profiles.update')
+)
+with check (
+  (select auth.uid()) = user_id
+  or public.authorize('profiles.update')
 );
 
 --
