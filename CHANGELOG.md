@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.9.0](https://github.com/karmasakshi/jet/compare/v4.8.0...v4.9.0) (2025-12-15)
+
+
+### Features
+
+* **general:** move app role out of profile ([ea3758e](https://github.com/karmasakshi/jet/commit/ea3758e752e03f22d0e9295d65929747fd32766c))
+
 ## [4.8.0](https://github.com/karmasakshi/jet/compare/v4.7.1...v4.8.0) (2025-12-04)
 
 
