@@ -16,7 +16,7 @@ alter table public.profiles add column app_role public.app_role;
 
 create table public.permissions (
   id uuid primary key default gen_random_uuid(),
-  permission text not null unique,
+  slug text not null unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -42,7 +42,7 @@ alter table public.app_role_permissions enable row level security;
 
 -- security definer
 
-create or replace function public.authorize(_permission text)
+create or replace function public.authorize(_slug text)
 returns boolean
 language sql
 security definer
@@ -55,13 +55,13 @@ as $$
     join public.permissions p on p.id = arp.permission_id
     where arp.app_role::text =
       auth.jwt() -> 'app_metadata' ->> 'app_role'
-      and p.permission = _permission
+      and p.slug = _slug
   );
 $$;
 
 -- security invoker
 
-create or replace function public.preserve_or_update_permission()
+create or replace function public.preserve_or_update_slug()
 returns trigger
 language plpgsql
 security invoker
@@ -69,9 +69,9 @@ set search_path = ''
 volatile
 as $$
 begin
-  if new.permission <> old.permission then
+  if new.slug <> old.slug then
     if current_user <> 'postgres' then
-      raise exception 'Cannot update % in %.%', 'permission', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+      raise exception 'Cannot update % in %.%', 'slug', TG_TABLE_SCHEMA, TG_TABLE_NAME;
     end if;
   end if;
 
@@ -111,11 +111,11 @@ execute function public.preserve_or_update_app_role();
 
 -- public.permissions
 
-create or replace trigger preserve_or_update_permission
+create or replace trigger preserve_or_update_slug
 before update
 on public.permissions
 for each row
-execute function public.preserve_or_update_permission();
+execute function public.preserve_or_update_slug();
 
 create or replace trigger preserve_created_at
 before update
@@ -210,7 +210,7 @@ using (
 
 -- public.permissions
 
-insert into public.permissions (permission)
+insert into public.permissions (slug)
 values ('profiles.select'), ('profiles.update');
 
 -- public.app_role_permissions
@@ -218,4 +218,4 @@ values ('profiles.select'), ('profiles.update');
 insert into public.app_role_permissions (app_role, permission_id)
 select 'admin', id
 from public.permissions
-where permission in ('profiles.select', 'profiles.update');
+where slug in ('profiles.select', 'profiles.update');
