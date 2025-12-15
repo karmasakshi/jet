@@ -76,8 +76,8 @@ as $$
     from public.app_permissions_app_roles apar
     join public.app_permissions ap on ap.id = apar.app_permission_id
     where apar.app_role_id =
-      (auth.jwt() -> 'app_metadata' ->> 'app_role_id')::uuid
-      and ap.slug = _slug
+      nullif(auth.jwt() -> 'app_metadata' ->> 'app_role_id', '')::uuid
+    and ap.slug = _slug
   );
 $$;
 
@@ -182,9 +182,18 @@ execute procedure moddatetime(updated_at);
 -- rls_policies
 --
 
+-- public.app_permissions
+
+create policy "Allow authenticated to select any"
+on public.app_permissions
+as permissive
+for select
+to authenticated
+using (true);
+
 -- public.app_permissions_app_roles
 
-create policy "Allow allowed to delete any"
+create policy "Allow authorized to delete any"
 on public.app_permissions_app_roles
 as permissive
 for delete
@@ -193,7 +202,7 @@ using (
   public.is_authorized('app_permissions_app_roles.delete')
 );
 
-create policy "Allow allowed to insert any"
+create policy "Allow authorized to insert any"
 on public.app_permissions_app_roles
 as permissive
 for insert
@@ -202,7 +211,7 @@ with check (
   public.is_authorized('app_permissions_app_roles.insert')
 );
 
-create policy "Allow allowed to select any"
+create policy "Allow authorized to select any"
 on public.app_permissions_app_roles
 as permissive
 for select
@@ -211,7 +220,7 @@ using (
   public.is_authorized('app_permissions_app_roles.select')
 );
 
-create policy "Allow allowed to update any"
+create policy "Allow authorized to update any"
 on public.app_permissions_app_roles
 as permissive
 for update
@@ -225,7 +234,7 @@ with check (
 
 -- public.app_roles
 
-create policy "Allow allowed to delete any"
+create policy "Allow authorized to delete any"
 on public.app_roles
 as permissive
 for delete
@@ -234,7 +243,7 @@ using (
   public.is_authorized('app_roles.delete')
 );
 
-create policy "Allow allowed to insert any"
+create policy "Allow authorized to insert any"
 on public.app_roles
 as permissive
 for insert
@@ -243,7 +252,7 @@ with check (
   public.is_authorized('app_roles.insert')
 );
 
-create policy "Allow allowed to select any"
+create policy "Allow authorized to select any"
 on public.app_roles
 as permissive
 for select
@@ -252,7 +261,7 @@ using (
   public.is_authorized('app_roles.select')
 );
 
-create policy "Allow allowed to update any"
+create policy "Allow authorized to update any"
 on public.app_roles
 as permissive
 for update
@@ -266,16 +275,17 @@ with check (
 
 -- public.app_roles_users
 
-create policy "Allow allowed to delete any"
+create policy "Allow authorized to delete others"
 on public.app_roles_users
 as permissive
 for delete
 to authenticated
 using (
-  public.is_authorized('app_roles_users.delete')
+  (select auth.uid()) <> user_id
+  and public.is_authorized('app_roles_users.delete')
 );
 
-create policy "Allow allowed to insert any"
+create policy "Allow authorized to insert any"
 on public.app_roles_users
 as permissive
 for insert
@@ -284,7 +294,7 @@ with check (
   public.is_authorized('app_roles_users.insert')
 );
 
-create policy "Allow allowed to select any"
+create policy "Allow authorized to select any"
 on public.app_roles_users
 as permissive
 for select
@@ -293,7 +303,7 @@ using (
   public.is_authorized('app_roles_users.select')
 );
 
-create policy "Allow allowed to update any"
+create policy "Allow authorized to update others"
 on public.app_roles_users
 as permissive
 for update
@@ -302,7 +312,8 @@ using (
   public.is_authorized('app_roles_users.update')
 )
 with check (
-  public.is_authorized('app_roles_users.update')
+  (select auth.uid()) <> user_id
+  and public.is_authorized('app_roles_users.update')
 );
 
 -- public.profiles
@@ -310,7 +321,7 @@ with check (
 drop policy if exists "Allow authenticated to select own"
 on public.profiles;
 
-create policy "Allow allowed to select any and authenticated to select own"
+create policy "Allow authorized to select any and authenticated to select own"
 on public.profiles
 as permissive
 for select
@@ -323,7 +334,7 @@ using (
 drop policy if exists "Allow authenticated to update own"
 on public.profiles;
 
-create policy "Allow allowed to update any and authenticated to update own"
+create policy "Allow authorized to update any and authenticated to update own"
 on public.profiles
 as permissive
 for update
@@ -372,19 +383,19 @@ select ar.id, ap.id
 from public.app_roles ar
 cross join public.app_permissions ap
 where ar.name = 'Admin'
-  and ap.slug in (
-    'app_permissions_app_roles.delete',
-    'app_permissions_app_roles.insert',
-    'app_permissions_app_roles.select',
-    'app_permissions_app_roles.update',
-    'app_roles.delete',
-    'app_roles.insert',
-    'app_roles.select',
-    'app_roles.update',
-    'app_roles_users.delete',
-    'app_roles_users.insert',
-    'app_roles_users.select',
-    'app_roles_users.update',
-    'profiles.select',
-    'profiles.update'
-  );
+and ap.slug in (
+  'app_permissions_app_roles.delete',
+  'app_permissions_app_roles.insert',
+  'app_permissions_app_roles.select',
+  'app_permissions_app_roles.update',
+  'app_roles.delete',
+  'app_roles.insert',
+  'app_roles.select',
+  'app_roles.update',
+  'app_roles_users.delete',
+  'app_roles_users.insert',
+  'app_roles_users.select',
+  'app_roles_users.update',
+  'profiles.select',
+  'profiles.update'
+);
