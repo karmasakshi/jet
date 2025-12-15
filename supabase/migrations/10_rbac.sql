@@ -183,7 +183,7 @@ to supabase_auth_admin
 using (true);
 
 --
--- rbac_rls_policies
+-- rls_policies
 --
 
 -- public.profiles

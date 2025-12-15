@@ -31,13 +31,13 @@ export class ProfileService {
     const path: string = `${this.#userService.user()?.id}/${fileName}`;
 
     return this.#supabaseClient.storage
-      .from(SupabaseBucket.Avatars)
+      .from(SupabaseBucket.ProfileAvatars)
       .remove([path]);
   }
 
   public getAvatarPublicUrl(path: string): string {
     const { data } = this.#supabaseClient.storage
-      .from(SupabaseBucket.Avatars)
+      .from(SupabaseBucket.ProfileAvatars)
       .getPublicUrl(path);
 
     return data.publicUrl;
@@ -73,7 +73,7 @@ export class ProfileService {
     const path: string = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
 
     return this.#supabaseClient.storage
-      .from(SupabaseBucket.Avatars)
+      .from(SupabaseBucket.ProfileAvatars)
       .upload(path, file);
   }
 }

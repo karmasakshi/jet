@@ -1,4 +1,4 @@
--- avatars
+-- profile_avatars
 
 insert into storage.buckets (id, name, public)
-values ('avatars', 'avatars', true);
+values ('profile_avatars', 'profile_avatars', true);

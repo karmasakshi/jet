@@ -1,3 +1,3 @@
 export enum SupabaseBucket {
-  Avatars = 'avatars',
+  ProfileAvatars = 'profile_avatars',
 }
