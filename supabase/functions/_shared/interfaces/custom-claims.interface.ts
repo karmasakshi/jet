@@ -1,6 +1,5 @@
-import { RequiredClaims } from '@supabase/supabase-js';
-import { AppRole } from '../enums/app-role.enum.ts';
+import { JwtPayload, UserAppMetadata } from '@supabase/supabase-js';
 
-export interface CustomClaims extends RequiredClaims {
-  app_metadata: { app_role: AppRole };
+export interface CustomClaims extends JwtPayload {
+  app_metadata: UserAppMetadata & { app_role_id: string };
 }

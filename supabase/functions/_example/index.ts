@@ -3,14 +3,15 @@ import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
 import { JetError } from '@shared/classes/jet-error.class.ts';
 import { COMMON_HEADERS } from '@shared/constants/common-headers.constant.ts';
-import { checkIsAdmin } from '@shared/functions/check-is-admin.ts';
 import { checkIsBelowRateLimit } from '@shared/functions/check-is-below-rate-limit.ts';
 import { checkRequestMethod } from '@shared/functions/check-request-method.ts';
 import { convertFileToDataUrl } from '@shared/functions/convert-file-to-data-url.ts';
 import { getAuthorizationHeader } from '@shared/functions/get-authorization-header.ts';
 import { getCustomClaims } from '@shared/functions/get-custom-claims.ts';
 import { getSupabaseUserClient } from '@shared/functions/get-supabase-user-client.ts';
+import { selectProfile } from '@shared/functions/select-profile.ts';
 import { CustomClaims } from '@shared/interfaces/custom-claims.interface.ts';
+import { Profile } from '@shared/interfaces/profile.interface.ts';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { z } from '@zod/zod';
 import { getValidatedRequestFormData } from './functions/get-validated-request-form-data.ts';
@@ -46,14 +47,14 @@ Deno.serve(async (request: Request): Promise<Response> => {
     const supabaseUserClient: SupabaseClient =
       getSupabaseUserClient(authorizationHeader);
 
-    await checkIsAdmin(userId, supabaseUserClient);
+    const profile: Profile = await selectProfile(userId, supabaseUserClient);
 
     const { exampleFile, exampleObject }: RequestFormData =
       await getValidatedRequestFormData(request);
 
     const dataUrl: string = await convertFileToDataUrl(exampleFile);
 
-    return new Response(JSON.stringify({ dataUrl, exampleObject }), {
+    return new Response(JSON.stringify({ dataUrl, exampleObject, profile }), {
       headers: COMMON_HEADERS,
     });
   } catch (exception: unknown) {

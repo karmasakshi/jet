@@ -1,40 +1,62 @@
 --
--- types
---
-
-create type public.app_role as enum ('admin');
-
---
 -- tables
 --
 
--- public.profiles
+-- public.app_permissions
 
-alter table public.profiles add column app_role public.app_role;
-
--- public.permissions
-
-create table public.permissions (
+create table public.app_permissions (
   id uuid primary key default gen_random_uuid(),
-  slug text not null unique,
+  slug text not null unique
+    check (
+      length(slug) between 3 and 36
+      and slug ~ '^[a-z0-9_.]+$'
+    ),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-alter table public.permissions enable row level security;
+alter table public.app_permissions enable row level security;
 
--- public.app_role_permissions
+-- public.app_roles
 
-create table public.app_role_permissions (
-  permission_id uuid not null
-    references public.permissions(id) on delete cascade,
-  app_role public.app_role not null,
+create table public.app_roles (
+  id uuid primary key default gen_random_uuid(),
+  name text not null unique
+    check (
+      length(name) between 3 and 36
+    ),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
-  primary key (app_role, permission_id)
+  updated_at timestamptz not null default now()
 );
 
-alter table public.app_role_permissions enable row level security;
+alter table public.app_roles enable row level security;
+
+-- public.app_permissions_app_roles
+
+create table public.app_permissions_app_roles (
+  app_permission_id uuid not null
+    references public.app_permissions(id),
+  app_role_id uuid not null
+    references public.app_roles(id),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  primary key (app_role_id, app_permission_id)
+);
+
+alter table public.app_permissions_app_roles enable row level security;
+
+-- public.app_roles_users
+
+create table public.app_roles_users (
+  app_role_id uuid not null
+    references public.app_roles(id),
+  user_id uuid primary key
+    references auth.users(id),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.app_roles_users enable row level security;
 
 --
 -- functions
@@ -42,7 +64,7 @@ alter table public.app_role_permissions enable row level security;
 
 -- security definer
 
-create or replace function public.authorize(_slug text)
+create or replace function public.is_authorized(_slug text)
 returns boolean
 language sql
 security definer
@@ -51,17 +73,15 @@ stable
 as $$
   select exists (
     select 1
-    from public.app_role_permissions arp
-    join public.permissions p on p.id = arp.permission_id
-    where arp.app_role::text =
-      auth.jwt() -> 'app_metadata' ->> 'app_role'
-      and p.slug = _slug
+    from public.app_permissions_app_roles apar
+    join public.app_permissions ap on ap.id = apar.app_permission_id
+    where apar.app_role_id =
+      (auth.jwt() -> 'app_metadata' ->> 'app_role_id')::uuid
+      and ap.slug = _slug
   );
 $$;
 
---
--- custom_access_token_hook
---
+-- security invoker
 
 create or replace function public.custom_access_token(_event jsonb)
 returns jsonb
@@ -71,30 +91,85 @@ set search_path = ''
 volatile
 as $$
 declare
-  _app_role public.app_role;
+  _app_role_id uuid;
   _claims jsonb;
 begin
-  select app_role
-  into _app_role
-  from public.profiles
+  select app_role_id
+  into _app_role_id
+  from public.app_roles_users
   where user_id = (_event->>'user_id')::uuid;
 
   _claims := _event->'claims';
-  _claims := jsonb_set(_claims, '{app_metadata,app_role}', coalesce(to_jsonb(_app_role), 'null'::jsonb));
+
+  _claims := jsonb_set(_claims, '{app_metadata,app_role_id}', coalesce(to_jsonb(_app_role_id), 'null'::jsonb));
+
   _event := jsonb_set(_event, '{claims}', _claims);
 
   return _event;
 end;
 $$;
 
-grant select on table public.profiles to supabase_auth_admin;
+grant select on table public.app_roles_users to supabase_auth_admin;
 
-create policy "Allow supabase_auth_admin to select all"
-on public.profiles
-as permissive
-for select
-to supabase_auth_admin
-using (true);
+--
+-- triggers
+--
+
+-- public.app_permissions
+
+create or replace trigger preserve_created_at
+before update
+on public.app_permissions
+for each row
+execute function public.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update
+on public.app_permissions
+for each row
+execute procedure moddatetime(updated_at);
+
+-- public.app_permissions_app_roles
+
+create or replace trigger preserve_created_at
+before update
+on public.app_permissions_app_roles
+for each row
+execute function public.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update
+on public.app_permissions_app_roles
+for each row
+execute procedure moddatetime(updated_at);
+
+-- public.app_roles
+
+create or replace trigger preserve_created_at
+before update
+on public.app_roles
+for each row
+execute function public.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update
+on public.app_roles
+for each row
+execute procedure moddatetime(updated_at);
+
+-- public.app_roles_users
+
+create or replace trigger preserve_created_at
+before update
+on public.app_roles_users
+for each row
+execute function public.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update
+on public.app_roles_users
+for each row
+execute procedure moddatetime(updated_at);
 
 --
 -- rls_policies
@@ -105,45 +180,113 @@ using (true);
 drop policy if exists "Allow authenticated to select own"
 on public.profiles;
 
-create policy "Allow admins to select and authenticated to select own"
+create policy "Allow allowed to select any and authenticated to select own"
 on public.profiles
 as permissive
 for select
 to authenticated
 using (
   (select auth.uid()) = user_id
-  or public.authorize('profiles.select')
+  or public.is_authorized('profiles.select')
 );
 
 drop policy if exists "Allow authenticated to update own"
 on public.profiles;
 
-create policy "Allow admins to update and authenticated to update own"
+create policy "Allow allowed to update any and authenticated to update own"
 on public.profiles
 as permissive
 for update
 to authenticated
 using (
   (select auth.uid()) = user_id
-  or public.authorize('profiles.update')
+  or public.is_authorized('profiles.update')
 )
 with check (
   (select auth.uid()) = user_id
-  or public.authorize('profiles.update')
+  or public.is_authorized('profiles.update')
 );
+
+-- public.app_roles_users
+
+create policy "Allow allowed to delete any"
+on public.app_roles_users
+as permissive
+for delete
+to authenticated
+using (
+  public.is_authorized('app_roles_users.delete')
+);
+
+create policy "Allow allowed to insert any"
+on public.app_roles_users
+as permissive
+for insert
+to authenticated
+with check (
+  public.is_authorized('app_roles_users.insert')
+);
+
+create policy "Allow allowed to select any"
+on public.app_roles_users
+as permissive
+for select
+to authenticated
+using (
+  public.is_authorized('app_roles_users.select')
+);
+
+create policy "Allow allowed to update any"
+on public.app_roles_users
+as permissive
+for update
+to authenticated
+using (
+  public.is_authorized('app_roles_users.update')
+)
+with check (
+  public.is_authorized('app_roles_users.update')
+);
+
+create policy "Allow supabase_auth_admin to select any"
+on public.app_roles_users
+as permissive
+for select
+to supabase_auth_admin
+using (true);
 
 --
 -- seed
 --
 
--- public.permissions
+-- public.app_permissions
 
-insert into public.permissions (slug)
-values ('profiles.select'), ('profiles.update');
+insert into public.app_permissions (slug)
+values
+  ('profiles.select'),
+  ('profiles.update'),
+  ('app_roles_users.select'),
+  ('app_roles_users.insert'),
+  ('app_roles_users.update'),
+  ('app_roles_users.delete');
 
--- public.app_role_permissions
+-- public.app_roles
 
-insert into public.app_role_permissions (app_role, permission_id)
-select 'admin', id
-from public.permissions
-where slug in ('profiles.select', 'profiles.update');
+insert into public.app_roles (name)
+values ('Admin');
+
+-- public.app_permissions_app_roles
+
+insert into public.app_permissions_app_roles (app_role_id, app_permission_id)
+select ar.id, ap.id
+from public.app_roles ar
+cross join public.app_permissions ap
+where ar.name = 'Admin'
+  and ap.slug in (
+    'profiles.select',
+    'profiles.update',
+    'app_roles_users.select',
+    'app_roles_users.insert',
+    'app_roles_users.update',
+    'app_roles_users.delete'
+  );

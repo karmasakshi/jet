@@ -1,6 +1,6 @@
 -- profile_avatars
 
-create policy "Allow public to select all"
+create policy "Allow public to select any"
 on storage.objects
 for select
 to public

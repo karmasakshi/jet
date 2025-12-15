@@ -1,8 +1,6 @@
-import { AppRole } from '@jet/enums/app-role.enum';
 import { User } from '@supabase/supabase-js';
 
 export interface Profile {
-  app_role: AppRole;
   avatar_url: null | string;
   created_at: string;
   full_name: null | string;
