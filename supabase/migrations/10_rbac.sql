@@ -111,6 +111,13 @@ $$;
 
 grant select on table public.app_roles_users to supabase_auth_admin;
 
+create policy "Allow supabase_auth_admin to select any"
+on public.app_roles_users
+as permissive
+for select
+to supabase_auth_admin
+using (true);
+
 --
 -- triggers
 --
@@ -175,36 +182,86 @@ execute procedure moddatetime(updated_at);
 -- rls_policies
 --
 
--- public.profiles
+-- public.app_permissions_app_roles
 
-drop policy if exists "Allow authenticated to select own"
-on public.profiles;
+create policy "Allow allowed to delete any"
+on public.app_permissions_app_roles
+as permissive
+for delete
+to authenticated
+using (
+  public.is_authorized('app_permissions_app_roles.delete')
+);
 
-create policy "Allow allowed to select any and authenticated to select own"
-on public.profiles
+create policy "Allow allowed to insert any"
+on public.app_permissions_app_roles
+as permissive
+for insert
+to authenticated
+with check (
+  public.is_authorized('app_permissions_app_roles.insert')
+);
+
+create policy "Allow allowed to select any"
+on public.app_permissions_app_roles
 as permissive
 for select
 to authenticated
 using (
-  (select auth.uid()) = user_id
-  or public.is_authorized('profiles.select')
+  public.is_authorized('app_permissions_app_roles.select')
 );
 
-drop policy if exists "Allow authenticated to update own"
-on public.profiles;
-
-create policy "Allow allowed to update any and authenticated to update own"
-on public.profiles
+create policy "Allow allowed to update any"
+on public.app_permissions_app_roles
 as permissive
 for update
 to authenticated
 using (
-  (select auth.uid()) = user_id
-  or public.is_authorized('profiles.update')
+  public.is_authorized('app_permissions_app_roles.update')
 )
 with check (
-  (select auth.uid()) = user_id
-  or public.is_authorized('profiles.update')
+  public.is_authorized('app_permissions_app_roles.update')
+);
+
+-- public.app_roles
+
+create policy "Allow allowed to delete any"
+on public.app_roles
+as permissive
+for delete
+to authenticated
+using (
+  public.is_authorized('app_roles.delete')
+);
+
+create policy "Allow allowed to insert any"
+on public.app_roles
+as permissive
+for insert
+to authenticated
+with check (
+  public.is_authorized('app_roles.insert')
+);
+
+create policy "Allow allowed to select any"
+on public.app_roles
+as permissive
+for select
+to authenticated
+using (
+  public.is_authorized('app_roles.select')
+);
+
+create policy "Allow allowed to update any"
+on public.app_roles
+as permissive
+for update
+to authenticated
+using (
+  public.is_authorized('app_roles.update')
+)
+with check (
+  public.is_authorized('app_roles.update')
 );
 
 -- public.app_roles_users
@@ -248,12 +305,37 @@ with check (
   public.is_authorized('app_roles_users.update')
 );
 
-create policy "Allow supabase_auth_admin to select any"
-on public.app_roles_users
+-- public.profiles
+
+drop policy if exists "Allow authenticated to select own"
+on public.profiles;
+
+create policy "Allow allowed to select any and authenticated to select own"
+on public.profiles
 as permissive
 for select
-to supabase_auth_admin
-using (true);
+to authenticated
+using (
+  (select auth.uid()) = user_id
+  or public.is_authorized('profiles.select')
+);
+
+drop policy if exists "Allow authenticated to update own"
+on public.profiles;
+
+create policy "Allow allowed to update any and authenticated to update own"
+on public.profiles
+as permissive
+for update
+to authenticated
+using (
+  (select auth.uid()) = user_id
+  or public.is_authorized('profiles.update')
+)
+with check (
+  (select auth.uid()) = user_id
+  or public.is_authorized('profiles.update')
+);
 
 --
 -- seed
@@ -283,10 +365,18 @@ from public.app_roles ar
 cross join public.app_permissions ap
 where ar.name = 'Admin'
   and ap.slug in (
-    'profiles.select',
-    'profiles.update',
-    'app_roles_users.select',
+    'app_permissions_app_roles.delete',
+    'app_permissions_app_roles.insert',
+    'app_permissions_app_roles.select',
+    'app_permissions_app_roles.update',
+    'app_roles.delete',
+    'app_roles.insert',
+    'app_roles.select',
+    'app_roles.update',
+    'app_roles_users.delete',
     'app_roles_users.insert',
+    'app_roles_users.select',
     'app_roles_users.update',
-    'app_roles_users.delete'
+    'profiles.select',
+    'profiles.update'
   );
