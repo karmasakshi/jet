@@ -6,7 +6,6 @@ create table public.profiles (
   avatar_url text null
     check (
       length(avatar_url) <= 300
-      and avatar_url = lower(avatar_url)
       and avatar_url ~ '^https?://.+'
     ),
   full_name text null
