@@ -228,9 +228,7 @@ to authenticated
 using (
   public.is_authorized('app_permissions_app_roles.update')
 )
-with check (
-  public.is_authorized('app_permissions_app_roles.update')
-);
+with check (true);
 
 -- public.app_roles
 
@@ -269,9 +267,7 @@ to authenticated
 using (
   public.is_authorized('app_roles.update')
 )
-with check (
-  public.is_authorized('app_roles.update')
-);
+with check (true);
 
 -- public.app_roles_users
 
@@ -285,13 +281,14 @@ using (
   and public.is_authorized('app_roles_users.delete')
 );
 
-create policy "Allow authorized to insert any"
+create policy "Allow authorized to insert others"
 on public.app_roles_users
 as permissive
 for insert
 to authenticated
 with check (
-  public.is_authorized('app_roles_users.insert')
+  (select auth.uid()) <> user_id
+  and public.is_authorized('app_roles_users.insert')
 );
 
 create policy "Allow authorized to select any"
@@ -313,7 +310,6 @@ using (
 )
 with check (
   (select auth.uid()) <> user_id
-  and public.is_authorized('app_roles_users.update')
 );
 
 -- public.profiles
@@ -321,7 +317,7 @@ with check (
 drop policy if exists "Allow authenticated to select own"
 on public.profiles;
 
-create policy "Allow authorized to select any and authenticated to select own"
+create policy "Allow authenticated to select own and authorized to select any"
 on public.profiles
 as permissive
 for select
@@ -334,7 +330,7 @@ using (
 drop policy if exists "Allow authenticated to update own"
 on public.profiles;
 
-create policy "Allow authorized to update any and authenticated to update own"
+create policy "Allow authenticated to update own and authorized to update any"
 on public.profiles
 as permissive
 for update
