@@ -15,6 +15,8 @@ create table public.app_permissions (
   updated_at timestamptz not null default now()
 );
 
+comment on table public.app_permissions is 'profiles.delete, profiles.insert, etc.';
+
 alter table public.app_permissions enable row level security;
 
 -- public.app_roles
@@ -28,6 +30,8 @@ create table public.app_roles (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+comment on table public.app_roles is 'admin, manager, etc.';
 
 alter table public.app_roles enable row level security;
 
@@ -43,6 +47,8 @@ create table public.app_permissions_app_roles (
   primary key (app_role_id, app_permission_id)
 );
 
+comment on table public.app_permissions_app_roles is 'Join table.';
+
 alter table public.app_permissions_app_roles enable row level security;
 
 -- public.app_roles_users
@@ -55,6 +61,8 @@ create table public.app_roles_users (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+comment on table public.app_roles_users is 'Join table.';
 
 alter table public.app_roles_users enable row level security;
 

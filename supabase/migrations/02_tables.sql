@@ -21,4 +21,6 @@ create table public.profiles (
   updated_at timestamptz not null default now()
 );
 
+comment on table public.profiles is 'User profiles.';
+
 alter table public.profiles enable row level security;
