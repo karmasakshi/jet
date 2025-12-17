@@ -5,7 +5,7 @@
 -- public.app_permissions
 
 create table public.app_permissions (
-  id uuid primary key default gen_random_uuid(),
+  id uuid primary key default gen_random_uuid (),
   slug text not null unique
     check (
       length(slug) between 3 and 36
@@ -20,7 +20,7 @@ alter table public.app_permissions enable row level security;
 -- public.app_roles
 
 create table public.app_roles (
-  id uuid primary key default gen_random_uuid(),
+  id uuid primary key default gen_random_uuid (),
   name text not null unique
     check (
       length(name) between 3 and 36
@@ -35,9 +35,9 @@ alter table public.app_roles enable row level security;
 
 create table public.app_permissions_app_roles (
   app_permission_id uuid not null
-    references public.app_permissions(id),
+    references public.app_permissions (id),
   app_role_id uuid not null
-    references public.app_roles(id),
+    references public.app_roles (id),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   primary key (app_role_id, app_permission_id)
@@ -48,10 +48,10 @@ alter table public.app_permissions_app_roles enable row level security;
 -- public.app_roles_users
 
 create table public.app_roles_users (
-  app_role_id uuid not null
-    references public.app_roles(id),
   user_id uuid primary key
-    references auth.users(id),
+    references auth.users (id),
+  app_role_id uuid not null
+    references public.app_roles (id),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );

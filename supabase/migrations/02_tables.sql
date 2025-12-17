@@ -3,18 +3,15 @@
 create table public.profiles (
   user_id uuid primary key
     references auth.users (id),
-  avatar_url text
+  avatar_url text null
     check (
-      avatar_url is null
-      or (
-        length(avatar_url) <= 300
-        and avatar_url ~* '^https?://[[:print:]]+$'
-      )
+      length(avatar_url) <= 300
+      and avatar_url = lower(avatar_url)
+      and avatar_url ~ '^https?://.+'
     ),
-  full_name text
+  full_name text null
     check (
-      full_name is null
-      or length(full_name) <= 36
+      length(full_name) <= 36
     ),
   username text not null unique
     check (
