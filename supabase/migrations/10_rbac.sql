@@ -84,7 +84,7 @@ as $$
     from public.app_permissions_app_roles apar
     join public.app_permissions ap on ap.id = apar.app_permission_id
     where apar.app_role_id =
-      nullif(auth.jwt() -> 'app_metadata' ->> 'app_role_id', '')::uuid
+      nullif(auth.jwt()->'app_metadata'->>'app_role_id', '')::uuid
     and ap.slug = _slug
   );
 $$;

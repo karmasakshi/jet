@@ -30,7 +30,7 @@ begin
     new.id,
     _avatar_url,
     _full_name,
-    replace(new.id::text, '-', '_')
+    replace((new.id)::text, '-', '_')
   );
 
   return new;
