@@ -201,13 +201,13 @@ using (true);
 
 -- public.app_permissions_app_roles
 
-create policy "Allow authorized to delete any"
+create policy "Allow authorized to select any"
 on public.app_permissions_app_roles
 as permissive
-for delete
+for select
 to authenticated
 using (
-  public.is_authorized('app_permissions_app_roles.delete')
+  public.is_authorized('app_permissions_app_roles.select')
 );
 
 create policy "Allow authorized to insert any"
@@ -217,15 +217,6 @@ for insert
 to authenticated
 with check (
   public.is_authorized('app_permissions_app_roles.insert')
-);
-
-create policy "Allow authorized to select any"
-on public.app_permissions_app_roles
-as permissive
-for select
-to authenticated
-using (
-  public.is_authorized('app_permissions_app_roles.select')
 );
 
 create policy "Allow authorized to update any"
@@ -238,15 +229,24 @@ using (
 )
 with check (true);
 
--- public.app_roles
-
 create policy "Allow authorized to delete any"
-on public.app_roles
+on public.app_permissions_app_roles
 as permissive
 for delete
 to authenticated
 using (
-  public.is_authorized('app_roles.delete')
+  public.is_authorized('app_permissions_app_roles.delete')
+);
+
+-- public.app_roles
+
+create policy "Allow authorized to select any"
+on public.app_roles
+as permissive
+for select
+to authenticated
+using (
+  public.is_authorized('app_roles.select')
 );
 
 create policy "Allow authorized to insert any"
@@ -256,15 +256,6 @@ for insert
 to authenticated
 with check (
   public.is_authorized('app_roles.insert')
-);
-
-create policy "Allow authorized to select any"
-on public.app_roles
-as permissive
-for select
-to authenticated
-using (
-  public.is_authorized('app_roles.select')
 );
 
 create policy "Allow authorized to update any"
@@ -277,16 +268,24 @@ using (
 )
 with check (true);
 
--- public.app_roles_users
-
-create policy "Allow authorized to delete others"
-on public.app_roles_users
+create policy "Allow authorized to delete any"
+on public.app_roles
 as permissive
 for delete
 to authenticated
 using (
-  (select auth.uid()) <> user_id
-  and public.is_authorized('app_roles_users.delete')
+  public.is_authorized('app_roles.delete')
+);
+
+-- public.app_roles_users
+
+create policy "Allow authorized to select any"
+on public.app_roles_users
+as permissive
+for select
+to authenticated
+using (
+  public.is_authorized('app_roles_users.select')
 );
 
 create policy "Allow authorized to insert others"
@@ -299,15 +298,6 @@ with check (
   and public.is_authorized('app_roles_users.insert')
 );
 
-create policy "Allow authorized to select any"
-on public.app_roles_users
-as permissive
-for select
-to authenticated
-using (
-  public.is_authorized('app_roles_users.select')
-);
-
 create policy "Allow authorized to update others"
 on public.app_roles_users
 as permissive
@@ -318,6 +308,16 @@ using (
 )
 with check (
   (select auth.uid()) <> user_id
+);
+
+create policy "Allow authorized to delete others"
+on public.app_roles_users
+as permissive
+for delete
+to authenticated
+using (
+  (select auth.uid()) <> user_id
+  and public.is_authorized('app_roles_users.delete')
 );
 
 -- public.profiles
