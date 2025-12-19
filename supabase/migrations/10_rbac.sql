@@ -185,7 +185,7 @@ using (
     select 1
     from public.app_permissions_app_roles as apar
     where
-      apar.permission_id = app_permissions.id
+      apar.app_permission_id = app_permissions.id
       and apar.app_role_id = (auth.jwt() ->> 'app_role_id')::uuid
   )
 );
