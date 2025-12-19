@@ -5,19 +5,19 @@
     {
       "files": ["*.sql"],
       "options": {
-        "dataTypeCase": "lower",
-        "expressionWidth": 10,
-        "functionCase": "lower",
-        "identifierCase": "lower",
-        "keywordCase": "lower",
-        "language": "postgresql"
+        "parser": "postgresql",
+        "sqlFunctionCase": "lower",
+        "sqlIdentifierCase": "lower",
+        "sqlKeywordCase": "lower",
+        "sqlLiteralCase": "lower",
+        "sqlTypeCase": "lower"
       }
     }
   ],
   "plugins": [
     "prettier-plugin-css-order",
     "prettier-plugin-organize-imports",
-    "prettier-plugin-sql"
+    "prettier-plugin-sql-cst"
   ],
   "singleAttributePerLine": true,
   "singleQuote": true
