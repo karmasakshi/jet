@@ -11,7 +11,7 @@ create table public.app_permissions (
     and slug ~ '^[a-z0-9_.]+$'
   ),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz null
 );
 
 comment on table public.app_permissions is
@@ -25,7 +25,7 @@ create table public.app_roles (
   id uuid primary key default gen_random_uuid(),
   name text not null unique check (length(name) between 3 and 36),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz null
 );
 
 comment on table public.app_roles is 'admin, manager, etc.';
@@ -38,7 +38,7 @@ create table public.app_permissions_app_roles (
   app_permission_id uuid not null references public.app_permissions (id),
   app_role_id uuid not null references public.app_roles (id),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
+  updated_at timestamptz null,
   primary key (app_role_id, app_permission_id)
 );
 
@@ -52,7 +52,7 @@ create table public.app_roles_users (
   user_id uuid primary key references auth.users (id),
   app_role_id uuid not null references public.app_roles (id),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz null
 );
 
 comment on table public.app_roles_users is 'Join table.';

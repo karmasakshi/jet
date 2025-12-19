@@ -12,7 +12,7 @@ create table public.profiles (
     and username ~ '^[a-z0-9_]+$'
   ),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz null
 );
 
 comment on table public.profiles is 'User profiles.';
