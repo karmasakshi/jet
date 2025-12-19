@@ -310,18 +310,18 @@ with check (
 
 insert into public.app_permissions (slug)
 values
-  ('app_permissions_app_roles.delete'),
-  ('app_permissions_app_roles.insert'),
   ('app_permissions_app_roles.select'),
+  ('app_permissions_app_roles.insert'),
   ('app_permissions_app_roles.update'),
-  ('app_roles.delete'),
-  ('app_roles.insert'),
+  ('app_permissions_app_roles.delete'),
   ('app_roles.select'),
+  ('app_roles.insert'),
   ('app_roles.update'),
-  ('app_roles_users.delete'),
-  ('app_roles_users.insert'),
+  ('app_roles.delete'),
   ('app_roles_users.select'),
+  ('app_roles_users.insert'),
   ('app_roles_users.update'),
+  ('app_roles_users.delete'),
   ('profiles.select'),
   ('profiles.update');
 
