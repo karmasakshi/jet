@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.10.0](https://github.com/karmasakshi/jet/compare/v4.9.0...v4.10.0) (2025-12-19)
+
+
+### Features
+
+* **general:** add prettier-plugin-sql ([6ef4179](https://github.com/karmasakshi/jet/commit/6ef4179c9e981e61303d1c8d8c44582a0322621f))
+
 ## [4.9.0](https://github.com/karmasakshi/jet/compare/v4.8.0...v4.9.0) (2025-12-15)
 
 
