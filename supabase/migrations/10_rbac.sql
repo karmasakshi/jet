@@ -176,11 +176,19 @@ execute procedure moddatetime(updated_at);
 
 -- public.app_permissions
 
-create policy "Allow authenticated to select any" on public.app_permissions
+create policy "Allow authenticated to select own" on public.app_permissions
 as permissive
 for select
 to authenticated
-using (true);
+using (
+  exists (
+    select 1
+    from public.app_permissions_app_roles as apar
+    where
+      apar.permission_id = app_permissions.id
+      and apar.app_role_id = (auth.jwt() ->> 'app_role_id')::uuid
+  )
+);
 
 -- public.app_permissions_app_roles
 
@@ -332,18 +340,18 @@ from
 where
   ar.name = 'Admin'
   and ap.slug in (
-    'app_permissions_app_roles.delete',
-    'app_permissions_app_roles.insert',
     'app_permissions_app_roles.select',
+    'app_permissions_app_roles.insert',
     'app_permissions_app_roles.update',
-    'app_roles.delete',
-    'app_roles.insert',
+    'app_permissions_app_roles.delete',
     'app_roles.select',
+    'app_roles.insert',
     'app_roles.update',
-    'app_roles_users.delete',
-    'app_roles_users.insert',
+    'app_roles.delete',
     'app_roles_users.select',
+    'app_roles_users.insert',
     'app_roles_users.update',
+    'app_roles_users.delete',
     'profiles.select',
     'profiles.update'
   );
