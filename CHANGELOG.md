@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.11.0](https://github.com/karmasakshi/jet/compare/v4.10.0...v4.11.0) (2025-12-19)
+
+
+### Features
+
+* **general:** use prettier-plugin-sql-cst instead of prettier-plugin-sql ([cbd9cf1](https://github.com/karmasakshi/jet/commit/cbd9cf1c5e4430a401f87206c9fa4e95ee2d037d))
+
 ## [4.10.0](https://github.com/karmasakshi/jet/compare/v4.9.0...v4.10.0) (2025-12-19)
 
 
