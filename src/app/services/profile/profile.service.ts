@@ -1,5 +1,5 @@
 import { inject, Injectable, Signal } from '@angular/core';
-import { SupabaseBucket } from '@jet/enums/supabase-bucket.enum';
+import { SupabaseStorage } from '@jet/enums/supabase-storage.enum';
 import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { Profile } from '@jet/interfaces/profile.interface';
@@ -31,13 +31,13 @@ export class ProfileService {
     const path: string = `${this.#userService.user()?.id}/${fileName}`;
 
     return this.#supabaseClient.storage
-      .from(SupabaseBucket.ProfileAvatars)
+      .from(SupabaseStorage.ProfileAvatars)
       .remove([path]);
   }
 
   public getAvatarPublicUrl(path: string): string {
     const { data } = this.#supabaseClient.storage
-      .from(SupabaseBucket.ProfileAvatars)
+      .from(SupabaseStorage.ProfileAvatars)
       .getPublicUrl(path);
 
     return data.publicUrl;
@@ -73,7 +73,7 @@ export class ProfileService {
     const path: string = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
 
     return this.#supabaseClient.storage
-      .from(SupabaseBucket.ProfileAvatars)
+      .from(SupabaseStorage.ProfileAvatars)
       .upload(path, file);
   }
 }

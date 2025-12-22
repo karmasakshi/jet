@@ -96,7 +96,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
     this.profileFormGroup = this.#formBuilder.group({
       full_name: this.#formBuilder.control<null | string>(null, [
-        Validators.maxLength(36),
+        Validators.maxLength(60),
       ]),
       username: this.#formBuilder.control<null | string>(null, [
         Validators.maxLength(36),

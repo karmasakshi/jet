@@ -1,15 +1,12 @@
 --
--- tables
+-- Tables
 --
 
 -- public.app_permissions
 
 create table public.app_permissions (
   id uuid primary key default gen_random_uuid(),
-  slug text not null unique check (
-    length(slug) between 3 and 36
-    and slug ~ '^[a-z0-9_.]+$'
-  ),
+  slug shared.slug not null unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz null
 );
@@ -23,7 +20,7 @@ alter table public.app_permissions enable row level security;
 
 create table public.app_roles (
   id uuid primary key default gen_random_uuid(),
-  name text not null unique check (length(name) between 3 and 36),
+  slug shared.slug not null unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz null
 );
@@ -60,12 +57,12 @@ comment on table public.app_roles_users is 'Join table.';
 alter table public.app_roles_users enable row level security;
 
 --
--- functions
+-- Functions
 --
 
 -- security definer
 
-create or replace function public.is_authorized(_slug text)
+create or replace function public.is_authorized(_slug shared.slug)
 returns boolean
 language sql
 security definer
@@ -119,7 +116,7 @@ to supabase_auth_admin
 using (true);
 
 --
--- triggers
+-- Triggers
 --
 
 -- public.app_permissions
@@ -171,7 +168,7 @@ for each row
 execute procedure moddatetime(updated_at);
 
 --
--- rls_policies
+-- RLS policies
 --
 
 -- public.app_permissions
@@ -303,7 +300,7 @@ with check (
 );
 
 --
--- seed
+-- Seed
 --
 
 -- public.app_permissions
@@ -327,8 +324,8 @@ values
 
 -- public.app_roles
 
-insert into public.app_roles (name)
-values ('Admin');
+insert into public.app_roles (slug)
+values ('admin');
 
 -- public.app_permissions_app_roles
 
@@ -338,7 +335,7 @@ from
   public.app_roles as ar
   cross join public.app_permissions as ap
 where
-  ar.name = 'Admin'
+  ar.slug = 'admin'
   and ap.slug in (
     'app_permissions_app_roles.select',
     'app_permissions_app_roles.insert',

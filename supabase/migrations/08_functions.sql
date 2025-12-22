@@ -8,21 +8,15 @@ set search_path = ''
 volatile
 as $$
 declare
-  _avatar_url text;
+  _avatar_url shared.url;
   _full_name text;
 begin
+  _avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
+
   _full_name := nullif(new.raw_user_meta_data->>'full_name', '');
 
   if _full_name is not null then
-    _full_name := left(_full_name, 36);
-  end if;
-
-  _avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
-
-  if _avatar_url is not null then
-    if length(_avatar_url) > 300 then
-      _avatar_url := null;
-    end if;
+    _full_name := left(_full_name, 60);
   end if;
 
   insert into public.profiles (user_id, avatar_url, full_name, username)
