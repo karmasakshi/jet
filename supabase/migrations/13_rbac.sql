@@ -74,7 +74,7 @@ as $$
 declare
   _app_role_id uuid;
 begin
-  _app_role_id := nullif(auth.jwt()->'app_metadata'->>'app_role_id', '')::uuid;
+  _app_role_id := nullif((select auth.jwt())->'app_metadata'->>'app_role_id', '')::uuid;
 
   if _app_role_id is null then
     return false;
@@ -195,7 +195,7 @@ using (
     where
       apar.app_permission_id = app_permissions.id
       and apar.app_role_id = nullif(
-        auth.jwt() -> 'app_metadata' ->> 'app_role_id',
+        (select auth.jwt()) -> 'app_metadata' ->> 'app_role_id',
         ''
       )::uuid
   )
