@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.12.0](https://github.com/karmasakshi/jet/compare/v4.11.0...v4.12.0) (2025-12-22)
+
+
+### Features
+
+* **supabase:** add shared schema and domains ([0bfe296](https://github.com/karmasakshi/jet/commit/0bfe296c99c0d079d4e2f62cadeecb33996a8ffa))
+
 ## [4.11.0](https://github.com/karmasakshi/jet/compare/v4.10.0...v4.11.0) (2025-12-19)
 
 
