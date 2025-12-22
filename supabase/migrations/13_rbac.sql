@@ -183,23 +183,11 @@ execute procedure moddatetime(updated_at);
 
 -- shared.app_permissions
 
-create policy "Allow authenticated to select own and authorized to select any" on shared.app_permissions
+create policy "Allow authenticated to select any" on shared.app_permissions
 as permissive
 for select
 to authenticated
-using (
-  public.is_authorized('app_permissions.select')
-  or exists (
-    select 1
-    from shared.app_permissions_app_roles as apar
-    where
-      apar.app_permission_id = app_permissions.id
-      and apar.app_role_id = nullif(
-        (select auth.jwt()) -> 'app_metadata' ->> 'app_role_id',
-        ''
-      )::uuid
-  )
-);
+using (true);
 
 -- shared.app_permissions_app_roles
 
