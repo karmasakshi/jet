@@ -66,19 +66,29 @@ create or replace function public.is_authorized(
   _app_permissions_slug shared.slug
 )
 returns boolean
-language sql
+language plpgsql
 security definer
 set search_path = ''
 stable
 as $$
-  select exists (
+declare
+  _app_role_id uuid;
+begin
+  _app_role_id := nullif(auth.jwt()->'app_metadata'->>'app_role_id', '')::uuid;
+
+  if _app_role_id is null then
+    return false;
+  end if;
+
+  return exists (
     select 1
     from shared.app_permissions_app_roles apar
-    join shared.app_permissions ap on ap.id = apar.app_permission_id
-    where apar.app_role_id =
-      nullif(auth.jwt()->'app_metadata'->>'app_role_id', '')::uuid
-    and ap.slug = _app_permissions_slug
+    join shared.app_permissions ap
+      on ap.id = apar.app_permission_id
+    where apar.app_role_id = _app_role_id
+      and ap.slug = _app_permissions_slug
   );
+end;
 $$;
 
 -- security invoker
