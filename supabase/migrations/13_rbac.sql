@@ -12,7 +12,7 @@ create table shared.app_permissions (
 );
 
 comment on table shared.app_permissions is
-  'profiles.delete, profiles.insert, etc.';
+  'profiles.select, profiles.update, etc.';
 
 alter table shared.app_permissions enable row level security;
 
@@ -83,10 +83,8 @@ begin
   return exists (
     select 1
     from shared.app_permissions_app_roles apar
-    join shared.app_permissions ap
-      on ap.id = apar.app_permission_id
-    where apar.app_role_id = _app_role_id
-      and ap.slug = _app_permissions_slug
+    join shared.app_permissions ap on apar.app_permission_id = ap.id
+    where apar.app_role_id = _app_role_id and ap.slug = _app_permissions_slug
   );
 end;
 $$;
@@ -111,11 +109,7 @@ begin
 
   _claims := _event->'claims';
 
-  _claims := jsonb_set(
-    _claims,
-    '{app_metadata,app_role_id}',
-    coalesce(to_jsonb(_app_role_id), 'null'::jsonb)
-  );
+  _claims := jsonb_set(_claims, '{app_metadata,app_role_id}', coalesce(to_jsonb(_app_role_id), 'null'::jsonb));
 
   _event := jsonb_set(_event, '{claims}', _claims);
 
@@ -189,17 +183,21 @@ execute procedure moddatetime(updated_at);
 
 -- shared.app_permissions
 
-create policy "Allow authenticated to select own" on shared.app_permissions
+create policy "Allow authenticated to select own and authorized to select any" on shared.app_permissions
 as permissive
 for select
 to authenticated
 using (
-  exists (
+  public.is_authorized('app_permissions.select')
+  or exists (
     select 1
     from shared.app_permissions_app_roles as apar
     where
       apar.app_permission_id = app_permissions.id
-      and apar.app_role_id = (select auth.jwt() ->> 'app_role_id')::uuid
+      and apar.app_role_id = nullif(
+        auth.jwt() -> 'app_metadata' ->> 'app_role_id',
+        ''
+      )::uuid
   )
 );
 
