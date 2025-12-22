@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.13.0](https://github.com/karmasakshi/jet/compare/v4.12.0...v4.13.0) (2025-12-22)
+
+
+### Features
+
+* **supabase:** make app_roles and app_permissions_app_roles private ([34ee873](https://github.com/karmasakshi/jet/commit/34ee873cdfa0a02b99fb5eeeb21050182444aeed))
+
 ## [4.12.0](https://github.com/karmasakshi/jet/compare/v4.11.0...v4.12.0) (2025-12-22)
 
 
