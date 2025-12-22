@@ -2,52 +2,52 @@
 -- Tables
 --
 
--- public.app_permissions
+-- shared.app_permissions
 
-create table public.app_permissions (
+create table shared.app_permissions (
   id uuid primary key default gen_random_uuid(),
   slug shared.slug not null unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz null
 );
 
-comment on table public.app_permissions is
+comment on table shared.app_permissions is
   'profiles.delete, profiles.insert, etc.';
 
-alter table public.app_permissions enable row level security;
+alter table shared.app_permissions enable row level security;
 
--- public.app_roles
+-- shared.app_roles
 
-create table public.app_roles (
+create table shared.app_roles (
   id uuid primary key default gen_random_uuid(),
   slug shared.slug not null unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz null
 );
 
-comment on table public.app_roles is 'admin, manager, etc.';
+comment on table shared.app_roles is 'admin, etc.';
 
-alter table public.app_roles enable row level security;
+alter table shared.app_roles enable row level security;
 
--- public.app_permissions_app_roles
+-- shared.app_permissions_app_roles
 
-create table public.app_permissions_app_roles (
-  app_permission_id uuid not null references public.app_permissions (id),
-  app_role_id uuid not null references public.app_roles (id),
+create table shared.app_permissions_app_roles (
+  app_permission_id uuid not null references shared.app_permissions (id),
+  app_role_id uuid not null references shared.app_roles (id),
   created_at timestamptz not null default now(),
   updated_at timestamptz null,
   primary key (app_role_id, app_permission_id)
 );
 
-comment on table public.app_permissions_app_roles is 'Join table.';
+comment on table shared.app_permissions_app_roles is 'Join table.';
 
-alter table public.app_permissions_app_roles enable row level security;
+alter table shared.app_permissions_app_roles enable row level security;
 
 -- public.app_roles_users
 
 create table public.app_roles_users (
   user_id uuid primary key references auth.users (id),
-  app_role_id uuid not null references public.app_roles (id),
+  app_role_id uuid not null references shared.app_roles (id),
   created_at timestamptz not null default now(),
   updated_at timestamptz null
 );
@@ -62,7 +62,9 @@ alter table public.app_roles_users enable row level security;
 
 -- security definer
 
-create or replace function public.is_authorized(_slug shared.slug)
+create or replace function public.is_authorized(
+  _app_permissions_slug shared.slug
+)
 returns boolean
 language sql
 security definer
@@ -71,11 +73,11 @@ stable
 as $$
   select exists (
     select 1
-    from public.app_permissions_app_roles apar
-    join public.app_permissions ap on ap.id = apar.app_permission_id
+    from shared.app_permissions_app_roles apar
+    join shared.app_permissions ap on ap.id = apar.app_permission_id
     where apar.app_role_id =
       nullif(auth.jwt()->'app_metadata'->>'app_role_id', '')::uuid
-    and ap.slug = _slug
+    and ap.slug = _app_permissions_slug
   );
 $$;
 
@@ -99,7 +101,11 @@ begin
 
   _claims := _event->'claims';
 
-  _claims := jsonb_set(_claims, '{app_metadata,app_role_id}', coalesce(to_jsonb(_app_role_id), 'null'::jsonb));
+  _claims := jsonb_set(
+    _claims,
+    '{app_metadata,app_role_id}',
+    coalesce(to_jsonb(_app_role_id), 'null'::jsonb)
+  );
 
   _event := jsonb_set(_event, '{claims}', _claims);
 
@@ -119,39 +125,39 @@ using (true);
 -- Triggers
 --
 
--- public.app_permissions
+-- shared.app_permissions
 
 create or replace trigger preserve_created_at
-before update on public.app_permissions
+before update on shared.app_permissions
 for each row
 execute function public.preserve_created_at();
 
 create or replace trigger update_updated_at
-before update on public.app_permissions
+before update on shared.app_permissions
 for each row
 execute procedure moddatetime(updated_at);
 
--- public.app_permissions_app_roles
+-- shared.app_permissions_app_roles
 
 create or replace trigger preserve_created_at
-before update on public.app_permissions_app_roles
+before update on shared.app_permissions_app_roles
 for each row
 execute function public.preserve_created_at();
 
 create or replace trigger update_updated_at
-before update on public.app_permissions_app_roles
+before update on shared.app_permissions_app_roles
 for each row
 execute procedure moddatetime(updated_at);
 
--- public.app_roles
+-- shared.app_roles
 
 create or replace trigger preserve_created_at
-before update on public.app_roles
+before update on shared.app_roles
 for each row
 execute function public.preserve_created_at();
 
 create or replace trigger update_updated_at
-before update on public.app_roles
+before update on shared.app_roles
 for each row
 execute procedure moddatetime(updated_at);
 
@@ -171,75 +177,37 @@ execute procedure moddatetime(updated_at);
 -- RLS policies
 --
 
--- public.app_permissions
+-- shared.app_permissions
 
-create policy "Allow authenticated to select own" on public.app_permissions
+create policy "Allow authenticated to select own" on shared.app_permissions
 as permissive
 for select
 to authenticated
 using (
   exists (
     select 1
-    from public.app_permissions_app_roles as apar
+    from shared.app_permissions_app_roles as apar
     where
       apar.app_permission_id = app_permissions.id
-      and apar.app_role_id = (auth.jwt() ->> 'app_role_id')::uuid
+      and apar.app_role_id = (select auth.jwt() ->> 'app_role_id')::uuid
   )
 );
 
--- public.app_permissions_app_roles
+-- shared.app_permissions_app_roles
 
-create policy "Allow authorized to select any" on public.app_permissions_app_roles
+create policy "Allow authorized to select any" on shared.app_permissions_app_roles
 as permissive
 for select
 to authenticated
 using (public.is_authorized('app_permissions_app_roles.select'));
 
-create policy "Allow authorized to insert any" on public.app_permissions_app_roles
-as permissive
-for insert
-to authenticated
-with check (public.is_authorized('app_permissions_app_roles.insert'));
+-- shared.app_roles
 
-create policy "Allow authorized to update any" on public.app_permissions_app_roles
-as permissive
-for update
-to authenticated
-using (public.is_authorized('app_permissions_app_roles.update'))
-with check (true);
-
-create policy "Allow authorized to delete any" on public.app_permissions_app_roles
-as permissive
-for delete
-to authenticated
-using (public.is_authorized('app_permissions_app_roles.delete'));
-
--- public.app_roles
-
-create policy "Allow authorized to select any" on public.app_roles
+create policy "Allow authorized to select any" on shared.app_roles
 as permissive
 for select
 to authenticated
 using (public.is_authorized('app_roles.select'));
-
-create policy "Allow authorized to insert any" on public.app_roles
-as permissive
-for insert
-to authenticated
-with check (public.is_authorized('app_roles.insert'));
-
-create policy "Allow authorized to update any" on public.app_roles
-as permissive
-for update
-to authenticated
-using (public.is_authorized('app_roles.update'))
-with check (true);
-
-create policy "Allow authorized to delete any" on public.app_roles
-as permissive
-for delete
-to authenticated
-using (public.is_authorized('app_roles.delete'));
 
 -- public.app_roles_users
 
@@ -303,18 +271,13 @@ with check (
 -- Seed
 --
 
--- public.app_permissions
+-- shared.app_permissions
 
-insert into public.app_permissions (slug)
+insert into shared.app_permissions (slug)
 values
+  ('app_permissions.select'),
   ('app_permissions_app_roles.select'),
-  ('app_permissions_app_roles.insert'),
-  ('app_permissions_app_roles.update'),
-  ('app_permissions_app_roles.delete'),
   ('app_roles.select'),
-  ('app_roles.insert'),
-  ('app_roles.update'),
-  ('app_roles.delete'),
   ('app_roles_users.select'),
   ('app_roles_users.insert'),
   ('app_roles_users.update'),
@@ -322,29 +285,24 @@ values
   ('profiles.select'),
   ('profiles.update');
 
--- public.app_roles
+-- shared.app_roles
 
-insert into public.app_roles (slug)
+insert into shared.app_roles (slug)
 values ('admin');
 
--- public.app_permissions_app_roles
+-- shared.app_permissions_app_roles
 
-insert into public.app_permissions_app_roles (app_role_id, app_permission_id)
+insert into shared.app_permissions_app_roles (app_role_id, app_permission_id)
 select ar.id, ap.id
 from
-  public.app_roles as ar
-  cross join public.app_permissions as ap
+  shared.app_roles as ar
+  cross join shared.app_permissions as ap
 where
   ar.slug = 'admin'
   and ap.slug in (
+    'app_permissions.select',
     'app_permissions_app_roles.select',
-    'app_permissions_app_roles.insert',
-    'app_permissions_app_roles.update',
-    'app_permissions_app_roles.delete',
     'app_roles.select',
-    'app_roles.insert',
-    'app_roles.update',
-    'app_roles.delete',
     'app_roles_users.select',
     'app_roles_users.insert',
     'app_roles_users.update',
