@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.13.1](https://github.com/karmasakshi/jet/compare/v4.13.0...v4.13.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **general:** profile form hint ([fc9de70](https://github.com/karmasakshi/jet/commit/fc9de705b49bc50db993bed939788e9ae679c2e9))
+
 ## [4.13.0](https://github.com/karmasakshi/jet/compare/v4.12.0...v4.13.0) (2025-12-22)
 
 
