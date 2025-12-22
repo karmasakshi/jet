@@ -33,7 +33,7 @@ $$;
 
 -- security invoker
 
-create or replace function public.preserve_created_at()
+create or replace function shared.preserve_created_at()
 returns trigger
 language plpgsql
 security invoker

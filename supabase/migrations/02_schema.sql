@@ -1,5 +1,35 @@
+--
 -- shared
+--
 
 create schema if not exists shared;
 
-grant usage on schema shared to authenticated;
+-- routines
+
+alter default privileges
+for role postgres
+in schema shared
+grant all on routines to service_role;
+
+-- sequences
+
+alter default privileges
+for role postgres
+in schema shared
+grant all on sequences to service_role;
+
+-- tables
+
+alter default privileges
+for role postgres
+in schema shared
+grant select on tables to anon, authenticated, service_role;
+
+alter default privileges
+for role postgres
+in schema shared
+grant all on tables to service_role;
+
+-- usage
+
+grant usage on schema shared to anon, authenticated, service_role;

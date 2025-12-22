@@ -134,48 +134,48 @@ using (true);
 create or replace trigger preserve_created_at
 before update on shared.app_permissions
 for each row
-execute function public.preserve_created_at();
+execute function shared.preserve_created_at();
 
 create or replace trigger update_updated_at
 before update on shared.app_permissions
 for each row
-execute procedure moddatetime(updated_at);
+execute procedure extensions.moddatetime(updated_at);
 
 -- shared.app_permissions_app_roles
 
 create or replace trigger preserve_created_at
 before update on shared.app_permissions_app_roles
 for each row
-execute function public.preserve_created_at();
+execute function shared.preserve_created_at();
 
 create or replace trigger update_updated_at
 before update on shared.app_permissions_app_roles
 for each row
-execute procedure moddatetime(updated_at);
+execute procedure extensions.moddatetime(updated_at);
 
 -- shared.app_roles
 
 create or replace trigger preserve_created_at
 before update on shared.app_roles
 for each row
-execute function public.preserve_created_at();
+execute function shared.preserve_created_at();
 
 create or replace trigger update_updated_at
 before update on shared.app_roles
 for each row
-execute procedure moddatetime(updated_at);
+execute procedure extensions.moddatetime(updated_at);
 
 -- public.app_roles_users
 
 create or replace trigger preserve_created_at
 before update on public.app_roles_users
 for each row
-execute function public.preserve_created_at();
+execute function shared.preserve_created_at();
 
 create or replace trigger update_updated_at
 before update on public.app_roles_users
 for each row
-execute procedure moddatetime(updated_at);
+execute procedure extensions.moddatetime(updated_at);
 
 --
 -- RLS policies
