@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.14.0](https://github.com/karmasakshi/jet/compare/v4.13.1...v4.14.0) (2025-12-23)
+
+
+### Features
+
+* **supabase:** add audit_logs ([1c6402a](https://github.com/karmasakshi/jet/commit/1c6402a58bd3166be85ec6e696234e6b91705870))
+
 ## [4.13.1](https://github.com/karmasakshi/jet/compare/v4.13.0...v4.13.1) (2025-12-22)
 
 
