@@ -4,6 +4,8 @@
 
 create schema if not exists shared;
 
+grant usage on schema shared to anon, authenticated, service_role;
+
 -- routines
 
 alter default privileges
@@ -29,7 +31,3 @@ alter default privileges
 for role postgres
 in schema shared
 grant all on tables to service_role;
-
--- usage
-
-grant usage on schema shared to anon, authenticated, service_role;

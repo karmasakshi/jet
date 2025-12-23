@@ -8,8 +8,8 @@ drop extension if exists pg_net;
 
 -- Enable moddatetime
 
-create extension if not exists moddatetime schema extensions;
+create extension if not exists moddatetime with schema extensions;
 
 -- Enable pg_jsonschema
 
-create extension pg_jsonschema with schema extensions;
+create extension if not exists pg_jsonschema with schema extensions;

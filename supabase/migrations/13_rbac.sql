@@ -56,11 +56,60 @@ comment on table public.app_roles_users is 'Join table.';
 
 alter table public.app_roles_users enable row level security;
 
+-- public.audit_logs
+
+create table public.audit_logs (
+  id uuid primary key default gen_random_uuid(),
+  new_record jsonb null,
+  old_record jsonb null,
+  operation text not null check (operation in ('INSERT', 'UPDATE', 'DELETE')),
+  schema_name text not null,
+  table_name text not null,
+  user_id uuid null references auth.users (id),
+  created_at timestamptz not null default now()
+);
+
+comment on table public.audit_logs is 'Audit logs.';
+
+alter table public.audit_logs enable row level security;
+
 --
 -- Functions
 --
 
 -- security definer
+
+create or replace function public.insert_audit_log()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+volatile
+as $$
+begin
+  insert into public.audit_logs (
+    new_record,
+    old_record,
+    operation,
+    schema_name,
+    table_name,
+    user_id
+  ) values (
+    case when TG_OP in ('INSERT', 'UPDATE') then to_jsonb(new) else null end,
+    case when TG_OP in ('UPDATE', 'DELETE') then to_jsonb(old) else null end,
+    TG_OP,
+    TG_TABLE_SCHEMA,
+    TG_TABLE_NAME,
+    auth.uid()
+  );
+
+  if TG_OP = 'DELETE' then
+    return old;
+  else
+    return new;
+  end if;
+end;
+$$;
 
 create or replace function public.is_authorized(
   _app_permissions_slug shared.slug
@@ -167,6 +216,11 @@ execute procedure extensions.moddatetime(updated_at);
 
 -- public.app_roles_users
 
+create or replace trigger insert_audit_log
+after insert or update or delete on public.app_roles_users
+for each row
+execute function public.insert_audit_log();
+
 create or replace trigger preserve_created_at
 before update on public.app_roles_users
 for each row
@@ -176,6 +230,20 @@ create or replace trigger update_updated_at
 before update on public.app_roles_users
 for each row
 execute procedure extensions.moddatetime(updated_at);
+
+-- public.audit_logs
+
+create or replace trigger preserve_record
+before update or delete on public.audit_logs
+for each row
+execute function shared.preserve_record();
+
+-- public.profiles
+
+create or replace trigger insert_audit_log
+after insert or update or delete on public.profiles
+for each row
+execute function public.insert_audit_log();
 
 --
 -- RLS policies
@@ -238,6 +306,14 @@ using (
   and public.is_authorized('app_roles_users.delete')
 );
 
+-- public.audit_logs
+
+create policy "Allow authorized to select any" on public.audit_logs
+as permissive
+for select
+to authenticated
+using (public.is_authorized('audit_logs.select'));
+
 -- public.profiles
 
 drop policy if exists "Allow authenticated to select own" on public.profiles;
@@ -278,6 +354,7 @@ values
   ('app_roles_users.insert'),
   ('app_roles_users.update'),
   ('app_roles_users.delete'),
+  ('audit_logs.select'),
   ('profiles.select'),
   ('profiles.update');
 
@@ -303,6 +380,21 @@ where
     'app_roles_users.insert',
     'app_roles_users.update',
     'app_roles_users.delete',
+    'audit_logs.select',
     'profiles.select',
     'profiles.update'
+  );
+
+--
+-- crons
+--
+
+select
+  cron.schedule(
+    'delete-old-audit-logs',
+    '0 0 * * *', -- every midnight / 12:00 AM UTC
+    $$
+    delete from public.audit_logs
+    where created_at < now() - interval '7 days';
+  $$
   );

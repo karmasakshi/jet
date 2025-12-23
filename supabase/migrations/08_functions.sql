@@ -41,10 +41,22 @@ set search_path = ''
 volatile
 as $$
 begin
-  if new.created_at <> old.created_at then
-    raise exception 'Cannot update % in %.%', 'created_at', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  if new.created_at != old.created_at then
+    raise exception 'Cannot update created_at in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   end if;
 
   return new;
+end;
+$$;
+
+create or replace function shared.preserve_record()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+volatile
+as $$
+begin
+  raise exception 'Cannot update record in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
 end;
 $$;
