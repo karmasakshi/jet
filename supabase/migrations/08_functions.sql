@@ -1,4 +1,8 @@
+--
 -- security definer
+--
+
+-- public.insert_profile
 
 create or replace function public.insert_profile()
 returns trigger
@@ -31,7 +35,11 @@ begin
 end;
 $$;
 
+--
 -- security invoker
+--
+
+-- shared.preserve_created_at
 
 create or replace function shared.preserve_created_at()
 returns trigger
@@ -48,6 +56,8 @@ begin
   return new;
 end;
 $$;
+
+-- shared.preserve_record
 
 create or replace function shared.preserve_record()
 returns trigger

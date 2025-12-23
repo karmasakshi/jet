@@ -175,77 +175,6 @@ to supabase_auth_admin
 using (true);
 
 --
--- Triggers
---
-
--- shared.app_permissions
-
-create or replace trigger preserve_created_at
-before update on shared.app_permissions
-for each row
-execute function shared.preserve_created_at();
-
-create or replace trigger update_updated_at
-before update on shared.app_permissions
-for each row
-execute procedure extensions.moddatetime(updated_at);
-
--- shared.app_permissions_app_roles
-
-create or replace trigger preserve_created_at
-before update on shared.app_permissions_app_roles
-for each row
-execute function shared.preserve_created_at();
-
-create or replace trigger update_updated_at
-before update on shared.app_permissions_app_roles
-for each row
-execute procedure extensions.moddatetime(updated_at);
-
--- shared.app_roles
-
-create or replace trigger preserve_created_at
-before update on shared.app_roles
-for each row
-execute function shared.preserve_created_at();
-
-create or replace trigger update_updated_at
-before update on shared.app_roles
-for each row
-execute procedure extensions.moddatetime(updated_at);
-
--- public.app_roles_users
-
-create or replace trigger insert_audit_log
-after insert or update or delete on public.app_roles_users
-for each row
-execute function public.insert_audit_log();
-
-create or replace trigger preserve_created_at
-before update on public.app_roles_users
-for each row
-execute function shared.preserve_created_at();
-
-create or replace trigger update_updated_at
-before update on public.app_roles_users
-for each row
-execute procedure extensions.moddatetime(updated_at);
-
--- public.audit_logs
-
-create or replace trigger preserve_record
-before update or delete on public.audit_logs
-for each row
-execute function shared.preserve_record();
-
--- public.profiles
-
-create or replace trigger insert_audit_log
-after insert or update or delete on public.profiles
-for each row
-execute function public.insert_audit_log();
-
---
 -- RLS policies
 --
 
@@ -338,6 +267,77 @@ with check (
   (select auth.uid()) = user_id
   or public.is_authorized('profiles.update')
 );
+
+--
+-- Triggers
+--
+
+-- shared.app_permissions
+
+create or replace trigger preserve_created_at
+before update on shared.app_permissions
+for each row
+execute function shared.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update on shared.app_permissions
+for each row
+execute procedure extensions.moddatetime(updated_at);
+
+-- shared.app_permissions_app_roles
+
+create or replace trigger preserve_created_at
+before update on shared.app_permissions_app_roles
+for each row
+execute function shared.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update on shared.app_permissions_app_roles
+for each row
+execute procedure extensions.moddatetime(updated_at);
+
+-- shared.app_roles
+
+create or replace trigger preserve_created_at
+before update on shared.app_roles
+for each row
+execute function shared.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update on shared.app_roles
+for each row
+execute procedure extensions.moddatetime(updated_at);
+
+-- public.app_roles_users
+
+create or replace trigger insert_audit_log
+after insert or update or delete on public.app_roles_users
+for each row
+execute function public.insert_audit_log();
+
+create or replace trigger preserve_created_at
+before update on public.app_roles_users
+for each row
+execute function shared.preserve_created_at();
+
+create or replace trigger update_updated_at
+before update on public.app_roles_users
+for each row
+execute procedure extensions.moddatetime(updated_at);
+
+-- public.audit_logs
+
+create or replace trigger preserve_record
+before update or delete on public.audit_logs
+for each row
+execute function shared.preserve_record();
+
+-- public.profiles
+
+create or replace trigger insert_audit_log
+after insert or update or delete on public.profiles
+for each row
+execute function public.insert_audit_log();
 
 --
 -- Seed

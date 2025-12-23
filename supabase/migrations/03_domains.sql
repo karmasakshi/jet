@@ -32,4 +32,4 @@ create domain shared.slug as text
 -- shared.url
 
 create domain shared.url as text
-  check (length(value) between 10 and 300 and value ~ '^https?://[^\s]+$');
+  check (length(value) between 10 and 600 and value ~ '^https?://[^\s]+$');
