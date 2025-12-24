@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.15.0](https://github.com/karmasakshi/jet/compare/v4.14.0...v4.15.0) (2025-12-24)
+
+
+### Features
+
+* **general:** add scripts to select privileges ([a198cb0](https://github.com/karmasakshi/jet/commit/a198cb025554f7d228277564ec902d0c51a06a38))
+
 ## [4.14.0](https://github.com/karmasakshi/jet/compare/v4.13.1...v4.14.0) (2025-12-23)
 
 
