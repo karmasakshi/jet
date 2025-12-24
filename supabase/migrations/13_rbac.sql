@@ -1,5 +1,3 @@
--- grant usage on schema public to supabase_auth_admin;
-
 --
 -- Tables
 --
@@ -58,9 +56,9 @@ comment on table public.app_roles_users is 'Join table.';
 
 alter table public.app_roles_users enable row level security;
 
-grant select on table public.app_roles_users to supabase_auth_admin;
-
 revoke all on table public.app_roles_users from public, anon, authenticated;
+
+grant all on table public.app_roles_users to supabase_auth_admin;
 
 grant select, insert, update, delete
 on table public.app_roles_users
@@ -187,11 +185,13 @@ as $$
   end;
 $$;
 
--- grant execute on function public.custom_access_token_hook to supabase_auth_admin;
-
 revoke execute
 on function public.custom_access_token_hook
 from public, anon, authenticated;
+
+grant execute
+on function public.custom_access_token_hook
+to supabase_auth_admin;
 
 create policy "Allow supabase_auth_admin to select any" on public.app_roles_users
 as permissive

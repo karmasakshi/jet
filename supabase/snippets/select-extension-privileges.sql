@@ -5,9 +5,12 @@ with
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin'
+        'supabase_auth_admin',
+        'supabase_admin',
+        'service_role',
+        'postgres'
       ] as roles_to_check,
-      array['supabase_auth_admin'] as roles_to_keep
+      array['supabase_admin'] as roles_to_keep
   ),
   extension_info as (
     select

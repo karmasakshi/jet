@@ -1,15 +1,18 @@
 with
   config as (
     select
-      'public' as schema_name,
-      'my_domain' as domain_name,
+      'shared' as schema_name,
+      'url' as domain_name,
       array[
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin'
+        'supabase_auth_admin',
+        'supabase_admin',
+        'service_role',
+        'postgres'
       ] as roles_to_check,
-      array['supabase_auth_admin'] as roles_to_keep,
+      array['supabase_admin'] as roles_to_keep,
       array['USAGE'] as privileges_to_keep
   ),
   domain_info as (

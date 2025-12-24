@@ -1,14 +1,17 @@
 with
   config as (
     select
-      'public' as schema_name,
+      'shared' as schema_name,
       array[
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin'
+        'supabase_auth_admin',
+        'supabase_admin',
+        'service_role',
+        'postgres'
       ] as roles_to_check,
-      array['supabase_auth_admin'] as roles_to_keep,
+      array['supabase_admin'] as roles_to_keep,
       array['USAGE', 'CREATE'] as privileges_to_keep
   ),
   schema_info as (
