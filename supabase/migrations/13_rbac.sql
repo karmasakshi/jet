@@ -199,7 +199,9 @@ create policy "Allow authorized to select any" on shared.app_permissions_app_rol
 as permissive
 for select
 to authenticated
-using (public.is_authorized('app_permissions_app_roles.select'));
+using (
+  (select public.is_authorized('app_permissions_app_roles.select')) is true
+);
 
 -- shared.app_roles
 
@@ -207,7 +209,7 @@ create policy "Allow authorized to select any" on shared.app_roles
 as permissive
 for select
 to authenticated
-using (public.is_authorized('app_roles.select'));
+using ((select public.is_authorized('app_roles.select')) is true);
 
 -- public.app_roles_users
 
@@ -215,7 +217,7 @@ create policy "Allow authorized to select any" on public.app_roles_users
 as permissive
 for select
 to authenticated
-using (public.is_authorized('app_roles_users.select'));
+using ((select public.is_authorized('app_roles_users.select')) is true);
 
 create policy "Allow authorized to insert others" on public.app_roles_users
 as permissive
@@ -223,14 +225,14 @@ for insert
 to authenticated
 with check (
   (select auth.uid()) != user_id
-  and public.is_authorized('app_roles_users.insert')
+  and (select public.is_authorized('app_roles_users.insert')) is true
 );
 
 create policy "Allow authorized to update others" on public.app_roles_users
 as permissive
 for update
 to authenticated
-using (public.is_authorized('app_roles_users.update'))
+using ((select public.is_authorized('app_roles_users.update')) is true)
 with check ((select auth.uid()) != user_id);
 
 create policy "Allow authorized to delete others" on public.app_roles_users
@@ -239,7 +241,7 @@ for delete
 to authenticated
 using (
   (select auth.uid()) != user_id
-  and public.is_authorized('app_roles_users.delete')
+  and (select public.is_authorized('app_roles_users.delete')) is true
 );
 
 -- public.audit_logs
@@ -248,7 +250,7 @@ create policy "Allow authorized to select any" on public.audit_logs
 as permissive
 for select
 to authenticated
-using (public.is_authorized('audit_logs.select'));
+using ((select public.is_authorized('audit_logs.select')) is true);
 
 -- public.profiles
 
@@ -260,7 +262,7 @@ for select
 to authenticated
 using (
   (select auth.uid()) = user_id
-  or public.is_authorized('profiles.select')
+  or (select public.is_authorized('profiles.select')) is true
 );
 
 drop policy if exists "Allow authenticated to update own" on public.profiles;
@@ -269,10 +271,13 @@ create policy "Allow authenticated to update own and authorized to update any" o
 as permissive
 for update
 to authenticated
-using ((select auth.uid()) = user_id or public.is_authorized('profiles.update'))
+using (
+  (select auth.uid()) = user_id
+  or (select public.is_authorized('profiles.update')) is true
+)
 with check (
   (select auth.uid()) = user_id
-  or public.is_authorized('profiles.update')
+  or (select public.is_authorized('profiles.update')) is true
 );
 
 --
