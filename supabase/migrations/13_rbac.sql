@@ -74,6 +74,16 @@ comment on table public.audit_logs is 'Audit logs.';
 alter table public.audit_logs enable row level security;
 
 --
+-- Indexes
+--
+
+-- public.audit_logs
+
+create index on public.audit_logs (user_id);
+
+create index on public.audit_logs (created_at desc);
+
+--
 -- Functions
 --
 
@@ -95,8 +105,8 @@ begin
     table_name,
     user_id
   ) values (
-    case when TG_OP in ('INSERT', 'UPDATE') then to_jsonb(new) else null end,
-    case when TG_OP in ('UPDATE', 'DELETE') then to_jsonb(old) else null end,
+    case when TG_OP = 'DELETE' then null else to_jsonb(new) end,
+    case when TG_OP = 'INSERT' then null else to_jsonb(old) end,
     TG_OP,
     TG_TABLE_SCHEMA,
     TG_TABLE_NAME,
@@ -120,50 +130,47 @@ security definer
 set search_path = ''
 stable
 as $$
-declare
-  _app_role_id uuid;
-begin
-  _app_role_id := nullif((select auth.jwt())->'app_metadata'->>'app_role_id', '')::uuid;
+  declare
+    _app_role_id uuid;
+  begin
+    _app_role_id := nullif((select auth.jwt())->'app_metadata'->>'app_role_id', '')::uuid;
 
-  if _app_role_id is null then
-    return false;
-  end if;
+    if _app_role_id is null then
+      return false;
+    end if;
 
-  return exists (
-    select 1
-    from shared.app_permissions_app_roles apar
-    join shared.app_permissions ap on apar.app_permission_id = ap.id
-    where apar.app_role_id = _app_role_id and ap.slug = _app_permissions_slug
-  );
-end;
+    return exists (
+      select 1
+      from shared.app_permissions_app_roles apar
+      join shared.app_permissions ap on apar.app_permission_id = ap.id
+      where apar.app_role_id = _app_role_id and ap.slug = _app_permissions_slug
+    );
+  end;
 $$;
 
 -- security invoker
 
-create or replace function public.custom_access_token(_event jsonb)
+create or replace function public.custom_access_token_hook(_event jsonb)
 returns jsonb
 language plpgsql
 security invoker
 set search_path = ''
-volatile
+stable
 as $$
-declare
-  _app_role_id uuid;
-  _claims jsonb;
-begin
-  select app_role_id
-  into _app_role_id
-  from public.app_roles_users
-  where user_id = (_event->>'user_id')::uuid;
+  declare
+    _app_role_id uuid;
+    _claims jsonb;
+  begin
+    select app_role_id into _app_role_id from public.app_roles_users where user_id = (_event->>'user_id')::uuid;
 
-  _claims := _event->'claims';
+    _claims := _event->'claims';
 
-  _claims := jsonb_set(_claims, '{app_metadata,app_role_id}', coalesce(to_jsonb(_app_role_id), 'null'::jsonb));
+    _claims := jsonb_set(_claims, '{app_metadata,app_role_id}', coalesce(to_jsonb(_app_role_id), 'null'::jsonb));
 
-  _event := jsonb_set(_event, '{claims}', _claims);
+    _event := jsonb_set(_event, '{claims}', _claims);
 
-  return _event;
-end;
+    return _event;
+  end;
 $$;
 
 grant select on table public.app_roles_users to supabase_auth_admin;

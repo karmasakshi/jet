@@ -11,28 +11,28 @@ security definer
 set search_path = ''
 volatile
 as $$
-declare
-  _avatar_url shared.url;
-  _full_name text;
-begin
-  _avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
+  declare
+    _avatar_url shared.url;
+    _full_name text;
+  begin
+    _avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
 
-  _full_name := nullif(new.raw_user_meta_data->>'full_name', '');
+    _full_name := nullif(new.raw_user_meta_data->>'full_name', '');
 
-  if _full_name is not null then
-    _full_name := left(_full_name, 60);
-  end if;
+    if _full_name is not null then
+      _full_name := left(_full_name, 60);
+    end if;
 
-  insert into public.profiles (user_id, avatar_url, full_name, username)
-  values (
-    new.id,
-    _avatar_url,
-    _full_name,
-    replace((new.id)::text, '-', '_')
-  );
+    insert into public.profiles (user_id, avatar_url, full_name, username)
+    values (
+      new.id,
+      _avatar_url,
+      _full_name,
+      replace((new.id)::text, '-', '_')
+    );
 
-  return new;
-end;
+    return new;
+  end;
 $$;
 
 --
