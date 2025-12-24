@@ -35,6 +35,8 @@ as $$
   end;
 $$;
 
+revoke all on routine public.insert_profile from public, anon, authenticated;
+
 --
 -- security invoker
 --

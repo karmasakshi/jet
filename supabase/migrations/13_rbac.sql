@@ -56,14 +56,6 @@ comment on table public.app_roles_users is 'Join table.';
 
 alter table public.app_roles_users enable row level security;
 
-revoke all on table public.app_roles_users from public, anon, authenticated;
-
-grant all on table public.app_roles_users to supabase_auth_admin;
-
-grant select, insert, update, delete
-on table public.app_roles_users
-to authenticated;
-
 -- public.audit_logs
 
 create table public.audit_logs (
@@ -80,10 +72,6 @@ create table public.audit_logs (
 comment on table public.audit_logs is 'Audit logs.';
 
 alter table public.audit_logs enable row level security;
-
-revoke all on table public.audit_logs from public, anon, authenticated;
-
-grant select on table public.audit_logs to authenticated;
 
 --
 -- Indexes
@@ -133,6 +121,8 @@ begin
 end;
 $$;
 
+revoke all on routine public.insert_audit_log from public, anon, authenticated;
+
 create or replace function public.is_authorized(
   _app_permissions_slug shared.slug
 )
@@ -160,6 +150,8 @@ as $$
   end;
 $$;
 
+revoke all on routine public.is_authorized from public, anon, authenticated;
+
 -- security invoker
 
 create or replace function public.custom_access_token_hook(_event jsonb)
@@ -186,24 +178,18 @@ as $$
 $$;
 
 revoke execute
-on function public.custom_access_token_hook
+on routine public.custom_access_token_hook
 from public, anon, authenticated;
 
-grant execute
-on function public.custom_access_token_hook
-to supabase_auth_admin;
-
-create policy "Allow supabase_auth_admin to select any" on public.app_roles_users
-as permissive
-for select
-to supabase_auth_admin
-using (true);
+grant execute on routine public.custom_access_token_hook to supabase_auth_admin;
 
 --
 -- RLS policies
 --
 
 -- shared.app_permissions
+
+grant select on table shared.app_permissions to authenticated;
 
 create policy "Allow authenticated to select any" on shared.app_permissions
 as permissive
@@ -212,6 +198,8 @@ to authenticated
 using (true);
 
 -- shared.app_permissions_app_roles
+
+grant select on table shared.app_permissions_app_roles to authenticated;
 
 create policy "Allow authorized to select any" on shared.app_permissions_app_roles
 as permissive
@@ -223,6 +211,8 @@ using (
 
 -- shared.app_roles
 
+grant select on table shared.app_roles to authenticated;
+
 create policy "Allow authorized to select any" on shared.app_roles
 as permissive
 for select
@@ -230,6 +220,12 @@ to authenticated
 using ((select public.is_authorized('app_roles.select')) is true);
 
 -- public.app_roles_users
+
+grant select, insert, update, delete
+on table public.app_roles_users
+to authenticated;
+
+grant all on table public.app_roles_users to supabase_auth_admin;
 
 create policy "Allow authorized to select any" on public.app_roles_users
 as permissive
@@ -262,7 +258,15 @@ using (
   and (select public.is_authorized('app_roles_users.delete')) is true
 );
 
+create policy "Allow supabase_auth_admin to select any" on public.app_roles_users
+as permissive
+for select
+to supabase_auth_admin
+using (true);
+
 -- public.audit_logs
+
+grant select on table public.audit_logs to authenticated;
 
 create policy "Allow authorized to select any" on public.audit_logs
 as permissive
@@ -370,6 +374,20 @@ for each row
 execute function public.insert_audit_log();
 
 --
+-- Crons
+--
+
+select
+  cron.schedule(
+    'delete-old-audit-logs',
+    '0 0 * * *', -- every midnight / 12:00 AM UTC
+    $$
+    delete from public.audit_logs
+    where created_at < now() - interval '7 days';
+  $$
+  );
+
+--
 -- Seed
 --
 
@@ -413,18 +431,4 @@ where
     'audit_logs.select',
     'profiles.select',
     'profiles.update'
-  );
-
---
--- crons
---
-
-select
-  cron.schedule(
-    'delete-old-audit-logs',
-    '0 0 * * *', -- every midnight / 12:00 AM UTC
-    $$
-    delete from public.audit_logs
-    where created_at < now() - interval '7 days';
-  $$
   );

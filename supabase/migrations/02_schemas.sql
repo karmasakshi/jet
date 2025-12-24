@@ -1,3 +1,10 @@
+-- public
+
+alter default privileges
+for role postgres
+in schema public
+revoke all on tables from public, anon, authenticated;
+
 -- shared
 
 create schema if not exists shared;
@@ -18,8 +25,3 @@ alter default privileges
 for role postgres
 in schema shared
 grant all on tables to service_role;
-
-alter default privileges
-for role postgres
-in schema shared
-grant select on tables to anon, authenticated;
