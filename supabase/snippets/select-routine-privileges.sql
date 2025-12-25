@@ -11,9 +11,7 @@ with
         'supabase_admin',
         'service_role',
         'postgres'
-      ] as roles_to_check,
-      array['supabase_admin'] as roles_to_keep,
-      array['EXECUTE'] as privileges_to_keep
+      ] as roles_to_check
   ),
   routine_info as (
     select
@@ -21,7 +19,6 @@ with
       p.proname as routine_name,
       pg_get_function_identity_arguments(p.oid) as routine_args,
       p.proacl,
-      p.proowner,
       r.rolname as owner_role
     from
       pg_proc as p
@@ -64,19 +61,9 @@ select
   cs.routine_owner,
   case
     when cs.has_execute_effective then 'EXECUTE' || case
-      when not cs.has_execute_direct then ' (inherited)'
-      else ' (direct)'
+      when cs.has_execute_direct then ' (direct)'
+      else ' (inherited)'
     end
-  end as execute_priv,
-  case
-    when cs.role_name = any (
-      c.roles_to_keep
-    ) then 'Should keep: ' || array_to_string(c.privileges_to_keep, ', ')
-    when cs.role_name != all (c.roles_to_keep)
-    and cs.has_execute_effective then '❌ Should revoke all'
-    else '✓ No change needed'
-  end as desired_action
-from
-  current_state as cs
-  cross join config as c
-order by cs.role_name;
+  end as "execute"
+from current_state as cs
+order by cs.routine_name, cs.routine_args, cs.role_name;

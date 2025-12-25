@@ -2,7 +2,7 @@ with
   config as (
     select
       'public' as schema_name,
-      'ptpd' as table_name,
+      'app_roles_users' as table_name,
       array[
         'public',
         'anon',
