@@ -36,7 +36,8 @@ with
       t.owner_role as type_owner,
       has_type_privilege(role_name, t.oid, 'USAGE') as has_usage_effective,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.typacl) as acl
         where
           acl.grantee = case

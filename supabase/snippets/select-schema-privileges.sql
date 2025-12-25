@@ -32,7 +32,8 @@ with
       has_schema_privilege(role_name, s.oid, 'USAGE') as has_usage_effective,
       has_schema_privilege(role_name, s.oid, 'CREATE') as has_create_effective,
       exists (
-        select 1
+        select
+          1
         from aclexplode(s.nspacl) as acl
         where
           acl.grantee = case
@@ -42,7 +43,8 @@ with
           and acl.privilege_type = 'USAGE'
       ) as has_usage_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(s.nspacl) as acl
         where
           acl.grantee = case
