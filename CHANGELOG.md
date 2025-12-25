@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.16.0](https://github.com/karmasakshi/jet/compare/v4.15.0...v4.16.0) (2025-12-24)
+
+
+### Features
+
+* **supabase:** add privileges ([c2d17d8](https://github.com/karmasakshi/jet/commit/c2d17d829b5f194c3f0b6c35fded05b22a89aaa3))
+
 ## [4.15.0](https://github.com/karmasakshi/jet/compare/v4.14.0...v4.15.0) (2025-12-24)
 
 
