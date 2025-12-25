@@ -50,7 +50,8 @@ with
       ) as has_references_effective,
       has_table_privilege(role_name, t.oid, 'TRIGGER') as has_trigger_effective,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
@@ -60,7 +61,8 @@ with
           and acl.privilege_type = 'SELECT'
       ) as has_select_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
@@ -70,7 +72,8 @@ with
           and acl.privilege_type = 'INSERT'
       ) as has_insert_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
@@ -80,7 +83,8 @@ with
           and acl.privilege_type = 'UPDATE'
       ) as has_update_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
@@ -90,7 +94,8 @@ with
           and acl.privilege_type = 'DELETE'
       ) as has_delete_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
@@ -100,7 +105,8 @@ with
           and acl.privilege_type = 'TRUNCATE'
       ) as has_truncate_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
@@ -110,7 +116,8 @@ with
           and acl.privilege_type = 'REFERENCES'
       ) as has_references_direct,
       exists (
-        select 1
+        select
+          1
         from aclexplode(t.relacl) as acl
         where
           acl.grantee = case
