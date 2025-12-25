@@ -30,7 +30,7 @@ with
     where
       n.nspname = c.schema_name
       and t.typname = c.type_name
-      and t.typtype in ('c', 'd') -- 'c' = composite, 'd' = domain
+      and t.typtype in ('c', 'd')
   ),
   current_state as (
     select
