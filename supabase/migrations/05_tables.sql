@@ -13,5 +13,3 @@ create table public.profiles (
 );
 
 comment on table public.profiles is 'Profiles.';
-
-alter table public.profiles enable row level security;

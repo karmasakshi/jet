@@ -1,5 +1,7 @@
 -- public.profiles
 
+alter table public.profiles enable row level security;
+
 grant select, update on table public.profiles to authenticated;
 
 create policy "Allow authenticated to select own" on public.profiles
