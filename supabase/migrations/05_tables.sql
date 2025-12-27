@@ -1,3 +1,7 @@
+--
+-- public
+--
+
 -- public.profiles
 
 create table public.profiles (

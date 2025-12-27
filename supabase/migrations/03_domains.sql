@@ -1,3 +1,7 @@
+--
+-- shared
+--
+
 -- shared.amount
 
 create domain shared.amount as numeric(15, 2)
