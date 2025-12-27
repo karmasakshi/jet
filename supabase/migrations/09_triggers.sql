@@ -3,7 +3,7 @@
 create or replace trigger insert_profile
 after insert on auth.users
 for each row
-execute function public.insert_profile();
+execute function shared.insert_profile();
 
 -- public.profiles
 

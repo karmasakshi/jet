@@ -2,9 +2,9 @@
 -- security definer
 --
 
--- public.insert_profile
+-- shared.insert_profile
 
-create or replace function public.insert_profile()
+create or replace function shared.insert_profile()
 returns trigger
 language plpgsql
 security definer
@@ -35,7 +35,7 @@ as $$
   end;
 $$;
 
-revoke all on routine public.insert_profile from public, anon, authenticated;
+revoke all on routine shared.insert_profile from public, anon, authenticated;
 
 --
 -- security invoker
@@ -51,7 +51,7 @@ set search_path = ''
 volatile
 as $$
 begin
-  if new.created_at != old.created_at then
+  if new.created_at is distinct from old.created_at then
     raise exception 'Cannot update created_at in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
   end if;
 

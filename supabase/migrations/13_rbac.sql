@@ -238,7 +238,7 @@ as permissive
 for insert
 to authenticated
 with check (
-  (select auth.uid()) != user_id
+  (select auth.uid()) is distinct from user_id
   and (select public.is_authorized('app_roles_users.insert')) is true
 );
 
@@ -247,14 +247,14 @@ as permissive
 for update
 to authenticated
 using ((select public.is_authorized('app_roles_users.update')) is true)
-with check ((select auth.uid()) != user_id);
+with check ((select auth.uid()) is distinct from user_id);
 
 create policy "Allow authorized to delete others" on public.app_roles_users
 as permissive
 for delete
 to authenticated
 using (
-  (select auth.uid()) != user_id
+  (select auth.uid()) is distinct from user_id
   and (select public.is_authorized('app_roles_users.delete')) is true
 );
 
