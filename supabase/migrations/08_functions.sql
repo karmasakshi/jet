@@ -15,9 +15,9 @@ as $$
     _avatar_url shared.url;
     _full_name text;
   begin
-    _avatar_url := nullif(new.raw_user_meta_data->>'avatar_url', '');
+    _avatar_url := nullif(trim(new.raw_user_meta_data->>'avatar_url'), '');
 
-    _full_name := nullif(new.raw_user_meta_data->>'full_name', '');
+    _full_name := nullif(trim(new.raw_user_meta_data->>'full_name'), '');
 
     if _full_name is not null then
       _full_name := left(_full_name, 60);
@@ -50,13 +50,13 @@ security invoker
 set search_path = ''
 volatile
 as $$
-begin
-  if new.created_at is distinct from old.created_at then
-    raise exception 'Cannot update created_at in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-  end if;
+  begin
+    if new.created_at is distinct from old.created_at then
+      new.created_at := old.created_at;
+    end if;
 
-  return new;
-end;
+    return new;
+  end;
 $$;
 
 -- shared.preserve_record
@@ -68,7 +68,7 @@ security invoker
 set search_path = ''
 volatile
 as $$
-begin
-  raise exception 'Cannot update record in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-end;
+  begin
+    raise exception 'Cannot update record in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
+  end;
 $$;

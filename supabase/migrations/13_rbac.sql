@@ -96,29 +96,29 @@ security definer
 set search_path = ''
 volatile
 as $$
-begin
-  insert into public.audit_logs (
-    new_record,
-    old_record,
-    operation,
-    schema_name,
-    table_name,
-    user_id
-  ) values (
-    case when TG_OP = 'DELETE' then null else to_jsonb(new) end,
-    case when TG_OP = 'INSERT' then null else to_jsonb(old) end,
-    TG_OP,
-    TG_TABLE_SCHEMA,
-    TG_TABLE_NAME,
-    auth.uid()
-  );
+  begin
+    insert into public.audit_logs (
+      new_record,
+      old_record,
+      operation,
+      schema_name,
+      table_name,
+      user_id
+    ) values (
+      case when TG_OP = 'DELETE' then null else to_jsonb(new) end,
+      case when TG_OP = 'INSERT' then null else to_jsonb(old) end,
+      TG_OP,
+      TG_TABLE_SCHEMA,
+      TG_TABLE_NAME,
+      auth.uid()
+    );
 
-  if TG_OP = 'DELETE' then
-    return old;
-  else
-    return new;
-  end if;
-end;
+    if TG_OP = 'DELETE' then
+      return old;
+    else
+      return new;
+    end if;
+  end;
 $$;
 
 revoke all on routine public.insert_audit_log from public, anon, authenticated;
