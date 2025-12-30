@@ -58,17 +58,3 @@ as $$
     return new;
   end;
 $$;
-
--- shared.preserve_record
-
-create or replace function shared.preserve_record()
-returns trigger
-language plpgsql
-security invoker
-set search_path = ''
-volatile
-as $$
-  begin
-    raise exception 'Cannot update record in %.%', TG_TABLE_SCHEMA, TG_TABLE_NAME;
-  end;
-$$;

@@ -359,13 +359,6 @@ before update on public.app_roles_users
 for each row
 execute procedure extensions.moddatetime(updated_at);
 
--- public.audit_logs
-
-create or replace trigger preserve_record
-before update or delete on public.audit_logs
-for each row
-execute function shared.preserve_record();
-
 -- public.profiles
 
 create or replace trigger insert_audit_log
