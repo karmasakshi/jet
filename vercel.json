@@ -1,4 +1,6 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "angular",
   "headers": [
     {
       "source": "/(.*)",
@@ -29,5 +31,6 @@
         }
       ]
     }
-  ]
+  ],
+  "outputDirectory": "dist/jet/browser"
 }
