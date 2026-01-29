@@ -2,7 +2,7 @@ with
   config as (
     select
       'public' as schema_name,
-      'app_roles_users' as table_name,
+      'my_view' as view_name,
       array[
         'public',
         'anon',
@@ -17,7 +17,7 @@ with
         'supabase_storage_admin'
       ] as roles_to_check
   ),
-  table_info as (
+  view_info as (
     select
       c.oid,
       c.relacl,
@@ -29,31 +29,31 @@ with
       cross join config as cfg
     where
       n.nspname = cfg.schema_name
-      and c.relname = cfg.table_name
-      and c.relkind = 'r'
+      and c.relname = cfg.view_name
+      and c.relkind = 'v'
   ),
   current_state as (
     select
       role_name,
-      t.owner_role as table_owner,
-      has_table_privilege(role_name, t.oid, 'SELECT') as has_select_effective,
-      has_table_privilege(role_name, t.oid, 'INSERT') as has_insert_effective,
-      has_table_privilege(role_name, t.oid, 'UPDATE') as has_update_effective,
-      has_table_privilege(role_name, t.oid, 'DELETE') as has_delete_effective,
+      v.owner_role as view_owner,
+      has_table_privilege(role_name, v.oid, 'SELECT') as has_select_effective,
+      has_table_privilege(role_name, v.oid, 'INSERT') as has_insert_effective,
+      has_table_privilege(role_name, v.oid, 'UPDATE') as has_update_effective,
+      has_table_privilege(role_name, v.oid, 'DELETE') as has_delete_effective,
       has_table_privilege(
         role_name,
-        t.oid,
+        v.oid,
         'TRUNCATE'
       ) as has_truncate_effective,
       has_table_privilege(
         role_name,
-        t.oid,
+        v.oid,
         'REFERENCES'
       ) as has_references_effective,
-      has_table_privilege(role_name, t.oid, 'TRIGGER') as has_trigger_effective,
+      has_table_privilege(role_name, v.oid, 'TRIGGER') as has_trigger_effective,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -63,7 +63,7 @@ with
       ) as has_select_direct,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -73,7 +73,7 @@ with
       ) as has_insert_direct,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -83,7 +83,7 @@ with
       ) as has_update_direct,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -93,7 +93,7 @@ with
       ) as has_delete_direct,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -103,7 +103,7 @@ with
       ) as has_truncate_direct,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -113,7 +113,7 @@ with
       ) as has_references_direct,
       exists (
         select 1
-        from aclexplode(t.relacl) as acl
+        from aclexplode(v.relacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
@@ -124,11 +124,11 @@ with
     from
       config as c
       cross join unnest(c.roles_to_check) as role_name
-      cross join table_info as t
+      cross join view_info as v
   )
 select
   cs.role_name,
-  cs.table_owner,
+  cs.view_owner,
   case
     when cs.has_select_effective then 'SELECT' || case
       when cs.has_select_direct then ' (direct)'

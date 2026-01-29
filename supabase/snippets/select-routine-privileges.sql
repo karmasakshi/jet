@@ -1,23 +1,25 @@
 with
   config as (
     select
-      'public' as schema_name,
-      'custom_access_token_hook' as routine_name,
+      'shared' as schema_name,
+      'insert_profile' as routine_name,
       array[
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin',
-        'supabase_admin',
+        'authenticator',
+        'dashboard_user',
+        'postgres',
         'service_role',
-        'postgres'
+        'supabase_admin',
+        'supabase_auth_admin',
+        'supabase_functions_admin',
+        'supabase_storage_admin'
       ] as roles_to_check
   ),
   routine_info as (
     select
       p.oid,
-      p.proname as routine_name,
-      pg_get_function_identity_arguments(p.oid) as routine_args,
       p.proacl,
       r.rolname as owner_role
     from
@@ -30,8 +32,6 @@ with
   current_state as (
     select
       role_name,
-      r.routine_name,
-      r.routine_args,
       r.owner_role as routine_owner,
       has_function_privilege(
         role_name,
@@ -39,13 +39,12 @@ with
         'EXECUTE'
       ) as has_execute_effective,
       exists (
-        select
-          1
+        select 1
         from aclexplode(r.proacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
-            else role_name::regrole::oid
+            else to_regrole(role_name)
           end
           and acl.privilege_type = 'EXECUTE'
       ) as has_execute_direct
@@ -56,8 +55,6 @@ with
   )
 select
   cs.role_name,
-  cs.routine_name,
-  cs.routine_args,
   cs.routine_owner,
   case
     when cs.has_execute_effective then 'EXECUTE' || case
@@ -66,4 +63,4 @@ select
     end
   end as "execute"
 from current_state as cs
-order by cs.routine_name, cs.routine_args, cs.role_name;
+order by cs.role_name;

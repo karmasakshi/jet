@@ -5,10 +5,14 @@ with
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin',
-        'supabase_admin',
+        'authenticator',
+        'dashboard_user',
+        'postgres',
         'service_role',
-        'postgres'
+        'supabase_admin',
+        'supabase_auth_admin',
+        'supabase_functions_admin',
+        'supabase_storage_admin'
       ] as roles_to_check
   ),
   extension_info as (

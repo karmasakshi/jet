@@ -6,10 +6,14 @@ with
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin',
-        'supabase_admin',
+        'authenticator',
+        'dashboard_user',
+        'postgres',
         'service_role',
-        'postgres'
+        'supabase_admin',
+        'supabase_auth_admin',
+        'supabase_functions_admin',
+        'supabase_storage_admin'
       ] as roles_to_check
   ),
   db_info as (
@@ -25,7 +29,6 @@ with
   current_state as (
     select
       role_name,
-      db.database_name,
       db.owner_role as database_owner,
       has_database_privilege(
         role_name,
@@ -49,7 +52,6 @@ with
   )
 select
   cs.role_name,
-  cs.database_name,
   cs.database_owner,
   case
     when cs.has_connect then 'CONNECT'
@@ -61,4 +63,4 @@ select
     when cs.has_temporary then 'TEMPORARY'
   end as "temporary"
 from current_state as cs
-order by cs.database_name, cs.role_name;
+order by cs.role_name;

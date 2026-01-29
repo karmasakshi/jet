@@ -6,16 +6,19 @@ with
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin',
-        'supabase_admin',
+        'authenticator',
+        'dashboard_user',
+        'postgres',
         'service_role',
-        'postgres'
+        'supabase_admin',
+        'supabase_auth_admin',
+        'supabase_functions_admin',
+        'supabase_storage_admin'
       ] as roles_to_check
   ),
   schema_info as (
     select
       n.oid,
-      n.nspname as schema_name,
       r.rolname as owner_role,
       n.nspacl
     from
@@ -27,29 +30,26 @@ with
   current_state as (
     select
       role_name,
-      s.schema_name,
       s.owner_role as schema_owner,
       has_schema_privilege(role_name, s.oid, 'USAGE') as has_usage_effective,
       has_schema_privilege(role_name, s.oid, 'CREATE') as has_create_effective,
       exists (
-        select
-          1
+        select 1
         from aclexplode(s.nspacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
-            else role_name::regrole::oid
+            else to_regrole(role_name)
           end
           and acl.privilege_type = 'USAGE'
       ) as has_usage_direct,
       exists (
-        select
-          1
+        select 1
         from aclexplode(s.nspacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
-            else role_name::regrole::oid
+            else to_regrole(role_name)
           end
           and acl.privilege_type = 'CREATE'
       ) as has_create_direct
@@ -60,7 +60,6 @@ with
   )
 select
   cs.role_name,
-  cs.schema_name,
   cs.schema_owner,
   case
     when cs.has_usage_effective then 'USAGE' || case

@@ -2,15 +2,19 @@ with
   config as (
     select
       'shared' as schema_name,
-      'url' as domain_name,
+      'amount' as domain_name,
       array[
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin',
-        'supabase_admin',
+        'authenticator',
+        'dashboard_user',
+        'postgres',
         'service_role',
-        'postgres'
+        'supabase_admin',
+        'supabase_auth_admin',
+        'supabase_functions_admin',
+        'supabase_storage_admin'
       ] as roles_to_check
   ),
   domain_info as (
@@ -27,22 +31,20 @@ with
     where
       n.nspname = c.schema_name
       and t.typname = c.domain_name
-      and t.typtype = 'd' -- domains only
+      and t.typtype = 'd'
   ),
   current_state as (
     select
       role_name,
-      t.domain_name,
       t.owner_role as domain_owner,
       has_type_privilege(role_name, t.oid, 'USAGE') as has_usage_effective,
       exists (
-        select
-          1
+        select 1
         from aclexplode(t.typacl) as acl
         where
           acl.grantee = case
             when role_name = 'public' then 0
-            else role_name::regrole::oid
+            else to_regrole(role_name)
           end
           and acl.privilege_type = 'USAGE'
       ) as has_usage_direct
@@ -53,7 +55,6 @@ with
   )
 select
   cs.role_name,
-  cs.domain_name,
   cs.domain_owner,
   case
     when cs.has_usage_effective then 'USAGE' || case
@@ -62,4 +63,4 @@ select
     end
   end as "usage"
 from current_state as cs
-order by cs.domain_name, cs.role_name;
+order by cs.role_name;

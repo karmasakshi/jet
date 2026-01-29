@@ -7,16 +7,19 @@ with
         'public',
         'anon',
         'authenticated',
-        'supabase_auth_admin',
-        'supabase_admin',
+        'authenticator',
+        'dashboard_user',
+        'postgres',
         'service_role',
-        'postgres'
+        'supabase_admin',
+        'supabase_auth_admin',
+        'supabase_functions_admin',
+        'supabase_storage_admin'
       ] as roles_to_check
   ),
   type_info as (
     select
       t.oid,
-      t.typname as type_name,
       t.typacl,
       r.rolname as owner_role
     from
@@ -32,7 +35,6 @@ with
   current_state as (
     select
       role_name,
-      t.type_name,
       t.owner_role as type_owner,
       has_type_privilege(role_name, t.oid, 'USAGE') as has_usage_effective,
       exists (
@@ -42,7 +44,7 @@ with
         where
           acl.grantee = case
             when role_name = 'public' then 0
-            else role_name::regrole::oid
+            else to_regrole(role_name)
           end
           and acl.privilege_type = 'USAGE'
       ) as has_usage_direct
@@ -53,7 +55,6 @@ with
   )
 select
   cs.role_name,
-  cs.type_name,
   cs.type_owner,
   case
     when cs.has_usage_effective then 'USAGE' || case
