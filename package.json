@@ -27,7 +27,7 @@
     "*": "prettier --ignore-unknown --write"
   },
   "private": true,
-  "packageManager": "npm@11.7.0",
+  "packageManager": "npm@11.8.0",
   "dependencies": {
     "@angular/cdk": "^21.1.2",
     "@angular/common": "^21.1.2",

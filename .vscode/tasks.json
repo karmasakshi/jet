@@ -11,8 +11,8 @@
         "pattern": "$tsc",
         "background": {
           "activeOnStart": true,
-          "beginsPattern": { "regexp": "(.*?)" },
-          "endsPattern": { "regexp": "bundle generation complete" }
+          "beginsPattern": { "regexp": "Changes detected" },
+          "endsPattern": { "regexp": "bundle generation (complete|failed)" }
         }
       }
     },
@@ -25,8 +25,8 @@
         "pattern": "$tsc",
         "background": {
           "activeOnStart": true,
-          "beginsPattern": { "regexp": "(.*?)" },
-          "endsPattern": { "regexp": "bundle generation complete" }
+          "beginsPattern": { "regexp": "Changes detected" },
+          "endsPattern": { "regexp": "bundle generation (complete|failed)" }
         }
       }
     }
