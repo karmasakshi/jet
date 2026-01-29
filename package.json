@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --subresource-integrity",
-    "postbuild": "node ./scripts/optimize-translations.mjs && node ./scripts/add-icon-font-preload-tag.mjs",
+    "postbuild": "node ./scripts/add-icon-font-preload-tag.mjs && node ./scripts/optimize-translations.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",

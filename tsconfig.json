@@ -40,7 +40,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "defaultCategory": "error"
+    "defaultCategory": "error" // https://angular.dev/extended-diagnostics#configuration
   },
   "files": [],
   "references": [
