@@ -1,6 +1,6 @@
 ---
 name: Documentation
-about: Something isn't documented
+about: Something isn't documented as expected
 title: 'docs: '
 labels: documentation
 assignees: ''
@@ -8,4 +8,4 @@ assignees: ''
 
 ### Description
 
-Describe the request.
+Describe the expectation.

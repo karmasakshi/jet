@@ -1,4 +1,4 @@
-name: deploy-supabase-functions
+name: deploy-supabase-edge-functions
 
 on:
   push:
@@ -8,29 +8,29 @@ on:
       - 'supabase/**'
 
 jobs:
-  deploy-supabase-functions:
+  deploy-supabase-edge-functions:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
     steps:
-      - uses: actions/checkout@v6 # https://github.com/marketplace/actions/checkout
+      - uses: actions/checkout@v6.0.1 # https://github.com/marketplace/actions/checkout
 
       - uses: supabase/setup-cli@v1.6.0 # https://github.com/marketplace/actions/supabase-cli-action
         with:
           version: latest
 
-      - name: create-env
+      - name: create-env-file
         run: |
           echo "ACCESS_CONTROL_ALLOW_ORIGIN=${{ secrets.ACCESS_CONTROL_ALLOW_ORIGIN }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
           echo "UPSTASH_REDIS_REST_TOKEN=${{ secrets.UPSTASH_REDIS_REST_TOKEN }}" >> .env
           echo "UPSTASH_REDIS_REST_URL=${{ secrets.UPSTASH_REDIS_REST_URL }}" >> .env
 
-      - name: set-env
+      - name: set-env-file
         run: |
           supabase secrets set --env-file .env --project-ref $SUPABASE_PROJECT_ID
 
-      - name: deploy-supabase-functions
+      - name: deploy-supabase-edge-functions
         run: |
           supabase functions deploy --project-ref $SUPABASE_PROJECT_ID
