@@ -134,7 +134,6 @@ Nice to do:
     - [Remove RBAC](#remove-rbac)
     - [Remove Supabase](#remove-supabase)
   - [Squeeze out more performance](#squeeze-out-more-performance)
-- [Sponsors](#sponsors)
 - [License](#license)
 
 <br />
@@ -591,36 +590,6 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 <br />
 
 [↑ Back to Contents](#contents)
-
-## Sponsors
-
-<p align="center">
-  <img
-    alt="byjokese"
-    src="https://github.com/byjokese.png"
-    width="64"
-  />
-  &nbsp;
-  <img
-    alt="dipenpradhan"
-    src="https://github.com/dipenpradhan.png"
-    width="64"
-  />
-  &nbsp;
-  <img
-    alt="lohiaad"
-    src="https://github.com/lohiaad.png"
-    width="64"
-  />
-  &nbsp;
-  <img
-    alt="singhamit089"
-    src="https://github.com/singhamit089.png"
-    width="64"
-  />
-</p>
-
-Support development of Jet. [Pay what you like](https://karmasakshi.lemonsqueezy.com/buy/b4db1f83-66be-426d-b286-985b1e6b13ce).
 
 ## License
 
