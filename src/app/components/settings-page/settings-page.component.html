@@ -14,7 +14,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'Open language options' }"
+            [jetAnalytics]="{ name: 'open_language_options' }"
             [mat-menu-trigger-for]="languageOptionsMenu"
           >
             <mat-icon matListItemIcon>language</mat-icon>
@@ -26,7 +26,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'Open color scheme options' }"
+            [jetAnalytics]="{ name: 'open_color_scheme_options' }"
             [mat-menu-trigger-for]="colorSchemeOptionsMenu"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
@@ -38,7 +38,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'Check for updates' }"
+            [jetAnalytics]="{ name: 'check_for_updates' }"
             (click)="checkForUpdate()"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
@@ -52,7 +52,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'Reload' }"
+            [jetAnalytics]="{ name: 'reload' }"
             (click)="reload()"
           >
             <mat-icon matListItemIcon>refresh</mat-icon>
@@ -62,7 +62,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'Reset' }"
+            [jetAnalytics]="{ name: 'reset' }"
             (click)="reset()"
           >
             <mat-icon matListItemIcon>restart_alt</mat-icon>
@@ -92,7 +92,7 @@
           [disabled]="_settings.languageOption.value === languageOption.value"
           [jetAnalytics]="{
             data: { languageOption: languageOption.value },
-            name: 'Select language option',
+            name: 'select_language_option',
           }"
           (click)="updateSettings({ languageOption })"
         >
@@ -117,7 +117,7 @@
           "
           [jetAnalytics]="{
             data: { colorSchemeOption: colorSchemeOption.value },
-            name: 'Select color scheme option',
+            name: 'select_color_scheme_option',
           }"
           (click)="updateSettings({ colorSchemeOption })"
         >

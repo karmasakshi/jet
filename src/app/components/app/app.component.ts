@@ -197,8 +197,9 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   public ngOnInit(): void {
-    this.#analyticsService.logEvent('Start', {
-      version: `v${packageJson.version}`,
+    this.#analyticsService.logEvent({
+      data: { version: packageJson.version },
+      name: 'start',
     });
 
     this.#router.events

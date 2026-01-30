@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { AnalyticsEvent } from '@jet/interfaces/analytics-event.interface';
+
 export class AnalyticsServiceMock {
-  public logEvent(
-    _eventName: string,
-    _eventData?: Record<string, boolean | null | number | string | undefined>,
-  ): void {
+  public logEvent(_analyticsEvent: AnalyticsEvent): void {
     // Do nothing
   }
 }

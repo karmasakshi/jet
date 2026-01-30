@@ -5,13 +5,9 @@ import {
   input,
   InputSignal,
 } from '@angular/core';
+import { AnalyticsEvent } from '@jet/interfaces/analytics-event.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
-
-interface AnalyticsEvent {
-  data?: Record<string, boolean | null | number | string | undefined>;
-  name: string;
-}
 
 @Directive({ selector: '[jetAnalytics]' })
 export class AnalyticsDirective {
@@ -25,8 +21,7 @@ export class AnalyticsDirective {
   }
 
   @HostListener('click')
-  public logClick(): void {
-    const { data, name } = this.jetAnalytics();
-    this.#analyticsService.logEvent(name, data);
+  protected logClick(): void {
+    this.#analyticsService.logEvent(this.jetAnalytics());
   }
 }
