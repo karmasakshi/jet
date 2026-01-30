@@ -70,7 +70,7 @@
           "options": {
             "headers": {
               "Content-Security-Policy": "default-src 'none'; base-uri 'self'; connect-src 'self' http://localhost:54321 https://*.google-analytics.com https://*.supabase.co; font-src 'self' https://fonts.gstatic.com; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' data: http://localhost:54321 https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; manifest-src 'self'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; worker-src 'self' blob:;",
-              "Cross-Origin-Embedder-Policy": "require-corp",
+              "Cross-Origin-Embedder-Policy": "credentialless",
               "Cross-Origin-Opener-Policy": "same-origin",
               "Cross-Origin-Resource-Policy": "same-origin",
               "Referrer-Policy": "strict-origin-when-cross-origin",

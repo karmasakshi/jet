@@ -150,8 +150,6 @@ as $$
   end;
 $$;
 
-revoke all on routine public.is_authorized from public, anon, authenticated;
-
 -- security invoker
 
 create or replace function public.custom_access_token_hook(_event jsonb)
