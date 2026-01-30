@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.17.0](https://github.com/karmasakshi/jet/compare/v4.16.0...v4.17.0) (2026-01-30)
+
+
+### Features
+
+* **general:** update analytics directive and service ([1398868](https://github.com/karmasakshi/jet/commit/1398868ee99fe7ed4f22a705ff004f170fb47005))
+
 ## [4.16.0](https://github.com/karmasakshi/jet/compare/v4.15.0...v4.16.0) (2025-12-24)
 
 
