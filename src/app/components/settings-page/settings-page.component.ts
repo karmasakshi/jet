@@ -50,11 +50,11 @@ export class SettingsPageComponent {
   readonly #storageService = inject(StorageService);
   readonly #translocoService = inject(TranslocoService);
 
-  public readonly colorSchemeOptions: ColorSchemeOption[];
-  public readonly languageOptions: LanguageOption[];
-  public readonly lastUpdateCheckTimestamp: Signal<string>;
-  public readonly settings: Signal<Settings>;
-  public readonly version: string;
+  protected readonly colorSchemeOptions: ColorSchemeOption[];
+  protected readonly languageOptions: LanguageOption[];
+  protected readonly lastUpdateCheckTimestamp: Signal<string>;
+  protected readonly settings: Signal<Settings>;
+  protected readonly version: string;
 
   public constructor() {
     this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
@@ -71,7 +71,7 @@ export class SettingsPageComponent {
     this.#loggerService.logComponentInitialization('SettingsPageComponent');
   }
 
-  public async checkForUpdate(): Promise<void> {
+  protected async checkForUpdate(): Promise<void> {
     this.#progressBarService.showQueryProgressBar();
 
     this.#alertService.showAlert(
@@ -101,17 +101,17 @@ export class SettingsPageComponent {
     }
   }
 
-  public reload(): void {
+  protected reload(): void {
     window.location.reload();
   }
 
-  public reset(): void {
+  protected reset(): void {
     this.#storageService.clearLocalStorage();
     this.#storageService.clearSessionStorage();
     this.reload();
   }
 
-  public updateSettings(partialSettings: Partial<Settings>): void {
+  protected updateSettings(partialSettings: Partial<Settings>): void {
     this.#settingsService.updateSettings(partialSettings);
   }
 }

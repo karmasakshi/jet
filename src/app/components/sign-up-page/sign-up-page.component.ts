@@ -58,8 +58,8 @@ export class SignUpPageComponent implements OnInit {
 
   public readonly email: InputSignal<string | undefined> = input();
 
-  public isPasswordHidden: boolean;
-  public readonly signUpFormGroup: FormGroup<{
+  protected isPasswordHidden: boolean;
+  protected readonly signUpFormGroup: FormGroup<{
     email: FormControl<null | string>;
     password: FormControl<null | string>;
   }>;
@@ -87,7 +87,7 @@ export class SignUpPageComponent implements OnInit {
     this.signUpFormGroup.patchValue({ email: this.email() ?? null });
   }
 
-  public async signUp(email: string, password: string) {
+  protected async signUp(email: string, password: string) {
     if (this.#isLoading) {
       return;
     }

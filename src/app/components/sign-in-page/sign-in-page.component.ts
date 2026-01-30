@@ -60,8 +60,8 @@ export class SignInPageComponent implements OnInit {
   public readonly email: InputSignal<string | undefined> = input();
   public readonly returnUrl: InputSignal<string | undefined> = input();
 
-  public isPasswordHidden: boolean;
-  public readonly signInFormGroup: FormGroup<{
+  protected isPasswordHidden: boolean;
+  protected readonly signInFormGroup: FormGroup<{
     email: FormControl<null | string>;
     password: FormControl<null | string>;
   }>;
@@ -91,7 +91,7 @@ export class SignInPageComponent implements OnInit {
     void this.#getClaims();
   }
 
-  public async signInWithPassword(email: string, password: string) {
+  protected async signInWithPassword(email: string, password: string) {
     if (this.#isLoading) {
       return;
     }
@@ -131,7 +131,7 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  public async signInWithOauth(oauthProvider: OauthProvider) {
+  protected async signInWithOauth(oauthProvider: OauthProvider) {
     if (this.#isLoading) {
       return;
     }
@@ -160,7 +160,7 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  public async signInWithOtp(email: string) {
+  protected async signInWithOtp(email: string) {
     if (this.#isLoading) {
       return;
     }

@@ -64,12 +64,12 @@ export class UpdatePasswordPageComponent
   #isLoading: boolean;
   readonly #user: null | User;
 
-  public readonly emailFormGroup: FormGroup<{
+  protected readonly emailFormGroup: FormGroup<{
     email: FormControl<null | string>;
   }>;
-  public isConfirmNewPasswordHidden: boolean;
-  public isNewPasswordHidden: boolean;
-  public readonly updatePasswordFormGroup: FormGroup<{
+  protected isConfirmNewPasswordHidden: boolean;
+  protected isNewPasswordHidden: boolean;
+  protected readonly updatePasswordFormGroup: FormGroup<{
     confirmNewPassword: FormControl<null | string>;
     newPassword: FormControl<null | string>;
   }>;
@@ -125,7 +125,7 @@ export class UpdatePasswordPageComponent
     return this.updatePasswordFormGroup.dirty;
   }
 
-  public async updatePassword(password: string): Promise<void> {
+  protected async updatePassword(password: string): Promise<void> {
     if (this.#isLoading) {
       return;
     }

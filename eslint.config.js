@@ -35,8 +35,10 @@ module.exports = defineConfig([
           classes: [
             '#private-instance-field',
             'public-instance-field',
+            'protected-instance-field',
             'constructor',
             'public-instance-method',
+            'protected-instance-method',
             '#private-instance-method',
           ],
         },

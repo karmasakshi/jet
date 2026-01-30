@@ -74,11 +74,11 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     ElementRef<HTMLInputElement> | undefined
   > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
 
-  public readonly emailFormGroup: FormGroup<{
+  protected readonly emailFormGroup: FormGroup<{
     email: FormControl<null | string>;
   }>;
-  public readonly profile: WritableSignal<Profile | undefined>;
-  public readonly profileFormGroup: FormGroup<{
+  protected readonly profile: WritableSignal<Profile | undefined>;
+  protected readonly profileFormGroup: FormGroup<{
     full_name: FormControl<null | string>;
     username: FormControl<null | string>;
   }>;
@@ -121,7 +121,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     return this.profileFormGroup.dirty;
   }
 
-  public async replaceAvatar(): Promise<void> {
+  protected async replaceAvatar(): Promise<void> {
     const files: FileList | null | undefined =
       this.avatarFileInputRef()?.nativeElement.files;
 
@@ -204,7 +204,9 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     }
   }
 
-  public async updateProfile(partialProfile: Partial<Profile>): Promise<void> {
+  protected async updateProfile(
+    partialProfile: Partial<Profile>,
+  ): Promise<void> {
     if (this.#isLoading) {
       return;
     }

@@ -90,13 +90,15 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #isPwaMode: boolean;
   readonly #languageOption: Signal<LanguageOption>;
 
-  public activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
-  public readonly directionality: Signal<LanguageOption['directionality']>;
-  public readonly isLargeViewport: Signal<boolean>;
-  public readonly isMatSidenavOpen: WritableSignal<boolean>;
-  public readonly matSidenavMode: Signal<MatDrawerMode>;
-  public readonly navigationMenuItems: NavigationMenuItem[];
-  public readonly shouldAddSafeArea: Signal<boolean>;
+  protected activeNavigationMenuItemPath:
+    | NavigationMenuItem['path']
+    | undefined;
+  protected readonly directionality: Signal<LanguageOption['directionality']>;
+  protected readonly isLargeViewport: Signal<boolean>;
+  protected readonly isMatSidenavOpen: WritableSignal<boolean>;
+  protected readonly matSidenavMode: Signal<MatDrawerMode>;
+  protected readonly navigationMenuItems: NavigationMenuItem[];
+  protected readonly shouldAddSafeArea: Signal<boolean>;
 
   public constructor() {
     this.#activeColorSchemeClass = null;

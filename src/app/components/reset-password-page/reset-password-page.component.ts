@@ -57,7 +57,7 @@ export class ResetPasswordPageComponent implements OnInit {
 
   public readonly email: InputSignal<string | undefined> = input();
 
-  public readonly resetPasswordFormGroup: FormGroup<{
+  protected readonly resetPasswordFormGroup: FormGroup<{
     email: FormControl<null | string>;
   }>;
 
@@ -80,7 +80,7 @@ export class ResetPasswordPageComponent implements OnInit {
     this.resetPasswordFormGroup.patchValue({ email: this.email() ?? null });
   }
 
-  public async resetPasswordForEmail(email: string) {
+  protected async resetPasswordForEmail(email: string) {
     if (this.#isLoading) {
       return;
     }
