@@ -2,7 +2,7 @@ with
   config as (
     select
       'public' as schema_name,
-      'app_roles_users' as table_name,
+      'profiles' as table_name,
       array[
         'public',
         'anon',

@@ -3,8 +3,8 @@
   "editor.renderWhitespace": "all",
   "editor.scrollBeyondLastLine": false,
   "editor.tabSize": 2,
+  "explorer.compactFolders": false,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
-  "explorer.compactFolders": false
+  "files.trimTrailingWhitespace": true
 }
