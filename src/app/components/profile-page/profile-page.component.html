@@ -225,12 +225,12 @@
           <div class="jet-flexc-centered">
             <span>{{
               t('profile-last-updated-on-x', {
-                value: (_profile?.updated_at | date: 'medium') ?? '?',
+                value: (_profile?.updated_at | date: 'medium'),
               })
             }}</span>
             <span>{{
               t('profile-created-on-x', {
-                value: (_profile?.created_at | date: 'medium') ?? '?',
+                value: (_profile?.created_at | date: 'medium'),
               })
             }}</span>
           </div>
