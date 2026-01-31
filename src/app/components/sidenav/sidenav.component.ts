@@ -3,9 +3,7 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
   output,
-  OutputEmitterRef,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,11 +36,11 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class SidenavComponent {
   readonly #loggerService = inject(LoggerService);
 
-  public readonly activeNavigationMenuItemPath: InputSignal<
+  public readonly activeNavigationMenuItemPath = input.required<
     string | undefined
-  > = input.required();
+  >();
 
-  protected readonly clickNavigationMenuItem: OutputEmitterRef<void> = output();
+  protected readonly clickNavigationMenuItem = output<void>();
 
   protected readonly navigationMenuItems: NavigationMenuItem[];
 

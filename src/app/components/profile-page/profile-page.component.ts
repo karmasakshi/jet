@@ -6,7 +6,6 @@ import {
   inject,
   OnInit,
   signal,
-  Signal,
   viewChild,
   WritableSignal,
 } from '@angular/core';
@@ -70,9 +69,8 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   #isLoading: boolean;
   readonly #user: null | User;
 
-  protected readonly avatarFileInputRef: Signal<
-    ElementRef<HTMLInputElement> | undefined
-  > = viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
+  protected readonly avatarFileInputRef =
+    viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
 
   protected readonly emailFormGroup: FormGroup<{
     email: FormControl<null | string>;

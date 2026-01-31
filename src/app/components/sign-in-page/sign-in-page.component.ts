@@ -4,7 +4,6 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
   OnInit,
 } from '@angular/core';
 import {
@@ -57,8 +56,8 @@ export class SignInPageComponent implements OnInit {
 
   #isLoading: boolean;
 
-  public readonly email: InputSignal<string | undefined> = input();
-  public readonly returnUrl: InputSignal<string | undefined> = input();
+  public readonly email = input<null | string>(null);
+  public readonly returnUrl = input<string>('/');
 
   protected isPasswordHidden: boolean;
   protected readonly signInFormGroup: FormGroup<{
@@ -86,7 +85,7 @@ export class SignInPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.signInFormGroup.patchValue({ email: this.email() ?? null });
+    this.signInFormGroup.patchValue({ email: this.email() });
 
     void this.#getClaims();
   }
@@ -116,7 +115,7 @@ export class SignInPageComponent implements OnInit {
         this.#translocoService.translate('alerts.welcome'),
       );
 
-      void this.#router.navigateByUrl(this.returnUrl() ?? '/');
+      void this.#router.navigateByUrl(this.returnUrl());
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this.#loggerService.logError(exception);
@@ -208,7 +207,7 @@ export class SignInPageComponent implements OnInit {
           this.#translocoService.translate('alerts.welcome'),
         );
 
-        void this.#router.navigateByUrl(this.returnUrl() ?? '/');
+        void this.#router.navigateByUrl(this.returnUrl());
       }
     } catch (exception: unknown) {
       if (exception instanceof Error) {

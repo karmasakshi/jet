@@ -3,9 +3,7 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
   output,
-  OutputEmitterRef,
   Signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,10 +40,10 @@ export class ToolbarComponent {
   readonly #progressBarService = inject(ProgressBarService);
   readonly #toolbarTitleService = inject(ToolbarTitleService);
 
-  public readonly isLargeViewport: InputSignal<boolean> = input.required();
-  public readonly shouldAddSafeArea: InputSignal<boolean> = input.required();
+  public readonly isLargeViewport = input.required<boolean>();
+  public readonly shouldAddSafeArea = input.required<boolean>();
 
-  protected readonly toggleMatSidenav: OutputEmitterRef<void> = output();
+  protected readonly toggleMatSidenav = output<void>();
 
   protected readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   protected readonly toolbarTitle: Signal<null | string>;

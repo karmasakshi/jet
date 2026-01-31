@@ -4,7 +4,6 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
   OnInit,
 } from '@angular/core';
 import {
@@ -56,7 +55,7 @@ export class SignUpPageComponent implements OnInit {
 
   #isLoading: boolean;
 
-  public readonly email: InputSignal<string | undefined> = input();
+  public readonly email = input<null | string>(null);
 
   protected isPasswordHidden: boolean;
   protected readonly signUpFormGroup: FormGroup<{
@@ -84,7 +83,7 @@ export class SignUpPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.signUpFormGroup.patchValue({ email: this.email() ?? null });
+    this.signUpFormGroup.patchValue({ email: this.email() });
   }
 
   protected async signUp(email: string, password: string) {

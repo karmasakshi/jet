@@ -4,7 +4,6 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
   OnInit,
 } from '@angular/core';
 import {
@@ -55,7 +54,7 @@ export class ResetPasswordPageComponent implements OnInit {
 
   #isLoading: boolean;
 
-  public readonly email: InputSignal<string | undefined> = input();
+  public readonly email = input<null | string>(null);
 
   protected readonly resetPasswordFormGroup: FormGroup<{
     email: FormControl<null | string>;
@@ -77,7 +76,7 @@ export class ResetPasswordPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.resetPasswordFormGroup.patchValue({ email: this.email() ?? null });
+    this.resetPasswordFormGroup.patchValue({ email: this.email() });
   }
 
   protected async resetPasswordForEmail(email: string) {

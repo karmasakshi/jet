@@ -4,7 +4,6 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
   OnInit,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,13 +32,13 @@ export class MessagePageComponent implements OnInit {
   readonly #analyticsService = inject(AnalyticsService);
   readonly #loggerService = inject(LoggerService);
 
-  public readonly case: InputSignal<
+  public readonly case = input<
     | 'email-verification-pending'
     | 'not-found'
     | 'reset-password-email-sent'
     | 'sign-in-link-sent'
     | undefined
-  > = input();
+  >(undefined);
 
   public constructor() {
     this.#loggerService.logComponentInitialization('MessagePageComponent');

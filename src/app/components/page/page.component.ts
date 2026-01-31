@@ -4,7 +4,6 @@ import {
   effect,
   inject,
   input,
-  InputSignal,
   untracked,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -26,11 +25,11 @@ export class PageComponent {
 
   readonly #defaultSeoImageUrl: string;
 
-  public readonly seoDescription: InputSignal<string> = input.required();
-  public readonly seoImageUrl: InputSignal<string | undefined> = input();
-  public readonly seoKeywords: InputSignal<string> = input.required();
-  public readonly seoTitle: InputSignal<string> = input.required();
-  public readonly toolbarTitle: InputSignal<string> = input.required();
+  public readonly seoDescription = input.required<string>();
+  public readonly seoImageUrl = input<string | undefined>(undefined);
+  public readonly seoKeywords = input.required<string>();
+  public readonly seoTitle = input.required<string>();
+  public readonly toolbarTitle = input.required<string>();
 
   public constructor() {
     this.#defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;

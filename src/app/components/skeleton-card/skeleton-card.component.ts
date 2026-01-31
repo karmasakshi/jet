@@ -3,7 +3,6 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -18,8 +17,8 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 export class SkeletonCardComponent {
   readonly #loggerService = inject(LoggerService);
 
-  public readonly height: InputSignal<number> = input.required();
-  public readonly width: InputSignal<number> = input.required();
+  public readonly height = input.required<number>();
+  public readonly width = input.required<number>();
 
   public constructor() {
     this.#loggerService.logComponentInitialization('SkeletonCardComponent');
