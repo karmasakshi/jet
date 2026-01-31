@@ -17,6 +17,7 @@ import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
 import {
   provideRouter,
   withComponentInputBinding,
+  withDebugTracing,
   withInMemoryScrolling,
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
@@ -51,6 +52,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
+      ...(isDevMode() ? [withDebugTracing()] : []),
       withInMemoryScrolling({
         anchorScrolling: 'enabled',
         scrollPositionRestoration: 'enabled',
