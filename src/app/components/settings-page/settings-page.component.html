@@ -92,7 +92,7 @@
           [disabled]="_settings.languageOption.value === languageOption.value"
           [jetAnalytics]="{
             data: { languageOption: languageOption.value },
-            name: 'select_language_option',
+            name: 'set_language_option',
           }"
           (click)="updateSettings({ languageOption })"
         >
@@ -117,7 +117,7 @@
           "
           [jetAnalytics]="{
             data: { colorSchemeOption: colorSchemeOption.value },
-            name: 'select_color_scheme_option',
+            name: 'set_color_scheme_option',
           }"
           (click)="updateSettings({ colorSchemeOption })"
         >
