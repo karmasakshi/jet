@@ -90,7 +90,7 @@ export class ServiceWorkerService {
       .subscribe((versionEvent: VersionEvent) => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
-            this.#analyticsService.logEvent({
+            this.#analyticsService.logAnalyticsEvent({
               name: 'no_new_version_detected',
             });
 
@@ -99,7 +99,7 @@ export class ServiceWorkerService {
             break;
 
           case 'VERSION_DETECTED':
-            this.#analyticsService.logEvent({
+            this.#analyticsService.logAnalyticsEvent({
               data: { version: versionEvent.version.hash },
               name: 'version_detected',
             });
@@ -113,7 +113,7 @@ export class ServiceWorkerService {
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
-            this.#analyticsService.logEvent({
+            this.#analyticsService.logAnalyticsEvent({
               name: 'version_installation_failed',
             });
 
@@ -124,7 +124,7 @@ export class ServiceWorkerService {
             break;
 
           case 'VERSION_READY':
-            this.#analyticsService.logEvent({
+            this.#analyticsService.logAnalyticsEvent({
               data: {
                 currentVersion: versionEvent.currentVersion.hash,
                 latestVersion: versionEvent.latestVersion.hash,

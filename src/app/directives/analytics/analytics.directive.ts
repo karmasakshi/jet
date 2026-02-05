@@ -3,19 +3,19 @@ import { AnalyticsEvent } from '@jet/interfaces/analytics-event.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
-@Directive({ selector: '[jetAnalytics]' })
+@Directive({ selector: '[jetAnalyticsEvent]' })
 export class AnalyticsDirective {
   readonly #analyticsService = inject(AnalyticsService);
   readonly #loggerService = inject(LoggerService);
 
-  public readonly jetAnalytics = input.required<AnalyticsEvent>();
+  public readonly jetAnalyticsEvent = input.required<AnalyticsEvent>();
 
   public constructor() {
     this.#loggerService.logDirectiveInitialization('AnalyticsDirective');
   }
 
   @HostListener('click')
-  protected logClick(): void {
-    this.#analyticsService.logEvent(this.jetAnalytics());
+  protected logAnalyticsEvent(): void {
+    this.#analyticsService.logAnalyticsEvent(this.jetAnalyticsEvent());
   }
 }

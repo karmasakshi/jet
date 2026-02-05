@@ -49,7 +49,7 @@
                 autocomplete="photo"
                 type="file"
                 [disabled]="profileFormGroup.disabled"
-                [jetAnalytics]="{ name: 'update_avatar' }"
+                [jetAnalyticsEvent]="{ name: 'update_avatar' }"
                 (change)="replaceAvatar()"
               />
             </mat-card-content>
@@ -197,7 +197,7 @@
             matButton="filled"
             type="submit"
             [disabled]="profileFormGroup.disabled || profileFormGroup.invalid"
-            [jetAnalytics]="{ name: 'update_profile' }"
+            [jetAnalyticsEvent]="{ name: 'update_profile' }"
           >
             {{ t('save') }}
           </button>

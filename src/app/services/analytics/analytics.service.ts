@@ -21,7 +21,7 @@ export class AnalyticsService {
     this.#loggerService.logServiceInitialization('AnalyticsService');
   }
 
-  public logEvent(analyticsEvent: AnalyticsEvent): void {
+  public logAnalyticsEvent(analyticsEvent: AnalyticsEvent): void {
     if (!this.#isAnalyticsEnabled) {
       return;
     }

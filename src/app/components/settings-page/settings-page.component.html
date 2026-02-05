@@ -14,7 +14,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'open_language_options' }"
+            [jetAnalyticsEvent]="{ name: 'open_language_options' }"
             [mat-menu-trigger-for]="languageOptionsMenu"
           >
             <mat-icon matListItemIcon>language</mat-icon>
@@ -26,7 +26,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'open_color_scheme_options' }"
+            [jetAnalyticsEvent]="{ name: 'open_color_scheme_options' }"
             [mat-menu-trigger-for]="colorSchemeOptionsMenu"
           >
             <mat-icon matListItemIcon>palette</mat-icon>
@@ -38,7 +38,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'check_for_updates' }"
+            [jetAnalyticsEvent]="{ name: 'check_for_updates' }"
             (click)="checkForUpdate()"
           >
             <mat-icon matListItemIcon>sync</mat-icon>
@@ -52,7 +52,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'reload' }"
+            [jetAnalyticsEvent]="{ name: 'reload' }"
             (click)="reload()"
           >
             <mat-icon matListItemIcon>refresh</mat-icon>
@@ -62,7 +62,7 @@
           <button
             mat-list-item
             type="button"
-            [jetAnalytics]="{ name: 'reset' }"
+            [jetAnalyticsEvent]="{ name: 'reset' }"
             (click)="reset()"
           >
             <mat-icon matListItemIcon>restart_alt</mat-icon>
@@ -90,7 +90,7 @@
           mat-menu-item
           type="button"
           [disabled]="_settings.languageOption.value === languageOption.value"
-          [jetAnalytics]="{
+          [jetAnalyticsEvent]="{
             data: { languageOption: languageOption.value },
             name: 'set_language_option',
           }"
@@ -115,7 +115,7 @@
           [disabled]="
             _settings.colorSchemeOption.value === colorSchemeOption.value
           "
-          [jetAnalytics]="{
+          [jetAnalyticsEvent]="{
             data: { colorSchemeOption: colorSchemeOption.value },
             name: 'set_color_scheme_option',
           }"
