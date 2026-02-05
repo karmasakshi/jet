@@ -107,6 +107,9 @@ body {
 }
 
 .jet-sidenav-container {
+  min-width: 360px;
+  overflow-x: auto;
+
   &[dir='ltr'] {
     --jet-animation-multiplier: 1;
     --jet-safe-area-start: env(safe-area-inset-left);
