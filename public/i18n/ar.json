@@ -1,13 +1,14 @@
 {
-  "alert-ctas": { "ok": "حسناً", "reload": "إعادة التحميل" },
   "alerts": {
     "avatar-updated": "تم تحديث الصورة الرمزية.",
     "checking-for-updates": "جارٍ التحقق من التحديثات...",
     "downloading-updates": "جارٍ تنزيل التحديثات...",
+    "ok": "حسناً",
     "password-updated": "تم تحديث كلمة المرور.",
     "please-select-a-valid-avatar": "يرجى اختيار صورة رمزية صالحة.",
     "please-select-an-avatar-lte-x-mb": "يرجى اختيار صورة رمزية ≤ {{ value }}MB.",
     "profile-updated": "تم تحديث الملف الشخصي.",
+    "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للحصول على التحديث.",
     "signed-out-successfully": "تم تسجيل الخروج بنجاح.",
     "something-went-wrong": "حدث خطأ ما.",

@@ -1,13 +1,14 @@
 {
-  "alert-ctas": { "ok": "OK", "reload": "RELOAD" },
   "alerts": {
     "avatar-updated": "Avatar updated.",
     "checking-for-updates": "Checking for updates...",
     "downloading-updates": "Downloading updates...",
+    "ok": "OK",
     "password-updated": "Password updated.",
     "please-select-a-valid-avatar": "Please select a valid avatar.",
     "please-select-an-avatar-lte-x-mb": "Please select an avatar <= {{ value }}MB.",
     "profile-updated": "Profile updated.",
+    "reload": "RELOAD",
     "reload-to-update": "Reload to update.",
     "signed-out-successfully": "Signed out successfully.",
     "something-went-wrong": "Something went wrong.",

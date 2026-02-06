@@ -72,7 +72,7 @@ export class ServiceWorkerService {
     if (this.#isUpdateReady) {
       this.#alertService.showAlert(
         this.#translocoService.translate('alerts.reload-to-update'),
-        this.#translocoService.translate('alert-ctas.reload'),
+        this.#translocoService.translate('alerts.reload'),
         (): void => {
           window.location.reload();
         },
@@ -136,7 +136,7 @@ export class ServiceWorkerService {
 
             this.#alertService.showAlert(
               this.#translocoService.translate('alerts.reload-to-update'),
-              this.#translocoService.translate('alert-ctas.reload'),
+              this.#translocoService.translate('alerts.reload'),
               (): void => {
                 window.location.reload();
               },

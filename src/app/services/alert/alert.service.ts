@@ -29,7 +29,7 @@ export class AlertService {
 
   public showAlert(
     message: string,
-    cta: string = this.#translocoService.translate('alert-ctas.ok'),
+    cta: string = this.#translocoService.translate('alerts.ok'),
     action?: () => void,
   ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
