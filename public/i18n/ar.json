@@ -6,7 +6,7 @@
     "ok": "حسناً",
     "password-updated": "تم تحديث كلمة المرور.",
     "please-select-a-valid-avatar": "يرجى اختيار صورة رمزية صالحة.",
-    "please-select-an-avatar-lte-x-mb": "يرجى اختيار صورة رمزية ≤ {{ value }}MB.",
+    "please-select-an-avatar-lte-x-mb": "يرجى اختيار صورة رمزية ≤ {{ x }}MB.",
     "profile-updated": "تم تحديث الملف الشخصي.",
     "reload": "إعادة التحميل",
     "reload-to-update": "أعد التحميل للحصول على التحديث.",
@@ -55,10 +55,10 @@
     "clear": "مسح",
     "email": "البريد الإلكتروني",
     "full-name": "الاسم الكامل",
-    "full-name-error-maxlength": "يصل طول الاسم الكامل إلى {{ value }} حرفاً",
+    "full-name-error-maxlength-x": "يصل طول الاسم الكامل إلى {{ x }} حرفاً",
     "profile": "الملف الشخصي",
-    "profile-created-on-x": "تم إنشاء الملف الشخصي في {{ value }}",
-    "profile-last-updated-on-x": "آخر تحديث للملف الشخصي في {{ value }}",
+    "profile-created-on-x": "تم إنشاء الملف الشخصي في {{ x }}",
+    "profile-last-updated-on-x": "آخر تحديث للملف الشخصي في {{ x }}",
     "save": "حفظ",
     "seo": {
       "description": "Jet.",
@@ -69,11 +69,11 @@
     "toolbar-title": "الملف الشخصي",
     "update-password": "تحديث كلمة المرور",
     "username": "اسم المستخدم",
-    "username-error-maxlength": "يصل طول اسم المستخدم إلى {{ value }} حرفاً",
-    "username-error-minlength": "يجب ألا يقل اسم المستخدم عن {{ value }} حرفاً",
+    "username-error-maxlength-x": "يصل طول اسم المستخدم إلى {{ x }} حرفاً",
+    "username-error-minlength-x": "يجب ألا يقل اسم المستخدم عن {{ x }} حرفاً",
     "username-error-pattern": "يمكن أن يحتوي اسم المستخدم فقط على a-z و0-9 و _",
     "username-error-required": "اسم المستخدم مطلوب",
-    "x-of-y-characters": "{{ length }} من {{ maximum }} حرفاً"
+    "x-of-y-characters": "{{ x }} من {{ y }} حرفاً"
   },
   "jet-reset-password-page": {
     "clear": "مسح",
@@ -94,14 +94,14 @@
     "change-color-scheme": "تغيير نظام الألوان",
     "change-language": "تغيير اللغة",
     "check-for-updates": "التحقق من التحديثات",
-    "last-checked-x": "آخر تحقق: {{ value }}",
+    "last-checked-x": "آخر تحقق: {{ x }}",
     "reload": "إعادة التحميل",
     "reload-description": "احتفظ بالإعدادات وأعد التحميل",
     "reset": "إعادة الضبط",
     "reset-description": "استخدم الإعدادات الافتراضية وأعد التحميل",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "الإعدادات" },
     "toolbar-title": "الإعدادات",
-    "version-x": "v{{ value }}"
+    "v-x": "v{{ x }}"
   },
   "jet-sidenav": { "home": "الرئيسية" },
   "jet-sign-in-page": {
@@ -112,7 +112,7 @@
     "email-sign-in-link": "رابط تسجيل الدخول عبر البريد الإلكتروني",
     "or": "- أو -",
     "password": "كلمة المرور",
-    "password-error-minlength": "يجب ألا تقل كلمة المرور عن {{ value }} حرفاً",
+    "password-error-minlength-x": "يجب ألا تقل كلمة المرور عن {{ x }} حرفاً",
     "password-error-required": "كلمة المرور مطلوبة",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": {
@@ -121,7 +121,7 @@
       "title": "تسجيل الدخول"
     },
     "sign-in": "تسجيل الدخول",
-    "sign-in-to-continue-to-x": "سجل الدخول للمتابعة إلى {{ value }}",
+    "sign-in-to-continue-to-x": "سجل الدخول للمتابعة إلى {{ x }}",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",
     "toggle-visibility": "تبديل الرؤية",
@@ -141,7 +141,7 @@
     "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
     "email-error-required": "البريد الإلكتروني مطلوب",
     "password": "كلمة المرور",
-    "password-error-minlength": "يجب ألا تقل كلمة المرور عن {{ value }} حرفاً",
+    "password-error-minlength-x": "يجب ألا تقل كلمة المرور عن {{ x }} حرفاً",
     "password-error-required": "كلمة المرور مطلوبة",
     "reset-password": "إعادة تعيين كلمة المرور",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "إنشاء حساب" },
@@ -157,12 +157,12 @@
   },
   "jet-update-password-page": {
     "confirm-new-password": "تأكيد كلمة المرور الجديدة",
-    "confirm-new-password-error-minlength": "يجب أن تكون كلمة المرور مكوّنة من {{ value }} أحرف على الأقل",
+    "confirm-new-password-error-minlength-x": "يجب أن تكون كلمة المرور مكوّنة من {{ x }} أحرف على الأقل",
     "confirm-new-password-error-mismatch": "تأكيد كلمة المرور غير متطابق",
     "confirm-new-password-error-required": "تأكيد كلمة المرور مطلوب",
     "email": "البريد الإلكتروني",
     "new-password": "كلمة المرور الجديدة",
-    "new-password-error-minlength": "يجب أن تكون كلمة المرور مكوّنة من {{ value }} أحرف على الأقل",
+    "new-password-error-minlength-x": "يجب أن تكون كلمة المرور مكوّنة من {{ x }} أحرف على الأقل",
     "new-password-error-required": "كلمة المرور مطلوبة",
     "save": "حفظ",
     "seo": {
@@ -180,7 +180,7 @@
     "last-page": "الصفحة الأخيرة",
     "next-page": "الصفحة التالية",
     "page-1-of-1": "الصفحة 1 من 1",
-    "page-x-of-y": "الصفحة {{ active }} من {{ total }}",
+    "page-x-of-y": "الصفحة {{ x  }} من {{ y  }}",
     "previous-page": "الصفحة السابقة"
   }
 }

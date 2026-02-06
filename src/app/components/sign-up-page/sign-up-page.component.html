@@ -85,9 +85,8 @@
                 _passwordControl.errors?.['minlength']
               ) {
                 <mat-error>{{
-                  t('password-error-minlength', {
-                    value:
-                      _passwordControl.errors?.['minlength'].requiredLength,
+                  t('password-error-minlength-x', {
+                    x: _passwordControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>
               }

@@ -105,8 +105,8 @@
                 <mat-hint align="end"
                   >{{
                     t('x-of-y-characters', {
-                      maximum: 60,
-                      length: _fullNameControl.value?.length || 0,
+                      x: _fullNameControl.value?.length || 0,
+                      y: 60,
                     })
                   }}
                 </mat-hint>
@@ -116,9 +116,8 @@
                 _fullNameControl.errors?.['maxlength']
               ) {
                 <mat-error>{{
-                  t('full-name-error-maxlength', {
-                    value:
-                      _fullNameControl.errors?.['maxlength'].requiredLength,
+                  t('full-name-error-maxlength-x', {
+                    x: _fullNameControl.errors?.['maxlength'].requiredLength,
                   })
                 }}</mat-error>
               }
@@ -149,8 +148,8 @@
                 <mat-hint align="end"
                   >{{
                     t('x-of-y-characters', {
-                      maximum: 36,
-                      length: _usernameControl.value?.length || 0,
+                      x: _usernameControl.value?.length || 0,
+                      y: 36,
                     })
                   }}
                 </mat-hint>
@@ -166,9 +165,8 @@
                 _usernameControl.errors?.['maxlength']
               ) {
                 <mat-error>{{
-                  t('username-error-maxlength', {
-                    value:
-                      _usernameControl.errors?.['maxlength'].requiredLength,
+                  t('username-error-maxlength-x', {
+                    x: _usernameControl.errors?.['maxlength'].requiredLength,
                   })
                 }}</mat-error>
               }
@@ -177,9 +175,8 @@
                 _usernameControl.errors?.['minlength']
               ) {
                 <mat-error>{{
-                  t('username-error-minlength', {
-                    value:
-                      _usernameControl.errors?.['minlength'].requiredLength,
+                  t('username-error-minlength-x', {
+                    x: _usernameControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>
               }
@@ -224,12 +221,12 @@
           <div class="jet-flexc-centered">
             <span>{{
               t('profile-last-updated-on-x', {
-                value: (_profile?.updated_at | date: 'medium'),
+                x: (_profile?.updated_at | date: 'medium'),
               })
             }}</span>
             <span>{{
               t('profile-created-on-x', {
-                value: (_profile?.created_at | date: 'medium'),
+                x: (_profile?.created_at | date: 'medium'),
               })
             }}</span>
           </div>

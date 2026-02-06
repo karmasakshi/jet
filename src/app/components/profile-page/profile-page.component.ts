@@ -141,7 +141,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       this.#alertService.showAlert(
         this.#translocoService.translate(
           'alerts.please-select-an-avatar-lte-x-mb',
-          { value: AVATAR_FILE_MAX_SIZE_MB },
+          { x: AVATAR_FILE_MAX_SIZE_MB },
         ),
       );
 
