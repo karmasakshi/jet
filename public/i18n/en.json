@@ -67,7 +67,7 @@
     "username": "Username",
     "username-error-maxlength": "Username is up to {{ value }} characters long",
     "username-error-minlength": "Username is at least {{ value }} characters long",
-    "username-error-pattern": "Username only has a-z, 0-9 and _",
+    "username-error-pattern": "Username is only a-z, 0-9 and _",
     "username-error-required": "Username is required",
     "x-of-y-characters": "{{ length }} of {{ maximum }} characters"
   },
