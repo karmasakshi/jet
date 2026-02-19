@@ -19,15 +19,15 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
 
   beforeAll(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      value: () => ({
-        addEventListener: () => undefined,
-        addListener: () => undefined,
-        matches: false,
-        removeEventListener: () => undefined,
-      }),
-      writable: true,
-    });
+    vi.stubGlobal('matchMedia', () => ({
+      addEventListener: () => undefined,
+      addListener: () => undefined,
+      removeEventListener: () => undefined,
+    }));
+  });
+
+  afterAll(() => {
+    vi.unstubAllGlobals();
   });
 
   beforeEach(async () => {
