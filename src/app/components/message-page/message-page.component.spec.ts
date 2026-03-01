@@ -13,10 +13,7 @@ describe('MessagePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        MessagePageComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), MessagePageComponent],
       providers: [
         { provide: ActivatedRoute, useValue: {} },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },

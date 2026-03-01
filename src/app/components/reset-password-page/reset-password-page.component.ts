@@ -1,11 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -56,9 +50,7 @@ export class ResetPasswordPageComponent implements OnInit {
 
   public readonly email = input<null | string>(null);
 
-  protected readonly resetPasswordFormGroup: FormGroup<{
-    email: FormControl<null | string>;
-  }>;
+  protected readonly resetPasswordFormGroup: FormGroup<{ email: FormControl<null | string> }>;
 
   public constructor() {
     this.#isLoading = false;
@@ -70,9 +62,7 @@ export class ResetPasswordPageComponent implements OnInit {
       ]),
     });
 
-    this.#loggerService.logComponentInitialization(
-      'ResetPasswordPageComponent',
-    );
+    this.#loggerService.logComponentInitialization('ResetPasswordPageComponent');
   }
 
   public ngOnInit(): void {

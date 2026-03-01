@@ -5,10 +5,7 @@
 
 <ng-container *transloco="let t; prefix: 'jet-toolbar'">
   <mat-toolbar
-    [class]="{
-      'jet-add-safe-area': _shouldAddSafeArea,
-      'jet-sidenav-content-toolbar': true,
-    }"
+    [class]="{ 'jet-add-safe-area': _shouldAddSafeArea, 'jet-sidenav-content-toolbar': true }"
   >
     <mat-progress-bar
       [aria-label]="t('loading')"
@@ -41,8 +38,6 @@
         <mat-icon svgIcon="logo" />
       </a>
     }
-    <span style="font: var(--mat-sys-headline-small)">{{
-      _toolbarTitle || t('loading')
-    }}</span>
+    <span style="font: var(--mat-sys-headline-small)">{{ _toolbarTitle || t('loading') }}</span>
   </mat-toolbar>
 </ng-container>

@@ -1,19 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "cli": {
-    "packageManager": "npm",
-    "schematicCollections": ["angular-eslint"]
-  },
+  "cli": { "packageManager": "npm", "schematicCollections": ["angular-eslint"] },
   "newProjectRoot": "projects",
   "projects": {
     "jet": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "type": "component"
-        },
+        "@schematics/angular:component": { "style": "scss", "type": "component" },
         "@schematics/angular:directive": { "type": "directive" },
         "@schematics/angular:service": { "type": "service" },
         "@schematics/angular:guard": { "typeSeparator": "." },
@@ -38,25 +32,13 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
+                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
+            "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
           },
           "defaultConfiguration": "production"
         },

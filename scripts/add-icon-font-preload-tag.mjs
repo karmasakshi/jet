@@ -13,8 +13,7 @@ try {
   const ngsw = JSON.parse(readFileSync(NGSW_PATH, 'utf-8'));
   const originalHtml = readFileSync(INDEX_PATH, 'utf-8');
 
-  const fontUrlRegex =
-    /@font-face\{[^}]*src:url\(([^)]+)\)[^}]*format\(['"]woff2['"]\)/g;
+  const fontUrlRegex = /@font-face\{[^}]*src:url\(([^)]+)\)[^}]*format\(['"]woff2['"]\)/g;
 
   let match;
   let iconFontUrl;
@@ -33,10 +32,7 @@ try {
 
   const preloadTag = `<link as="font" crossorigin="anonymous" href="${iconFontUrl}" rel="preload" type="font/woff2">`;
 
-  const modifiedHtml = originalHtml.replace(
-    /<head>/,
-    `<head>\n    ${preloadTag}`,
-  );
+  const modifiedHtml = originalHtml.replace(/<head>/, `<head>\n    ${preloadTag}`);
 
   const newHash = createHash('sha1').update(modifiedHtml).digest('hex');
 
@@ -50,9 +46,7 @@ try {
   writeFileSync(INDEX_PATH, modifiedHtml);
   writeFileSync(NGSW_PATH, JSON.stringify(ngsw));
 
-  console.log(
-    'Added icon font preload tag to index.html and updated hash in ngsw.json.',
-  );
+  console.log('Added icon font preload tag to index.html and updated hash in ngsw.json.');
 } catch (error) {
   console.warn('Failed to add icon font preload tag:', error.message);
 }

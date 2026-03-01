@@ -18,11 +18,7 @@ export const unsavedChangesGuard: CanDeactivateFn<CanComponentDeactivate> = (
   }
 
   if (component.hasUnsavedChanges()) {
-    return confirm(
-      translocoService.translate(
-        'confirmations.youll-lose-unsaved-changes-continue',
-      ),
-    );
+    return confirm(translocoService.translate('confirmations.youll-lose-unsaved-changes-continue'));
   }
 
   return true;

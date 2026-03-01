@@ -1,11 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -102,18 +96,13 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data } = await this.#userService.signInWithPassword(
-        email,
-        password,
-      );
+      const { data } = await this.#userService.signInWithPassword(email, password);
 
       if (data.session === null) {
         throw new Error();
       }
 
-      this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.welcome'),
-      );
+      this.#alertService.showAlert(this.#translocoService.translate('alerts.welcome'));
 
       void this.#router.navigateByUrl(this.returnUrl());
     } catch (exception: unknown) {
@@ -203,9 +192,7 @@ export class SignInPageComponent implements OnInit {
       const { data } = await this.#userService.getClaims();
 
       if (data) {
-        this.#alertService.showAlert(
-          this.#translocoService.translate('alerts.welcome'),
-        );
+        this.#alertService.showAlert(this.#translocoService.translate('alerts.welcome'));
 
         void this.#router.navigateByUrl(this.returnUrl());
       }

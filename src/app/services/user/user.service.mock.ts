@@ -27,10 +27,7 @@ export class UserServiceMock {
   }
 
   public getClaims(): Promise<
-    | {
-        data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array };
-        error: null;
-      }
+    | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
     | { data: null; error: AuthError }
     | { data: null; error: null }
   > {
@@ -43,9 +40,7 @@ export class UserServiceMock {
     return Promise.resolve({ data: {}, error: null });
   }
 
-  public signInWithOauth(
-    _oauthProvider: OauthProvider,
-  ): Promise<OAuthResponse> {
+  public signInWithOauth(_oauthProvider: OauthProvider): Promise<OAuthResponse> {
     return Promise.resolve({} as OAuthResponse);
   }
 
@@ -53,10 +48,7 @@ export class UserServiceMock {
     return Promise.resolve({} as AuthOtpResponse);
   }
 
-  public signInWithPassword(
-    _email: string,
-    _password: string,
-  ): Promise<AuthTokenResponsePassword> {
+  public signInWithPassword(_email: string, _password: string): Promise<AuthTokenResponsePassword> {
     return Promise.resolve({} as AuthTokenResponsePassword);
   }
 

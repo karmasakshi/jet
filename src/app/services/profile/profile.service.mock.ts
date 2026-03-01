@@ -6,9 +6,7 @@ import { FileObject, StorageError } from '@supabase/storage-js';
 export class ProfileServiceMock {
   public deleteAvatar(
     _publicUrl: string,
-  ): Promise<
-    { data: FileObject[]; error: null } | { data: null; error: StorageError }
-  > {
+  ): Promise<{ data: FileObject[]; error: null } | { data: null; error: StorageError }> {
     return Promise.resolve({ data: [], error: null });
   }
 
@@ -30,9 +28,6 @@ export class ProfileServiceMock {
     | { data: { fullPath: string; id: string; path: string }; error: null }
     | { data: null; error: StorageError }
   > {
-    return Promise.resolve({
-      data: { fullPath: '', id: '', path: '' },
-      error: null,
-    });
+    return Promise.resolve({ data: { fullPath: '', id: '', path: '' }, error: null });
   }
 }

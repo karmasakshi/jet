@@ -12,10 +12,7 @@ describe('UserService', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: ActivatedRoute, useValue: {} },
-        {
-          provide: SUPABASE_CLIENT,
-          useValue: { auth: { onAuthStateChange: () => undefined } },
-        },
+        { provide: SUPABASE_CLIENT, useValue: { auth: { onAuthStateChange: () => undefined } } },
         { provide: LoggerService, useClass: LoggerServiceMock },
         UserService,
       ],

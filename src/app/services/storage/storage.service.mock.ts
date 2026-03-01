@@ -16,9 +16,7 @@ export class StorageServiceMock {
     return null;
   }
 
-  public getSessionStorageItem<T>(
-    _sessionStorageKey: SessionStorageKey,
-  ): null | T {
+  public getSessionStorageItem<T>(_sessionStorageKey: SessionStorageKey): null | T {
     return null;
   }
 
@@ -30,17 +28,11 @@ export class StorageServiceMock {
     // Do nothing
   }
 
-  public setLocalStorageItem<T>(
-    _localStorageKey: LocalStorageKey,
-    _data: T,
-  ): void {
+  public setLocalStorageItem<T>(_localStorageKey: LocalStorageKey, _data: T): void {
     // Do nothing
   }
 
-  public setSessionStorageItem<T>(
-    _sessionStorageKey: SessionStorageKey,
-    _data: T,
-  ): void {
+  public setSessionStorageItem<T>(_sessionStorageKey: SessionStorageKey, _data: T): void {
     // Do nothing
   }
 }

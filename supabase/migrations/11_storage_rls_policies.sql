@@ -16,10 +16,7 @@ with check (
 create policy "Allow authenticated to update in own folder" on storage.objects
 for update
 to authenticated
-using (
-  bucket_id = 'profile_avatars'
-  and (select auth.uid())::text = (storage.foldername(name))[1]
-)
+using (bucket_id = 'profile_avatars' and (select auth.uid())::text = (storage.foldername(name))[1])
 with check (
   bucket_id = 'profile_avatars'
   and (select auth.uid())::text = (storage.foldername(name))[1]
@@ -28,7 +25,4 @@ with check (
 create policy "Allow authenticated to delete in own folder" on storage.objects
 for delete
 to authenticated
-using (
-  bucket_id = 'profile_avatars'
-  and (select auth.uid())::text = (storage.foldername(name))[1]
-);
+using (bucket_id = 'profile_avatars' and (select auth.uid())::text = (storage.foldername(name))[1]);

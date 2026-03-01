@@ -28,10 +28,7 @@ with
       join pg_namespace as n on n.oid = t.typnamespace
       join pg_roles as r on r.oid = t.typowner
       cross join config as c
-    where
-      n.nspname = c.schema_name
-      and t.typname = c.domain_name
-      and t.typtype = 'd'
+    where n.nspname = c.schema_name and t.typname = c.domain_name and t.typtype = 'd'
   ),
   current_state as (
     select

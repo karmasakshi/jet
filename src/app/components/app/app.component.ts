@@ -90,9 +90,7 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #isPwaMode: boolean;
   readonly #languageOption: Signal<LanguageOption>;
 
-  protected activeNavigationMenuItemPath:
-    | NavigationMenuItem['path']
-    | undefined;
+  protected activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
   protected readonly directionality: Signal<LanguageOption['directionality']>;
   protected readonly isLargeViewport: Signal<boolean>;
   protected readonly isMatSidenavOpen: WritableSignal<boolean>;
@@ -105,13 +103,9 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.#activeFontPairClass = null;
 
-    this.#colorSchemeOption = computed(
-      () => this.#settingsService.settings().colorSchemeOption,
-    );
+    this.#colorSchemeOption = computed(() => this.#settingsService.settings().colorSchemeOption);
 
-    this.#darkColorSchemeMediaQueryList = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    );
+    this.#darkColorSchemeMediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
 
     this.#darkColorSchemeEventListener = this.#renderer2.listen(
       this.#darkColorSchemeMediaQueryList,
@@ -123,9 +117,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.#isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
 
-    this.#languageOption = computed(
-      () => this.#settingsService.settings().languageOption,
-    );
+    this.#languageOption = computed(() => this.#settingsService.settings().languageOption);
 
     this.activeNavigationMenuItemPath = undefined;
 
@@ -138,18 +130,14 @@ export class AppComponent implements OnDestroy, OnInit {
     //     .pipe(map((result) => result.matches)),
     //   { initialValue: false },
     // );
-    this.isLargeViewport = signal(
-      this.#breakpointObserver.isMatched(Breakpoints.Web),
-    );
+    this.isLargeViewport = signal(this.#breakpointObserver.isMatched(Breakpoints.Web));
 
     // To keep MatSidenav open by default on large viewports, set
     // this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport())
     // and remove @defer in template.
     this.isMatSidenavOpen = signal(false);
 
-    this.matSidenavMode = computed(() =>
-      this.isLargeViewport() ? 'side' : 'over',
-    );
+    this.matSidenavMode = computed(() => (this.isLargeViewport() ? 'side' : 'over'));
 
     this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
 
@@ -225,8 +213,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
         if (event instanceof NavigationError) {
           const error = event.error;
-          const message: string | undefined =
-            error instanceof Error ? error.message : undefined;
+          const message: string | undefined = error instanceof Error ? error.message : undefined;
 
           this.#loggerService.logError(error);
 
@@ -305,38 +292,27 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   #setLanguage(language: LanguageOption['value']): void {
-    this.#renderer2.setAttribute(
-      this.#document.documentElement,
-      'lang',
-      language,
-    );
+    this.#renderer2.setAttribute(this.#document.documentElement, 'lang', language);
 
     this.#translocoService.setActiveLang(language);
   }
 
   #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
     if (colorScheme === 'automatic') {
-      colorScheme = this.#darkColorSchemeMediaQueryList.matches
-        ? 'dark'
-        : 'light';
+      colorScheme = this.#darkColorSchemeMediaQueryList.matches ? 'dark' : 'light';
     }
 
     const colorSchemeOption: ColorSchemeOption =
-      COLOR_SCHEME_OPTIONS.find(
-        (colorSchemeOption) => colorSchemeOption.value === colorScheme,
-      ) ?? DEFAULT_COLOR_SCHEME_OPTION;
+      COLOR_SCHEME_OPTIONS.find((colorSchemeOption) => colorSchemeOption.value === colorScheme) ??
+      DEFAULT_COLOR_SCHEME_OPTION;
 
-    this.#meta.updateTag({
-      content: colorSchemeOption.themeColor,
-      name: 'theme-color',
-    });
+    this.#meta.updateTag({ content: colorSchemeOption.themeColor, name: 'theme-color' });
   }
 
   #setZoom(isPwaMode: boolean): void {
     if (isPwaMode) {
       this.#meta.updateTag({
-        content:
-          'width=device-width, initial-scale=0.75, viewport-fit=cover, user-scalable=no',
+        content: 'width=device-width, initial-scale=0.75, viewport-fit=cover, user-scalable=no',
         name: 'viewport',
       });
     }

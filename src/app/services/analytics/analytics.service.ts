@@ -7,9 +7,7 @@ import { LoggerService } from '../logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
-  readonly #googleAnalyticsMeasurementId = inject(
-    GOOGLE_ANALYTICS_MEASUREMENT_ID,
-  );
+  readonly #googleAnalyticsMeasurementId = inject(GOOGLE_ANALYTICS_MEASUREMENT_ID);
   readonly #isAnalyticsEnabled = inject(IS_ANALYTICS_ENABLED);
   readonly #loggerService = inject(LoggerService);
 
@@ -26,10 +24,6 @@ export class AnalyticsService {
       return;
     }
 
-    gtag(
-      'event',
-      analyticsEvent.name,
-      analyticsEvent.data as Gtag.CustomParams,
-    );
+    gtag('event', analyticsEvent.name, analyticsEvent.data as Gtag.CustomParams);
   }
 }

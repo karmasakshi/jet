@@ -16,10 +16,7 @@ describe('SignOutPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        SignOutPageComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), SignOutPageComponent],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

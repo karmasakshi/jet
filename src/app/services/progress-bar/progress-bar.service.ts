@@ -1,10 +1,4 @@
-import {
-  inject,
-  Injectable,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { LoggerService } from '../logger/logger.service';
 
@@ -37,12 +31,7 @@ export class ProgressBarService {
   }
 
   public showBufferProgressBar(bufferValue: number, value: number): void {
-    this.#queueConfiguration({
-      bufferValue,
-      isVisible: true,
-      mode: 'buffer',
-      value,
-    });
+    this.#queueConfiguration({ bufferValue, isVisible: true, mode: 'buffer', value });
   }
 
   public showIndeterminateProgressBar(): void {
@@ -53,9 +42,7 @@ export class ProgressBarService {
     this.#queueConfiguration({ isVisible: true, mode: 'query' });
   }
 
-  #queueConfiguration(
-    partialProgressBarConfiguration: Partial<ProgressBarConfiguration>,
-  ): void {
+  #queueConfiguration(partialProgressBarConfiguration: Partial<ProgressBarConfiguration>): void {
     clearTimeout(this.#queueTimeoutId);
 
     this.#queueTimeoutId = setTimeout(() => {

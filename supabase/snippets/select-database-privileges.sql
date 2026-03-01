@@ -30,21 +30,9 @@ with
     select
       role_name,
       db.owner_role as database_owner,
-      has_database_privilege(
-        role_name,
-        db.database_name,
-        'CONNECT'
-      ) as has_connect,
-      has_database_privilege(
-        role_name,
-        db.database_name,
-        'CREATE'
-      ) as has_create,
-      has_database_privilege(
-        role_name,
-        db.database_name,
-        'TEMPORARY'
-      ) as has_temporary
+      has_database_privilege(role_name, db.database_name, 'CONNECT') as has_connect,
+      has_database_privilege(role_name, db.database_name, 'CREATE') as has_create,
+      has_database_privilege(role_name, db.database_name, 'TEMPORARY') as has_temporary
     from
       config as c
       cross join unnest(c.roles_to_check) as role_name

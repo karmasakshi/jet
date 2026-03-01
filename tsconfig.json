@@ -43,8 +43,5 @@
     "defaultCategory": "error" // https://angular.dev/extended-diagnostics#configuration
   },
   "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.spec.json" }
-  ]
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.spec.json" }]
 }

@@ -27,10 +27,7 @@ with
       join pg_namespace as n on n.oid = c.relnamespace
       join pg_roles as r on r.oid = c.relowner
       cross join config as cfg
-    where
-      n.nspname = cfg.schema_name
-      and c.relname = cfg.table_name
-      and c.relkind = 'r'
+    where n.nspname = cfg.schema_name and c.relname = cfg.table_name and c.relkind = 'r'
   ),
   current_state as (
     select
@@ -40,16 +37,8 @@ with
       has_table_privilege(role_name, t.oid, 'INSERT') as has_insert_effective,
       has_table_privilege(role_name, t.oid, 'UPDATE') as has_update_effective,
       has_table_privilege(role_name, t.oid, 'DELETE') as has_delete_effective,
-      has_table_privilege(
-        role_name,
-        t.oid,
-        'TRUNCATE'
-      ) as has_truncate_effective,
-      has_table_privilege(
-        role_name,
-        t.oid,
-        'REFERENCES'
-      ) as has_references_effective,
+      has_table_privilege(role_name, t.oid, 'TRUNCATE') as has_truncate_effective,
+      has_table_privilege(role_name, t.oid, 'REFERENCES') as has_references_effective,
       has_table_privilege(role_name, t.oid, 'TRIGGER') as has_trigger_effective,
       exists (
         select 1

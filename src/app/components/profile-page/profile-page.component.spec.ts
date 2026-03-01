@@ -19,10 +19,7 @@ describe('ProfilePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        ProfilePageComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), ProfilePageComponent],
       providers: [
         { provide: ActivatedRoute, useValue: {} },
         { provide: AlertService, useClass: AlertServiceMock },

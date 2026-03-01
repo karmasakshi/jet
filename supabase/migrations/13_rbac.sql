@@ -11,8 +11,7 @@ create table shared.app_permissions (
   updated_at timestamptz null
 );
 
-comment on table shared.app_permissions is
-  'profiles.select, profiles.update, etc.';
+comment on table shared.app_permissions is 'profiles.select, profiles.update, etc.';
 
 alter table shared.app_permissions enable row level security;
 
@@ -123,9 +122,7 @@ $$;
 
 revoke all on routine public.insert_audit_log from public, anon, authenticated;
 
-create or replace function public.is_authorized(
-  _app_permissions_slug shared.slug
-)
+create or replace function public.is_authorized(_app_permissions_slug shared.slug)
 returns boolean
 language plpgsql
 security definer
@@ -203,9 +200,7 @@ create policy "Allow authorized to select any" on shared.app_permissions_app_rol
 as permissive
 for select
 to authenticated
-using (
-  (select public.is_authorized('app_permissions_app_roles.select')) is true
-);
+using ((select public.is_authorized('app_permissions_app_roles.select')) is true);
 
 -- shared.app_roles
 
@@ -280,10 +275,7 @@ create policy "Allow authenticated to select own and authorized to select any" o
 as permissive
 for select
 to authenticated
-using (
-  (select auth.uid()) = user_id
-  or (select public.is_authorized('profiles.select')) is true
-);
+using ((select auth.uid()) = user_id or (select public.is_authorized('profiles.select')) is true);
 
 drop policy if exists "Allow authenticated to update own" on public.profiles;
 
@@ -291,10 +283,7 @@ create policy "Allow authenticated to update own and authorized to update any" o
 as permissive
 for update
 to authenticated
-using (
-  (select auth.uid()) = user_id
-  or (select public.is_authorized('profiles.update')) is true
-)
+using ((select auth.uid()) = user_id or (select public.is_authorized('profiles.update')) is true)
 with check (
   (select auth.uid()) = user_id
   or (select public.is_authorized('profiles.update')) is true

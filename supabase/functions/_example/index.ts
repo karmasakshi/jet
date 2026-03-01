@@ -39,13 +39,11 @@ Deno.serve(async (request: Request): Promise<Response> => {
 
     const authorizationHeader: string = getAuthorizationHeader(request);
 
-    const { sub: userId }: CustomClaims =
-      await getCustomClaims(authorizationHeader);
+    const { sub: userId }: CustomClaims = await getCustomClaims(authorizationHeader);
 
     await checkIsBelowRateLimit(userId);
 
-    const supabaseUserClient: SupabaseClient =
-      getSupabaseUserClient(authorizationHeader);
+    const supabaseUserClient: SupabaseClient = getSupabaseUserClient(authorizationHeader);
 
     const profile: Profile = await selectProfile(userId, supabaseUserClient);
 

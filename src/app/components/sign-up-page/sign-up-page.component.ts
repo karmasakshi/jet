@@ -1,11 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -103,9 +97,7 @@ export class SignUpPageComponent implements OnInit {
       if (data.session === null) {
         void this.#router.navigateByUrl('/email-verification-pending');
       } else {
-        this.#alertService.showAlert(
-          this.#translocoService.translate('alerts.welcome'),
-        );
+        this.#alertService.showAlert(this.#translocoService.translate('alerts.welcome'));
 
         void this.#router.navigateByUrl('/');
       }

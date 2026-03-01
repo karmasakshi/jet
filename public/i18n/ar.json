@@ -60,11 +60,7 @@
     "profile-created-on-x": "تم إنشاء الملف الشخصي في {{ x }}",
     "profile-last-updated-on-x": "آخر تحديث للملف الشخصي في {{ x }}",
     "save": "حفظ",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "الملف الشخصي"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "الملف الشخصي" },
     "sign-out": "تسجيل الخروج",
     "toolbar-title": "الملف الشخصي",
     "update-password": "تحديث كلمة المرور",
@@ -81,11 +77,7 @@
     "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
     "email-error-required": "البريد الإلكتروني مطلوب",
     "reset-password": "إعادة تعيين كلمة المرور",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "إعادة تعيين كلمة المرور"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "إعادة تعيين كلمة المرور" },
     "sign-in": "تسجيل الدخول",
     "sign-up": "إنشاء حساب",
     "toolbar-title": "إعادة تعيين كلمة المرور"
@@ -115,11 +107,7 @@
     "password-error-minlength-x": "يجب ألا تقل كلمة المرور عن {{ x }} حرفاً",
     "password-error-required": "كلمة المرور مطلوبة",
     "reset-password": "إعادة تعيين كلمة المرور",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "تسجيل الدخول"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "تسجيل الدخول" },
     "sign-in": "تسجيل الدخول",
     "sign-in-to-continue-to-x": "سجل الدخول للمتابعة إلى {{ x }}",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
@@ -128,11 +116,7 @@
     "toolbar-title": "تسجيل الدخول"
   },
   "jet-sign-out-page": {
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "تسجيل الخروج"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "تسجيل الخروج" },
     "toolbar-title": "تسجيل الخروج"
   },
   "jet-sign-up-page": {
@@ -165,11 +149,7 @@
     "new-password-error-minlength-x": "يجب أن تكون كلمة المرور مكوّنة من {{ x }} أحرف على الأقل",
     "new-password-error-required": "كلمة المرور مطلوبة",
     "save": "حفظ",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "تحديث كلمة المرور"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "تحديث كلمة المرور" },
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تحديث كلمة المرور",
     "update-password": "تحديث كلمة المرور"

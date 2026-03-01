@@ -17,10 +17,7 @@ describe('SignInPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        SignInPageComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), SignInPageComponent],
       providers: [
         { provide: ActivatedRoute, useValue: {} },
         { provide: AlertService, useClass: AlertServiceMock },

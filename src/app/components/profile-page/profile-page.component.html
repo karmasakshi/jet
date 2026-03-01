@@ -103,18 +103,10 @@
               }
               @if (_fullNameControl.dirty) {
                 <mat-hint align="end"
-                  >{{
-                    t('x-of-y-characters', {
-                      x: _fullNameControl.value?.length || 0,
-                      y: 60,
-                    })
-                  }}
+                  >{{ t('x-of-y-characters', { x: _fullNameControl.value?.length || 0, y: 60 }) }}
                 </mat-hint>
               }
-              @if (
-                _fullNameControl.touched &&
-                _fullNameControl.errors?.['maxlength']
-              ) {
+              @if (_fullNameControl.touched && _fullNameControl.errors?.['maxlength']) {
                 <mat-error>{{
                   t('full-name-error-maxlength-x', {
                     x: _fullNameControl.errors?.['maxlength'].requiredLength,
@@ -146,43 +138,27 @@
               }
               @if (_usernameControl.dirty) {
                 <mat-hint align="end"
-                  >{{
-                    t('x-of-y-characters', {
-                      x: _usernameControl.value?.length || 0,
-                      y: 36,
-                    })
-                  }}
+                  >{{ t('x-of-y-characters', { x: _usernameControl.value?.length || 0, y: 36 }) }}
                 </mat-hint>
               }
-              @if (
-                _usernameControl.touched &&
-                _usernameControl.errors?.['required']
-              ) {
+              @if (_usernameControl.touched && _usernameControl.errors?.['required']) {
                 <mat-error>{{ t('username-error-required') }}</mat-error>
               }
-              @if (
-                _usernameControl.touched &&
-                _usernameControl.errors?.['maxlength']
-              ) {
+              @if (_usernameControl.touched && _usernameControl.errors?.['maxlength']) {
                 <mat-error>{{
                   t('username-error-maxlength-x', {
                     x: _usernameControl.errors?.['maxlength'].requiredLength,
                   })
                 }}</mat-error>
               }
-              @if (
-                _usernameControl.touched &&
-                _usernameControl.errors?.['minlength']
-              ) {
+              @if (_usernameControl.touched && _usernameControl.errors?.['minlength']) {
                 <mat-error>{{
                   t('username-error-minlength-x', {
                     x: _usernameControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>
               }
-              @if (
-                _usernameControl.touched && _usernameControl.errors?.['pattern']
-              ) {
+              @if (_usernameControl.touched && _usernameControl.errors?.['pattern']) {
                 <mat-error>{{ t('username-error-pattern') }}</mat-error>
               }
             </mat-form-field>
@@ -220,14 +196,10 @@
         <mat-card-content style="font: var(--mat-sys-body-small)">
           <div class="jet-flexc-centered">
             <span>{{
-              t('profile-last-updated-on-x', {
-                x: (_profile?.updated_at | date: 'medium'),
-              })
+              t('profile-last-updated-on-x', { x: (_profile?.updated_at | date: 'medium') })
             }}</span>
             <span>{{
-              t('profile-created-on-x', {
-                x: (_profile?.created_at | date: 'medium'),
-              })
+              t('profile-created-on-x', { x: (_profile?.created_at | date: 'medium') })
             }}</span>
           </div>
         </mat-card-content>

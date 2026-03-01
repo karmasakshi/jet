@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -36,9 +30,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class SidenavComponent {
   readonly #loggerService = inject(LoggerService);
 
-  public readonly activeNavigationMenuItemPath = input.required<
-    string | undefined
-  >();
+  public readonly activeNavigationMenuItemPath = input.required<string | undefined>();
 
   protected readonly clickNavigationMenuItem = output<void>();
 

@@ -16,16 +16,11 @@
   </mat-toolbar>
   <div class="jet-sidenav-nav-list">
     <mat-nav-list>
-      @for (
-        navigationMenuItem of navigationMenuItems;
-        track navigationMenuItem.path
-      ) {
+      @for (navigationMenuItem of navigationMenuItems; track navigationMenuItem.path) {
         <a
           mat-list-item
           matListItemTitle
-          [activated]="
-            _activeNavigationMenuItemPath === navigationMenuItem.path
-          "
+          [activated]="_activeNavigationMenuItemPath === navigationMenuItem.path"
           [routerLink]="[navigationMenuItem.path]"
           (click)="clickNavigationMenuItem.emit()"
         >

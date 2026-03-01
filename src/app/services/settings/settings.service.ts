@@ -21,21 +21,16 @@ export class SettingsService {
 
   readonly #settings: WritableSignal<Settings>;
 
-  public readonly directionality: Signal<
-    Settings['languageOption']['directionality']
-  >;
+  public readonly directionality: Signal<Settings['languageOption']['directionality']>;
 
   public constructor() {
-    const storedSettings: null | Settings =
-      this.#storageService.getLocalStorageItem<Settings>(
-        LocalStorageKey.Settings,
-      );
+    const storedSettings: null | Settings = this.#storageService.getLocalStorageItem<Settings>(
+      LocalStorageKey.Settings,
+    );
 
     this.#settings = signal({ ...DEFAULT_SETTINGS, ...storedSettings });
 
-    this.directionality = computed(
-      () => this.#settings().languageOption.directionality,
-    );
+    this.directionality = computed(() => this.#settings().languageOption.directionality);
 
     effect(
       () => {
@@ -44,10 +39,7 @@ export class SettingsService {
         const settings: Settings = this.#settings();
 
         untracked(() =>
-          this.#storageService.setLocalStorageItem(
-            LocalStorageKey.Settings,
-            settings,
-          ),
+          this.#storageService.setLocalStorageItem(LocalStorageKey.Settings, settings),
         );
       },
       { debugName: 'settings' },

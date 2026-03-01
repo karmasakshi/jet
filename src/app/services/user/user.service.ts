@@ -1,10 +1,4 @@
-import {
-  inject,
-  Injectable,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
@@ -37,10 +31,7 @@ export class UserService {
     this.#user = signal(null);
 
     this.#supabaseClient.auth.onAuthStateChange(
-      (
-        _authChangeEvent: AuthChangeEvent,
-        authSession: AuthSession | null,
-      ): void => {
+      (_authChangeEvent: AuthChangeEvent, authSession: AuthSession | null): void => {
         this.#user.set(authSession?.user ?? null);
       },
     );
@@ -53,10 +44,7 @@ export class UserService {
   }
 
   public getClaims(): Promise<
-    | {
-        data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array };
-        error: null;
-      }
+    | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
     | { data: null; error: AuthError }
     | { data: null; error: null }
   > {
@@ -73,10 +61,7 @@ export class UserService {
 
   public signInWithOauth(oauthProvider: OauthProvider): Promise<OAuthResponse> {
     return this.#supabaseClient.auth.signInWithOAuth({
-      options: {
-        redirectTo: this.#getRedirectUrlWithReturnUrl(),
-        skipBrowserRedirect: true,
-      },
+      options: { redirectTo: this.#getRedirectUrlWithReturnUrl(), skipBrowserRedirect: true },
       provider: oauthProvider,
     });
   }
@@ -84,17 +69,11 @@ export class UserService {
   public signInWithOtp(email: string): Promise<AuthOtpResponse> {
     return this.#supabaseClient.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo: this.#getRedirectUrlWithReturnUrl(),
-        shouldCreateUser: false,
-      },
+      options: { emailRedirectTo: this.#getRedirectUrlWithReturnUrl(), shouldCreateUser: false },
     });
   }
 
-  public signInWithPassword(
-    email: string,
-    password: string,
-  ): Promise<AuthTokenResponsePassword> {
+  public signInWithPassword(email: string, password: string): Promise<AuthTokenResponsePassword> {
     return this.#supabaseClient.auth.signInWithPassword({ email, password });
   }
 
@@ -115,9 +94,7 @@ export class UserService {
   }
 
   #getRedirectUrlWithReturnUrl(
-    returnUrl = this.#activatedRoute.snapshot.queryParamMap.get(
-      QueryParam.ReturnUrl,
-    ),
+    returnUrl = this.#activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl),
   ): string {
     const redirectUrl: URL = new URL('/sign-in', window.location.origin);
 

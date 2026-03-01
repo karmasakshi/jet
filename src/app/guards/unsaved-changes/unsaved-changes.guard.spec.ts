@@ -4,12 +4,8 @@ import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate
 import { unsavedChangesGuard } from './unsaved-changes.guard';
 
 describe('unsavedChangesGuard', () => {
-  const executeGuard: CanDeactivateFn<CanComponentDeactivate> = (
-    ...guardParameters
-  ) =>
-    TestBed.runInInjectionContext(() =>
-      unsavedChangesGuard(...guardParameters),
-    );
+  const executeGuard: CanDeactivateFn<CanComponentDeactivate> = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => unsavedChangesGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

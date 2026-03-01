@@ -1,10 +1,5 @@
 import { DatePipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -61,8 +56,7 @@ export class SettingsPageComponent {
 
     this.languageOptions = LANGUAGE_OPTIONS;
 
-    this.lastUpdateCheckTimestamp =
-      this.#serviceWorkerService.lastUpdateCheckTimestamp;
+    this.lastUpdateCheckTimestamp = this.#serviceWorkerService.lastUpdateCheckTimestamp;
 
     this.settings = this.#settingsService.settings;
 
@@ -74,19 +68,14 @@ export class SettingsPageComponent {
   protected async checkForUpdate(): Promise<void> {
     this.#progressBarService.showQueryProgressBar();
 
-    this.#alertService.showAlert(
-      this.#translocoService.translate('alerts.checking-for-updates'),
-    );
+    this.#alertService.showAlert(this.#translocoService.translate('alerts.checking-for-updates'));
 
     try {
-      const isUpdateFoundAndReady: boolean =
-        await this.#serviceWorkerService.checkForUpdate();
+      const isUpdateFoundAndReady: boolean = await this.#serviceWorkerService.checkForUpdate();
 
       if (!isUpdateFoundAndReady) {
         this.#alertService.showAlert(
-          this.#translocoService.translate(
-            'alerts.youre-on-the-latest-version',
-          ),
+          this.#translocoService.translate('alerts.youre-on-the-latest-version'),
         );
       }
     } catch (exception: unknown) {

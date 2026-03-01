@@ -7,18 +7,14 @@ import { Settings } from '@jet/interfaces/settings.interface';
 export class SettingsServiceMock {
   readonly #settings: WritableSignal<Settings>;
 
-  public readonly directionality: Signal<
-    Settings['languageOption']['directionality']
-  >;
+  public readonly directionality: Signal<Settings['languageOption']['directionality']>;
 
   public constructor() {
     const storedSettings: null | Settings = null;
 
     this.#settings = signal({ ...DEFAULT_SETTINGS, ...storedSettings! });
 
-    this.directionality = computed(
-      () => this.#settings().languageOption.directionality,
-    );
+    this.directionality = computed(() => this.#settings().languageOption.directionality);
   }
 
   public get settings(): Signal<Settings> {

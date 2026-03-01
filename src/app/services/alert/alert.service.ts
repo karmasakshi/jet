@@ -1,9 +1,5 @@
 import { inject, Injectable, Signal } from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarRef,
-  TextOnlySnackBar,
-} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { TranslocoService } from '@jsverse/transloco';
 import { take } from 'rxjs';
@@ -17,9 +13,7 @@ export class AlertService {
   readonly #loggerService = inject(LoggerService);
   readonly #settingsService = inject(SettingsService);
 
-  readonly #directionality: Signal<
-    Settings['languageOption']['directionality']
-  >;
+  readonly #directionality: Signal<Settings['languageOption']['directionality']>;
 
   public constructor() {
     this.#directionality = this.#settingsService.directionality;
@@ -32,10 +26,9 @@ export class AlertService {
     cta: string = this.#translocoService.translate('alerts.ok'),
     action?: () => void,
   ): void {
-    const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> =
-      this.#matSnackBar.open(message, cta, {
-        direction: this.#directionality(),
-      });
+    const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> = this.#matSnackBar.open(message, cta, {
+      direction: this.#directionality(),
+    });
 
     if (action) {
       matSnackBarRef
@@ -48,9 +41,7 @@ export class AlertService {
   }
 
   public showErrorAlert(
-    message: string = this.#translocoService.translate(
-      'alerts.something-went-wrong',
-    ),
+    message: string = this.#translocoService.translate('alerts.something-went-wrong'),
   ): void {
     this.showAlert(message);
   }

@@ -23,9 +23,7 @@
           <form
             id="sign-up-form"
             [formGroup]="signUpFormGroup"
-            (ngSubmit)="
-              signUp(_emailControl.value ?? '', _passwordControl.value ?? '')
-            "
+            (ngSubmit)="signUp(_emailControl.value ?? '', _passwordControl.value ?? '')"
           >
             <mat-form-field>
               <mat-label>{{ t('email') }}</mat-label>
@@ -52,9 +50,7 @@
               @if (_emailControl.touched && _emailControl.errors?.['email']) {
                 <mat-error>{{ t('email-error-email') }}</mat-error>
               }
-              @if (
-                _emailControl.touched && _emailControl.errors?.['required']
-              ) {
+              @if (_emailControl.touched && _emailControl.errors?.['required']) {
                 <mat-error>{{ t('email-error-required') }}</mat-error>
               }
             </mat-form-field>
@@ -76,24 +72,16 @@
                 [disabled]="_passwordControl.disabled"
                 (click)="isPasswordHidden = !isPasswordHidden"
               >
-                <mat-icon>{{
-                  isPasswordHidden ? 'visibility' : 'visibility_off'
-                }}</mat-icon>
+                <mat-icon>{{ isPasswordHidden ? 'visibility' : 'visibility_off' }}</mat-icon>
               </button>
-              @if (
-                _passwordControl.touched &&
-                _passwordControl.errors?.['minlength']
-              ) {
+              @if (_passwordControl.touched && _passwordControl.errors?.['minlength']) {
                 <mat-error>{{
                   t('password-error-minlength-x', {
                     x: _passwordControl.errors?.['minlength'].requiredLength,
                   })
                 }}</mat-error>
               }
-              @if (
-                _passwordControl.touched &&
-                _passwordControl.errors?.['required']
-              ) {
+              @if (_passwordControl.touched && _passwordControl.errors?.['required']) {
                 <mat-error>{{ t('password-error-required') }}</mat-error>
               }
             </mat-form-field>

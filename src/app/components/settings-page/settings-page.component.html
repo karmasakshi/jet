@@ -19,9 +19,7 @@
           >
             <mat-icon matListItemIcon>language</mat-icon>
             <span matListItemTitle>{{ t('change-language') }}</span>
-            <span matListItemLine>{{
-              _settings.languageOption.nameKey | transloco
-            }}</span>
+            <span matListItemLine>{{ _settings.languageOption.nameKey | transloco }}</span>
           </button>
           <button
             mat-list-item
@@ -31,9 +29,7 @@
           >
             <mat-icon matListItemIcon>palette</mat-icon>
             <span matListItemTitle>{{ t('change-color-scheme') }}</span>
-            <span matListItemLine>{{
-              _settings.colorSchemeOption.nameKey | transloco
-            }}</span>
+            <span matListItemLine>{{ _settings.colorSchemeOption.nameKey | transloco }}</span>
           </button>
           <button
             mat-list-item
@@ -44,9 +40,7 @@
             <mat-icon matListItemIcon>sync</mat-icon>
             <span matListItemTitle>{{ t('check-for-updates') }}</span>
             <span matListItemLine>{{
-              t('last-checked-x', {
-                x: _lastUpdateCheckTimestamp | date: 'medium',
-              })
+              t('last-checked-x', { x: _lastUpdateCheckTimestamp | date: 'medium' })
             }}</span>
           </button>
           <button
@@ -105,16 +99,11 @@
       #colorSchemeOptionsMenu="matMenu"
       xPosition="before"
     >
-      @for (
-        colorSchemeOption of colorSchemeOptions;
-        track colorSchemeOption.value
-      ) {
+      @for (colorSchemeOption of colorSchemeOptions; track colorSchemeOption.value) {
         <button
           mat-menu-item
           type="button"
-          [disabled]="
-            _settings.colorSchemeOption.value === colorSchemeOption.value
-          "
+          [disabled]="_settings.colorSchemeOption.value === colorSchemeOption.value"
           [jetAnalyticsEvent]="{
             data: { colorSchemeOption: colorSchemeOption.value },
             name: 'set_color_scheme_option',

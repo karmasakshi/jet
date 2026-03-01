@@ -33,11 +33,7 @@ with
     select
       role_name,
       r.owner_role as routine_owner,
-      has_function_privilege(
-        role_name,
-        r.oid,
-        'EXECUTE'
-      ) as has_execute_effective,
+      has_function_privilege(role_name, r.oid, 'EXECUTE') as has_execute_effective,
       exists (
         select 1
         from aclexplode(r.proacl) as acl

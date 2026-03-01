@@ -18,9 +18,7 @@
       @defer (on idle) {
         <jet-sidenav
           [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
-          (clickNavigationMenuItem)="
-            _matSidenavMode === 'over' && matSidenav.close()
-          "
+          (clickNavigationMenuItem)="_matSidenavMode === 'over' && matSidenav.close()"
         />
       }
     </mat-sidenav>
@@ -50,15 +48,10 @@
           mat-tab-nav-bar
           [tabPanel]="tabPanel"
         >
-          @for (
-            navigationMenuItem of navigationMenuItems;
-            track navigationMenuItem.path
-          ) {
+          @for (navigationMenuItem of navigationMenuItems; track navigationMenuItem.path) {
             <a
               mat-tab-link
-              [active]="
-                activeNavigationMenuItemPath === navigationMenuItem.path
-              "
+              [active]="activeNavigationMenuItemPath === navigationMenuItem.path"
               [aria-label]="navigationMenuItem.nameKey | transloco"
               [routerLink]="[navigationMenuItem.path]"
             >

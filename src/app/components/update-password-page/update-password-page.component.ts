@@ -1,11 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
@@ -49,9 +43,7 @@ import { PageComponent } from '../page/page.component';
   styleUrl: './update-password-page.component.scss',
   templateUrl: './update-password-page.component.html',
 })
-export class UpdatePasswordPageComponent
-  implements CanComponentDeactivate, OnInit
-{
+export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnInit {
   readonly #destroyRef = inject(DestroyRef);
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
@@ -64,9 +56,7 @@ export class UpdatePasswordPageComponent
   #isLoading: boolean;
   readonly #user: null | User;
 
-  protected readonly emailFormGroup: FormGroup<{
-    email: FormControl<null | string>;
-  }>;
+  protected readonly emailFormGroup: FormGroup<{ email: FormControl<null | string> }>;
   protected isConfirmNewPasswordHidden: boolean;
   protected isNewPasswordHidden: boolean;
   protected readonly updatePasswordFormGroup: FormGroup<{
@@ -98,9 +88,7 @@ export class UpdatePasswordPageComponent
       ]),
     });
 
-    this.#loggerService.logComponentInitialization(
-      'UpdatePasswordPageComponent',
-    );
+    this.#loggerService.logComponentInitialization('UpdatePasswordPageComponent');
   }
 
   public ngOnInit(): void {
@@ -109,9 +97,7 @@ export class UpdatePasswordPageComponent
     this.emailFormGroup.patchValue({ email: this.#user?.email ?? null });
 
     this.updatePasswordFormGroup.controls.confirmNewPassword.addValidators(
-      this.#matchFormControlValidator(
-        this.updatePasswordFormGroup.controls.newPassword,
-      ),
+      this.#matchFormControlValidator(this.updatePasswordFormGroup.controls.newPassword),
     );
 
     this.updatePasswordFormGroup.controls.newPassword.valueChanges
@@ -141,9 +127,7 @@ export class UpdatePasswordPageComponent
 
       this.updatePasswordFormGroup.markAsPristine();
 
-      this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.password-updated'),
-      );
+      this.#alertService.showAlert(this.#translocoService.translate('alerts.password-updated'));
 
       void this.#router.navigateByUrl('/profile');
     } catch (exception: unknown) {
@@ -161,9 +145,7 @@ export class UpdatePasswordPageComponent
   }
 
   #matchFormControlValidator(newPasswordControl: AbstractControl): ValidatorFn {
-    return (
-      confirmNewPasswordControl: AbstractControl,
-    ): null | ValidationErrors => {
+    return (confirmNewPasswordControl: AbstractControl): null | ValidationErrors => {
       if (!confirmNewPasswordControl.value) {
         return null;
       }

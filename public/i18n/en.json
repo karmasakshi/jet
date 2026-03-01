@@ -77,11 +77,7 @@
     "email-error-email": "Enter a valid email",
     "email-error-required": "Email is required",
     "reset-password": "Reset password",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "Reset Password"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Reset Password" },
     "sign-in": "Sign in",
     "sign-up": "Sign up",
     "toolbar-title": "Reset Password"
@@ -153,11 +149,7 @@
     "new-password-error-minlength-x": "Password is at least {{ x }} characters long",
     "new-password-error-required": "Password is required",
     "save": "Save",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "Update Password"
-    },
+    "seo": { "description": "Jet.", "keywords": "jet", "title": "Update Password" },
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Update Password",
     "update-password": "Update password"

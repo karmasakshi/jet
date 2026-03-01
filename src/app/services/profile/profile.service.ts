@@ -24,15 +24,11 @@ export class ProfileService {
 
   public deleteAvatar(
     publicUrl: string,
-  ): Promise<
-    { data: FileObject[]; error: null } | { data: null; error: StorageError }
-  > {
+  ): Promise<{ data: FileObject[]; error: null } | { data: null; error: StorageError }> {
     const fileName: string | undefined = publicUrl.split('/').pop();
     const path: string = `${this.#userService.user()?.id}/${fileName}`;
 
-    return this.#supabaseClient.storage
-      .from(SupabaseStorage.ProfileAvatars)
-      .remove([path]);
+    return this.#supabaseClient.storage.from(SupabaseStorage.ProfileAvatars).remove([path]);
   }
 
   public getAvatarPublicUrl(path: string): string {
@@ -72,8 +68,6 @@ export class ProfileService {
     const timestamp: number = Date.now();
     const path: string = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
 
-    return this.#supabaseClient.storage
-      .from(SupabaseStorage.ProfileAvatars)
-      .upload(path, file);
+    return this.#supabaseClient.storage.from(SupabaseStorage.ProfileAvatars).upload(path, file);
   }
 }

@@ -46,16 +46,8 @@ module.exports = defineConfig([
       '@typescript-eslint/prefer-readonly': 'error',
       '@typescript-eslint/naming-convention': [
         'error',
-        {
-          selector: 'default',
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid',
-        },
-        {
-          selector: 'enumMember',
-          format: ['PascalCase'],
-          leadingUnderscore: 'forbid',
-        },
+        { selector: 'default', format: ['camelCase'], leadingUnderscore: 'forbid' },
+        { selector: 'enumMember', format: ['PascalCase'], leadingUnderscore: 'forbid' },
         {
           selector: 'method',
           modifiers: ['private'],
@@ -85,11 +77,7 @@ module.exports = defineConfig([
           format: ['camelCase', 'snake_case', 'UPPER_CASE'],
           leadingUnderscore: 'forbid',
         },
-        {
-          selector: 'typeLike',
-          format: ['PascalCase'],
-          leadingUnderscore: 'forbid',
-        },
+        { selector: 'typeLike', format: ['PascalCase'], leadingUnderscore: 'forbid' },
         {
           selector: 'variable',
           modifiers: ['const'],
@@ -126,9 +114,7 @@ module.exports = defineConfig([
       'sort-keys': ['warn', 'asc', { caseSensitive: false }],
     },
     languageOptions: {
-      parserOptions: {
-        projectService: { allowDefaultProject: ['transloco.config.ts'] },
-      },
+      parserOptions: { projectService: { allowDefaultProject: ['transloco.config.ts'] } },
     },
     plugins: { perfectionist },
   },
@@ -136,10 +122,7 @@ module.exports = defineConfig([
     files: ['**/*.html'],
     extends: [angular.configs.templateAll],
     rules: {
-      '@angular-eslint/template/attributes-order': [
-        'warn',
-        { alphabetical: true },
-      ],
+      '@angular-eslint/template/attributes-order': ['warn', { alphabetical: true }],
       '@angular-eslint/template/cyclomatic-complexity': 'off',
       '@angular-eslint/template/i18n': 'off',
       '@angular-eslint/template/no-call-expression': 'off',

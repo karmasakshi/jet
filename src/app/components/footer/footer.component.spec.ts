@@ -10,10 +10,7 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        FooterComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), FooterComponent],
       providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     }).compileComponents();
 

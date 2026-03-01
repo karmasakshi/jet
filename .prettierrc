@@ -1,7 +1,8 @@
 {
-  "cssDeclarationSorterOrder": "alphabetical",
-  "objectWrap": "collapse",
+  "printWidth": 100,
+  "singleQuote": true,
   "overrides": [
+    { "files": "*.html", "options": { "parser": "angular" } },
     {
       "files": ["*.sql"],
       "options": {
@@ -14,11 +15,12 @@
       }
     }
   ],
+  "cssDeclarationSorterOrder": "alphabetical",
+  "objectWrap": "collapse",
   "plugins": [
     "prettier-plugin-css-order",
     "prettier-plugin-organize-imports",
     "prettier-plugin-sql-cst"
   ],
-  "singleAttributePerLine": true,
-  "singleQuote": true
+  "singleAttributePerLine": true
 }

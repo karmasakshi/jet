@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  output,
-  Signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, Signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -49,8 +42,7 @@ export class ToolbarComponent {
   protected readonly toolbarTitle: Signal<null | string>;
 
   public constructor() {
-    this.progressBarConfiguration =
-      this.#progressBarService.progressBarConfiguration;
+    this.progressBarConfiguration = this.#progressBarService.progressBarConfiguration;
 
     this.toolbarTitle = this.#toolbarTitleService.toolbarTitle;
 

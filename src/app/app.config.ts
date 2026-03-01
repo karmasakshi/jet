@@ -1,8 +1,4 @@
-import {
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-} from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
   inject,
@@ -53,10 +49,7 @@ export const appConfig: ApplicationConfig = {
       routes,
       withComponentInputBinding(),
       ...(isDevMode() ? [withDebugTracing()] : []),
-      withInMemoryScrolling({
-        anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled',
-      }),
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
     ),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),

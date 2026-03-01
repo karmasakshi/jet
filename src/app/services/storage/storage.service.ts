@@ -28,9 +28,7 @@ export class StorageService {
     return this.#store2.get(localStorageKey);
   }
 
-  public getSessionStorageItem<T>(
-    sessionStorageKey: SessionStorageKey,
-  ): null | T {
+  public getSessionStorageItem<T>(sessionStorageKey: SessionStorageKey): null | T {
     return this.#store2.session.get(sessionStorageKey);
   }
 
@@ -42,17 +40,11 @@ export class StorageService {
     this.#store2.session.remove(sessionStorageKey);
   }
 
-  public setLocalStorageItem<T>(
-    localStorageKey: LocalStorageKey,
-    data: T,
-  ): void {
+  public setLocalStorageItem<T>(localStorageKey: LocalStorageKey, data: T): void {
     this.#store2.set(localStorageKey, data);
   }
 
-  public setSessionStorageItem<T>(
-    sessionStorageKey: SessionStorageKey,
-    data: T,
-  ): void {
+  public setSessionStorageItem<T>(sessionStorageKey: SessionStorageKey, data: T): void {
     this.#store2.session.set(sessionStorageKey, data);
   }
 }

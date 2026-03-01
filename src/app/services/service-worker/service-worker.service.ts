@@ -34,9 +34,7 @@ export class ServiceWorkerService {
     this.#isUpdateReady = false;
 
     const storedLastUpdateCheckTimestamp: null | string =
-      this.#storageService.getLocalStorageItem<string>(
-        LocalStorageKey.LastUpdateCheckTimestamp,
-      );
+      this.#storageService.getLocalStorageItem<string>(LocalStorageKey.LastUpdateCheckTimestamp);
 
     this.#lastUpdateCheckTimestamp = signal(
       storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
@@ -46,8 +44,7 @@ export class ServiceWorkerService {
       () => {
         this.#loggerService.logEffectRun('lastUpdateCheckTimestamp');
 
-        const lastUpdateCheckTimestamp: string =
-          this.#lastUpdateCheckTimestamp();
+        const lastUpdateCheckTimestamp: string = this.#lastUpdateCheckTimestamp();
 
         untracked(() =>
           this.#storageService.setLocalStorageItem(
@@ -90,9 +87,7 @@ export class ServiceWorkerService {
       .subscribe((versionEvent: VersionEvent) => {
         switch (versionEvent.type) {
           case 'NO_NEW_VERSION_DETECTED':
-            this.#analyticsService.logAnalyticsEvent({
-              name: 'no_new_version_detected',
-            });
+            this.#analyticsService.logAnalyticsEvent({ name: 'no_new_version_detected' });
 
             this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
 
@@ -113,9 +108,7 @@ export class ServiceWorkerService {
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
-            this.#analyticsService.logAnalyticsEvent({
-              name: 'version_installation_failed',
-            });
+            this.#analyticsService.logAnalyticsEvent({ name: 'version_installation_failed' });
 
             this.#loggerService.logError(new Error(versionEvent.error));
 

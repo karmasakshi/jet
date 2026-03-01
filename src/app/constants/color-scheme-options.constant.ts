@@ -8,16 +8,6 @@ export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
     themeColor: '#ffffff',
     value: 'automatic',
   },
-  {
-    icon: 'light_mode',
-    nameKey: marker('constants.light'),
-    themeColor: '#fff8f6',
-    value: 'light',
-  },
-  {
-    icon: 'dark_mode',
-    nameKey: marker('constants.dark'),
-    themeColor: '#161311',
-    value: 'dark',
-  },
+  { icon: 'light_mode', nameKey: marker('constants.light'), themeColor: '#fff8f6', value: 'light' },
+  { icon: 'dark_mode', nameKey: marker('constants.dark'), themeColor: '#161311', value: 'dark' },
 ];

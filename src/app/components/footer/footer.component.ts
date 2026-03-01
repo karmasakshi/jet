@@ -7,12 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    AnalyticsDirective,
-    TranslocoModule,
-  ],
+  imports: [MatButtonModule, MatIconModule, AnalyticsDirective, TranslocoModule],
   selector: 'jet-footer',
   styleUrl: './footer.component.scss',
   templateUrl: './footer.component.html',

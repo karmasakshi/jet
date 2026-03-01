@@ -41,15 +41,9 @@ export class PageComponent {
         const seoDescription = this.seoDescription();
 
         untracked(() => {
-          this.#meta.updateTag({
-            content: seoDescription,
-            name: 'description',
-          });
+          this.#meta.updateTag({ content: seoDescription, name: 'description' });
 
-          this.#meta.updateTag({
-            content: seoDescription,
-            name: 'og:description',
-          });
+          this.#meta.updateTag({ content: seoDescription, name: 'og:description' });
         });
       },
       { debugName: 'seoDescription' },

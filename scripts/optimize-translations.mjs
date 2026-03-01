@@ -31,9 +31,7 @@ try {
 
   writeFileSync(NGSW_PATH, JSON.stringify(ngsw));
 
-  console.log(
-    `Optimized translations and updated ${filesToUpdate.length} hash(es) in ngsw.json.`,
-  );
+  console.log(`Optimized translations and updated ${filesToUpdate.length} hash(es) in ngsw.json.`);
 } catch (error) {
   console.warn('Failed to optimize translations:', error.message);
 }

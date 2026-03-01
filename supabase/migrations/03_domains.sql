@@ -35,10 +35,7 @@ create domain shared.currency_iso_code as text
 -- shared.email_address
 
 create domain shared.email_address as text
-  check (
-    length(value) <= 60
-    and value ~ '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
-  );
+  check (length(value) <= 60 and value ~ '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$');
 
 -- shared.gender
 
@@ -48,11 +45,7 @@ create domain shared.gender as text
 -- shared.iban
 
 create domain shared.iban as text
-  check (
-    length(value) between 15 and 34
-    and value = upper(value)
-    and value ~ '^[A-Z0-9]+$'
-  );
+  check (length(value) between 15 and 34 and value = upper(value) and value ~ '^[A-Z0-9]+$');
 
 -- shared.latitude
 
@@ -77,10 +70,7 @@ create domain shared.orientation_degrees as smallint
 -- shared.path
 
 create domain shared.path as text
-  check (
-    length(value) <= 300
-    and value ~ '^\/(?!.*(\.\.|%2e%2e|%2E%2E))[^#\s]+(\?[^#\s]+)?$'
-  );
+  check (length(value) <= 300 and value ~ '^\/(?!.*(\.\.|%2e%2e|%2E%2E))[^#\s]+(\?[^#\s]+)?$');
 
 -- shared.percentage
 
@@ -95,19 +85,12 @@ create domain shared.phone_number as text
 -- shared.slug
 
 create domain shared.slug as text
-  check (
-    length(value) between 3 and 60
-    and value ~ '^[a-z0-9]+(?:[._-][a-z0-9]+)*$'
-  );
+  check (length(value) between 3 and 60 and value ~ '^[a-z0-9]+(?:[._-][a-z0-9]+)*$');
 
 -- shared.swift_code
 
 create domain shared.swift_code as text
-  check (
-    length(value) between 8 and 11
-    and value = upper(value)
-    and value ~ '^[A-Z0-9]+$'
-  );
+  check (length(value) between 8 and 11 and value = upper(value) and value ~ '^[A-Z0-9]+$');
 
 -- shared.url
 

@@ -128,9 +128,7 @@ body {
 
     @include mat.sidenav-overrides(
       (
-        container-width: calc(
-            var(--jet-sidenav-width) + var(--jet-safe-area-start)
-          ),
+        container-width: calc(var(--jet-sidenav-width) + var(--jet-safe-area-start)),
       )
     );
 
@@ -289,10 +287,8 @@ table {
 }
 
 .mat-mdc-snack-bar-container {
-  margin: calc(8px + env(safe-area-inset-top))
-    calc(8px + env(safe-area-inset-right))
-    calc(8px + env(safe-area-inset-bottom))
-    calc(8px + env(safe-area-inset-left)) !important;
+  margin: calc(8px + env(safe-area-inset-top)) calc(8px + env(safe-area-inset-right))
+    calc(8px + env(safe-area-inset-bottom)) calc(8px + env(safe-area-inset-left)) !important;
 }
 
 .mat-mdc-table {
