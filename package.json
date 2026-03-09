@@ -57,7 +57,7 @@
     "@ngx-env/builder": "^21.0.1",
     "@types/ga-gtag": "^1.2.0",
     "angular-eslint": "^21.3.0",
-    "eslint": "^9.39.3",
+    "eslint": "^9.39.4",
     "eslint-plugin-perfectionist": "^5.6.0",
     "husky": "^9.1.7",
     "jsdom": "^28.1.0",
@@ -66,7 +66,7 @@
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-sql-cst": "^0.18.0",
-    "supabase": "^2.76.17",
+    "supabase": "^2.77.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "vitest": "^4.0.18"
