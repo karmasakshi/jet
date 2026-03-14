@@ -19,9 +19,9 @@
     "prepare": "husky",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
     "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @jsverse/transloco-optimize @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest",
+    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest",
     "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @jsverse/transloco-keys-manager @jsverse/transloco-optimize @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest"
+    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/prompt-cli @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest"
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
@@ -52,16 +52,17 @@
     "@commitlint/cli": "^20.4.4",
     "@commitlint/config-conventional": "^20.4.4",
     "@commitlint/prompt-cli": "^20.4.4",
+    "@eslint/js": "^10.0.1",
     "@jsverse/transloco-keys-manager": "^8.1.0",
     "@jsverse/transloco-optimize": "^8.2.1",
     "@ngx-env/builder": "^21.0.1",
     "@types/ga-gtag": "^1.2.0",
     "angular-eslint": "^21.3.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.0.3",
     "eslint-plugin-perfectionist": "^5.6.0",
     "husky": "^9.1.7",
     "jsdom": "^28.1.0",
-    "lint-staged": "^16.3.3",
+    "lint-staged": "^16.3.4",
     "prettier": "^3.8.1",
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
