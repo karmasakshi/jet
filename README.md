@@ -356,7 +356,7 @@ When enabled, [Husky](https://typicode.github.io/husky/) prevents pushing code t
 
 #### Format code
 
-Run `npm run format-staged` to format staged files. This runs automatically before every commit via [Husky](https://typicode.github.io/husky/) and [Lint Staged](https://github.com/lint-staged/lint-staged).
+Run `npm run lint-staged` to format staged files. This runs automatically before every commit via [Husky](https://typicode.github.io/husky/) and [Lint Staged](https://github.com/lint-staged/lint-staged).
 
 Run `npm run format` to format all files.
 
