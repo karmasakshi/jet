@@ -8,4 +8,4 @@ assignees: ''
 
 ### Description
 
-Describe the need and the proposed solution(s).
+Describe the need and the proposal.

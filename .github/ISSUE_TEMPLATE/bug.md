@@ -16,9 +16,9 @@ Describe the bug and the expectation.
 2. Click on '...'
 3. Scroll down to '...'
 
-### Your environment
+##### My environment
 
-- Operating System (OS): [e.g., Windows, macOS, Ubuntu]
-- OS Version: [e.g., 10.0.0, 11.0.0]
-- Browser: [e.g., Chrome, Firefox, Safari]
-- Browser Version: [e.g., 1.0.0]
+- OS: [e.g. macOS, Ubuntu, Windows]
+- OS version: [e.g. 10.0.0]
+- Browser: [e.g. Chrome, Firefox, Safari]
+- Browser version: [e.g. 100.0.0]
