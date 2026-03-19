@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "commitlint": "commitlint --edit ./.git/COMMIT_EDITMSG",
-    "format": "prettier --write .",
+    "format": "prettier --list-different --write .",
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
     "lint-staged": "lint-staged --concurrent false",
@@ -32,7 +32,7 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@11.11.1",
+  "packageManager": "npm@11.12.0",
   "dependencies": {
     "@angular/cdk": "^21.2.3",
     "@angular/common": "^21.2.5",
