@@ -57,11 +57,11 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   readonly #user: null | User;
 
   protected readonly emailFormGroup: FormGroup<{ email: FormControl<null | string> }>;
-  protected isConfirmNewPasswordHidden: boolean;
+  protected isNewPasswordConfirmationHidden: boolean;
   protected isNewPasswordHidden: boolean;
   protected readonly updatePasswordFormGroup: FormGroup<{
-    confirmNewPassword: FormControl<null | string>;
     newPassword: FormControl<null | string>;
+    newPasswordConfirmation: FormControl<null | string>;
   }>;
 
   public constructor() {
@@ -73,16 +73,16 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
       email: this.#formBuilder.control<null | string>(null),
     });
 
-    this.isConfirmNewPasswordHidden = true;
+    this.isNewPasswordConfirmationHidden = true;
 
     this.isNewPasswordHidden = true;
 
     this.updatePasswordFormGroup = this.#formBuilder.group({
-      confirmNewPassword: this.#formBuilder.control<null | string>(null, [
+      newPassword: this.#formBuilder.control<null | string>(null, [
         Validators.minLength(6),
         Validators.required,
       ]),
-      newPassword: this.#formBuilder.control<null | string>(null, [
+      newPasswordConfirmation: this.#formBuilder.control<null | string>(null, [
         Validators.minLength(6),
         Validators.required,
       ]),
@@ -96,14 +96,14 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
 
     this.emailFormGroup.patchValue({ email: this.#user?.email ?? null });
 
-    this.updatePasswordFormGroup.controls.confirmNewPassword.addValidators(
+    this.updatePasswordFormGroup.controls.newPasswordConfirmation.addValidators(
       this.#matchFormControlValidator(this.updatePasswordFormGroup.controls.newPassword),
     );
 
     this.updatePasswordFormGroup.controls.newPassword.valueChanges
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => {
-        this.updatePasswordFormGroup.controls.confirmNewPassword.updateValueAndValidity();
+        this.updatePasswordFormGroup.controls.newPasswordConfirmation.updateValueAndValidity();
       });
   }
 
@@ -145,12 +145,12 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   }
 
   #matchFormControlValidator(newPasswordControl: AbstractControl): ValidatorFn {
-    return (confirmNewPasswordControl: AbstractControl): null | ValidationErrors => {
-      if (!confirmNewPasswordControl.value) {
+    return (newPasswordConfirmationControl: AbstractControl): null | ValidationErrors => {
+      if (!newPasswordConfirmationControl.value) {
         return null;
       }
 
-      return confirmNewPasswordControl.value === newPasswordControl.value
+      return newPasswordConfirmationControl.value === newPasswordControl.value
         ? null
         : { mismatch: true };
     };
