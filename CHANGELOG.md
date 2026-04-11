@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.21.2](https://github.com/karmasakshi/jet/compare/v4.21.1...v4.21.2) (2026-04-11)
+
+
+### Bug Fixes
+
+* **general:** remove set-env-file in workflow ([2a37ca9](https://github.com/karmasakshi/jet/commit/2a37ca956b692560fc7d8d21dedb6615f702926a))
+
 ## [4.21.1](https://github.com/karmasakshi/jet/compare/v4.21.0...v4.21.1) (2026-04-11)
 
 
