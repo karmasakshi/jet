@@ -1,6 +1,6 @@
 ---
 name: Enhancement
-about: Something can be added or improved
+about: Something is missing
 title: 'feat: '
 labels: enhancement
 assignees: ''
@@ -8,4 +8,4 @@ assignees: ''
 
 ### Description
 
-Describe the need and the proposal.
+Describe the expectation.

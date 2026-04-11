@@ -1,6 +1,6 @@
 ---
 name: Documentation
-about: Something isn't documented as expected
+about: Something is confusing
 title: 'docs: '
 labels: documentation
 assignees: ''
