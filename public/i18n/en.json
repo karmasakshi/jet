@@ -30,9 +30,9 @@
   },
   "jet-home-page": {
     "seo": {
-      "description": "Angular starter-kit for building quality web apps fast. Now with Supabase.",
+      "description": "Angular starter kit for building quality web apps fast.",
       "keywords": "jet",
-      "title": "Jet - Angular starter-kit for building quality web apps fast. Now with Supabase."
+      "title": "Jet - Angular starter kit for building quality web apps fast."
     },
     "toolbar-title": "Jet"
   },

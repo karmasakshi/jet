@@ -1,6 +1,6 @@
 # Jet
 
-Angular starter-kit for building quality web apps fast. Now with Supabase.
+Angular starter kit for building quality web apps fast.
 
 <br />
 
