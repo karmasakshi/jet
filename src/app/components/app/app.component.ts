@@ -225,7 +225,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.#setIcons();
 
-    this.#setZoom(this.#isPwaMode);
+    this.#setUserScalable(this.#isPwaMode);
   }
 
   #loadFontPair(fontPairUrl: LanguageOption['fontPairUrl']): void {
@@ -309,10 +309,10 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#meta.updateTag({ content: colorSchemeOption.themeColor, name: 'theme-color' });
   }
 
-  #setZoom(isPwaMode: boolean): void {
+  #setUserScalable(isPwaMode: boolean): void {
     if (isPwaMode) {
       this.#meta.updateTag({
-        content: 'width=device-width, initial-scale=0.75, viewport-fit=cover, user-scalable=no',
+        content: 'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
         name: 'viewport',
       });
     }
