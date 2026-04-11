@@ -13,8 +13,9 @@ permissions:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+
     steps:
       - uses: googleapis/release-please-action@v4 # https://github.com/marketplace/actions/release-please-action
         with:
           release-type: node
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }} # https://docs.github.com/en/actions/tutorials/authenticate-with-github_token

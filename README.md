@@ -121,7 +121,6 @@ Nice to do:
     - [Add an environment](#add-an-environment)
     - [Add an environment variable](#add-an-environment-variable)
   - [Manage releases](#manage-releases)
-    - [Set up Release Please](#set-up-release-please)
     - [Cut a release](#cut-a-release)
     - [Cut a major release](#cut-a-major-release)
   - [Deploy](#deploy)
@@ -495,15 +494,6 @@ Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/comp
 [↑ Back to Contents](#contents)
 
 ### Manage releases
-
-<br />
-
-[↑ Back to Contents](#contents)
-
-#### Set up Release Please
-
-- Generate a [Personal Access Token](https://github.com/settings/personal-access-tokens) token with no expiry
-- Save it to Actions > Secrets as `RELEASE_PLEASE_TOKEN`
 
 <br />
 
