@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.21.1](https://github.com/karmasakshi/jet/compare/v4.21.0...v4.21.1) (2026-04-11)
+
+
+### Bug Fixes
+
+* **general:** use github token in release please workflow ([85035c7](https://github.com/karmasakshi/jet/commit/85035c72360cdfcdc1d636bf936ce4bcabacce13))
+
 ## [4.21.0](https://github.com/karmasakshi/jet/compare/v4.20.0...v4.21.0) (2026-04-11)
 
 
