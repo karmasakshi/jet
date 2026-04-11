@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.0](https://github.com/karmasakshi/jet/compare/v4.21.2...v4.22.0) (2026-04-11)
+
+
+### Features
+
+* **general:** remove scaling in pwa mode ([c67e077](https://github.com/karmasakshi/jet/commit/c67e0772f8035afc9bd4108206b830ba53b93591))
+
 ## [4.21.2](https://github.com/karmasakshi/jet/compare/v4.21.1...v4.21.2) (2026-04-11)
 
 
