@@ -69,7 +69,7 @@ Angular starter-kit for building quality web apps fast. Now with Supabase.
 <a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-6e4b3a?style=plastic"></a>
 
 - Click the button above, create your repository, then clone it
-- Create a copy of `.env.example` and name it `.env`
+- Create a copy of `.env.template` and name it `.env`
 - Delete `./.github/FUNDING.yml`
 - Delete `./CHANGELOG.md`; a fresh one will be created on first release
 - Delete `./LICENSE` and the `license` property in `./package.json` and `./package-lock.json`

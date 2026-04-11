@@ -1,4 +1,5 @@
 {
+  "editor.codeActionsOnSave": { "source.organizeImports": "explicit" },
   "editor.tabSize": 2,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,

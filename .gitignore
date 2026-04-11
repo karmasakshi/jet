@@ -45,4 +45,4 @@ Thumbs.db
 
 # Environment files
 .env*
-!.env.example
+!.env.template
