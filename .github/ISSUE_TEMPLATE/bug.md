@@ -8,17 +8,15 @@ assignees: ''
 
 ### Description
 
-Describe the bug and the expectation.
+Describe what is wrong.
 
 ### Steps to reproduce
 
-1. Go to ...
-2. Click on ...
-3. Scroll to ...
+1. Open x
+2. Click on x
+3. Scroll to x
 
 ##### My environment
 
-- Browser: (e.g. Chrome, Firefox, Safari)
-- Browser version: (e.g. 100.0.0)
-- OS: (e.g. Android, iOS, macOS, Ubuntu, Windows)
-- OS version: (e.g. 10.0.0)
+- Browser and version (e.g. Chrome 147.0.0.0, Firefox 149.0.2, Safari 17.8):
+- OS and version (e.g. Android 16, iOS 26, macOS 26, Ubuntu 26.04, Windows 10):
