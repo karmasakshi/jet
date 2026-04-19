@@ -1,1 +1,1 @@
-npm run commitlint
+npm run commitlint ${1}

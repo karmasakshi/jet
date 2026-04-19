@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch false",
     "lint": "ng lint --fix",
-    "commitlint": "commitlint --edit ./.git/COMMIT_EDITMSG",
+    "commitlint": "commitlint --edit",
     "format": "prettier --list-different --write .",
     "format-and-lint-staged": "lint-staged --concurrent false",
     "i18n:extract": "transloco-keys-manager extract",
