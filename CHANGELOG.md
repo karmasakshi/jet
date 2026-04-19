@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.23.0](https://github.com/karmasakshi/jet/compare/v4.22.0...v4.23.0) (2026-04-19)
+
+
+### Features
+
+* **angular:** update dependencies ([685be83](https://github.com/karmasakshi/jet/commit/685be83345022e4050a20d0e2974b97349b641b6))
+
 ## [4.22.0](https://github.com/karmasakshi/jet/compare/v4.21.2...v4.22.0) (2026-04-11)
 
 
