@@ -1,8 +1,8 @@
 import { type Config } from 'prettier';
 
 export default {
-  printWidth: 100,
-  singleQuote: true,
+  cssDeclarationSorterOrder: 'alphabetical',
+  objectWrap: 'collapse',
   overrides: [
     { files: '*.html', options: { parser: 'angular' } },
     {
@@ -17,12 +17,12 @@ export default {
       },
     },
   ],
-  cssDeclarationSorterOrder: 'alphabetical',
-  objectWrap: 'collapse',
   plugins: [
     'prettier-plugin-css-order',
     'prettier-plugin-organize-imports',
     'prettier-plugin-sql-cst',
   ],
+  printWidth: 100,
   singleAttributePerLine: true,
+  singleQuote: true,
 } satisfies Config;

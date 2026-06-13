@@ -1,12 +1,11 @@
 // @ts-check
 const eslint = require('@eslint/js');
-const { defineConfig, globalIgnores } = require('eslint/config');
+const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const perfectionist = require('eslint-plugin-perfectionist');
 
 module.exports = defineConfig([
-  globalIgnores(['.commitlintrc.ts', '.prettierrc.ts']),
   {
     files: ['**/*.ts'],
     extends: [
@@ -115,7 +114,11 @@ module.exports = defineConfig([
       'sort-keys': ['warn', 'asc', { caseSensitive: false }],
     },
     languageOptions: {
-      parserOptions: { projectService: { allowDefaultProject: ['transloco.config.ts'] } },
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['.commitlintrc.ts', '.prettierrc.ts', 'transloco.config.ts'],
+        },
+      },
     },
     plugins: { perfectionist },
   },
