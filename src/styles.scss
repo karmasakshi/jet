@@ -1,9 +1,12 @@
+@use 'pkg:@fontsource-variable/bricolage-grotesque/wght.css' as BricolageGrotesque;
+@use 'pkg:@fontsource-variable/noto-sans/wght.css' as NotoSans;
+@use 'pkg:@fontsource-variable/noto-sans-arabic/wght.css' as NotoSansArabic;
 @use '@angular/material' as mat;
 @use '../_theme-colors' as mat-theme;
 
-$bg-font-family: ('Bricolage Grotesque', serif);
-$ns-font-family: ('Noto Sans', sans-serif);
-$nsa-font-family: ('Noto Sans Arabic', sans-serif);
+$bg-font-family: ('Bricolage Grotesque Variable', serif);
+$ns-font-family: ('Noto Sans Variable', sans-serif);
+$nsa-font-family: ('Noto Sans Arabic Variable', sans-serif);
 
 html {
   --jet-sidenav-width: 240px;

@@ -17,9 +17,9 @@
     "i18n:find": "transloco-keys-manager find",
     "prepare": "husky",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
-    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
+    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @fontsource-variable/bricolage-grotesque @fontsource-variable/noto-sans @fontsource-variable/noto-sans-arabic @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
     "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/types @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @jsverse/transloco-validator @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest",
-    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
+    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @fontsource-variable/bricolage-grotesque @fontsource-variable/noto-sans @fontsource-variable/noto-sans-arabic @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
     "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/types @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @jsverse/transloco-validator @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest"
   },
   "lint-staged": {
@@ -43,6 +43,9 @@
     "@angular/platform-browser": "^22.0.1",
     "@angular/router": "^22.0.1",
     "@angular/service-worker": "^22.0.1",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.10",
+    "@fontsource-variable/noto-sans": "^5.2.10",
+    "@fontsource-variable/noto-sans-arabic": "^5.2.10",
     "@jsverse/transloco": "^8.3.0",
     "@supabase/supabase-js": "^2.108.1",
     "ga-gtag": "^1.2.0",

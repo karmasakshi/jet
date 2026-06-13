@@ -167,8 +167,6 @@ export class AppComponent implements OnDestroy, OnInit {
         const languageOption: LanguageOption = this.#languageOption();
 
         untracked(() => {
-          this.#loadFontPair(languageOption.fontPairUrl);
-
           this.#setFontPair(languageOption.fontPair);
 
           this.#setLanguage(languageOption.value);
@@ -226,28 +224,6 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#setIcons();
 
     this.#setUserScalable(this.#isPwaMode);
-  }
-
-  #loadFontPair(fontPairUrl: LanguageOption['fontPairUrl']): void {
-    const id: string = 'jet-non-default-font-pair';
-
-    let linkElement: HTMLElement | null = document.getElementById(id);
-
-    if (linkElement) {
-      this.#renderer2.removeChild(this.#document.head, linkElement);
-    }
-
-    if (fontPairUrl !== DEFAULT_LANGUAGE_OPTION.fontPairUrl) {
-      linkElement = this.#renderer2.createElement('link');
-
-      this.#renderer2.setAttribute(linkElement, 'href', fontPairUrl);
-
-      this.#renderer2.setAttribute(linkElement, 'id', id);
-
-      this.#renderer2.setAttribute(linkElement, 'rel', 'stylesheet');
-
-      this.#renderer2.appendChild(this.#document.head, linkElement);
-    }
   }
 
   #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
