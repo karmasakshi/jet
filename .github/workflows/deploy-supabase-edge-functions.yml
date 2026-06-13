@@ -14,18 +14,13 @@ permissions:
 jobs:
   deploy-supabase-edge-functions:
     runs-on: ubuntu-latest
-
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
-
     steps:
       - uses: actions/checkout@v6 # https://github.com/marketplace/actions/checkout
-
-      - uses: supabase/setup-cli@v1 # https://github.com/marketplace/actions/supabase-cli-action
+      - uses: supabase/setup-cli@v2 # https://github.com/marketplace/actions/supabase-cli-action
         with:
           version: latest
-
       - name: deploy-supabase-edge-functions
-        run: |
-          supabase functions deploy --project-ref $SUPABASE_PROJECT_ID
+        run: supabase functions deploy --project-ref $SUPABASE_PROJECT_ID
