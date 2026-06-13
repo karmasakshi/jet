@@ -19,15 +19,6 @@
         },
         { "key": "X-Content-Type-Options", "value": "nosniff" }
       ]
-    },
-    {
-      "source": "/ngsw-worker.js",
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'none'; connect-src 'self' https:;"
-        }
-      ]
     }
   ],
   "installCommand": "npm install --force",
