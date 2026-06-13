@@ -18,9 +18,9 @@
     "prepare": "husky",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
     "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @jsverse/transloco-validator @ngx-env/builder @tailwindcss/postcss @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest",
+    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @jsverse/transloco-validator @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest",
     "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @jsverse/transloco @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @jsverse/transloco-validator @ngx-env/builder @tailwindcss/postcss @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest"
+    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-optimize @jsverse/transloco-validator @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase typescript typescript-eslint vitest"
   },
   "lint-staged": {
     "./public/i18n/*.json": [
@@ -61,7 +61,6 @@
     "@jsverse/transloco-optimize": "^8.3.0",
     "@jsverse/transloco-validator": "^8.3.0",
     "@ngx-env/builder": "^21.0.1",
-    "@tailwindcss/postcss": "^4.3.0",
     "@types/ga-gtag": "^1.2.0",
     "angular-eslint": "^22.0.0",
     "eslint": "^10.4.1",
@@ -69,13 +68,11 @@
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.7",
-    "postcss": "^8.5.15",
     "prettier": "^3.8.4",
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-sql-cst": "^0.22.1",
     "supabase": "^2.106.0",
-    "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",
     "vitest": "^4.1.8"

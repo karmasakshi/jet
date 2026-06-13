@@ -17,7 +17,7 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import packageJson from 'package.json';
+import packageJson from '../../../../package.json' with { type: 'json' };
 import { PageComponent } from '../page/page.component';
 
 @Component({
