@@ -25,5 +25,22 @@
         "files": ["/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "google-fonts-css",
+      "urls": ["https://fonts.googleapis.com/**"],
+      "cacheConfig": { "strategy": "freshness", "maxSize": 10, "maxAge": "7d", "timeout": "3s" }
+    },
+    {
+      "name": "google-fonts-fonts",
+      "urls": ["https://fonts.gstatic.com/**"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 30,
+        "maxAge": "365d",
+        "cacheOpaqueResponses": true
+      }
+    }
   ]
 }
