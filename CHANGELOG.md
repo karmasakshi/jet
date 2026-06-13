@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/karmasakshi/jet/compare/v4.23.0...v5.0.0) (2026-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **angular:** upgrade to angular 22
+
+### Features
+
+* **angular:** upgrade to angular 22 ([2655384](https://github.com/karmasakshi/jet/commit/2655384331eb51c44062dda1aa497e1c55b50946))
+
 ## [4.23.0](https://github.com/karmasakshi/jet/compare/v4.22.0...v4.23.0) (2026-04-19)
 
 
