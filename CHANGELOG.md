@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/karmasakshi/jet/compare/v5.0.0...v5.1.0) (2026-06-13)
+
+
+### Features
+
+* **general:** add fontsource ([b775900](https://github.com/karmasakshi/jet/commit/b77590089f6e0090e91236af4e4e6beca0b372c4))
+
 ## [5.0.0](https://github.com/karmasakshi/jet/compare/v4.23.0...v5.0.0) (2026-06-13)
 
 
