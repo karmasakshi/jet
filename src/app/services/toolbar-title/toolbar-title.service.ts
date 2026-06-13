@@ -1,7 +1,7 @@
-import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { inject, Service, Signal, signal, WritableSignal } from '@angular/core';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class ToolbarTitleService {
   readonly #loggerService = inject(LoggerService);
 

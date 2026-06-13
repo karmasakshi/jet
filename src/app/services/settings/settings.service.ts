@@ -2,7 +2,7 @@ import {
   computed,
   effect,
   inject,
-  Injectable,
+  Service,
   Signal,
   signal,
   untracked,
@@ -14,7 +14,7 @@ import { Settings } from '@jet/interfaces/settings.interface';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class SettingsService {
   readonly #loggerService = inject(LoggerService);
   readonly #storageService = inject(StorageService);

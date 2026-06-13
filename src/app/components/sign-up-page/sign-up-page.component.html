@@ -77,7 +77,7 @@
               @if (_passwordControl.touched && _passwordControl.errors?.['minlength']) {
                 <mat-error>{{
                   t('password-error-minlength-x', {
-                    x: _passwordControl.errors?.['minlength'].requiredLength,
+                    x: _passwordControl.errors['minlength'].requiredLength,
                   })
                 }}</mat-error>
               }

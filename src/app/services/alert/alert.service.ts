@@ -1,4 +1,4 @@
-import { inject, Injectable, Signal } from '@angular/core';
+import { inject, Service, Signal } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { Settings } from '@jet/interfaces/settings.interface';
 import { TranslocoService } from '@jsverse/transloco';
@@ -6,7 +6,7 @@ import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class AlertService {
   readonly #matSnackBar = inject(MatSnackBar);
   readonly #translocoService = inject(TranslocoService);

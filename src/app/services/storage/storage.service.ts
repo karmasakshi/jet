@@ -1,10 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
 import { SessionStorageKey } from '@jet/enums/session-storage-key.enum';
 import store2, { StoreType } from 'store2';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class StorageService {
   readonly #loggerService = inject(LoggerService);
 

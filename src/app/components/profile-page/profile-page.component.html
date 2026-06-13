@@ -109,7 +109,7 @@
               @if (_fullNameControl.touched && _fullNameControl.errors?.['maxlength']) {
                 <mat-error>{{
                   t('full-name-error-maxlength-x', {
-                    x: _fullNameControl.errors?.['maxlength'].requiredLength,
+                    x: _fullNameControl.errors['maxlength'].requiredLength,
                   })
                 }}</mat-error>
               }
@@ -147,14 +147,14 @@
               @if (_usernameControl.touched && _usernameControl.errors?.['maxlength']) {
                 <mat-error>{{
                   t('username-error-maxlength-x', {
-                    x: _usernameControl.errors?.['maxlength'].requiredLength,
+                    x: _usernameControl.errors['maxlength'].requiredLength,
                   })
                 }}</mat-error>
               }
               @if (_usernameControl.touched && _usernameControl.errors?.['minlength']) {
                 <mat-error>{{
                   t('username-error-minlength-x', {
-                    x: _usernameControl.errors?.['minlength'].requiredLength,
+                    x: _usernameControl.errors['minlength'].requiredLength,
                   })
                 }}</mat-error>
               }

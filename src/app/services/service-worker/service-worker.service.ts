@@ -2,7 +2,7 @@ import {
   DestroyRef,
   effect,
   inject,
-  Injectable,
+  Service,
   Signal,
   signal,
   untracked,
@@ -17,7 +17,7 @@ import { AnalyticsService } from '../analytics/analytics.service';
 import { LoggerService } from '../logger/logger.service';
 import { StorageService } from '../storage/storage.service';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class ServiceWorkerService {
   readonly #destroyRef = inject(DestroyRef);
   readonly #swUpdate = inject(SwUpdate);

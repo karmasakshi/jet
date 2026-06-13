@@ -16,25 +16,11 @@
     "module": "preserve",
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "baseUrl": "./",
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "paths": {
-      "@jet/classes/*": ["src/app/classes/*"],
-      "@jet/components/*": ["src/app/components/*"],
-      "@jet/constants/*": ["src/app/constants/*"],
-      "@jet/directives/*": ["src/app/directives/*"],
-      "@jet/enums/*": ["src/app/enums/*"],
-      "@jet/guards/*": ["src/app/guards/*"],
-      "@jet/injection-tokens/*": ["src/app/injection-tokens/*"],
-      "@jet/interceptors/*": ["src/app/interceptors/*"],
-      "@jet/interfaces/*": ["src/app/interfaces/*"],
-      "@jet/pipes/*": ["src/app/pipes/*"],
-      "@jet/services/*": ["src/app/services/*"],
-      "@jet/types/*": ["src/app/types/*"]
-    }
+    "paths": { "@jet/*": ["./src/app/*"] }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

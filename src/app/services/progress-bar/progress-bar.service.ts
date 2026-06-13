@@ -1,8 +1,8 @@
-import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { inject, Service, Signal, signal, WritableSignal } from '@angular/core';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { LoggerService } from '../logger/logger.service';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class ProgressBarService {
   readonly #loggerService = inject(LoggerService);
 
