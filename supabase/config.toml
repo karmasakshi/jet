@@ -16,6 +16,12 @@ extra_search_path = ["public", "extensions"]
 # The maximum number of rows returns from a view, table, or stored procedure. Limits payload size
 # for accidental or malicious requests.
 max_rows = 50
+# Controls whether new tables, views, sequences and functions created in the `public` schema by
+# `postgres` are reachable through the Data API roles (`anon`, `authenticated`, `service_role`)
+# without explicit GRANTs. When unset, new entities are NOT auto-exposed, matching the new cloud
+# default. Set to `true` to keep the legacy behaviour of auto-exposing new entities; this is
+# deprecated and the field is removed on 2026-10-30 once the always-revoked behaviour is permanent.
+# auto_expose_new_tables = true
 
 [api.tls]
 # Enable HTTPS endpoints locally using a self-signed certificate.
@@ -138,9 +144,8 @@ max_catalogs = 2
 # [storage.analytics.buckets.my-warehouse]
 
 # Store vector embeddings in S3 for large and durable datasets
-# This feature is only available on the hosted platform.
 [storage.vector]
-enabled = false
+enabled = true
 max_buckets = 10
 max_indexes = 5
 
@@ -152,11 +157,13 @@ enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
 site_url = "http://127.0.0.1:3000"
+# The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
+# external_url = ""
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
 additional_redirect_urls = ["https://127.0.0.1:3000"]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
-# JWT issuer URL. If not set, defaults to the local API URL (http://127.0.0.1:<port>/auth/v1).
+# JWT issuer URL. If not set, defaults to auth.external_url.
 # jwt_issuer = ""
 # Path to JWT signing key. DO NOT commit your signing keys file to git.
 # signing_keys_path = "./signing_keys.json"
@@ -253,7 +260,7 @@ enable_signup = false
 # If enabled, users need to confirm their phone number before signing in.
 enable_confirmations = false
 # Template for sending OTP to users
-template = "Your code is {{ .Code }}"
+template = "Your code is {{ `{{ .Code }}` }}"
 # Controls the minimum amount of time that must pass before sending another sms otp.
 max_frequency = "5s"
 
@@ -301,7 +308,7 @@ verify_enabled = false
 enroll_enabled = false
 verify_enabled = false
 otp_length = 6
-template = "Your code is {{ .Code }}"
+template = "Your code is {{ `{{ .Code }}` }}"
 max_frequency = "5s"
 
 # Configure MFA via WebAuthn
@@ -317,7 +324,7 @@ enabled = false
 client_id = ""
 # DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
 secret = "env(SUPABASE_AUTH_EXTERNAL_APPLE_SECRET)"
-# Overrides the default auth redirectUrl.
+# Overrides the default auth callback URL derived from auth.external_url.
 redirect_uri = ""
 # Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
 # or any other third-party OIDC providers.
