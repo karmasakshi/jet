@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/karmasakshi/jet/compare/v5.2.0...v5.3.0) (2026-06-14)
+
+
+### Features
+
+* **general:** cache translations ([1ad4e6e](https://github.com/karmasakshi/jet/commit/1ad4e6e7af09965cd1b6ea9d6c07b847ef1392fc))
+
 ## [5.2.0](https://github.com/karmasakshi/jet/compare/v5.1.0...v5.2.0) (2026-06-14)
 
 
