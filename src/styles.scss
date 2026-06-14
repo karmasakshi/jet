@@ -296,3 +296,7 @@ table {
   border-radius: var(--mat-sys-corner-small);
   overflow: hidden;
 }
+
+.mdc-text-field .mdc-floating-label {
+  top: 50% !important;
+}
