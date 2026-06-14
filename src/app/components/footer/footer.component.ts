@@ -9,7 +9,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatIconModule, AnalyticsDirective, TranslocoModule],
   selector: 'jet-footer',
-  styleUrl: './footer.component.scss',
+  styleUrl: './footer.component.css',
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {

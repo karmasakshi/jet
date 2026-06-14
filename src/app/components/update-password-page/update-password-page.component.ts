@@ -40,7 +40,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-update-password-page',
-  styleUrl: './update-password-page.component.scss',
+  styleUrl: './update-password-page.component.css',
   templateUrl: './update-password-page.component.html',
 })
 export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnInit {

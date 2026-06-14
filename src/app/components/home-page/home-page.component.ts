@@ -7,7 +7,7 @@ import { PageComponent } from '../page/page.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-home-page',
-  styleUrl: './home-page.component.scss',
+  styleUrl: './home-page.component.css',
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {

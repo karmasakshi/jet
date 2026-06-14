@@ -11,7 +11,7 @@ import { PageComponent } from '../page/page.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-sign-out-page',
-  styleUrl: './sign-out-page.component.scss',
+  styleUrl: './sign-out-page.component.css',
   templateUrl: './sign-out-page.component.html',
 })
 export class SignOutPageComponent implements OnInit {

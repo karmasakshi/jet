@@ -24,7 +24,7 @@ import { TranslocoModule } from '@jsverse/transloco';
     TranslocoModule,
   ],
   selector: 'jet-sidenav',
-  styleUrl: './sidenav.component.scss',
+  styleUrl: './sidenav.component.css',
   templateUrl: './sidenav.component.html',
 })
 export class SidenavComponent {

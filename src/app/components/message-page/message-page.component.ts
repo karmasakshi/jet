@@ -18,7 +18,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-message-page',
-  styleUrl: './message-page.component.scss',
+  styleUrl: './message-page.component.css',
   templateUrl: './message-page.component.html',
 })
 export class MessagePageComponent {

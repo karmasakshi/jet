@@ -33,7 +33,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-settings-page',
-  styleUrl: './settings-page.component.scss',
+  styleUrl: './settings-page.component.css',
   templateUrl: './settings-page.component.html',
 })
 export class SettingsPageComponent {

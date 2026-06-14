@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 .jet-flexc-centered {
   align-items: center;
   display: flex;

@@ -6,7 +6,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatCardModule],
   selector: 'jet-skeleton-card',
-  styleUrl: './skeleton-card.component.scss',
+  styleUrl: './skeleton-card.component.css',
   templateUrl: './skeleton-card.component.html',
 })
 export class SkeletonCardComponent {

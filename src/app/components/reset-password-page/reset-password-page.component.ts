@@ -35,7 +35,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-reset-password-page',
-  styleUrl: './reset-password-page.component.scss',
+  styleUrl: './reset-password-page.component.css',
   templateUrl: './reset-password-page.component.html',
 })
 export class ResetPasswordPageComponent implements OnInit {

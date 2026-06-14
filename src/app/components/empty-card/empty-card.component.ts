@@ -6,7 +6,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatCardModule],
   selector: 'jet-empty-card',
-  styleUrl: './empty-card.component.scss',
+  styleUrl: './empty-card.component.css',
   templateUrl: './empty-card.component.html',
 })
 export class EmptyCardComponent {

@@ -25,7 +25,7 @@ import { TranslocoModule } from '@jsverse/transloco';
     TranslocoModule,
   ],
   selector: 'jet-toolbar',
-  styleUrl: './toolbar.component.scss',
+  styleUrl: './toolbar.component.css',
   templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent {

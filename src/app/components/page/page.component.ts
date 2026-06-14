@@ -14,7 +14,7 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   selector: 'jet-page',
-  styleUrl: './page.component.scss',
+  styleUrl: './page.component.css',
   templateUrl: './page.component.html',
 })
 export class PageComponent {

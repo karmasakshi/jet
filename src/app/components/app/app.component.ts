@@ -64,7 +64,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
     ToolbarComponent,
   ],
   selector: 'jet-app',
-  styleUrl: './app.component.scss',
+  styleUrl: './app.component.css',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnDestroy, OnInit {

@@ -35,7 +35,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-sign-up-page',
-  styleUrl: './sign-up-page.component.scss',
+  styleUrl: './sign-up-page.component.css',
   templateUrl: './sign-up-page.component.html',
 })
 export class SignUpPageComponent implements OnInit {

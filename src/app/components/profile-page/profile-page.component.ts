@@ -54,7 +54,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-profile-page',
-  styleUrl: './profile-page.component.scss',
+  styleUrl: './profile-page.component.css',
   templateUrl: './profile-page.component.html',
 })
 export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
