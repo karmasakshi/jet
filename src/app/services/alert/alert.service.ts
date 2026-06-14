@@ -1,7 +1,7 @@
 import { inject, Service, Signal } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { Settings } from '@jet/interfaces/settings.interface';
-import { TranslocoService } from '@jsverse/transloco';
+import { translate } from '@jsverse/transloco';
 import { take } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -9,7 +9,6 @@ import { SettingsService } from '../settings/settings.service';
 @Service()
 export class AlertService {
   readonly #matSnackBar = inject(MatSnackBar);
-  readonly #translocoService = inject(TranslocoService);
   readonly #loggerService = inject(LoggerService);
   readonly #settingsService = inject(SettingsService);
 
@@ -23,7 +22,7 @@ export class AlertService {
 
   public showAlert(
     message: string,
-    cta: string = this.#translocoService.translate('alerts.ok'),
+    cta: string = translate('alerts.ok'),
     action?: () => void,
   ): void {
     const matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> = this.#matSnackBar.open(message, cta, {
@@ -40,9 +39,7 @@ export class AlertService {
     }
   }
 
-  public showErrorAlert(
-    message: string = this.#translocoService.translate('alerts.something-went-wrong'),
-  ): void {
+  public showErrorAlert(message: string = translate('alerts.something-went-wrong')): void {
     this.showAlert(message);
   }
 }

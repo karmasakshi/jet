@@ -17,7 +17,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { translate, TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -45,7 +45,6 @@ export class SignUpPageComponent implements OnInit {
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
-  readonly #translocoService = inject(TranslocoService);
 
   #isLoading: boolean;
 
@@ -97,7 +96,7 @@ export class SignUpPageComponent implements OnInit {
       if (data.session === null) {
         void this.#router.navigateByUrl('/email-verification-pending');
       } else {
-        this.#alertService.showAlert(this.#translocoService.translate('alerts.welcome'));
+        this.#alertService.showAlert(translate('alerts.welcome'));
 
         void this.#router.navigateByUrl('/');
       }

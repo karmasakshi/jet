@@ -18,7 +18,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { OauthProvider } from '@jet/types/oauth-provider.type';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { translate, TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -46,7 +46,6 @@ export class SignInPageComponent implements OnInit {
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
-  readonly #translocoService = inject(TranslocoService);
 
   #isLoading: boolean;
 
@@ -102,7 +101,7 @@ export class SignInPageComponent implements OnInit {
         throw new Error();
       }
 
-      this.#alertService.showAlert(this.#translocoService.translate('alerts.welcome'));
+      this.#alertService.showAlert(translate('alerts.welcome'));
 
       void this.#router.navigateByUrl(this.returnUrl());
     } catch (exception: unknown) {
@@ -192,7 +191,7 @@ export class SignInPageComponent implements OnInit {
       const { data } = await this.#userService.getClaims();
 
       if (data) {
-        this.#alertService.showAlert(this.#translocoService.translate('alerts.welcome'));
+        this.#alertService.showAlert(translate('alerts.welcome'));
 
         void this.#router.navigateByUrl(this.returnUrl());
       }

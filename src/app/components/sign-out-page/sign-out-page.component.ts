@@ -4,7 +4,7 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { translate, TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -20,7 +20,6 @@ export class SignOutPageComponent implements OnInit {
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
-  readonly #translocoService = inject(TranslocoService);
 
   #isLoading: boolean;
 
@@ -46,9 +45,7 @@ export class SignOutPageComponent implements OnInit {
     try {
       await this.#userService.signOut();
 
-      this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.signed-out-successfully'),
-      );
+      this.#alertService.showAlert(translate('alerts.signed-out-successfully'));
 
       void this.#router.navigateByUrl('/');
     } catch (exception: unknown) {

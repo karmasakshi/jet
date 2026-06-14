@@ -26,10 +26,11 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
     "extendedDiagnostics": {
       "defaultCategory": "error" // https://angular.dev/extended-diagnostics#configuration
-    }
+    },
+    "strictStandalone": true,
+    "strictTemplates": true
   },
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.spec.json" }]

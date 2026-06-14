@@ -16,7 +16,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { translate, TranslocoModule } from '@jsverse/transloco';
 import packageJson from '../../../../package.json' with { type: 'json' };
 import { PageComponent } from '../page/page.component';
 
@@ -43,7 +43,6 @@ export class SettingsPageComponent {
   readonly #serviceWorkerService = inject(ServiceWorkerService);
   readonly #settingsService = inject(SettingsService);
   readonly #storageService = inject(StorageService);
-  readonly #translocoService = inject(TranslocoService);
 
   protected readonly colorSchemeOptions: ColorSchemeOption[];
   protected readonly languageOptions: LanguageOption[];
@@ -68,15 +67,13 @@ export class SettingsPageComponent {
   protected async checkForUpdate(): Promise<void> {
     this.#progressBarService.showQueryProgressBar();
 
-    this.#alertService.showAlert(this.#translocoService.translate('alerts.checking-for-updates'));
+    this.#alertService.showAlert(translate('alerts.checking-for-updates'));
 
     try {
       const isUpdateFoundAndReady: boolean = await this.#serviceWorkerService.checkForUpdate();
 
       if (!isUpdateFoundAndReady) {
-        this.#alertService.showAlert(
-          this.#translocoService.translate('alerts.youre-on-the-latest-version'),
-        );
+        this.#alertService.showAlert(translate('alerts.youre-on-the-latest-version'));
       }
     } catch (exception: unknown) {
       if (exception instanceof Error) {

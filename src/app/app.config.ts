@@ -18,6 +18,7 @@ import {
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { JetMatPaginatorIntl } from '@jet/classes/jet-mat-paginator-intl/jet-mat-paginator-intl';
+import { TranslocoHttpLoader } from '@jet/classes/transloco-http-loader/transloco-http-loader';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-bar.interceptor';
@@ -26,7 +27,6 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
-import { TranslocoHttpLoader } from './transloco-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -61,6 +61,7 @@ export const appConfig: ApplicationConfig = {
           (languageOption: LanguageOption): Language => languageOption.value,
         ),
         defaultLang: DEFAULT_LANGUAGE_OPTION.value,
+        failedRetries: 1,
         prodMode: !isDevMode(),
         reRenderOnLangChange: true,
       },

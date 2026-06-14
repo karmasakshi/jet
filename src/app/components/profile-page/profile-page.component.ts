@@ -32,7 +32,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { translate, TranslocoModule } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
@@ -64,7 +64,6 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   readonly #profileService = inject(ProfileService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
-  readonly #translocoService = inject(TranslocoService);
 
   #isLoading: boolean;
   readonly #user: null | User;
@@ -125,18 +124,14 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     const file: File | undefined = files[0];
 
     if (!file?.type.startsWith('image/')) {
-      this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.please-select-a-valid-avatar'),
-      );
+      this.#alertService.showAlert(translate('alerts.please-select-a-valid-avatar'));
 
       return;
     }
 
     if (file.size > AVATAR_MAX_SIZE_MB * 1024 * 1024) {
       this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.please-select-an-avatar-lte-x-mb', {
-          x: AVATAR_MAX_SIZE_MB,
-        }),
+        translate('alerts.please-select-an-avatar-lte-x-mb', { x: AVATAR_MAX_SIZE_MB }),
       );
 
       return;
@@ -173,7 +168,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
       this.profile.set(data);
 
-      this.#alertService.showAlert(this.#translocoService.translate('alerts.avatar-updated'));
+      this.#alertService.showAlert(translate('alerts.avatar-updated'));
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this.#loggerService.logError(exception);
@@ -208,7 +203,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
       this.profileFormGroup.markAsPristine();
 
-      this.#alertService.showAlert(this.#translocoService.translate('alerts.profile-updated'));
+      this.#alertService.showAlert(translate('alerts.profile-updated'));
     } catch (exception: unknown) {
       if (exception instanceof Error) {
         this.#loggerService.logError(exception);

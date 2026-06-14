@@ -11,7 +11,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { LocalStorageKey } from '@jet/enums/local-storage-key.enum';
-import { TranslocoService } from '@jsverse/transloco';
+import { translate } from '@jsverse/transloco';
 import { AlertService } from '../alert/alert.service';
 import { AnalyticsService } from '../analytics/analytics.service';
 import { LoggerService } from '../logger/logger.service';
@@ -21,7 +21,6 @@ import { StorageService } from '../storage/storage.service';
 export class ServiceWorkerService {
   readonly #destroyRef = inject(DestroyRef);
   readonly #swUpdate = inject(SwUpdate);
-  readonly #translocoService = inject(TranslocoService);
   readonly #alertService = inject(AlertService);
   readonly #analyticsService = inject(AnalyticsService);
   readonly #loggerService = inject(LoggerService);
@@ -68,8 +67,8 @@ export class ServiceWorkerService {
   public async checkForUpdate(): Promise<boolean> {
     if (this.#isUpdateReady) {
       this.#alertService.showAlert(
-        this.#translocoService.translate('alerts.reload-to-update'),
-        this.#translocoService.translate('alerts.reload'),
+        translate('alerts.reload-to-update'),
+        translate('alerts.reload'),
         (): void => {
           window.location.reload();
         },
@@ -101,9 +100,7 @@ export class ServiceWorkerService {
 
             this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
 
-            this.#alertService.showAlert(
-              this.#translocoService.translate('alerts.downloading-updates'),
-            );
+            this.#alertService.showAlert(translate('alerts.downloading-updates'));
 
             break;
 
@@ -128,8 +125,8 @@ export class ServiceWorkerService {
             this.#isUpdateReady = true;
 
             this.#alertService.showAlert(
-              this.#translocoService.translate('alerts.reload-to-update'),
-              this.#translocoService.translate('alerts.reload'),
+              translate('alerts.reload-to-update'),
+              translate('alerts.reload'),
               (): void => {
                 window.location.reload();
               },
