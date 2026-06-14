@@ -271,10 +271,8 @@ table {
   }
 }
 
-.mat-mdc-form-field {
-  .mat-mdc-form-field-icon-suffix {
-    padding: 0 8px;
-  }
+.mat-mdc-form-field-icon-suffix {
+  padding: 0 8px !important;
 }
 
 .mat-mdc-option {
