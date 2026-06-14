@@ -78,7 +78,7 @@
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-sql-cst": "^0.22.1",
-    "supabase": "^2.105.0",
+    "supabase": "^2.106.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",

@@ -8,8 +8,8 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="jet-flexc-centered">
-      <mat-card class="jet-maxw-480">
+    <div class="flex flex-col items-center gap-4">
+      <mat-card class="w-full max-w-120">
         <img
           height="180"
           mat-card-image
@@ -98,9 +98,9 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card class="jet-maxw-480">
+      <mat-card class="w-full max-w-120">
         <mat-card-content>
-          <div class="jet-flexc-centered">
+          <div class="flex flex-col items-center gap-4">
             <a
               matButton
               [disabled]="signUpFormGroup.disabled"

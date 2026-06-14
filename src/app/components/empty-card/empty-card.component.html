@@ -3,9 +3,7 @@
 @let _width = width();
 
 <mat-card [style]="{ height: `${_height}px`, width: `${_width}px` }">
-  <mat-card-content
-    style="justify-content: center; display: flex; height: 100%; align-items: center"
-  >
+  <mat-card-content class="flex h-full items-center justify-center">
     <span>{{ _message }}</span>
   </mat-card-content>
 </mat-card>

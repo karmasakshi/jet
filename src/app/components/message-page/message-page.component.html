@@ -7,8 +7,8 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="jet-flexc-centered">
-      <mat-card class="jet-maxw-480">
+    <div class="flex flex-col items-center gap-4">
+      <mat-card class="w-full max-w-120">
         <img
           height="180"
           mat-card-image
@@ -22,7 +22,7 @@
             <mat-card-header>
               <mat-card-title>{{ t('verification-email-sent') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('verify-link-description') }}</p>
+                <p class="my-3">{{ t('verify-link-description') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
@@ -30,7 +30,7 @@
             <mat-card-header>
               <mat-card-title>{{ t('not-found') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('that-page-doesnt-exist') }}</p>
+                <p class="my-3">{{ t('that-page-doesnt-exist') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
@@ -38,7 +38,7 @@
             <mat-card-header>
               <mat-card-title>{{ t('well-email-you') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('update-password-link-description') }}</p>
+                <p class="my-3">{{ t('update-password-link-description') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }
@@ -46,7 +46,7 @@
             <mat-card-header>
               <mat-card-title>{{ t('sign-in-link-sent') }}</mat-card-title>
               <mat-card-subtitle>
-                <p>{{ t('sign-in-link-description') }}</p>
+                <p class="my-3">{{ t('sign-in-link-description') }}</p>
               </mat-card-subtitle>
             </mat-card-header>
           }

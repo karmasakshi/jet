@@ -5,13 +5,15 @@
 
 <ng-container *transloco="let t; prefix: 'jet-toolbar'">
   <mat-toolbar
-    [class]="{ 'jet-add-safe-area': _shouldAddSafeArea, 'jet-sidenav-content-toolbar': true }"
+    class="jet-sidenav-content-toolbar"
+    [class.jet-add-safe-area]="_shouldAddSafeArea"
   >
     <mat-progress-bar
       [aria-label]="t('loading')"
       [bufferValue]="_progressBarConfiguration.bufferValue"
+      [class.opacity-0]="!_progressBarConfiguration.isVisible"
+      [class.opacity-100]="_progressBarConfiguration.isVisible"
       [mode]="_progressBarConfiguration.mode"
-      [style]="{ opacity: _progressBarConfiguration.isVisible ? 1 : 0 }"
       [value]="_progressBarConfiguration.value"
     />
     @if (_isLargeViewport) {
