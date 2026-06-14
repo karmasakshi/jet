@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/karmasakshi/jet/compare/v5.1.0...v5.2.0) (2026-06-14)
+
+
+### Features
+
+* **general:** add tailwind ([dd8c51a](https://github.com/karmasakshi/jet/commit/dd8c51a818ff8fe297962a1b676e96b3cc36efc3))
+
 ## [5.1.0](https://github.com/karmasakshi/jet/compare/v5.0.0...v5.1.0) (2026-06-13)
 
 
