@@ -26,6 +26,7 @@ import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
+import { provideTranslocoPersistTranslations } from '@jsverse/transloco-persist-translations';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -65,7 +66,11 @@ export const appConfig: ApplicationConfig = {
         prodMode: !isDevMode(),
         reRenderOnLangChange: true,
       },
+    }),
+    provideTranslocoPersistTranslations({
       loader: TranslocoHttpLoader,
+      storage: { useValue: localStorage },
+      ttl: 86400,
     }),
   ],
 };
