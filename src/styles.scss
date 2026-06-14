@@ -11,7 +11,6 @@ $nsa-font-family: ('Noto Sans Arabic Variable', sans-serif);
 html {
   --jet-sidenav-width: 240px;
 
-  height: 100%;
   text-size-adjust: 100%;
 
   @include mat.theme(
@@ -81,7 +80,6 @@ body {
   color: var(--mat-sys-on-surface);
   color-scheme: light dark;
   font: var(--mat-sys-body-medium);
-  height: 100%;
   margin: 0;
 
   &.jet-color-scheme-dark {
@@ -154,7 +152,7 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
+    min-height: 100vh;
     padding-top: env(safe-area-inset-top);
 
     .jet-sidenav-content-toolbar {
