@@ -7,6 +7,7 @@ import {
   DestroyRef,
   effect,
   inject,
+  linkedSignal,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -132,10 +133,11 @@ export class AppComponent implements OnDestroy, OnInit {
     // );
     this.isLargeViewport = signal(this.#breakpointObserver.isMatched(Breakpoints.Web));
 
-    // To keep MatSidenav open by default on large viewports, set
-    // this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport())
-    // and remove @defer in template.
-    this.isMatSidenavOpen = signal(false);
+    // To keep MatSidenav closed by default on large viewports, set
+    // this.isMatSidenavOpen = signal(false);
+    // and
+    // @defer (on idle) { <jet-sidenav ... /> }
+    this.isMatSidenavOpen = linkedSignal(() => this.isLargeViewport());
 
     this.matSidenavMode = computed(() => (this.isLargeViewport() ? 'side' : 'over'));
 

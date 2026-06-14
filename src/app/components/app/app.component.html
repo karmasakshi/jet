@@ -15,12 +15,10 @@
       [mode]="_matSidenavMode"
       [(opened)]="isMatSidenavOpen"
     >
-      @defer (on idle) {
-        <jet-sidenav
-          [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
-          (clickNavigationMenuItem)="_matSidenavMode === 'over' && matSidenav.close()"
-        />
-      }
+      <jet-sidenav
+        [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
+        (clickNavigationMenuItem)="_matSidenavMode === 'over' && matSidenav.close()"
+      />
     </mat-sidenav>
     <mat-sidenav-content class="jet-sidenav-content">
       <jet-toolbar
