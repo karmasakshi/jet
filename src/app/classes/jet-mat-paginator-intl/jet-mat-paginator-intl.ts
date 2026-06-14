@@ -10,31 +10,26 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
   readonly #translocoService = inject(TranslocoService);
 
   public readonly changes: Subject<void>;
+  public readonly firstPageLabel: string;
+  public readonly itemsPerPageLabel: string;
+  public readonly lastPageLabel: string;
+  public readonly nextPageLabel: string;
+  public readonly previousPageLabel: string;
 
   public constructor() {
     this.changes = new Subject<void>();
 
+    this.firstPageLabel = this.#translocoService.translate('paginator.first-page');
+
+    this.itemsPerPageLabel = this.#translocoService.translate('paginator.items-per-page');
+
+    this.lastPageLabel = this.#translocoService.translate('paginator.last-page');
+
+    this.nextPageLabel = this.#translocoService.translate('paginator.next-page');
+
+    this.previousPageLabel = this.#translocoService.translate('paginator.previous-page');
+
     this.#loggerService.logClassInitialization('JetMatPaginatorIntl');
-  }
-
-  public get firstPageLabel(): string {
-    return this.#translocoService.translate('paginator.first-page');
-  }
-
-  public get itemsPerPageLabel(): string {
-    return this.#translocoService.translate('paginator.items-per-page');
-  }
-
-  public get lastPageLabel(): string {
-    return this.#translocoService.translate('paginator.last-page');
-  }
-
-  public get nextPageLabel(): string {
-    return this.#translocoService.translate('paginator.next-page');
-  }
-
-  public get previousPageLabel(): string {
-    return this.#translocoService.translate('paginator.previous-page');
   }
 
   public getRangeLabel(page: number, pageSize: number, length: number): string {

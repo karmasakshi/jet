@@ -23,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { AVATAR_FILE_MAX_SIZE_MB } from '@jet/constants/avatar-file-max-size-mb.constant';
+import { AVATAR_MAX_SIZE_MB } from '@jet/constants/avatar-max-size-mb.constant';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
 import { Profile } from '@jet/interfaces/profile.interface';
@@ -132,10 +132,10 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
       return;
     }
 
-    if (file.size > AVATAR_FILE_MAX_SIZE_MB * 1024 * 1024) {
+    if (file.size > AVATAR_MAX_SIZE_MB * 1024 * 1024) {
       this.#alertService.showAlert(
         this.#translocoService.translate('alerts.please-select-an-avatar-lte-x-mb', {
-          x: AVATAR_FILE_MAX_SIZE_MB,
+          x: AVATAR_MAX_SIZE_MB,
         }),
       );
 

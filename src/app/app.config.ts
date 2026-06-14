@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: window.navigator.language },
     provideBrowserGlobalErrorListeners(),
     provideEnvironmentInitializer(() => {
-      inject(ServiceWorkerService);
+      void inject(ServiceWorkerService);
     }),
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
@@ -43,7 +43,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
-      useValue: { disableTooltipInteractivity: true, showDelay: 1000 },
+      useValue: { disableTooltipInteractivity: true, showDelay: 900 },
     },
     provideRouter(
       routes,

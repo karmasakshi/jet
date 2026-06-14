@@ -4,5 +4,5 @@ export interface ColorSchemeOption {
   icon: string;
   nameKey: string;
   themeColor: string;
-  value: ColorScheme;
+  value: ColorScheme | null;
 }

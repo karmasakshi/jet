@@ -4,14 +4,14 @@ import { marker } from '@jsverse/transloco-keys-manager/marker';
 export const LANGUAGE_OPTIONS: LanguageOption[] = [
   {
     directionality: 'ltr',
-    fontPair: 'ns-bg',
+    fontPairClass: null,
     icon: 'translate',
     nameKey: marker('constants.english'),
     value: 'en',
   },
   {
     directionality: 'rtl',
-    fontPair: 'nsa-nsa',
+    fontPairClass: 'nsa-nsa',
     icon: 'translate',
     nameKey: marker('constants.arabic'),
     value: 'ar',

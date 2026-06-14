@@ -169,7 +169,7 @@ export class AppComponent implements OnDestroy, OnInit {
         const languageOption: LanguageOption = this.#languageOption();
 
         untracked(() => {
-          this.#setFontPair(languageOption.fontPair);
+          this.#setFontPairClass(languageOption.fontPairClass);
 
           this.#setLanguage(languageOption.value);
         });
@@ -244,15 +244,15 @@ export class AppComponent implements OnDestroy, OnInit {
     }
   }
 
-  #setFontPair(fontPair: LanguageOption['fontPair']): void {
+  #setFontPairClass(fontPairClass: LanguageOption['fontPairClass']): void {
     const body: HTMLElement = this.#document.body;
 
     if (this.#activeFontPairClass) {
       body.classList.remove(this.#activeFontPairClass);
     }
 
-    if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-      this.#activeFontPairClass = `jet-font-pair-${fontPair}`;
+    if (fontPairClass !== DEFAULT_LANGUAGE_OPTION.fontPairClass) {
+      this.#activeFontPairClass = `jet-font-pair-${fontPairClass}`;
 
       body.classList.add(this.#activeFontPairClass);
     } else {
@@ -276,7 +276,7 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
-    if (colorScheme === 'automatic') {
+    if (colorScheme === null) {
       colorScheme = this.#darkColorSchemeMediaQueryList.matches ? 'dark' : 'light';
     }
 
