@@ -51,7 +51,7 @@
     "@fontsource-variable/noto-sans-arabic": "^5.2.10",
     "@jsverse/transloco": "^8.3.0",
     "@jsverse/transloco-persist-translations": "^8.3.0",
-    "@material-symbols/svg-400": "^0.45.0",
+    "@material-symbols/svg-400": "^0.45.1",
     "@supabase/supabase-js": "^2.108.1",
     "ga-gtag": "^1.2.0",
     "rxjs": "^7.8.2",
