@@ -23,12 +23,11 @@ import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-bar.interceptor';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { provideMaterialSymbols } from '@jet/providers/material-symbols.provider';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoPersistTranslations } from '@jsverse/transloco-persist-translations';
-import { provideSvgIcons } from '@ngneat/svg-icon';
-import { settingsFillIcon } from '../../svgs/settings-fill';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -36,6 +35,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([progressBarInterceptor])),
     { provide: LOCALE_ID, useValue: window.navigator.language },
     provideBrowserGlobalErrorListeners(),
+    provideMaterialSymbols(),
     provideEnvironmentInitializer(() => {
       void inject(ServiceWorkerService);
     }),
@@ -74,6 +74,5 @@ export const appConfig: ApplicationConfig = {
       storage: { useValue: localStorage },
       ttl: 86400,
     }),
-    provideSvgIcons([settingsFillIcon]),
   ],
 };

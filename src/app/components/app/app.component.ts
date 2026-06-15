@@ -261,8 +261,6 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   #setIcons(): void {
-    this.#matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
-
     this.#matIconRegistry.addSvgIcon(
       'logo',
       this.#domSanitizer.bypassSecurityTrustResourceUrl('./images/logo.svg'),
