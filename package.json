@@ -34,19 +34,7 @@
   "packageManager": "npm@11.17.0",
   "svgGenerator": {
     "outputPath": "./src/app/svgs",
-    "srcPath": "./node_modules/@material-symbols/svg-400/rounded",
-    "svgoConfig": {
-      "plugins": [
-        "removeDimensions",
-        "cleanupAttrs",
-        {
-          "name": "convertColors",
-          "params": {
-            "currentColor": true
-          }
-        }
-      ]
-    }
+    "srcPath": "./node_modules/@material-symbols/svg-400/rounded"
   },
   "dependencies": {
     "@angular/cdk": "^22.0.1",
