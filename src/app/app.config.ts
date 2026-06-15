@@ -27,6 +27,8 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoPersistTranslations } from '@jsverse/transloco-persist-translations';
+import { provideSvgIcons } from '@ngneat/svg-icon';
+import { settingsFillIcon } from '../../svgs/settings-fill';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -72,5 +74,6 @@ export const appConfig: ApplicationConfig = {
       storage: { useValue: localStorage },
       ttl: 86400,
     }),
+    provideSvgIcons([settingsFillIcon]),
   ],
 };

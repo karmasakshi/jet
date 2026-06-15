@@ -15,11 +15,12 @@
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
     "prepare": "husky",
+    "svg:generate": "svg-generator",
     "reinstall-dependencies": "npm run x:uninstall-devDependencies && npm run x:uninstall-dependencies && rm -rf ./.angular ./dist ./node_modules ./package-lock.json && npm run x:install-dependencies && npm run x:install-devDependencies",
-    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @fontsource-variable/bricolage-grotesque @fontsource-variable/noto-sans @fontsource-variable/noto-sans-arabic @jsverse/transloco @jsverse/transloco-persist-translations @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/types @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-validator @tailwindcss/postcss @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest",
-    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @fontsource-variable/bricolage-grotesque @fontsource-variable/noto-sans @fontsource-variable/noto-sans-arabic @jsverse/transloco @jsverse/transloco-persist-translations @supabase/supabase-js ga-gtag rxjs store2 tslib",
-    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/types @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-validator @tailwindcss/postcss @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest"
+    "x:install-dependencies": "npm install @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @fontsource-variable/bricolage-grotesque @fontsource-variable/noto-sans @fontsource-variable/noto-sans-arabic @jsverse/transloco @jsverse/transloco-persist-translations @material-symbols/svg-400 @ngneat/svg-icon @supabase/supabase-js ga-gtag rxjs store2 tslib",
+    "x:install-devDependencies": "npm install --save-dev @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/types @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-validator @ngneat/svg-generator @tailwindcss/postcss @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest",
+    "x:uninstall-dependencies": "npm uninstall @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/router @angular/service-worker @fontsource-variable/bricolage-grotesque @fontsource-variable/noto-sans @fontsource-variable/noto-sans-arabic @jsverse/transloco @jsverse/transloco-persist-translations @material-symbols/svg-400 @ngneat/svg-icon @supabase/supabase-js ga-gtag rxjs store2 tslib",
+    "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @commitlint/types @eslint/js @jsverse/transloco-keys-manager @jsverse/transloco-validator @ngneat/svg-generator @tailwindcss/postcss @ngx-env/builder @types/ga-gtag angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest"
   },
   "lint-staged": {
     "./public/i18n/*.json": [
@@ -32,6 +33,22 @@
   },
   "private": true,
   "packageManager": "npm@11.17.0",
+  "svgGenerator": {
+    "outputPath": "./svgs",
+    "srcPath": "./node_modules/@material-symbols/svg-400/rounded",
+    "svgoConfig": {
+      "plugins": [
+        "removeDimensions",
+        "cleanupAttrs",
+        {
+          "name": "convertColors",
+          "params": {
+            "currentColor": true
+          }
+        }
+      ]
+    }
+  },
   "dependencies": {
     "@angular/cdk": "^22.0.1",
     "@angular/common": "^22.0.1",
@@ -47,6 +64,8 @@
     "@fontsource-variable/noto-sans-arabic": "^5.2.10",
     "@jsverse/transloco": "^8.3.0",
     "@jsverse/transloco-persist-translations": "^8.3.0",
+    "@material-symbols/svg-400": "^0.45.0",
+    "@ngneat/svg-icon": "^8.0.0",
     "@supabase/supabase-js": "^2.108.1",
     "ga-gtag": "^1.2.0",
     "rxjs": "^7.8.2",
@@ -63,6 +82,7 @@
     "@eslint/js": "^10.0.1",
     "@jsverse/transloco-keys-manager": "^8.1.0",
     "@jsverse/transloco-validator": "^8.3.0",
+    "@ngneat/svg-generator": "^7.0.3",
     "@ngx-env/builder": "^21.0.1",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/ga-gtag": "^1.2.0",

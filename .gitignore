@@ -43,5 +43,7 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
+/svgs
+
 .env*
 !.env.template
