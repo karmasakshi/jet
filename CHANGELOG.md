@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0](https://github.com/karmasakshi/jet/compare/v5.3.0...v5.4.0) (2026-06-15)
+
+
+### Features
+
+* **general:** self-host icons ([d03b59f](https://github.com/karmasakshi/jet/commit/d03b59f4a567ada94a76852578402868f960cbf2))
+
 ## [5.3.0](https://github.com/karmasakshi/jet/compare/v5.2.0...v5.3.0) (2026-06-14)
 
 
