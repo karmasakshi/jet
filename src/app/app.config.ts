@@ -25,6 +25,23 @@ import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { provideMaterialSymbols } from '@jet/providers/material-symbols.provider';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
+import { alternateEmailFillIcon } from '@jet/svgs/alternate_email-fill';
+import { closeFillIcon } from '@jet/svgs/close-fill';
+import { contrastFillIcon } from '@jet/svgs/contrast-fill';
+import { darkModeFillIcon } from '@jet/svgs/dark_mode-fill';
+import { homeFillIcon } from '@jet/svgs/home-fill';
+import { languageFillIcon } from '@jet/svgs/language-fill';
+import { lightModeFillIcon } from '@jet/svgs/light_mode-fill';
+import { paletteFillIcon } from '@jet/svgs/palette-fill';
+import { personFillIcon } from '@jet/svgs/person-fill';
+import { refreshFillIcon } from '@jet/svgs/refresh-fill';
+import { restartAltFillIcon } from '@jet/svgs/restart_alt-fill';
+import { settingsFillIcon } from '@jet/svgs/settings-fill';
+import { shortTextFillIcon } from '@jet/svgs/short_text-fill';
+import { syncFillIcon } from '@jet/svgs/sync-fill';
+import { translateFillIcon } from '@jet/svgs/translate-fill';
+import { visibilityFillIcon } from '@jet/svgs/visibility-fill';
+import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoPersistTranslations } from '@jsverse/transloco-persist-translations';
@@ -35,14 +52,32 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([progressBarInterceptor])),
     { provide: LOCALE_ID, useValue: window.navigator.language },
     provideBrowserGlobalErrorListeners(),
-    provideMaterialSymbols(),
+    provideMaterialSymbols([
+      alternateEmailFillIcon,
+      closeFillIcon,
+      contrastFillIcon,
+      darkModeFillIcon,
+      homeFillIcon,
+      languageFillIcon,
+      lightModeFillIcon,
+      paletteFillIcon,
+      personFillIcon,
+      refreshFillIcon,
+      restartAltFillIcon,
+      settingsFillIcon,
+      shortTextFillIcon,
+      syncFillIcon,
+      translateFillIcon,
+      visibilityFillIcon,
+      visibilityOffFillIcon,
+    ]),
     provideEnvironmentInitializer(() => {
       void inject(ServiceWorkerService);
     }),
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: { duration: 5000, verticalPosition: 'top' },
+      useValue: { duration: 4500, verticalPosition: 'top' },
     },
     {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,

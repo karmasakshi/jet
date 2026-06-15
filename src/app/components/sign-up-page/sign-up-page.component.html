@@ -44,7 +44,7 @@
                   [disabled]="_emailControl.disabled"
                   (click)="_emailControl.reset()"
                 >
-                  <mat-icon svgIcon="close" />
+                  <mat-icon svgIcon="close-fill" />
                 </button>
               }
               @if (_emailControl.touched && _emailControl.errors?.['email']) {
@@ -72,7 +72,9 @@
                 [disabled]="_passwordControl.disabled"
                 (click)="isPasswordHidden = !isPasswordHidden"
               >
-                <mat-icon [svgIcon]="isPasswordHidden ? 'visibility' : 'visibility_off'" />
+                <mat-icon
+                  [svgIcon]="isPasswordHidden ? 'visibility-fill' : 'visibility-off-fill'"
+                />
               </button>
               @if (_passwordControl.touched && _passwordControl.errors?.['minlength']) {
                 <mat-error>{{
