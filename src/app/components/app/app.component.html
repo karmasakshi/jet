@@ -51,7 +51,7 @@
               [aria-label]="navigationMenuItem.nameKey | transloco"
               [routerLink]="[navigationMenuItem.path]"
             >
-              <mat-icon>{{ navigationMenuItem.icon }}</mat-icon>
+              <mat-icon [svgIcon]="navigationMenuItem.icon" />
             </a>
           }
         </nav>

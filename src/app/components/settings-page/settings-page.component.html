@@ -17,7 +17,10 @@
             [jetAnalyticsEvent]="{ name: 'open_language_options' }"
             [mat-menu-trigger-for]="languageOptionsMenu"
           >
-            <mat-icon matListItemIcon>language</mat-icon>
+            <mat-icon
+              matListItemIcon
+              svgIcon="language"
+            />
             <span matListItemTitle>{{ t('change-language') }}</span>
             <span matListItemLine>{{ _settings.languageOption.nameKey | transloco }}</span>
           </button>
@@ -27,7 +30,10 @@
             [jetAnalyticsEvent]="{ name: 'open_color_scheme_options' }"
             [mat-menu-trigger-for]="colorSchemeOptionsMenu"
           >
-            <mat-icon matListItemIcon>palette</mat-icon>
+            <mat-icon
+              matListItemIcon
+              svgIcon="palette"
+            />
             <span matListItemTitle>{{ t('change-color-scheme') }}</span>
             <span matListItemLine>{{ _settings.colorSchemeOption.nameKey | transloco }}</span>
           </button>
@@ -37,7 +43,10 @@
             [jetAnalyticsEvent]="{ name: 'check_for_updates' }"
             (click)="checkForUpdate()"
           >
-            <mat-icon matListItemIcon>sync</mat-icon>
+            <mat-icon
+              matListItemIcon
+              svgIcon="sync"
+            />
             <span matListItemTitle>{{ t('check-for-updates') }}</span>
             <span matListItemLine>{{
               t('last-checked-on-x', { x: _lastUpdateCheckTimestamp | date: 'medium' })
@@ -49,7 +58,10 @@
             [jetAnalyticsEvent]="{ name: 'reload' }"
             (click)="reload()"
           >
-            <mat-icon matListItemIcon>refresh</mat-icon>
+            <mat-icon
+              matListItemIcon
+              svgIcon="refresh"
+            />
             <span matListItemTitle>{{ t('reload') }}</span>
             <span matListItemLine>{{ t('reload-description') }}</span>
           </button>
@@ -59,7 +71,10 @@
             [jetAnalyticsEvent]="{ name: 'reset' }"
             (click)="reset()"
           >
-            <mat-icon matListItemIcon>restart_alt</mat-icon>
+            <mat-icon
+              matListItemIcon
+              svgIcon="restart_alt"
+            />
             <span matListItemTitle>{{ t('reset') }}</span>
             <span matListItemLine>{{ t('reset-description') }}</span>
           </button>
@@ -87,7 +102,7 @@
           }"
           (click)="updateSettings({ languageOption })"
         >
-          <mat-icon>{{ languageOption.icon }}</mat-icon>
+          <mat-icon [svgIcon]="languageOption.icon" />
           <span>{{ languageOption.nameKey | transloco }}</span>
         </button>
       }
@@ -107,7 +122,7 @@
           }"
           (click)="updateSettings({ colorSchemeOption })"
         >
-          <mat-icon>{{ colorSchemeOption.icon }}</mat-icon>
+          <mat-icon [svgIcon]="colorSchemeOption.icon" />
           <span>{{ colorSchemeOption.nameKey | transloco }}</span>
         </button>
       }

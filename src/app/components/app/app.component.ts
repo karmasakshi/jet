@@ -17,10 +17,10 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
-import { DomSanitizer, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import {
   Event,
   NavigationCancel,
@@ -72,8 +72,6 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly #document = inject(DOCUMENT);
   readonly #destroyRef = inject(DestroyRef);
   readonly #renderer2 = inject(Renderer2);
-  readonly #matIconRegistry = inject(MatIconRegistry);
-  readonly #domSanitizer = inject(DomSanitizer);
   readonly #meta = inject(Meta);
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
@@ -223,8 +221,6 @@ export class AppComponent implements OnDestroy, OnInit {
         this.#progressBarService.hideProgressBar();
       });
 
-    this.#setIcons();
-
     this.#setUserScalable(this.#isPwaMode);
   }
 
@@ -258,13 +254,6 @@ export class AppComponent implements OnDestroy, OnInit {
     } else {
       this.#activeFontPairClass = null;
     }
-  }
-
-  #setIcons(): void {
-    this.#matIconRegistry.addSvgIcon(
-      'logo',
-      this.#domSanitizer.bypassSecurityTrustResourceUrl('./images/logo.svg'),
-    );
   }
 
   #setLanguage(language: LanguageOption['value']): void {

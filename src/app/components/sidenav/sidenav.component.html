@@ -24,7 +24,10 @@
           [routerLink]="[navigationMenuItem.path]"
           (click)="clickNavigationMenuItem.emit()"
         >
-          <mat-icon matListItemIcon>{{ navigationMenuItem.icon }}</mat-icon>
+          <mat-icon
+            matListItemIcon
+            [svgIcon]="navigationMenuItem.icon"
+          />
           <span>{{ navigationMenuItem.nameKey | transloco }}</span>
         </a>
       }
