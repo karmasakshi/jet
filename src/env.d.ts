@@ -1,4 +1,5 @@
 declare interface Env {
+  HUSKY: string;
   NG_APP_GOOGLE_ANALYTICS_MEASUREMENT_ID: string;
   NG_APP_IS_ANALYTICS_ENABLED: string;
   NG_APP_IS_LOGGING_ENABLED: string;

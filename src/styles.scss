@@ -1,8 +1,9 @@
+@use '@angular/material' as mat;
+@use '../_theme-colors' as mat-theme;
+
 @use 'pkg:@fontsource-variable/bricolage-grotesque/wght.css' as BricolageGrotesque;
 @use 'pkg:@fontsource-variable/noto-sans/wght.css' as NotoSans;
 @use 'pkg:@fontsource-variable/noto-sans-arabic/wght.css' as NotoSansArabic;
-@use '@angular/material' as mat;
-@use '../_theme-colors' as mat-theme;
 
 $bg-font-family: ('Bricolage Grotesque Variable', serif);
 $ns-font-family: ('Noto Sans Variable', sans-serif);
@@ -41,7 +42,7 @@ html {
   @include mat.chips-overrides(
     (
       elevated-container-color: var(--mat-sys-surface-container-low),
-      elevated-disabled-container-color: var(--mat-sys-surface-container-lowest),
+      outline-width: 0,
     )
   );
 
@@ -55,7 +56,6 @@ html {
   @include mat.list-overrides(
     (
       list-item-container-shape: var(--mat-sys-corner-small),
-      list-item-supporting-text-color: var(--mat-sys-on-surface-variant),
       list-item-two-line-container-height: 74px,
     )
   );
@@ -236,17 +236,6 @@ img {
   font: var(--mat-sys-body-small);
 }
 
-table {
-  border-radius: var(--mat-sys-corner-small);
-  overflow: hidden;
-
-  tbody {
-    tr:not(.mat-mdc-no-data-row):hover {
-      background-color: var(--mat-sys-surface-container);
-    }
-  }
-}
-
 .mat-expansion-panel-header-description {
   justify-content: flex-end;
 }
@@ -261,6 +250,10 @@ table {
     object-fit: cover;
     width: 100%;
   }
+}
+
+.mat-mdc-floating-label {
+  top: 50% !important;
 }
 
 .mat-mdc-form-field-icon-suffix {
@@ -287,8 +280,4 @@ table {
 .mat-mdc-table {
   border-radius: var(--mat-sys-corner-small);
   overflow: hidden;
-}
-
-.mdc-text-field .mdc-floating-label {
-  top: 50% !important;
 }
