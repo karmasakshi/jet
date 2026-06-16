@@ -18,5 +18,5 @@ Describe what is wrong.
 
 ##### My environment
 
-- Browser and version (e.g. Chrome 147.0.0.0, Firefox 149.0.2, Safari 17.8):
-- OS and version (e.g. Android 16, iOS 26, macOS 26, Ubuntu 26.04, Windows 10):
+- Browser and version (e.g. Chrome 149, Firefox 152, Safari 26):
+- OS and version (e.g. Android 16, iOS 26, macOS 26, Ubuntu 26.04, Windows 11):

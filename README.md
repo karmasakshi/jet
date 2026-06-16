@@ -7,7 +7,7 @@ Angular starter kit for building quality web apps fast.
 <p align="center">
   <img
     alt="Logo"
-    src="./public/images/logo.svg"
+    src="./public/media/logo.svg"
     width="64"
   />
 </p>
