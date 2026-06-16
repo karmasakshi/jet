@@ -2,6 +2,8 @@
   "name": "jet",
   "version": "5.4.0",
   "license": "MIT",
+  "packageManager": "npm@11.17.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -17,7 +19,7 @@
     "prepare": "husky && npm run svg:generate",
     "svg:generate": "svg-generator",
     "supabase:diff": "supabase db diff",
-    "supabase:dump": "supabase db dump --local --data-only -f ./supabase/seed.sql",
+    "supabase:dump": "supabase db dump --data-only --local -f ./supabase/seed.sql",
     "supabase:migrate": "supabase migration up",
     "supabase:reset": "supabase db reset",
     "supabase:start": "supabase start",
@@ -37,8 +39,6 @@
       "prettier --ignore-unknown --write"
     ]
   },
-  "private": true,
-  "packageManager": "npm@11.17.0",
   "svgGenerator": {
     "outputPath": "./src/app/svgs",
     "srcPath": "./node_modules/@material-symbols/svg-400/rounded"
