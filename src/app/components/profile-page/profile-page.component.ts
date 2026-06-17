@@ -74,7 +74,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   protected readonly emailFormGroup: FormGroup<{ email: FormControl<null | string> }>;
   protected readonly profile: WritableSignal<Profile | undefined>;
   protected readonly profileFormGroup: FormGroup<{
-    full_name: FormControl<null | string>;
+    name: FormControl<null | string>;
     username: FormControl<null | string>;
   }>;
 
@@ -90,7 +90,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     this.profile = signal(undefined);
 
     this.profileFormGroup = this.#formBuilder.group({
-      full_name: this.#formBuilder.control<null | string>(null, [Validators.maxLength(60)]),
+      name: this.#formBuilder.control<null | string>(null, [Validators.maxLength(60)]),
       username: this.#formBuilder.control<null | string>(null, [
         Validators.maxLength(36),
         Validators.minLength(3),
@@ -219,7 +219,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   }
 
   #patchProfileFormGroup(profile: Profile): void {
-    this.profileFormGroup.patchValue({ full_name: profile.full_name, username: profile.username });
+    this.profileFormGroup.patchValue({ name: profile.name, username: profile.username });
   }
 
   async #selectProfile(): Promise<void> {

@@ -1,11 +1,12 @@
 // @ts-check
 const eslint = require('@eslint/js');
-const { defineConfig } = require('eslint/config');
+const { defineConfig, globalIgnores } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const perfectionist = require('eslint-plugin-perfectionist');
 
 module.exports = defineConfig([
+  globalIgnores(['./src/app/svgs', './supabase']),
   {
     files: ['**/*.ts'],
     extends: [

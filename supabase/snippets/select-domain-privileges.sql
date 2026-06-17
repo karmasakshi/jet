@@ -1,7 +1,7 @@
 with
   config as (
     select
-      'shared' as schema_name,
+      'public' as schema_name,
       'amount' as domain_name,
       array[
         'public',

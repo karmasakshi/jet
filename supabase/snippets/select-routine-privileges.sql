@@ -1,7 +1,7 @@
 with
   config as (
     select
-      'shared' as schema_name,
+      'public' as schema_name,
       'insert_profile' as routine_name,
       array[
         'public',
