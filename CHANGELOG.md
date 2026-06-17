@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/karmasakshi/jet/compare/v5.4.0...v5.5.0) (2026-06-17)
+
+
+### Features
+
+* **supabase:** update schema ([d1526f4](https://github.com/karmasakshi/jet/commit/d1526f494a696a19ebfcce3ea81ebc1a5ed553d6))
+
 ## [5.4.0](https://github.com/karmasakshi/jet/compare/v5.3.0...v5.4.0) (2026-06-15)
 
 
