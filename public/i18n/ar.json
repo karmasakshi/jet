@@ -36,6 +36,10 @@
     },
     "toolbar-title": "Jet"
   },
+  "jet-footer": {
+    "v-x": "v{{ x }}",
+    "app-description": "Angular starter kit for building quality web apps fast."
+  },
   "jet-message-page": {
     "message": "رسالة",
     "not-found": "غير موجود",
@@ -92,8 +96,7 @@
     "reset": "إعادة التعيين",
     "reset-description": "إعادة تعيين الإعدادات وإعادة التحميل",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "الإعدادات" },
-    "toolbar-title": "الإعدادات",
-    "v-x": "v{{ x }}"
+    "toolbar-title": "الإعدادات"
   },
   "jet-sidenav": { "home": "الرئيسية" },
   "jet-sign-in-page": {

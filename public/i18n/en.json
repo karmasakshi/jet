@@ -28,7 +28,10 @@
     "profile": "Profile",
     "settings": "Settings"
   },
-  "jet-footer": { "v-x": "v{{ x }}" },
+  "jet-footer": {
+    "v-x": "v{{ x }}",
+    "app-description": "Angular starter kit for building quality web apps fast."
+  },
   "jet-home-page": {
     "seo": {
       "description": "Angular starter kit for building quality web apps fast.",

@@ -12,7 +12,8 @@
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/i18n/en.json"
         ]
       }
     },

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -8,7 +9,7 @@ import packageJson from '../../../../package.json' with { type: 'json' };
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatButtonModule, MatIconModule, AnalyticsDirective, TranslocoModule],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, AnalyticsDirective, TranslocoModule],
   selector: 'jet-footer',
   styleUrl: './footer.component.css',
   templateUrl: './footer.component.html',

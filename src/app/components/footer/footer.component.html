@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; prefix: 'jet-footer'">
-  <div class="flex flex-col items-center gap-4">
+  <div class="flex justify-evenly gap-4 mb-4">
     <a
       href="https://x.com/jetprojectdev"
       matButton
@@ -10,6 +10,13 @@
       <span>jetprojectdev</span>
     </a>
   </div>
+  <mat-divider />
+  <p
+    class="mt-4"
+    style="color: var(--mat-sys-outline); font: var(--mat-sys-body-small)"
+  >
+    {{ t('app-description') }}
+  </p>
   <p
     class="my-3 text-center"
     style="color: var(--mat-sys-outline-variant); font: var(--mat-sys-body-small)"
