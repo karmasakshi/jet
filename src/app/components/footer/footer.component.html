@@ -11,16 +11,15 @@
     </a>
   </div>
   <mat-divider />
-  <p
-    class="mt-4"
-    style="color: var(--mat-sys-outline); font: var(--mat-sys-body-small)"
-  >
-    {{ t('app-description') }}
-  </p>
-  <p
-    class="my-3 text-center"
-    style="color: var(--mat-sys-outline-variant); font: var(--mat-sys-body-small)"
-  >
-    {{ t('v-x', { x: version }) }}
-  </p>
+  <div class="text-center">
+    <p
+      class="my-4"
+      style="color: var(--mat-sys-outline); font: var(--mat-sys-body-small)"
+    >
+      {{ t('app-description') }}
+    </p>
+    <p style="color: var(--mat-sys-outline-variant); font: var(--mat-sys-body-small)">
+      {{ t('v-x', { x: version }) }}
+    </p>
+  </div>
 </ng-container>
