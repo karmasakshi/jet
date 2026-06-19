@@ -32,7 +32,7 @@
           >
             <mat-icon
               matListItemIcon
-              svgIcon="palette-fill"
+              svgIcon="imagesearch-roller-fill"
             />
             <span matListItemTitle>{{ t('change-color-scheme') }}</span>
             <span matListItemLine>{{ _settings.colorSchemeOption.nameKey | transloco }}</span>
@@ -45,7 +45,7 @@
           >
             <mat-icon
               matListItemIcon
-              svgIcon="sync-fill"
+              svgIcon="autorenew-fill"
             />
             <span matListItemTitle>{{ t('check-for-updates') }}</span>
             <span matListItemLine>{{
@@ -73,7 +73,7 @@
           >
             <mat-icon
               matListItemIcon
-              svgIcon="restart-alt-fill"
+              svgIcon="reset-settings-fill"
             />
             <span matListItemTitle>{{ t('reset') }}</span>
             <span matListItemLine>{{ t('reset-description') }}</span>
@@ -81,12 +81,6 @@
         </mat-action-list>
       </mat-card-content>
     </mat-card>
-    <p
-      class="my-3 text-center"
-      style="color: var(--mat-sys-on-surface-variant); font: var(--mat-sys-body-small)"
-    >
-      {{ t('v-x', { x: version }) }}
-    </p>
     <mat-menu
       #languageOptionsMenu="matMenu"
       xPosition="before"

@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
+import packageJson from '../../../../package.json' with { type: 'json' };
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +16,11 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class FooterComponent {
   readonly #loggerService = inject(LoggerService);
 
+  protected readonly version: string;
+
   public constructor() {
+    this.version = packageJson.version;
+
     this.#loggerService.logComponentInitialization('FooterComponent');
   }
 }

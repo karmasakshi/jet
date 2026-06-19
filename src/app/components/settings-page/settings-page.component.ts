@@ -17,7 +17,6 @@ import { ServiceWorkerService } from '@jet/services/service-worker/service-worke
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import packageJson from '../../../../package.json' with { type: 'json' };
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -48,7 +47,6 @@ export class SettingsPageComponent {
   protected readonly languageOptions: LanguageOption[];
   protected readonly lastUpdateCheckTimestamp: Signal<string>;
   protected readonly settings: Signal<Settings>;
-  protected readonly version: string;
 
   public constructor() {
     this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
@@ -58,8 +56,6 @@ export class SettingsPageComponent {
     this.lastUpdateCheckTimestamp = this.#serviceWorkerService.lastUpdateCheckTimestamp;
 
     this.settings = this.#settingsService.settings;
-
-    this.version = packageJson.version;
 
     this.#loggerService.logComponentInitialization('SettingsPageComponent');
   }

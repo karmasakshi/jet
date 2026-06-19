@@ -32,13 +32,9 @@ import { darkModeFillIcon } from '@jet/svgs/dark_mode-fill';
 import { homeFillIcon } from '@jet/svgs/home-fill';
 import { languageFillIcon } from '@jet/svgs/language-fill';
 import { lightModeFillIcon } from '@jet/svgs/light_mode-fill';
-import { paletteFillIcon } from '@jet/svgs/palette-fill';
 import { personFillIcon } from '@jet/svgs/person-fill';
 import { refreshFillIcon } from '@jet/svgs/refresh-fill';
-import { restartAltFillIcon } from '@jet/svgs/restart_alt-fill';
-import { settingsFillIcon } from '@jet/svgs/settings-fill';
 import { shortTextFillIcon } from '@jet/svgs/short_text-fill';
-import { syncFillIcon } from '@jet/svgs/sync-fill';
 import { translateFillIcon } from '@jet/svgs/translate-fill';
 import { visibilityFillIcon } from '@jet/svgs/visibility-fill';
 import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
@@ -46,6 +42,10 @@ import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoPersistTranslations } from '@jsverse/transloco-persist-translations';
 import { routes } from './app.routes';
+import { autorenewFillIcon } from './svgs/autorenew-fill';
+import { imagesearchRollerFillIcon } from './svgs/imagesearch_roller-fill';
+import { resetSettingsFillIcon } from './svgs/reset_settings-fill';
+import { tuneFillIcon } from './svgs/tune-fill';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -54,20 +54,20 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideMaterialSymbols([
       alternateEmailFillIcon,
+      autorenewFillIcon,
       closeFillIcon,
       contrastFillIcon,
       darkModeFillIcon,
       homeFillIcon,
+      imagesearchRollerFillIcon,
       languageFillIcon,
       lightModeFillIcon,
-      paletteFillIcon,
       personFillIcon,
       refreshFillIcon,
-      restartAltFillIcon,
-      settingsFillIcon,
+      resetSettingsFillIcon,
       shortTextFillIcon,
-      syncFillIcon,
       translateFillIcon,
+      tuneFillIcon,
       visibilityFillIcon,
       visibilityOffFillIcon,
     ]),

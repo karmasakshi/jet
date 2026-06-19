@@ -28,6 +28,7 @@
     "profile": "Profile",
     "settings": "Settings"
   },
+  "jet-footer": { "v-x": "v{{ x }}" },
   "jet-home-page": {
     "seo": {
       "description": "Angular starter kit for building quality web apps fast.",
@@ -47,7 +48,7 @@
     "toolbar-title": "Message",
     "update-password-link-description": "If an account exists for this email, we'll send a link to sign in and update the password.",
     "verification-email-sent": "Verification email sent",
-    "verify-link-description": "Click the link in the email we sent to verify your account.",
+    "verify-link-description": "Click the link in the email we sent to verify your email.",
     "well-email-you": "We'll email you"
   },
   "jet-profile-page": {
@@ -92,8 +93,7 @@
     "reset": "Reset",
     "reset-description": "Reset settings and reload",
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Settings" },
-    "toolbar-title": "Settings",
-    "v-x": "v{{ x }}"
+    "toolbar-title": "Settings"
   },
   "jet-sidenav": { "home": "Home" },
   "jet-sign-in-page": {

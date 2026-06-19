@@ -221,7 +221,16 @@ export class AppComponent implements OnDestroy, OnInit {
         this.#progressBarService.hideProgressBar();
       });
 
-    this.#setUserScalable(this.#isPwaMode);
+    if (this.#isPwaMode) {
+      this.#disableUserScalable();
+    }
+  }
+
+  #disableUserScalable(): void {
+    this.#meta.updateTag({
+      content: 'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
+      name: 'viewport',
+    });
   }
 
   #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
@@ -272,14 +281,5 @@ export class AppComponent implements OnDestroy, OnInit {
       DEFAULT_COLOR_SCHEME_OPTION;
 
     this.#meta.updateTag({ content: colorSchemeOption.themeColor, name: 'theme-color' });
-  }
-
-  #setUserScalable(isPwaMode: boolean): void {
-    if (isPwaMode) {
-      this.#meta.updateTag({
-        content: 'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
-        name: 'viewport',
-      });
-    }
   }
 }
