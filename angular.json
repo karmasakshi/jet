@@ -21,7 +21,7 @@
       "prefix": "jet",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@ngx-env/builder:application",
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
@@ -42,7 +42,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@ngx-env/builder:dev-server",
           "configurations": {
             "production": { "buildTarget": "jet:build:production" },
             "development": { "buildTarget": "jet:build:development" }
@@ -60,7 +60,7 @@
           },
           "defaultConfiguration": "development"
         },
-        "test": { "builder": "@angular/build:unit-test" },
+        "test": { "builder": "@ngx-env/builder:unit-test" },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": { "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"] }
