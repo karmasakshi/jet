@@ -23,7 +23,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import { User } from '@supabase/supabase-js';
+import { JwtPayload } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -52,8 +52,8 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
 
+  readonly #claims: JwtPayload | null;
   #isLoading: boolean;
-  readonly #user: null | User;
 
   protected readonly emailFormGroup: FormGroup<{ email: FormControl<null | string> }>;
   protected isNewPasswordConfirmationHidden: boolean;
@@ -64,9 +64,9 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   }>;
 
   public constructor() {
-    this.#isLoading = false;
+    this.#claims = this.#userService.claims();
 
-    this.#user = this.#userService.user();
+    this.#isLoading = false;
 
     this.emailFormGroup = this.#formBuilder.group({
       email: this.#formBuilder.control<null | string>(null),
@@ -93,7 +93,7 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   public ngOnInit(): void {
     this.emailFormGroup.disable();
 
-    this.emailFormGroup.patchValue({ email: this.#user?.email ?? null });
+    this.emailFormGroup.patchValue({ email: this.#claims?.email ?? null });
 
     this.updatePasswordFormGroup.controls.newPasswordConfirmation.addValidators(
       this.#matchFormControlValidator(this.updatePasswordFormGroup.controls.newPassword),

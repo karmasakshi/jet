@@ -33,7 +33,7 @@ import { ProfileService } from '@jet/services/profile/profile.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import { User } from '@supabase/supabase-js';
+import { JwtPayload } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -65,8 +65,8 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
 
+  readonly #claims: JwtPayload | null;
   #isLoading: boolean;
-  readonly #user: null | User;
 
   protected readonly avatarFileInputRef =
     viewChild<ElementRef<HTMLInputElement>>('avatarFileInput');
@@ -79,9 +79,9 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   }>;
 
   public constructor() {
-    this.#isLoading = false;
+    this.#claims = this.#userService.claims();
 
-    this.#user = this.#userService.user();
+    this.#isLoading = false;
 
     this.emailFormGroup = this.#formBuilder.group({
       email: this.#formBuilder.control<null | string>(null),
@@ -105,7 +105,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
   public ngOnInit(): void {
     this.emailFormGroup.disable();
 
-    this.emailFormGroup.patchValue({ email: this.#user?.email ?? null });
+    this.emailFormGroup.patchValue({ email: this.#claims?.email ?? null });
 
     void this.#selectProfile();
   }

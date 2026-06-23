@@ -10,20 +10,19 @@ import {
   JwtHeader,
   JwtPayload,
   OAuthResponse,
-  User,
   UserAttributes,
   UserResponse,
 } from '@supabase/supabase-js';
 
 export class UserServiceMock {
-  readonly #user: WritableSignal<null | User>;
+  readonly #claims: WritableSignal<JwtPayload | null>;
 
   public constructor() {
-    this.#user = signal(null);
+    this.#claims = signal(null);
   }
 
-  public get user(): Signal<null | User> {
-    return this.#user.asReadonly();
+  public get claims(): Signal<JwtPayload | null> {
+    return this.#claims.asReadonly();
   }
 
   public getClaims(): Promise<

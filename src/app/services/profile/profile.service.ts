@@ -4,7 +4,7 @@ import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { Profile } from '@jet/interfaces/profile.interface';
 import { FileObject, StorageError } from '@supabase/storage-js';
-import { User } from '@supabase/supabase-js';
+import { JwtPayload } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { UserService } from '../user/user.service';
 
@@ -14,10 +14,10 @@ export class ProfileService {
   readonly #loggerService = inject(LoggerService);
   readonly #userService = inject(UserService);
 
-  readonly #user: Signal<null | User>;
+  readonly #claims: Signal<JwtPayload | null>;
 
   public constructor() {
-    this.#user = this.#userService.user;
+    this.#claims = this.#userService.claims;
 
     this.#loggerService.logServiceInitialization('ProfileService');
   }
@@ -26,7 +26,7 @@ export class ProfileService {
     publicUrl: string,
   ): Promise<{ data: FileObject[]; error: null } | { data: null; error: StorageError }> {
     const fileName: string | undefined = publicUrl.split('/').pop();
-    const path: string = `${this.#userService.user()?.id}/${fileName}`;
+    const path: string = `${this.#claims()?.sub}/${fileName}`;
 
     return this.#supabaseClient.storage.from(SupabaseStorage.ProfileAvatars).remove([path]);
   }
@@ -43,7 +43,7 @@ export class ProfileService {
     return this.#supabaseClient
       .from(SupabaseTable.Profiles)
       .select()
-      .eq('user_id', this.#user()?.id)
+      .eq('user_id', this.#claims()?.sub)
       .single()
       .throwOnError();
   }
@@ -52,7 +52,7 @@ export class ProfileService {
     return this.#supabaseClient
       .from(SupabaseTable.Profiles)
       .update(partialProfile)
-      .eq('user_id', this.#user()?.id)
+      .eq('user_id', this.#claims()?.sub)
       .select()
       .single()
       .throwOnError();
@@ -66,7 +66,7 @@ export class ProfileService {
   > {
     const fileExtension: string | undefined = file.name.split('.').pop();
     const timestamp: number = Date.now();
-    const path: string = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
+    const path: string = `${this.#claims()?.sub}/avatar-${timestamp}.${fileExtension}`;
 
     return this.#supabaseClient.storage.from(SupabaseStorage.ProfileAvatars).upload(path, file);
   }

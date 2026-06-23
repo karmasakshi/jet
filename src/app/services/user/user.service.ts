@@ -13,7 +13,6 @@ import {
   JwtHeader,
   JwtPayload,
   OAuthResponse,
-  User,
   UserAttributes,
   UserResponse,
 } from '@supabase/supabase-js';
@@ -25,30 +24,36 @@ export class UserService {
   readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);
 
-  readonly #user: WritableSignal<null | User>;
+  readonly #claims: WritableSignal<JwtPayload | null>;
 
   public constructor() {
-    this.#user = signal(null);
+    this.#claims = signal(null);
 
     this.#supabaseClient.auth.onAuthStateChange(
       (_authChangeEvent: AuthChangeEvent, authSession: AuthSession | null): void => {
-        this.#user.set(authSession?.user ?? null);
+        if (authSession === null) {
+          this.#claims.set(null);
+        }
       },
     );
 
     this.#loggerService.logServiceInitialization('UserService');
   }
 
-  public get user(): Signal<null | User> {
-    return this.#user.asReadonly();
+  public get claims(): Signal<JwtPayload | null> {
+    return this.#claims.asReadonly();
   }
 
-  public getClaims(): Promise<
+  public async getClaims(): Promise<
     | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
     | { data: null; error: AuthError }
     | { data: null; error: null }
   > {
-    return this.#supabaseClient.auth.getClaims();
+    const response = await this.#supabaseClient.auth.getClaims();
+
+    this.#claims.set(response.data?.claims ?? null);
+
+    return response;
   }
 
   public resetPasswordForEmail(
