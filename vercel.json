@@ -21,6 +21,5 @@
       ]
     }
   ],
-  "installCommand": "npm install --force",
   "outputDirectory": "dist/jet/browser"
 }
