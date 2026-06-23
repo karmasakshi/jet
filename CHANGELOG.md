@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.0](https://github.com/karmasakshi/jet/compare/v5.5.0...v5.6.0) (2026-06-23)
+
+
+### Features
+
+* **general:** use vite to load env ([85a652c](https://github.com/karmasakshi/jet/commit/85a652ceeb543bf506639d4d716564101a8d8100))
+
 ## [5.5.0](https://github.com/karmasakshi/jet/compare/v5.4.0...v5.5.0) (2026-06-17)
 
 
