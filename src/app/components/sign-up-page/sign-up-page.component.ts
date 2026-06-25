@@ -49,7 +49,6 @@ export class SignUpPageComponent implements OnInit {
   #isLoading: boolean;
 
   public readonly email = input<null | string>(null);
-  public readonly returnUrl = input<string>('/');
 
   protected isPasswordHidden: boolean;
   protected readonly signUpFormGroup: FormGroup<{
@@ -92,7 +91,7 @@ export class SignUpPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data } = await this.#userService.signUp(email, password, this.returnUrl());
+      const { data } = await this.#userService.signUp(email, password, '/');
 
       if (data.session === null) {
         void this.#router.navigateByUrl('/email-verification-pending');

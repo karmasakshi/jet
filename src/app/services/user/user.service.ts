@@ -62,7 +62,7 @@ export class UserService {
     });
   }
 
-  public signInWithOauth(oauthProvider: OauthProvider, returnUrl?: string): Promise<OAuthResponse> {
+  public signInWithOauth(oauthProvider: OauthProvider, returnUrl: string): Promise<OAuthResponse> {
     return this.#supabaseClient.auth.signInWithOAuth({
       options: {
         redirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl),
@@ -72,7 +72,7 @@ export class UserService {
     });
   }
 
-  public signInWithOtp(email: string, returnUrl?: string): Promise<AuthOtpResponse> {
+  public signInWithOtp(email: string, returnUrl: string): Promise<AuthOtpResponse> {
     return this.#supabaseClient.auth.signInWithOtp({
       email,
       options: {
@@ -90,7 +90,7 @@ export class UserService {
     return this.#supabaseClient.auth.signOut();
   }
 
-  public signUp(email: string, password: string, returnUrl?: string): Promise<AuthResponse> {
+  public signUp(email: string, password: string, returnUrl: string): Promise<AuthResponse> {
     return this.#supabaseClient.auth.signUp({
       email,
       options: { emailRedirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl) },
@@ -102,12 +102,10 @@ export class UserService {
     return this.#supabaseClient.auth.updateUser(userAttributes);
   }
 
-  #getRedirectUrlWithReturnUrl(returnUrl?: string): string {
+  #getRedirectUrlWithReturnUrl(returnUrl: string): string {
     const redirectUrl: URL = new URL('/sign-in', window.location.origin);
 
-    if (returnUrl) {
-      redirectUrl.searchParams.set(QueryParam.ReturnUrl, returnUrl);
-    }
+    redirectUrl.searchParams.set(QueryParam.ReturnUrl, returnUrl);
 
     return redirectUrl.toString();
   }
