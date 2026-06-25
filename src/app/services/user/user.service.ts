@@ -1,5 +1,4 @@
 import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { OauthProvider } from '@jet/types/oauth-provider.type';
@@ -20,7 +19,6 @@ import { LoggerService } from '../logger/logger.service';
 
 @Injectable()
 export class UserService {
-  readonly #activatedRoute = inject(ActivatedRoute);
   readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);
 
@@ -64,17 +62,23 @@ export class UserService {
     });
   }
 
-  public signInWithOauth(oauthProvider: OauthProvider): Promise<OAuthResponse> {
+  public signInWithOauth(oauthProvider: OauthProvider, returnUrl?: string): Promise<OAuthResponse> {
     return this.#supabaseClient.auth.signInWithOAuth({
-      options: { redirectTo: this.#getRedirectUrlWithReturnUrl(), skipBrowserRedirect: true },
+      options: {
+        redirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl),
+        skipBrowserRedirect: true,
+      },
       provider: oauthProvider,
     });
   }
 
-  public signInWithOtp(email: string): Promise<AuthOtpResponse> {
+  public signInWithOtp(email: string, returnUrl?: string): Promise<AuthOtpResponse> {
     return this.#supabaseClient.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: this.#getRedirectUrlWithReturnUrl(), shouldCreateUser: false },
+      options: {
+        emailRedirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl),
+        shouldCreateUser: false,
+      },
     });
   }
 
@@ -86,10 +90,10 @@ export class UserService {
     return this.#supabaseClient.auth.signOut();
   }
 
-  public signUp(email: string, password: string): Promise<AuthResponse> {
+  public signUp(email: string, password: string, returnUrl?: string): Promise<AuthResponse> {
     return this.#supabaseClient.auth.signUp({
       email,
-      options: { emailRedirectTo: this.#getRedirectUrlWithReturnUrl() },
+      options: { emailRedirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl) },
       password,
     });
   }
@@ -98,9 +102,7 @@ export class UserService {
     return this.#supabaseClient.auth.updateUser(userAttributes);
   }
 
-  #getRedirectUrlWithReturnUrl(
-    returnUrl = this.#activatedRoute.snapshot.queryParamMap.get(QueryParam.ReturnUrl),
-  ): string {
+  #getRedirectUrlWithReturnUrl(returnUrl?: string): string {
     const redirectUrl: URL = new URL('/sign-in', window.location.origin);
 
     if (returnUrl) {

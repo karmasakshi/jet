@@ -39,11 +39,14 @@ export class UserServiceMock {
     return Promise.resolve({ data: {}, error: null });
   }
 
-  public signInWithOauth(_oauthProvider: OauthProvider): Promise<OAuthResponse> {
+  public signInWithOauth(
+    _oauthProvider: OauthProvider,
+    _returnUrl?: string,
+  ): Promise<OAuthResponse> {
     return Promise.resolve({} as OAuthResponse);
   }
 
-  public signInWithOtp(_email: string): Promise<AuthOtpResponse> {
+  public signInWithOtp(_email: string, _returnUrl?: string): Promise<AuthOtpResponse> {
     return Promise.resolve({} as AuthOtpResponse);
   }
 
@@ -55,7 +58,7 @@ export class UserServiceMock {
     return Promise.resolve({ error: null });
   }
 
-  public signUp(_email: string, _password: string): Promise<AuthResponse> {
+  public signUp(_email: string, _password: string, _returnUrl?: string): Promise<AuthResponse> {
     return Promise.resolve({} as AuthResponse);
   }
 

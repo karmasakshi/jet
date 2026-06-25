@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
@@ -11,7 +10,6 @@ describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: ActivatedRoute, useValue: {} },
         { provide: SUPABASE_CLIENT, useValue: { auth: { onAuthStateChange: () => undefined } } },
         { provide: LoggerService, useClass: LoggerServiceMock },
         UserService,

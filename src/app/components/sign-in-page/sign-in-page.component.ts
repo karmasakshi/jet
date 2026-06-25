@@ -130,7 +130,7 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      const { data } = await this.#userService.signInWithOauth(oauthProvider);
+      const { data } = await this.#userService.signInWithOauth(oauthProvider, this.returnUrl());
 
       window.location.href = data.url ?? '/';
     } catch (exception: unknown) {
@@ -159,7 +159,7 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showIndeterminateProgressBar();
 
     try {
-      await this.#userService.signInWithOtp(email);
+      await this.#userService.signInWithOtp(email, this.returnUrl());
 
       void this.#router.navigateByUrl('/sign-in-link-sent');
     } catch (exception: unknown) {
