@@ -188,14 +188,14 @@
         </mat-card-content>
       </mat-card>
       <mat-card class="w-full max-w-120">
-        <mat-card-content style="font: var(--mat-sys-body-small)">
+        <mat-card-content>
           <div class="flex flex-col items-center gap-4">
-            <span>{{
+            <small>{{
               t('profile-last-updated-on-x', { x: (_profile?.updated_at | date: 'medium') })
-            }}</span>
-            <span>{{
+            }}</small>
+            <small>{{
               t('profile-created-on-x', { x: (_profile?.created_at | date: 'medium') })
-            }}</span>
+            }}</small>
           </div>
         </mat-card-content>
       </mat-card>
