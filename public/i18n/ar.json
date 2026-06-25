@@ -28,6 +28,7 @@
     "profile": "الملف الشخصي",
     "settings": "الإعدادات"
   },
+  "jet-footer": { "v-x": "v{{ x }}" },
   "jet-home-page": {
     "seo": {
       "description": "حزمة Angular لبناء تطبيقات ويب عالية الجودة بسرعة.",
@@ -35,10 +36,6 @@
       "title": "Jet - حزمة Angular لبناء تطبيقات ويب عالية الجودة بسرعة."
     },
     "toolbar-title": "Jet"
-  },
-  "jet-footer": {
-    "v-x": "v{{ x }}",
-    "app-description": "Angular starter kit for building quality web apps fast."
   },
   "jet-message-page": {
     "message": "رسالة",

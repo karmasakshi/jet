@@ -1,25 +1,21 @@
 <ng-container *transloco="let t; prefix: 'jet-footer'">
-  <div class="flex justify-evenly gap-4 mb-4">
-    <a
-      href="https://x.com/jetprojectdev"
-      matButton
-      target="_blank"
-      [jetAnalyticsEvent]="{ name: 'open_x_profile' }"
-    >
-      <mat-icon svgIcon="alternate-email-fill" />
-      <span>jetprojectdev</span>
-    </a>
-  </div>
-  <mat-divider />
-  <div class="text-center">
-    <p
-      class="my-4"
-      style="color: var(--mat-sys-outline); font: var(--mat-sys-body-small)"
-    >
-      {{ t('app-description') }}
-    </p>
-    <p style="color: var(--mat-sys-outline-variant); font: var(--mat-sys-body-small)">
-      {{ t('v-x', { x: version }) }}
-    </p>
+  <div class="flex flex-col gap-4">
+    <div class="flex justify-evenly gap-4">
+      <a
+        href="https://x.com/jetprojectdev"
+        matButton
+        target="_blank"
+        [jetAnalyticsEvent]="{ name: 'open_x_profile' }"
+      >
+        <mat-icon svgIcon="alternate-email-fill" />
+        <span>jetprojectdev</span>
+      </a>
+    </div>
+    <mat-divider />
+    <div class="text-center">
+      <small>
+        {{ t('v-x', { x: version }) }}
+      </small>
+    </div>
   </div>
 </ng-container>
