@@ -6,8 +6,8 @@ export const SUPABASE_CLIENT: InjectionToken<SupabaseClient> = new InjectionToke
   {
     factory: () =>
       createClient(
-        import.meta.env.NG_APP_SUPABASE_PROJECT_URL,
-        import.meta.env.NG_APP_SUPABASE_PUBLISHABLE_KEY,
+        import.meta.env.NG_APP_SUPABASE_PROJECT_URL ?? 'http://your.supabase.project.url',
+        import.meta.env.NG_APP_SUPABASE_PUBLISHABLE_KEY ?? 'your-supabase-publishable-key',
         { auth: { throwOnError: true } },
       ),
     providedIn: 'root',
