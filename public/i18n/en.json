@@ -15,6 +15,7 @@
     "welcome": "Welcome!",
     "youre-on-the-latest-version": "You're on the latest version."
   },
+  "app": {},
   "confirmations": {
     "youll-lose-unsaved-changes-continue": "You'll lose unsaved changes. Continue?"
   },
@@ -28,8 +29,9 @@
     "profile": "Profile",
     "settings": "Settings"
   },
-  "jet-footer": { "v-x": "v{{ x }}" },
-  "jet-home-page": {
+  "empty-card": {},
+  "footer": { "v-x": "v{{ x }}" },
+  "home-page": {
     "seo": {
       "description": "Angular starter kit for building quality web apps fast.",
       "keywords": "jet",
@@ -37,7 +39,7 @@
     },
     "toolbar-title": "Jet"
   },
-  "jet-message-page": {
+  "message-page": {
     "message": "Message",
     "not-found": "Not found",
     "open-home": "Open Home",
@@ -51,7 +53,17 @@
     "verify-link-description": "Click the link in the email we sent to verify your email.",
     "well-email-you": "We'll email you"
   },
-  "jet-profile-page": {
+  "page": {},
+  "paginator": {
+    "first-page": "First page",
+    "items-per-page": "Items per page:",
+    "last-page": "Last page",
+    "next-page": "Next page",
+    "page-1-of-1": "Page 1 of 1",
+    "page-x-of-y": "Page {{ x }} of {{ y }}",
+    "previous-page": "Previous page"
+  },
+  "profile-page": {
     "avatar": "Avatar",
     "clear": "Clear",
     "email": "Email",
@@ -72,7 +84,7 @@
     "username-error-required": "Username is required",
     "x-of-y-characters": "{{ x }} of {{ y }} characters"
   },
-  "jet-reset-password-page": {
+  "reset-password-page": {
     "clear": "Clear",
     "email": "Email",
     "email-error-email": "Enter a valid email",
@@ -83,7 +95,7 @@
     "sign-up": "Sign up",
     "toolbar-title": "Reset Password"
   },
-  "jet-settings-page": {
+  "settings-page": {
     "change-color-scheme": "Change color scheme",
     "change-language": "Change language",
     "check-for-updates": "Check for updates",
@@ -95,8 +107,8 @@
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Settings" },
     "toolbar-title": "Settings"
   },
-  "jet-sidenav": { "home": "Home" },
-  "jet-sign-in-page": {
+  "sidenav": { "home": "Home" },
+  "sign-in-page": {
     "clear": "Clear",
     "email": "Email",
     "email-error-email": "Enter a valid email",
@@ -115,11 +127,11 @@
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Sign In"
   },
-  "jet-sign-out-page": {
+  "sign-out-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign Out" },
     "toolbar-title": "Sign Out"
   },
-  "jet-sign-up-page": {
+  "sign-up-page": {
     "clear": "Clear",
     "email": "Email",
     "email-error-email": "Enter a valid email",
@@ -134,12 +146,13 @@
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Sign Up"
   },
-  "jet-toolbar": {
+  "skeleton-card": {},
+  "toolbar": {
     "home": "Home",
     "loading": "Loading...",
     "toggle-navigation-menu": "Toggle navigation menu"
   },
-  "jet-update-password-page": {
+  "update-password-page": {
     "email": "Email",
     "new-password": "New password",
     "new-password-confirmation": "New password confirmation",
@@ -153,14 +166,5 @@
     "toggle-visibility": "Toggle visibility",
     "toolbar-title": "Update Password",
     "update-password": "Update password"
-  },
-  "paginator": {
-    "first-page": "First page",
-    "items-per-page": "Items per page:",
-    "last-page": "Last page",
-    "next-page": "Next page",
-    "page-1-of-1": "Page 1 of 1",
-    "page-x-of-y": "Page {{ x }} of {{ y }}",
-    "previous-page": "Previous page"
   }
 }

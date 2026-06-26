@@ -15,6 +15,7 @@
     "welcome": "مرحباً!",
     "youre-on-the-latest-version": "أنت على أحدث إصدار."
   },
+  "app": {},
   "confirmations": {
     "youll-lose-unsaved-changes-continue": "ستفقد التغييرات غير المحفوظة. هل تريد المتابعة؟"
   },
@@ -28,8 +29,9 @@
     "profile": "الملف الشخصي",
     "settings": "الإعدادات"
   },
-  "jet-footer": { "v-x": "v{{ x }}" },
-  "jet-home-page": {
+  "empty-card": {},
+  "footer": { "v-x": "v{{ x }}" },
+  "home-page": {
     "seo": {
       "description": "حزمة Angular لبناء تطبيقات ويب عالية الجودة بسرعة.",
       "keywords": "jet",
@@ -37,7 +39,7 @@
     },
     "toolbar-title": "Jet"
   },
-  "jet-message-page": {
+  "message-page": {
     "message": "رسالة",
     "not-found": "غير موجود",
     "open-home": "فتح الصفحة الرئيسية",
@@ -51,7 +53,17 @@
     "verify-link-description": "اضغط على الرابط في البريد الإلكتروني الذي أرسلناه للتحقق من حسابك.",
     "well-email-you": "سنرسل لك بريداً إلكترونياً"
   },
-  "jet-profile-page": {
+  "page": {},
+  "paginator": {
+    "first-page": "الصفحة الأولى",
+    "items-per-page": "العناصر لكل صفحة:",
+    "last-page": "الصفحة الأخيرة",
+    "next-page": "الصفحة التالية",
+    "page-1-of-1": "الصفحة 1 من 1",
+    "page-x-of-y": "الصفحة {{ x }} من {{ y }}",
+    "previous-page": "الصفحة السابقة"
+  },
+  "profile-page": {
     "avatar": "الصورة الرمزية",
     "clear": "مسح",
     "email": "البريد الإلكتروني",
@@ -72,7 +84,7 @@
     "username-error-required": "اسم المستخدم مطلوب",
     "x-of-y-characters": "{{ x }} من {{ y }} حرفاً"
   },
-  "jet-reset-password-page": {
+  "reset-password-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
     "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
@@ -83,7 +95,7 @@
     "sign-up": "إنشاء حساب",
     "toolbar-title": "إعادة تعيين كلمة المرور"
   },
-  "jet-settings-page": {
+  "settings-page": {
     "change-color-scheme": "تغيير نظام الألوان",
     "change-language": "تغيير اللغة",
     "check-for-updates": "التحقق من التحديثات",
@@ -95,8 +107,8 @@
     "seo": { "description": "Jet.", "keywords": "jet", "title": "الإعدادات" },
     "toolbar-title": "الإعدادات"
   },
-  "jet-sidenav": { "home": "الرئيسية" },
-  "jet-sign-in-page": {
+  "sidenav": { "home": "الرئيسية" },
+  "sign-in-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
     "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
@@ -115,11 +127,11 @@
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تسجيل الدخول"
   },
-  "jet-sign-out-page": {
+  "sign-out-page": {
     "seo": { "description": "Jet.", "keywords": "jet", "title": "تسجيل الخروج" },
     "toolbar-title": "تسجيل الخروج"
   },
-  "jet-sign-up-page": {
+  "sign-up-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
     "email-error-email": "أدخل بريداً إلكترونياً صالحاً",
@@ -134,12 +146,13 @@
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "إنشاء حساب"
   },
-  "jet-toolbar": {
+  "skeleton-card": {},
+  "toolbar": {
     "home": "الرئيسية",
     "loading": "جارٍ التحميل...",
     "toggle-navigation-menu": "تبديل قائمة التنقل"
   },
-  "jet-update-password-page": {
+  "update-password-page": {
     "email": "البريد الإلكتروني",
     "new-password": "كلمة المرور الجديدة",
     "new-password-confirmation": "تأكيد كلمة المرور الجديدة",
@@ -153,14 +166,5 @@
     "toggle-visibility": "تبديل الرؤية",
     "toolbar-title": "تحديث كلمة المرور",
     "update-password": "تحديث كلمة المرور"
-  },
-  "paginator": {
-    "first-page": "الصفحة الأولى",
-    "items-per-page": "العناصر لكل صفحة:",
-    "last-page": "الصفحة الأخيرة",
-    "next-page": "الصفحة التالية",
-    "page-1-of-1": "الصفحة 1 من 1",
-    "page-x-of-y": "الصفحة {{ x }} من {{ y }}",
-    "previous-page": "الصفحة السابقة"
   }
 }
