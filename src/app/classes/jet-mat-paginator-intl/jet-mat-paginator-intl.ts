@@ -1,10 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { translate } from '@jsverse/transloco';
 import { Subject } from 'rxjs';
 
-@Injectable()
+@Service({ autoProvided: false })
 export class JetMatPaginatorIntl implements MatPaginatorIntl {
   readonly #loggerService = inject(LoggerService);
 

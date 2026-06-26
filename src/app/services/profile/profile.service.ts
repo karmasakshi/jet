@@ -1,4 +1,4 @@
-import { inject, Injectable, Signal } from '@angular/core';
+import { inject, Service, Signal } from '@angular/core';
 import { SupabaseStorage } from '@jet/enums/supabase-storage.enum';
 import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
@@ -8,7 +8,7 @@ import { JwtPayload } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { UserService } from '../user/user.service';
 
-@Injectable()
+@Service({ autoProvided: false })
 export class ProfileService {
   readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);

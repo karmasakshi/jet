@@ -38,9 +38,9 @@ create domain public.name as text
 create domain public.percentage as numeric(5, 2)
   check (value between 0 and 100);
 
--- public.phone_number
+-- public.phone
 
-create domain public.phone_number as text
+create domain public.phone as text
   check (value ~ '^\+[1-9][0-9]{7,14}$');
 
 -- public.slug

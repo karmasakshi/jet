@@ -72,5 +72,5 @@ const userRoutes: Routes = [
 ];
 
 export const lazyRoutes: Routes = [
-  { children: [...mainRoutes, ...userRoutes], path: '', providers: [UserService, ProfileService] },
+  { children: [...mainRoutes, ...userRoutes], path: '', providers: [ProfileService, UserService] },
 ];
