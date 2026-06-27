@@ -1,4 +1,3 @@
-import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +9,6 @@ import { SidenavComponent } from './sidenav.component';
 describe('SidenavComponent', () => {
   let component: SidenavComponent;
   let fixture: ComponentFixture<SidenavComponent>;
-  let componentRef: ComponentRef<SidenavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,8 +25,7 @@ describe('SidenavComponent', () => {
 
     fixture = TestBed.createComponent(SidenavComponent);
     component = fixture.componentInstance;
-    componentRef = fixture.componentRef;
-    componentRef.setInput('activeNavigationMenuItemPath', undefined);
+    fixture.componentRef.setInput('activeNavigationMenuItemPath', undefined);
     await fixture.whenStable();
   });
 

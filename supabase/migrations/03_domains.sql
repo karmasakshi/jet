@@ -33,6 +33,15 @@ create domain public.longitude as double precision
 create domain public.name as text
   check (length(value) between 1 and 60);
 
+-- public.path
+
+create domain public.path as text
+  check (
+    length(value) between 1 and 300
+    and value ~ '^/[A-Za-z0-9._/-]*[A-Za-z0-9._-]$'
+    and value !~ '(^|/)\.\.(/|$)'
+  );
+
 -- public.percentage
 
 create domain public.percentage as numeric(5, 2)

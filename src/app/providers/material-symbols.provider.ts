@@ -11,7 +11,7 @@ export function provideMaterialSymbols(
 
     matIconRegistry.addSvgIcon(
       'logo',
-      domSanitizer.bypassSecurityTrustResourceUrl('./media/logo.svg'),
+      domSanitizer.bypassSecurityTrustResourceUrl('/media/logo.svg'),
     );
 
     for (const { data, name } of icons) {

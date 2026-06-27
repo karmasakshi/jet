@@ -1,4 +1,3 @@
-import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
@@ -7,7 +6,6 @@ import { EmptyCardComponent } from './empty-card.component';
 describe('EmptyCardComponent', () => {
   let component: EmptyCardComponent;
   let fixture: ComponentFixture<EmptyCardComponent>;
-  let componentRef: ComponentRef<EmptyCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,10 +15,9 @@ describe('EmptyCardComponent', () => {
 
     fixture = TestBed.createComponent(EmptyCardComponent);
     component = fixture.componentInstance;
-    componentRef = fixture.componentRef;
-    componentRef.setInput('height', undefined);
-    componentRef.setInput('message', undefined);
-    componentRef.setInput('width', undefined);
+    fixture.componentRef.setInput('height', undefined);
+    fixture.componentRef.setInput('message', undefined);
+    fixture.componentRef.setInput('width', undefined);
     await fixture.whenStable();
   });
 

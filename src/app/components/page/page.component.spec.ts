@@ -1,4 +1,3 @@
-import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
@@ -9,7 +8,6 @@ import { PageComponent } from './page.component';
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
-  let componentRef: ComponentRef<PageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,11 +20,10 @@ describe('PageComponent', () => {
 
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
-    componentRef = fixture.componentRef;
-    componentRef.setInput('seoDescription', undefined);
-    componentRef.setInput('seoKeywords', undefined);
-    componentRef.setInput('seoTitle', undefined);
-    componentRef.setInput('toolbarTitle', undefined);
+    fixture.componentRef.setInput('seoDescription', undefined);
+    fixture.componentRef.setInput('seoKeywords', undefined);
+    fixture.componentRef.setInput('seoTitle', undefined);
+    fixture.componentRef.setInput('toolbarTitle', undefined);
     await fixture.whenStable();
   });
 

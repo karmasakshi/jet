@@ -1,4 +1,3 @@
-import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +13,6 @@ import { ToolbarComponent } from './toolbar.component';
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
-  let componentRef: ComponentRef<ToolbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,9 +31,8 @@ describe('ToolbarComponent', () => {
 
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
-    componentRef = fixture.componentRef;
-    componentRef.setInput('isLargeViewport', undefined);
-    componentRef.setInput('shouldAddSafeArea', undefined);
+    fixture.componentRef.setInput('isLargeViewport', undefined);
+    fixture.componentRef.setInput('shouldAddSafeArea', undefined);
     await fixture.whenStable();
   });
 
