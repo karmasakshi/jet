@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Profile } from '@jet/interfaces/profile.interface';
+import { ProfileUpdate } from '@jet/types/profile.type';
 import { FileObject, StorageError } from '@supabase/storage-js';
 
 export class ProfileServiceMock {
@@ -18,7 +18,7 @@ export class ProfileServiceMock {
     return Promise.resolve();
   }
 
-  public updateAndSelectProfile(_partialProfile: Partial<Profile>) {
+  public updateAndSelectProfile(_profile: ProfileUpdate) {
     return Promise.resolve();
   }
 

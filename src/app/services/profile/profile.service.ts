@@ -1,8 +1,7 @@
 import { inject, Service, Signal } from '@angular/core';
 import { SupabaseStorage } from '@jet/enums/supabase-storage.enum';
-import { SupabaseTable } from '@jet/enums/supabase-table.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
-import { Profile } from '@jet/interfaces/profile.interface';
+import { ProfileUpdate } from '@jet/types/profile.type';
 import { FileObject, StorageError } from '@supabase/storage-js';
 import { JwtPayload } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
@@ -41,18 +40,18 @@ export class ProfileService {
 
   public selectProfile() {
     return this.#supabaseClient
-      .from(SupabaseTable.Profiles)
+      .from('profiles')
       .select()
-      .eq('user_id', this.#claims()?.sub)
+      .eq('user_id', this.#claims()?.sub ?? '')
       .single()
       .throwOnError();
   }
 
-  public updateAndSelectProfile(partialProfile: Partial<Profile>) {
+  public updateAndSelectProfile(profile: ProfileUpdate) {
     return this.#supabaseClient
-      .from(SupabaseTable.Profiles)
-      .update(partialProfile)
-      .eq('user_id', this.#claims()?.sub)
+      .from('profiles')
+      .update(profile)
+      .eq('user_id', this.#claims()?.sub ?? '')
       .select()
       .single()
       .throwOnError();
