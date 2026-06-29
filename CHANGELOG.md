@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.0](https://github.com/karmasakshi/jet/compare/v5.6.0...v5.7.0) (2026-06-29)
+
+
+### Features
+
+* **supabase:** use supabase generated types ([02f453c](https://github.com/karmasakshi/jet/commit/02f453ce5d12c8116abf01610304a3135db65a99))
+
 ## [5.6.0](https://github.com/karmasakshi/jet/compare/v5.5.0...v5.6.0) (2026-06-23)
 
 
