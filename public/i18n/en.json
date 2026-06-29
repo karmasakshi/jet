@@ -29,7 +29,6 @@
     "profile": "Profile",
     "settings": "Settings"
   },
-  "empty-card": {},
   "footer": { "v-x": "v{{ x }}" },
   "home-page": {
     "seo": {
