@@ -26,26 +26,26 @@ import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { provideMaterialSymbols } from '@jet/providers/material-symbols.provider';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { alternateEmailFillIcon } from '@jet/svgs/alternate_email-fill';
+import { autorenewFillIcon } from '@jet/svgs/autorenew-fill';
 import { closeFillIcon } from '@jet/svgs/close-fill';
 import { contrastFillIcon } from '@jet/svgs/contrast-fill';
 import { darkModeFillIcon } from '@jet/svgs/dark_mode-fill';
 import { homeFillIcon } from '@jet/svgs/home-fill';
+import { imagesearchRollerFillIcon } from '@jet/svgs/imagesearch_roller-fill';
 import { languageFillIcon } from '@jet/svgs/language-fill';
 import { lightModeFillIcon } from '@jet/svgs/light_mode-fill';
 import { personFillIcon } from '@jet/svgs/person-fill';
 import { refreshFillIcon } from '@jet/svgs/refresh-fill';
+import { resetSettingsFillIcon } from '@jet/svgs/reset_settings-fill';
 import { shortTextFillIcon } from '@jet/svgs/short_text-fill';
 import { translateFillIcon } from '@jet/svgs/translate-fill';
+import { tuneFillIcon } from '@jet/svgs/tune-fill';
 import { visibilityFillIcon } from '@jet/svgs/visibility-fill';
 import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoPersistTranslations } from '@jsverse/transloco-persist-translations';
 import { routes } from './app.routes';
-import { autorenewFillIcon } from './svgs/autorenew-fill';
-import { imagesearchRollerFillIcon } from './svgs/imagesearch_roller-fill';
-import { resetSettingsFillIcon } from './svgs/reset_settings-fill';
-import { tuneFillIcon } from './svgs/tune-fill';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -25,7 +25,7 @@ export class UserServiceMock {
     return this.#claims.asReadonly();
   }
 
-  public getClaims(): Promise<
+  public getAndRefreshClaims(): Promise<
     | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
     | { data: null; error: AuthError }
     | { data: null; error: null }

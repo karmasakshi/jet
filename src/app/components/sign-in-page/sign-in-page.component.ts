@@ -188,7 +188,7 @@ export class SignInPageComponent implements OnInit {
     this.#progressBarService.showQueryProgressBar();
 
     try {
-      const { data } = await this.#userService.getClaims();
+      const { data } = await this.#userService.getAndRefreshClaims();
 
       if (data) {
         this.#alertService.showAlert(translate('alerts.welcome'));

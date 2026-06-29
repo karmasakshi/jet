@@ -42,7 +42,7 @@ export class UserService {
     return this.#claims.asReadonly();
   }
 
-  public async getClaims(): Promise<
+  public async getAndRefreshClaims(): Promise<
     | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
     | { data: null; error: AuthError }
     | { data: null; error: null }
