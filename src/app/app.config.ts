@@ -86,7 +86,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
-      ...(isDevMode() ? [withDebugTracing()] : []),
+      ...(import.meta.env.NG_APP_IS_LOGGING_ENABLED === 'true' ? [withDebugTracing()] : []),
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
     ),
     provideServiceWorker('ngsw-worker.js', {
