@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.1](https://github.com/karmasakshi/jet/compare/v5.7.0...v5.7.1) (2026-06-30)
+
+
+### Bug Fixes
+
+* remove autocomplete on file input ([5b2eaa4](https://github.com/karmasakshi/jet/commit/5b2eaa4a5063d25600ea34d6b67e371a4294abbb))
+
 ## [5.7.0](https://github.com/karmasakshi/jet/compare/v5.6.0...v5.7.0) (2026-06-29)
 
 
