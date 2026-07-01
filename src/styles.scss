@@ -250,10 +250,12 @@ img {
     object-fit: cover;
     width: 100%;
   }
-}
 
-.mat-mdc-floating-label {
-  top: 50% !important;
+  .mat-mdc-card-lg-image,
+  .mat-mdc-card-md-image,
+  .mat-mdc-card-sm-image {
+    border-radius: var(--mat-sys-corner-medium) !important;
+  }
 }
 
 .mat-mdc-form-field-icon-suffix {
