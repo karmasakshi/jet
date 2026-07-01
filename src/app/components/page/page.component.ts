@@ -1,17 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  input,
-  untracked,
-} from '@angular/core';
+import { Component, effect, inject, input, untracked } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   selector: 'jet-page',
   styleUrl: './page.component.css',

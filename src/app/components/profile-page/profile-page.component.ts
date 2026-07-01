@@ -1,6 +1,5 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
@@ -37,7 +36,6 @@ import { JwtPayload } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DatePipe,
     NgOptimizedImage,

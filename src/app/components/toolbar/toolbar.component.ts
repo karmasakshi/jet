@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output, Signal } from '@angular/core';
+import { Component, inject, input, output, Signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -13,7 +13,6 @@ import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.s
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatButtonModule,
     MatIconModule,

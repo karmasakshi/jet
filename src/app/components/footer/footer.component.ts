@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +8,6 @@ import { TranslocoModule } from '@jsverse/transloco';
 import packageJson from '../../../../package.json' with { type: 'json' };
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatDividerModule, MatIconModule, AnalyticsDirective, TranslocoModule],
   selector: 'jet-footer',
   styleUrl: './footer.component.css',
