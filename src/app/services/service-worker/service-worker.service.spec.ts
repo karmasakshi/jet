@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { SwUpdate } from '@angular/service-worker';
 import { TranslocoTestingModule } from '@jsverse/transloco';
+import { EMPTY } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
 import { AlertServiceMock } from '../alert/alert.service.mock';
 import { AnalyticsService } from '../analytics/analytics.service';
@@ -16,11 +17,9 @@ describe('ServiceWorkerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
+        { provide: SwUpdate, useValue: { versionUpdates: EMPTY } },
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

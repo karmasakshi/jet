@@ -28,11 +28,11 @@ export class StorageServiceMock {
     // Do nothing
   }
 
-  public setLocalStorageItem<T>(_localStorageKey: LocalStorageKey, _data: T): void {
+  public setLocalStorageItem(_localStorageKey: LocalStorageKey, _value: unknown): void {
     // Do nothing
   }
 
-  public setSessionStorageItem<T>(_sessionStorageKey: SessionStorageKey, _data: T): void {
+  public setSessionStorageItem(_sessionStorageKey: SessionStorageKey, _value: unknown): void {
     // Do nothing
   }
 }

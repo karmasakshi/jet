@@ -3,6 +3,8 @@ import { Signal, signal, WritableSignal } from '@angular/core';
 export class ServiceWorkerServiceMock {
   readonly #lastUpdateCheckTimestamp: WritableSignal<string>;
 
+  public readonly lastUpdateCheckTimestamp: Signal<string>;
+
   public constructor() {
     const storedLastUpdateCheckTimestamp: null | string = null;
 
@@ -10,18 +12,14 @@ export class ServiceWorkerServiceMock {
       storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
     );
 
-    this.#subscribeToVersionUpdates();
-  }
-
-  public get lastUpdateCheckTimestamp(): Signal<string> {
-    return this.#lastUpdateCheckTimestamp.asReadonly();
+    this.lastUpdateCheckTimestamp = this.#lastUpdateCheckTimestamp.asReadonly();
   }
 
   public async checkForUpdate(): Promise<boolean> {
     return Promise.resolve(true);
   }
 
-  #subscribeToVersionUpdates(): void {
+  public subscribeToVersionUpdates(): void {
     // Do nothing
   }
 }

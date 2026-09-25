@@ -1,5 +1,6 @@
 import {
   DestroyRef,
+  DOCUMENT,
   effect,
   inject,
   Service,
@@ -19,6 +20,7 @@ import { StorageService } from '../storage/storage.service';
 
 @Service()
 export class ServiceWorkerService {
+  readonly #document = inject(DOCUMENT);
   readonly #destroyRef = inject(DestroyRef);
   readonly #swUpdate = inject(SwUpdate);
   readonly #alertService = inject(AlertService);
@@ -29,6 +31,8 @@ export class ServiceWorkerService {
   #isUpdateReady: boolean;
   readonly #lastUpdateCheckTimestamp: WritableSignal<string>;
 
+  public readonly lastUpdateCheckTimestamp: Signal<string>;
+
   public constructor() {
     this.#isUpdateReady = false;
 
@@ -38,6 +42,8 @@ export class ServiceWorkerService {
     this.#lastUpdateCheckTimestamp = signal(
       storedLastUpdateCheckTimestamp ?? new Date().toISOString(),
     );
+
+    this.lastUpdateCheckTimestamp = this.#lastUpdateCheckTimestamp.asReadonly();
 
     effect(
       () => {
@@ -55,13 +61,7 @@ export class ServiceWorkerService {
       { debugName: 'lastUpdateCheckTimestamp' },
     );
 
-    this.#subscribeToVersionUpdates();
-
     this.#loggerService.logServiceInitialization('ServiceWorkerService');
-  }
-
-  public get lastUpdateCheckTimestamp(): Signal<string> {
-    return this.#lastUpdateCheckTimestamp.asReadonly();
   }
 
   public async checkForUpdate(): Promise<boolean> {
@@ -70,7 +70,7 @@ export class ServiceWorkerService {
         translate('alerts.reload-to-update'),
         translate('alerts.reload'),
         (): void => {
-          window.location.reload();
+          this.#document.location.reload();
         },
       );
 
@@ -80,19 +80,20 @@ export class ServiceWorkerService {
     return this.#swUpdate.checkForUpdate();
   }
 
-  #subscribeToVersionUpdates(): void {
+  public subscribeToVersionUpdates(): void {
     this.#swUpdate.versionUpdates
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((versionEvent: VersionEvent) => {
         switch (versionEvent.type) {
-          case 'NO_NEW_VERSION_DETECTED':
+          case 'NO_NEW_VERSION_DETECTED': {
             this.#analyticsService.logAnalyticsEvent({ name: 'no_new_version_detected' });
 
             this.#lastUpdateCheckTimestamp.set(new Date().toISOString());
 
             break;
+          }
 
-          case 'VERSION_DETECTED':
+          case 'VERSION_DETECTED': {
             this.#analyticsService.logAnalyticsEvent({
               data: { version: versionEvent.version.hash },
               name: 'version_detected',
@@ -103,17 +104,21 @@ export class ServiceWorkerService {
             this.#alertService.showAlert(translate('alerts.downloading-updates'));
 
             break;
+          }
 
-          case 'VERSION_INSTALLATION_FAILED':
+          case 'VERSION_INSTALLATION_FAILED': {
+            const error = new Error(versionEvent.error);
+
             this.#analyticsService.logAnalyticsEvent({ name: 'version_installation_failed' });
 
-            this.#loggerService.logError(new Error(versionEvent.error));
+            this.#loggerService.logException(error);
 
-            this.#alertService.showErrorAlert(versionEvent.error);
+            this.#alertService.showExceptionAlert(error);
 
             break;
+          }
 
-          case 'VERSION_READY':
+          case 'VERSION_READY': {
             this.#analyticsService.logAnalyticsEvent({
               data: {
                 currentVersion: versionEvent.currentVersion.hash,
@@ -128,11 +133,12 @@ export class ServiceWorkerService {
               translate('alerts.reload-to-update'),
               translate('alerts.reload'),
               (): void => {
-                window.location.reload();
+                this.#document.location.reload();
               },
             );
 
             break;
+          }
         }
       });
   }

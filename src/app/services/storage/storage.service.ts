@@ -11,17 +11,17 @@ export class StorageService {
   readonly #store2: StoreType;
 
   public constructor() {
-    this.#store2 = store2.namespace('jet');
+    this.#store2 = store2.namespace(import.meta.env.NG_APP_APP_ID);
 
     this.#loggerService.logServiceInitialization('StorageService');
   }
 
   public clearLocalStorage(): void {
-    store2.clearAll();
+    localStorage.clear();
   }
 
   public clearSessionStorage(): void {
-    store2.session.clearAll();
+    sessionStorage.clear();
   }
 
   public getLocalStorageItem<T>(localStorageKey: LocalStorageKey): null | T {
@@ -33,18 +33,18 @@ export class StorageService {
   }
 
   public removeLocalStorageItem(localStorageKey: LocalStorageKey): void {
-    this.#store2.remove(localStorageKey);
+    return this.#store2.remove(localStorageKey);
   }
 
   public removeSessionStorageItem(sessionStorageKey: SessionStorageKey): void {
-    this.#store2.session.remove(sessionStorageKey);
+    return this.#store2.session.remove(sessionStorageKey);
   }
 
-  public setLocalStorageItem<T>(localStorageKey: LocalStorageKey, data: T): void {
-    this.#store2.set(localStorageKey, data);
+  public setLocalStorageItem(localStorageKey: LocalStorageKey, value: unknown): void {
+    return this.#store2.set(localStorageKey, value);
   }
 
-  public setSessionStorageItem<T>(sessionStorageKey: SessionStorageKey, data: T): void {
-    this.#store2.session.set(sessionStorageKey, data);
+  public setSessionStorageItem(sessionStorageKey: SessionStorageKey, value: unknown): void {
+    return this.#store2.session.set(sessionStorageKey, value);
   }
 }
