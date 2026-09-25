@@ -5,7 +5,7 @@ import { Language } from '@jet/types/language.type';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { catchError, Observable, of } from 'rxjs';
 
-@Service({ autoProvided: false })
+@Service()
 export class TranslocoHttpLoader implements TranslocoLoader {
   readonly #httpClient = inject(HttpClient);
   readonly #loggerService = inject(LoggerService);
@@ -17,9 +17,8 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   public getTranslation(language: Language): Observable<Translation> {
     return this.#httpClient.get<Translation>(`/i18n/${language}.json`).pipe(
       catchError((error: Error): Observable<Translation> => {
-        this.#loggerService.logError(error);
-        const emptyTranslation: Translation = {};
-        return of(emptyTranslation);
+        this.#loggerService.logException(error);
+        return of({});
       }),
     );
   }

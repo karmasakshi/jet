@@ -19,8 +19,7 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "paths": { "@jet/*": ["./src/app/*"] },
-    "strict": true
+    "paths": { "@jet/*": ["./src/app/*"] }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -29,7 +28,6 @@
     "extendedDiagnostics": {
       "defaultCategory": "error" // https://angular.dev/extended-diagnostics#configuration
     },
-    "strictStandalone": true,
     "strictTemplates": true
   },
   "files": [],

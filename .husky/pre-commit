@@ -1,1 +1,1 @@
-npm run format-and-lint-staged && npm run test
+npm run lint-staged && npm run test && npm run build

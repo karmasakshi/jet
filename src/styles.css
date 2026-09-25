@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+@import 'tailwind-scrollbar-hide/v4';
+
+.jet-actions {
+  @apply flex gap-2;
+}
+
+.jet-carousel {
+  @apply flex gap-4 overflow-x-auto pb-4 pt-0.5 px-4 scrollbar-hide;
+
+  > * {
+    @apply flex-none;
+  }
+}
+
+.jet-page-card {
+  @apply max-w-[480px] mx-auto w-full;
+}
+
+.jet-stack {
+  @apply flex flex-col gap-4;
+}

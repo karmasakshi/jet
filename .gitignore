@@ -7,5 +7,7 @@
 /.codex
 /dist
 /node_modules
+/out-tsc
 /src/app/svgs
+/tmp
 /tools

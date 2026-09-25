@@ -20,7 +20,7 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
 
     this.firstPageLabel = translate('paginator.first-page');
 
-    this.itemsPerPageLabel = translate('paginator.items-per-page');
+    this.itemsPerPageLabel = translate('paginator.show');
 
     this.lastPageLabel = translate('paginator.last-page');
 
@@ -33,11 +33,11 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
 
   public getRangeLabel(page: number, pageSize: number, length: number): string {
     if (!length) {
-      return translate('paginator.page-1-of-1');
+      return translate('paginator.x-y', { x: 1, y: 1 });
     }
 
     const pages: number = Math.ceil(length / pageSize);
 
-    return translate('paginator.page-x-of-y', { x: page + 1, y: pages });
+    return translate('paginator.x-y', { x: page + 1, y: pages });
   }
 }
