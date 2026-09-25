@@ -10,7 +10,7 @@ export const progressBarInterceptor: HttpInterceptorFn = (req, next) => {
 
   if (['GET', 'HEAD', 'OPTIONS'].includes(method)) {
     progressBarService.showQueryProgressBar();
-  } else if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(method)) {
+  } else if (['DELETE', 'PATCH', 'POST', 'PUT'].includes(method)) {
     progressBarService.showIndeterminateProgressBar();
   }
 

@@ -1,8 +1,6 @@
-import { ColorScheme } from '@jet/types/color-scheme.type';
-
 export interface ColorSchemeOption {
-  icon: string;
+  iconName: string;
   nameKey: string;
   themeColor: string;
-  value: ColorScheme | null;
+  value: 'dark' | 'light' | null;
 }
