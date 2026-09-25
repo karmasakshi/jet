@@ -3,7 +3,8 @@
 create table public.profiles (
   avatar_url public.url null,
   name public.name null,
-  user_id uuid primary key references auth.users (id),
+  user_id uuid primary key references auth.users (id)
+    on delete restrict,
   username public.username not null unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz null

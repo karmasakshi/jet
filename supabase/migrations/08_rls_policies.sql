@@ -1,4 +1,4 @@
--- public.profiles
+-- public.profiles: authenticated select, update own
 
 grant select, update on table public.profiles to authenticated;
 

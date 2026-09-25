@@ -1,12 +1,12 @@
 -- public.amount
 
-create domain public.amount as numeric(15, 2)
+create domain public.amount as numeric(12, 2)
   check (value >= 0);
 
--- public.count
+-- public.description
 
-create domain public.count as smallint
-  check (value > 0);
+create domain public.description as text
+  check (length(value) <= 300);
 
 -- public.email
 
@@ -27,6 +27,11 @@ create domain public.latitude as double precision
 
 create domain public.longitude as double precision
   check (value between -180 and 180);
+
+-- public.measurement_unit
+
+create domain public.measurement_unit as text
+  check (value in ('g', 'ml', 'pc'));
 
 -- public.name
 
@@ -57,10 +62,15 @@ create domain public.phone as text
 create domain public.slug as text
   check (length(value) between 3 and 60 and value ~ '^[a-z0-9]+(?:[._-][a-z0-9]+)*$');
 
+-- public.upi_id
+
+create domain public.upi_id as text
+  check (length(value) between 3 and 100 and value ~ '^[^\s@]+@[^\s@]+$');
+
 -- public.url
 
 create domain public.url as text
-  check (length(value) between 10 and 600 and value ~ '^https?://[^\s]+$');
+  check (length(value) between 7 and 300 and value ~ '^https?://[^\s]+$');
 
 -- public.username
 
