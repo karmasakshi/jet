@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, Signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
@@ -22,8 +22,12 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
+import { closeFillIcon } from '@jet/svgs/close-fill';
+import { visibilityFillIcon } from '@jet/svgs/visibility-fill';
+import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
+import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import { JwtPayload } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
 
 @Component({
@@ -39,7 +43,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-update-password-page',
-  styleUrl: './update-password-page.component.css',
+  styles: ``,
   templateUrl: './update-password-page.component.html',
 })
 export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnInit {
@@ -51,31 +55,30 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   readonly #progressBarService = inject(ProgressBarService);
   readonly #userService = inject(UserService);
 
-  readonly #claims: JwtPayload | null;
   #isLoading: boolean;
+  readonly #user: Signal<null | User>;
 
-  protected readonly emailFormGroup: FormGroup<{ email: FormControl<null | string> }>;
   protected isNewPasswordConfirmationHidden: boolean;
   protected isNewPasswordHidden: boolean;
   protected readonly updatePasswordFormGroup: FormGroup<{
+    email: FormControl<null | string>;
     newPassword: FormControl<null | string>;
     newPasswordConfirmation: FormControl<null | string>;
   }>;
 
   public constructor() {
-    this.#claims = this.#userService.claims();
+    addSvgIconLiteral([closeFillIcon, visibilityFillIcon, visibilityOffFillIcon]);
 
     this.#isLoading = false;
 
-    this.emailFormGroup = this.#formBuilder.group({
-      email: this.#formBuilder.control<null | string>(null),
-    });
+    this.#user = this.#userService.user;
 
     this.isNewPasswordConfirmationHidden = true;
 
     this.isNewPasswordHidden = true;
 
     this.updatePasswordFormGroup = this.#formBuilder.group({
+      email: this.#formBuilder.control<null | string>(null),
       newPassword: this.#formBuilder.control<null | string>(null, [
         Validators.minLength(6),
         Validators.required,
@@ -90,9 +93,7 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
   }
 
   public ngOnInit(): void {
-    this.emailFormGroup.disable();
-
-    this.emailFormGroup.patchValue({ email: this.#claims?.email ?? null });
+    this.updatePasswordFormGroup.patchValue({ email: this.#user()?.email ?? null });
 
     this.updatePasswordFormGroup.controls.newPasswordConfirmation.addValidators(
       this.#matchFormControlValidator(this.updatePasswordFormGroup.controls.newPassword),
@@ -129,12 +130,8 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
 
       void this.#router.navigateByUrl('/profile');
     } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this.#loggerService.logError(exception);
-        this.#alertService.showErrorAlert(exception.message);
-      } else {
-        this.#loggerService.logException(exception);
-      }
+      this.#loggerService.logException(exception);
+      this.#alertService.showExceptionAlert(exception);
     } finally {
       this.#isLoading = false;
       this.updatePasswordFormGroup.enable();

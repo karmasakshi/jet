@@ -1,13 +1,12 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { DOCUMENT } from '@angular/common';
 import {
   Component,
   computed,
   DestroyRef,
+  DOCUMENT,
   effect,
   inject,
   linkedSignal,
-  OnDestroy,
   OnInit,
   Renderer2,
   signal,
@@ -16,6 +15,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -30,27 +30,36 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
+import { APP_VERSION } from '@jet/constants/app-version.constant';
 import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
 import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
-import { NAVIGATION_MENU_ITEMS } from '@jet/constants/navigation-menu-items.constant';
+import { NAV_ITEMS } from '@jet/constants/nav-items.constant';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
-import { NavigationMenuItem } from '@jet/interfaces/navigation-menu-item.interface';
+import { NavItem } from '@jet/interfaces/nav-item.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
+import { BadgeContentService } from '@jet/services/badge-content/badge-content.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
+import { celebrationFillIcon } from '@jet/svgs/celebration-fill';
+import { historyFillIcon } from '@jet/svgs/history-fill';
+import { homeFillIcon } from '@jet/svgs/home-fill';
+import { personFillIcon } from '@jet/svgs/person-fill';
+import { tuneFillIcon } from '@jet/svgs/tune-fill';
+import { Badge } from '@jet/types/badge.type';
+import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { filter } from 'rxjs';
-import packageJson from '../../../../package.json' with { type: 'json' };
 import { FooterComponent } from '../footer/footer.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   imports: [
+    MatBadgeModule,
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
@@ -62,18 +71,19 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
     ToolbarComponent,
   ],
   selector: 'jet-app',
-  styleUrl: './app.component.css',
+  styles: ``,
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnDestroy, OnInit {
+export class AppComponent implements OnInit {
   readonly #breakpointObserver = inject(BreakpointObserver);
-  readonly #document = inject(DOCUMENT);
   readonly #destroyRef = inject(DestroyRef);
+  readonly #document = inject(DOCUMENT);
   readonly #renderer2 = inject(Renderer2);
   readonly #meta = inject(Meta);
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
   readonly #analyticsService = inject(AnalyticsService);
+  readonly #badgeContentService = inject(BadgeContentService);
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #settingsService = inject(SettingsService);
@@ -82,41 +92,37 @@ export class AppComponent implements OnDestroy, OnInit {
   #activeColorSchemeClass: null | string;
   #activeFontPairClass: null | string;
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
-  readonly #darkColorSchemeEventListener: () => void;
-  readonly #darkColorSchemeMediaQueryList: MediaQueryList;
   readonly #isPwaMode: boolean;
   readonly #languageOption: Signal<LanguageOption>;
 
-  protected activeNavigationMenuItemPath: NavigationMenuItem['path'] | undefined;
+  protected activeNavItemPath: NavItem['path'] | undefined;
   protected readonly directionality: Signal<LanguageOption['directionality']>;
   protected readonly isLargeViewport: Signal<boolean>;
   protected readonly isMatSidenavOpen: WritableSignal<boolean>;
   protected readonly matSidenavMode: Signal<MatDrawerMode>;
-  protected readonly navigationMenuItems: NavigationMenuItem[];
+  protected readonly navItems: NavItem[];
   protected readonly shouldAddSafeArea: Signal<boolean>;
 
   public constructor() {
+    addSvgIconLiteral([
+      celebrationFillIcon,
+      historyFillIcon,
+      homeFillIcon,
+      personFillIcon,
+      tuneFillIcon,
+    ]);
+
     this.#activeColorSchemeClass = null;
 
     this.#activeFontPairClass = null;
 
     this.#colorSchemeOption = computed(() => this.#settingsService.settings().colorSchemeOption);
 
-    this.#darkColorSchemeMediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
-
-    this.#darkColorSchemeEventListener = this.#renderer2.listen(
-      this.#darkColorSchemeMediaQueryList,
-      'change',
-      () => {
-        this.#setThemeColorMeta(this.#colorSchemeOption().value);
-      },
-    );
-
-    this.#isPwaMode = window.matchMedia('(display-mode: standalone)').matches;
+    this.#isPwaMode = this.#breakpointObserver.isMatched('(display-mode: standalone)');
 
     this.#languageOption = computed(() => this.#settingsService.settings().languageOption);
 
-    this.activeNavigationMenuItemPath = undefined;
+    this.activeNavItemPath = undefined;
 
     this.directionality = this.#settingsService.directionality;
 
@@ -137,7 +143,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.matSidenavMode = computed(() => (this.isLargeViewport() ? 'side' : 'over'));
 
-    this.navigationMenuItems = NAVIGATION_MENU_ITEMS;
+    this.navItems = NAV_ITEMS;
 
     this.shouldAddSafeArea = computed(() =>
       this.matSidenavMode() === 'over' ? true : !this.isMatSidenavOpen(),
@@ -176,15 +182,15 @@ export class AppComponent implements OnDestroy, OnInit {
     this.#loggerService.logComponentInitialization('AppComponent');
   }
 
-  public ngOnDestroy(): void {
-    this.#darkColorSchemeEventListener();
-  }
-
   public ngOnInit(): void {
-    this.#analyticsService.logAnalyticsEvent({
-      data: { version: packageJson.version },
-      name: 'start',
-    });
+    this.#analyticsService.logAnalyticsEvent({ data: { version: APP_VERSION }, name: 'start' });
+
+    this.#breakpointObserver
+      .observe('(prefers-color-scheme: dark)')
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe(() => {
+        this.#setThemeColorMeta(this.#colorSchemeOption().value);
+      });
 
     this.#router.events
       .pipe(
@@ -204,16 +210,15 @@ export class AppComponent implements OnDestroy, OnInit {
         }
 
         if (event instanceof NavigationEnd) {
-          this.activeNavigationMenuItemPath = event.url.split('?')[0];
+          this.activeNavItemPath = event.url.split('?')[0];
         }
 
         if (event instanceof NavigationError) {
           const error = event.error;
-          const message: string | undefined = error instanceof Error ? error.message : undefined;
 
-          this.#loggerService.logError(error);
+          this.#loggerService.logException(error);
 
-          this.#alertService.showErrorAlert(message);
+          this.#alertService.showExceptionAlert(error);
         }
 
         this.#progressBarService.hideProgressBar();
@@ -224,9 +229,13 @@ export class AppComponent implements OnDestroy, OnInit {
     }
   }
 
+  public getBadgeContent(badge: Badge | null): null | number | string {
+    return this.#badgeContentService.getBadgeContent(badge);
+  }
+
   #disableUserScalable(): void {
     this.#meta.updateTag({
-      content: 'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no',
+      content: 'width=device-width, initial-scale=0.85, user-scalable=no, viewport-fit=cover',
       name: 'viewport',
     });
   }
@@ -270,9 +279,9 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
-    if (colorScheme === null) {
-      colorScheme = this.#darkColorSchemeMediaQueryList.matches ? 'dark' : 'light';
-    }
+    colorScheme ??= this.#breakpointObserver.isMatched('(prefers-color-scheme: dark)')
+      ? 'dark'
+      : 'light';
 
     const colorSchemeOption: ColorSchemeOption =
       COLOR_SCHEME_OPTIONS.find((colorSchemeOption) => colorSchemeOption.value === colorScheme) ??

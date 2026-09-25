@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { Database } from '@jet/types/database.type';
+import { REQUEST_TIMEOUT_MS } from '@jet/constants/request-timeout-ms.constant';
+import { Database } from '@jet/types/supabase/database.type';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 export const SUPABASE_CLIENT: InjectionToken<SupabaseClient<Database>> = new InjectionToken<
@@ -7,9 +8,9 @@ export const SUPABASE_CLIENT: InjectionToken<SupabaseClient<Database>> = new Inj
 >('SUPABASE_CLIENT', {
   factory: () =>
     createClient<Database>(
-      import.meta.env.NG_APP_SUPABASE_PROJECT_URL ?? 'http://your.supabase.project.url',
-      import.meta.env.NG_APP_SUPABASE_PUBLISHABLE_KEY ?? 'your-supabase-publishable-key',
-      { auth: { throwOnError: true } },
+      import.meta.env.NG_APP_SUPABASE_PROJECT_URL,
+      import.meta.env.NG_APP_SUPABASE_PUBLISHABLE_KEY,
+      { auth: { throwOnError: true }, db: { timeout: REQUEST_TIMEOUT_MS } },
     ),
   providedIn: 'root',
 });
