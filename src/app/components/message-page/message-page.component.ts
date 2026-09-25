@@ -17,18 +17,14 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-message-page',
-  styleUrl: './message-page.component.css',
+  styles: ``,
   templateUrl: './message-page.component.html',
 })
 export class MessagePageComponent {
   readonly #loggerService = inject(LoggerService);
 
   public readonly case = input<
-    | 'email-verification-pending'
-    | 'not-found'
-    | 'reset-password-email-sent'
-    | 'sign-in-link-sent'
-    | undefined
+    'email-verification-pending' | 'reset-password-email-sent' | 'sign-in-link-sent' | undefined
   >(undefined);
 
   public constructor() {

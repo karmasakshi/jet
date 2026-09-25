@@ -10,6 +10,9 @@ import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configura
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
+import { shortTextFillIcon } from '@jet/svgs/short_text-fill';
+import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { registerSvgIcon } from '@jet/utilities/register-svg-icon.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -24,7 +27,15 @@ import { TranslocoModule } from '@jsverse/transloco';
     TranslocoModule,
   ],
   selector: 'jet-toolbar',
-  styleUrl: './toolbar.component.css',
+  styles: `
+    mat-progress-bar {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      z-index: 2;
+    }
+  `,
   templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent {
@@ -38,12 +49,16 @@ export class ToolbarComponent {
   protected readonly toggleMatSidenav = output<void>();
 
   protected readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
-  protected readonly toolbarTitle: Signal<null | string>;
+  protected readonly title: Signal<string>;
 
   public constructor() {
+    addSvgIconLiteral([shortTextFillIcon]);
+
+    registerSvgIcon('logo', './media/logo.svg');
+
     this.progressBarConfiguration = this.#progressBarService.progressBarConfiguration;
 
-    this.toolbarTitle = this.#toolbarTitleService.toolbarTitle;
+    this.title = this.#toolbarTitleService.toolbarTitle;
 
     this.#loggerService.logComponentInitialization('ToolbarComponent');
   }

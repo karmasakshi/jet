@@ -17,6 +17,8 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
+import { closeFillIcon } from '@jet/svgs/close-fill';
+import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -34,7 +36,7 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-reset-password-page',
-  styleUrl: './reset-password-page.component.css',
+  styles: ``,
   templateUrl: './reset-password-page.component.html',
 })
 export class ResetPasswordPageComponent implements OnInit {
@@ -52,6 +54,8 @@ export class ResetPasswordPageComponent implements OnInit {
   protected readonly resetPasswordFormGroup: FormGroup<{ email: FormControl<null | string> }>;
 
   public constructor() {
+    addSvgIconLiteral([closeFillIcon]);
+
     this.#isLoading = false;
 
     this.resetPasswordFormGroup = this.#formBuilder.group({
@@ -84,12 +88,8 @@ export class ResetPasswordPageComponent implements OnInit {
 
       void this.#router.navigateByUrl('/reset-password-email-sent');
     } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this.#loggerService.logError(exception);
-        this.#alertService.showErrorAlert(exception.message);
-      } else {
-        this.#loggerService.logException(exception);
-      }
+      this.#loggerService.logException(exception);
+      this.#alertService.showExceptionAlert(exception);
     } finally {
       this.#isLoading = false;
       this.resetPasswordFormGroup.enable();

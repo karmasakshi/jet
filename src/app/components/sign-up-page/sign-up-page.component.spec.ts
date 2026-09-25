@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
-import { ActivatedRoute } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -24,7 +24,7 @@ describe('SignUpPageComponent', () => {
         SignUpPageComponent,
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: {} },
+        provideRouter([]),
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },

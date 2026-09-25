@@ -10,7 +10,7 @@ import { PageComponent } from '../page/page.component';
 @Component({
   imports: [TranslocoModule, PageComponent],
   selector: 'jet-sign-out-page',
-  styleUrl: './sign-out-page.component.css',
+  styles: ``,
   templateUrl: './sign-out-page.component.html',
 })
 export class SignOutPageComponent implements OnInit {
@@ -48,12 +48,8 @@ export class SignOutPageComponent implements OnInit {
 
       void this.#router.navigateByUrl('/');
     } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this.#loggerService.logError(exception);
-        this.#alertService.showErrorAlert(exception.message);
-      } else {
-        this.#loggerService.logException(exception);
-      }
+      this.#loggerService.logException(exception);
+      this.#alertService.showExceptionAlert(exception);
     } finally {
       this.#isLoading = false;
       this.#progressBarService.hideProgressBar();

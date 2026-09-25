@@ -3,12 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 
-@Component({
-  imports: [],
-  selector: 'jet-page',
-  styleUrl: './page.component.css',
-  templateUrl: './page.component.html',
-})
+@Component({ imports: [], selector: 'jet-page', styles: ``, templateUrl: './page.component.html' })
 export class PageComponent {
   readonly #meta = inject(Meta);
   readonly #title = inject(Title);
@@ -24,7 +19,7 @@ export class PageComponent {
   public readonly toolbarTitle = input.required<string>();
 
   public constructor() {
-    this.#defaultSeoImageUrl = `${window.location.origin}/og-image.jpg`;
+    this.#defaultSeoImageUrl = `${import.meta.env.NG_APP_APP_URL}/og-image.jpg`;
 
     effect(
       () => {
@@ -35,7 +30,7 @@ export class PageComponent {
         untracked(() => {
           this.#meta.updateTag({ content: seoDescription, name: 'description' });
 
-          this.#meta.updateTag({ content: seoDescription, name: 'og:description' });
+          this.#meta.updateTag({ content: seoDescription, property: 'og:description' });
         });
       },
       { debugName: 'seoDescription' },
@@ -48,7 +43,7 @@ export class PageComponent {
         const seoImageUrl = this.seoImageUrl() ?? this.#defaultSeoImageUrl;
 
         untracked(() => {
-          this.#meta.updateTag({ content: seoImageUrl, name: 'og:image' });
+          this.#meta.updateTag({ content: seoImageUrl, property: 'og:image' });
         });
       },
       { debugName: 'seoImageUrl' },
@@ -75,7 +70,7 @@ export class PageComponent {
 
         untracked(() => {
           this.#title.setTitle(seoTitle);
-          this.#meta.updateTag({ content: seoTitle, name: 'og:title' });
+          this.#meta.updateTag({ content: seoTitle, property: 'og:title' });
         });
       },
       { debugName: 'seoTitle' },

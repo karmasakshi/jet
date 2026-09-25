@@ -63,7 +63,7 @@
               svgIcon="refresh-fill"
             />
             <span matListItemTitle>{{ t('reload') }}</span>
-            <span matListItemLine>{{ t('reload-description') }}</span>
+            <span matListItemLine>{{ t('keep-settings-and-reload') }}</span>
           </button>
           <button
             mat-list-item
@@ -76,7 +76,7 @@
               svgIcon="reset-settings-fill"
             />
             <span matListItemTitle>{{ t('reset') }}</span>
-            <span matListItemLine>{{ t('reset-description') }}</span>
+            <span matListItemLine>{{ t('reset-settings-and-reload') }}</span>
           </button>
         </mat-action-list>
       </mat-card-content>
@@ -96,7 +96,7 @@
           }"
           (click)="updateSettings({ languageOption })"
         >
-          <mat-icon [svgIcon]="languageOption.icon" />
+          <mat-icon [svgIcon]="languageOption.iconName" />
           <span>{{ languageOption.nameKey | transloco }}</span>
         </button>
       }
@@ -116,7 +116,7 @@
           }"
           (click)="updateSettings({ colorSchemeOption })"
         >
-          <mat-icon [svgIcon]="colorSchemeOption.icon" />
+          <mat-icon [svgIcon]="colorSchemeOption.iconName" />
           <span>{{ colorSchemeOption.nameKey | transloco }}</span>
         </button>
       }

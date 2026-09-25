@@ -1,4 +1,8 @@
 @let _height = height();
 @let _width = width();
 
-<mat-card [style]="{ height: `${_height}px`, width: `${_width}px` }" />
+<mat-card
+  class="overflow-hidden"
+  [style.height]="`${_height}px`"
+  [style.width]="!_width ? '100%' : `${_width}px`"
+/>

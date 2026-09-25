@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { signedInGuard } from '@jet/guards/signed-in/signed-in.guard';
-import { signedOutGuard } from '@jet/guards/signed-out/signed-out.guard';
-import { unsavedChangesGuard } from '@jet/guards/unsaved-changes/unsaved-changes.guard';
+import { hasEmailGuard } from '@jet/guards/has-email/has-email.guard';
+import { hasUnsavedChangesGuard } from '@jet/guards/has-unsaved-changes/has-unsaved-changes.guard';
+import { isSignedInGuard } from '@jet/guards/is-signed-in/is-signed-in.guard';
+import { isSignedOutGuard } from '@jet/guards/is-signed-out/is-signed-out.guard';
 import { ProfileService } from '@jet/services/profile/profile.service';
-import { UserService } from '@jet/services/user/user.service';
 
 const mainRoutes: Routes = [];
 
@@ -15,14 +15,15 @@ const userRoutes: Routes = [
     path: 'email-verification-pending',
   },
   {
-    canActivate: [signedInGuard],
-    canDeactivate: [unsavedChangesGuard],
+    canActivate: [isSignedInGuard],
+    canDeactivate: [hasUnsavedChangesGuard],
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component')).ProfilePageComponent,
     path: 'profile',
+    providers: [ProfileService],
   },
   {
-    canActivate: [signedOutGuard],
+    canActivate: [isSignedOutGuard],
     loadComponent: async () =>
       (await import('@jet/components/reset-password-page/reset-password-page.component'))
         .ResetPasswordPageComponent,
@@ -51,19 +52,20 @@ const userRoutes: Routes = [
     path: 'sign-in-link-sent',
   },
   {
+    canActivate: [isSignedInGuard],
     loadComponent: async () =>
       (await import('@jet/components/sign-out-page/sign-out-page.component')).SignOutPageComponent,
     path: 'sign-out',
   },
   {
-    canActivate: [signedOutGuard],
+    canActivate: [isSignedOutGuard],
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component')).SignUpPageComponent,
     path: 'sign-up',
   },
   {
-    canActivate: [signedInGuard],
-    canDeactivate: [unsavedChangesGuard],
+    canActivate: [isSignedInGuard, hasEmailGuard],
+    canDeactivate: [hasUnsavedChangesGuard],
     loadComponent: async () =>
       (await import('@jet/components/update-password-page/update-password-page.component'))
         .UpdatePasswordPageComponent,
@@ -71,6 +73,4 @@ const userRoutes: Routes = [
   },
 ];
 
-export const lazyRoutes: Routes = [
-  { children: [...mainRoutes, ...userRoutes], path: '', providers: [ProfileService, UserService] },
-];
+export const lazyRoutes: Routes = [...mainRoutes, ...userRoutes];

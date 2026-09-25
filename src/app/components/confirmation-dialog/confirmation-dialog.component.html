@@ -1,0 +1,17 @@
+<mat-dialog-content>{{ message }}</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    matButton
+    type="button"
+    [mat-dialog-close]="false"
+  >
+    {{ 'confirmation-dialog.cancel' | transloco }}
+  </button>
+  <button
+    matButton="filled"
+    type="button"
+    [mat-dialog-close]="true"
+  >
+    {{ 'confirmation-dialog.ok' | transloco }}
+  </button>
+</mat-dialog-actions>

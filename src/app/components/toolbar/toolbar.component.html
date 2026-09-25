@@ -1,7 +1,7 @@
 @let _isLargeViewport = isLargeViewport();
 @let _progressBarConfiguration = progressBarConfiguration();
 @let _shouldAddSafeArea = shouldAddSafeArea();
-@let _toolbarTitle = toolbarTitle();
+@let _title = title();
 
 <ng-container *transloco="let t; prefix: 'toolbar'">
   <mat-toolbar
@@ -32,7 +32,7 @@
       <a
         matIconButton
         matTooltipPosition="after"
-        [aria-label]="t('home')"
+        [aria-label]="t('open-home')"
         [jetAnalyticsEvent]="{ name: 'open_home' }"
         [matTooltip]="t('home')"
         [routerLink]="['/']"
@@ -40,6 +40,6 @@
         <mat-icon svgIcon="logo" />
       </a>
     }
-    <h1>{{ _toolbarTitle || t('loading') }}</h1>
+    <h1>{{ _title }}</h1>
   </mat-toolbar>
 </ng-container>

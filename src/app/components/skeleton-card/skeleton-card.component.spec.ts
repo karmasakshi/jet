@@ -14,9 +14,8 @@ describe('SkeletonCardComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(SkeletonCardComponent);
-    component = fixture.componentInstance;
     fixture.componentRef.setInput('height', undefined);
-    fixture.componentRef.setInput('width', undefined);
+    component = fixture.componentInstance;
     await fixture.whenStable();
   });
 

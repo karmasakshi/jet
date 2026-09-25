@@ -16,8 +16,8 @@
       [(opened)]="isMatSidenavOpen"
     >
       <jet-sidenav
-        [activeNavigationMenuItemPath]="activeNavigationMenuItemPath"
-        (clickNavigationMenuItem)="_matSidenavMode === 'over' && matSidenav.close()"
+        [activeNavItemPath]="activeNavItemPath"
+        (clickNavItem)="_matSidenavMode === 'over' && matSidenav.close()"
       />
     </mat-sidenav>
     <mat-sidenav-content class="jet-sidenav-content">
@@ -41,17 +41,24 @@
         <nav
           backgroundColor="primary"
           class="jet-tab-nav-bar"
+          disablePagination
           mat-tab-nav-bar
           [tabPanel]="tabPanel"
         >
-          @for (navigationMenuItem of navigationMenuItems; track navigationMenuItem.path) {
+          @for (navItem of navItems; track navItem.path) {
             <a
               mat-tab-link
-              [active]="activeNavigationMenuItemPath === navigationMenuItem.path"
-              [aria-label]="navigationMenuItem.nameKey | transloco"
-              [routerLink]="[navigationMenuItem.path]"
+              style="min-width: 0"
+              [active]="activeNavItemPath === navItem.path"
+              [aria-label]="navItem.nameKey | transloco"
+              [routerLink]="[navItem.path]"
             >
-              <mat-icon [svgIcon]="navigationMenuItem.icon" />
+              <mat-icon
+                aria-hidden="false"
+                [matBadge]="getBadgeContent(navItem.badge)"
+                [matBadgeHidden]="!navItem.badge"
+                [svgIcon]="navItem.iconName"
+              />
             </a>
           }
         </nav>

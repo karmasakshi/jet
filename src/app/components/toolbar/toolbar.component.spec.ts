@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
-import { ActivatedRoute } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -22,7 +22,7 @@ describe('ToolbarComponent', () => {
         ToolbarComponent,
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: {} },
+        provideRouter([]),
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: ToolbarTitleService, useClass: ToolbarTitleServiceMock },

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, inject, Signal } from '@angular/core';
+import { Component, DOCUMENT, inject, Signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -16,6 +16,16 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
 import { StorageService } from '@jet/services/storage/storage.service';
+import { autorenewFillIcon } from '@jet/svgs/autorenew-fill';
+import { contrastFillIcon } from '@jet/svgs/contrast-fill';
+import { darkModeFillIcon } from '@jet/svgs/dark_mode-fill';
+import { imagesearchRollerFillIcon } from '@jet/svgs/imagesearch_roller-fill';
+import { languageFillIcon } from '@jet/svgs/language-fill';
+import { lightModeFillIcon } from '@jet/svgs/light_mode-fill';
+import { refreshFillIcon } from '@jet/svgs/refresh-fill';
+import { resetSettingsFillIcon } from '@jet/svgs/reset_settings-fill';
+import { translateFillIcon } from '@jet/svgs/translate-fill';
+import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -31,10 +41,11 @@ import { PageComponent } from '../page/page.component';
     PageComponent,
   ],
   selector: 'jet-settings-page',
-  styleUrl: './settings-page.component.css',
+  styles: ``,
   templateUrl: './settings-page.component.html',
 })
 export class SettingsPageComponent {
+  readonly #document = inject(DOCUMENT);
   readonly #alertService = inject(AlertService);
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
@@ -48,6 +59,18 @@ export class SettingsPageComponent {
   protected readonly settings: Signal<Settings>;
 
   public constructor() {
+    addSvgIconLiteral([
+      autorenewFillIcon,
+      contrastFillIcon,
+      darkModeFillIcon,
+      imagesearchRollerFillIcon,
+      languageFillIcon,
+      lightModeFillIcon,
+      refreshFillIcon,
+      resetSettingsFillIcon,
+      translateFillIcon,
+    ]);
+
     this.colorSchemeOptions = COLOR_SCHEME_OPTIONS;
 
     this.languageOptions = LANGUAGE_OPTIONS;
@@ -71,19 +94,15 @@ export class SettingsPageComponent {
         this.#alertService.showAlert(translate('alerts.youre-on-the-latest-version'));
       }
     } catch (exception: unknown) {
-      if (exception instanceof Error) {
-        this.#loggerService.logError(exception);
-        this.#alertService.showErrorAlert(exception.message);
-      } else {
-        this.#loggerService.logException(exception);
-      }
+      this.#loggerService.logException(exception);
+      this.#alertService.showExceptionAlert(exception);
     } finally {
       this.#progressBarService.hideProgressBar();
     }
   }
 
   protected reload(): void {
-    window.location.reload();
+    this.#document.location.reload();
   }
 
   protected reset(): void {

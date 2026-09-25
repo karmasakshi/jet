@@ -1,34 +1,39 @@
-@let _activeNavigationMenuItemPath = activeNavigationMenuItemPath();
+@let _activeNavItemPath = activeNavItemPath();
 
 <ng-container *transloco="let t; prefix: 'sidenav'">
   <mat-toolbar class="jet-sidenav-toolbar">
     <a
       matIconButton
       matTooltipPosition="after"
-      [aria-label]="t('home')"
+      [aria-label]="t('open-home')"
       [jetAnalyticsEvent]="{ name: 'open_home' }"
       [matTooltip]="t('home')"
       [routerLink]="['/']"
-      (click)="clickNavigationMenuItem.emit()"
+      (click)="clickNavItem.emit()"
     >
       <mat-icon svgIcon="logo" />
     </a>
   </mat-toolbar>
   <div class="jet-sidenav-nav-list">
     <mat-nav-list>
-      @for (navigationMenuItem of navigationMenuItems; track navigationMenuItem.path) {
+      @for (navItem of navItems; track navItem.path) {
         <a
+          /* matTooltipPosition="after" */
+          /* [matTooltip]="navItem.nameKey | transloco" */
           mat-list-item
           matListItemTitle
-          [activated]="_activeNavigationMenuItemPath === navigationMenuItem.path"
-          [routerLink]="[navigationMenuItem.path]"
-          (click)="clickNavigationMenuItem.emit()"
+          [activated]="_activeNavItemPath === navItem.path"
+          [routerLink]="[navItem.path]"
+          (click)="clickNavItem.emit()"
         >
           <mat-icon
+            aria-hidden="false"
             matListItemIcon
-            [svgIcon]="navigationMenuItem.icon"
+            [matBadge]="getBadgeContent(navItem.badge)"
+            [matBadgeHidden]="!navItem.badge"
+            [svgIcon]="navItem.iconName"
           />
-          <span>{{ navigationMenuItem.nameKey | transloco }}</span>
+          <span>{{ navItem.nameKey | transloco }}</span>
         </a>
       }
     </mat-nav-list>

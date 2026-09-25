@@ -1,5 +1,7 @@
 @let _emailControl = signUpFormGroup.controls.email;
+@let _passwordConfirmationControl = signUpFormGroup.controls.passwordConfirmation;
 @let _passwordControl = signUpFormGroup.controls.password;
+@let _returnUrl = returnUrl();
 
 <ng-container *transloco="let t; prefix: 'sign-up-page'">
   <jet-page
@@ -8,12 +10,12 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="flex flex-col items-center gap-4">
-      <mat-card class="w-full max-w-120">
+    <div class="jet-stack">
+      <mat-card class="jet-page-card">
         <img
           height="180"
           mat-card-image
-          ngSrc="/media/card.webp"
+          ngSrc="./media/card.webp"
           priority
           width="480"
           [alt]="t('sign-up')"
@@ -23,13 +25,15 @@
           <form
             id="sign-up-form"
             [formGroup]="signUpFormGroup"
-            (ngSubmit)="signUp(_emailControl.value ?? '', _passwordControl.value ?? '')"
+            (ngSubmit)="signUp(_emailControl.value?.trim() ?? '', _passwordControl.value ?? '')"
           >
             <mat-form-field>
               <mat-label>{{ t('email') }}</mat-label>
               <input
                 autocomplete="email"
+                enterkeyhint="next"
                 formControlName="email"
+                inputmode="email"
                 matInput
                 required
                 type="email"
@@ -58,6 +62,7 @@
               <mat-label>{{ t('password') }}</mat-label>
               <input
                 autocomplete="new-password"
+                enterkeyhint="next"
                 formControlName="password"
                 matInput
                 required
@@ -87,9 +92,58 @@
                 <mat-error>{{ t('password-error-required') }}</mat-error>
               }
             </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('password-confirmation') }}</mat-label>
+              <input
+                autocomplete="new-password"
+                enterkeyhint="done"
+                formControlName="passwordConfirmation"
+                matInput
+                required
+                [type]="isPasswordConfirmationHidden ? 'password' : 'text'"
+              />
+              <button
+                matIconButton
+                matSuffix
+                tabindex="-1"
+                type="button"
+                [aria-label]="t('toggle-visibility')"
+                [disabled]="_passwordConfirmationControl.disabled"
+                (click)="isPasswordConfirmationHidden = !isPasswordConfirmationHidden"
+              >
+                <mat-icon
+                  [svgIcon]="
+                    isPasswordConfirmationHidden ? 'visibility-fill' : 'visibility-off-fill'
+                  "
+                />
+              </button>
+              @if (
+                _passwordConfirmationControl.touched &&
+                _passwordConfirmationControl.errors?.['minlength']
+              ) {
+                <mat-error>{{
+                  t('password-confirmation-error-minlength-x', {
+                    x: _passwordConfirmationControl.errors['minlength'].requiredLength,
+                  })
+                }}</mat-error>
+              }
+              @if (
+                _passwordConfirmationControl.touched &&
+                !_passwordConfirmationControl.errors?.['minlength'] &&
+                _passwordConfirmationControl.errors?.['mismatch']
+              ) {
+                <mat-error>{{ t('password-confirmation-error-mismatch') }}</mat-error>
+              }
+              @if (
+                _passwordConfirmationControl.touched &&
+                _passwordConfirmationControl.errors?.['required']
+              ) {
+                <mat-error>{{ t('password-confirmation-error-required') }}</mat-error>
+              }
+            </mat-form-field>
           </form>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions align="end">
           <button
             form="sign-up-form"
             matButton="filled"
@@ -100,13 +154,13 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card class="w-full max-w-120">
+      <mat-card class="jet-page-card">
         <mat-card-content>
-          <div class="flex flex-col items-center gap-4">
+          <div class="jet-stack items-center">
             <a
               matButton
               [disabled]="signUpFormGroup.disabled"
-              [queryParams]="{ email: _emailControl.value }"
+              [queryParams]="{ email: _emailControl.value, returnUrl: _returnUrl }"
               [routerLink]="['/sign-in']"
               >{{ t('sign-in') }}</a
             >

@@ -5,6 +5,8 @@ import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
+import { BadgeContentService } from '@jet/services/badge-content/badge-content.service';
+import { BadgeContentServiceMock } from '@jet/services/badge-content/badge-content.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { LoggerServiceMock } from '@jet/services/logger/logger.service.mock';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -41,6 +43,7 @@ describe('AppComponent', () => {
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: AnalyticsService, useClass: AnalyticsServiceMock },
+        { provide: BadgeContentService, useClass: BadgeContentServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: ProgressBarService, useClass: ProgressBarServiceMock },
         { provide: SettingsService, useClass: SettingsServiceMock },
