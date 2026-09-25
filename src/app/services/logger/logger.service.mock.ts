@@ -17,11 +17,7 @@ export class LoggerServiceMock {
     // Do nothing
   }
 
-  public logEffectRun(_signalName: string): void {
-    // Do nothing
-  }
-
-  public logError(_error: Error): void {
+  public logEffectRun(..._signalNames: string[]): void {
     // Do nothing
   }
 
@@ -30,10 +26,6 @@ export class LoggerServiceMock {
   }
 
   public logServiceInitialization(_serviceName: string): void {
-    // Do nothing
-  }
-
-  public logWarning(_warning: string): void {
     // Do nothing
   }
 }

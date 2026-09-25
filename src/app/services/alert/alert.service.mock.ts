@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 export class AlertServiceMock {
-  public showAlert(_message: string, _cta: string = '', _action?: () => void): void {
+  public showAlert(_message: string, _action: string = '', _callback?: () => void): void {
     // Do nothing
   }
 
-  public showErrorAlert(_message: string = ''): void {
+  public showExceptionAlert(_exception: unknown): void {
     // Do nothing
   }
 }

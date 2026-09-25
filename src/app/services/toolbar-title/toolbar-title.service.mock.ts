@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Signal, signal, WritableSignal } from '@angular/core';
+import { signal, Signal, WritableSignal } from '@angular/core';
 
 export class ToolbarTitleServiceMock {
-  readonly #toolbarTitle: WritableSignal<null | string>;
+  readonly #toolbarTitle: WritableSignal<string>;
+
+  public readonly toolbarTitle: Signal<string>;
 
   public constructor() {
-    this.#toolbarTitle = signal(null);
-  }
+    this.#toolbarTitle = signal('');
 
-  public get toolbarTitle(): Signal<null | string> {
-    return this.#toolbarTitle.asReadonly();
+    this.toolbarTitle = this.#toolbarTitle.asReadonly();
   }
 
   public setToolbarTitle(_toolbarTitle: string): void {

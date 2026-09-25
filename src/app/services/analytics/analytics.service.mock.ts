@@ -3,7 +3,7 @@
 import { AnalyticsEvent } from '@jet/interfaces/analytics-event.interface';
 
 export class AnalyticsServiceMock {
-  public logAnalyticsEvent(_analyticsEvent: AnalyticsEvent): void {
+  public logAnalyticsEvent({ data: _data, name: _name }: AnalyticsEvent): void {
     // Do nothing
   }
 }

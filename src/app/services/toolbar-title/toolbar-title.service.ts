@@ -1,20 +1,21 @@
-import { inject, Service, Signal, signal, WritableSignal } from '@angular/core';
+import { inject, Service, signal, Signal, WritableSignal } from '@angular/core';
+import { translate } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 
 @Service()
 export class ToolbarTitleService {
   readonly #loggerService = inject(LoggerService);
 
-  readonly #toolbarTitle: WritableSignal<null | string>;
+  readonly #toolbarTitle: WritableSignal<string>;
+
+  public readonly toolbarTitle: Signal<string>;
 
   public constructor() {
-    this.#toolbarTitle = signal(null);
+    this.#toolbarTitle = signal(translate('constants.loading'));
+
+    this.toolbarTitle = this.#toolbarTitle.asReadonly();
 
     this.#loggerService.logServiceInitialization('ToolbarTitleService');
-  }
-
-  public get toolbarTitle(): Signal<null | string> {
-    return this.#toolbarTitle.asReadonly();
   }
 
   public setToolbarTitle(toolbarTitle: string): void {

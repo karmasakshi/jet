@@ -6,6 +6,8 @@ import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configura
 export class ProgressBarServiceMock {
   readonly #progressBarConfiguration: WritableSignal<ProgressBarConfiguration>;
 
+  public readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
+
   public constructor() {
     this.#progressBarConfiguration = signal({
       bufferValue: 0,
@@ -13,10 +15,8 @@ export class ProgressBarServiceMock {
       mode: 'indeterminate',
       value: 0,
     });
-  }
 
-  public get progressBarConfiguration(): Signal<ProgressBarConfiguration> {
-    return this.#progressBarConfiguration.asReadonly();
+    this.progressBarConfiguration = this.#progressBarConfiguration.asReadonly();
   }
 
   public hideProgressBar(): void {
