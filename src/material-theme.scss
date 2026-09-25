@@ -5,9 +5,11 @@
 @use 'pkg:@fontsource-variable/noto-sans/wght.css' as NotoSans;
 @use 'pkg:@fontsource-variable/noto-sans-arabic/wght.css' as NotoSansArabic;
 
-$bg-font-family: ('Bricolage Grotesque Variable', serif);
-$ns-font-family: ('Noto Sans Variable', sans-serif);
-$nsa-font-family: ('Noto Sans Arabic Variable', sans-serif);
+$brand-family: ('Bricolage Grotesque Variable', serif);
+$plain-family: ('Noto Sans Variable', sans-serif);
+
+$arabic-brand-family: ('Noto Sans Arabic Variable', sans-serif);
+$arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 html {
   --jet-sidenav-width: 240px;
@@ -22,13 +24,19 @@ html {
         theme-type: color-scheme,
       ),
       typography: (
-        brand-family: $bg-font-family,
-        plain-family: $ns-font-family,
+        brand-family: $brand-family,
+        plain-family: $plain-family,
         bold-weight: 700,
         medium-weight: 500,
         regular-weight: 400,
       ),
       density: 0,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-progress-active-indicator-color: var(--mat-sys-primary),
     )
   );
 
@@ -60,17 +68,30 @@ html {
     )
   );
 
-  @include mat.sidenav-overrides(
+  @include mat.paginator-overrides(
     (
       container-background-color: var(--mat-sys-surface-container-low),
     )
   );
 
+  @include mat.sidenav-overrides(
+    (
+      container-background-color: var(--mat-sys-surface-container-low),
+      container-width: var(--jet-sidenav-width),
+    )
+  );
+
+  @include mat.table-overrides(
+    (
+      background-color: var(--mat-sys-surface-container-low),
+    )
+  );
+
   @include mat.tabs-overrides(
     (
-      background-color: var(--mat-sys-primary),
+      background-color: var(--mat-sys-secondary),
       divider-height: 0,
-      foreground-color: var(--mat-sys-on-primary),
+      foreground-color: var(--mat-sys-on-secondary),
     )
   );
 }
@@ -94,8 +115,8 @@ body {
     @include mat.theme(
       (
         typography: (
-          brand-family: $nsa-font-family,
-          plain-family: $nsa-font-family,
+          brand-family: $arabic-brand-family,
+          plain-family: $arabic-plain-family,
           bold-weight: 700,
           medium-weight: 500,
           regular-weight: 400,
@@ -177,7 +198,7 @@ body {
       flex: 1;
 
       main {
-        padding-bottom: 160px;
+        padding-bottom: 16px;
         padding-inline-end: calc(16px + var(--jet-safe-area-end));
         padding-inline-start: 16px;
         padding-top: 16px;
@@ -236,6 +257,11 @@ img {
   font: var(--mat-sys-body-small);
 }
 
+.cdk-overlay-popover:has(.mat-mdc-dialog-panel) {
+  height: 100vh !important;
+  position: unset !important;
+}
+
 .mat-expansion-panel-header-description {
   justify-content: flex-end;
 }
@@ -243,6 +269,10 @@ img {
 .mat-mdc-card {
   .mat-mdc-card-actions {
     gap: 8px;
+  }
+
+  .mat-mdc-card-header-text {
+    min-width: 0;
   }
 
   .mat-mdc-card-image {
@@ -253,7 +283,8 @@ img {
 
   .mat-mdc-card-lg-image,
   .mat-mdc-card-md-image,
-  .mat-mdc-card-sm-image {
+  .mat-mdc-card-sm-image,
+  .mat-mdc-card-xl-image {
     border-radius: var(--mat-sys-corner-medium) !important;
   }
 }
