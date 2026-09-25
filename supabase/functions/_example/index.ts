@@ -1,82 +1,44 @@
-// deno-lint-ignore no-import-prefix no-unversioned-import
-import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
+// Follow this setup guide to integrate the Deno language server with your editor:
+// https://deno.land/manual/getting_started/setup_your_environment
+// This enables autocomplete, go to definition, etc.
 
-import { JetError } from '@shared/classes/jet-error.class.ts';
-import { COMMON_HEADERS } from '@shared/constants/common-headers.constant.ts';
-import { checkIsBelowRateLimit } from '@shared/functions/check-is-below-rate-limit.ts';
-import { checkRequestMethod } from '@shared/functions/check-request-method.ts';
-import { convertFileToDataUrl } from '@shared/functions/convert-file-to-data-url.ts';
-import { getAuthorizationHeader } from '@shared/functions/get-authorization-header.ts';
-import { getCustomClaims } from '@shared/functions/get-custom-claims.ts';
-import { getSupabaseUserClient } from '@shared/functions/get-supabase-user-client.ts';
-import { selectProfile } from '@shared/functions/select-profile.ts';
-import { CustomClaims } from '@shared/interfaces/custom-claims.interface.ts';
-import { Profile } from '@shared/interfaces/profile.interface.ts';
-import { SupabaseClient } from '@supabase/supabase-js';
-import { z } from '@zod/zod';
-import { getValidatedRequestFormData } from './functions/get-validated-request-form-data.ts';
-import { RequestFormData } from './types/request-form-data.type.ts';
+// Setup type definitions for built-in Supabase Runtime APIs
+import '@supabase/functions-js/edge-runtime.d.ts';
+import { withSupabase } from '@supabase/server';
 
-addEventListener('beforeunload', (event: unknown): void => {
-  // @ts-expect-error: https://supabase.com/docs/guides/functions/background-tasks#example
-  console.warn('Edge Function shutting down: ', event.detail?.reason);
-});
+console.log('Hello from Functions!');
 
-Deno.serve(async (request: Request): Promise<Response> => {
-  console.info(
-    'Incoming request:',
-    request.method,
-    'Origin:',
-    request.headers.get('origin') ?? 'N/A',
-  );
+// This endpoint uses 'publishable' | 'secret' access, apiKey is required.
+// Use publishable for Client-facing, key-validated endpoints
+// Use secret for Server-to-server, internal calls
+export default {
+  fetch: withSupabase({ auth: ['publishable', 'secret'] }, async (req, ctx) => {
+    // Called by another service with a secret key
+    // ctx.supabaseAdmin bypasses RLS — use for privileged operations
+    /*
+    if (ctx.authMode === "secret") {
+      const { user_id } = await req.json();
+      const { data } = await ctx.supabaseAdmin.auth.admin.getUserById(user_id);
 
-  try {
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: COMMON_HEADERS });
+      return Response.json({
+        email: data?.user?.email,
+      });
     }
+    */
 
-    checkRequestMethod(request.method, 'POST');
+    const { name } = await req.json();
 
-    const authorizationHeader: string = getAuthorizationHeader(request);
+    return Response.json({ message: `Hello ${name}!` });
+  }),
+};
 
-    const { sub: userId }: CustomClaims = await getCustomClaims(authorizationHeader);
+/* To invoke locally:
 
-    await checkIsBelowRateLimit(userId);
+  1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
+  2. Make an HTTP request:
 
-    const supabaseUserClient: SupabaseClient = getSupabaseUserClient(authorizationHeader);
+  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/example' \
+    --header 'apiKey: sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH' \
+    --data '{"name":"Functions"}'
 
-    const profile: Profile = await selectProfile(userId, supabaseUserClient);
-
-    const { exampleFile, exampleObject }: RequestFormData =
-      await getValidatedRequestFormData(request);
-
-    const dataUrl: string = await convertFileToDataUrl(exampleFile);
-
-    return new Response(JSON.stringify({ dataUrl, exampleObject, profile }), {
-      headers: COMMON_HEADERS,
-    });
-  } catch (exception: unknown) {
-    let message = 'Something went wrong.';
-    let httpStatusCode = 500;
-
-    if (exception instanceof JetError) {
-      message = exception.message;
-      httpStatusCode = exception.httpStatusCode;
-    } else if (exception instanceof z.ZodError) {
-      message = `Bad request. ${exception.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('. ')}.`;
-
-      httpStatusCode = 400;
-    } else {
-      console.log(exception);
-
-      if (exception instanceof Error) {
-        message = exception.message;
-      }
-    }
-
-    return new Response(JSON.stringify({ error: message }), {
-      headers: COMMON_HEADERS,
-      status: httpStatusCode,
-    });
-  }
-});
+*/
