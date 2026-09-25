@@ -1,3 +1,3 @@
-export enum SupabaseStorage {
+export enum SupabaseStorageBucket {
   ProfileAvatars = 'profile_avatars',
 }

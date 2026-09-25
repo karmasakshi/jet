@@ -3,19 +3,19 @@ import { marker } from '@jsverse/transloco-keys-manager/marker';
 
 export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
   {
-    icon: 'contrast-fill',
+    iconName: 'contrast-fill',
     nameKey: marker('constants.automatic'),
     themeColor: '#ffffff',
     value: null,
   },
   {
-    icon: 'light-mode-fill',
+    iconName: 'light-mode-fill',
     nameKey: marker('constants.light'),
     themeColor: '#fff8f6',
     value: 'light',
   },
   {
-    icon: 'dark-mode-fill',
+    iconName: 'dark-mode-fill',
     nameKey: marker('constants.dark'),
     themeColor: '#161311',
     value: 'dark',

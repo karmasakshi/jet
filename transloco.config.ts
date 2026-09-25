@@ -1,7 +1,9 @@
 import { TranslocoGlobalConfig } from '@jsverse/transloco-utils';
 
-export default {
-  keysManager: { output: './public/i18n/', sort: true, unflat: true },
+const config: TranslocoGlobalConfig = {
+  rootTranslationsPath: 'public/i18n/',
   langs: ['ar', 'en'],
-  rootTranslationsPath: './public/i18n/',
-} satisfies TranslocoGlobalConfig;
+  keysManager: { defaultValue: '', output: './public/i18n/', sort: true, unflat: true },
+};
+
+export default config;
