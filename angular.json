@@ -7,7 +7,7 @@
     "jet": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": { "type": "component" },
+        "@schematics/angular:component": { "inlineStyle": true, "type": "component" },
         "@schematics/angular:directive": { "type": "directive" },
         "@schematics/angular:service": { "type": "service" },
         "@schematics/angular:guard": { "typeSeparator": "." },
@@ -26,7 +26,10 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.scss", "src/app-styles.css"]
+            "styles": ["src/material-theme.scss", "src/styles.css"],
+            "server": "src/main.server.ts",
+            "outputMode": "static",
+            "security": { "allowedHosts": [] }
           },
           "configurations": {
             "production": {
@@ -35,7 +38,9 @@
                 { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
               "outputHashing": "all",
-              "serviceWorker": "ngsw-config.json"
+              "serviceWorker": "ngsw-config.json",
+              "deployUrl": "./",
+              "subresourceIntegrity": true
             },
             "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
           },
@@ -47,9 +52,10 @@
             "production": { "buildTarget": "jet:build:production" },
             "development": { "buildTarget": "jet:build:development" }
           },
+          "defaultConfiguration": "development",
           "options": {
             "headers": {
-              "Content-Security-Policy": "default-src 'none'; base-uri 'self'; connect-src 'self' http://localhost:54321 https://www.google.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' http://localhost:54321 https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; manifest-src 'self'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:;",
+              "Content-Security-Policy": "default-src 'self'; base-uri 'self'; connect-src 'self' http://localhost:54321 https://www.google.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self' http://localhost:54321 https://www.googletagmanager.com https://*.googleusercontent.com https://*.supabase.co; manifest-src 'self'; media-src 'self'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:;",
               "Cross-Origin-Embedder-Policy": "credentialless",
               "Cross-Origin-Opener-Policy": "same-origin",
               "Cross-Origin-Resource-Policy": "same-origin",
@@ -57,10 +63,9 @@
               "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
               "X-Content-Type-Options": "nosniff"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
-        "test": { "builder": "@ngx-env/builder:unit-test" },
+        "test": { "builder": "@ngx-env/builder:unit-test", "options": {} },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": { "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"] }
