@@ -12,7 +12,7 @@ describe('ProfileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: SUPABASE_CLIENT, useValue: {} },
+        { provide: SUPABASE_CLIENT, useValue: undefined },
         { provide: LoggerService, useClass: LoggerServiceMock },
         { provide: UserService, useClass: UserServiceMock },
         ProfileService,

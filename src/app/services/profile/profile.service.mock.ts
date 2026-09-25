@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { ProfileUpdate } from '@jet/types/profile.type';
+import { ProfileUpdate } from '@jet/types/supabase/profile.type';
 import { FileObject, StorageError } from '@supabase/storage-js';
 
 export class ProfileServiceMock {
