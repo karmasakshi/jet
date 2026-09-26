@@ -1,57 +1,60 @@
-import { inject, Service, Signal, signal, WritableSignal } from '@angular/core';
+import { computed, DOCUMENT, inject, Service, Signal, signal, WritableSignal } from '@angular/core';
 import { QueryParam } from '@jet/enums/query-param.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
-import { OauthProvider } from '@jet/types/oauth-provider.type';
+import { CustomUserAppMetadata } from '@jet/interfaces/custom-user-app-metadata.interface';
 import {
-  AuthChangeEvent,
   AuthError,
   AuthOtpResponse,
   AuthResponse,
-  AuthSession,
   AuthTokenResponsePassword,
-  JwtHeader,
-  JwtPayload,
   OAuthResponse,
+  Provider,
+  Session,
+  SignInWithPasswordlessCredentials,
+  User,
   UserAttributes,
   UserResponse,
+  VerifyOtpParams,
 } from '@supabase/supabase-js';
+import { jwtDecode } from 'jwt-decode';
 import { LoggerService } from '../logger/logger.service';
 
-@Service({ autoProvided: false })
+@Service()
 export class UserService {
+  readonly #document = inject(DOCUMENT);
   readonly #supabaseClient = inject(SUPABASE_CLIENT);
   readonly #loggerService = inject(LoggerService);
 
-  readonly #claims: WritableSignal<JwtPayload | null>;
+  readonly #session: WritableSignal<null | Session>;
+
+  public readonly hasEmail: Signal<boolean>;
+  public readonly isAdmin: Signal<boolean>;
+  public readonly isSignedIn: Signal<boolean>;
+  public readonly user: Signal<null | User>;
 
   public constructor() {
-    this.#claims = signal(null);
+    this.#session = signal(null);
 
-    this.#supabaseClient.auth.onAuthStateChange(
-      (_authChangeEvent: AuthChangeEvent, authSession: AuthSession | null): void => {
-        if (authSession === null) {
-          this.#claims.set(null);
-        }
-      },
-    );
+    this.hasEmail = computed(() => Boolean(this.#session()?.user.email));
+
+    this.isAdmin = computed(() => {
+      const session = this.#session();
+
+      return session === null
+        ? false
+        : jwtDecode<{ app_metadata: CustomUserAppMetadata }>(session.access_token).app_metadata
+            .app_role === 'admin';
+    });
+
+    this.isSignedIn = computed(() => this.#session() !== null);
+
+    this.user = computed(() => this.#session()?.user ?? null);
+
+    this.#supabaseClient.auth.onAuthStateChange((_event, session) => {
+      this.#session.set(session);
+    });
 
     this.#loggerService.logServiceInitialization('UserService');
-  }
-
-  public get claims(): Signal<JwtPayload | null> {
-    return this.#claims.asReadonly();
-  }
-
-  public async getAndRefreshClaims(): Promise<
-    | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
-    | { data: null; error: AuthError }
-    | { data: null; error: null }
-  > {
-    const response = await this.#supabaseClient.auth.getClaims();
-
-    this.#claims.set(response.data?.claims ?? null);
-
-    return response;
   }
 
   public resetPasswordForEmail(
@@ -62,24 +65,31 @@ export class UserService {
     });
   }
 
-  public signInWithOauth(oauthProvider: OauthProvider, returnUrl: string): Promise<OAuthResponse> {
+  public signInWithOauth(provider: Provider, returnUrl: string): Promise<OAuthResponse> {
     return this.#supabaseClient.auth.signInWithOAuth({
       options: {
         redirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl),
         skipBrowserRedirect: true,
       },
-      provider: oauthProvider,
+      provider,
     });
   }
 
-  public signInWithOtp(email: string, returnUrl: string): Promise<AuthOtpResponse> {
-    return this.#supabaseClient.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl),
-        shouldCreateUser: false,
-      },
-    });
+  public signInWithOtp(
+    credentials: SignInWithPasswordlessCredentials,
+    returnUrl?: string,
+  ): Promise<AuthOtpResponse> {
+    if ('email' in credentials && returnUrl !== undefined) {
+      return this.#supabaseClient.auth.signInWithOtp({
+        ...credentials,
+        options: {
+          ...credentials.options,
+          emailRedirectTo: this.#getRedirectUrlWithReturnUrl(returnUrl),
+        },
+      });
+    }
+
+    return this.#supabaseClient.auth.signInWithOtp(credentials);
   }
 
   public signInWithPassword(email: string, password: string): Promise<AuthTokenResponsePassword> {
@@ -102,8 +112,12 @@ export class UserService {
     return this.#supabaseClient.auth.updateUser(userAttributes);
   }
 
+  public verifyOtp(params: VerifyOtpParams): Promise<AuthResponse> {
+    return this.#supabaseClient.auth.verifyOtp(params);
+  }
+
   #getRedirectUrlWithReturnUrl(returnUrl: string): string {
-    const redirectUrl: URL = new URL('/sign-in', window.location.origin);
+    const redirectUrl = new URL('/sign-in', this.#document.location.origin);
 
     redirectUrl.searchParams.set(QueryParam.ReturnUrl, returnUrl);
 

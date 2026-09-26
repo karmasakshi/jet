@@ -1,9 +1,8 @@
-import { inject, Service, Signal } from '@angular/core';
-import { SupabaseStorage } from '@jet/enums/supabase-storage.enum';
+import { inject, Service } from '@angular/core';
+import { SupabaseStorageBucket } from '@jet/enums/supabase-storage-bucket.enum';
 import { SUPABASE_CLIENT } from '@jet/injection-tokens/supabase-client.injection-token';
-import { ProfileUpdate } from '@jet/types/profile.type';
+import { ProfileUpdate } from '@jet/types/supabase/profile.type';
 import { FileObject, StorageError } from '@supabase/storage-js';
-import { JwtPayload } from '@supabase/supabase-js';
 import { LoggerService } from '../logger/logger.service';
 import { UserService } from '../user/user.service';
 
@@ -13,11 +12,7 @@ export class ProfileService {
   readonly #loggerService = inject(LoggerService);
   readonly #userService = inject(UserService);
 
-  readonly #claims: Signal<JwtPayload | null>;
-
   public constructor() {
-    this.#claims = this.#userService.claims;
-
     this.#loggerService.logServiceInitialization('ProfileService');
   }
 
@@ -25,14 +20,14 @@ export class ProfileService {
     publicUrl: string,
   ): Promise<{ data: FileObject[]; error: null } | { data: null; error: StorageError }> {
     const fileName: string | undefined = publicUrl.split('/').pop();
-    const path: string = `${this.#claims()?.sub}/${fileName}`;
+    const path = `${this.#userService.user()?.id}/${fileName}`;
 
-    return this.#supabaseClient.storage.from(SupabaseStorage.ProfileAvatars).remove([path]);
+    return this.#supabaseClient.storage.from(SupabaseStorageBucket.ProfileAvatars).remove([path]);
   }
 
   public getAvatarPublicUrl(path: string): string {
     const { data } = this.#supabaseClient.storage
-      .from(SupabaseStorage.ProfileAvatars)
+      .from(SupabaseStorageBucket.ProfileAvatars)
       .getPublicUrl(path);
 
     return data.publicUrl;
@@ -41,8 +36,8 @@ export class ProfileService {
   public selectProfile() {
     return this.#supabaseClient
       .from('profiles')
-      .select()
-      .eq('user_id', this.#claims()?.sub ?? '')
+      .select('*')
+      .eq('user_id', this.#userService.user()?.id ?? '')
       .single()
       .throwOnError();
   }
@@ -51,8 +46,8 @@ export class ProfileService {
     return this.#supabaseClient
       .from('profiles')
       .update(profile)
-      .eq('user_id', this.#claims()?.sub ?? '')
-      .select()
+      .eq('user_id', this.#userService.user()?.id ?? '')
+      .select('*')
       .single()
       .throwOnError();
   }
@@ -65,8 +60,10 @@ export class ProfileService {
   > {
     const fileExtension: string | undefined = file.name.split('.').pop();
     const timestamp: number = Date.now();
-    const path: string = `${this.#claims()?.sub}/avatar-${timestamp}.${fileExtension}`;
+    const path = `${this.#userService.user()?.id}/avatar-${timestamp}.${fileExtension}`;
 
-    return this.#supabaseClient.storage.from(SupabaseStorage.ProfileAvatars).upload(path, file);
+    return this.#supabaseClient.storage
+      .from(SupabaseStorageBucket.ProfileAvatars)
+      .upload(path, file);
   }
 }

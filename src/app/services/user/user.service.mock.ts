@@ -1,36 +1,37 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Signal, signal, WritableSignal } from '@angular/core';
-import { OauthProvider } from '@jet/types/oauth-provider.type';
 import {
   AuthError,
   AuthOtpResponse,
   AuthResponse,
   AuthTokenResponsePassword,
-  JwtHeader,
-  JwtPayload,
   OAuthResponse,
+  Provider,
+  SignInWithPasswordlessCredentials,
+  User,
   UserAttributes,
   UserResponse,
+  VerifyOtpParams,
 } from '@supabase/supabase-js';
 
 export class UserServiceMock {
-  readonly #claims: WritableSignal<JwtPayload | null>;
+  readonly #isSignedIn: WritableSignal<boolean>;
+  readonly #user: WritableSignal<null | User>;
+
+  public readonly isSignedIn: Signal<boolean>;
+  public readonly isAdmin: Signal<boolean>;
+  public readonly hasEmail: Signal<boolean>;
+  public readonly user: Signal<null | User>;
 
   public constructor() {
-    this.#claims = signal(null);
-  }
+    this.hasEmail = signal(false);
+    this.isAdmin = signal(false);
+    this.#isSignedIn = signal(false);
+    this.#user = signal(null);
 
-  public get claims(): Signal<JwtPayload | null> {
-    return this.#claims.asReadonly();
-  }
-
-  public getAndRefreshClaims(): Promise<
-    | { data: { claims: JwtPayload; header: JwtHeader; signature: Uint8Array }; error: null }
-    | { data: null; error: AuthError }
-    | { data: null; error: null }
-  > {
-    return Promise.resolve({ data: null, error: null });
+    this.isSignedIn = this.#isSignedIn.asReadonly();
+    this.user = this.#user.asReadonly();
   }
 
   public resetPasswordForEmail(
@@ -39,14 +40,18 @@ export class UserServiceMock {
     return Promise.resolve({ data: {}, error: null });
   }
 
-  public signInWithOauth(
-    _oauthProvider: OauthProvider,
-    _returnUrl: string,
-  ): Promise<OAuthResponse> {
+  public setIsSignedIn(isSignedIn: boolean): void {
+    this.#isSignedIn.set(isSignedIn);
+  }
+
+  public signInWithOauth(_provider: Provider, _returnUrl: string): Promise<OAuthResponse> {
     return Promise.resolve({} as OAuthResponse);
   }
 
-  public signInWithOtp(_email: string, _returnUrl: string): Promise<AuthOtpResponse> {
+  public signInWithOtp(
+    _credentials: SignInWithPasswordlessCredentials,
+    _returnUrl?: string,
+  ): Promise<AuthOtpResponse> {
     return Promise.resolve({} as AuthOtpResponse);
   }
 
@@ -64,5 +69,9 @@ export class UserServiceMock {
 
   public updateUser(_userAttributes: UserAttributes): Promise<UserResponse> {
     return Promise.resolve({} as UserResponse);
+  }
+
+  public verifyOtp(_params: VerifyOtpParams): Promise<AuthResponse> {
+    return Promise.resolve({} as AuthResponse);
   }
 }

@@ -10,9 +10,8 @@ describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: SUPABASE_CLIENT, useValue: { auth: { onAuthStateChange: () => undefined } } },
+        { provide: SUPABASE_CLIENT, useValue: undefined },
         { provide: LoggerService, useClass: LoggerServiceMock },
-        UserService,
       ],
     });
     service = TestBed.inject(UserService);
