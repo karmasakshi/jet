@@ -1,5 +1,8 @@
 @let _emailControl = signInFormGroup.controls.email;
+@let _emailLinkControl = emailLinkFormGroup.controls.email;
+@let _otpControl = phoneSignInFormGroup.controls.otp;
 @let _passwordControl = signInFormGroup.controls.password;
+@let _phoneControl = phoneSignInFormGroup.controls.phone;
 @let _returnUrl = returnUrl();
 
 <ng-container *transloco="let t; prefix: 'sign-in-page'">
@@ -9,15 +12,15 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="flex flex-col items-center gap-4">
+    <div class="jet-stack items-center">
       @if (_returnUrl !== '/') {
         <span>{{ t('sign-in-to-continue-to-x', { x: _returnUrl }) }}</span>
       }
-      <mat-card class="w-full max-w-120">
+      <mat-card class="jet-page-card">
         <img
           height="180"
           mat-card-image
-          ngSrc="/media/card.webp"
+          ngSrc="./media/card.webp"
           priority
           width="480"
           [alt]="t('sign-in')"
@@ -34,111 +37,261 @@
         </mat-card-actions>
       </mat-card>
       <span>{{ t('or') }}</span>
-      <mat-card class="w-full max-w-120">
-        <mat-card-header />
-        <mat-card-content>
-          <form
-            id="sign-in-form"
-            [formGroup]="signInFormGroup"
-            (ngSubmit)="signInWithPassword(_emailControl.value ?? '', _passwordControl.value ?? '')"
-          >
-            <mat-form-field>
-              <mat-label>{{ t('email') }}</mat-label>
-              <input
-                autocomplete="email"
-                formControlName="email"
-                matInput
-                required
-                type="email"
-              />
-              @if (_emailControl.value !== null) {
-                <button
-                  matIconButton
-                  matSuffix
-                  tabindex="-1"
-                  type="button"
-                  [aria-label]="t('clear')"
-                  [disabled]="_emailControl.disabled"
-                  (click)="_emailControl.reset()"
-                >
-                  <mat-icon svgIcon="close-fill" />
-                </button>
-              }
-              @if (_emailControl.touched && _emailControl.errors?.['email']) {
-                <mat-error>{{ t('email-error-email') }}</mat-error>
-              }
-              @if (_emailControl.touched && _emailControl.errors?.['required']) {
-                <mat-error>{{ t('email-error-required') }}</mat-error>
-              }
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>{{ t('password') }}</mat-label>
-              <input
-                autocomplete="current-password"
-                formControlName="password"
-                matInput
-                required
-                [type]="isPasswordHidden ? 'password' : 'text'"
-              />
-              <button
-                matIconButton
-                matSuffix
-                tabindex="-1"
-                type="button"
-                [aria-label]="t('toggle-visibility')"
-                [disabled]="_passwordControl.disabled"
-                (click)="isPasswordHidden = !isPasswordHidden"
+      <mat-card class="jet-page-card overflow-hidden">
+        <mat-tab-group>
+          <mat-tab [label]="t('phone-otp')">
+            <mat-card-content>
+              <form
+                id="phone-sign-in-form"
+                [formGroup]="phoneSignInFormGroup"
+                (ngSubmit)="verifyOtp(_phoneControl.value?.trim() ?? '', _otpControl.value ?? '')"
               >
-                <mat-icon
-                  [svgIcon]="isPasswordHidden ? 'visibility-fill' : 'visibility-off-fill'"
-                />
+                <mat-form-field>
+                  <mat-label>{{ t('phone') }}</mat-label>
+                  <input
+                    autocomplete="tel"
+                    enterkeyhint="next"
+                    formControlName="phone"
+                    inputmode="tel"
+                    matInput
+                    required
+                    type="tel"
+                    (input)="resetPhoneOtp()"
+                  />
+                  @if (_phoneControl.value !== null && _phoneControl.value !== '') {
+                    <button
+                      matIconButton
+                      matSuffix
+                      tabindex="-1"
+                      type="button"
+                      [aria-label]="t('clear')"
+                      [disabled]="_phoneControl.disabled"
+                      (click)="_phoneControl.reset(); resetPhoneOtp()"
+                    >
+                      <mat-icon svgIcon="close-fill" />
+                    </button>
+                  }
+                  @if (_phoneControl.touched && _phoneControl.errors?.['pattern']) {
+                    <mat-error>{{ t('phone-error-pattern') }}</mat-error>
+                  }
+                  @if (_phoneControl.touched && _phoneControl.errors?.['required']) {
+                    <mat-error>{{ t('phone-error-required') }}</mat-error>
+                  }
+                </mat-form-field>
+                @if (isPhoneOtpSent) {
+                  <mat-form-field>
+                    <mat-label>{{ t('otp') }}</mat-label>
+                    <input
+                      autocomplete="one-time-code"
+                      enterkeyhint="done"
+                      formControlName="otp"
+                      inputmode="numeric"
+                      matInput
+                      maxlength="6"
+                      required
+                      type="text"
+                    />
+                    @if (_otpControl.value !== null && _otpControl.value !== '') {
+                      <button
+                        matIconButton
+                        matSuffix
+                        tabindex="-1"
+                        type="button"
+                        [aria-label]="t('clear')"
+                        [disabled]="_otpControl.disabled"
+                        (click)="_otpControl.reset()"
+                      >
+                        <mat-icon svgIcon="close-fill" />
+                      </button>
+                    }
+                    @if (_otpControl.touched && _otpControl.errors?.['pattern']) {
+                      <mat-error>{{ t('otp-error-pattern') }}</mat-error>
+                    }
+                    @if (_otpControl.touched && _otpControl.errors?.['required']) {
+                      <mat-error>{{ t('otp-error-required') }}</mat-error>
+                    }
+                  </mat-form-field>
+                }
+              </form>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <button
+                matButton
+                type="button"
+                [disabled]="phoneSignInFormGroup.disabled || _phoneControl.invalid"
+                (click)="sendPhoneOtp(_phoneControl.value?.trim() ?? '')"
+              >
+                {{ isPhoneOtpSent ? t('resend-otp') : t('send-otp') }}
               </button>
-              @if (_passwordControl.touched && _passwordControl.errors?.['minlength']) {
-                <mat-error>{{
-                  t('password-error-minlength-x', {
-                    x: _passwordControl.errors['minlength'].requiredLength,
-                  })
-                }}</mat-error>
-              }
-              @if (_passwordControl.touched && _passwordControl.errors?.['required']) {
-                <mat-error>{{ t('password-error-required') }}</mat-error>
-              }
-            </mat-form-field>
-          </form>
-        </mat-card-content>
-        <mat-card-actions>
-          <button
-            form="sign-in-form"
-            matButton="filled"
-            type="submit"
-            [disabled]="signInFormGroup.disabled || signInFormGroup.invalid"
-          >
-            {{ t('sign-in') }}
-          </button>
-          <button
-            matButton
-            type="button"
-            [disabled]="signInFormGroup.disabled || _emailControl.invalid"
-            (click)="signInWithOtp(_emailControl.value ?? '')"
-          >
-            {{ t('email-sign-in-link') }}
-          </button>
-        </mat-card-actions>
+              <button
+                form="phone-sign-in-form"
+                matButton="filled"
+                type="submit"
+                [disabled]="
+                  !isPhoneOtpSent || phoneSignInFormGroup.disabled || phoneSignInFormGroup.invalid
+                "
+              >
+                {{ t('sign-in') }}
+              </button>
+            </mat-card-actions>
+          </mat-tab>
+          <mat-tab [label]="t('email-link')">
+            <mat-card-content>
+              <form
+                id="email-link-form"
+                [formGroup]="emailLinkFormGroup"
+                (ngSubmit)="sendEmailSignInLink(_emailLinkControl.value?.trim() ?? '')"
+              >
+                <mat-form-field>
+                  <mat-label>{{ t('email') }}</mat-label>
+                  <input
+                    autocomplete="email"
+                    enterkeyhint="done"
+                    formControlName="email"
+                    inputmode="email"
+                    matInput
+                    required
+                    type="email"
+                  />
+                  @if (_emailLinkControl.value !== null) {
+                    <button
+                      matIconButton
+                      matSuffix
+                      tabindex="-1"
+                      type="button"
+                      [aria-label]="t('clear')"
+                      [disabled]="_emailLinkControl.disabled"
+                      (click)="_emailLinkControl.reset()"
+                    >
+                      <mat-icon svgIcon="close-fill" />
+                    </button>
+                  }
+                  @if (_emailLinkControl.touched && _emailLinkControl.errors?.['email']) {
+                    <mat-error>{{ t('email-error-email') }}</mat-error>
+                  }
+                  @if (_emailLinkControl.touched && _emailLinkControl.errors?.['required']) {
+                    <mat-error>{{ t('email-error-required') }}</mat-error>
+                  }
+                </mat-form-field>
+              </form>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <button
+                form="email-link-form"
+                matButton="filled"
+                type="submit"
+                [disabled]="emailLinkFormGroup.disabled || emailLinkFormGroup.invalid"
+              >
+                {{ t('email-sign-in-link') }}
+              </button>
+            </mat-card-actions>
+          </mat-tab>
+          <mat-tab [label]="t('email-password')">
+            <mat-card-content>
+              <form
+                id="sign-in-form"
+                [formGroup]="signInFormGroup"
+                (ngSubmit)="
+                  signInWithPassword(
+                    _emailControl.value?.trim() ?? '',
+                    _passwordControl.value ?? ''
+                  )
+                "
+              >
+                <mat-form-field>
+                  <mat-label>{{ t('email') }}</mat-label>
+                  <input
+                    autocomplete="email"
+                    enterkeyhint="next"
+                    formControlName="email"
+                    inputmode="email"
+                    matInput
+                    required
+                    type="email"
+                  />
+                  @if (_emailControl.value !== null) {
+                    <button
+                      matIconButton
+                      matSuffix
+                      tabindex="-1"
+                      type="button"
+                      [aria-label]="t('clear')"
+                      [disabled]="_emailControl.disabled"
+                      (click)="_emailControl.reset()"
+                    >
+                      <mat-icon svgIcon="close-fill" />
+                    </button>
+                  }
+                  @if (_emailControl.touched && _emailControl.errors?.['email']) {
+                    <mat-error>{{ t('email-error-email') }}</mat-error>
+                  }
+                  @if (_emailControl.touched && _emailControl.errors?.['required']) {
+                    <mat-error>{{ t('email-error-required') }}</mat-error>
+                  }
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>{{ t('password') }}</mat-label>
+                  <input
+                    autocomplete="current-password"
+                    enterkeyhint="done"
+                    formControlName="password"
+                    matInput
+                    required
+                    [type]="isPasswordHidden ? 'password' : 'text'"
+                  />
+                  <button
+                    matIconButton
+                    matSuffix
+                    tabindex="-1"
+                    type="button"
+                    [aria-label]="t('toggle-visibility')"
+                    [disabled]="_passwordControl.disabled"
+                    (click)="isPasswordHidden = !isPasswordHidden"
+                  >
+                    <mat-icon
+                      [svgIcon]="isPasswordHidden ? 'visibility-fill' : 'visibility-off-fill'"
+                    />
+                  </button>
+                  @if (_passwordControl.touched && _passwordControl.errors?.['minlength']) {
+                    <mat-error>{{
+                      t('password-error-minlength-x', {
+                        x: _passwordControl.errors['minlength'].requiredLength,
+                      })
+                    }}</mat-error>
+                  }
+                  @if (_passwordControl.touched && _passwordControl.errors?.['required']) {
+                    <mat-error>{{ t('password-error-required') }}</mat-error>
+                  }
+                </mat-form-field>
+              </form>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <a
+                matButton
+                [disabled]="signInFormGroup.disabled"
+                [queryParams]="{ email: _emailControl.value }"
+                [routerLink]="['/reset-password']"
+                >{{ t('reset-password') }}</a
+              >
+              <button
+                form="sign-in-form"
+                matButton="filled"
+                type="submit"
+                [disabled]="signInFormGroup.disabled || signInFormGroup.invalid"
+              >
+                {{ t('sign-in') }}
+              </button>
+            </mat-card-actions>
+          </mat-tab>
+        </mat-tab-group>
       </mat-card>
-      <mat-card class="w-full max-w-120">
+      <mat-card class="jet-page-card">
         <mat-card-content>
-          <div class="flex flex-col items-center gap-4">
+          <div class="jet-stack items-center">
             <a
               matButton
               [disabled]="signInFormGroup.disabled"
-              [queryParams]="{ email: _emailControl.value }"
-              [routerLink]="['/reset-password']"
-              >{{ t('reset-password') }}</a
-            >
-            <a
-              matButton
-              [disabled]="signInFormGroup.disabled"
-              [queryParams]="{ email: _emailControl.value }"
+              [queryParams]="{ email: _emailControl.value, returnUrl: _returnUrl }"
               [routerLink]="['/sign-up']"
               >{{ t('sign-up') }}</a
             >
