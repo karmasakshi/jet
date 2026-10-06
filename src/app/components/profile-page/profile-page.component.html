@@ -9,68 +9,101 @@
     [seoTitle]="t('seo.title')"
     [toolbarTitle]="t('toolbar-title')"
   >
-    <div class="flex flex-col items-center gap-4">
-      <mat-card class="w-full max-w-120">
+    <div class="jet-stack">
+      <mat-card class="jet-page-card">
         <img
           height="180"
           mat-card-image
-          ngSrc="/media/card.webp"
+          ngSrc="./media/card.webp"
           priority
           width="480"
           [alt]="t('profile')"
         />
-        <mat-card-header />
-        <mat-card-content>
-          <mat-card
-            class="mx-auto -mt-[88.5px] mb-10 h-[132px] w-[132px] rounded-full border-[3px] border-transparent"
-            mat-ripple
-            [class.cursor-not-allowed]="profileFormGroup.disabled"
-            [class.cursor-pointer]="!profileFormGroup.disabled"
-            (click)="avatarFileInput.click()"
-          >
-            <img
-              height="128"
-              mat-card-image
-              priority
-              width="128"
-              [alt]="t('avatar')"
-              [ngSrc]="_profile?.avatar_url ?? '/media/placeholder.svg'"
-            />
-            <mat-card-header />
-            <mat-card-content class="hidden">
+        <mat-card-header class="profile-card-header">
+          <img
+            class="profile-avatar-preview"
+            height="96"
+            priority
+            width="96"
+            [alt]="t('avatar')"
+            [ngSrc]="_profile?.avatar_url ?? './media/placeholder.svg'"
+          />
+          <div class="profile-avatar-copy">
+            <mat-card-title class="truncate">{{
+              _profile?.name || _profile?.username || t('profile')
+            }}</mat-card-title>
+            <mat-card-subtitle id="avatar-help">{{ t('avatar-help') }}</mat-card-subtitle>
+            <div class="profile-avatar-actions">
               <input
                 #avatarFileInput
                 accept="image/*"
+                autocomplete="photo"
+                class="profile-file-input"
+                id="avatar-file-input"
                 type="file"
                 [disabled]="profileFormGroup.disabled"
                 [jetAnalyticsEvent]="{ name: 'update_avatar' }"
-                (change)="replaceAvatar()"
+                (change)="replaceAvatar($event)"
               />
-            </mat-card-content>
-            <mat-card-footer />
-          </mat-card>
+              <button
+                matButton
+                type="button"
+                [disabled]="profileFormGroup.disabled"
+                (click)="avatarFileInput.click()"
+              >
+                <mat-icon svgIcon="edit-fill" />
+                <span>{{ t('choose-picture') }}</span>
+              </button>
+              <button
+                matIconButton
+                type="button"
+                [aria-label]="t('delete-picture')"
+                [disabled]="profileFormGroup.disabled || !_profile?.avatar_url"
+                [matTooltip]="t('delete-picture')"
+                (click)="deleteAvatar()"
+              >
+                <mat-icon svgIcon="delete-fill" />
+              </button>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
           <form
             class="mb-2"
-            [formGroup]="emailFormGroup"
+            [formGroup]="identityFormGroup"
           >
-            <mat-form-field>
-              <mat-label>{{ t('email') }}</mat-label>
-              <input
-                autocomplete="email"
-                formControlName="email"
-                matInput
-                readonly
-                type="text"
-              />
-            </mat-form-field>
+            @if (hasEmail()) {
+              <mat-form-field>
+                <mat-label>{{ t('email') }}</mat-label>
+                <input
+                  autocomplete="email"
+                  formControlName="email"
+                  matInput
+                  readonly
+                  type="text"
+                />
+              </mat-form-field>
+            } @else if (hasPhone()) {
+              <mat-form-field>
+                <mat-label>{{ t('phone') }}</mat-label>
+                <input
+                  autocomplete="tel"
+                  formControlName="phone"
+                  inputmode="tel"
+                  matInput
+                  readonly
+                  type="tel"
+                />
+              </mat-form-field>
+            }
           </form>
           <form
             id="profile-form"
             [formGroup]="profileFormGroup"
             (ngSubmit)="
               updateProfile({
-                name: _nameControl.value?.trim() ?? null,
-                username: _usernameControl.value?.trim() ?? '',
+                name: _nameControl.value?.trim() || null,
+                username: (_usernameControl.value ?? '').trim().toLowerCase(),
               })
             "
           >
@@ -78,7 +111,9 @@
               <mat-label>{{ t('name') }}</mat-label>
               <input
                 autocomplete="name"
+                enterkeyhint="next"
                 formControlName="name"
+                inputmode="text"
                 matInput
                 type="text"
               />
@@ -97,7 +132,7 @@
               }
               @if (_nameControl.dirty) {
                 <mat-hint align="end"
-                  >{{ t('x-of-y-characters', { x: _nameControl.value?.length || 0, y: 60 }) }}
+                  >{{ t('x-of-y-characters', { x: _nameControl.value?.length ?? 0, y: 60 }) }}
                 </mat-hint>
               }
               @if (_nameControl.touched && _nameControl.errors?.['maxlength']) {
@@ -108,57 +143,9 @@
                 }}</mat-error>
               }
             </mat-form-field>
-            <mat-form-field>
-              <mat-label>{{ t('username') }}</mat-label>
-              <input
-                autocomplete="username"
-                formControlName="username"
-                matInput
-                required
-                type="text"
-              />
-              @if (_usernameControl.value !== null) {
-                <button
-                  matIconButton
-                  matSuffix
-                  tabindex="-1"
-                  type="button"
-                  [aria-label]="t('clear')"
-                  [disabled]="_usernameControl.disabled"
-                  (click)="_usernameControl.reset()"
-                >
-                  <mat-icon svgIcon="close-fill" />
-                </button>
-              }
-              @if (_usernameControl.dirty) {
-                <mat-hint align="end"
-                  >{{ t('x-of-y-characters', { x: _usernameControl.value?.length || 0, y: 36 }) }}
-                </mat-hint>
-              }
-              @if (_usernameControl.touched && _usernameControl.errors?.['required']) {
-                <mat-error>{{ t('username-error-required') }}</mat-error>
-              }
-              @if (_usernameControl.touched && _usernameControl.errors?.['maxlength']) {
-                <mat-error>{{
-                  t('username-error-maxlength-x', {
-                    x: _usernameControl.errors['maxlength'].requiredLength,
-                  })
-                }}</mat-error>
-              }
-              @if (_usernameControl.touched && _usernameControl.errors?.['minlength']) {
-                <mat-error>{{
-                  t('username-error-minlength-x', {
-                    x: _usernameControl.errors['minlength'].requiredLength,
-                  })
-                }}</mat-error>
-              }
-              @if (_usernameControl.touched && _usernameControl.errors?.['pattern']) {
-                <mat-error>{{ t('username-error-pattern') }}</mat-error>
-              }
-            </mat-form-field>
           </form>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions align="end">
           <button
             form="profile-form"
             matButton="filled"
@@ -170,14 +157,16 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <mat-card class="w-full max-w-120">
+      <mat-card class="jet-page-card">
         <mat-card-content>
-          <div class="flex flex-col items-center gap-4">
-            <a
-              matButton
-              [routerLink]="['/update-password']"
-              >{{ t('update-password') }}</a
-            >
+          <div class="jet-stack items-center">
+            @if (hasEmail()) {
+              <a
+                matButton
+                [routerLink]="['/update-password']"
+                >{{ t('update-password') }}</a
+              >
+            }
             <a
               matButton
               [routerLink]="['/sign-out']"
@@ -186,9 +175,9 @@
           </div>
         </mat-card-content>
       </mat-card>
-      <mat-card class="w-full max-w-120">
+      <mat-card class="jet-page-card">
         <mat-card-content>
-          <div class="flex flex-col items-center gap-4">
+          <div class="jet-stack items-center">
             <small>{{
               t('profile-last-updated-on-x', { x: (_profile?.updated_at | date: 'medium') })
             }}</small>
