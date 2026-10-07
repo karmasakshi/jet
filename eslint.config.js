@@ -7,11 +7,10 @@ const perfectionist = require('eslint-plugin-perfectionist');
 
 module.exports = defineConfig([
   globalIgnores([
-    './src/env.d.ts',
-    './src/main.server.ts',
-    './src/main.ts',
     './src/app/svgs',
     './src/app/types/supabase/database.type.ts',
+    './src/env.d.ts',
+    './src/main.ts',
     './supabase',
     './transloco.config.ts',
   ]),

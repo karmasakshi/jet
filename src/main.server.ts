@@ -1,4 +1,4 @@
-import { BootstrapContext, bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication, BootstrapContext } from '@angular/platform-browser';
 import { config } from '@jet/app.config.server';
 import { AppComponent } from '@jet/components/app/app.component';
 
