@@ -1,6 +1,5 @@
 declare interface Env {
   readonly HUSKY: string;
-  readonly NODE_ENV: string;
   readonly NG_APP_APP_ID: string;
   readonly NG_APP_APP_URL: string;
   readonly NG_APP_GOOGLE_ANALYTICS_MEASUREMENT_ID: string;
