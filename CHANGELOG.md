@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.0.0](https://github.com/karmasakshi/jet/compare/v5.7.1...v6.0.0) (2026-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **angular:** update dependencies
+
+### Features
+
+* **angular:** update dependencies ([ad016c5](https://github.com/karmasakshi/jet/commit/ad016c5328ee3222ec3e251ab48024162c597e73))
+* **angular:** update dependencies ([c71a243](https://github.com/karmasakshi/jet/commit/c71a243127ac83d8097f73363b013789dae4d1a6))
+* **supabase:** update dependencies ([848227a](https://github.com/karmasakshi/jet/commit/848227ad1093893dd758c53a592a560013057b3e))
+
 ## [5.7.1](https://github.com/karmasakshi/jet/compare/v5.7.0...v5.7.1) (2026-06-30)
 
 
