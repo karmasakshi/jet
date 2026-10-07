@@ -1,6 +1,6 @@
 {
   "name": "jet",
-  "version": "5.7.1",
+  "version": "6.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
