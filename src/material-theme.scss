@@ -11,9 +11,11 @@ $plain-family: ('Noto Sans Variable', sans-serif);
 $arabic-brand-family: ('Noto Sans Arabic Variable', sans-serif);
 $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
-html {
+:root {
   --jet-sidenav-width: 240px;
+}
 
+html {
   text-size-adjust: 100%;
 
   @include mat.theme(
