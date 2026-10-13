@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/karmasakshi/jet/compare/v6.0.0...v6.1.0) (2026-10-13)
+
+
+### Features
+
+* **general:** add table component ([a2545ab](https://github.com/karmasakshi/jet/commit/a2545ab3ab567f0c260e1e1617101a5a530aec0b))
+
 ## [6.0.0](https://github.com/karmasakshi/jet/compare/v5.7.1...v6.0.0) (2026-10-07)
 
 
