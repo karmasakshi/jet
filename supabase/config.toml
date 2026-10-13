@@ -266,8 +266,8 @@ template = "Your code is {{ .Code }}"
 max_frequency = "5s"
 
 # Use pre-defined map of phone number to OTP for testing.
-# [auth.sms.test_otp]
-# 4152127777 = "123456"
+[auth.sms.test_otp]
+4152127777 = "123456"
 
 # Configure logged in session timeouts.
 # [auth.sessions]
@@ -292,7 +292,7 @@ enabled = true
 account_sid = "your-twilio-account-sid"
 message_service_sid = "your-twilio-message-service-sid"
 # DO NOT commit your Twilio auth token to git. Use environment variable substitution instead:
-auth_token = "your-twilio-auth-token"
+auth_token = "env(SUPABASE_AUTH_SMS_TWILIO_AUTH_TOKEN)"
 
 # Multi-factor-authentication is available to Supabase Pro plan.
 [auth.mfa]
