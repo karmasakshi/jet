@@ -1,0 +1,20 @@
+@let _count = count();
+@let _isLoading = isLoading();
+@let _pageIndex = pageIndex();
+@let _pageSize = pageSize();
+
+<div class="jet-stack">
+  <div class="overflow-x-auto">
+    <div class="min-w-[1080px]">
+      <ng-content />
+    </div>
+  </div>
+  <mat-paginator
+    [disabled]="_isLoading"
+    [length]="_count"
+    [pageIndex]="_pageIndex"
+    [pageSize]="_pageSize"
+    [pageSizeOptions]="[10, 25, 50]"
+    (page)="pageChange.emit($event)"
+  />
+</div>
