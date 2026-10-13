@@ -22,6 +22,7 @@ export type Database = {
           created_at: string;
           updated_at: string | null;
         };
+        ComputedFields: never;
         Insert: {
           app_permission: Database['public']['Enums']['app_permission'];
           app_role: Database['public']['Enums']['app_role'];
@@ -43,6 +44,7 @@ export type Database = {
           updated_at: string | null;
           user_id: string;
         };
+        ComputedFields: never;
         Insert: {
           app_role: Database['public']['Enums']['app_role'];
           created_at?: string;
@@ -74,6 +76,7 @@ export type Database = {
           user_id: string;
           username: string;
         };
+        ComputedFields: never;
         Insert: {
           avatar_url?: string | null;
           created_at?: string;
