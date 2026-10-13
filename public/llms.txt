@@ -1,3 +1,348 @@
-# [Jet](https://github.com/karmasakshi/jet)
+# Jet
 
-Angular starter kit for building quality web apps fast.
+> Angular starter kit for building quality web apps fast.
+
+Refer [llms-full.txt](https://jet-tau.vercel.app/llms-full.txt) for complete documentation in one Markdown file.
+
+## Highlights
+
+- 🆕 **Modern Angular**: Uses Signals, new template syntax, Zoneless, Standalone, lazy-loaded routes, and more.
+- 📲 **PWA-ready**: Has safe-area styles for native-like edge-to-edge content in both portrait and landscape. Has background updating and offline support via [@angular/service-worker](https://angular.dev/ecosystem/service-workers).
+- 🎨 **Customizable**: Support for light/dark/automatic color schemes. Theme generation via [Angular Material](https://material.angular.dev/guide/theming#custom-color-palettes). Support for multiple languages and language tools via [Transloco](https://jsverse.gitbook.io/transloco). Custom fonts per language, RTL support, and more.
+- 🌿 **Pre-built features**: Production-ready, responsive components for authentication and profile management. Authentication, profile management and RBAC flows integrated with [Supabase](https://supabase.com/docs/guides/auth). Easily set up your own back-end using migrations and swap out Supabase.
+- 🚂 **Services**: Production-ready services for managing alerts, analytics, PWA updates, progress bar, browser storage, and more.
+- 🚀 **Performant**: Modular and tree-shakeable. 80+ on [PageSpeed Insights](https://pagespeed.web.dev/).
+- 🔒 **Secure**: Locked-down CSP and other security headers. 80+ on [Mozilla Observatory](https://developer.mozilla.org/en-US/observatory).
+- 📏 **Strict linting and formatting**: Strict configurations for ESLint, Prettier and TypeScript.
+- 🎁 **Release management**: Commit linting via [@commitlint/\*](https://github.com/conventional-changelog/commitlint). Automatic versioning and changelog generation via [Release Please](https://github.com/marketplace/actions/release-please-action).
+- 🌻 **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
+- 🗻 **Always updated**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
+
+## Get started in 30 seconds
+
+<a href="https://github.com/new?template_name=jet&template_owner=karmasakshi"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-use-6e4b3a?style=plastic"></a>
+
+- Click the button above, create your repository, then clone it
+- Create a copy of `.env.template` and name it `.env`
+- Delete `./.github/FUNDING.yml`
+- Delete `./CHANGELOG.md`; a fresh one will be created on first release
+- Delete `./LICENSE` and the `license` property in `./package.json` and `./package-lock.json`
+- Reset the `version` property in both `./package.json` and `./package-lock.json` to `0.0.0`
+- Run `npm install`; this will also enable [Husky](https://typicode.github.io/husky/)
+- Find and replace `https://jet-tau.vercel.app` with the base URL of your app
+- Run `ng serve` and start building!
+
+Nice to do:
+
+- Set namespace name in [StorageService](./src/app/services/storage/storage.service.ts) and `project_id` in `./supabase/config.toml` to something unique to your app
+- Update `./README.md` (this file)
+
+## Contents
+
+- [Features](#features)
+  - [Components](#components)
+  - [Constants](#constants)
+  - [Directives](#directives)
+  - [Enums](#enums)
+  - [Guards](#guards)
+  - [Injection Tokens](#injection-tokens)
+  - [Interceptors](#interceptors)
+  - [Services](#services)
+  - [GitHub Actions](#github-actions)
+  - [GitHub Issue Templates](#github-issue-templates)
+- [Guides](#guides)
+  - [Add elements](#add-elements)
+    - [Add a component](#add-a-component)
+    - [Add a page component](#add-a-page-component)
+    - [Add a service](#add-a-service)
+  - [Manage code](#manage-code)
+    - [Format code](#format-code)
+    - [Lint code](#lint-code)
+    - [Test code](#test-code)
+    - [Commit code](#commit-code)
+    - [Update commit scopes](#update-commit-scopes)
+    - [Update precommit tasks](#update-precommit-tasks)
+  - [Manage icons](#manage-icons)
+  - [Manage styles](#manage-styles)
+    - [Add styles](#add-styles)
+    - [Generate a Material theme](#generate-a-material-theme)
+    - [Override Material styles](#override-material-styles)
+  - [Manage i18n](#manage-i18n)
+    - [Add a language](#add-a-language)
+    - [Change the default language](#change-the-default-language)
+    - [Remove a language](#remove-a-language)
+  - [Manage environments](#manage-environments)
+    - [Add an environment](#add-an-environment)
+    - [Add an environment variable](#add-an-environment-variable)
+  - [Manage releases](#manage-releases)
+    - [Cut a release](#cut-a-release)
+    - [Cut a major release](#cut-a-major-release)
+  - [Deploy](#deploy)
+    - [Vercel](#vercel)
+  - [Supabase](#supabase)
+    - [Cheat sheet](#cheat-sheet)
+    - [Set up Supabase](#set-up-supabase)
+    - [Link a Supabase project](#link-a-supabase-project)
+    - [Run Supabase locally](#run-supabase-locally)
+    - [Remove RBAC](#remove-rbac)
+    - [Remove Supabase](#remove-supabase)
+  - [Squeeze out more performance](#squeeze-out-more-performance)
+- [License](#license)
+
+## Features
+
+### Components
+
+- [AppComponent](./src/app/components/app/app.component.ts)
+- [FooterComponent](./src/app/components/footer/footer.component.ts)
+- [HomePageComponent](./src/app/components/home-page/home-page.component.ts)
+- [MessagePageComponent](./src/app/components/message-page/message-page.component.ts)
+- [PageComponent](./src/app/components/page/page.component.ts)
+- [ProfilePageComponent](./src/app/components/profile-page/profile-page.component.ts)
+- [ResetPasswordPageComponent](./src/app/components/reset-password-page/reset-password-page.component.ts)
+- [SettingsPageComponent](./src/app/components/settings-page/settings-page.component.ts)
+- [SidenavComponent](./src/app/components/sidenav/sidenav.component.ts)
+- [SignInPageComponent](./src/app/components/sign-in-page/sign-in-page.component.ts)
+- [SignOutPageComponent](./src/app/components/sign-out-page/sign-out-page.component.ts)
+- [SignUpPageComponent](./src/app/components/sign-up-page/sign-up-page.component.ts)
+- [ToolbarComponent](./src/app/components/toolbar/toolbar.component.ts)
+- [UpdatePasswordPageComponent](./src/app/components/update-password-page/update-password-page.component.ts)
+
+### Constants
+
+- [AVATAR_FILE_MAX_SIZE_MB](./src/app/constants/avatar-file-max-size-mb.constant.ts)
+- [COLOR_SCHEME_OPTIONS](./src/app/constants/color-scheme-options.constant.ts)
+- [DEFAULT_COLOR_SCHEME_OPTION](./src/app/constants/default-color-scheme-option.constant.ts)
+- [DEFAULT_LANGUAGE_OPTION](./src/app/constants/default-language-option.constant.ts)
+- [DEFAULT_SETTINGS](./src/app/constants/default-settings.constant.ts)
+- [LANGUAGE_OPTIONS](./src/app/constants/language-options.constant.ts)
+- [NAVIGATION_MENU_ITEMS](./src/app/constants/navigation-menu-items.constant.ts)
+
+### Directives
+
+- [AnalyticsDirective](./src/app/directives/analytics/analytics.directive.ts)
+
+### Enums
+
+- [AppRole](./src/app/enums/app-role.enum.ts)
+- [LocalStorageKey](./src/app/enums/local-storage-key.enum.ts)
+- [QueryParam](./src/app/enums/query-param.enum.ts)
+- [SessionStorageKey](./src/app/enums/session-storage-key.enum.ts)
+- [SupabaseBucket](./src/app/enums/supabase-bucket.enum.ts)
+- [SupabaseEdgeFunction](./src/app/enums/supabase-edge-function.enum.ts)
+- [SupabaseRpcFunction](./src/app/enums/supabase-rpc-function.enum.ts)
+- [SupabaseTable](./src/app/enums/supabase-table.enum.ts)
+
+### Guards
+
+- [signedInGuard](./src/app/guards/signed-in/signed-in.guard.ts)
+- [signedOutGuard](./src/app/guards/signed-out/signed-out.guard.ts)
+- [unsavedChangesGuard](./src/app/guards/unsaved-changes/unsaved-changes.guard.ts)
+
+### Injection Tokens
+
+- [GOOGLE_ANALYTICS_MEASUREMENT_ID](./src/app/injection-tokens/google-analytics-measurement-id.injection-token.ts)
+- [IS_ANALYTICS_ENABLED](./src/app/injection-tokens/is-analytics-enabled.injection-token.ts)
+- [IS_LOGGING_ENABLED](./src/app/injection-tokens/is-logging-enabled.injection-token.ts)
+- [SUPABASE_CLIENT](./src/app/injection-tokens/supabase-client.injection-token.ts)
+
+### Interceptors
+
+- [progressBarInterceptor](./src/app/interceptors/progress-bar/progress-bar.interceptor.ts)
+
+### Services
+
+- [AlertService](./src/app/services/alert/alert.service.ts)
+- [AnalyticsService](./src/app/services/analytics/analytics.service.ts)
+- [LoggerService](./src/app/services/logger/logger.service.ts)
+- [ProfileService](./src/app/services/profile/profile.service.ts)
+- [ProgressBarService](./src/app/services/progress-bar/progress-bar.service.ts)
+- [ServiceWorkerService](./src/app/services/service-worker/service-worker.service.ts)
+- [SettingsService](./src/app/services/settings/settings.service.ts)
+- [StorageService](./src/app/services/storage/storage.service.ts)
+- [ToolbarTitleService](./src/app/services/toolbar-title/toolbar-title.service.ts)
+- [UserService](./src/app/services/user/user.service.ts)
+
+### GitHub Actions
+
+- [deploy-supabase-functions](./.github/workflows/deploy-supabase-functions.yml)
+- [release-please](./.github/workflows/release-please.yml)
+
+### GitHub Issue Templates
+
+- [Bug](./.github/ISSUE_TEMPLATE/bug.md)
+- [Documentation](./.github/ISSUE_TEMPLATE/documentation.md)
+- [Enhancement](./.github/ISSUE_TEMPLATE/enhancement.md)
+
+## Guides
+
+If you need help with something not listed here, [create a new issue](https://github.com/karmasakshi/jet/issues).
+
+### Add elements
+
+Use [ng g](https://angular.dev/cli/generate) as you would in any other Angular project.
+
+#### Add a component
+
+- Run `ng g c components/<component-name>`
+- In the `@Component()` decorator:
+  - Set `changeDetection: ChangeDetectionStrategy.OnPush`
+  - Set `imports: [TranslocoModule]`
+- In the class:
+  - Set `readonly #loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this.#loggerService.logComponentInitialization('<ClassName>');`
+- As a convention, add the component selector as a key in [en.json](./public/i18n/en.json) and other translation files
+- Update spec
+
+In the template, wrap the contents in:
+
+```html
+<ng-container *transloco="let t"> ... </ng-container>
+```
+
+#### Add a page component
+
+- Run `ng g c components/<component-name>`
+- In the `@Component()` decorator:
+  - Set `changeDetection: ChangeDetectionStrategy.OnPush`
+  - Set `imports: [TranslocoModule, PageComponent]`
+- In the class:
+  - Set `readonly #loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this.#loggerService.logComponentInitialization('<ClassName>');`
+- As a convention, add the component selector as a key in [en.json](./public/i18n/en.json) and other translation files
+- Update spec
+- Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
+- Update [sitemap-main.xml](./public/sitemaps/sitemap-main.xml)
+- If required, add an icon and navigation link to it in [NAVIGATION_MENU_ITEMS](./src/app/constants/navigation-menu-items.constant.ts)
+
+In the template, wrap the contents in:
+
+```html
+<ng-container *transloco="let t">
+  <jet-page
+    [seoDescription]="t('<component-selector>.seo.description')"
+    [seoKeywords]="t('<component-selector>.seo.keywords')"
+    [seoTitle]="t('<component-selector>.seo.title')"
+    [toolbarTitle]="t('<component-selector>.toolbar-title')"
+  >
+    ...
+  </jet-page>
+</ng-container>
+```
+
+#### Add a service
+
+- Run `ng g s services/<service-name>/<service-name>`
+- In the class:
+  - Set `readonly #loggerService = inject(LoggerService);`
+  - As a convention, at the end of the constructor, set `this.#loggerService.logServiceInitialization('<ClassName>');`
+- Add mock
+- Update spec
+
+### Manage code
+
+When enabled, [Husky](https://typicode.github.io/husky/) prevents pushing code that fails linting or building.
+
+#### Format code
+
+Run `npm run lint-staged` to format staged files. This runs automatically before every commit via [Husky](https://typicode.github.io/husky/) and [Lint Staged](https://github.com/lint-staged/lint-staged).
+
+Run `npm run format` to format all files.
+
+#### Lint code
+
+Run `ng lint`. This runs automatically before every commit via [Husky](https://typicode.github.io/husky/) and ESLint.
+
+#### Test code
+
+Run `ng test`.
+
+#### Commit code
+
+Run `npm run commit`, or commit directly with a valid commit message.
+
+Commit messages that don't follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) will be blocked by [Husky](https://typicode.github.io/husky/) and [Commitlint](https://commitlint.js.org/).
+
+#### Update commit scopes
+
+In [.commitlintrc.json](./.commitlintrc.json), update `"scope-enum": [2, "always", ["general", "main", "<your-scope-1>", ..., "<your-scope-n>"]]`.
+
+#### Update precommit tasks
+
+Update [pre-commit](./.husky/pre-commit). As a good practice, ensure every task is defined [package.json](./package.json) and can be run independently.
+
+More tasks mean longer commit times.
+
+#### Update dependencies
+
+Run `npm run reinstall-dependencies`. It runs the following subscripts to remove all dependencies, then install their latest versions: `x:uninstall-devDependencies`, `x:uninstall-dependencies`, `x:install-dependencies`, `x:install-devDependencies`. You shouldn't have to run these subscripts yourself.
+
+For this to work, ensure the subscripts are updated every time a dependency is added or removed.
+
+### Manage icons
+
+Jet uses [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for icons. Instead of downloading the entire font, each icon is explicitly specified in [index.html](./src/index.html). To add or remove icons, update the icon names **alphabetically** in the `<link>` element (read more about this requirement [here](https://developers.google.com/fonts/docs/material_symbols#optimize_the_icon_font)).
+
+Custom SVG icons can be loaded in `_setIcons()` in [AppComponent](./src/app/components/app/app.component.ts).
+
+### Manage styles
+
+#### Add styles
+
+#### Generate a Material theme
+
+#### Override Material styles
+
+### Manage i18n
+
+#### Add a language
+
+#### Change the default language
+
+#### Remove a language
+
+### Manage environments
+
+#### Add an environment
+
+#### Add an environment variable
+
+### Manage releases
+
+#### Cut a release
+
+#### Cut a major release
+
+### Deploy
+
+#### Vercel
+
+### Supabase
+
+#### Cheat sheet
+
+- `npx supabase status`
+- `npx supabase start`
+- `npx supabase stop`
+- `npx supabase functions new <function-name>`
+- `npx supabase functions serve`
+- `npx supabase migrations new`
+- `npx supabase db reset`
+
+#### Set up Supabase
+
+- Set `project_id` in [config.toml](./supabase/config.toml) to something unique to the project
+
+#### Link a Supabase project
+
+#### Run Supabase locally
+
+#### Remove RBAC
+
+#### Remove Supabase
+
+### Squeeze out more performance
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
