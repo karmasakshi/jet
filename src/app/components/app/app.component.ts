@@ -235,7 +235,7 @@ export class AppComponent implements OnInit {
 
   #disableUserScalable(): void {
     this.#meta.updateTag({
-      content: 'width=device-width, initial-scale=0.85, user-scalable=no, viewport-fit=cover',
+      content: 'width=device-width, initial-scale=0.85, user-scalable=no',
       name: 'viewport',
     });
   }
