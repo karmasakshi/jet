@@ -1,7 +1,7 @@
 {
   "imports": {
     "@jet/": "../_shared/",
-    "@supabase/functions-js": "jsr:@supabase/functions-js@^2.117.3",
+    "@supabase/functions-js": "jsr:@supabase/functions-js@^2.118.0",
     "@supabase/server": "jsr:@supabase/server@^1.9.2",
     "@zod/zod": "jsr:@zod/zod@^4.6.7"
   }
