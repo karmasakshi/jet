@@ -21,6 +21,8 @@
       />
     </mat-sidenav>
     <mat-sidenav-content class="jet-sidenav-content">
+      <!-- iOS blur hack -->
+      <div style="background-color: red; height: 6px; position: fixed; width: 100%"></div>
       <jet-toolbar
         [isLargeViewport]="_isLargeViewport"
         [shouldAddSafeArea]="_shouldAddSafeArea"
