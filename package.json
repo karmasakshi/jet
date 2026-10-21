@@ -37,12 +37,12 @@
     "srcPath": "./node_modules/@material-symbols/svg-400/rounded"
   },
   "dependencies": {
-    "@angular/cdk": "^22.2.2",
+    "@angular/cdk": "^22.2.3",
     "@angular/common": "^22.2.2",
     "@angular/compiler": "^22.2.2",
     "@angular/core": "^22.2.2",
     "@angular/forms": "^22.2.2",
-    "@angular/material": "^22.2.2",
+    "@angular/material": "^22.2.3",
     "@angular/platform-browser": "^22.2.2",
     "@angular/platform-server": "^22.2.2",
     "@angular/router": "^22.2.2",
@@ -85,7 +85,7 @@
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-sql-cst": "^0.23.1",
-    "supabase": "^2.120.0",
+    "supabase": "^2.121.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.2",
