@@ -187,7 +187,7 @@ body {
 
       @include mat.toolbar-overrides(
         (
-          container-background-color: transparent,
+          container-background-color: red,
         )
       );
 
