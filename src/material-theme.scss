@@ -17,12 +17,11 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 }
 
 html {
-  background-color: var(--mat-sys-surface);
   text-size-adjust: 100%;
 
   // iOS PWA blur hack
   &.ios {
-    --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 24px);
+    --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 32px);
   }
 
   @include mat.theme(
