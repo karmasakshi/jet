@@ -264,10 +264,6 @@ img {
   font: var(--mat-sys-body-small);
 }
 
-.cdk-overlay-container {
-  background-color: var(--mat-sys-surface);
-}
-
 .cdk-overlay-popover:has(.mat-mdc-dialog-panel) {
   height: 100vh !important;
   position: unset !important;
