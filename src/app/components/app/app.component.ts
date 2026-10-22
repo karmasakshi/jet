@@ -226,6 +226,7 @@ export class AppComponent implements OnInit {
 
     if (this.#isPwaMode) {
       this.#disableUserScalable();
+      this.#setPlatformClass();
     }
   }
 
@@ -276,6 +277,31 @@ export class AppComponent implements OnInit {
     this.#renderer2.setAttribute(this.#document.documentElement, 'lang', language);
 
     this.#translocoService.setActiveLang(language);
+  }
+
+  #setPlatformClass(): void {
+    const platform = navigator.platform;
+
+    const platformClass = (() => {
+      switch (true) {
+        case /mac/i.test(platform):
+          return 'macos';
+        case /win/i.test(platform):
+          return 'windows';
+        case /linux/i.test(platform):
+          return 'linux';
+        case /android/i.test(platform):
+          return 'android';
+        case /iphone|ipad|ipod/i.test(platform):
+          return 'ios';
+        default:
+          return null;
+      }
+    })();
+
+    if (platformClass) {
+      this.#document.documentElement.classList.add(platformClass);
+    }
   }
 
   #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
