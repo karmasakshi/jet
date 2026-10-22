@@ -17,6 +17,7 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 }
 
 html {
+  background-color: var(--mat-sys-surface);
   text-size-adjust: 100%;
 
   // iOS PWA blur hack
