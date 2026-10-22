@@ -12,6 +12,7 @@ $arabic-brand-family: ('Noto Sans Arabic Variable', sans-serif);
 $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
+  --jet-safe-area-inset-top: env(safe-area-inset-top);
   --jet-sidenav-width: 240px;
 }
 
@@ -20,7 +21,7 @@ html {
 
   // iOS PWA blur hack
   &.ios {
-    padding-top: 24px;
+    --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 24px);
   }
 
   @include mat.theme(
@@ -151,7 +152,7 @@ body {
 
   .jet-sidenav {
     padding-bottom: env(safe-area-inset-bottom);
-    padding-top: env(safe-area-inset-top);
+    padding-top: var(--jet-safe-area-inset-top);
 
     @include mat.sidenav-overrides(
       (
@@ -181,7 +182,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: env(safe-area-inset-top);
+    padding-top: var(--jet-safe-area-inset-top);
 
     .jet-sidenav-content-toolbar {
       gap: 8px;
@@ -313,7 +314,7 @@ img {
 }
 
 .mat-mdc-snack-bar-container {
-  margin: calc(8px + env(safe-area-inset-top)) calc(8px + env(safe-area-inset-right))
+  margin: calc(8px + var(--jet-safe-area-inset-top)) calc(8px + env(safe-area-inset-right))
     calc(8px + env(safe-area-inset-bottom)) calc(8px + env(safe-area-inset-left)) !important;
 }
 
