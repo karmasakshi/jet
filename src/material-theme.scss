@@ -19,7 +19,6 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 html {
   text-size-adjust: 100%;
 
-  // iOS PWA blur hack
   &.ios {
     --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 32px);
   }
@@ -263,6 +262,10 @@ form {
 
 img {
   font: var(--mat-sys-body-small);
+}
+
+.cdk-overlay-container {
+  background-color: var(--mat-sys-surface);
 }
 
 .cdk-overlay-popover:has(.mat-mdc-dialog-panel) {
