@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/karmasakshi/jet/compare/v6.1.0...v6.2.0) (2026-10-22)
+
+
+### Features
+
+* **general:** add ios pwa blur hack ([f29966b](https://github.com/karmasakshi/jet/commit/f29966b13e5e5512d57140c380630d08b8152df5))
+
 ## [6.1.0](https://github.com/karmasakshi/jet/compare/v6.0.0...v6.1.0) (2026-10-13)
 
 
