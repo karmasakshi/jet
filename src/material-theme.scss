@@ -20,7 +20,7 @@ html {
 
   // iOS PWA blur hack
   &.ios {
-    padding-top: 16px;
+    padding-top: 24px;
   }
 
   @include mat.theme(
