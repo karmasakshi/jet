@@ -20,7 +20,7 @@ html {
   text-size-adjust: 100%;
 
   &.ios {
-    --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 32px);
+    --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 2rem);
   }
 
   @include mat.theme(
