@@ -2,7 +2,7 @@ import { inject, Service, Signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '@jet/components/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogData } from '@jet/interfaces/confirmation-dialog-data.interface';
-import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Direction } from '@jet/types/direction.type';
 import { firstValueFrom } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -13,10 +13,10 @@ export class DialogService {
   readonly #loggerService = inject(LoggerService);
   readonly #settingsService = inject(SettingsService);
 
-  readonly #directionality: Signal<LanguageOption['directionality']>;
+  readonly #direction: Signal<Direction>;
 
   public constructor() {
-    this.#directionality = this.#settingsService.directionality;
+    this.#direction = this.#settingsService.direction;
 
     this.#loggerService.logServiceInitialization('DialogService');
   }
@@ -26,7 +26,7 @@ export class DialogService {
       this.#matDialog
         .open(ConfirmationDialogComponent, {
           data: confirmationDialogData,
-          direction: this.#directionality(),
+          direction: this.#direction(),
         })
         .afterClosed(),
     );

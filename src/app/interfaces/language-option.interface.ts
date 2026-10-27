@@ -1,7 +1,8 @@
+import { Direction } from '@jet/types/direction.type';
 import { Language } from '@jet/types/language.type';
 
 export interface LanguageOption {
-  directionality: 'ltr' | 'rtl';
+  direction: Direction;
   fontPairClass: null | string;
   iconName: string;
   nameKey: string;

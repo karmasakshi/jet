@@ -1,6 +1,6 @@
 import { inject, Service, Signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { Direction } from '@jet/types/direction.type';
 import { translate } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -11,10 +11,10 @@ export class AlertService {
   readonly #loggerService = inject(LoggerService);
   readonly #settingsService = inject(SettingsService);
 
-  readonly #directionality: Signal<LanguageOption['directionality']>;
+  readonly #direction: Signal<Direction>;
 
   public constructor() {
-    this.#directionality = this.#settingsService.directionality;
+    this.#direction = this.#settingsService.direction;
 
     this.#loggerService.logServiceInitialization('AlertService');
   }
@@ -25,7 +25,7 @@ export class AlertService {
     callback?: () => void,
   ): void {
     const matSnackBarRef = this.#matSnackBar.open(message, action, {
-      direction: this.#directionality(),
+      direction: this.#direction(),
     });
 
     if (callback) {

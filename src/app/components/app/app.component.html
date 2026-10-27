@@ -1,5 +1,5 @@
-@let _activeNavItemPath = activeNavItemPath();
-@let _directionality = directionality();
+@let _navItemPath = navItemPath();
+@let _direction = direction();
 @let _isLargeViewport = isLargeViewport();
 @let _matSidenavMode = matSidenavMode();
 @let _shouldAddSafeArea = shouldAddSafeArea();
@@ -7,7 +7,7 @@
 <ng-container *transloco="let t; prefix: 'app'">
   <mat-sidenav-container
     class="jet-sidenav-container"
-    [dir]="_directionality"
+    [dir]="_direction"
   >
     <mat-sidenav
       #matSidenav
@@ -17,7 +17,7 @@
       [(opened)]="isMatSidenavOpen"
     >
       <jet-sidenav
-        [activeNavItemPath]="_activeNavItemPath"
+        [activeNavItemPath]="_navItemPath"
         (clickNavItem)="_matSidenavMode === 'over' && matSidenav.close()"
       />
     </mat-sidenav>
@@ -50,7 +50,7 @@
             <a
               mat-tab-link
               style="min-width: 0"
-              [active]="navItem.path === _activeNavItemPath"
+              [active]="navItem.path === _navItemPath"
               [aria-label]="navItem.nameKey | transloco"
               [routerLink]="[navItem.path]"
             >

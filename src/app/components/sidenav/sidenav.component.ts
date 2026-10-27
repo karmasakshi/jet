@@ -11,11 +11,8 @@ import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directiv
 import { NavItem } from '@jet/interfaces/nav-item.interface';
 import { BadgeContentService } from '@jet/services/badge-content/badge-content.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { celebrationFillIcon } from '@jet/svgs/celebration-fill';
-import { historyFillIcon } from '@jet/svgs/history-fill';
 import { homeFillIcon } from '@jet/svgs/home-fill';
 import { personFillIcon } from '@jet/svgs/person-fill';
-import { shoppingCartFillIcon } from '@jet/svgs/shopping_cart-fill';
 import { tuneFillIcon } from '@jet/svgs/tune-fill';
 import { Badge } from '@jet/types/badge.type';
 import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
@@ -48,14 +45,7 @@ export class SidenavComponent {
   protected readonly navItems: NavItem[];
 
   public constructor() {
-    addSvgIconLiteral([
-      celebrationFillIcon,
-      historyFillIcon,
-      homeFillIcon,
-      personFillIcon,
-      shoppingCartFillIcon,
-      tuneFillIcon,
-    ]);
+    addSvgIconLiteral([homeFillIcon, personFillIcon, tuneFillIcon]);
 
     this.navItems = NAV_ITEMS;
 
