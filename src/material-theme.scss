@@ -258,6 +258,11 @@ img {
   place-items: center;
 }
 
+.cdk-overlay-popover:has(.mat-mdc-dialog-panel) {
+  height: 100vh;
+  position: unset;
+}
+
 .mat-expansion-panel-header-description {
   justify-content: flex-end;
 }
