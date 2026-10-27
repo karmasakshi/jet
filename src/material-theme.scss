@@ -254,12 +254,8 @@ form {
 }
 
 img {
-  font: var(--mat-sys-body-small);
-}
-
-.cdk-overlay-popover:has(.mat-mdc-dialog-panel) {
-  height: 100vh !important;
-  position: unset !important;
+  display: grid;
+  place-items: center;
 }
 
 .mat-expansion-panel-header-description {
@@ -276,7 +272,6 @@ img {
   }
 
   .mat-mdc-card-image {
-    height: auto;
     object-fit: cover;
     width: 100%;
   }
