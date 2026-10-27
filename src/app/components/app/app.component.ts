@@ -227,7 +227,7 @@ export class AppComponent implements OnInit {
     this.#setPlatformClass();
 
     if (this.#isPwaMode) {
-      this.#document.documentElement.classList.add('pwa');
+      this.#document.body.classList.add('pwa');
       this.#disableUserScalable();
     }
   }
@@ -251,7 +251,7 @@ export class AppComponent implements OnInit {
     }
 
     if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      this.#activeColorSchemeClass = `jet-color-scheme-${colorScheme}`;
+      this.#activeColorSchemeClass = colorScheme ?? '';
 
       body.classList.add(this.#activeColorSchemeClass);
     } else {
@@ -267,7 +267,7 @@ export class AppComponent implements OnInit {
     }
 
     if (fontPairClass !== DEFAULT_LANGUAGE_OPTION.fontPairClass) {
-      this.#activeFontPairClass = `jet-font-pair-${fontPairClass}`;
+      this.#activeFontPairClass = fontPairClass ?? '';
 
       body.classList.add(this.#activeFontPairClass);
     } else {
@@ -302,7 +302,7 @@ export class AppComponent implements OnInit {
     })();
 
     if (platformClass) {
-      this.#document.documentElement.classList.add(platformClass);
+      this.#document.body.classList.add(platformClass);
     }
   }
 

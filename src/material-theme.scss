@@ -13,13 +13,11 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
   --jet-safe-area-inset-top: env(safe-area-inset-top);
-  --jet-sidenav-width: 240px;
+  --jet-sidenav-width: 15rem;
 }
 
 html {
-  &.ios.pwa {
-    --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 2rem);
-  }
+  color-scheme: light dark;
 
   @include mat.theme(
     (
@@ -39,16 +37,12 @@ html {
     )
   );
 
-  @include mat.button-overrides(
-    (
-      filled-progress-active-indicator-color: var(--mat-sys-primary),
-    )
-  );
+  @include mat.strong-focus-indicators();
 
   @include mat.card-overrides(
     (
       elevated-container-elevation: var(--mat-sys-level0),
-      subtitle-text-color: var(--mat-sys-on-surface-variant),
+      subtitle-text-color: var(--mat-sys-outline),
     )
   );
 
@@ -69,7 +63,7 @@ html {
   @include mat.list-overrides(
     (
       list-item-container-shape: var(--mat-sys-corner-small),
-      list-item-two-line-container-height: 74px,
+      list-item-two-line-container-height: 72px,
     )
   );
 
@@ -102,21 +96,12 @@ html {
 }
 
 body {
-  background-color: var(--mat-sys-surface);
+  background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
-  color-scheme: light dark;
   font: var(--mat-sys-body-medium);
   margin: 0;
 
-  &.jet-color-scheme-dark {
-    color-scheme: dark;
-  }
-
-  &.jet-color-scheme-light {
-    color-scheme: light;
-  }
-
-  &.jet-font-pair-nsa-nsa {
+  &.arabic {
     @include mat.theme(
       (
         typography: (
@@ -129,20 +114,32 @@ body {
       )
     );
   }
+
+  &.dark {
+    color-scheme: dark;
+  }
+
+  &.light {
+    color-scheme: light;
+  }
+
+  &.pwa {
+    &.ios {
+      --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 2rem);
+    }
+  }
 }
 
 .jet-sidenav-container {
-  min-width: 360px;
+  min-width: 25rem;
   overflow-x: auto;
 
   &[dir='ltr'] {
-    --jet-animation-multiplier: 1;
     --jet-safe-area-start: env(safe-area-inset-left);
     --jet-safe-area-end: env(safe-area-inset-right);
   }
 
   &[dir='rtl'] {
-    --jet-animation-multiplier: -1;
     --jet-safe-area-start: env(safe-area-inset-right);
     --jet-safe-area-end: env(safe-area-inset-left);
   }
@@ -169,23 +166,22 @@ body {
 
     .jet-sidenav-nav-list,
     .jet-sidenav-toolbar {
-      padding-inline-end: 16px;
-      padding-inline-start: calc(16px + var(--jet-safe-area-start));
+      padding-inline-end: 1rem;
+      padding-inline-start: calc(1rem + var(--jet-safe-area-start));
     }
   }
 
   .jet-sidenav-content {
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-top: var(--jet-safe-area-inset-top);
 
     .jet-sidenav-content-toolbar {
-      gap: 8px;
+      gap: 0.5rem;
       overflow-x: auto;
-      padding-inline-end: calc(16px + var(--jet-safe-area-end));
-      padding-inline-start: 16px;
+      padding-inline-end: calc(1rem + var(--jet-safe-area-end));
+      padding-inline-start: 1rem;
       position: relative;
 
       @include mat.toolbar-overrides(
@@ -195,7 +191,7 @@ body {
       );
 
       &.jet-add-safe-area {
-        padding-inline-start: calc(16px + var(--jet-safe-area-start));
+        padding-inline-start: calc(1rem + var(--jet-safe-area-start));
       }
     }
 
@@ -203,30 +199,30 @@ body {
       flex: 1;
 
       main {
-        padding-bottom: 16px;
-        padding-inline-end: calc(16px + var(--jet-safe-area-end));
-        padding-inline-start: 16px;
-        padding-top: 16px;
+        padding-bottom: 1rem;
+        padding-inline-end: calc(1rem + var(--jet-safe-area-end));
+        padding-inline-start: 1rem;
+        padding-top: 1rem;
 
         &.jet-add-safe-area {
-          padding-inline-start: calc(16px + var(--jet-safe-area-start));
+          padding-inline-start: calc(1rem + var(--jet-safe-area-start));
         }
       }
     }
 
     footer {
       background-color: var(--mat-sys-surface-container-low);
-      padding-bottom: calc(16px + env(safe-area-inset-bottom));
-      padding-inline-end: calc(16px + var(--jet-safe-area-end));
-      padding-inline-start: 16px;
-      padding-top: 16px;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+      padding-inline-end: calc(1rem + var(--jet-safe-area-end));
+      padding-inline-start: 1rem;
+      padding-top: 1rem;
 
       &.jet-add-bottom-margin {
-        margin-bottom: 48px;
+        margin-bottom: 4rem;
       }
 
       &.jet-add-safe-area {
-        padding-inline-start: calc(16px + var(--jet-safe-area-start));
+        padding-inline-start: calc(1rem + var(--jet-safe-area-start));
       }
     }
 
@@ -235,7 +231,6 @@ body {
       left: 0;
       position: fixed;
       right: 0;
-      z-index: 2;
 
       .mat-mdc-tab-header-pagination-after {
         padding-inline-end: calc(var(--jet-safe-area-end) + 8px);
