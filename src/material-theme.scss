@@ -13,7 +13,7 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
   --jet-safe-area-inset-top: env(safe-area-inset-top);
-  --jet-sidenav-width: 15rem;
+  --jet-sidenav-width: 240px;
 }
 
 html {
@@ -63,7 +63,7 @@ html {
   @include mat.list-overrides(
     (
       list-item-container-shape: var(--mat-sys-corner-small),
-      list-item-two-line-container-height: 4.5rem,
+      list-item-two-line-container-height: 72px,
     )
   );
 
@@ -124,7 +124,7 @@ body {
 
   &.pwa {
     &.ios {
-      --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 2rem);
+      --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 32px);
     }
   }
 }
@@ -165,8 +165,8 @@ body {
 
     .jet-sidenav-nav-list,
     .jet-sidenav-toolbar {
-      padding-inline-end: 1rem;
-      padding-inline-start: calc(1rem + var(--jet-safe-area-start));
+      padding-inline-end: 16px;
+      padding-inline-start: calc(16px + var(--jet-safe-area-start));
     }
   }
 
@@ -177,10 +177,10 @@ body {
     padding-top: var(--jet-safe-area-inset-top);
 
     .jet-sidenav-content-toolbar {
-      gap: 0.5rem;
+      gap: 8px;
       overflow-x: auto;
-      padding-inline-end: calc(1rem + var(--jet-safe-area-end));
-      padding-inline-start: 1rem;
+      padding-inline-end: calc(16px + var(--jet-safe-area-end));
+      padding-inline-start: 16px;
       position: relative;
 
       @include mat.toolbar-overrides(
@@ -190,7 +190,7 @@ body {
       );
 
       &.jet-add-safe-area {
-        padding-inline-start: calc(1rem + var(--jet-safe-area-start));
+        padding-inline-start: calc(16px + var(--jet-safe-area-start));
       }
     }
 
@@ -198,30 +198,30 @@ body {
       flex: 1;
 
       main {
-        padding-bottom: 1rem;
-        padding-inline-end: calc(1rem + var(--jet-safe-area-end));
-        padding-inline-start: 1rem;
-        padding-top: 1rem;
+        padding-bottom: 16px;
+        padding-inline-end: calc(16px + var(--jet-safe-area-end));
+        padding-inline-start: 16px;
+        padding-top: 16px;
 
         &.jet-add-safe-area {
-          padding-inline-start: calc(1rem + var(--jet-safe-area-start));
+          padding-inline-start: calc(16px + var(--jet-safe-area-start));
         }
       }
     }
 
     footer {
       background-color: var(--mat-sys-surface-container-low);
-      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-      padding-inline-end: calc(1rem + var(--jet-safe-area-end));
-      padding-inline-start: 1rem;
-      padding-top: 1rem;
+      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      padding-inline-end: calc(16px + var(--jet-safe-area-end));
+      padding-inline-start: 16px;
+      padding-top: 16px;
 
       &.jet-add-bottom-margin {
-        margin-bottom: 4rem;
+        margin-bottom: 64px;
       }
 
       &.jet-add-safe-area {
-        padding-inline-start: calc(1rem + var(--jet-safe-area-start));
+        padding-inline-start: calc(16px + var(--jet-safe-area-start));
       }
     }
 
@@ -233,11 +233,11 @@ body {
       z-index: 2;
 
       .mat-mdc-tab-header-pagination-after {
-        padding-inline-end: calc(var(--jet-safe-area-end) + 0.5rem);
+        padding-inline-end: calc(var(--jet-safe-area-end) + 8px);
       }
 
       .mat-mdc-tab-header-pagination-before {
-        padding-inline-start: calc(var(--jet-safe-area-start) + 0.5rem);
+        padding-inline-start: calc(var(--jet-safe-area-start) + 8px);
       }
 
       .mat-mdc-tab-link-container {
