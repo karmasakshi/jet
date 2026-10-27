@@ -19,6 +19,7 @@
   ],
   "editor.codeActionsOnSave": { "source.organizeImports": "explicit" },
   "editor.tabSize": 2,
+  "files.associations": { "*.css": "tailwindcss" },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true

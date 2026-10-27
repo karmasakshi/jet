@@ -76,7 +76,6 @@ html {
   @include mat.sidenav-overrides(
     (
       container-background-color: var(--mat-sys-surface-container-low),
-      container-width: var(--jet-sidenav-width),
     )
   );
 
