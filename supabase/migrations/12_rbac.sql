@@ -55,14 +55,12 @@ security definer
 set search_path = ''
 stable
 as $$
-  select
-    exists (
-      select 1
-      from
-        public.app_roles_users as aru
-        join public.app_permissions_app_roles as apar on apar.app_role = aru.app_role
-      where aru.user_id = auth.uid() and apar.app_permission = _app_permission
-    );
+  select exists (
+    select 1
+    from public.app_roles_users as aru
+    join public.app_permissions_app_roles as apar on apar.app_role = aru.app_role
+    where aru.user_id = auth.uid() and apar.app_permission = _app_permission
+  );
 $$;
 
 revoke all on routine public.is_authorized from public;
@@ -90,16 +88,16 @@ begin
   select aru.app_role
   into _app_role
   from public.app_roles_users as aru
-  where aru.user_id = (_event ->> 'user_id')::uuid;
+  where aru.user_id = (_event->>'user_id')::uuid;
 
   select array_agg(apar.app_permission order by apar.app_permission)
   into _app_permissions
   from public.app_permissions_app_roles as apar
   where apar.app_role = _app_role;
 
-  _claims := _event -> 'claims';
+  _claims := _event->'claims';
 
-  _claims := jsonb_set(_claims, '{app_metadata}', coalesce(_claims -> 'app_metadata', '{}'), true);
+  _claims := jsonb_set(_claims, '{app_metadata}', coalesce(_claims->'app_metadata', '{}'), true);
 
   _claims := jsonb_set(
     _claims,

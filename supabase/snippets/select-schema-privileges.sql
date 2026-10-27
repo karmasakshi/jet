@@ -21,10 +21,9 @@ with
       n.oid,
       r.rolname as owner_role,
       n.nspacl
-    from
-      pg_namespace as n
-      join pg_roles as r on r.oid = n.nspowner
-      cross join config as c
+    from pg_namespace as n
+    join pg_roles as r on r.oid = n.nspowner
+    cross join config as c
     where n.nspname = c.schema_name
   ),
   current_state as (
@@ -37,41 +36,46 @@ with
         select 1
         from aclexplode(s.nspacl) as acl
         where
-          acl.grantee = case
-            when role_name = 'public' then 0
-            else to_regrole(role_name)
-          end
+          acl.grantee =
+            case
+              when role_name = 'public' then 0
+              else to_regrole(role_name)
+            end
           and acl.privilege_type = 'USAGE'
       ) as has_usage_direct,
       exists (
         select 1
         from aclexplode(s.nspacl) as acl
         where
-          acl.grantee = case
-            when role_name = 'public' then 0
-            else to_regrole(role_name)
-          end
+          acl.grantee =
+            case
+              when role_name = 'public' then 0
+              else to_regrole(role_name)
+            end
           and acl.privilege_type = 'CREATE'
       ) as has_create_direct
-    from
-      config as c
-      cross join unnest(c.roles_to_check) as role_name
-      cross join schema_info as s
+    from config as c
+    cross join unnest(c.roles_to_check) as role_name
+    cross join schema_info as s
   )
 select
   cs.role_name,
   cs.schema_owner,
   case
-    when cs.has_usage_effective then 'USAGE' || case
-      when cs.has_usage_direct then ' (direct)'
-      else ' (inherited)'
-    end
+    when cs.has_usage_effective then
+      'USAGE' ||
+        case
+          when cs.has_usage_direct then ' (direct)'
+          else ' (inherited)'
+        end
   end as "usage",
   case
-    when cs.has_create_effective then 'CREATE' || case
-      when cs.has_create_direct then ' (direct)'
-      else ' (inherited)'
-    end
+    when cs.has_create_effective then
+      'CREATE' ||
+        case
+          when cs.has_create_direct then ' (direct)'
+          else ' (inherited)'
+        end
   end as "create"
 from current_state as cs
 order by cs.role_name;

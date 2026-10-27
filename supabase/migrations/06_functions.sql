@@ -15,9 +15,9 @@ declare
   _avatar_url public.url;
   _name text;
 begin
-  _avatar_url := nullif(trim(new.raw_user_meta_data ->> 'avatar_url'), '');
+  _avatar_url := nullif(trim(new.raw_user_meta_data->>'avatar_url'), '');
 
-  _name := nullif(trim(new.raw_user_meta_data ->> 'full_name'), '');
+  _name := nullif(trim(new.raw_user_meta_data->>'full_name'), '');
 
   if _name is not null then
     _name := left(_name, 60);

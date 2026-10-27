@@ -1,28 +1,26 @@
 with
   config as (
-    select
-      array[
-        'public',
-        'anon',
-        'authenticated',
-        'authenticator',
-        'dashboard_user',
-        'postgres',
-        'service_role',
-        'supabase_admin',
-        'supabase_auth_admin',
-        'supabase_functions_admin',
-        'supabase_storage_admin'
-      ] as roles_to_check
+    select array[
+      'public',
+      'anon',
+      'authenticated',
+      'authenticator',
+      'dashboard_user',
+      'postgres',
+      'service_role',
+      'supabase_admin',
+      'supabase_auth_admin',
+      'supabase_functions_admin',
+      'supabase_storage_admin'
+    ] as roles_to_check
   ),
   extension_info as (
     select
       e.oid,
       e.extname as extension_name,
       r.rolname as owner_role
-    from
-      pg_extension as e
-      join pg_roles as r on r.oid = e.extowner
+    from pg_extension as e
+    join pg_roles as r on r.oid = e.extowner
   ),
   current_state as (
     select
@@ -30,10 +28,9 @@ with
       e.extension_name,
       e.owner_role as extension_owner,
       role_name = e.owner_role as is_owner
-    from
-      config as c
-      cross join unnest(c.roles_to_check) as role_name
-      cross join extension_info as e
+    from config as c
+    cross join unnest(c.roles_to_check) as role_name
+    cross join extension_info as e
   )
 select
   cs.role_name,

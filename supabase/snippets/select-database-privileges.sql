@@ -20,10 +20,9 @@ with
     select
       d.datname as database_name,
       r.rolname as owner_role
-    from
-      pg_database as d
-      join pg_roles as r on r.oid = d.datdba
-      cross join config as c
+    from pg_database as d
+    join pg_roles as r on r.oid = d.datdba
+    cross join config as c
     where d.datname = c.db_name
   ),
   current_state as (
@@ -33,10 +32,9 @@ with
       has_database_privilege(role_name, db.database_name, 'CONNECT') as has_connect,
       has_database_privilege(role_name, db.database_name, 'CREATE') as has_create,
       has_database_privilege(role_name, db.database_name, 'TEMPORARY') as has_temporary
-    from
-      config as c
-      cross join unnest(c.roles_to_check) as role_name
-      cross join db_info as db
+    from config as c
+    cross join unnest(c.roles_to_check) as role_name
+    cross join db_info as db
   )
 select
   cs.role_name,
