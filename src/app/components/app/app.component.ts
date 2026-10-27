@@ -3,15 +3,11 @@ import {
   Component,
   computed,
   DestroyRef,
-  DOCUMENT,
-  effect,
   inject,
   linkedSignal,
   OnInit,
-  Renderer2,
   signal,
   Signal,
-  untracked,
   WritableSignal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,7 +15,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Meta } from '@angular/platform-browser';
 import {
   Event,
   NavigationCancel,
@@ -31,11 +26,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { APP_VERSION } from '@jet/constants/app-version.constant';
-import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
-import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
-import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { NAV_ITEMS } from '@jet/constants/nav-items.constant';
-import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { NavItem } from '@jet/interfaces/nav-item.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
@@ -51,7 +42,7 @@ import { personFillIcon } from '@jet/svgs/person-fill';
 import { tuneFillIcon } from '@jet/svgs/tune-fill';
 import { Badge } from '@jet/types/badge.type';
 import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import { filter } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
@@ -77,9 +68,6 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 export class AppComponent implements OnInit {
   readonly #breakpointObserver = inject(BreakpointObserver);
   readonly #destroyRef = inject(DestroyRef);
-  readonly #document = inject(DOCUMENT);
-  readonly #renderer2 = inject(Renderer2);
-  readonly #meta = inject(Meta);
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
   readonly #analyticsService = inject(AnalyticsService);
@@ -87,13 +75,6 @@ export class AppComponent implements OnInit {
   readonly #loggerService = inject(LoggerService);
   readonly #progressBarService = inject(ProgressBarService);
   readonly #settingsService = inject(SettingsService);
-  readonly #translocoService = inject(TranslocoService);
-
-  #activeColorSchemeClass: null | string;
-  #activeFontPairClass: null | string;
-  readonly #colorSchemeOption: Signal<ColorSchemeOption>;
-  readonly #isPwaMode: boolean;
-  readonly #languageOption: Signal<LanguageOption>;
 
   protected activeNavItemPath: NavItem['path'] | undefined;
   protected readonly directionality: Signal<LanguageOption['directionality']>;
@@ -111,16 +92,6 @@ export class AppComponent implements OnInit {
       personFillIcon,
       tuneFillIcon,
     ]);
-
-    this.#activeColorSchemeClass = null;
-
-    this.#activeFontPairClass = null;
-
-    this.#colorSchemeOption = computed(() => this.#settingsService.settings().colorSchemeOption);
-
-    this.#isPwaMode = this.#breakpointObserver.isMatched('(display-mode: standalone)');
-
-    this.#languageOption = computed(() => this.#settingsService.settings().languageOption);
 
     this.activeNavItemPath = undefined;
 
@@ -149,48 +120,11 @@ export class AppComponent implements OnInit {
       this.matSidenavMode() === 'over' ? true : !this.isMatSidenavOpen(),
     );
 
-    effect(
-      () => {
-        this.#loggerService.logEffectRun('colorSchemeOption');
-
-        const colorSchemeOption: ColorSchemeOption = this.#colorSchemeOption();
-
-        untracked(() => {
-          this.#setColorScheme(colorSchemeOption.value);
-
-          this.#setThemeColorMeta(colorSchemeOption.value);
-        });
-      },
-      { debugName: 'colorSchemeOption' },
-    );
-
-    effect(
-      () => {
-        this.#loggerService.logEffectRun('languageOption');
-
-        const languageOption: LanguageOption = this.#languageOption();
-
-        untracked(() => {
-          this.#setFontPairClass(languageOption.fontPairClass);
-
-          this.#setLanguage(languageOption.value);
-        });
-      },
-      { debugName: 'languageOption' },
-    );
-
     this.#loggerService.logComponentInitialization('AppComponent');
   }
 
   public ngOnInit(): void {
     this.#analyticsService.logAnalyticsEvent({ data: { version: APP_VERSION }, name: 'start' });
-
-    this.#breakpointObserver
-      .observe('(prefers-color-scheme: dark)')
-      .pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe(() => {
-        this.#setThemeColorMeta(this.#colorSchemeOption().value);
-      });
 
     this.#router.events
       .pipe(
@@ -223,98 +157,9 @@ export class AppComponent implements OnInit {
 
         this.#progressBarService.hideProgressBar();
       });
-
-    this.#setPlatformClass();
-
-    if (this.#isPwaMode) {
-      this.#document.body.classList.add('pwa');
-      this.#disableUserScalable();
-    }
   }
 
   public getBadgeContent(badge: Badge | null): null | number | string {
     return this.#badgeContentService.getBadgeContent(badge);
-  }
-
-  #disableUserScalable(): void {
-    this.#meta.updateTag({
-      content: 'initial-scale=0.85, user-scalable=no, viewport-fit=cover, width=device-width',
-      name: 'viewport',
-    });
-  }
-
-  #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
-    const body: HTMLElement = this.#document.body;
-
-    if (this.#activeColorSchemeClass) {
-      body.classList.remove(this.#activeColorSchemeClass);
-    }
-
-    if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      this.#activeColorSchemeClass = colorScheme ?? '';
-
-      body.classList.add(this.#activeColorSchemeClass);
-    } else {
-      this.#activeColorSchemeClass = null;
-    }
-  }
-
-  #setFontPairClass(fontPairClass: LanguageOption['fontPairClass']): void {
-    const body: HTMLElement = this.#document.body;
-
-    if (this.#activeFontPairClass) {
-      body.classList.remove(this.#activeFontPairClass);
-    }
-
-    if (fontPairClass !== DEFAULT_LANGUAGE_OPTION.fontPairClass) {
-      this.#activeFontPairClass = fontPairClass ?? '';
-
-      body.classList.add(this.#activeFontPairClass);
-    } else {
-      this.#activeFontPairClass = null;
-    }
-  }
-
-  #setLanguage(language: LanguageOption['value']): void {
-    this.#renderer2.setAttribute(this.#document.documentElement, 'lang', language);
-
-    this.#translocoService.setActiveLang(language);
-  }
-
-  #setPlatformClass(): void {
-    const platform = navigator.platform;
-
-    const platformClass = (() => {
-      switch (true) {
-        case /mac/i.test(platform):
-          return 'macos';
-        case /win/i.test(platform):
-          return 'windows';
-        case /linux/i.test(platform):
-          return 'linux';
-        case /android/i.test(platform):
-          return 'android';
-        case /iphone|ipad|ipod/i.test(platform):
-          return 'ios';
-        default:
-          return null;
-      }
-    })();
-
-    if (platformClass) {
-      this.#document.body.classList.add(platformClass);
-    }
-  }
-
-  #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
-    colorScheme ??= this.#breakpointObserver.isMatched('(prefers-color-scheme: dark)')
-      ? 'dark'
-      : 'light';
-
-    const colorSchemeOption: ColorSchemeOption =
-      COLOR_SCHEME_OPTIONS.find((colorSchemeOption) => colorSchemeOption.value === colorScheme) ??
-      DEFAULT_COLOR_SCHEME_OPTION;
-
-    this.#meta.updateTag({ content: colorSchemeOption.themeColor, name: 'theme-color' });
   }
 }

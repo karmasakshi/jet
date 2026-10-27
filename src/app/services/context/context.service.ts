@@ -1,0 +1,178 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
+import {
+  computed,
+  DestroyRef,
+  DOCUMENT,
+  effect,
+  inject,
+  Service,
+  Signal,
+  untracked,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Meta } from '@angular/platform-browser';
+import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
+import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
+import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
+import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { TranslocoService } from '@jsverse/transloco';
+import { LoggerService } from '../logger/logger.service';
+import { SettingsService } from '../settings/settings.service';
+
+@Service()
+export class ContextService {
+  readonly #breakpointObserver = inject(BreakpointObserver);
+  readonly #destroyRef = inject(DestroyRef);
+  readonly #document = inject(DOCUMENT);
+  readonly #meta = inject(Meta);
+  readonly #loggerService = inject(LoggerService);
+  readonly #settingsService = inject(SettingsService);
+  readonly #translocoService = inject(TranslocoService);
+
+  #activeColorSchemeClass: null | string;
+  #activeFontPairClass: null | string;
+  readonly #isPwaMode: boolean;
+  readonly #colorSchemeOption: Signal<ColorSchemeOption>;
+  readonly #languageOption: Signal<LanguageOption>;
+
+  public constructor() {
+    this.#activeColorSchemeClass = null;
+
+    this.#activeFontPairClass = null;
+
+    this.#isPwaMode = this.#breakpointObserver.isMatched('(display-mode: standalone)');
+
+    this.#colorSchemeOption = computed(() => this.#settingsService.settings().colorSchemeOption);
+
+    this.#languageOption = computed(() => this.#settingsService.settings().languageOption);
+
+    if (this.#isPwaMode) {
+      this.#document.body.classList.add('pwa');
+      this.#disableUserScalable();
+    }
+
+    this.#setPlatformClass();
+
+    this.#breakpointObserver
+      .observe('(prefers-color-scheme: dark)')
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe(() => {
+        this.#setThemeColorMeta(this.#colorSchemeOption().value);
+      });
+
+    effect(
+      () => {
+        this.#loggerService.logEffectRun('languageOption');
+
+        const languageOption: LanguageOption = this.#languageOption();
+
+        untracked(() => {
+          this.#setFontPairClass(languageOption.fontPairClass);
+
+          this.#setLanguage(languageOption.value);
+        });
+      },
+      { debugName: 'languageOption' },
+    );
+
+    effect(
+      () => {
+        this.#loggerService.logEffectRun('colorSchemeOption');
+
+        const colorSchemeOption: ColorSchemeOption = this.#colorSchemeOption();
+
+        untracked(() => {
+          this.#setColorScheme(colorSchemeOption.value);
+
+          this.#setThemeColorMeta(colorSchemeOption.value);
+        });
+      },
+      { debugName: 'colorSchemeOption' },
+    );
+
+    this.#loggerService.logServiceInitialization('ContextService');
+  }
+
+  #disableUserScalable(): void {
+    this.#meta.updateTag({
+      content: 'initial-scale=0.85, user-scalable=no, viewport-fit=cover, width=device-width',
+      name: 'viewport',
+    });
+  }
+
+  #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
+    const body: HTMLElement = this.#document.body;
+
+    if (this.#activeColorSchemeClass) {
+      body.classList.remove(this.#activeColorSchemeClass);
+    }
+
+    if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+      this.#activeColorSchemeClass = colorScheme ?? '';
+
+      body.classList.add(this.#activeColorSchemeClass);
+    } else {
+      this.#activeColorSchemeClass = null;
+    }
+  }
+
+  #setFontPairClass(fontPairClass: LanguageOption['fontPairClass']): void {
+    const body: HTMLElement = this.#document.body;
+
+    if (this.#activeFontPairClass) {
+      body.classList.remove(this.#activeFontPairClass);
+    }
+
+    if (fontPairClass !== DEFAULT_LANGUAGE_OPTION.fontPairClass) {
+      this.#activeFontPairClass = fontPairClass ?? '';
+
+      body.classList.add(this.#activeFontPairClass);
+    } else {
+      this.#activeFontPairClass = null;
+    }
+  }
+
+  #setLanguage(language: LanguageOption['value']): void {
+    this.#document.documentElement.lang = language;
+
+    this.#translocoService.setActiveLang(language);
+  }
+
+  #setPlatformClass(): void {
+    const platform = navigator.platform;
+
+    const platformClass = (() => {
+      switch (true) {
+        case /mac/i.test(platform):
+          return 'macos';
+        case /win/i.test(platform):
+          return 'windows';
+        case /linux/i.test(platform):
+          return 'linux';
+        case /android/i.test(platform):
+          return 'android';
+        case /iphone|ipad|ipod/i.test(platform):
+          return 'ios';
+        default:
+          return null;
+      }
+    })();
+
+    if (platformClass) {
+      this.#document.body.classList.add(platformClass);
+    }
+  }
+
+  #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
+    colorScheme ??= this.#breakpointObserver.isMatched('(prefers-color-scheme: dark)')
+      ? 'dark'
+      : 'light';
+
+    const colorSchemeOption: ColorSchemeOption =
+      COLOR_SCHEME_OPTIONS.find((colorSchemeOption) => colorSchemeOption.value === colorScheme) ??
+      DEFAULT_COLOR_SCHEME_OPTION;
+
+    this.#meta.updateTag({ content: colorSchemeOption.themeColor, name: 'theme-color' });
+  }
+}

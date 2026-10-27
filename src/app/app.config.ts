@@ -20,6 +20,7 @@ import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-bar.interceptor';
 import { timeoutInterceptor } from '@jet/interceptors/timeout/timeout.interceptor';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { ContextService } from '@jet/services/context/context.service';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
@@ -32,6 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideEnvironmentInitializer(() => {
       inject(ServiceWorkerService).subscribeToVersionUpdates();
+      inject(ContextService);
     }),
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
