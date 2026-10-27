@@ -1,9 +1,9 @@
 @use '@angular/material' as mat;
 @use '../_theme-colors' as mat-theme;
 
-@use 'pkg:@fontsource-variable/bricolage-grotesque/wght.css' as BricolageGrotesque;
-@use 'pkg:@fontsource-variable/noto-sans/wght.css' as NotoSans;
-@use 'pkg:@fontsource-variable/noto-sans-arabic/wght.css' as NotoSansArabic;
+@use 'pkg:@fontsource-variable/bricolage-grotesque/index.css' as BricolageGrotesque;
+@use 'pkg:@fontsource-variable/noto-sans/index.css' as NotoSans;
+@use 'pkg:@fontsource-variable/noto-sans-arabic/index.css' as NotoSansArabic;
 
 $brand-family: ('Bricolage Grotesque Variable', serif);
 $plain-family: ('Noto Sans Variable', sans-serif);
@@ -17,9 +17,7 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 }
 
 html {
-  text-size-adjust: 100%;
-
-  &.ios {
+  &.ios.pwa {
     --jet-safe-area-inset-top: calc(env(safe-area-inset-top) + 2rem);
   }
 

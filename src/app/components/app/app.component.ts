@@ -224,9 +224,11 @@ export class AppComponent implements OnInit {
         this.#progressBarService.hideProgressBar();
       });
 
+    this.#setPlatformClass();
+
     if (this.#isPwaMode) {
+      this.#document.documentElement.classList.add('pwa');
       this.#disableUserScalable();
-      this.#setPlatformClass();
     }
   }
 
