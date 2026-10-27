@@ -258,10 +258,6 @@ img {
   place-items: center;
 }
 
-.mat-expansion-panel-header-description {
-  justify-content: flex-end;
-}
-
 .mat-mdc-card {
   .mat-mdc-card-actions {
     gap: 8px;
@@ -271,16 +267,11 @@ img {
     min-width: 0;
   }
 
-  .mat-mdc-card-image {
-    object-fit: cover;
-    width: 100%;
-  }
-
   .mat-mdc-card-lg-image,
   .mat-mdc-card-md-image,
   .mat-mdc-card-sm-image,
   .mat-mdc-card-xl-image {
-    border-radius: var(--mat-sys-corner-medium) !important;
+    border-radius: var(--mat-sys-corner-small) !important;
   }
 }
 
