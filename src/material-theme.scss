@@ -1,14 +1,14 @@
 @use '@angular/material' as mat;
 @use '../_theme-colors' as mat-theme;
 
-@use 'pkg:@fontsource-variable/bricolage-grotesque/index.css' as BricolageGrotesque;
-@use 'pkg:@fontsource-variable/noto-sans/index.css' as NotoSans;
-@use 'pkg:@fontsource-variable/noto-sans-arabic/index.css' as NotoSansArabic;
+@use 'pkg:@fontsource-variable/bricolage-grotesque';
+@use 'pkg:@fontsource-variable/noto-sans';
+@use 'pkg:@fontsource-variable/noto-sans-arabic';
 
 $brand-family: ('Bricolage Grotesque Variable', serif);
 $plain-family: ('Noto Sans Variable', sans-serif);
 
-$arabic-brand-family: ('Noto Sans Arabic Variable', sans-serif);
+$arabic-brand-family: ('Noto Sans Arabic Variable', serif);
 $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
@@ -233,11 +233,11 @@ body {
       z-index: 2;
 
       .mat-mdc-tab-header-pagination-after {
-        padding-inline-end: calc(var(--jet-safe-area-end) + 8px);
+        padding-inline-end: calc(var(--jet-safe-area-end) + 4px);
       }
 
       .mat-mdc-tab-header-pagination-before {
-        padding-inline-start: calc(var(--jet-safe-area-start) + 8px);
+        padding-inline-start: calc(var(--jet-safe-area-start) + 4px);
       }
 
       .mat-mdc-tab-link-container {
