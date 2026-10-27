@@ -1,3 +1,4 @@
+@let _activeNavItemPath = activeNavItemPath();
 @let _directionality = directionality();
 @let _isLargeViewport = isLargeViewport();
 @let _matSidenavMode = matSidenavMode();
@@ -16,7 +17,7 @@
       [(opened)]="isMatSidenavOpen"
     >
       <jet-sidenav
-        [activeNavItemPath]="activeNavItemPath"
+        [activeNavItemPath]="_activeNavItemPath"
         (clickNavItem)="_matSidenavMode === 'over' && matSidenav.close()"
       />
     </mat-sidenav>
@@ -49,7 +50,7 @@
             <a
               mat-tab-link
               style="min-width: 0"
-              [active]="activeNavItemPath === navItem.path"
+              [active]="navItem.path === _activeNavItemPath"
               [aria-label]="navItem.nameKey | transloco"
               [routerLink]="[navItem.path]"
             >
