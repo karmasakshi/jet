@@ -37,12 +37,12 @@
     "srcPath": "./node_modules/@material-symbols/svg-400/rounded"
   },
   "dependencies": {
-    "@angular/cdk": "^22.2.3",
+    "@angular/cdk": "^22.2.4",
     "@angular/common": "^22.2.3",
     "@angular/compiler": "^22.2.3",
     "@angular/core": "^22.2.3",
     "@angular/forms": "^22.2.3",
-    "@angular/material": "^22.2.3",
+    "@angular/material": "^22.2.4",
     "@angular/platform-browser": "^22.2.3",
     "@angular/platform-server": "^22.2.3",
     "@angular/router": "^22.2.3",
@@ -52,7 +52,7 @@
     "@fontsource-variable/noto-sans": "^5.3.0",
     "@fontsource-variable/noto-sans-arabic": "^5.3.0",
     "@jsverse/transloco": "^8.4.0",
-    "@material-symbols/svg-400": "^0.48.0",
+    "@material-symbols/svg-400": "^0.48.1",
     "@supabase/supabase-js": "^2.118.0",
     "ga-gtag": "^1.2.0",
     "jwt-decode": "^4.0.0",

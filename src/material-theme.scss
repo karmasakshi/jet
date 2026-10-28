@@ -42,7 +42,7 @@ html {
   @include mat.card-overrides(
     (
       elevated-container-elevation: var(--mat-sys-level0),
-      subtitle-text-color: var(--mat-sys-outline),
+      subtitle-text-color: var(--mat-sys-on-surface-variant),
     )
   );
 
