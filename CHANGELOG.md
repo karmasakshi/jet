@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.1](https://github.com/karmasakshi/jet/compare/v6.2.0...v6.2.1) (2026-10-28)
+
+
+### Bug Fixes
+
+* **general:** extra padding in footer ([96a7ad0](https://github.com/karmasakshi/jet/commit/96a7ad034afbf0bb353e919a1b0daab5c0bba7a9))
+
 ## [6.2.0](https://github.com/karmasakshi/jet/compare/v6.1.0...v6.2.0) (2026-10-22)
 
 
