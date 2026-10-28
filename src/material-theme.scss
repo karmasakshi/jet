@@ -17,6 +17,7 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 }
 
 html {
+  background: red;
   color-scheme: light dark;
 
   @include mat.theme(
