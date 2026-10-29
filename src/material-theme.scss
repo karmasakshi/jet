@@ -19,6 +19,7 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 html {
   background: var(--mat-sys-surface);
   color-scheme: light dark;
+  height: 100%;
 
   @include mat.theme(
     (
@@ -99,6 +100,7 @@ body {
   background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
+  height: 100%;
   margin: 0;
 
   &.arabic {
@@ -131,8 +133,10 @@ body {
 }
 
 .jet-sidenav-container {
+  height: 100%;
+  min-height: 400px;
   min-width: 375px;
-  overflow-x: auto;
+  overflow: auto;
 
   &[dir='ltr'] {
     --jet-safe-area-start: env(safe-area-inset-left);
@@ -174,7 +178,7 @@ body {
   .jet-sidenav-content {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    padding-bottom: env(safe-area-inset-bottom);
     padding-top: var(--jet-safe-area-inset-top);
 
     .jet-sidenav-content-toolbar {
@@ -212,7 +216,7 @@ body {
 
     footer {
       background-color: var(--mat-sys-surface-container-low);
-      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      padding-bottom: 16px;
       padding-inline-end: calc(16px + var(--jet-safe-area-end));
       padding-inline-start: 16px;
       padding-top: 16px;
