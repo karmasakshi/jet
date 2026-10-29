@@ -6,7 +6,7 @@ export const COLOR_SCHEME_OPTIONS: ColorSchemeOption[] = [
     iconName: 'contrast-fill',
     nameKey: marker('constants.automatic'),
     themeColor: '#ffffff',
-    value: null,
+    value: 'automatic',
   },
   {
     iconName: 'light-mode-fill',

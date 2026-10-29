@@ -16,6 +16,7 @@ import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
+import { ColorScheme } from '@jet/types/color-scheme.type';
 import { TranslocoService } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -30,14 +31,14 @@ export class ContextService {
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
-  #activeColorSchemeClass: null | string;
+  #activeColorScheme: string;
   #activeFontPairClass: null | string;
   readonly #isPwaMode: boolean;
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
   readonly #languageOption: Signal<LanguageOption>;
 
   public constructor() {
-    this.#activeColorSchemeClass = null;
+    this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
     this.#activeFontPairClass = null;
 
@@ -101,19 +102,21 @@ export class ContextService {
     });
   }
 
-  #setColorScheme(colorScheme: ColorSchemeOption['value']): void {
-    const body: HTMLElement = this.#document.body;
-
-    if (this.#activeColorSchemeClass) {
-      body.classList.remove(this.#activeColorSchemeClass);
+  #setColorScheme(colorScheme: ColorScheme): void {
+    if (this.#activeColorScheme === colorScheme) {
+      return;
     }
 
-    if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      this.#activeColorSchemeClass = colorScheme ?? '';
+    const body: HTMLElement = this.#document.body;
 
-      body.classList.add(this.#activeColorSchemeClass);
-    } else {
-      this.#activeColorSchemeClass = null;
+    if (this.#activeColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+      body.classList.remove(this.#activeColorScheme);
+    }
+
+    this.#activeColorScheme = colorScheme;
+
+    if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+      body.classList.add(colorScheme);
     }
   }
 
@@ -164,7 +167,7 @@ export class ContextService {
     }
   }
 
-  #setThemeColorMeta(colorScheme: ColorSchemeOption['value']): void {
+  #setThemeColorMeta(colorScheme: ColorScheme): void {
     colorScheme ??= this.#breakpointObserver.isMatched('(prefers-color-scheme: dark)')
       ? 'dark'
       : 'light';
