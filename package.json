@@ -31,7 +31,7 @@
     "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @eslint/js @jsverse/transloco-keys-manager @ngneat/svg-generator @ngx-env/builder @tailwindcss/postcss @types/ga-gtag @types/node angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest"
   },
   "private": true,
-  "packageManager": "npm@12.2.0",
+  "packageManager": "npm@12.2.1",
   "svgGenerator": {
     "outputPath": "./src/app/svgs",
     "srcPath": "./node_modules/@material-symbols/svg-400/rounded"
