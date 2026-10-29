@@ -11,7 +11,7 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
   },
   {
     direction: 'rtl',
-    fontPairClass: 'arabic',
+    fontPairClass: 'ar',
     iconName: 'translate-fill',
     nameKey: marker('constants.arabic'),
     value: 'ar',

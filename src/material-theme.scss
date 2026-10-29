@@ -13,7 +13,6 @@ $arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
   --jet-safe-area-inset-top: env(safe-area-inset-top);
-  --jet-sidenav-width: 240px;
 }
 
 html {
@@ -101,9 +100,8 @@ body {
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
   height: 100%;
-  margin: 0;
 
-  &.arabic {
+  &.ar {
     @include mat.theme(
       (
         typography: (
@@ -134,7 +132,6 @@ body {
 
 .jet-sidenav-container {
   height: 100%;
-  min-height: 440px;
   min-width: 375px;
   overflow: auto !important;
 
@@ -154,7 +151,7 @@ body {
 
     @include mat.sidenav-overrides(
       (
-        container-width: calc(var(--jet-sidenav-width) + var(--jet-safe-area-start)),
+        container-width: calc(240px + var(--jet-safe-area-start)),
       )
     );
 
@@ -181,7 +178,7 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
     padding-top: var(--jet-safe-area-inset-top);
 
-    &.jet-add-bottom-margin {
+    &.jet-add-nav-margin {
       padding-bottom: calc(env(safe-area-inset-bottom) + 48px);
     }
 
@@ -238,11 +235,11 @@ body {
       z-index: 2;
 
       .mat-mdc-tab-header-pagination-after {
-        padding-inline-end: calc(var(--jet-safe-area-end) + 4px);
+        padding-inline-end: calc(4px + var(--jet-safe-area-end));
       }
 
       .mat-mdc-tab-header-pagination-before {
-        padding-inline-start: calc(var(--jet-safe-area-start) + 4px);
+        padding-inline-start: calc(4px + var(--jet-safe-area-start));
       }
 
       .mat-mdc-tab-link-container {
@@ -255,7 +252,10 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+
+  .mat-mdc-form-field {
+    margin-bottom: 8px;
+  }
 }
 
 img {
@@ -264,19 +264,16 @@ img {
 }
 
 .mat-mdc-card {
+  .mdc-card__media:last-child {
+    border-radius: var(--mat-sys-corner-small);
+  }
+
   .mat-mdc-card-actions {
     gap: 8px;
   }
 
   .mat-mdc-card-header-text {
-    min-width: 0;
-  }
-
-  .mat-mdc-card-lg-image,
-  .mat-mdc-card-md-image,
-  .mat-mdc-card-sm-image,
-  .mat-mdc-card-xl-image {
-    border-radius: var(--mat-sys-corner-small) !important;
+    overflow: hidden;
   }
 }
 
