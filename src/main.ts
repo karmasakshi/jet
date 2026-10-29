@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from '@jet/app.config';
 import { AppComponent } from '@jet/components/app/app.component';

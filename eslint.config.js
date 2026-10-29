@@ -9,8 +9,6 @@ module.exports = defineConfig([
   globalIgnores([
     './src/app/svgs',
     './src/app/types/supabase/database.type.ts',
-    './src/env.d.ts',
-    './src/main.ts',
     './supabase',
     './transloco.config.ts',
   ]),

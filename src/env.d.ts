@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 declare interface Env {
   readonly HUSKY: string;
-  readonly NODE_ENV: string;
   readonly NG_APP_APP_ID: string;
   readonly NG_APP_APP_URL: string;
   readonly NG_APP_GOOGLE_ANALYTICS_MEASUREMENT_ID: string;
@@ -8,6 +9,7 @@ declare interface Env {
   readonly NG_APP_IS_LOGGING_ENABLED: string;
   readonly NG_APP_SUPABASE_PROJECT_URL: string;
   readonly NG_APP_SUPABASE_PUBLISHABLE_KEY: string;
+  readonly NODE_ENV: string;
 }
 
 declare interface ImportMeta {
