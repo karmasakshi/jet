@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import { Directive, inject, input } from '@angular/core';
 import { AnalyticsEvent } from '@jet/interfaces/analytics-event.interface';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';

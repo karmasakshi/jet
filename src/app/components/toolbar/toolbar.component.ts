@@ -12,7 +12,7 @@ import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.serv
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { shortTextFillIcon } from '@jet/svgs/short_text-fill';
 import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
-import { registerSvgIcon } from '@jet/utilities/register-svg-icon.utility';
+import { addSvgIcon } from '@jet/utilities/add-svg-icon.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -54,7 +54,7 @@ export class ToolbarComponent {
   public constructor() {
     addSvgIconLiteral([shortTextFillIcon]);
 
-    registerSvgIcon('logo', './media/logo.svg');
+    addSvgIcon('logo', './media/logo.svg');
 
     this.progressBarConfiguration = this.#progressBarService.progressBarConfiguration;
 

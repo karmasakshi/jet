@@ -52,6 +52,11 @@ module.exports = defineConfig([
       ],
       '@typescript-eslint/naming-convention': [
         'error',
+        {
+          selector: 'objectLiteralProperty',
+          format: null,
+          filter: { regex: '^\\(.*\\)$', match: true },
+        },
         { selector: 'default', format: ['camelCase'], leadingUnderscore: 'forbid' },
         { selector: 'enumMember', format: ['PascalCase'], leadingUnderscore: 'forbid' },
         { selector: 'parameter', format: ['camelCase'], leadingUnderscore: 'forbid' },
