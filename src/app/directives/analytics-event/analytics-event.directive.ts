@@ -6,14 +6,14 @@ import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 
 @Directive({ host: { '(click)': 'logAnalyticsEvent()' }, selector: '[jetAnalyticsEvent]' })
-export class AnalyticsDirective {
+export class AnalyticsEventDirective {
   readonly #analyticsService = inject(AnalyticsService);
   readonly #loggerService = inject(LoggerService);
 
   public readonly jetAnalyticsEvent = input.required<AnalyticsEvent>();
 
   public constructor() {
-    this.#loggerService.logDirectiveInitialization('AnalyticsDirective');
+    this.#loggerService.logDirectiveInitialization('AnalyticsEventDirective');
   }
 
   protected logAnalyticsEvent(): void {

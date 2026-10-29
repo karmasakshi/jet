@@ -5,7 +5,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
-import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
 import { ProgressBarConfiguration } from '@jet/interfaces/progress-bar-configuration.interface';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -23,7 +23,7 @@ import { TranslocoModule } from '@jsverse/transloco';
     MatToolbarModule,
     MatTooltipModule,
     RouterLink,
-    AnalyticsDirective,
+    AnalyticsEventDirective,
     TranslocoModule,
   ],
   selector: 'jet-toolbar',

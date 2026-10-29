@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
-import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
 import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -44,7 +44,7 @@ import { PageComponent } from '../page/page.component';
     MatInputModule,
     MatTooltipModule,
     RouterLink,
-    AnalyticsDirective,
+    AnalyticsEventDirective,
     TranslocoModule,
     PageComponent,
   ],

@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { NAV_ITEMS } from '@jet/constants/nav-items.constant';
-import { AnalyticsDirective } from '@jet/directives/analytics/analytics.directive';
+import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
 import { NavItem } from '@jet/interfaces/nav-item.interface';
 import { BadgeContentService } from '@jet/services/badge-content/badge-content.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -27,7 +27,7 @@ import { TranslocoModule } from '@jsverse/transloco';
     MatToolbarModule,
     MatTooltipModule,
     RouterLink,
-    AnalyticsDirective,
+    AnalyticsEventDirective,
     TranslocoModule,
   ],
   selector: 'jet-sidenav',

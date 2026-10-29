@@ -11,7 +11,7 @@ export class ToolbarTitleService {
   public readonly toolbarTitle: Signal<string>;
 
   public constructor() {
-    this.#toolbarTitle = signal(translate('constants.loading'));
+    this.#toolbarTitle = signal(translate('toolbar.loading'));
 
     this.toolbarTitle = this.#toolbarTitle.asReadonly();
 
