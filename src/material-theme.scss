@@ -8,11 +8,12 @@
 $brand-family: ('Bricolage Grotesque Variable', serif);
 $plain-family: ('Noto Sans Variable', sans-serif);
 
-$arabic-brand-family: ('Noto Sans Arabic Variable', serif);
-$arabic-plain-family: ('Noto Sans Arabic Variable', sans-serif);
+$ar-brand-family: ('Noto Sans Arabic Variable', serif);
+$ar-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
   --jet-safe-area-inset-top: env(safe-area-inset-top);
+  --jet-sidenav-width: 240px;
 }
 
 html {
@@ -77,6 +78,7 @@ html {
   @include mat.sidenav-overrides(
     (
       container-background-color: var(--mat-sys-surface-container-low),
+      container-width: var(--jet-sidenav-width),
     )
   );
 
@@ -105,8 +107,8 @@ body {
     @include mat.theme(
       (
         typography: (
-          brand-family: $arabic-brand-family,
-          plain-family: $arabic-plain-family,
+          brand-family: $ar-brand-family,
+          plain-family: $ar-plain-family,
           bold-weight: 700,
           medium-weight: 500,
           regular-weight: 400,
@@ -151,7 +153,7 @@ body {
 
     @include mat.sidenav-overrides(
       (
-        container-width: calc(240px + var(--jet-safe-area-start)),
+        container-width: calc(var(--jet-sidenav-width) + var(--jet-safe-area-start)),
       )
     );
 
