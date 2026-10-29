@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:jet-tau.vercel.app:server:mcp-server",
+      "displayName": "Jet",
+      "type": "application/mcp-server-card+json",
+      "url": "https://jet-tau.vercel.app/mcp/server.json",
+      "description": "Angular starter kit for building quality web apps fast.",
+      "capabilities": [],
+      "representativeQueries": []
+    }
+  ]
+}
