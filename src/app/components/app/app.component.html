@@ -49,7 +49,6 @@
           @for (navItem of navItems; track navItem.path) {
             <a
               mat-tab-link
-              style="min-width: 0"
               [active]="navItem.path === _navItemPath"
               [aria-label]="navItem.nameKey | transloco"
               [routerLink]="[navItem.path]"
