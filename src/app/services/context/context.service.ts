@@ -17,6 +17,7 @@ import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { ColorScheme } from '@jet/types/color-scheme.type';
+import { FontPair } from '@jet/types/font-pair.type';
 import { TranslocoService } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -32,7 +33,7 @@ export class ContextService {
   readonly #translocoService = inject(TranslocoService);
 
   #activeColorScheme: string;
-  #activeFontPairClass: null | string;
+  #activeFontPair: string;
   readonly #isPwaMode: boolean;
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
   readonly #languageOption: Signal<LanguageOption>;
@@ -40,7 +41,7 @@ export class ContextService {
   public constructor() {
     this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
 
-    this.#activeFontPairClass = null;
+    this.#activeFontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
 
     this.#isPwaMode = this.#breakpointObserver.isMatched('(display-mode: standalone)');
 
@@ -69,7 +70,7 @@ export class ContextService {
         const languageOption: LanguageOption = this.#languageOption();
 
         untracked(() => {
-          this.#setFontPairClass(languageOption.fontPairClass);
+          this.#setFontPairClass(languageOption.fontPair);
 
           this.#setLanguage(languageOption.value);
         });
@@ -120,19 +121,21 @@ export class ContextService {
     }
   }
 
-  #setFontPairClass(fontPairClass: LanguageOption['fontPairClass']): void {
-    const body: HTMLElement = this.#document.body;
-
-    if (this.#activeFontPairClass) {
-      body.classList.remove(this.#activeFontPairClass);
+  #setFontPairClass(fontPair: FontPair): void {
+    if (this.#activeFontPair === fontPair) {
+      return;
     }
 
-    if (fontPairClass !== DEFAULT_LANGUAGE_OPTION.fontPairClass) {
-      this.#activeFontPairClass = fontPairClass ?? '';
+    const body: HTMLElement = this.#document.body;
 
-      body.classList.add(this.#activeFontPairClass);
-    } else {
-      this.#activeFontPairClass = null;
+    if (this.#activeFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+      body.classList.remove(this.#activeFontPair);
+    }
+
+    this.#activeFontPair = fontPair;
+
+    if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
+      body.classList.add(fontPair);
     }
   }
 
