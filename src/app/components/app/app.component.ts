@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
   protected readonly matSidenavMode: Signal<MatDrawerMode>;
   protected readonly navItemPath: Signal<NavItem['path'] | undefined>;
   protected readonly navItems: NavItem[];
-  protected readonly shouldAddSafeArea: Signal<boolean>;
+  protected readonly shouldAddSafeAreaPadding: Signal<boolean>;
 
   public constructor() {
     addSvgIconLiteral([homeFillIcon, personFillIcon, tuneFillIcon]);
@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
 
     this.navItems = NAV_ITEMS;
 
-    this.shouldAddSafeArea = computed(() =>
+    this.shouldAddSafeAreaPadding = computed(() =>
       this.matSidenavMode() === 'over' ? true : !this.isMatSidenavOpen(),
     );
 

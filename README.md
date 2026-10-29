@@ -170,7 +170,6 @@ Nice to do:
 - [DEFAULT_LANGUAGE_OPTION](./src/app/constants/default-language-option.constant.ts)
 - [DEFAULT_SETTINGS](./src/app/constants/default-settings.constant.ts)
 - [LANGUAGE_OPTIONS](./src/app/constants/language-options.constant.ts)
-- [NAVIGATION_MENU_ITEMS](./src/app/constants/navigation-menu-items.constant.ts)
 
 <br />
 
@@ -311,7 +310,7 @@ In the template, wrap the contents in:
 - Update spec
 - Add a route to it in [app.routes.ts](./src/app/app.routes.ts)
 - Update [sitemap-main.xml](./public/sitemaps/sitemap-main.xml)
-- If required, add an icon and navigation link to it in [NAVIGATION_MENU_ITEMS](./src/app/constants/navigation-menu-items.constant.ts)
+- If required, add an icon and navigation link to it
 
 In the template, wrap the contents in:
 

@@ -1,12 +1,12 @@
 @let _isLargeViewport = isLargeViewport();
 @let _progressBarConfiguration = progressBarConfiguration();
-@let _shouldAddSafeArea = shouldAddSafeArea();
+@let _shouldAddSafeAreaPadding = shouldAddSafeAreaPadding();
 @let _title = title();
 
 <ng-container *transloco="let t; prefix: 'toolbar'">
   <mat-toolbar
     class="jet-sidenav-content-toolbar"
-    [class.jet-add-safe-area]="_shouldAddSafeArea"
+    [class.jet-add-safe-area-padding]="_shouldAddSafeAreaPadding"
   >
     <mat-progress-bar
       [aria-label]="t('loading')"
@@ -21,9 +21,9 @@
         matIconButton
         matTooltipPosition="after"
         type="button"
-        [aria-label]="t('toggle-navigation-menu')"
+        [aria-label]="t('toggle-menu')"
         [jetAnalyticsEvent]="{ name: 'toggle_sidenav' }"
-        [matTooltip]="t('toggle-navigation-menu')"
+        [matTooltip]="t('toggle-menu')"
         (click)="toggleMatSidenav.emit()"
       >
         <mat-icon svgIcon="short-text-fill" />

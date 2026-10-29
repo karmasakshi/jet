@@ -32,7 +32,7 @@ describe('ToolbarComponent', () => {
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('isLargeViewport', undefined);
-    fixture.componentRef.setInput('shouldAddSafeArea', undefined);
+    fixture.componentRef.setInput('shouldAddSafeAreaPadding', undefined);
     await fixture.whenStable();
   });
 

@@ -2,7 +2,7 @@
 @let _isLargeViewport = isLargeViewport();
 @let _matSidenavMode = matSidenavMode();
 @let _navItemPath = navItemPath();
-@let _shouldAddSafeArea = shouldAddSafeArea();
+@let _shouldAddSafeAreaPadding = shouldAddSafeAreaPadding();
 
 <ng-container *transloco="let t; prefix: 'app'">
   <mat-sidenav-container
@@ -27,15 +27,15 @@
     >
       <jet-toolbar
         [isLargeViewport]="_isLargeViewport"
-        [shouldAddSafeArea]="_shouldAddSafeArea"
+        [shouldAddSafeAreaPadding]="_shouldAddSafeAreaPadding"
         (toggleMatSidenav)="matSidenav.toggle()"
       />
       <mat-tab-nav-panel #tabPanel>
-        <main [class.jet-add-safe-area]="_shouldAddSafeArea">
+        <main [class.jet-add-safe-area-padding]="_shouldAddSafeAreaPadding">
           <router-outlet />
         </main>
       </mat-tab-nav-panel>
-      <footer [class.jet-add-safe-area]="_shouldAddSafeArea">
+      <footer [class.jet-add-safe-area-padding]="_shouldAddSafeAreaPadding">
         <jet-footer />
       </footer>
       @if (!_isLargeViewport) {

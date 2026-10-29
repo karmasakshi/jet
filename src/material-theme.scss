@@ -195,7 +195,7 @@ body {
         )
       );
 
-      &.jet-add-safe-area {
+      &.jet-add-safe-area-padding {
         padding-inline-start: calc(16px + var(--jet-safe-area-start));
       }
     }
@@ -209,7 +209,7 @@ body {
         padding-inline-start: 16px;
         padding-top: 16px;
 
-        &.jet-add-safe-area {
+        &.jet-add-safe-area-padding {
           padding-inline-start: calc(16px + var(--jet-safe-area-start));
         }
       }
@@ -222,7 +222,7 @@ body {
       padding-inline-start: 16px;
       padding-top: 16px;
 
-      &.jet-add-safe-area {
+      &.jet-add-safe-area-padding {
         padding-inline-start: calc(16px + var(--jet-safe-area-start));
       }
     }

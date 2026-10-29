@@ -44,7 +44,7 @@ export class ToolbarComponent {
   readonly #toolbarTitleService = inject(ToolbarTitleService);
 
   public readonly isLargeViewport = input.required<boolean>();
-  public readonly shouldAddSafeArea = input.required<boolean>();
+  public readonly shouldAddSafeAreaPadding = input.required<boolean>();
 
   protected readonly toggleMatSidenav = output<void>();
 
