@@ -1,7 +1,7 @@
-@let _navItemPath = navItemPath();
 @let _direction = direction();
 @let _isLargeViewport = isLargeViewport();
 @let _matSidenavMode = matSidenavMode();
+@let _navItemPath = navItemPath();
 @let _shouldAddSafeArea = shouldAddSafeArea();
 
 <ng-container *transloco="let t; prefix: 'app'">
@@ -23,7 +23,7 @@
     </mat-sidenav>
     <mat-sidenav-content
       class="jet-sidenav-content"
-      [class.jet-add-nav-margin]="!_isLargeViewport"
+      [class.jet-add-nav-padding]="!_isLargeViewport"
     >
       <jet-toolbar
         [isLargeViewport]="_isLargeViewport"

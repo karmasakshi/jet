@@ -178,7 +178,7 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
     padding-top: var(--jet-safe-area-inset-top);
 
-    &.jet-add-nav-margin {
+    &.jet-add-nav-padding {
       padding-bottom: calc(env(safe-area-inset-bottom) + 48px);
     }
 

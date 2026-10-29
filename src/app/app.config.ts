@@ -32,8 +32,8 @@ export const appConfig: ApplicationConfig = {
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'INR' },
     provideBrowserGlobalErrorListeners(),
     provideEnvironmentInitializer(() => {
-      inject(ServiceWorkerService).subscribeToVersionUpdates();
       inject(ContextService);
+      inject(ServiceWorkerService);
     }),
     { provide: MatPaginatorIntl, useClass: JetMatPaginatorIntl },
     {
