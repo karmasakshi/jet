@@ -32,7 +32,10 @@
           <router-outlet />
         </main>
       </mat-tab-nav-panel>
-      <footer [class.jet-add-safe-area]="_shouldAddSafeArea">
+      <footer
+        [class.jet-add-bottom-margin]="!_isLargeViewport"
+        [class.jet-add-safe-area]="_shouldAddSafeArea"
+      >
         <jet-footer />
       </footer>
       @if (!_isLargeViewport) {

@@ -163,7 +163,7 @@ body {
 
       @include mat.toolbar-overrides(
         (
-          container-background-color: transparent,
+          container-background-color: var(--mat-sidenav-container-background-color),
         )
       );
     }
@@ -190,7 +190,7 @@ body {
 
       @include mat.toolbar-overrides(
         (
-          container-background-color: transparent,
+          container-background-color: var(--mat-sys-background),
         )
       );
 
@@ -221,6 +221,10 @@ body {
       padding-inline-start: 16px;
       padding-top: 16px;
 
+      &.jet-add-bottom-margin {
+        margin-bottom: 48px;
+      }
+
       &.jet-add-safe-area {
         padding-inline-start: calc(16px + var(--jet-safe-area-start));
       }
@@ -228,7 +232,9 @@ body {
 
     .jet-tab-nav-bar {
       bottom: 0;
-      position: sticky;
+      left: 0;
+      position: fixed;
+      right: 0;
       z-index: 2;
 
       .mat-mdc-tab-header-pagination-after {
