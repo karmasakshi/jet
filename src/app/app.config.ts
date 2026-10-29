@@ -60,6 +60,8 @@ export const appConfig: ApplicationConfig = {
           (languageOption: LanguageOption): Language => languageOption.value,
         ),
         defaultLang: DEFAULT_LANGUAGE_OPTION.value,
+        failedRetries: 0,
+        fallbackLang: DEFAULT_LANGUAGE_OPTION.value,
         prodMode: !isDevMode(),
         reRenderOnLangChange: true,
       },

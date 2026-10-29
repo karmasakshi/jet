@@ -13,7 +13,7 @@ export class TableComponent {
 
   public readonly pageChange = output<PageEvent>();
 
-  public readonly count = input.required<number>();
+  public readonly length = input.required<number>();
   public readonly isLoading = input.required<boolean>();
   public readonly pageIndex = input.required<number>();
   public readonly pageSize = input.required<number>();

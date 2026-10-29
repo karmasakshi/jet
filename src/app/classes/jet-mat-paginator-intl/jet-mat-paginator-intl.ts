@@ -31,13 +31,10 @@ export class JetMatPaginatorIntl implements MatPaginatorIntl {
     this.#loggerService.logClassInitialization('JetMatPaginatorIntl');
   }
 
-  public getRangeLabel(page: number, pageSize: number, length: number): string {
-    if (!length) {
-      return translate('paginator.x-y', { x: 1, y: 1 });
-    }
+  public getRangeLabel(pageIndex: number, pageSize: number, length: number): string {
+    const x: number = length === 0 ? 0 : pageIndex * pageSize + 1;
+    const y: number = Math.min(length, (pageIndex + 1) * pageSize);
 
-    const pages: number = Math.ceil(length / pageSize);
-
-    return translate('paginator.x-y', { x: page + 1, y: pages });
+    return translate('paginator.x-y-z', { x, y, z: length });
   }
 }

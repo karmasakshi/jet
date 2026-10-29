@@ -15,7 +15,7 @@ describe('TableComponent', () => {
 
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('count', undefined);
+    fixture.componentRef.setInput('length', undefined);
     fixture.componentRef.setInput('isLoading', undefined);
     fixture.componentRef.setInput('pageIndex', undefined);
     fixture.componentRef.setInput('pageSize', undefined);

@@ -1,4 +1,4 @@
-@let _count = count();
+@let _length = length();
 @let _isLoading = isLoading();
 @let _pageIndex = pageIndex();
 @let _pageSize = pageSize();
@@ -11,7 +11,7 @@
   </div>
   <mat-paginator
     [disabled]="_isLoading"
-    [length]="_count"
+    [length]="_length"
     [pageIndex]="_pageIndex"
     [pageSize]="_pageSize"
     [pageSizeOptions]="[10, 25, 50]"

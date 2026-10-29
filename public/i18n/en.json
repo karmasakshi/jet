@@ -61,7 +61,7 @@
     "next-page": "Next page",
     "previous-page": "Previous page",
     "show": "Show",
-    "x-y": "{{ x }} / {{ y }}"
+    "x-y-z": "{{ x }} to {{ y }} (of {{ z }})"
   },
   "profile-page": {
     "avatar": "Avatar",
