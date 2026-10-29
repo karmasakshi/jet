@@ -134,9 +134,9 @@ body {
 
 .jet-sidenav-container {
   height: 100%;
-  min-height: 400px;
+  min-height: 440px;
   min-width: 375px;
-  overflow: auto;
+  overflow: auto !important;
 
   &[dir='ltr'] {
     --jet-safe-area-start: env(safe-area-inset-left);
@@ -221,10 +221,6 @@ body {
       padding-inline-start: 16px;
       padding-top: 16px;
 
-      &.jet-add-bottom-margin {
-        margin-bottom: 48px;
-      }
-
       &.jet-add-safe-area {
         padding-inline-start: calc(16px + var(--jet-safe-area-start));
       }
@@ -232,9 +228,7 @@ body {
 
     .jet-tab-nav-bar {
       bottom: 0;
-      left: 0;
-      position: fixed;
-      right: 0;
+      position: sticky;
       z-index: 2;
 
       .mat-mdc-tab-header-pagination-after {
