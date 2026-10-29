@@ -13,7 +13,6 @@ $ar-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
   --jet-safe-area-inset-top: env(safe-area-inset-top);
-  --jet-sidenav-width: 240px;
 }
 
 html {
@@ -78,7 +77,6 @@ html {
   @include mat.sidenav-overrides(
     (
       container-background-color: var(--mat-sys-surface-container-low),
-      container-width: var(--jet-sidenav-width),
     )
   );
 
@@ -153,7 +151,7 @@ body {
 
     @include mat.sidenav-overrides(
       (
-        container-width: calc(var(--jet-sidenav-width) + var(--jet-safe-area-start)),
+        container-width: calc(240px + var(--jet-safe-area-start)),
       )
     );
 
