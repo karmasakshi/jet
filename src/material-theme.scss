@@ -181,6 +181,10 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
     padding-top: var(--jet-safe-area-inset-top);
 
+    &.jet-add-bottom-margin {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 48px);
+    }
+
     .jet-sidenav-content-toolbar {
       gap: 8px;
       overflow-x: auto;
@@ -220,10 +224,6 @@ body {
       padding-inline-end: calc(16px + var(--jet-safe-area-end));
       padding-inline-start: 16px;
       padding-top: 16px;
-
-      &.jet-add-bottom-margin {
-        margin-bottom: 48px;
-      }
 
       &.jet-add-safe-area {
         padding-inline-start: calc(16px + var(--jet-safe-area-start));

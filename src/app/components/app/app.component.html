@@ -21,7 +21,10 @@
         (clickNavItem)="_matSidenavMode === 'over' && matSidenav.close()"
       />
     </mat-sidenav>
-    <mat-sidenav-content class="jet-sidenav-content">
+    <mat-sidenav-content
+      class="jet-sidenav-content"
+      [class.jet-add-bottom-margin]="!_isLargeViewport"
+    >
       <jet-toolbar
         [isLargeViewport]="_isLargeViewport"
         [shouldAddSafeArea]="_shouldAddSafeArea"
@@ -32,10 +35,7 @@
           <router-outlet />
         </main>
       </mat-tab-nav-panel>
-      <footer
-        [class.jet-add-bottom-margin]="!_isLargeViewport"
-        [class.jet-add-safe-area]="_shouldAddSafeArea"
-      >
+      <footer [class.jet-add-safe-area]="_shouldAddSafeArea">
         <jet-footer />
       </footer>
       @if (!_isLargeViewport) {
