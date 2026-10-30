@@ -6,11 +6,9 @@ import { finalize } from 'rxjs';
 export const progressBarInterceptor: HttpInterceptorFn = (req, next) => {
   const progressBarService = inject(ProgressBarService);
 
-  const method = req.method;
-
-  if (['GET', 'HEAD', 'OPTIONS'].includes(method)) {
+  if (['GET', 'HEAD', 'OPTIONS', 'QUERY'].includes(req.method)) {
     progressBarService.showQueryProgressBar();
-  } else if (['DELETE', 'PATCH', 'POST', 'PUT'].includes(method)) {
+  } else {
     progressBarService.showIndeterminateProgressBar();
   }
 

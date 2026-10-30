@@ -1,6 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-export const IS_LOGGING_ENABLED: InjectionToken<boolean> = new InjectionToken<boolean>(
-  'IS_LOGGING_ENABLED',
-  { factory: () => import.meta.env.NG_APP_IS_LOGGING_ENABLED !== 'false', providedIn: 'root' },
-);
+export const IS_LOGGING_ENABLED = new InjectionToken<boolean>('IS_LOGGING_ENABLED', {
+  factory: () => import.meta.env.NG_APP_IS_LOGGING_ENABLED === 'true',
+});
