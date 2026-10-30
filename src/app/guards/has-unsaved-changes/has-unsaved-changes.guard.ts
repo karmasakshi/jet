@@ -1,10 +1,10 @@
 import { inject } from '@angular/core';
 import { CanDeactivateFn } from '@angular/router';
-import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
+import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { DialogService } from '@jet/services/dialog/dialog.service';
 import { translate } from '@jsverse/transloco';
 
-export const hasUnsavedChangesGuard: CanDeactivateFn<CanComponentDeactivate> = (
+export const hasUnsavedChangesGuard: CanDeactivateFn<HasUnsavedChanges> = (
   component,
   _activatedRouteSnapshot,
   _currentRouterStateSnapshot,
@@ -16,7 +16,7 @@ export const hasUnsavedChangesGuard: CanDeactivateFn<CanComponentDeactivate> = (
     return true;
   }
 
-  if (component.hasUnsavedChanges()) {
+  if (component.isDirty()) {
     return dialogService.confirm({
       message: translate('confirmations.youll-lose-unsaved-changes-continue'),
     });

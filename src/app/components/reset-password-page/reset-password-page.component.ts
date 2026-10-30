@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -39,7 +40,7 @@ import { PageComponent } from '../page/page.component';
   styles: ``,
   templateUrl: './reset-password-page.component.html',
 })
-export class ResetPasswordPageComponent implements OnInit {
+export class ResetPasswordPageComponent implements HasUnsavedChanges, OnInit {
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
   readonly #alertService = inject(AlertService);
@@ -72,6 +73,14 @@ export class ResetPasswordPageComponent implements OnInit {
     this.resetPasswordFormGroup.patchValue({ email: this.email() });
   }
 
+  public isDirty(): boolean {
+    return this.resetPasswordFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.resetPasswordFormGroup.markAsPristine();
+  }
+
   protected async resetPasswordForEmail(email: string) {
     if (this.#isLoading) {
       return;
@@ -85,6 +94,8 @@ export class ResetPasswordPageComponent implements OnInit {
 
     try {
       await this.#userService.resetPasswordForEmail(email);
+
+      this.markAsPristine();
 
       void this.#router.navigateByUrl('/reset-password-email-sent');
     } catch (exception: unknown) {

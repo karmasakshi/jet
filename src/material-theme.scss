@@ -5,11 +5,11 @@
 @use 'pkg:@fontsource-variable/noto-sans';
 @use 'pkg:@fontsource-variable/noto-sans-arabic';
 
-$brand-family: ('Bricolage Grotesque Variable', serif);
-$plain-family: ('Noto Sans Variable', sans-serif);
+$bg-ns-brand-family: ('Bricolage Grotesque Variable', serif);
+$bg-ns-plain-family: ('Noto Sans Variable', sans-serif);
 
-$ar-brand-family: ('Noto Sans Arabic Variable', serif);
-$ar-plain-family: ('Noto Sans Arabic Variable', sans-serif);
+$nsa-nsa-brand-family: ('Noto Sans Arabic Variable', serif);
+$nsa-nsa-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 
 :root {
   --jet-safe-area-inset-top: env(safe-area-inset-top);
@@ -28,8 +28,8 @@ html {
         theme-type: color-scheme,
       ),
       typography: (
-        brand-family: $brand-family,
-        plain-family: $plain-family,
+        brand-family: $bg-ns-brand-family,
+        plain-family: $bg-ns-plain-family,
         bold-weight: 700,
         medium-weight: 500,
         regular-weight: 400,
@@ -105,8 +105,8 @@ body {
     @include mat.theme(
       (
         typography: (
-          brand-family: $ar-brand-family,
-          plain-family: $ar-plain-family,
+          brand-family: $nsa-nsa-brand-family,
+          plain-family: $nsa-nsa-plain-family,
           bold-weight: 700,
           medium-weight: 500,
           regular-weight: 400,

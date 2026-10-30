@@ -22,6 +22,7 @@ export const lazyRoutes: Routes = [
   },
   {
     canActivate: [isSignedOutGuard],
+    canDeactivate: [hasUnsavedChangesGuard],
     loadComponent: async () =>
       (await import('@jet/components/reset-password-page/reset-password-page.component'))
         .ResetPasswordPageComponent,
@@ -57,6 +58,7 @@ export const lazyRoutes: Routes = [
   },
   {
     canActivate: [isSignedOutGuard],
+    canDeactivate: [hasUnsavedChangesGuard],
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component')).SignUpPageComponent,
     path: 'sign-up',

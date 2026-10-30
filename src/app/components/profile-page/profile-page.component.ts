@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
-import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
+import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProfileService } from '@jet/services/profile/profile.service';
@@ -89,7 +89,7 @@ import { PageComponent } from '../page/page.component';
   `,
   templateUrl: './profile-page.component.html',
 })
-export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
+export class ProfilePageComponent implements HasUnsavedChanges, OnInit {
   readonly #formBuilder = inject(FormBuilder);
   readonly #alertService = inject(AlertService);
   readonly #loggerService = inject(LoggerService);
@@ -154,8 +154,12 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
     void this.#selectProfile();
   }
 
-  public hasUnsavedChanges(): boolean {
+  public isDirty(): boolean {
     return this.profileFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.profileFormGroup.markAsPristine();
   }
 
   protected async deleteAvatar(): Promise<void> {
@@ -291,7 +295,7 @@ export class ProfilePageComponent implements CanComponentDeactivate, OnInit {
 
       this.#patchProfileFormGroup(data);
 
-      this.profileFormGroup.markAsPristine();
+      this.markAsPristine();
 
       this.#alertService.showAlert(translate('alerts.profile-updated'));
     } catch (exception: unknown) {

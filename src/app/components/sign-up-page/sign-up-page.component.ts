@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -45,7 +46,7 @@ import { PageComponent } from '../page/page.component';
   styles: ``,
   templateUrl: './sign-up-page.component.html',
 })
-export class SignUpPageComponent implements OnInit {
+export class SignUpPageComponent implements HasUnsavedChanges, OnInit {
   readonly #destroyRef = inject(DestroyRef);
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
@@ -108,6 +109,14 @@ export class SignUpPageComponent implements OnInit {
       });
   }
 
+  public isDirty(): boolean {
+    return this.signUpFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.signUpFormGroup.markAsPristine();
+  }
+
   protected async signUp(email: string, password: string) {
     if (this.#isLoading) {
       return;
@@ -121,6 +130,8 @@ export class SignUpPageComponent implements OnInit {
 
     try {
       const { data } = await this.#userService.signUp(email, password, this.returnUrl());
+
+      this.markAsPristine();
 
       if (data.session === null) {
         void this.#router.navigateByUrl('/email-verification-pending');

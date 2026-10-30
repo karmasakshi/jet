@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { CanComponentDeactivate } from '@jet/interfaces/can-component-deactivate.interface';
+import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -46,7 +46,7 @@ import { PageComponent } from '../page/page.component';
   styles: ``,
   templateUrl: './update-password-page.component.html',
 })
-export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnInit {
+export class UpdatePasswordPageComponent implements HasUnsavedChanges, OnInit {
   readonly #destroyRef = inject(DestroyRef);
   readonly #formBuilder = inject(FormBuilder);
   readonly #router = inject(Router);
@@ -106,8 +106,12 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
       });
   }
 
-  public hasUnsavedChanges(): boolean {
+  public isDirty(): boolean {
     return this.updatePasswordFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.updatePasswordFormGroup.markAsPristine();
   }
 
   protected async updatePassword(password: string): Promise<void> {
@@ -124,7 +128,7 @@ export class UpdatePasswordPageComponent implements CanComponentDeactivate, OnIn
     try {
       await this.#userService.updateUser({ password });
 
-      this.updatePasswordFormGroup.markAsPristine();
+      this.markAsPristine();
 
       this.#alertService.showAlert(translate('alerts.password-updated'));
 
