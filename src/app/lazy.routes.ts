@@ -5,9 +5,7 @@ import { isSignedInGuard } from '@jet/guards/is-signed-in/is-signed-in.guard';
 import { isSignedOutGuard } from '@jet/guards/is-signed-out/is-signed-out.guard';
 import { ProfileService } from '@jet/services/profile/profile.service';
 
-const mainRoutes: Routes = [];
-
-const userRoutes: Routes = [
+export const lazyRoutes: Routes = [
   {
     data: { case: 'email-verification-pending' },
     loadComponent: async () =>
@@ -72,5 +70,3 @@ const userRoutes: Routes = [
     path: 'update-password',
   },
 ];
-
-export const lazyRoutes: Routes = [...mainRoutes, ...userRoutes];
