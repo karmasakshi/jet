@@ -171,13 +171,17 @@ export class ContextService {
   }
 
   #setThemeColorMeta(colorScheme: ColorScheme): void {
-    colorScheme ??= this.#breakpointObserver.isMatched('(prefers-color-scheme: dark)')
-      ? 'dark'
-      : 'light';
+    const resolvedColorScheme: ColorScheme =
+      colorScheme === 'automatic'
+        ? this.#breakpointObserver.isMatched('(prefers-color-scheme: dark)')
+          ? 'dark'
+          : 'light'
+        : colorScheme;
 
     const colorSchemeOption: ColorSchemeOption =
-      COLOR_SCHEME_OPTIONS.find((colorSchemeOption) => colorSchemeOption.value === colorScheme) ??
-      DEFAULT_COLOR_SCHEME_OPTION;
+      COLOR_SCHEME_OPTIONS.find(
+        (colorSchemeOption) => colorSchemeOption.value === resolvedColorScheme,
+      ) ?? DEFAULT_COLOR_SCHEME_OPTION;
 
     this.#meta.updateTag({ content: colorSchemeOption.themeColor, name: 'theme-color' });
   }
