@@ -1,4 +1,3 @@
-import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { AlertService } from '@jet/services/alert/alert.service';
@@ -13,7 +12,6 @@ describe('TranslocoHttpLoader', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(),
         provideHttpClientTesting(),
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },
