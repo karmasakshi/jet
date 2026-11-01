@@ -65,7 +65,10 @@
             }
           }
         },
-        "test": { "builder": "@ngx-env/builder:unit-test", "options": {} },
+        "test": {
+          "builder": "@ngx-env/builder:unit-test",
+          "options": { "reporters": ["default"] }
+        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": { "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"] }
