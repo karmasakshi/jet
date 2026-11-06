@@ -85,14 +85,6 @@ html {
       background-color: var(--mat-sys-surface-container-low),
     )
   );
-
-  @include mat.tabs-overrides(
-    (
-      background-color: var(--mat-sys-secondary),
-      divider-height: 0,
-      foreground-color: var(--mat-sys-on-secondary),
-    )
-  );
 }
 
 body {
@@ -228,11 +220,31 @@ body {
     }
 
     .jet-tab-nav-bar {
+      background-color: var(--mat-sys-secondary);
       bottom: 0;
       left: 0;
       position: fixed;
       right: 0;
       z-index: 2;
+
+      @include mat.tabs-overrides(
+        (
+          active-focus-indicator-color: var(--mat-sys-on-secondary),
+          active-focus-label-text-color: var(--mat-sys-on-secondary),
+          active-hover-indicator-color: var(--mat-sys-on-secondary),
+          active-hover-label-text-color: var(--mat-sys-on-secondary),
+          active-indicator-color: var(--mat-sys-on-secondary),
+          active-label-text-color: var(--mat-sys-on-secondary),
+          active-ripple-color: var(--mat-sys-on-secondary),
+          divider-height: 0,
+          inactive-focus-label-text-color: var(--mat-sys-on-secondary),
+          inactive-hover-label-text-color: var(--mat-sys-on-secondary),
+          inactive-label-text-color: var(--mat-sys-on-secondary),
+          inactive-ripple-color: var(--mat-sys-on-secondary),
+          pagination-icon-color: var(--mat-sys-on-secondary),
+          disabled-ripple-color: var(--mat-sys-on-secondary),
+        )
+      );
 
       .mat-mdc-tab-header-pagination-after {
         padding-inline-end: calc(4px + var(--jet-safe-area-end));
