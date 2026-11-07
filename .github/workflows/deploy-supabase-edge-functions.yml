@@ -23,8 +23,6 @@ jobs:
           persist-credentials: false
 
       - uses: supabase/setup-cli@v3 # https://github.com/marketplace/actions/supabase-cli-action
-        with:
-          version: latest
 
       - name: create-env
         env:
@@ -33,7 +31,7 @@ jobs:
           printf "REMOVE_ME=%s\n" "$REMOVE_ME" > .env
 
       - name: set-env
-        run: supabase secrets set --env-file .env --project-ref "$SUPABASE_PROJECT_ID"
+        run: supabase secrets set --env-file .env --remote="$SUPABASE_PROJECT_ID" --yes
 
       - name: deploy-supabase-edge-functions
-        run: supabase functions deploy --project-ref "$SUPABASE_PROJECT_ID"
+        run: supabase functions deploy --remote="$SUPABASE_PROJECT_ID" --yes

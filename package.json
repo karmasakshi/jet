@@ -16,10 +16,10 @@
     "lint-staged": "lint-staged",
     "prepare": "husky && npm run svg-generator",
     "supabase:db:diff": "supabase db diff",
-    "supabase:db:dump": "supabase db dump --data-only --local -f ./supabase/seed.sql",
+    "supabase:db:dump": "supabase db dump --data-only -f ./supabase/seed.sql",
     "supabase:db:reset": "supabase db reset",
     "supabase:functions:serve": "supabase functions serve",
-    "supabase:gen:types": "supabase gen types typescript --local > ./src/app/types/supabase/database.type.ts",
+    "supabase:gen:types": "supabase gen types typescript > ./src/app/types/supabase/database.type.ts",
     "supabase:start": "supabase start",
     "supabase:status": "supabase status",
     "supabase:stop": "supabase stop",
@@ -31,7 +31,7 @@
     "x:uninstall-devDependencies": "npm uninstall @angular/build @angular/cli @angular/compiler-cli @commitlint/cli @commitlint/config-conventional @eslint/js @jsverse/transloco-keys-manager @ngneat/svg-generator @ngx-env/builder @tailwindcss/postcss @types/ga-gtag @types/node angular-eslint eslint eslint-plugin-perfectionist husky jsdom lint-staged postcss prettier prettier-plugin-css-order prettier-plugin-organize-imports prettier-plugin-sql-cst supabase tailwindcss typescript typescript-eslint vitest"
   },
   "private": true,
-  "packageManager": "npm@12.2.1",
+  "packageManager": "npm@12.2.2",
   "svgGenerator": {
     "outputPath": "./src/app/svgs",
     "srcPath": "./node_modules/@material-symbols/svg-400/rounded"
@@ -58,7 +58,7 @@
     "jwt-decode": "^4.0.0",
     "rxjs": "^7.8.2",
     "tailwind-scrollbar-hide": "^4.0.0",
-    "tslib": "^2.8.1"
+    "tslib": "^2.9.1"
   },
   "devDependencies": {
     "@angular/build": "^22.2.5",
@@ -83,8 +83,8 @@
     "prettier": "^3.9.10",
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "prettier-plugin-sql-cst": "^0.23.1",
-    "supabase": "^2.122.0",
+    "prettier-plugin-sql-cst": "^0.24.0",
+    "supabase": "^3.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.1",

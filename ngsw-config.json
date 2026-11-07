@@ -13,7 +13,7 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/i18n/en.json"
+          "/i18n/**/en.json"
         ]
       }
     },
