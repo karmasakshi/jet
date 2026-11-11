@@ -122,7 +122,7 @@
     "password-error-minlength-x": "يجب أن تتكون كلمة المرور من {{ x }} أحرف على الأقل",
     "password-error-required": "كلمة المرور مطلوبة",
     "phone": "الهاتف",
-    "phone-error-pattern": "أدخل رقم هاتف هندي صالح",
+    "phone-error-pattern": "أدخل رقم هاتف صالحًا مع رمز البلد",
     "phone-error-required": "رقم الهاتف مطلوب",
     "phone-otp": "الهاتف + رمز التحقق",
     "resend-otp": "إعادة إرسال رمز التحقق",

@@ -122,7 +122,7 @@
     "password-error-minlength-x": "Password must be at least {{ x }} characters",
     "password-error-required": "Password is required",
     "phone": "Phone",
-    "phone-error-pattern": "Enter a valid Indian phone number",
+    "phone-error-pattern": "Enter a valid phone number with country code",
     "phone-error-required": "Phone is required",
     "phone-otp": "Phone + OTP",
     "resend-otp": "Resend OTP",

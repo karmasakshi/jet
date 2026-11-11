@@ -91,8 +91,8 @@ export class SignInPageComponent implements OnInit {
         Validators.pattern(/^[0-9]{6}$/),
         Validators.required,
       ]),
-      phone: this.#formBuilder.control<null | string>('+91', [
-        Validators.pattern(/^\+[1-9][0-9]{7,14}$/),
+      phone: this.#formBuilder.control<null | string>(null, [
+        Validators.pattern(/^\+?[1-9][0-9]{7,14}$/),
         Validators.required,
       ]),
     });
@@ -309,18 +309,6 @@ export class SignInPageComponent implements OnInit {
   #getSupabasePhone(phone: string): string {
     const trimmedPhone = phone.trim();
 
-    if (trimmedPhone.startsWith('+')) {
-      return trimmedPhone;
-    }
-
-    if (trimmedPhone.startsWith('91') && trimmedPhone.length === 12) {
-      return `+${trimmedPhone}`;
-    }
-
-    if (trimmedPhone.startsWith('0')) {
-      return `+91${trimmedPhone.slice(1)}`;
-    }
-
-    return `+91${trimmedPhone}`;
+    return trimmedPhone.startsWith('+') ? trimmedPhone : `+${trimmedPhone}`;
   }
 }
