@@ -12,7 +12,8 @@
         "sqlIdentifierCase": "lower",
         "sqlKeywordCase": "lower",
         "sqlLiteralCase": "lower",
-        "sqlTypeCase": "lower"
+        "sqlTypeCase": "lower",
+        "sqlWrap": "collapse"
       }
     }
   ],

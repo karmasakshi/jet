@@ -24,8 +24,7 @@ begin
   end if;
 
   insert into public.profiles (user_id, avatar_url, name, username)
-  values
-    (new.id, _avatar_url, _name, replace((new.id)::text, '-', '_'));
+  values (new.id, _avatar_url, _name, replace((new.id)::text, '-', '_'));
 
   return new;
 end;

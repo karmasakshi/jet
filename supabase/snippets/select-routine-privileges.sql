@@ -18,10 +18,7 @@ with
       ] as roles_to_check
   ),
   routine_info as (
-    select
-      p.oid,
-      p.proacl,
-      r.rolname as owner_role
+    select p.oid, p.proacl, r.rolname as owner_role
     from pg_proc as p
     join pg_namespace as n on n.oid = p.pronamespace
     join pg_roles as r on r.oid = p.proowner
@@ -37,11 +34,7 @@ with
         select 1
         from aclexplode(r.proacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'EXECUTE'
       ) as has_execute_direct
     from config as c
@@ -53,11 +46,7 @@ select
   cs.routine_owner,
   case
     when cs.has_execute_effective then
-      'EXECUTE' ||
-        case
-          when cs.has_execute_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'EXECUTE' || case when cs.has_execute_direct then ' (direct)' else ' (inherited)' end
   end as "execute"
 from current_state as cs
 order by cs.role_name;

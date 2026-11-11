@@ -15,10 +15,7 @@ with
     ] as roles_to_check
   ),
   extension_info as (
-    select
-      e.oid,
-      e.extname as extension_name,
-      r.rolname as owner_role
+    select e.oid, e.extname as extension_name, r.rolname as owner_role
     from pg_extension as e
     join pg_roles as r on r.oid = e.extowner
   ),
@@ -36,8 +33,6 @@ select
   cs.role_name,
   cs.extension_name,
   cs.extension_owner,
-  case
-    when cs.is_owner then 'OWNER'
-  end as "owner"
+  case when cs.is_owner then 'OWNER' end as "owner"
 from current_state as cs
 order by cs.extension_name, cs.role_name;

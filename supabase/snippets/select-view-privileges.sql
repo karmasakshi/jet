@@ -18,10 +18,7 @@ with
       ] as roles_to_check
   ),
   view_info as (
-    select
-      c.oid,
-      c.relacl,
-      r.rolname as owner_role
+    select c.oid, c.relacl, r.rolname as owner_role
     from pg_class as c
     join pg_namespace as n on n.oid = c.relnamespace
     join pg_roles as r on r.oid = c.relowner
@@ -43,77 +40,49 @@ with
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'SELECT'
       ) as has_select_direct,
       exists (
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'INSERT'
       ) as has_insert_direct,
       exists (
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'UPDATE'
       ) as has_update_direct,
       exists (
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'DELETE'
       ) as has_delete_direct,
       exists (
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'TRUNCATE'
       ) as has_truncate_direct,
       exists (
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'REFERENCES'
       ) as has_references_direct,
       exists (
         select 1
         from aclexplode(v.relacl) as acl
         where
-          acl.grantee =
-            case
-              when role_name = 'public' then 0
-              else to_regrole(role_name)
-            end
+          acl.grantee = case when role_name = 'public' then 0 else to_regrole(role_name) end
           and acl.privilege_type = 'TRIGGER'
       ) as has_trigger_direct
     from config as c
@@ -125,59 +94,31 @@ select
   cs.view_owner,
   case
     when cs.has_select_effective then
-      'SELECT' ||
-        case
-          when cs.has_select_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'SELECT' || case when cs.has_select_direct then ' (direct)' else ' (inherited)' end
   end as "select",
   case
     when cs.has_insert_effective then
-      'INSERT' ||
-        case
-          when cs.has_insert_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'INSERT' || case when cs.has_insert_direct then ' (direct)' else ' (inherited)' end
   end as "insert",
   case
     when cs.has_update_effective then
-      'UPDATE' ||
-        case
-          when cs.has_update_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'UPDATE' || case when cs.has_update_direct then ' (direct)' else ' (inherited)' end
   end as "update",
   case
     when cs.has_delete_effective then
-      'DELETE' ||
-        case
-          when cs.has_delete_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'DELETE' || case when cs.has_delete_direct then ' (direct)' else ' (inherited)' end
   end as "delete",
   case
     when cs.has_truncate_effective then
-      'TRUNCATE' ||
-        case
-          when cs.has_truncate_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'TRUNCATE' || case when cs.has_truncate_direct then ' (direct)' else ' (inherited)' end
   end as "truncate",
   case
     when cs.has_references_effective then
-      'REFERENCES' ||
-        case
-          when cs.has_references_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'REFERENCES' || case when cs.has_references_direct then ' (direct)' else ' (inherited)' end
   end as "references",
   case
     when cs.has_trigger_effective then
-      'TRIGGER' ||
-        case
-          when cs.has_trigger_direct then ' (direct)'
-          else ' (inherited)'
-        end
+      'TRIGGER' || case when cs.has_trigger_direct then ' (direct)' else ' (inherited)' end
   end as "trigger"
 from current_state as cs
 order by cs.role_name;

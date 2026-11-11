@@ -217,8 +217,7 @@ with check (
 
 -- public.app_permissions_app_roles
 
-insert into public.app_permissions_app_roles
-  (app_role, app_permission)
+insert into public.app_permissions_app_roles (app_role, app_permission)
 values
   ('admin', 'app_permissions_app_roles.select'),
   ('admin', 'app_roles_users.select'),

@@ -1,12 +1,10 @@
 -- public.amount
 
-create domain public.amount as numeric(12, 2)
-  check (value >= 0);
+create domain public.amount as numeric(12, 2) check (value >= 0);
 
 -- public.description
 
-create domain public.description as text
-  check (length(value) <= 300);
+create domain public.description as text check (length(value) <= 300);
 
 -- public.email
 
@@ -15,28 +13,23 @@ create domain public.email as text
 
 -- public.gender
 
-create domain public.gender as text
-  check (value in ('female', 'male', 'other'));
+create domain public.gender as text check (value in ('female', 'male', 'other'));
 
 -- public.latitude
 
-create domain public.latitude as double precision
-  check (value between -90 and 90);
+create domain public.latitude as double precision check (value between -90 and 90);
 
 -- public.longitude
 
-create domain public.longitude as double precision
-  check (value between -180 and 180);
+create domain public.longitude as double precision check (value between -180 and 180);
 
 -- public.measurement_unit
 
-create domain public.measurement_unit as text
-  check (value in ('g', 'ml', 'pc'));
+create domain public.measurement_unit as text check (value in ('g', 'ml', 'pc'));
 
 -- public.name
 
-create domain public.name as text
-  check (length(value) between 1 and 60);
+create domain public.name as text check (length(value) between 1 and 60);
 
 -- public.path
 
@@ -49,13 +42,11 @@ create domain public.path as text
 
 -- public.percentage
 
-create domain public.percentage as numeric(5, 2)
-  check (value between 0 and 100);
+create domain public.percentage as numeric(5, 2) check (value between 0 and 100);
 
 -- public.phone
 
-create domain public.phone as text
-  check (value ~ '^\+[1-9][0-9]{7,14}$');
+create domain public.phone as text check (value ~ '^\+[1-9][0-9]{7,14}$');
 
 -- public.slug
 

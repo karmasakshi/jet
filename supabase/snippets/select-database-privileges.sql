@@ -17,9 +17,7 @@ with
       ] as roles_to_check
   ),
   db_info as (
-    select
-      d.datname as database_name,
-      r.rolname as owner_role
+    select d.datname as database_name, r.rolname as owner_role
     from pg_database as d
     join pg_roles as r on r.oid = d.datdba
     cross join config as c
@@ -39,14 +37,8 @@ with
 select
   cs.role_name,
   cs.database_owner,
-  case
-    when cs.has_connect then 'CONNECT'
-  end as "connect",
-  case
-    when cs.has_create then 'CREATE'
-  end as "create",
-  case
-    when cs.has_temporary then 'TEMPORARY'
-  end as "temporary"
+  case when cs.has_connect then 'CONNECT' end as "connect",
+  case when cs.has_create then 'CREATE' end as "create",
+  case when cs.has_temporary then 'TEMPORARY' end as "temporary"
 from current_state as cs
 order by cs.role_name;

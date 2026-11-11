@@ -52,7 +52,7 @@
     "@fontsource-variable/noto-sans": "^5.3.0",
     "@fontsource-variable/noto-sans-arabic": "^5.3.0",
     "@jsverse/transloco": "^8.4.0",
-    "@material-symbols/svg-400": "^0.48.2",
+    "@material-symbols/svg-400": "^0.48.3",
     "@supabase/supabase-js": "^2.118.0",
     "ga-gtag": "^1.2.0",
     "jwt-decode": "^4.0.0",
@@ -70,7 +70,7 @@
     "@jsverse/transloco-keys-manager": "^8.1.1",
     "@ngneat/svg-generator": "^7.0.3",
     "@ngx-env/builder": "^22.0.0",
-    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.4",
     "@types/ga-gtag": "^1.2.0",
     "@types/node": "^26.6.6",
     "angular-eslint": "^22.6.0",
@@ -83,11 +83,11 @@
     "prettier": "^3.9.10",
     "prettier-plugin-css-order": "^2.2.0",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "prettier-plugin-sql-cst": "^0.24.0",
+    "prettier-plugin-sql-cst": "^0.25.0",
     "supabase": "^3.0.0",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^4.3.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.1",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   }
 }
