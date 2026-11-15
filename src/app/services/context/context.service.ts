@@ -33,15 +33,12 @@ export class ContextService {
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
-  #activeColorScheme: string;
   #activeFontPair: string;
   readonly #isPwaMode: boolean;
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
   readonly #languageOption: Signal<LanguageOption>;
 
   public constructor() {
-    this.#activeColorScheme = DEFAULT_COLOR_SCHEME_OPTION.value;
-
     this.#activeFontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
 
     this.#isPwaMode = this.#breakpointObserver.isMatched('(display-mode: standalone)');
@@ -105,19 +102,15 @@ export class ContextService {
   }
 
   #setColorScheme(colorScheme: ColorScheme): void {
-    if (this.#activeColorScheme === colorScheme) {
-      return;
-    }
-
     const body: HTMLElement = this.#document.body;
 
-    if (this.#activeColorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
-      body.classList.remove(this.#activeColorScheme);
-    }
+    body.classList.remove(
+      ...COLOR_SCHEME_OPTIONS.map((colorSchemeOption) => colorSchemeOption.value),
+    );
 
-    this.#activeColorScheme = colorScheme;
-
-    if (colorScheme !== DEFAULT_COLOR_SCHEME_OPTION.value) {
+    if (colorScheme === DEFAULT_COLOR_SCHEME_OPTION.value) {
+      return;
+    } else {
       body.classList.add(colorScheme);
     }
   }
