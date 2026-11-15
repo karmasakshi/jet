@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
 
     this.matSidenavMode = computed(() => (this.isLargeViewport() ? 'side' : 'over'));
 
-    this.navItemPath = this.#navItemService.activeNavItemPath;
+    this.navItemPath = this.#navItemService.navItemPath;
 
     this.navItems = NAV_ITEMS;
 

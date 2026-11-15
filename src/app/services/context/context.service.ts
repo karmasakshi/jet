@@ -18,6 +18,7 @@ import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { ColorScheme } from '@jet/types/color-scheme.type';
 import { FontPair } from '@jet/types/font-pair.type';
+import { Language } from '@jet/types/language.type';
 import { TranslocoService } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 import { SettingsService } from '../settings/settings.service';
@@ -139,7 +140,7 @@ export class ContextService {
     }
   }
 
-  #setLanguage(language: LanguageOption['value']): void {
+  #setLanguage(language: Language): void {
     this.#document.documentElement.lang = language;
 
     this.#translocoService.setActiveLang(language);

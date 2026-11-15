@@ -1,4 +1,4 @@
-@let _activeNavItemPath = activeNavItemPath();
+@let _navItemPath = navItemPath();
 
 <ng-container *transloco="let t; prefix: 'sidenav'">
   <mat-toolbar class="jet-sidenav-toolbar">
@@ -22,7 +22,7 @@
           /* [matTooltip]="navItem.nameKey | transloco" */
           mat-list-item
           matListItemTitle
-          [activated]="_activeNavItemPath === navItem.path"
+          [activated]="_navItemPath === navItem.path"
           [routerLink]="[navItem.path]"
           (click)="clickNavItem.emit()"
         >

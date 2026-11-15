@@ -17,7 +17,7 @@
       [(opened)]="isMatSidenavOpen"
     >
       <jet-sidenav
-        [activeNavItemPath]="_navItemPath"
+        [navItemPath]="_navItemPath"
         (clickNavItem)="_matSidenavMode === 'over' && matSidenav.close()"
       />
     </mat-sidenav>

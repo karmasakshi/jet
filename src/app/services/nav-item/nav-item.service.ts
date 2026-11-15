@@ -20,7 +20,7 @@ export class NavItemService {
   readonly #loggerService = inject(LoggerService);
   readonly #alertService = inject(AlertService);
 
-  public readonly activeNavItemPath = signal<string | undefined>(undefined);
+  public readonly navItemPath = signal<string | undefined>(undefined);
 
   public constructor() {
     this.#router.events
@@ -41,7 +41,7 @@ export class NavItemService {
         }
 
         if (event instanceof NavigationEnd) {
-          this.activeNavItemPath.set(event.url.split('?')[0]);
+          this.navItemPath.set(event.url.split('?')[0]);
         }
 
         if (event instanceof NavigationError) {

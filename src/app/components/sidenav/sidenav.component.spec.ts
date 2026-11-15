@@ -28,7 +28,7 @@ describe('SidenavComponent', () => {
 
     fixture = TestBed.createComponent(SidenavComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('activeNavItemPath', undefined);
+    fixture.componentRef.setInput('navItemPath', undefined);
     await fixture.whenStable();
   });
 

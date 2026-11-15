@@ -38,7 +38,7 @@ export class SidenavComponent {
   readonly #badgeContentService = inject(BadgeContentService);
   readonly #loggerService = inject(LoggerService);
 
-  public readonly activeNavItemPath = input.required<string | undefined>();
+  public readonly navItemPath = input.required<string | undefined>();
 
   protected readonly clickNavItem = output<void>();
 
