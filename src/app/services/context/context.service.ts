@@ -14,10 +14,10 @@ import { Meta } from '@angular/platform-browser';
 import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
 import { DEFAULT_COLOR_SCHEME_OPTION } from '@jet/constants/default-color-scheme-option.constant';
 import { DEFAULT_LANGUAGE_OPTION } from '@jet/constants/default-language-option.constant';
+import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { ColorSchemeOption } from '@jet/interfaces/color-scheme-option.interface';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { ColorScheme } from '@jet/types/color-scheme.type';
-import { FontPair } from '@jet/types/font-pair.type';
 import { Language } from '@jet/types/language.type';
 import { TranslocoService } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
@@ -33,14 +33,11 @@ export class ContextService {
   readonly #settingsService = inject(SettingsService);
   readonly #translocoService = inject(TranslocoService);
 
-  #activeFontPair: string;
   readonly #isPwaMode: boolean;
   readonly #colorSchemeOption: Signal<ColorSchemeOption>;
   readonly #languageOption: Signal<LanguageOption>;
 
   public constructor() {
-    this.#activeFontPair = DEFAULT_LANGUAGE_OPTION.fontPair;
-
     this.#isPwaMode = this.#breakpointObserver.isMatched('(display-mode: standalone)');
 
     this.#colorSchemeOption = computed(() => this.#settingsService.settings().colorSchemeOption);
@@ -68,7 +65,7 @@ export class ContextService {
         const languageOption: LanguageOption = this.#languageOption();
 
         untracked(() => {
-          this.#setFontPairClass(languageOption.fontPair);
+          this.#setFontClass(languageOption.value);
 
           this.#setLanguage(languageOption.value);
         });
@@ -115,21 +112,15 @@ export class ContextService {
     }
   }
 
-  #setFontPairClass(fontPair: FontPair): void {
-    if (this.#activeFontPair === fontPair) {
-      return;
-    }
-
+  #setFontClass(language: Language): void {
     const body: HTMLElement = this.#document.body;
 
-    if (this.#activeFontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-      body.classList.remove(this.#activeFontPair);
-    }
+    body.classList.remove(...LANGUAGE_OPTIONS.map((languageOption) => languageOption.value));
 
-    this.#activeFontPair = fontPair;
-
-    if (fontPair !== DEFAULT_LANGUAGE_OPTION.fontPair) {
-      body.classList.add(fontPair);
+    if (language === DEFAULT_LANGUAGE_OPTION.value) {
+      return;
+    } else {
+      body.classList.add(language);
     }
   }
 
