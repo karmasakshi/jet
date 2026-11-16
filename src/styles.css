@@ -10,7 +10,7 @@
 }
 
 .jet-page-card {
-  @apply max-w-[480px] mx-auto w-full;
+  @apply max-w-120 mx-auto w-full;
 }
 
 .jet-stack {

@@ -25,9 +25,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "extendedDiagnostics": {
-      "defaultCategory": "error" // https://angular.dev/extended-diagnostics#configuration
-    },
+    "extendedDiagnostics": { "defaultCategory": "error" },
     "strictTemplates": true
   },
   "files": [],
