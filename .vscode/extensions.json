@@ -4,6 +4,7 @@
     "angular.ng-template",
     "bradlc.vscode-tailwindcss",
     "dbaeumer.vscode-eslint",
-    "denoland.vscode-deno"
+    "denoland.vscode-deno",
+    "tamasfe.even-better-toml"
   ]
 }
