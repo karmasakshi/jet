@@ -39,7 +39,6 @@
               ],
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json",
-              "deployUrl": "./",
               "subresourceIntegrity": true
             },
             "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
