@@ -1,6 +1,6 @@
 # Jet
 
-Angular starter kit for building quality web apps fast.
+Angular framework for your AI agents to consistently build accessible, performant, scalable and secure web apps.
 
 <br />
 

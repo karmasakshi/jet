@@ -34,9 +34,9 @@
   "footer": { "v-x": "v{{ x }}" },
   "home-page": {
     "seo": {
-      "description": "Angular starter kit for building quality web apps fast.",
+      "description": "Angular framework for your AI agents to consistently build accessible, performant, scalable and secure web apps.",
       "keywords": "jet",
-      "title": "Jet: Angular starter kit for building quality web apps fast"
+      "title": "Jet: Angular framework for building high quality web apps"
     },
     "toolbar-title": "Jet"
   },

@@ -7,7 +7,7 @@ import { ProfileService } from '@jet/services/profile/profile.service';
 
 export const lazyRoutes: Routes = [
   {
-    data: { case: 'email-verification-pending' },
+    data: { canonical: '/email-verification-pending', case: 'email-verification-pending' },
     loadComponent: async () =>
       (await import('@jet/components/message-page/message-page.component')).MessagePageComponent,
     path: 'email-verification-pending',
@@ -15,6 +15,7 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedInGuard],
     canDeactivate: [hasUnsavedChangesGuard],
+    data: { canonical: '/profile' },
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component')).ProfilePageComponent,
     path: 'profile',
@@ -23,35 +24,39 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedOutGuard],
     canDeactivate: [hasUnsavedChangesGuard],
+    data: { canonical: '/reset-password' },
     loadComponent: async () =>
       (await import('@jet/components/reset-password-page/reset-password-page.component'))
         .ResetPasswordPageComponent,
     path: 'reset-password',
   },
   {
-    data: { case: 'reset-password-email-sent' },
+    data: { canonical: '/reset-password-email-sent', case: 'reset-password-email-sent' },
     loadComponent: async () =>
       (await import('@jet/components/message-page/message-page.component')).MessagePageComponent,
     path: 'reset-password-email-sent',
   },
   {
+    data: { canonical: '/settings' },
     loadComponent: async () =>
       (await import('@jet/components/settings-page/settings-page.component')).SettingsPageComponent,
     path: 'settings',
   },
   {
+    data: { canonical: '/sign-in' },
     loadComponent: async () =>
       (await import('@jet/components/sign-in-page/sign-in-page.component')).SignInPageComponent,
     path: 'sign-in',
   },
   {
-    data: { case: 'sign-in-link-sent' },
+    data: { canonical: '/sign-in-link-sent', case: 'sign-in-link-sent' },
     loadComponent: async () =>
       (await import('@jet/components/message-page/message-page.component')).MessagePageComponent,
     path: 'sign-in-link-sent',
   },
   {
     canActivate: [isSignedInGuard],
+    data: { canonical: '/sign-out' },
     loadComponent: async () =>
       (await import('@jet/components/sign-out-page/sign-out-page.component')).SignOutPageComponent,
     path: 'sign-out',
@@ -59,6 +64,7 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedOutGuard],
     canDeactivate: [hasUnsavedChangesGuard],
+    data: { canonical: '/sign-up' },
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component')).SignUpPageComponent,
     path: 'sign-up',
@@ -66,6 +72,7 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedInGuard, hasEmailGuard],
     canDeactivate: [hasUnsavedChangesGuard],
+    data: { canonical: '/update-password' },
     loadComponent: async () =>
       (await import('@jet/components/update-password-page/update-password-page.component'))
         .UpdatePasswordPageComponent,

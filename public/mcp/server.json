@@ -2,6 +2,6 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "app.vercel.jet-tau/mcp",
   "version": "1.0.0",
-  "description": "Angular starter kit for building quality web apps fast.",
+  "description": "Angular framework for building high quality web apps.",
   "remotes": [{ "type": "streamable-http", "url": "https://jet-tau.vercel.app" }]
 }

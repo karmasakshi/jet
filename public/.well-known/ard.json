@@ -5,7 +5,7 @@
       "displayName": "Jet",
       "type": "application/mcp-server-card+json",
       "url": "https://jet-tau.vercel.app/mcp/server.json",
-      "description": "Angular starter kit for building quality web apps fast.",
+      "description": "Angular framework for building high quality web apps.",
       "capabilities": [],
       "representativeQueries": []
     }

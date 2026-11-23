@@ -1,8 +1,8 @@
 # Jet
 
-> Angular starter kit for building quality web apps fast.
+Angular framework for your AI agents to consistently build accessible, performant, scalable and secure web apps.
 
-Refer [llms-full.txt](https://jet-tau.vercel.app/llms-full.txt) for complete documentation in one Markdown file.
+<br />
 
 ## Highlights
 
@@ -17,6 +17,12 @@ Refer [llms-full.txt](https://jet-tau.vercel.app/llms-full.txt) for complete doc
 - 🎁 **Release management**: Commit linting via [@commitlint/\*](https://github.com/conventional-changelog/commitlint). Automatic versioning and changelog generation via [Release Please](https://github.com/marketplace/actions/release-please-action).
 - 🌻 **Environment support**: Easily configure environments via [@ngx-env/builder](https://github.com/chihab/dotenv-run/tree/main/packages/angular) and injection tokens.
 - 🗻 **Always updated**: Actively maintained and regularly built from the ground-up. [See 1000+ commits](https://github.com/karmasakshi/jet/commits/main/).
+
+<br />
+
+## Demo
+
+<a href="https://jet-tau.vercel.app"><img alt="Static Badge" src="https://img.shields.io/badge/click%20to-open-6e4b3a?style=plastic"></a>
 
 ## Get started in 30 seconds
 

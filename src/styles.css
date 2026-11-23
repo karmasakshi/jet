@@ -9,10 +9,14 @@
   }
 }
 
-.jet-page-card {
+.jet-centered-card {
   @apply max-w-120 mx-auto w-full;
 }
 
 .jet-stack {
   @apply flex flex-col gap-4;
+}
+
+.jet-title {
+  font: var(--mat-sys-title-large);
 }

@@ -16,7 +16,7 @@
       @if (_returnUrl !== '/') {
         <span>{{ t('sign-in-to-continue-to-x', { x: _returnUrl }) }}</span>
       }
-      <mat-card class="jet-page-card">
+      <mat-card class="jet-centered-card">
         <img
           height="180"
           mat-card-image
@@ -37,7 +37,7 @@
         </mat-card-actions>
       </mat-card>
       <span>{{ t('or') }}</span>
-      <mat-card class="jet-page-card overflow-hidden">
+      <mat-card class="jet-centered-card overflow-hidden">
         <mat-tab-group>
           <mat-tab [label]="t('phone-otp')">
             <mat-card-content>
@@ -285,7 +285,7 @@
           </mat-tab>
         </mat-tab-group>
       </mat-card>
-      <mat-card class="jet-page-card">
+      <mat-card class="jet-centered-card">
         <mat-card-content>
           <div class="jet-stack items-center">
             <a
