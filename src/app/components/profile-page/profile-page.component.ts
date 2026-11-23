@@ -100,12 +100,12 @@ export class ProfilePageComponent implements HasUnsavedChanges, OnInit {
   #isLoading: boolean;
   readonly #user: Signal<null | User>;
 
+  protected readonly hasEmail: Signal<boolean>;
+  protected readonly hasPhone: Signal<boolean>;
   protected readonly identityFormGroup: FormGroup<{
     email: FormControl<null | string>;
     phone: FormControl<null | string>;
   }>;
-  protected readonly hasEmail: Signal<boolean>;
-  protected readonly hasPhone: Signal<boolean>;
   protected readonly profile: WritableSignal<ProfileRow | undefined>;
   protected readonly profileFormGroup: FormGroup<{
     name: FormControl<null | string>;
@@ -141,6 +141,14 @@ export class ProfilePageComponent implements HasUnsavedChanges, OnInit {
     this.#loggerService.logComponentInitialization('ProfilePageComponent');
   }
 
+  public isDirty(): boolean {
+    return this.profileFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.profileFormGroup.markAsPristine();
+  }
+
   public ngOnInit(): void {
     this.identityFormGroup.disable();
 
@@ -152,14 +160,6 @@ export class ProfilePageComponent implements HasUnsavedChanges, OnInit {
     });
 
     void this.#selectProfile();
-  }
-
-  public isDirty(): boolean {
-    return this.profileFormGroup.dirty;
-  }
-
-  public markAsPristine(): void {
-    this.profileFormGroup.markAsPristine();
   }
 
   protected async deleteAvatar(): Promise<void> {

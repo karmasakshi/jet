@@ -1,4 +1,5 @@
-import { Service } from '@angular/core';
+import { signal } from '@angular/core';
 
-@Service()
-export class NavItemService {}
+export class NavItemServiceMock {
+  public readonly navItemPath = signal<string | undefined>(undefined);
+}

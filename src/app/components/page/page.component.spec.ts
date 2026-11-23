@@ -19,11 +19,11 @@ describe('PageComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PageComponent);
-    component = fixture.componentInstance;
     fixture.componentRef.setInput('seoDescription', undefined);
     fixture.componentRef.setInput('seoKeywords', undefined);
     fixture.componentRef.setInput('seoTitle', undefined);
     fixture.componentRef.setInput('toolbarTitle', undefined);
+    component = fixture.componentInstance;
     await fixture.whenStable();
   });
 

@@ -56,12 +56,9 @@ export class SignInPageComponent implements OnInit {
 
   #isLoading: boolean;
 
-  public readonly email = input<null | string>(null);
-  public readonly returnUrl = input<string>('/');
-
+  protected readonly emailLinkFormGroup: FormGroup<{ email: FormControl<null | string> }>;
   protected isPasswordHidden: boolean;
   protected isPhoneOtpSent: boolean;
-  protected readonly emailLinkFormGroup: FormGroup<{ email: FormControl<null | string> }>;
   protected readonly phoneSignInFormGroup: FormGroup<{
     otp: FormControl<null | string>;
     phone: FormControl<null | string>;
@@ -71,13 +68,13 @@ export class SignInPageComponent implements OnInit {
     password: FormControl<null | string>;
   }>;
 
+  public readonly email = input<null | string>(null);
+  public readonly returnUrl = input<string>('/');
+
   public constructor() {
     addSvgIconLiteral([closeFillIcon, visibilityFillIcon, visibilityOffFillIcon]);
 
     this.#isLoading = false;
-
-    this.isPasswordHidden = true;
-    this.isPhoneOtpSent = false;
 
     this.emailLinkFormGroup = this.#formBuilder.group({
       email: this.#formBuilder.control<null | string>(null, [
@@ -85,6 +82,10 @@ export class SignInPageComponent implements OnInit {
         Validators.required,
       ]),
     });
+
+    this.isPasswordHidden = true;
+
+    this.isPhoneOtpSent = false;
 
     this.phoneSignInFormGroup = this.#formBuilder.group({
       otp: this.#formBuilder.control<null | string>(null, [
@@ -127,56 +128,9 @@ export class SignInPageComponent implements OnInit {
     void this.#showSupabaseAuthRedirectError(this.#activatedRoute.snapshot.fragment);
   }
 
-  protected async signInWithPassword(email: string, password: string) {
-    if (this.#isLoading) {
-      return;
-    }
-
-    this.#isLoading = true;
-
-    this.#disableAuthForms();
-
-    this.#progressBarService.showIndeterminateProgressBar();
-
-    try {
-      const { data } = await this.#userService.signInWithPassword(email, password);
-
-      if (data.session === null) {
-        throw new Error();
-      }
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-      this.#alertService.showExceptionAlert(exception);
-    } finally {
-      this.#isLoading = false;
-      this.#enableAuthForms();
-      this.#progressBarService.hideProgressBar();
-    }
-  }
-
-  protected async signInWithOauth(provider: Provider) {
-    if (this.#isLoading) {
-      return;
-    }
-
-    this.#isLoading = true;
-
-    this.#disableAuthForms();
-
-    this.#progressBarService.showIndeterminateProgressBar();
-
-    try {
-      const { data } = await this.#userService.signInWithOauth(provider, this.returnUrl());
-
-      this.#document.location.href = data.url ?? '/';
-    } catch (exception: unknown) {
-      this.#loggerService.logException(exception);
-      this.#alertService.showExceptionAlert(exception);
-    } finally {
-      this.#isLoading = false;
-      this.#enableAuthForms();
-      this.#progressBarService.hideProgressBar();
-    }
+  protected resetPhoneOtp(): void {
+    this.isPhoneOtpSent = false;
+    this.phoneSignInFormGroup.controls.otp.reset();
   }
 
   protected async sendEmailSignInLink(email: string) {
@@ -231,6 +185,58 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
+  protected async signInWithOauth(provider: Provider) {
+    if (this.#isLoading) {
+      return;
+    }
+
+    this.#isLoading = true;
+
+    this.#disableAuthForms();
+
+    this.#progressBarService.showIndeterminateProgressBar();
+
+    try {
+      const { data } = await this.#userService.signInWithOauth(provider, this.returnUrl());
+
+      this.#document.location.href = data.url ?? '/';
+    } catch (exception: unknown) {
+      this.#loggerService.logException(exception);
+      this.#alertService.showExceptionAlert(exception);
+    } finally {
+      this.#isLoading = false;
+      this.#enableAuthForms();
+      this.#progressBarService.hideProgressBar();
+    }
+  }
+
+  protected async signInWithPassword(email: string, password: string) {
+    if (this.#isLoading) {
+      return;
+    }
+
+    this.#isLoading = true;
+
+    this.#disableAuthForms();
+
+    this.#progressBarService.showIndeterminateProgressBar();
+
+    try {
+      const { data } = await this.#userService.signInWithPassword(email, password);
+
+      if (data.session === null) {
+        throw new Error();
+      }
+    } catch (exception: unknown) {
+      this.#loggerService.logException(exception);
+      this.#alertService.showExceptionAlert(exception);
+    } finally {
+      this.#isLoading = false;
+      this.#enableAuthForms();
+      this.#progressBarService.hideProgressBar();
+    }
+  }
+
   protected async verifyOtp(phone: string, otp: string) {
     if (this.#isLoading) {
       return;
@@ -262,9 +268,22 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
-  protected resetPhoneOtp(): void {
-    this.isPhoneOtpSent = false;
-    this.phoneSignInFormGroup.controls.otp.reset();
+  #disableAuthForms(): void {
+    this.emailLinkFormGroup.disable();
+    this.signInFormGroup.disable();
+    this.phoneSignInFormGroup.disable();
+  }
+
+  #enableAuthForms(): void {
+    this.emailLinkFormGroup.enable();
+    this.signInFormGroup.enable();
+    this.phoneSignInFormGroup.enable();
+  }
+
+  #getSupabasePhone(phone: string): string {
+    const trimmedPhone = phone.trim();
+
+    return trimmedPhone.startsWith('+') ? trimmedPhone : `+${trimmedPhone}`;
   }
 
   async #redirectIfSignedIn(): Promise<void> {
@@ -292,23 +311,5 @@ export class SignInPageComponent implements OnInit {
     );
 
     await this.#router.navigate([], { queryParamsHandling: 'preserve', replaceUrl: true });
-  }
-
-  #disableAuthForms(): void {
-    this.emailLinkFormGroup.disable();
-    this.signInFormGroup.disable();
-    this.phoneSignInFormGroup.disable();
-  }
-
-  #enableAuthForms(): void {
-    this.emailLinkFormGroup.enable();
-    this.signInFormGroup.enable();
-    this.phoneSignInFormGroup.enable();
-  }
-
-  #getSupabasePhone(phone: string): string {
-    const trimmedPhone = phone.trim();
-
-    return trimmedPhone.startsWith('+') ? trimmedPhone : `+${trimmedPhone}`;
   }
 }

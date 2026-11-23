@@ -92,6 +92,14 @@ export class UpdatePasswordPageComponent implements HasUnsavedChanges, OnInit {
     this.#loggerService.logComponentInitialization('UpdatePasswordPageComponent');
   }
 
+  public isDirty(): boolean {
+    return this.updatePasswordFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.updatePasswordFormGroup.markAsPristine();
+  }
+
   public ngOnInit(): void {
     this.updatePasswordFormGroup.patchValue({ email: this.#user()?.email ?? null });
 
@@ -104,14 +112,6 @@ export class UpdatePasswordPageComponent implements HasUnsavedChanges, OnInit {
       .subscribe(() => {
         this.updatePasswordFormGroup.controls.newPasswordConfirmation.updateValueAndValidity();
       });
-  }
-
-  public isDirty(): boolean {
-    return this.updatePasswordFormGroup.dirty;
-  }
-
-  public markAsPristine(): void {
-    this.updatePasswordFormGroup.markAsPristine();
   }
 
   protected async updatePassword(password: string): Promise<void> {

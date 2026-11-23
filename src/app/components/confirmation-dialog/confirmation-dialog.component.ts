@@ -15,9 +15,11 @@ export class ConfirmationDialogComponent {
   readonly #matDialogData = inject<ConfirmationDialogData>(MAT_DIALOG_DATA);
   readonly #loggerService = inject(LoggerService);
 
-  protected readonly message = this.#matDialogData.message;
+  protected readonly message: ConfirmationDialogData['message'];
 
   public constructor() {
+    this.message = this.#matDialogData.message;
+
     this.#loggerService.logComponentInitialization('ConfirmationDialogComponent');
   }
 }

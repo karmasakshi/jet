@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { provideRouter } from '@angular/router';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
@@ -18,11 +17,7 @@ describe('ResetPasswordPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MatIconTestingModule,
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        ResetPasswordPageComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), ResetPasswordPageComponent],
       providers: [
         provideRouter([]),
         { provide: AlertService, useClass: AlertServiceMock },

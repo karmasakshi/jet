@@ -57,9 +57,6 @@ export class SignUpPageComponent implements HasUnsavedChanges, OnInit {
 
   #isLoading: boolean;
 
-  public readonly email = input<null | string>(null);
-  public readonly returnUrl = input<string>('/');
-
   protected isPasswordConfirmationHidden: boolean;
   protected isPasswordHidden: boolean;
   protected readonly signUpFormGroup: FormGroup<{
@@ -67,6 +64,9 @@ export class SignUpPageComponent implements HasUnsavedChanges, OnInit {
     password: FormControl<null | string>;
     passwordConfirmation: FormControl<null | string>;
   }>;
+
+  public readonly email = input<null | string>(null);
+  public readonly returnUrl = input<string>('/');
 
   public constructor() {
     addSvgIconLiteral([closeFillIcon, visibilityFillIcon, visibilityOffFillIcon]);
@@ -95,6 +95,14 @@ export class SignUpPageComponent implements HasUnsavedChanges, OnInit {
     this.#loggerService.logComponentInitialization('SignUpPageComponent');
   }
 
+  public isDirty(): boolean {
+    return this.signUpFormGroup.dirty;
+  }
+
+  public markAsPristine(): void {
+    this.signUpFormGroup.markAsPristine();
+  }
+
   public ngOnInit(): void {
     this.signUpFormGroup.patchValue({ email: this.email() });
 
@@ -107,14 +115,6 @@ export class SignUpPageComponent implements HasUnsavedChanges, OnInit {
       .subscribe(() => {
         this.signUpFormGroup.controls.passwordConfirmation.updateValueAndValidity();
       });
-  }
-
-  public isDirty(): boolean {
-    return this.signUpFormGroup.dirty;
-  }
-
-  public markAsPristine(): void {
-    this.signUpFormGroup.markAsPristine();
   }
 
   protected async signUp(email: string, password: string) {

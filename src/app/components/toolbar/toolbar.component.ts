@@ -43,13 +43,12 @@ export class ToolbarComponent {
   readonly #progressBarService = inject(ProgressBarService);
   readonly #toolbarTitleService = inject(ToolbarTitleService);
 
-  public readonly isLargeViewport = input.required<boolean>();
-  public readonly shouldAddSafeAreaPadding = input.required<boolean>();
-
-  protected readonly toggleMatSidenav = output<void>();
-
   protected readonly progressBarConfiguration: Signal<ProgressBarConfiguration>;
   protected readonly title: Signal<string>;
+  protected readonly toggleMatSidenav = output<void>();
+
+  public readonly isLargeViewport = input.required<boolean>();
+  public readonly shouldAddSafeAreaPadding = input.required<boolean>();
 
   public constructor() {
     addSvgIconLiteral([shortTextFillIcon]);

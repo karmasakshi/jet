@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -21,11 +20,7 @@ describe('SettingsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MatIconTestingModule,
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        SettingsPageComponent,
-      ],
+      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), SettingsPageComponent],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

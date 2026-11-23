@@ -50,9 +50,9 @@ export class ResetPasswordPageComponent implements HasUnsavedChanges, OnInit {
 
   #isLoading: boolean;
 
-  public readonly email = input<null | string>(null);
-
   protected readonly resetPasswordFormGroup: FormGroup<{ email: FormControl<null | string> }>;
+
+  public readonly email = input<null | string>(null);
 
   public constructor() {
     addSvgIconLiteral([closeFillIcon]);
@@ -69,16 +69,16 @@ export class ResetPasswordPageComponent implements HasUnsavedChanges, OnInit {
     this.#loggerService.logComponentInitialization('ResetPasswordPageComponent');
   }
 
-  public ngOnInit(): void {
-    this.resetPasswordFormGroup.patchValue({ email: this.email() });
-  }
-
   public isDirty(): boolean {
     return this.resetPasswordFormGroup.dirty;
   }
 
   public markAsPristine(): void {
     this.resetPasswordFormGroup.markAsPristine();
+  }
+
+  public ngOnInit(): void {
+    this.resetPasswordFormGroup.patchValue({ email: this.email() });
   }
 
   protected async resetPasswordForEmail(email: string) {

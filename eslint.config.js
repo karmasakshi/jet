@@ -40,8 +40,8 @@ module.exports = defineConfig([
           default: {
             memberTypes: [
               '#private-instance-field',
-              'public-instance-field',
               'protected-instance-field',
+              'public-instance-field',
               'constructor',
               'public-instance-method',
               'protected-instance-method',
@@ -102,6 +102,7 @@ module.exports = defineConfig([
       '@angular-eslint/template/cyclomatic-complexity': 'off',
       '@angular-eslint/template/i18n': 'off',
       '@angular-eslint/template/no-call-expression': 'off',
+      '@angular-eslint/template/no-inline-styles': 'off',
     },
   },
 ]);

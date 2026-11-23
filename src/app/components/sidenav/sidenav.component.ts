@@ -38,11 +38,10 @@ export class SidenavComponent {
   readonly #badgeContentService = inject(BadgeContentService);
   readonly #loggerService = inject(LoggerService);
 
-  public readonly navItemPath = input.required<string | undefined>();
-
   protected readonly clickNavItem = output<void>();
-
   protected readonly navItems: NavItem[];
+
+  public readonly navItemPath = input.required<string | undefined>();
 
   public constructor() {
     addSvgIconLiteral([homeFillIcon, personFillIcon, tuneFillIcon]);
@@ -52,7 +51,7 @@ export class SidenavComponent {
     this.#loggerService.logComponentInitialization('SidenavComponent');
   }
 
-  public getBadgeContent(badge: Badge | null): null | number | string {
+  protected getBadgeContent(badge: Badge | null): null | number | string {
     return this.#badgeContentService.getBadgeContent(badge);
   }
 }

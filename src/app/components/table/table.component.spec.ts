@@ -14,11 +14,11 @@ describe('TableComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);
-    component = fixture.componentInstance;
     fixture.componentRef.setInput('length', undefined);
     fixture.componentRef.setInput('isLoading', undefined);
     fixture.componentRef.setInput('pageIndex', undefined);
     fixture.componentRef.setInput('pageSize', undefined);
+    component = fixture.componentInstance;
     await fixture.whenStable();
   });
 
