@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { TranslocoTestingModule } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { ToolbarTitleService } from './toolbar-title.service';
@@ -9,7 +8,6 @@ describe('ToolbarTitleService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     });
     service = TestBed.inject(ToolbarTitleService);

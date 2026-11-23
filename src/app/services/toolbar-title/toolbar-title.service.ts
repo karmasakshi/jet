@@ -1,5 +1,4 @@
 import { inject, Service, signal, Signal, WritableSignal } from '@angular/core';
-import { translate } from '@jsverse/transloco';
 import { LoggerService } from '../logger/logger.service';
 
 @Service()
@@ -11,7 +10,7 @@ export class ToolbarTitleService {
   public readonly toolbarTitle: Signal<string>;
 
   public constructor() {
-    this.#toolbarTitle = signal(translate('toolbar.loading'));
+    this.#toolbarTitle = signal('');
 
     this.toolbarTitle = this.#toolbarTitle.asReadonly();
 

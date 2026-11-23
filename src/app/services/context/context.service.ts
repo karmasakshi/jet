@@ -131,7 +131,7 @@ export class ContextService {
   }
 
   #setPlatformClass(): void {
-    const platform = navigator.platform;
+    const platform = this.#document.defaultView?.navigator.platform ?? '';
 
     const platformClass = (() => {
       switch (true) {
