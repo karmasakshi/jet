@@ -2,6 +2,8 @@
 
 Angular framework for your AI agents to consistently build accessible, performant, scalable and secure web apps.
 
+Refer [llms-full.txt](./llms-full.txt) for the full version.
+
 <br />
 
 ## Highlights
