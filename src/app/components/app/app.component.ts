@@ -32,16 +32,16 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   imports: [
+    FooterComponent,
     MatBadgeModule,
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
     RouterLink,
     RouterOutlet,
-    TranslocoModule,
-    FooterComponent,
     SidenavComponent,
     ToolbarComponent,
+    TranslocoModule,
   ],
   selector: 'jet-app',
   styles: ``,

@@ -28,17 +28,17 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
-    NgOptimizedImage,
-    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatTabsModule,
+    NgOptimizedImage,
+    PageComponent,
+    ReactiveFormsModule,
     RouterLink,
     TranslocoModule,
-    PageComponent,
   ],
   selector: 'jet-sign-in-page',
   styles: ``,

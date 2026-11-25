@@ -17,7 +17,7 @@ describe('SignUpPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), SignUpPageComponent],
+      imports: [SignUpPageComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
         provideRouter([]),
         { provide: AlertService, useClass: AlertServiceMock },

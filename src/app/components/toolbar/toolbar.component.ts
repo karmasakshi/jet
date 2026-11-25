@@ -16,13 +16,13 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   imports: [
+    AnalyticsEventDirective,
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
     MatToolbarModule,
     MatTooltipModule,
     RouterLink,
-    AnalyticsEventDirective,
     TranslocoModule,
   ],
   selector: 'jet-toolbar',

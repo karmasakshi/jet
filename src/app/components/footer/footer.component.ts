@@ -11,10 +11,10 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   imports: [
+    AnalyticsEventDirective,
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    AnalyticsEventDirective,
     TranslocoModule,
   ],
   selector: 'jet-footer',

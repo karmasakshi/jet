@@ -23,9 +23,9 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        AppComponent,
         MatIconTestingModule,
         TranslocoTestingModule.forRoot({ langs: { en: {} } }),
-        AppComponent,
       ],
       providers: [
         {

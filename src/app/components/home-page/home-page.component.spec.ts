@@ -10,7 +10,7 @@ describe('HomePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), HomePageComponent],
+      imports: [HomePageComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [{ provide: LoggerService, useClass: LoggerServiceMock }],
     }).compileComponents();
 

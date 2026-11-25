@@ -18,8 +18,8 @@ describe('ToolbarComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatIconTestingModule,
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
         ToolbarComponent,
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
       ],
       providers: [
         provideRouter([]),

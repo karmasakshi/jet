@@ -8,7 +8,7 @@ import { translate, TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
-  imports: [TranslocoModule, PageComponent],
+  imports: [PageComponent, TranslocoModule],
   selector: 'jet-sign-out-page',
   styles: ``,
   templateUrl: './sign-out-page.component.html',

@@ -19,7 +19,7 @@ describe('ProfilePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), ProfilePageComponent],
+      imports: [ProfilePageComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
         provideRouter([]),
         { provide: AlertService, useClass: AlertServiceMock },

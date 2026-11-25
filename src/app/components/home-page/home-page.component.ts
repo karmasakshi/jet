@@ -4,7 +4,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
 @Component({
-  imports: [TranslocoModule, PageComponent],
+  imports: [PageComponent, TranslocoModule],
   selector: 'jet-home-page',
   styles: ``,
   templateUrl: './home-page.component.html',

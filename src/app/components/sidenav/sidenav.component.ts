@@ -17,6 +17,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   imports: [
+    AnalyticsEventDirective,
     MatBadgeModule,
     MatButtonModule,
     MatIconModule,
@@ -24,7 +25,6 @@ import { TranslocoModule } from '@jsverse/transloco';
     MatToolbarModule,
     MatTooltipModule,
     RouterLink,
-    AnalyticsEventDirective,
     TranslocoModule,
   ],
   selector: 'jet-sidenav',

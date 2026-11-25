@@ -32,15 +32,15 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
-    NgOptimizedImage,
-    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    TranslocoModule,
+    NgOptimizedImage,
     PageComponent,
+    ReactiveFormsModule,
+    TranslocoModule,
   ],
   selector: 'jet-update-password-page',
   styles: ``,

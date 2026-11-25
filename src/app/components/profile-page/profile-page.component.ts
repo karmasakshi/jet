@@ -33,20 +33,20 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
+    AnalyticsEventDirective,
     DatePipe,
-    NgOptimizedImage,
-    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
-    MatRippleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatRippleModule,
     MatTooltipModule,
-    RouterLink,
-    AnalyticsEventDirective,
-    TranslocoModule,
+    NgOptimizedImage,
     PageComponent,
+    ReactiveFormsModule,
+    RouterLink,
+    TranslocoModule,
   ],
   selector: 'jet-profile-page',
   styles: `

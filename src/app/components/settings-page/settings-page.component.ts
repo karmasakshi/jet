@@ -31,14 +31,14 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
+    AnalyticsEventDirective,
     DatePipe,
     MatCardModule,
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    AnalyticsEventDirective,
-    TranslocoModule,
     PageComponent,
+    TranslocoModule,
   ],
   selector: 'jet-settings-page',
   styles: ``,

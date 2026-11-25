@@ -31,16 +31,16 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
-    NgOptimizedImage,
-    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    NgOptimizedImage,
+    PageComponent,
+    ReactiveFormsModule,
     RouterLink,
     TranslocoModule,
-    PageComponent,
   ],
   selector: 'jet-sign-up-page',
   styles: ``,

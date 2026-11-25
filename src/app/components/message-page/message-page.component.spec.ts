@@ -11,7 +11,7 @@ describe('MessagePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), MessagePageComponent],
+      imports: [MessagePageComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [provideRouter([]), { provide: LoggerService, useClass: LoggerServiceMock }],
     }).compileComponents();
 

@@ -9,12 +9,12 @@ import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
-    NgOptimizedImage,
     MatButtonModule,
     MatCardModule,
+    NgOptimizedImage,
+    PageComponent,
     RouterLink,
     TranslocoModule,
-    PageComponent,
   ],
   selector: 'jet-message-page',
   styles: ``,

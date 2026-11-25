@@ -17,7 +17,7 @@ describe('ResetPasswordPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), ResetPasswordPageComponent],
+      imports: [ResetPasswordPageComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
         provideRouter([]),
         { provide: AlertService, useClass: AlertServiceMock },

@@ -90,6 +90,14 @@ module.exports = defineConfig([
           message: 'Use ES Private (#) instead of TS Private (private).',
         },
       ],
+      'perfectionist/sort-arrays': [
+        'error',
+        {
+          useConfigurationIf: {
+            matchesAstSelector: "Property[key.name='imports'] > ArrayExpression.value",
+          },
+        },
+      ],
       'perfectionist/sort-classes': 'off',
       'perfectionist/sort-imports': 'off',
     },

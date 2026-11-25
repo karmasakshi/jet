@@ -16,8 +16,8 @@ describe('SidenavComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatIconTestingModule,
-        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
         SidenavComponent,
+        TranslocoTestingModule.forRoot({ langs: { en: {} } }),
       ],
       providers: [
         provideRouter([]),

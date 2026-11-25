@@ -20,7 +20,7 @@ describe('SettingsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), SettingsPageComponent],
+      imports: [SettingsPageComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
         { provide: AlertService, useClass: AlertServiceMock },
         { provide: LoggerService, useClass: LoggerServiceMock },

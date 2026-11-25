@@ -11,7 +11,7 @@ describe('ConfirmationDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslocoTestingModule.forRoot({ langs: { en: {} } }), ConfirmationDialogComponent],
+      imports: [ConfirmationDialogComponent, TranslocoTestingModule.forRoot({ langs: { en: {} } })],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: { message: undefined } },
         { provide: LoggerService, useClass: LoggerServiceMock },
