@@ -32,7 +32,7 @@ Keep the codebase organized and readable by humans.
 ## Icons
 
 - Use `-filled` variants of Material Symbols.
-- Register all icons used by a component using [addSvgIconLiteral](./src/app/utilities/add-svg-icon-literal.utility.ts).
+- Register all icons used by a component using [addSvgIcons](./src/app/utilities/add-svg-icons.utility.ts).
 
 ## Names
 
