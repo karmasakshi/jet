@@ -1,21 +1,21 @@
 import { ApplicationConfig, mergeApplicationConfig } from '@angular/core';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
+import { AlertService } from '@jet/services/alert/alert.service';
+import { AlertServiceMock } from '@jet/services/alert/alert.service.mock';
 import { AnalyticsService } from '@jet/services/analytics/analytics.service';
 import { AnalyticsServiceMock } from '@jet/services/analytics/analytics.service.mock';
+import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
+import { ProgressBarServiceMock } from '@jet/services/progress-bar/progress-bar.service.mock';
+import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
+import { ServiceWorkerServiceMock } from '@jet/services/service-worker/service-worker.service.mock';
+import { SettingsService } from '@jet/services/settings/settings.service';
+import { SettingsServiceMock } from '@jet/services/settings/settings.service.mock';
+import { StorageService } from '@jet/services/storage/storage.service';
+import { StorageServiceMock } from '@jet/services/storage/storage.service.mock';
+import { UserService } from '@jet/services/user/user.service';
+import { UserServiceMock } from '@jet/services/user/user.service.mock';
 import { appConfig } from './app.config';
 import { serverRoutes } from './app.routes.server';
-import { AlertService } from './services/alert/alert.service';
-import { AlertServiceMock } from './services/alert/alert.service.mock';
-import { ProgressBarService } from './services/progress-bar/progress-bar.service';
-import { ProgressBarServiceMock } from './services/progress-bar/progress-bar.service.mock';
-import { ServiceWorkerService } from './services/service-worker/service-worker.service';
-import { ServiceWorkerServiceMock } from './services/service-worker/service-worker.service.mock';
-import { SettingsService } from './services/settings/settings.service';
-import { SettingsServiceMock } from './services/settings/settings.service.mock';
-import { StorageService } from './services/storage/storage.service';
-import { StorageServiceMock } from './services/storage/storage.service.mock';
-import { UserService } from './services/user/user.service';
-import { UserServiceMock } from './services/user/user.service.mock';
 
 const serverConfig: ApplicationConfig = {
   providers: [

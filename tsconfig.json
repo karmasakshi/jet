@@ -19,7 +19,7 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "paths": { "@jet/*": ["./src/app/*"] }
+    "paths": { "@jet/package.json": ["./package.json"], "@jet/*": ["./src/app/*"] }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
