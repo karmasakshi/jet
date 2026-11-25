@@ -11,11 +11,8 @@ import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analyti
 import { NavItem } from '@jet/interfaces/nav-item.interface';
 import { BadgeContentService } from '@jet/services/badge-content/badge-content.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
-import { homeFillIcon } from '@jet/svgs/home-fill';
-import { personFillIcon } from '@jet/svgs/person-fill';
-import { tuneFillIcon } from '@jet/svgs/tune-fill';
 import { Badge } from '@jet/types/badge.type';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -44,7 +41,7 @@ export class SidenavComponent {
   public readonly navItemPath = input.required<string | undefined>();
 
   public constructor() {
-    addSvgIconLiteral([homeFillIcon, personFillIcon, tuneFillIcon]);
+    addSvgIcons(NAV_ITEMS.map(({ svgIcon }) => svgIcon));
 
     this.navItems = NAV_ITEMS;
 

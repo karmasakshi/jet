@@ -31,7 +31,7 @@
             matListItemIcon
             [matBadge]="getBadgeContent(navItem.badge)"
             [matBadgeHidden]="!navItem.badge"
-            [svgIcon]="navItem.iconName"
+            [svgIcon]="navItem.svgIcon.name"
           />
           <span>{{ navItem.nameKey | transloco }}</span>
         </a>

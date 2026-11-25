@@ -22,12 +22,9 @@ import { BadgeContentService } from '@jet/services/badge-content/badge-content.s
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { NavItemService } from '@jet/services/nav-item/nav-item.service';
 import { SettingsService } from '@jet/services/settings/settings.service';
-import { homeFillIcon } from '@jet/svgs/home-fill';
-import { personFillIcon } from '@jet/svgs/person-fill';
-import { tuneFillIcon } from '@jet/svgs/tune-fill';
 import { Badge } from '@jet/types/badge.type';
 import { Direction } from '@jet/types/direction.type';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 import { FooterComponent } from '../footer/footer.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
@@ -67,7 +64,7 @@ export class AppComponent implements OnInit {
   protected readonly shouldAddSafeAreaPadding: Signal<boolean>;
 
   public constructor() {
-    addSvgIconLiteral([homeFillIcon, personFillIcon, tuneFillIcon]);
+    addSvgIcons(NAV_ITEMS.map(({ svgIcon }) => svgIcon));
 
     this.direction = this.#settingsService.direction;
 

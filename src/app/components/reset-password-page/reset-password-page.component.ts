@@ -19,7 +19,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { closeFillIcon } from '@jet/svgs/close-fill';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -55,7 +55,7 @@ export class ResetPasswordPageComponent implements HasUnsavedChanges, OnInit {
   public readonly email = input<null | string>(null);
 
   public constructor() {
-    addSvgIconLiteral([closeFillIcon]);
+    addSvgIcons([closeFillIcon]);
 
     this.#isLoading = false;
 

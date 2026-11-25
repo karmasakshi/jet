@@ -6,7 +6,7 @@ import { APP_VERSION } from '@jet/constants/app-version.constant';
 import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { alternateEmailFillIcon } from '@jet/svgs/alternate_email-fill';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -27,7 +27,7 @@ export class FooterComponent {
   protected readonly version: string;
 
   public constructor() {
-    addSvgIconLiteral([alternateEmailFillIcon]);
+    addSvgIcons([alternateEmailFillIcon]);
 
     this.version = APP_VERSION;
 

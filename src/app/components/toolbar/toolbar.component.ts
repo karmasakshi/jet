@@ -11,8 +11,7 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { ToolbarTitleService } from '@jet/services/toolbar-title/toolbar-title.service';
 import { shortTextFillIcon } from '@jet/svgs/short_text-fill';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
-import { addSvgIcon } from '@jet/utilities/add-svg-icon.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -51,9 +50,7 @@ export class ToolbarComponent {
   public readonly shouldAddSafeAreaPadding = input.required<boolean>();
 
   public constructor() {
-    addSvgIconLiteral([shortTextFillIcon]);
-
-    addSvgIcon('logo', './media/logo.svg');
+    addSvgIcons([shortTextFillIcon, { name: 'logo', url: './media/logo.svg' }]);
 
     this.progressBarConfiguration = this.#progressBarService.progressBarConfiguration;
 

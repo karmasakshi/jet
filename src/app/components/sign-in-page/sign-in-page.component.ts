@@ -21,7 +21,7 @@ import { UserService } from '@jet/services/user/user.service';
 import { closeFillIcon } from '@jet/svgs/close-fill';
 import { visibilityFillIcon } from '@jet/svgs/visibility-fill';
 import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 import { Provider } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
@@ -72,7 +72,7 @@ export class SignInPageComponent implements OnInit {
   public readonly returnUrl = input<string>('/');
 
   public constructor() {
-    addSvgIconLiteral([closeFillIcon, visibilityFillIcon, visibilityOffFillIcon]);
+    addSvgIcons([closeFillIcon, visibilityFillIcon, visibilityOffFillIcon]);
 
     this.#isLoading = false;
 

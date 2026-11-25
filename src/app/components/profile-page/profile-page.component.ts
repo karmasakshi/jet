@@ -26,7 +26,7 @@ import { closeFillIcon } from '@jet/svgs/close-fill';
 import { deleteFillIcon } from '@jet/svgs/delete-fill';
 import { editFillIcon } from '@jet/svgs/edit-fill';
 import { ProfileRow, ProfileUpdate } from '@jet/types/supabase/profile.type';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
 import { PageComponent } from '../page/page.component';
@@ -113,7 +113,7 @@ export class ProfilePageComponent implements HasUnsavedChanges, OnInit {
   }>;
 
   public constructor() {
-    addSvgIconLiteral([closeFillIcon, deleteFillIcon, editFillIcon]);
+    addSvgIcons([closeFillIcon, deleteFillIcon, editFillIcon]);
 
     this.#isLoading = false;
 

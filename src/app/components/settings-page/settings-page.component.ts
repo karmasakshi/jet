@@ -25,7 +25,7 @@ import { lightModeFillIcon } from '@jet/svgs/light_mode-fill';
 import { refreshFillIcon } from '@jet/svgs/refresh-fill';
 import { resetSettingsFillIcon } from '@jet/svgs/reset_settings-fill';
 import { translateFillIcon } from '@jet/svgs/translate-fill';
-import { addSvgIconLiteral } from '@jet/utilities/add-svg-icon-literal.utility';
+import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 import { PageComponent } from '../page/page.component';
 
@@ -59,7 +59,7 @@ export class SettingsPageComponent {
   protected readonly settings: Signal<Settings>;
 
   public constructor() {
-    addSvgIconLiteral([
+    addSvgIcons([
       autorenewFillIcon,
       contrastFillIcon,
       darkModeFillIcon,
