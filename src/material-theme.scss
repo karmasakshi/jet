@@ -18,7 +18,6 @@ $ar-plain-family: ('Noto Sans Arabic Variable', sans-serif);
 html {
   background-color: var(--mat-sys-surface);
   color-scheme: light dark;
-  height: 100%;
 
   @include mat.theme(
     (
@@ -91,7 +90,6 @@ body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-  height: 100%;
 
   &.ar {
     @include mat.theme(
@@ -123,9 +121,7 @@ body {
 }
 
 .jet-sidenav-container {
-  height: 100%;
   min-width: 375px;
-  overflow: auto !important;
 
   &[dir='ltr'] {
     --jet-safe-area-start: env(safe-area-inset-left);
@@ -167,7 +163,7 @@ body {
   .jet-sidenav-content {
     display: flex;
     flex-direction: column;
-    padding-bottom: env(safe-area-inset-bottom);
+    min-height: 100dvh;
     padding-top: var(--jet-safe-area-inset-top);
 
     &.jet-add-nav-padding {
@@ -180,12 +176,6 @@ body {
       padding-inline-end: calc(16px + var(--jet-safe-area-end));
       padding-inline-start: 16px;
       position: relative;
-
-      @include mat.toolbar-overrides(
-        (
-          container-background-color: var(--mat-sys-background),
-        )
-      );
 
       &.jet-add-safe-area-padding {
         padding-inline-start: calc(16px + var(--jet-safe-area-start));
@@ -209,7 +199,7 @@ body {
 
     footer {
       background-color: var(--mat-sys-surface-container-low);
-      padding-bottom: 16px;
+      padding-bottom: calc(16px + env(safe-area-inset-bottom));
       padding-inline-end: calc(16px + var(--jet-safe-area-end));
       padding-inline-start: 16px;
       padding-top: 16px;
@@ -259,15 +249,18 @@ body {
       }
     }
   }
+
+  .mat-drawer-backdrop {
+    &.mat-drawer-shown {
+      background-color: var(--mat-sys-surface);
+      opacity: 0.75;
+    }
+  }
 }
 
 form {
   display: flex;
   flex-direction: column;
-
-  .mat-mdc-form-field {
-    margin-bottom: 8px;
-  }
 }
 
 img {
@@ -289,8 +282,12 @@ img {
   }
 }
 
-.mat-mdc-form-field-icon-suffix {
-  padding: 0 8px !important;
+.mat-mdc-form-field {
+  margin-bottom: 8px;
+
+  .mat-mdc-form-field-icon-suffix {
+    padding: 0 8px;
+  }
 }
 
 .mat-mdc-option {
