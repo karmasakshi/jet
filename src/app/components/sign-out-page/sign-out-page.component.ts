@@ -5,10 +5,9 @@ import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
 import { UserService } from '@jet/services/user/user.service';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import { PageComponent } from '../page/page.component';
 
 @Component({
-  imports: [PageComponent, TranslocoModule],
+  imports: [TranslocoModule],
   selector: 'jet-sign-out-page',
   styles: ``,
   templateUrl: './sign-out-page.component.html',

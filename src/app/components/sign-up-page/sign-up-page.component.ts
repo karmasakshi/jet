@@ -27,7 +27,6 @@ import { visibilityFillIcon } from '@jet/svgs/visibility-fill';
 import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
 import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
@@ -37,7 +36,6 @@ import { PageComponent } from '../page/page.component';
     MatIconModule,
     MatInputModule,
     NgOptimizedImage,
-    PageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,

@@ -2,124 +2,117 @@
 @let _settings = settings();
 
 <ng-container *transloco="let t; prefix: 'settings-page'">
-  <jet-page
-    [seoDescription]="t('seo.description')"
-    [seoKeywords]="t('seo.keywords')"
-    [seoTitle]="t('seo.title')"
-    [toolbarTitle]="t('toolbar-title')"
+  <mat-card>
+    <mat-card-content>
+      <mat-action-list>
+        <button
+          mat-list-item
+          type="button"
+          [jetAnalyticsEvent]="{ name: 'open_language_options' }"
+          [mat-menu-trigger-for]="languageOptionsMenu"
+        >
+          <mat-icon
+            matListItemIcon
+            svgIcon="language-fill"
+          />
+          <span matListItemTitle>{{ t('change-language') }}</span>
+          <span matListItemLine>{{ _settings.languageOption.nameKey | transloco }}</span>
+        </button>
+        <button
+          mat-list-item
+          type="button"
+          [jetAnalyticsEvent]="{ name: 'open_color_scheme_options' }"
+          [mat-menu-trigger-for]="colorSchemeOptionsMenu"
+        >
+          <mat-icon
+            matListItemIcon
+            svgIcon="imagesearch-roller-fill"
+          />
+          <span matListItemTitle>{{ t('change-color-scheme') }}</span>
+          <span matListItemLine>{{ _settings.colorSchemeOption.nameKey | transloco }}</span>
+        </button>
+        <button
+          mat-list-item
+          type="button"
+          [jetAnalyticsEvent]="{ name: 'check_for_updates' }"
+          (click)="checkForUpdate()"
+        >
+          <mat-icon
+            matListItemIcon
+            svgIcon="autorenew-fill"
+          />
+          <span matListItemTitle>{{ t('check-for-updates') }}</span>
+          <span matListItemLine>{{
+            t('last-checked-on-x', { x: _lastUpdateCheckTimestamp | date: 'medium' })
+          }}</span>
+        </button>
+        <button
+          mat-list-item
+          type="button"
+          [jetAnalyticsEvent]="{ name: 'reload' }"
+          (click)="reload()"
+        >
+          <mat-icon
+            matListItemIcon
+            svgIcon="refresh-fill"
+          />
+          <span matListItemTitle>{{ t('reload') }}</span>
+          <span matListItemLine>{{ t('keep-settings-and-reload') }}</span>
+        </button>
+        <button
+          mat-list-item
+          type="button"
+          [jetAnalyticsEvent]="{ name: 'reset' }"
+          (click)="reset()"
+        >
+          <mat-icon
+            matListItemIcon
+            svgIcon="reset-settings-fill"
+          />
+          <span matListItemTitle>{{ t('reset') }}</span>
+          <span matListItemLine>{{ t('reset-settings-and-reload') }}</span>
+        </button>
+      </mat-action-list>
+    </mat-card-content>
+  </mat-card>
+  <mat-menu
+    #languageOptionsMenu="matMenu"
+    xPosition="before"
   >
-    <mat-card>
-      <mat-card-content>
-        <mat-action-list>
-          <button
-            mat-list-item
-            type="button"
-            [jetAnalyticsEvent]="{ name: 'open_language_options' }"
-            [mat-menu-trigger-for]="languageOptionsMenu"
-          >
-            <mat-icon
-              matListItemIcon
-              svgIcon="language-fill"
-            />
-            <span matListItemTitle>{{ t('change-language') }}</span>
-            <span matListItemLine>{{ _settings.languageOption.nameKey | transloco }}</span>
-          </button>
-          <button
-            mat-list-item
-            type="button"
-            [jetAnalyticsEvent]="{ name: 'open_color_scheme_options' }"
-            [mat-menu-trigger-for]="colorSchemeOptionsMenu"
-          >
-            <mat-icon
-              matListItemIcon
-              svgIcon="imagesearch-roller-fill"
-            />
-            <span matListItemTitle>{{ t('change-color-scheme') }}</span>
-            <span matListItemLine>{{ _settings.colorSchemeOption.nameKey | transloco }}</span>
-          </button>
-          <button
-            mat-list-item
-            type="button"
-            [jetAnalyticsEvent]="{ name: 'check_for_updates' }"
-            (click)="checkForUpdate()"
-          >
-            <mat-icon
-              matListItemIcon
-              svgIcon="autorenew-fill"
-            />
-            <span matListItemTitle>{{ t('check-for-updates') }}</span>
-            <span matListItemLine>{{
-              t('last-checked-on-x', { x: _lastUpdateCheckTimestamp | date: 'medium' })
-            }}</span>
-          </button>
-          <button
-            mat-list-item
-            type="button"
-            [jetAnalyticsEvent]="{ name: 'reload' }"
-            (click)="reload()"
-          >
-            <mat-icon
-              matListItemIcon
-              svgIcon="refresh-fill"
-            />
-            <span matListItemTitle>{{ t('reload') }}</span>
-            <span matListItemLine>{{ t('keep-settings-and-reload') }}</span>
-          </button>
-          <button
-            mat-list-item
-            type="button"
-            [jetAnalyticsEvent]="{ name: 'reset' }"
-            (click)="reset()"
-          >
-            <mat-icon
-              matListItemIcon
-              svgIcon="reset-settings-fill"
-            />
-            <span matListItemTitle>{{ t('reset') }}</span>
-            <span matListItemLine>{{ t('reset-settings-and-reload') }}</span>
-          </button>
-        </mat-action-list>
-      </mat-card-content>
-    </mat-card>
-    <mat-menu
-      #languageOptionsMenu="matMenu"
-      xPosition="before"
-    >
-      @for (languageOption of languageOptions; track languageOption.value) {
-        <button
-          mat-menu-item
-          type="button"
-          [disabled]="_settings.languageOption.value === languageOption.value"
-          [jetAnalyticsEvent]="{
-            data: { languageOption: languageOption.value },
-            name: 'set_language_option',
-          }"
-          (click)="updateSettings({ languageOption })"
-        >
-          <mat-icon [svgIcon]="languageOption.iconName" />
-          <span>{{ languageOption.nameKey | transloco }}</span>
-        </button>
-      }
-    </mat-menu>
-    <mat-menu
-      #colorSchemeOptionsMenu="matMenu"
-      xPosition="before"
-    >
-      @for (colorSchemeOption of colorSchemeOptions; track colorSchemeOption.value) {
-        <button
-          mat-menu-item
-          type="button"
-          [disabled]="_settings.colorSchemeOption.value === colorSchemeOption.value"
-          [jetAnalyticsEvent]="{
-            data: { colorSchemeOption: colorSchemeOption.value },
-            name: 'set_color_scheme_option',
-          }"
-          (click)="updateSettings({ colorSchemeOption })"
-        >
-          <mat-icon [svgIcon]="colorSchemeOption.iconName" />
-          <span>{{ colorSchemeOption.nameKey | transloco }}</span>
-        </button>
-      }
-    </mat-menu>
-  </jet-page>
+    @for (languageOption of languageOptions; track languageOption.value) {
+      <button
+        mat-menu-item
+        type="button"
+        [disabled]="_settings.languageOption.value === languageOption.value"
+        [jetAnalyticsEvent]="{
+          data: { languageOption: languageOption.value },
+          name: 'set_language_option',
+        }"
+        (click)="updateSettings({ languageOption })"
+      >
+        <mat-icon [svgIcon]="languageOption.iconName" />
+        <span>{{ languageOption.nameKey | transloco }}</span>
+      </button>
+    }
+  </mat-menu>
+  <mat-menu
+    #colorSchemeOptionsMenu="matMenu"
+    xPosition="before"
+  >
+    @for (colorSchemeOption of colorSchemeOptions; track colorSchemeOption.value) {
+      <button
+        mat-menu-item
+        type="button"
+        [disabled]="_settings.colorSchemeOption.value === colorSchemeOption.value"
+        [jetAnalyticsEvent]="{
+          data: { colorSchemeOption: colorSchemeOption.value },
+          name: 'set_color_scheme_option',
+        }"
+        (click)="updateSettings({ colorSchemeOption })"
+      >
+        <mat-icon [svgIcon]="colorSchemeOption.iconName" />
+        <span>{{ colorSchemeOption.nameKey | transloco }}</span>
+      </button>
+    }
+  </mat-menu>
 </ng-container>

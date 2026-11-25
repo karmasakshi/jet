@@ -36,19 +36,23 @@
     "seo": {
       "description": "Angular framework for your AI agents to consistently build accessible, performant, scalable and secure web apps.",
       "keywords": "jet",
-      "title": "Jet: Angular framework for building high quality web apps"
-    },
-    "toolbar-title": "Jet"
+      "title": "Jet: Angular framework for building high quality web apps",
+      "toolbar-title": "Jet"
+    }
   },
   "message-page": {
     "message": "Message",
     "not-found": "Not found",
     "open-home": "Open Home",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Message" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Message",
+      "toolbar-title": "Message"
+    },
     "sign-in-link-description": "Click the link in the email we sent to sign in.",
     "sign-in-link-sent": "Sign in link sent",
     "that-page-doesnt-exist": "That page doesn't exist.",
-    "toolbar-title": "Message",
     "update-password-link-description": "If an account exists for this email, we'll send a link to sign in and update the password.",
     "verification-email-sent": "Verification email sent",
     "verify-link-description": "Click the link in the email we sent to verify your email.",
@@ -76,9 +80,13 @@
     "profile-created-on-x": "Profile created on {{ x }}",
     "profile-last-updated-on-x": "Profile last updated on {{ x }}",
     "save": "Save",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Profile" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Profile",
+      "toolbar-title": "Profile"
+    },
     "sign-out": "Sign out",
-    "toolbar-title": "Profile",
     "update-password": "Update password",
     "x-of-y-characters": "{{ x }} of {{ y }} characters"
   },
@@ -88,10 +96,14 @@
     "email-error-email": "Enter a valid email",
     "email-error-required": "Email is required",
     "reset-password": "Reset password",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Reset Password" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Reset Password",
+      "toolbar-title": "Reset Password"
+    },
     "sign-in": "Sign in",
-    "sign-up": "Sign up",
-    "toolbar-title": "Reset Password"
+    "sign-up": "Sign up"
   },
   "settings-page": {
     "change-color-scheme": "Change color scheme",
@@ -102,8 +114,12 @@
     "reload": "Reload",
     "reset": "Reset",
     "reset-settings-and-reload": "Reset settings and reload",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Settings" },
-    "toolbar-title": "Settings"
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Settings",
+      "toolbar-title": "Settings"
+    }
   },
   "sidenav": { "home": "Home", "open-home": "Open Home" },
   "sign-in-page": {
@@ -128,17 +144,25 @@
     "resend-otp": "Resend OTP",
     "reset-password": "Reset password",
     "send-otp": "Send OTP",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign In" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Sign In",
+      "toolbar-title": "Sign In"
+    },
     "sign-in": "Sign in",
     "sign-in-to-continue-to-x": "Sign in to continue to {{ x }}",
     "sign-in-with-google": "Sign in with Google",
     "sign-up": "Sign up",
-    "toggle-visibility": "Toggle visibility",
-    "toolbar-title": "Sign In"
+    "toggle-visibility": "Toggle visibility"
   },
   "sign-out-page": {
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign Out" },
-    "toolbar-title": "Sign Out"
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Sign Out",
+      "toolbar-title": "Sign Out"
+    }
   },
   "sign-up-page": {
     "clear": "Clear",
@@ -153,11 +177,15 @@
     "password-error-minlength-x": "Password must be at least {{ x }} characters",
     "password-error-required": "Password is required",
     "reset-password": "Reset password",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Sign Up" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Sign Up",
+      "toolbar-title": "Sign Up"
+    },
     "sign-in": "Sign in",
     "sign-up": "Sign up",
-    "toggle-visibility": "Toggle visibility",
-    "toolbar-title": "Sign Up"
+    "toggle-visibility": "Toggle visibility"
   },
   "toolbar": {
     "home": "Home",
@@ -175,9 +203,13 @@
     "new-password-error-minlength-x": "New password must be at least {{ x }} characters",
     "new-password-error-required": "New password is required",
     "save": "Save",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "Update Password" },
+    "seo": {
+      "description": "Jet.",
+      "keywords": "jet",
+      "title": "Update Password",
+      "toolbar-title": "Update Password"
+    },
     "toggle-visibility": "Toggle visibility",
-    "toolbar-title": "Update Password",
     "update-password": "Update password"
   }
 }

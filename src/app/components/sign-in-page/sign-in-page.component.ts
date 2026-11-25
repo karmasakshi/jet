@@ -24,7 +24,6 @@ import { visibilityOffFillIcon } from '@jet/svgs/visibility_off-fill';
 import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 import { Provider } from '@supabase/supabase-js';
-import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
@@ -35,7 +34,6 @@ import { PageComponent } from '../page/page.component';
     MatInputModule,
     MatTabsModule,
     NgOptimizedImage,
-    PageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,

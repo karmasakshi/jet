@@ -27,7 +27,6 @@ import { resetSettingsFillIcon } from '@jet/svgs/reset_settings-fill';
 import { translateFillIcon } from '@jet/svgs/translate-fill';
 import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
-import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
@@ -37,7 +36,6 @@ import { PageComponent } from '../page/page.component';
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    PageComponent,
     TranslocoModule,
   ],
   selector: 'jet-settings-page',

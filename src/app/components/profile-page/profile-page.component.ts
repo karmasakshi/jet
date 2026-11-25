@@ -29,7 +29,6 @@ import { ProfileRow, ProfileUpdate } from '@jet/types/supabase/profile.type';
 import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 import { User } from '@supabase/supabase-js';
-import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
@@ -43,7 +42,6 @@ import { PageComponent } from '../page/page.component';
     MatRippleModule,
     MatTooltipModule,
     NgOptimizedImage,
-    PageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,

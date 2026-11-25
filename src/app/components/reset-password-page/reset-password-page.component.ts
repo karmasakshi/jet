@@ -21,7 +21,6 @@ import { UserService } from '@jet/services/user/user.service';
 import { closeFillIcon } from '@jet/svgs/close-fill';
 import { addSvgIcons } from '@jet/utilities/add-svg-icons.utility';
 import { TranslocoModule } from '@jsverse/transloco';
-import { PageComponent } from '../page/page.component';
 
 @Component({
   imports: [
@@ -31,7 +30,6 @@ import { PageComponent } from '../page/page.component';
     MatIconModule,
     MatInputModule,
     NgOptimizedImage,
-    PageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,
