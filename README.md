@@ -247,6 +247,7 @@ Nice to do:
 ### GitHub Actions
 
 - [deploy-supabase-functions](./.github/workflows/deploy-supabase-functions.yml)
+- [Review Supabase migrations](./.github/workflows/rattlecheck.yml) checks migration PRs for new high or critical SQL permission findings. It compares the migration history with the base branch and runs without Supabase credentials.
 - [release-please](./.github/workflows/release-please.yml)
 
 <br />
