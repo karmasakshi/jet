@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
+import { PageComponent } from '@jet/components/page/page.component';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  imports: [TranslocoModule],
+  imports: [PageComponent, TranslocoModule],
   selector: 'jet-home-page',
   styles: ``,
   templateUrl: './home-page.component.html',

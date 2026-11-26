@@ -5,7 +5,10 @@
 @let _phoneControl = phoneSignInFormGroup.controls.phone;
 @let _returnUrl = returnUrl();
 
-<ng-container *transloco="let t; prefix: 'sign-in-page'">
+<jet-page
+  *transloco="let t; prefix: 'sign-in-page'"
+  [toolbarTitle]="t('toolbar-title')"
+>
   <div class="jet-stack items-center">
     @if (_returnUrl !== '/') {
       <span>{{ t('sign-in-to-continue-to-x', { x: _returnUrl }) }}</span>
@@ -290,4 +293,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-</ng-container>
+</jet-page>

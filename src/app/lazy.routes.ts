@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { PAGE_METADATAS } from '@jet/constants/page-metadatas.constant';
 import { hasEmailGuard } from '@jet/guards/has-email/has-email.guard';
 import { hasUnsavedChangesGuard } from '@jet/guards/has-unsaved-changes/has-unsaved-changes.guard';
 import { isSignedInGuard } from '@jet/guards/is-signed-in/is-signed-in.guard';
@@ -7,7 +8,10 @@ import { ProfileService } from '@jet/services/profile/profile.service';
 
 export const lazyRoutes: Routes = [
   {
-    data: { canonical: '/email-verification-pending', case: 'email-verification-pending' },
+    data: {
+      case: 'email-verification-pending',
+      pageMetadata: PAGE_METADATAS['/email-verification-pending'],
+    },
     loadComponent: async () =>
       (await import('@jet/components/message-page/message-page.component')).MessagePageComponent,
     path: 'email-verification-pending',
@@ -15,7 +19,7 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedInGuard],
     canDeactivate: [hasUnsavedChangesGuard],
-    data: { canonical: '/profile' },
+    data: { pageMetadata: PAGE_METADATAS['/profile'] },
     loadComponent: async () =>
       (await import('@jet/components/profile-page/profile-page.component')).ProfilePageComponent,
     path: 'profile',
@@ -24,39 +28,42 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedOutGuard],
     canDeactivate: [hasUnsavedChangesGuard],
-    data: { canonical: '/reset-password' },
+    data: { pageMetadata: PAGE_METADATAS['/reset-password'] },
     loadComponent: async () =>
       (await import('@jet/components/reset-password-page/reset-password-page.component'))
         .ResetPasswordPageComponent,
     path: 'reset-password',
   },
   {
-    data: { canonical: '/reset-password-email-sent', case: 'reset-password-email-sent' },
+    data: {
+      case: 'reset-password-email-sent',
+      pageMetadata: PAGE_METADATAS['/reset-password-email-sent'],
+    },
     loadComponent: async () =>
       (await import('@jet/components/message-page/message-page.component')).MessagePageComponent,
     path: 'reset-password-email-sent',
   },
   {
-    data: { canonical: '/settings' },
+    data: { pageMetadata: PAGE_METADATAS['/settings'] },
     loadComponent: async () =>
       (await import('@jet/components/settings-page/settings-page.component')).SettingsPageComponent,
     path: 'settings',
   },
   {
-    data: { canonical: '/sign-in' },
+    data: { pageMetadata: PAGE_METADATAS['/sign-in'] },
     loadComponent: async () =>
       (await import('@jet/components/sign-in-page/sign-in-page.component')).SignInPageComponent,
     path: 'sign-in',
   },
   {
-    data: { canonical: '/sign-in-link-sent', case: 'sign-in-link-sent' },
+    data: { case: 'sign-in-link-sent', pageMetadata: PAGE_METADATAS['/sign-in-link-sent'] },
     loadComponent: async () =>
       (await import('@jet/components/message-page/message-page.component')).MessagePageComponent,
     path: 'sign-in-link-sent',
   },
   {
     canActivate: [isSignedInGuard],
-    data: { canonical: '/sign-out' },
+    data: { pageMetadata: PAGE_METADATAS['/sign-out'] },
     loadComponent: async () =>
       (await import('@jet/components/sign-out-page/sign-out-page.component')).SignOutPageComponent,
     path: 'sign-out',
@@ -64,7 +71,7 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedOutGuard],
     canDeactivate: [hasUnsavedChangesGuard],
-    data: { canonical: '/sign-up' },
+    data: { pageMetadata: PAGE_METADATAS['/sign-up'] },
     loadComponent: async () =>
       (await import('@jet/components/sign-up-page/sign-up-page.component')).SignUpPageComponent,
     path: 'sign-up',
@@ -72,7 +79,7 @@ export const lazyRoutes: Routes = [
   {
     canActivate: [isSignedInGuard, hasEmailGuard],
     canDeactivate: [hasUnsavedChangesGuard],
-    data: { canonical: '/update-password' },
+    data: { pageMetadata: PAGE_METADATAS['/update-password'] },
     loadComponent: async () =>
       (await import('@jet/components/update-password-page/update-password-page.component'))
         .UpdatePasswordPageComponent,

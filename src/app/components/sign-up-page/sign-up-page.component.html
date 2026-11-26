@@ -3,7 +3,10 @@
 @let _passwordControl = signUpFormGroup.controls.password;
 @let _returnUrl = returnUrl();
 
-<ng-container *transloco="let t; prefix: 'sign-up-page'">
+<jet-page
+  *transloco="let t; prefix: 'sign-up-page'"
+  [toolbarTitle]="t('toolbar-title')"
+>
   <div class="jet-stack">
     <mat-card class="jet-centered-card">
       <img
@@ -165,4 +168,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-</ng-container>
+</jet-page>

@@ -1,0 +1,23 @@
+import { inject, Service, signal, Signal, WritableSignal } from '@angular/core';
+import { LoggerService } from '../logger/logger.service';
+
+@Service()
+export class ToolbarTitleService {
+  readonly #loggerService = inject(LoggerService);
+
+  readonly #toolbarTitle: WritableSignal<string>;
+
+  public readonly toolbarTitle: Signal<string>;
+
+  public constructor() {
+    this.#toolbarTitle = signal('');
+
+    this.toolbarTitle = this.#toolbarTitle.asReadonly();
+
+    this.#loggerService.logServiceInitialization('ToolbarTitleService');
+  }
+
+  public setToolbarTitle(toolbarTitle: string): void {
+    this.#toolbarTitle.set(toolbarTitle);
+  }
+}

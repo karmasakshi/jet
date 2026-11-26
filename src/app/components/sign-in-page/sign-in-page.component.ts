@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { PageComponent } from '@jet/components/page/page.component';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -34,6 +35,7 @@ import { Provider } from '@supabase/supabase-js';
     MatInputModule,
     MatTabsModule,
     NgOptimizedImage,
+    PageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,

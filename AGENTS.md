@@ -8,8 +8,8 @@ Keep the codebase organized and readable by humans.
 
 ## Commits
 
+- Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 - Add scopes to [.commitlintrc](./.commitlintrc) as features grow; use `general` until then.
-- Suffix `!` after scope to indicate breaking changes; e.g. `feat(general)!: encrypt storage`.
 
 ## Components
 
@@ -19,8 +19,7 @@ Keep the codebase organized and readable by humans.
 
 ## Dependencies
 
-- Run `reinstall-dependencies` to update all dependencies.
-- Update `x:*` scripts whenever adding or removing packages.
+- Run `reinstall-dependencies` to update all dependencies; update the four child scripts whenever adding or removing packages.
 
 ## Forms
 
@@ -38,9 +37,15 @@ Keep the codebase organized and readable by humans.
 
 - Avoid abbreviations.
 - Avoid synonyms to reduce cognitive load; e.g. use one of (authenticate, sign-in, login, etc.), use one of (bag, basket, cart, etc.).
-- Component names should be suffixed with the UI component it builds upon; e.g. `FaqExpansionPanel`, `OrdersTable`, `ProfileCard`.
+- Component names should be suffixed with the UI component it builds upon; e.g. `FaqExpansionPanel`, `OrdersTable`, `ProfileCard`. For page components, suffix `page`.
 - Name variables the same as what they `inject` camel-cased.
 - Suffix units where applicable; e.g. `discountUsd`, `TIMEOUT_MS`, etc.
+
+## Routes
+
+- Update [sitemap-main.xml](./public/sitemaps/sitemap-main.xml) when adding a route.
+- Add path to [nav-items.constant.ts](./src/app/constants/nav-items.constant.ts).
+- Set prerendering strategy in [app.routes.server.ts](./src/app/app.routes.server.ts).
 
 ## Scripts
 

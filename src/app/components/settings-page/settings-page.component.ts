@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { PageComponent } from '@jet/components/page/page.component';
 import { COLOR_SCHEME_OPTIONS } from '@jet/constants/color-scheme-options.constant';
 import { LANGUAGE_OPTIONS } from '@jet/constants/language-options.constant';
 import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
@@ -36,6 +37,7 @@ import { translate, TranslocoModule } from '@jsverse/transloco';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    PageComponent,
     TranslocoModule,
   ],
   selector: 'jet-settings-page',

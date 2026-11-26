@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
+import { PageComponent } from '@jet/components/page/page.component';
 import { AnalyticsEventDirective } from '@jet/directives/analytics-event/analytics-event.directive';
 import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
@@ -42,6 +43,7 @@ import { User } from '@supabase/supabase-js';
     MatRippleModule,
     MatTooltipModule,
     NgOptimizedImage,
+    PageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,

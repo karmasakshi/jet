@@ -1,7 +1,10 @@
 @let _lastUpdateCheckTimestamp = lastUpdateCheckTimestamp();
 @let _settings = settings();
 
-<ng-container *transloco="let t; prefix: 'settings-page'">
+<jet-page
+  *transloco="let t; prefix: 'settings-page'"
+  [toolbarTitle]="t('toolbar-title')"
+>
   <mat-card>
     <mat-card-content>
       <mat-action-list>
@@ -115,4 +118,4 @@
       </button>
     }
   </mat-menu>
-</ng-container>
+</jet-page>

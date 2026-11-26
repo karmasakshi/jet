@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PageComponent } from '@jet/components/page/page.component';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { ProgressBarService } from '@jet/services/progress-bar/progress-bar.service';
@@ -7,7 +8,7 @@ import { UserService } from '@jet/services/user/user.service';
 import { translate, TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  imports: [TranslocoModule],
+  imports: [PageComponent, TranslocoModule],
   selector: 'jet-sign-out-page',
   styles: ``,
   templateUrl: './sign-out-page.component.html',

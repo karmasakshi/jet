@@ -1,64 +1,60 @@
 @let _case = case();
 
-<ng-container *transloco="let t; prefix: 'message-page'">
-  <jet-page
-    [seoDescription]="t('seo.description')"
-    [seoKeywords]="t('seo.keywords')"
-    [seoTitle]="t('seo.title')"
-    [toolbarTitle]="t('toolbar-title')"
-  >
-    <div class="jet-stack">
-      <mat-card class="jet-centered-card">
-        <img
-          height="180"
-          mat-card-image
-          ngSrc="./media/banner.webp"
-          priority
-          width="480"
-          [alt]="t('message')"
-        />
-        @switch (_case) {
-          @case ('email-verification-pending') {
-            <mat-card-header>
-              <mat-card-title class="truncate">{{ t('verification-email-sent') }}</mat-card-title>
-              <mat-card-subtitle>
-                <p class="my-3">{{ t('verify-link-description') }}</p>
-              </mat-card-subtitle>
-            </mat-card-header>
-          }
-          @case ('reset-password-email-sent') {
-            <mat-card-header>
-              <mat-card-title class="truncate">{{ t('well-email-you') }}</mat-card-title>
-              <mat-card-subtitle>
-                <p class="my-3">{{ t('update-password-link-description') }}</p>
-              </mat-card-subtitle>
-            </mat-card-header>
-          }
-          @case ('sign-in-link-sent') {
-            <mat-card-header>
-              <mat-card-title class="truncate">{{ t('sign-in-link-sent') }}</mat-card-title>
-              <mat-card-subtitle>
-                <p class="my-3">{{ t('sign-in-link-description') }}</p>
-              </mat-card-subtitle>
-            </mat-card-header>
-          }
-          @default {
-            <mat-card-header>
-              <mat-card-title class="truncate">{{ t('not-found') }}</mat-card-title>
-              <mat-card-subtitle>
-                <p class="my-3">{{ t('that-page-doesnt-exist') }}</p>
-              </mat-card-subtitle>
-            </mat-card-header>
-          }
+<jet-page
+  *transloco="let t; prefix: 'message-page'"
+  [toolbarTitle]="t('toolbar-title')"
+>
+  <div class="jet-stack">
+    <mat-card class="jet-centered-card">
+      <img
+        height="180"
+        mat-card-image
+        ngSrc="./media/banner.webp"
+        priority
+        width="480"
+        [alt]="t('message')"
+      />
+      @switch (_case) {
+        @case ('email-verification-pending') {
+          <mat-card-header>
+            <mat-card-title class="truncate">{{ t('verification-email-sent') }}</mat-card-title>
+            <mat-card-subtitle>
+              <p class="my-3">{{ t('verify-link-description') }}</p>
+            </mat-card-subtitle>
+          </mat-card-header>
         }
-        <mat-card-actions align="end">
-          <a
-            matButton="filled"
-            [routerLink]="['/']"
-            >{{ t('open-home') }}</a
-          >
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </jet-page>
-</ng-container>
+        @case ('reset-password-email-sent') {
+          <mat-card-header>
+            <mat-card-title class="truncate">{{ t('well-email-you') }}</mat-card-title>
+            <mat-card-subtitle>
+              <p class="my-3">{{ t('update-password-link-description') }}</p>
+            </mat-card-subtitle>
+          </mat-card-header>
+        }
+        @case ('sign-in-link-sent') {
+          <mat-card-header>
+            <mat-card-title class="truncate">{{ t('sign-in-link-sent') }}</mat-card-title>
+            <mat-card-subtitle>
+              <p class="my-3">{{ t('sign-in-link-description') }}</p>
+            </mat-card-subtitle>
+          </mat-card-header>
+        }
+        @default {
+          <mat-card-header>
+            <mat-card-title class="truncate">{{ t('not-found') }}</mat-card-title>
+            <mat-card-subtitle>
+              <p class="my-3">{{ t('that-page-doesnt-exist') }}</p>
+            </mat-card-subtitle>
+          </mat-card-header>
+        }
+      }
+      <mat-card-actions align="end">
+        <a
+          matButton="filled"
+          [routerLink]="['/']"
+          >{{ t('open-home') }}</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</jet-page>

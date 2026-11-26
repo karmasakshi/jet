@@ -32,22 +32,15 @@
     "settings": "الإعدادات"
   },
   "footer": { "v-x": "v{{ x }}" },
-  "home-page": {
-    "seo": {
-      "description": "إطار عمل Angular يمكّن وكلاء الذكاء الاصطناعي لديك من بناء تطبيقات ويب باستمرار تتميز بسهولة الوصول والأداء العالي وقابلية التوسع والأمان.",
-      "keywords": "jet",
-      "title": "Jet: إطار عمل Angular لبناء تطبيقات ويب عالية الجودة",
-      "toolbar-title": "Jet"
-    }
-  },
+  "home-page": { "toolbar-title": "Jet" },
   "message-page": {
     "message": "رسالة",
     "not-found": "غير موجود",
     "open-home": "فتح الرئيسية",
-    "seo": { "description": "Jet.", "keywords": "jet", "title": "رسالة", "toolbar-title": "رسالة" },
     "sign-in-link-description": "انقر على الرابط الموجود في البريد الإلكتروني الذي أرسلناه لتسجيل الدخول.",
     "sign-in-link-sent": "تم إرسال رابط تسجيل الدخول",
     "that-page-doesnt-exist": "هذه الصفحة غير موجودة.",
+    "toolbar-title": "رسالة",
     "update-password-link-description": "إذا كان هناك حساب مرتبط بهذا البريد الإلكتروني، فسنرسل رابطًا لتسجيل الدخول وتحديث كلمة المرور.",
     "verification-email-sent": "تم إرسال بريد التحقق",
     "verify-link-description": "انقر على الرابط الموجود في البريد الإلكتروني الذي أرسلناه للتحقق من بريدك الإلكتروني.",
@@ -75,13 +68,8 @@
     "profile-created-on-x": "تم إنشاء الملف الشخصي في {{ x }}",
     "profile-last-updated-on-x": "آخر تحديث للملف الشخصي في {{ x }}",
     "save": "حفظ",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "الملف الشخصي",
-      "toolbar-title": "الملف الشخصي"
-    },
     "sign-out": "تسجيل الخروج",
+    "toolbar-title": "الملف الشخصي",
     "update-password": "تحديث كلمة المرور",
     "x-of-y-characters": "{{ x }} من {{ y }} حرفًا"
   },
@@ -91,14 +79,9 @@
     "email-error-email": "أدخل بريدًا إلكترونيًا صالحًا",
     "email-error-required": "البريد الإلكتروني مطلوب",
     "reset-password": "إعادة تعيين كلمة المرور",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "إعادة تعيين كلمة المرور",
-      "toolbar-title": "إعادة تعيين كلمة المرور"
-    },
     "sign-in": "تسجيل الدخول",
-    "sign-up": "إنشاء حساب"
+    "sign-up": "إنشاء حساب",
+    "toolbar-title": "إعادة تعيين كلمة المرور"
   },
   "settings-page": {
     "change-color-scheme": "تغيير نظام الألوان",
@@ -109,12 +92,7 @@
     "reload": "إعادة التحميل",
     "reset": "إعادة تعيين",
     "reset-settings-and-reload": "إعادة تعيين الإعدادات وإعادة التحميل",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "الإعدادات",
-      "toolbar-title": "الإعدادات"
-    }
+    "toolbar-title": "الإعدادات"
   },
   "sidenav": { "home": "الرئيسية", "open-home": "فتح الرئيسية" },
   "sign-in-page": {
@@ -139,26 +117,14 @@
     "resend-otp": "إعادة إرسال رمز التحقق",
     "reset-password": "إعادة تعيين كلمة المرور",
     "send-otp": "إرسال رمز التحقق",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "تسجيل الدخول",
-      "toolbar-title": "تسجيل الدخول"
-    },
     "sign-in": "تسجيل الدخول",
     "sign-in-to-continue-to-x": "سجّل الدخول للمتابعة إلى {{ x }}",
     "sign-in-with-google": "تسجيل الدخول باستخدام Google",
     "sign-up": "إنشاء حساب",
-    "toggle-visibility": "تبديل مستوى الظهور"
+    "toggle-visibility": "تبديل مستوى الظهور",
+    "toolbar-title": "تسجيل الدخول"
   },
-  "sign-out-page": {
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "تسجيل الخروج",
-      "toolbar-title": "تسجيل الخروج"
-    }
-  },
+  "sign-out-page": { "toolbar-title": "تسجيل الخروج" },
   "sign-up-page": {
     "clear": "مسح",
     "email": "البريد الإلكتروني",
@@ -172,15 +138,10 @@
     "password-error-minlength-x": "يجب أن تتكون كلمة المرور من {{ x }} أحرف على الأقل",
     "password-error-required": "كلمة المرور مطلوبة",
     "reset-password": "إعادة تعيين كلمة المرور",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "إنشاء حساب",
-      "toolbar-title": "إنشاء حساب"
-    },
     "sign-in": "تسجيل الدخول",
     "sign-up": "إنشاء حساب",
-    "toggle-visibility": "تبديل مستوى الظهور"
+    "toggle-visibility": "تبديل مستوى الظهور",
+    "toolbar-title": "إنشاء حساب"
   },
   "toolbar": {
     "home": "الرئيسية",
@@ -198,13 +159,8 @@
     "new-password-error-minlength-x": "يجب أن تتكون كلمة المرور الجديدة من {{ x }} أحرف على الأقل",
     "new-password-error-required": "كلمة المرور الجديدة مطلوبة",
     "save": "حفظ",
-    "seo": {
-      "description": "Jet.",
-      "keywords": "jet",
-      "title": "تحديث كلمة المرور",
-      "toolbar-title": "تحديث كلمة المرور"
-    },
     "toggle-visibility": "تبديل مستوى الظهور",
+    "toolbar-title": "تحديث كلمة المرور",
     "update-password": "تحديث كلمة المرور"
   }
 }

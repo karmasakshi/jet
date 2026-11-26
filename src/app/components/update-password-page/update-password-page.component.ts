@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { PageComponent } from '@jet/components/page/page.component';
 import { HasUnsavedChanges } from '@jet/interfaces/has-unsaved-changes.interface';
 import { AlertService } from '@jet/services/alert/alert.service';
 import { LoggerService } from '@jet/services/logger/logger.service';
@@ -37,6 +38,7 @@ import { User } from '@supabase/supabase-js';
     MatIconModule,
     MatInputModule,
     NgOptimizedImage,
+    PageComponent,
     ReactiveFormsModule,
     TranslocoModule,
   ],

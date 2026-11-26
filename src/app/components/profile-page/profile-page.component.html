@@ -2,7 +2,10 @@
 @let _profile = profile();
 @let _usernameControl = profileFormGroup.controls.username;
 
-<ng-container *transloco="let t; prefix: 'profile-page'">
+<jet-page
+  *transloco="let t; prefix: 'profile-page'"
+  [toolbarTitle]="t('toolbar-title')"
+>
   <div class="jet-stack">
     <mat-card class="jet-centered-card">
       <img
@@ -180,4 +183,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-</ng-container>
+</jet-page>

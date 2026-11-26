@@ -11,7 +11,12 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import {
+  provideRouter,
+  TitleStrategy,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+} from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { JetMatPaginatorIntl } from '@jet/classes/jet-mat-paginator-intl/jet-mat-paginator-intl';
 import { TranslocoHttpLoader } from '@jet/classes/transloco-http-loader/transloco-http-loader';
@@ -21,6 +26,7 @@ import { progressBarInterceptor } from '@jet/interceptors/progress-bar/progress-
 import { timeoutInterceptor } from '@jet/interceptors/timeout/timeout.interceptor';
 import { LanguageOption } from '@jet/interfaces/language-option.interface';
 import { ContextService } from '@jet/services/context/context.service';
+import { PageMetadataService } from '@jet/services/page-metadata/page-metadata.service';
 import { ServiceWorkerService } from '@jet/services/service-worker/service-worker.service';
 import { Language } from '@jet/types/language.type';
 import { provideTransloco } from '@jsverse/transloco';
@@ -44,6 +50,7 @@ export const appConfig: ApplicationConfig = {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
       useValue: { disableTooltipInteractivity: true, position: 'above', showDelay: 900 },
     },
+    { provide: TitleStrategy, useExisting: PageMetadataService },
     provideClientHydration(),
     provideRouter(
       routes,
