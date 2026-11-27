@@ -10,8 +10,33 @@ import { PageMetadataService } from './page-metadata.service';
 class TestPageComponent {}
 
 describe('PageMetadataService', () => {
-  it('applies an image-only override and derives the canonical from the route', async () => {
-    const pageMetadata: Partial<PageMetadata> = { og: { image: '/profile.jpg' } };
+  it('removes the robots tag when navigating to an indexable page', async () => {
+    TestBed.configureTestingModule({
+      providers: [
+        provideRouter([
+          {
+            component: TestPageComponent,
+            data: { pageMetadata: { noIndex: true } },
+            path: 'hidden',
+          },
+          { component: TestPageComponent, path: 'profile' },
+        ]),
+        { provide: TitleStrategy, useExisting: PageMetadataService },
+      ],
+    });
+
+    const harness = await RouterTestingHarness.create('/hidden');
+    expect(document.head.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+      'noindex',
+    );
+
+    await harness.navigateByUrl('/profile');
+    expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
+  });
+
+  it('applies Open Graph overrides and derives the canonical from the route', async () => {
+    const image = 'https://cdn.example.com/profile.jpg';
+    const pageMetadata: Partial<PageMetadata> = { og: { image, type: 'profile' } };
     TestBed.configureTestingModule({
       providers: [
         provideRouter([{ component: TestPageComponent, data: { pageMetadata }, path: 'profile' }]),
@@ -22,10 +47,10 @@ describe('PageMetadataService', () => {
     await RouterTestingHarness.create('/profile?ref=email#bio');
     expect(document.title).toBe(DEFAULT_PAGE_METADATA.title);
     expect(document.head.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe(
-      DEFAULT_PAGE_METADATA.og.type,
+      'profile',
     );
     expect(document.head.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
-      new URL('/profile.jpg', import.meta.env.NG_APP_APP_URL).href,
+      image,
     );
     expect(document.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       new URL('/profile', import.meta.env.NG_APP_APP_URL).href,
