@@ -7,9 +7,6 @@ import { PageComponent } from '@jet/components/page/page.component';
 import { LoggerService } from '@jet/services/logger/logger.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
-export type MessagePageCase =
-  'email-verification-pending' | 'reset-password-email-sent' | 'sign-in-link-sent';
-
 @Component({
   imports: [
     MatButtonModule,
@@ -26,7 +23,9 @@ export type MessagePageCase =
 export class MessagePageComponent {
   readonly #loggerService = inject(LoggerService);
 
-  public readonly case = input<MessagePageCase>();
+  public readonly case = input<
+    'email-verification-pending' | 'reset-password-email-sent' | 'sign-in-link-sent'
+  >();
 
   public constructor() {
     this.#loggerService.logComponentInitialization('MessagePageComponent');
