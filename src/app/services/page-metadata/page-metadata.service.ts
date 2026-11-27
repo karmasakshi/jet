@@ -3,7 +3,17 @@ import { Meta, Title } from '@angular/platform-browser';
 import { PRIMARY_OUTLET, RouterStateSnapshot, TitleStrategy } from '@angular/router';
 import { DEFAULT_PAGE_METADATA } from '@jet/constants/default-page-metadata.constant';
 import { PageMetadata } from '@jet/interfaces/page-metadata.interface';
+import { WebSite, WithContext } from 'schema-dts';
 import { LoggerService } from '../logger/logger.service';
+
+/* eslint-disable @typescript-eslint/naming-convention */
+const WEBSITE_JSON_LD: WithContext<WebSite> = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: DEFAULT_PAGE_METADATA.title,
+  url: new URL('/', import.meta.env.NG_APP_APP_URL).href,
+};
+/* eslint-enable @typescript-eslint/naming-convention */
 
 @Service()
 export class PageMetadataService extends TitleStrategy {
@@ -32,11 +42,14 @@ export class PageMetadataService extends TitleStrategy {
     const title =
       pageMetadata?.title ?? this.buildTitle(routerStateSnapshot) ?? DEFAULT_PAGE_METADATA.title;
     const image = pageMetadata?.og?.image ?? DEFAULT_PAGE_METADATA.og.image;
+    const url = new URL(routerStateSnapshot.url, import.meta.env.NG_APP_APP_URL);
+    url.search = '';
+    url.hash = '';
 
     this.#updateTitle(title);
     this.#updateDescription(pageMetadata?.description ?? DEFAULT_PAGE_METADATA.description);
-    this.#updateCanonical(routerStateSnapshot.url);
-    this.#updateJsonLd(pageMetadata?.jsonLd ?? DEFAULT_PAGE_METADATA.jsonLd);
+    this.#updateCanonical(url.href);
+    this.#updateWebsiteJsonLd(url.pathname === '/');
     this.#updateNoIndex(pageMetadata?.noIndex ?? DEFAULT_PAGE_METADATA.noIndex);
     this.#updateOpenGraphImage(image);
     this.#updateOpenGraphType(pageMetadata?.og?.type ?? DEFAULT_PAGE_METADATA.og.type);
@@ -54,25 +67,27 @@ export class PageMetadataService extends TitleStrategy {
     this.#meta.updateTag({ content: description, property: 'og:description' });
   }
 
-  #updateCanonical(path: string): void {
-    const url = new URL(path, import.meta.env.NG_APP_APP_URL);
-    url.search = '';
-    url.hash = '';
-
+  #updateCanonical(url: string): void {
     const existing = this.#document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     const link = existing ?? this.#document.createElement('link');
     link.rel = 'canonical';
-    link.href = url.href;
+    link.href = url;
     if (!existing) this.#document.head.appendChild(link);
-    this.#meta.updateTag({ content: url.href, property: 'og:url' });
+    this.#meta.updateTag({ content: url, property: 'og:url' });
   }
 
-  #updateJsonLd(jsonLd: PageMetadata['jsonLd']): void {
-    const existing = this.#document.head.querySelector<HTMLScriptElement>('script#jet-json-ld');
+  #updateWebsiteJsonLd(isHomePage: boolean): void {
+    const existing = this.#document.head.querySelector<HTMLScriptElement>(
+      'script[type="application/ld+json"]',
+    );
+    if (!isHomePage) {
+      existing?.remove();
+      return;
+    }
+
     const script = existing ?? this.#document.createElement('script');
-    script.id = 'jet-json-ld';
     script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(jsonLd).replaceAll('<', '\\u003c');
+    script.textContent = JSON.stringify(WEBSITE_JSON_LD).replaceAll('<', '\\u003c');
     if (!existing) this.#document.head.appendChild(script);
   }
 
