@@ -4,6 +4,8 @@
 
 /.agents
 /.angular
+/.aws
+/.codex
 /dist
 /node_modules
 /out-tsc
